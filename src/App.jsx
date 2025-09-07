@@ -43,7 +43,7 @@ function App() {
 						<h1>
 							Understanding
 							<br />
-							Me,Mysel &amp; I
+							Me,Myself &amp; I
 						</h1>
 						<div className='subtitle'>
 							<p>
