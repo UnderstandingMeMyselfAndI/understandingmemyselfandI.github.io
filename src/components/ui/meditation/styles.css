@@ -1,0 +1,81 @@
+@import '@/src/globals.css';
+.content[data-state='open'] {
+	animation: slideDown 200ms ease-out; /*(0.87, 0, 0.13, 1); */
+}
+.content[data-state='closed'] {
+	animation: slideUp 200ms ease-out; /*(0.87, 0, 0.13, 1); */
+}
+.meditation.video {
+	margin: 0.75rem 0;
+	color: var(--lightBlue);
+	font-weight: 600;
+}
+
+.meditation.video button {
+	position: relative;
+}
+.meditation.video button::after {
+	width: 80%;
+	height: 2px;
+	position: absolute;
+	left: 10%;
+	bottom: 0;
+	margin-bottom: -3px;
+	border-bottom: 1px solid var(--lighGreyBg);
+	content: '';
+}
+.meditation.video iframe {
+	max-width: 100%;
+	height: auto;
+	aspect-ratio: 16/9;
+}
+.meditation.video button {
+	margin-bottom: 1rem;
+}
+.meditation.video[data-state='open'] {
+	color: var(--yellow);
+}
+.videoTitle {
+	font-size: 1.5rem;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	align-content: center;
+	column-gap: 0.5rem;
+	justify-content: center;
+}
+.videoTitle .duration {
+	font-size: 1rem;
+	color: var(--grey);
+}
+.author {
+	padding: 0.5rem 0;
+}
+.author,
+.author a {
+	font-weight: 400;
+	color: var(--primary);
+	font-size: 1rem;
+}
+.author a {
+	display: flex;
+	/* align-items: center; */
+	align-content: center;
+	column-gap: 0.5rem;
+	justify-content: center;
+}
+.author a span {
+	display: block;
+}
+.author a svg {
+	width: 20px;
+	height: 20px;
+	margin-top: 2px;
+}
+.dark .author a svg,
+.system .author a svg {
+	fill: #fff;
+}
+.light .author a svg {
+	fill: #000;
+}

@@ -12,6 +12,7 @@ import QRCode from '@/src/components/ui/QRCode/QRCode.jsx';
 import ButtonShare from '@/src/components/ui/buttons/share/ButtonShare.jsx';
 import useThemeStore from '@/src/themeStore';
 import Logo from '@/src/components/ui/logo/Logo.jsx';
+import Meditation from './components/ui/meditation/Meditation';
 function App() {
 	const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme);
 	if (theme !== null) {
@@ -62,7 +63,7 @@ function App() {
 					</div>
 					<h2>Tools:</h2>
 					<AccordionAcro />
-
+					<Meditation label='Guided Meditation' />
 					<div className='footer'>
 						<div className='install'>
 							Add to your home screen video instructions
