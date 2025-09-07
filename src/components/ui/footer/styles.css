@@ -1,0 +1,15 @@
+@import '@/src/globals.css';
+.version-footer {
+	font-size: 1rem;
+	padding: 2rem 0;
+}
+.footer {
+	p {
+		margin: 1rem 0;
+	}
+}
+.update {
+	color: var(--primary);
+	margin: 0 0.25rem;
+	font-weight: 600;
+}

@@ -1,0 +1,156 @@
+@import '@/src/globals.css';
+.btn button {
+	all: unset;
+}
+.settings {
+	display: flex;
+	width: 40px;
+}
+.fontSize.settings {
+	margin-top: 0px;
+}
+.settingsDrawer {
+	display: flex;
+	width: 80%;
+	margin: 0 auto;
+	column-gap: 1rem;
+	justify-content: center;
+	align-items: center;
+}
+.settingsDrawer.subtitle {
+	align-items: center;
+	max-width: 90%;
+	margin: auto;
+}
+.settingsDrawer.subtitle p {
+	font-size: 0.7rem;
+	width: 100%;
+}
+.settingsDrawer.subtitle h3 {
+	font-size: 1.1rem;
+}
+.settingsDrawer .offlineCheckboxCont p {
+	text-align: left;
+}
+.btn {
+	width: 40px;
+	height: 40px;
+	border-radius: 8px;
+	border: none;
+	background-color: transparent;
+	outline: 1px solid #ababab;
+	cursor: pointer;
+}
+.btn button {
+	background-color: transparent;
+	transform: scale(1);
+	padding: 7px 6px;
+	transition: all 0.3s ease-in-out;
+	display: flex;
+}
+.btn > div {
+	padding: 8px 7px;
+}
+button img {
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+button:hover {
+	background-color: transparent;
+}
+[data-vaul-overlay][data-vaul-snap-points-overlay='true'] {
+	opacity: 0.75;
+}
+.settingsDrawerCont {
+	background-color: var(--background);
+	display: flex;
+	flex-direction: column;
+	row-gap: 0.5rem;
+	overflow-y: auto;
+	width: 100%;
+}
+div.DrawerContent[role='dialog'][data-state='open'] {
+	background-color: var(--background);
+	color: var(--primary);
+	padding-bottom: 0;
+	min-height: 30vh;
+	/* height: 60vh; */
+}
+
+div.DrawerContent[role='dialog'][data-state='open'] h2 {
+	font-weight: 400;
+	padding: 20px 0;
+}
+div.DrawerContent[role='dialog'][data-state='open'] h2:after {
+	display: none;
+}
+div.DrawerContent[role='dialog'][data-state='open'] > div:first-child {
+	display: none;
+}
+div.DrawerContent[role='dialog'][data-state='open'] > div {
+	display: flex;
+	row-gap: 20px;
+
+	max-width: 425px;
+	margin: 40px auto 0 auto;
+	padding-bottom: 40px;
+}
+div.DrawerContent[role='dialog'][data-state='open'] button {
+	outline: none;
+	background: transparent;
+	border: 1px solid var(--primary);
+}
+div.DrawerContent[role='dialog'][data-state='open'] button:hover,
+div.DrawerContent[role='dialog'][data-state='open'] button:focus-within {
+	outline: none;
+}
+div.DrawerContent[role='dialog'][data-state='open'] > div h2 {
+	width: 100%;
+	text-align: center;
+	display: none;
+}
+div.DrawerContent[role='dialog'][data-state='open'] > div h2::after {
+	display: none;
+}
+div.DrawerContent[role='dialog'][data-state='open'] .drawerFooter {
+	display: flex;
+	align-content: center;
+	flex-wrap: wrap;
+	width: 100%;
+	padding: 0;
+}
+div.DrawerContent[role='dialog'][data-state='open'] .drawerFooter button {
+	width: fit-content;
+	padding: 8px 12px;
+	border: 1px solid #5d5d5d;
+	outline: none;
+	background-color: transparent;
+}
+.install-as-app {
+	display: flex;
+	flex-direction: column;
+	row-gap: 1rem;
+	width: 100%;
+	text-align: center;
+}
+.install-as-app p {
+	text-align: center;
+}
+.install-as-app .links {
+	display: flex;
+	column-gap: 1rem;
+	width: 100%;
+	text-align: center;
+	a {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		row-gap: 0.5rem;
+		padding: 0.5rem;
+		outline: 1px solid #ababab;
+		border-radius: 8px;
+		width: calc(50% - 0.5rem);
+	}
+}

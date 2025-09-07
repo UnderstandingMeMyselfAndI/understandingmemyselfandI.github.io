@@ -1,1 +1,1 @@
-# understanding-me-myself-and-I.github.io
+# UnderstandingMeMyselfAndI.github.io
