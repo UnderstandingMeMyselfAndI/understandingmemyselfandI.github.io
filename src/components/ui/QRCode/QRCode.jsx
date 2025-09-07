@@ -1,17 +1,20 @@
-import QRCodeIcon from '@/src/assets/QRCode.png';
-import QRCodeIconDark from '@/src/assets/QRCodeDark.png';
+import QRCodeIconBlack from '@/src/assets/qr-code-src-app-black-318.png';
+import QRCodeIconWhite from '@/src/assets/qr-code-src-app-white-318.png';
 
-import getStoredTheme from '@/src/components/theme/getStoredTheme';
+// import getStoredTheme from '@/src/components/theme/getStoredTheme';
+import useThemeStore from '@/src/themeStore';
 import './styles.css';
 import PropTypes from 'prop-types';
-
+import { useShallow } from 'zustand/react/shallow';
 const QRCode = ({ label }) => {
-	const theme = getStoredTheme();
+	const { theme } = useThemeStore(
+		useShallow((state) => ({ theme: state.theme }))
+	);
 	return (
 		<div className='QRCode'>
 			<div>{label}</div>
 			<img
-				src={theme === 'light' ? QRCodeIcon : QRCodeIconDark}
+				src={theme === 'light' ? QRCodeIconBlack : QRCodeIconWhite}
 				alt='QRCode'
 				width='318'
 				height='318'
