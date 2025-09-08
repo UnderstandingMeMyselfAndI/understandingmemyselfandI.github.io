@@ -137,11 +137,11 @@ function App() {
 							Drop us an email at the address below with your feedback.
 							<br /> <br />
 							<a
-								href='mailto:yourrecoverytoolbox@gmail.com?subject=The%20Recovery%20Toolbox%20Feedback'
+								href='mailto:ummi.toolbox@gmail.com?subject=UMMI%20Toolbox%20Feedback'
 								target='_blank'
 								rel='noopener noreferrer'
 							>
-								yourrecoverytoolbox@gmail.com
+								ummi.toolbox@gmail.com
 							</a>
 						</p>
 						<p>
