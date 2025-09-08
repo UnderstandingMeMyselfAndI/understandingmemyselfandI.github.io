@@ -136,7 +136,7 @@ div.scenarioDialog[role='dialog'][data-state='open'] {
 	row-gap: 1.25rem;
 	justify-content: space-around;
 	padding-top: 3rem;
-	width: 100%;
+	width: 425px;
 	max-width: 100vw;
 	overflow: auto;
 }
