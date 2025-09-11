@@ -564,62 +564,62 @@ const data = [
 			acronyms: [
 				{
 					letter: 'P',
-					meaning: 'Piss',
+					meaning: 'Proper',
 					definition:
-						'Bluntly reminds us that careless or sloppy effort in recovery can set you up for failure.',
+						"Doing things the right way, not cutting corners. It’' about being honest with yourself and making sure what you're doing is sensible and realistic.",
 					scenario: '',
 				},
 				{
 					letter: 'P',
-					meaning: 'Poor',
+					meaning: 'Preparation',
 					definition:
-						'Signals low-quality or half-hearted planning — a weak starting point that undermines progress.',
+						'Getting ready in advance. This might mean learning new coping skills, having a plan for tricky situations, or knowing what resources you can turn to if you’re struggling.',
 					scenario: '',
 				},
 				{
 					letter: 'P',
 					meaning: 'Planning',
 					definition:
-						'Strong preparation in recovery helps you anticipate challenges, avoid pitfalls, and stay accountable.',
+						'Actually mapping out what you’re going to do. Instead of just hoping for the best, you think about the steps you’ll take — e.g., what to do when cravings come up, or how to spend time in healthier ways.',
 					scenario: '',
 				},
 				{
 					letter: 'P',
-					meaning: 'Piss',
+					meaning: 'Prevents',
 					definition:
-						'A repeat of the warning — lack of effort and foresight will echo back later.',
+						'This is the cause-and-effect part: doing the first three steps helps to stop problems before they happen.',
 					scenario: '',
 				},
 				{
 					letter: 'P',
 					meaning: 'Poor',
 					definition:
-						'Represents the outcome of inadequate preparation — weak coping strategies and unnecessary risks.',
+						'If you don’t prepare or plan, you’re more likely to make choices that aren’t good for your recovery. “Poor” here just means unhelpful, sloppy, or not up to your best ability.',
 					scenario: '',
 				},
 				{
 					letter: 'P',
 					meaning: 'Performance',
 					definition:
-						'How you actually show up in recovery. Without good planning, performance suffers, leading to setbacks or relapse.',
+						'How well you actually do in real life. With good preparation and planning, your performance (how you handle recovery, challenges, or life situations) will be much stronger and more successful.',
 					scenario: '',
 				},
 			],
 			explanation:
-				'<b>A memorable recovery slogan:</b><br /> Piss Poor Planning leads to Piss Poor Performance. <br />It’s a tough-love reminder that preparation directly impacts outcomes. <u>The more effort you put into planning, the stronger your recovery performance will be.</u>',
+				'<u>So together:</u><br /><b>Proper Preparation and Planning Prevents Poor Performance = </b><br />“Doing the groundwork now makes things easier and more successful later.',
 		},
 		scenarios: [
 			{
-				title: 'Facing a Stressful Event',
+				title: 'Plan the night, don’t fight the night.',
 				content:
-					'<b>Piss Poor Planning:</b><br /> You don’t practice coping skills before going to a party. <br /><br /><b>Piss Poor Performance:</b><br /> Anxiety overwhelms you, and you feel tempted to use as an escape.',
+					'You usually met friends at the pub on Fridays, but now you’re focusing on recovery.<br /><b>Proper → Be honest:</b><br /> Pubs are a high-risk place right now.<br /><br /><b>Preparation →</b><br />Have alcohol-free drinks stocked at home and line up a safe activity (movie night, gym, or call with a supportive friend).<br /><br /><b>Planning →</b><br />Tell your friends ahead you won’t be joining at the pub, and suggest a coffee or lunch at another time.<br /><br /><b>Prevents →</b><br />Stops you from getting caught off-guard by temptation.<br /><br /><b>Poor →</b><br />If you don’t think ahead, you might end up at the pub “just for one” and spiral.<br /><br /><b>Performance →</b><br />You stick to your plan, avoid cravings, and still enjoy your Friday night.',
 				btnLabel: 'Plan to Cope',
 			},
 			{
-				title: 'Financial Triggers',
+				title: 'Stress ahead? Take the recovery detour.',
 				content:
-					'<b>Piss Poor Planning:</b><br /> You don’t budget or prepare for payday spending urges. <br /><br /><b>Piss Poor Performance:</b><br /> Money disappears quickly, leaving you stressed and vulnerable to relapse.',
-				btnLabel: 'Budget & Prepare',
+					'Work stress hits hard, and in the past you’d cope by drinking or using.<br /><br /><b>Proper →</b><br />Be honest. Admit stress is a trigger and you’ll need healthier tools.<br /><br /><b>Preparation →</b><br />Practice a breathing exercise or write a quick list of stress-busting activities you enjoy (walk, music, journaling).<br /><br /><b>Planning →</b><br />Set reminders to take breaks and ask a trusted colleague or friend to check in during tough weeks.<br /><br /><b>Prevents →</b><br />Stops the build-up of pressure leading straight to old habits.<br /><br /><b>Poor →</b><br />Without a plan, stress might “push you off the road” back into old behaviour.<br /><br /><b>Performance →</b><br />You take the detour — using healthy coping tools instead of falling back.',
+				btnLabel: 'The Stress Detour',
 			},
 		],
 	},
