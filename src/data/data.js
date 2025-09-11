@@ -606,7 +606,7 @@ const data = [
 				},
 			],
 			explanation:
-				'<u>So together:</u><br /><b>Proper Preparation and Planning Prevents Poor Performance = </b><br />“Doing the groundwork now makes things easier and more successful later.',
+				'<b>Proper Preparation and Planning Prevents Poor Performance = </b><br />“Doing the groundwork now makes things easier and more successful later.',
 		},
 		scenarios: [
 			{
