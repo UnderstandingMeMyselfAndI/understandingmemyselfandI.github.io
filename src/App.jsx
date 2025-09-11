@@ -175,7 +175,7 @@ function App() {
 								target='_blank'
 								rel='noopener noreferrer'
 							>
-								Buying us a coffee or a small donation
+								Buying us a coffee or giving a small donation
 							</a>
 							<p>
 								&hearts; &#x2661; We would really appreciate it.&#x2661;
