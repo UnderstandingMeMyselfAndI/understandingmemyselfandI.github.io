@@ -157,6 +157,31 @@ function App() {
 							<br />
 							<span className='big4 r90'>:)</span>
 						</p>
+						<p>
+							This website and app is{' '}
+							<b>
+								provided for free and <u>will always be free to use.</u>
+							</b>
+						</p>
+						<p>
+							It is constantly evolving from the feedback received and new ideas
+							to help us get better together.
+						</p>
+						<p>
+							If you want to help keep this app free for all of us and help the
+							development please consider{' '}
+							<a
+								href='https://www.buymeacoffee.com/ummi'
+								target='_blank'
+								rel='noopener noreferrer'
+							>
+								Buying us a coffee.
+							</a>
+							<p>
+								&hearts; &#x2661; We would really appreciate it.&#x2661;
+								&hearts;{' '}
+							</p>
+						</p>
 					</div>
 				</div>
 				<FooterMetadata />
