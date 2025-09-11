@@ -566,7 +566,7 @@ const data = [
 					letter: 'P',
 					meaning: 'Proper',
 					definition:
-						"Doing things the right way, not cutting corners. It’' about being honest with yourself and making sure what you're doing is sensible and realistic.",
+						"Doing things the right way, not cutting corners. It’s about being honest with yourself and making sure what you're doing is sensible and realistic.",
 					scenario: '',
 				},
 				{
