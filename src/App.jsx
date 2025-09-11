@@ -47,9 +47,8 @@ function App() {
 						</h1>
 						<div className='subtitle'>
 							<p>
-								The tools we learn in groups and meetings to help us deal with
-								our emotions and thoughts are ace, but remembering them can be
-								hard.
+								The tools we learn to cope with our emotions, thoughts, feelings
+								and mental health are ace, but remembering them can be hard.
 							</p>
 							<p>
 								This app is your toolbox so you can carry those tools around
