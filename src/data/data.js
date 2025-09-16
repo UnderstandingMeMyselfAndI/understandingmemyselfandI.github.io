@@ -59,6 +59,57 @@ const data = [
 		],
 	},
 	{
+		id: 20,
+		title: 'B.A.D.S',
+		content: {
+			acronyms: [
+				{
+					letter: 'B',
+					meaning: 'Bored',
+					definition: 'Feeling restless, unstimulated, or “at a loose end.”',
+					scenario: '',
+				},
+				{
+					letter: 'A',
+					meaning: 'Anxious',
+					definition:
+						'Experiencing worry, nervousness, or fear about the future or current situations.',
+					scenario: '',
+				},
+				{
+					letter: 'D',
+					meaning: 'Depressed',
+					definition:
+						'Feeling low, hopeless, unmotivated, or emotionally drained.',
+					scenario: '',
+				},
+				{
+					letter: 'S',
+					meaning: 'Stressed',
+					definition:
+						'Feeling overwhelmed by demands, responsibilities, or external pressures.',
+					scenario: '',
+				},
+			],
+			explanation:
+				'B.A.D.S. is a quick check-in tool.<br />When you feel an urge to use, drink, gamble, or engage in another unhelpful behaviour, you can pause and ask:<br /><b>“Am I feeling bored, anxious, depressed, or stressed right now? Could this be driving my craving?”</b><br />Recognising these states makes it easier to find healthier coping strategies <u>before acting on an urge.</u>',
+		},
+		scenarios: [
+			{
+				title: 'Evening Cravings from Boredom',
+				content:
+					"John is early in recovery from alcohol use. He notices strong cravings most evenings when he has nothing to do.<br /><b>Using B.A.D.S.:</b><br />He identifies he's <u>not actually thirsty for alcohol — he’s bored.</u><br /><u>Instead of drinking</u>, he chooses to <u>go for a walk and listen to a podcast, which keeps him engaged</u> until bedtime.",
+				btnLabel: 'Evening Cravings',
+			},
+			{
+				title: 'Work Stress Triggering a Relapse Urge',
+				content:
+					'Emma, recovering from gambling, feels the urge to gamble after a very stressful day at work.<br /><br /><b>Using B.A.D.S.:</b><br />She recognises <u>her urge is linked to being stressed, not a genuine desire to gamble.</u><br />She <u>calls a friend and practices some breathing exercises</u> instead.',
+				btnLabel: 'Work Stress Triggering',
+			},
+		],
+	},
+	{
 		id: 2,
 		title: 'C.B.A.',
 		content: {
@@ -263,7 +314,7 @@ const data = [
 				},
 			],
 			explanation:
-				'Your basic human needs checklist - because sometimes the solution is as simple as a snack, a nap, or a hug.',
+				'Your basic human needs checklist - because sometimes the solution is as simple as a snack, a nap, or a hug.<br /><b>Check out B.A.D.S next - H.A.L.T the B.A.D.S. </b>',
 		},
 		scenarios: [
 			{
