@@ -92,13 +92,13 @@ const data = [
 				},
 			],
 			explanation:
-				'B.A.D.S. is a quick check-in tool.<br /><br />When you feel an urge to use, drink, gamble, or engage in another unhelpful behaviour, you can pause and ask:<br /><br /><b>“Am I feeling bored, anxious, depressed, or stressed right now? Could this be driving my craving?”</b><br /><br />Recognising these states makes it easier to find healthier coping strategies <u>before acting on an urge.</u>',
+				'B.A.D.S. is a quick check-in tool.<br /><br />When you feel an urge to use, drink, gamble, or engage in another unhelpful behaviour, you can pause and ask:<br /><br />“Am I feeling<b> bored, anxious, depressed, or stressed</b> right now? Could this be driving my craving?”<br /><br />Recognising these states makes it easier to find healthier coping strategies <u>before acting on an urge.</u>',
 		},
 		scenarios: [
 			{
 				title: 'Evening Cravings from Boredom',
 				content:
-					"John is early in recovery from alcohol use. He notices strong cravings most evenings when he has nothing to do.<br /><b>Using B.A.D.S.:</b><br />He identifies he's <u>not actually thirsty for alcohol — he’s bored.</u><br /><u>Instead of drinking</u>, he chooses to <u>go for a walk and listen to a podcast, which keeps him engaged</u> until bedtime.",
+					"John is early in recovery from alcohol use. He notices strong cravings most evenings when he has nothing to do.<br /><b>Using B.A.D.S.:</b><br />He identifies he's not actually thirsty for alcohol — he’s <u>bored.</u><br /><br /><u>Instead of drinking</u>, he chooses to <u>go for a walk and listen to a podcast, which keeps him engaged</u> until bedtime.",
 				btnLabel: 'Evening Cravings',
 			},
 			{
