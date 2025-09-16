@@ -92,7 +92,7 @@ const data = [
 				},
 			],
 			explanation:
-				'B.A.D.S. is a quick check-in tool.<br />When you feel an urge to use, drink, gamble, or engage in another unhelpful behaviour, you can pause and ask:<br /><b>“Am I feeling bored, anxious, depressed, or stressed right now? Could this be driving my craving?”</b><br />Recognising these states makes it easier to find healthier coping strategies <u>before acting on an urge.</u>',
+				'B.A.D.S. is a quick check-in tool.<br /><br />When you feel an urge to use, drink, gamble, or engage in another unhelpful behaviour, you can pause and ask:<br /><br /><b>“Am I feeling bored, anxious, depressed, or stressed right now? Could this be driving my craving?”</b><br /><br />Recognising these states makes it easier to find healthier coping strategies <u>before acting on an urge.</u>',
 		},
 		scenarios: [
 			{
