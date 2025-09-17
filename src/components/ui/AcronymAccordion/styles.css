@@ -165,7 +165,7 @@ div[data-state='open'] .AccordionContentText {
 }
 .Acronym-letter-meaning::first-letter {
 	font-weight: 800;
-	font-size: 1.75rem;
+	font-size: 2.5rem;
 
 	color: var(--lightBlue);
 	font-weight: 800;

@@ -149,13 +149,14 @@ div.scenarioDialog[role='dialog'][data-state='open'] {
 	text-decoration-thickness: 4px;
 	text-decoration-line: underline;
 }
+.AcronymDefinition b,
 .scenarioDialog b {
 	position: relative;
 	display: inline-block;
 }
+.AcronymDefinition b::after,
 .scenarioDialog b::after {
 	content: ' ';
-	width: 90%;
 	height: 14px;
 	background-color: var(--yellow);
 	opacity: 0.4;
@@ -163,14 +164,11 @@ div.scenarioDialog[role='dialog'][data-state='open'] {
 	top: 0;
 	left: 0;
 	z-index: -1;
-	margin-top: 12px;
-	margin-left: -4px;
-}
-.scenarioDialog b::after {
 	width: 110%;
 	margin-top: 14px;
 	margin-left: -5%;
 }
+.AcronymDefinition u,
 .scenarioDialog u {
 	text-decoration-color: var(--yellow);
 	text-decoration-thickness: 4px;
