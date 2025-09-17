@@ -456,7 +456,7 @@ const data = [
 				},
 			],
 			explanation:
-				"Three simple steps to break free from patterns that aren't serving you anymore.",
+				"Three simple steps to break free from patterns that aren't serving you anymore.<br /><br /><u>Challenge your thoughts and </u><b>take your thoughts to court</b>",
 		},
 		scenarios: [
 			{
