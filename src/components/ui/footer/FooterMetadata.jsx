@@ -17,11 +17,14 @@ function FooterMetadata() {
 		};
 		fetchAndCompareVersions();
 	}, []);
+
+	const year = new Date().getFullYear();
+
 	return (
 		<div className='version-footer'>
-			{/* &copy; 2020 RichHewlett.com */}
+			&copy; {year} flpdigital.com
 			<div className='sf-footer-version'>
-				{`Version ${metadata.buildMajor}.${metadata.buildMinor}.${metadata.buildRevision} ${metadata.buildTag}`}
+				{`Version ${metadata.buildMajor}.${metadata.buildMinor}.${metadata.buildRevision} `}
 				{isUpdateAvailable && (
 					<span className='update'> (Update available - go to settings)</span>
 				)}
