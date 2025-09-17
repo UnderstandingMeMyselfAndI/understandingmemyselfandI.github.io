@@ -3,7 +3,7 @@
 	"short_name": "U Me, Myself, and I",
 	"start_url": "/index.html",
 	"display": "standalone",
-	"background_color": "#ffffff",
+	"background_color": "#036075",
 	"theme_color": "#007bff",
 	"icons": [
 		{
