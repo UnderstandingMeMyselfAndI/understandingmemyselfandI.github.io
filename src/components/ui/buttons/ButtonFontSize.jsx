@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 const stepFontSizePx = 1;
 const storageKeyBaseFontSize = 'baseFontSize';
 let rootFontSize = 16;
-const minFontSize = 12;
+const minFontSize = 14;
 const maxFontSize = 34;
 
 const getStoredBaseFontSize = () => {

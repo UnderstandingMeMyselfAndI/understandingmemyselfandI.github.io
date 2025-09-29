@@ -11,7 +11,7 @@ fs.readFile('public/metadata.json', function (err, content) {
 		function (err) {
 			if (err) throw err;
 			console.log(
-				`Current build number: ${metadata.buildMajor}.${metadata.buildMinor}.${metadata.buildRevision} ${metadata.buildTag}`
+				`Metadata incremented. Current build number: ${metadata.buildMajor}.${metadata.buildMinor}.${metadata.buildRevision} ${metadata.buildTag}`
 			);
 		}
 	);
@@ -23,7 +23,7 @@ fs.readFile('src/metadata.json', function (err, content) {
 	fs.writeFile('src/metadata.json', JSON.stringify(metadata), function (err) {
 		if (err) throw err;
 		console.log(
-			`Current build number: ${metadata.buildMajor}.${metadata.buildMinor}.${metadata.buildRevision} ${metadata.buildTag}`
+			`Src incremented. Current build number: ${metadata.buildMajor}.${metadata.buildMinor}.${metadata.buildRevision} ${metadata.buildTag}`
 		);
 	});
 });
