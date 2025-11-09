@@ -1,7 +1,7 @@
-@import '@radix-ui/colors/black-alpha.css';
-@import '@radix-ui/colors/mauve.css';
-@import '@radix-ui/colors/violet.css';
-@import '@/src/globals.css';
+@import "@radix-ui/colors/black-alpha.css";
+@import "@radix-ui/colors/mauve.css";
+@import "@radix-ui/colors/violet.css";
+@import "@/src/globals.css";
 /* reset */
 
 h3 {
@@ -118,25 +118,141 @@ div[data-state='open'] .AccordionContentText {
 .AcronymContainer {
 	display: flex;
 	flex-direction: column;
-	row-gap: 0.5rem;
+	row-gap: 2.75rem;
 	max-width: 90%;
 	margin: calc(0.25rem / var(--user-scale)) 20px;
+	margin-top: 2rem;
 	/* background-color: var(--lighGreyBg); */
 }
 .Acronym-part {
 	display: flex;
 	flex-direction: column;
 	row-gap: 0.5rem;
+	position: relative;
+	&::after {
+		content: "";
+		position: absolute;
+		width: 96%;
+		height: 100%;
+		left: 0%;
+		transform: translate(-0%, 5%) scaleY(1.3) scaleX(1.2) skew(10deg, -2deg);
+		/* transform: perspective(100px), rotateX(8deg);skew(30deg, -2deg) rotateX(10deg) perspective(100px) */
+		background: #69eb13;
+		/* background: linear-gradient(141deg, rgba(235, 19, 19, 0) 1%, rgba(186, 199, 46, 1) 56%, rgba(207, 110, 91, 1) 73%, rgba(44, 219, 193, 1) 91%, rgba(49, 23, 194, 0.47) 100%); */
+		clip-path: polygon(0% 10%, 97% 64%, 84% 100%, 5% 45%);
+		z-index: -1;
+		background-color: var(--lightBlue);
+		margin: 0 auto;
+		opacity: 0.125;
+		mix-blend-mode: hard-light;
+	}
+	&::before {
+		content: "";
+		position: absolute;
+		width: 96%;
+		height: 100%;
+		left: 5%;
+		transform: translate(-10%, -20%) scaleY(1) scaleX(1.4) skew(10deg, -6deg) rotateZ(-5deg);
+		/* transform: perspective(100px), rotateX(8deg);skew(30deg, -2deg) rotateX(10deg) perspective(100px) */
+		/* background-color: var(--primary); */
+		background: #5a02fd;
+		/* background: linear-gradient(141deg, rgba(220, 220, 220, 0) 0%, rgba(186, 199, 46, 1) 31%, rgba(42, 75, 145, 1) 61%, rgba(73, 44, 219, 1) 84%, rgba(49, 23, 194, 0.47) 100%); */
+		clip-path: polygon(4% 18%, 97% 38%, 74% 100%, 15% 65%);
+		z-index: -2;
+		/* background-color: var(--yellow); */
+		margin: 0 auto;
+		opacity: 0.15;
+		/* mix-blend-mode: saturation; */
+	}
+	&:nth-child(1) {
+		&::after {
+			clip-path: polygon(4% 2%, 97% 10%, 94% 70%, 5% 15%);
+			transform: translate(0%, 20%) scaleY(1.2) skew(-30deg, 6deg) scaleX(2.8) rotateZ(-6deg);
+			opacity: 0.16;
+			/* mix-blend-mode: saturation; */
+		}
+		&::before {
+			opacity: 0.14;
+			clip-path: polygon(4% 0%, 97% 58%, 84% 70%, 25% 98%);
+			transform: translate(-30%, -25%) scaleY(1.1) scaleX(2) skew(4deg, 9deg);
+			mix-blend-mode: multiple;
+		}
+	}
+	&:nth-child(2) {
+		&::after {
+			clip-path: polygon(4% 2%, 110% 10%, 94% 70%, 5% 15%);
+			transform: translate(-10%, -40%) scaleY(0.9) skew(10deg, 6deg) scaleX(1.5) rotateZ(-195deg);
+			opacity: 0.13;
+			mix-blend-mode: multiply;
+			/* filter: invert(100%); */
+		}
+		&::before {
+			opacity: 0.125;
+			clip-path: polygon(4% 0%, 97% 58%, 84% 70%, 5% 98%);
+			transform: translate(-40%, -15%) scaleY(0.6) scaleX(1.4) skew(4deg, 9deg) rotateZ(-185deg);
+			/* mix-blend-mode: saturation; */
+			/* filter: invert(100%); */
+		}
+	}
+	&:nth-child(3) {
+		&::after {
+			clip-path: polygon(4% 2%, 97% 10%, 94% 70%, 5% 15%);
+			transform: translate(-30%, -4%) scaleY(0.6) skew(-20deg, 6deg) scaleX(1) rotateZ(1deg);
+			opacity: 0.14;
+			mix-blend-mode: multiply;
+			/* filter: invert(10%); */
+		}
+		&::before {
+			opacity: 0.12;
+			clip-path: polygon(4% 0%, 97% 58%, 84% 70%, 25% 98%);
+			transform: translate(-30%, -15%) scaleY(0.6) scaleX(1.8) skew(4deg, 9deg) rotateZ(160deg);
+			mix-blend-mode: saturation;
+			/* filter: saturate(200%); */
+		}
+	}
+	&:nth-child(4) {
+		&::after {
+			clip-path: polygon(4% 2%, 97% 10%, 94% 70%, 5% 15%);
+			transform: translate(-30%, -34%) scaleY(1.2) skew(-20deg, 6deg) scaleX(1) rotateZ(160deg);
+			opacity: 0.14;
+			mix-blend-mode: difference;
+			filter: invert(100%);
+		}
+		&::before {
+			opacity: 0.12;
+			clip-path: polygon(4% 0%, 97% 58%, 84% 70%, 25% 98%);
+			transform: translate(-30%, -15%) scaleY(0.84) scaleX(3.8) skew(4deg, 9deg) rotateZ(10deg);
+			mix-blend-mode: saturation;
+			/* filter: saturate(200%); */
+		}
+	}
+	&:nth-child(5) {
+		&::after {
+			clip-path: polygon(0% 10%, 97% 64%, 94% 100%, 5% 95%);
+			transform: translate(2%, -24%) scaleY(0.8) skew(-20deg, 6deg) scaleX(1.4) rotateZ(-20deg);
+			opacity: 0.14;
+			mix-blend-mode: color-burn;
+			/* filter: brightness(50%) saturate(100%); */
+		}
+		&::before {
+			opacity: 0.13;
+			clip-path: polygon(4% 18%, 97% 38%, 94% 100%, 15% 65%);
+			transform: translate(-30%, -15%) scaleY(0.7) scaleX(3.8) skew(4deg, 9deg) rotateZ(-160deg);
+			/* mix-blend-mode: difference; */
+			/* filter: invert(100%); */
+		}
+	}
 }
 .Acronym-letter-group {
 	display: flex;
 	column-gap: 1rem;
 }
 .Acronym-definition {
-	font-size: 0.85rem;
+	font-size: 1.3rem;
+	line-height: 1.2;
 	text-align: left;
 
-	margin-left: 45px;
+	margin-left: 16px;
 	color: var(--primary);
 }
 .Acronym-letter {
@@ -146,6 +262,7 @@ div[data-state='open'] .AccordionContentText {
 	font-weight: 800;
 	line-height: 1;
 	width: 30px;
+	text-shadow: 2px 2px 2px rgba(50, 50, 50, 0.2);
 }
 .Acronym-letter-meaning {
 	width: 100%;
@@ -153,32 +270,40 @@ div[data-state='open'] .AccordionContentText {
 	display: flex;
 	align-items: center;
 	column-gap: 1rem;
-	font-size: 1.375rem;
+	font-size: 2rem;
 	font-weight: 600;
-	letter-spacing: 0.05rem;
+	/* letter-spacing: 0.015rem; */
+
+	text-indent: 0.2rem;
 	line-height: 1.1;
 	overflow-wrap: break-word;
 	word-break: break-word;
 	display: inline-block;
+	color: var(--primary);
+	text-shadow: 2px 2px 2px rgba(50, 50, 50, 0.2);
+	position: relative;
 
-	color: var(--yellow);
+	text-decoration-color: rgba(50, 50, 50, 0.15);
+	text-decoration-thickness: 6px;
+	text-decoration-line: underline;
 }
 .Acronym-letter-meaning::first-letter {
 	font-weight: 800;
-	font-size: 2.5rem;
+	font-size: 3.25rem;
 
-	color: var(--lightBlue);
+	color: var(--yellow);
 	font-weight: 800;
 	line-height: 1;
 	/* letter-spacing: 10px; */
-	padding-right: 0px;
+	padding-right: 4px;
+	margin-right: -1%;
 }
 .AccordionItem {
 	padding: 0.5rem 0;
 	margin: 0;
 }
 
-.AccordionItem[data-state='open'] {
+.AccordionItem[data-state="open"] {
 	background-color: var(--lighGreyBg);
 	margin-bottom: 1rem;
 	/* padding: 1rem 0; */
@@ -191,13 +316,13 @@ div[data-state='open'] .AccordionContentText {
 	transition: all 5000ms ease-out;
 	animation: slideDown 4000ms ease-out;
 } */
-.AccordionItem[data-state='open'] .AccordionTriggerTitle {
+.AccordionItem[data-state="open"] .AccordionTriggerTitle {
 	width: 100%;
 	word-break: break-all;
 	word-wrap: break-word;
 	color: var(--yellow);
 }
-.AccordionHeader:has(.AccordionTrigger[data-state='open']) {
+.AccordionHeader:has(.AccordionTrigger[data-state="open"]) {
 	.AccordionTrigger {
 		font-size: 2.5rem;
 		height: 100%;
@@ -205,17 +330,17 @@ div[data-state='open'] .AccordionContentText {
 		row-gap: 0.75rem;
 	}
 }
-.AccordionHeader:has(.AccordionTrigger[data-state='closed']) {
+.AccordionHeader:has(.AccordionTrigger[data-state="closed"]) {
 	.AccordionTrigger {
 		color: var(--primary);
 		height: 100%;
 	}
 }
-.AccordionContent[data-state='open'] {
+.AccordionContent[data-state="open"] {
 	animation: slideDown 200ms ease-out; /*(0.87, 0, 0.13, 1); */
 	/* padding-bottom: 1.5rem; */
 }
-.AccordionContent[data-state='closed'] {
+.AccordionContent[data-state="closed"] {
 	animation: slideUp 200ms ease-out; /*(0.87, 0, 0.13, 1); */
 }
 
@@ -229,10 +354,10 @@ div[data-state='open'] .AccordionContentText {
 		stroke-width: 1px;
 	}
 }
-.AccordionTrigger[data-state='open'] > .AccordionChevron {
+.AccordionTrigger[data-state="open"] > .AccordionChevron {
 	transform: rotate(180deg);
 }
-.AccordionTrigger[data-state='open'] {
+.AccordionTrigger[data-state="open"] {
 	color: var(--yellow);
 	justify-content: space-between;
 	transition: all 0.3s ease-out;
@@ -246,6 +371,8 @@ div[data-state='open'] .AccordionContentText {
 	margin: 0.5rem auto;
 	color: var(--primary);
 	text-align: left;
+	font-size: 1.2rem;
+	line-height: 1.3;
 }
 .AccordionItemFavourite {
 	transform: scale(min(var(--user-scale), 1.5));

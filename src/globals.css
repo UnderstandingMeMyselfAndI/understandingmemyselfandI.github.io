@@ -1,14 +1,12 @@
 :root {
 	--blueBackground: #1b869e;
-	--mainBackground: linear-gradient(
-		140deg,
-		rgba(27, 134, 158, 1) 0%,
-		rgb(157, 30, 30) 81%
-	);
+	--mainBackground: linear-gradient(140deg, rgba(27, 134, 158, 1) 0%, rgb(157, 30, 30) 81%);
 	--background: oklch(0.145 0 0);
 	--foreground: oklch(0.985 0 0);
-	--yellow: #8dff71;
+	--yellow: #83db6d;
+	--yellow2: #a7fd91;
 	--lightBlue: #bcb6ea;
+	--blue: #4d477c;
 	--lightGrey: #ccc;
 	--lighGreyBg: #8080804d;
 	--grey: #999;
@@ -124,11 +122,7 @@
 }
 .system {
 	--blueBackground: #1b869e;
-	--mainBackground: linear-gradient(
-		140deg,
-		rgba(27, 134, 158, 1) 0%,
-		rgb(157, 30, 30) 81%
-	);
+	--mainBackground: linear-gradient(140deg, rgba(27, 134, 158, 1) 0%, rgb(157, 30, 30) 81%);
 	--background: oklch(32.109% 0.00004 271.152);
 	--foreground: oklch(0.985 0 0);
 	--yellow: #8dff71;
