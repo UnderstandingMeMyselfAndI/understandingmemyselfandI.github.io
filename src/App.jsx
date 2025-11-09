@@ -8,10 +8,14 @@ import FooterMetadata from "./components/ui/footer/FooterMetadata.jsx";
 import applyTheme from "@/src/components/theme/applyTheme";
 import iconAndroid from "@/src/components/icons/iconAndroid.jsx";
 import iconApple from "@/src/components/icons/iconApple.jsx";
+import iconEmojiFistup from "@/src/components/icons/iconEmojiFistup.jsx";
+import iconEmojiPeaceHand from "@/src/components/icons/iconEmojiPeaceHand.jsx";
+import iconEmojiThumbsup from "@/src/components/icons/iconEmojiThumbsup.jsx";
 import QRCode from "@/src/components/ui/QRCode/QRCode.jsx";
 import ButtonShare from "@/src/components/ui/buttons/share/ButtonShare.jsx";
 import useThemeStore from "@/src/themeStore";
 import Logo from "@/src/components/ui/logo/Logo.jsx";
+import iconEmojiVWHand from "./components/icons/iconEmojiVWHand";
 function App() {
 	const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme);
 	if (theme !== null) {
@@ -129,6 +133,10 @@ function App() {
 					</div>
 				</div>
 				<FooterMetadata />
+				<div className="bgImgs">
+					<div className="icon peacehand" dangerouslySetInnerHTML={{__html: iconEmojiPeaceHand}} />
+					<div className="icon thumbsup" dangerouslySetInnerHTML={{__html: iconEmojiThumbsup}} />
+				</div>
 			</div>
 		</div>
 	);
