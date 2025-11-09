@@ -49,6 +49,11 @@ function App() {
 						<div className="subtitle">
 							<p>The tools we learn to cope with our emotions, thoughts, feelings and mental health are ace, but remembering them can be hard.</p>
 							<p>This app is your toolbox so you can carry those tools around with you for whenever you need them.</p>
+							<p>
+								The app is free to use and always will be. It is created and maintained by someone who is on a similar recovery journey to you, and needed somewhere quick to access the tools we learn
+								when we need them - not a bunch of paperwork.
+							</p>
+							<p>I hope you find it useful.</p>
 						</div>
 						<div className="subtitle start">Tap a heading to read out about the tool.</div>
 					</div>
