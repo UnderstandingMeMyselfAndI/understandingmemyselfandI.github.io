@@ -1,0 +1,15 @@
+.icon {
+	width: 30px;
+	height: 30px;
+	/* outline: 1px solid #ccc; */
+	svg {
+		width: 100%;
+		height: 100%;
+	}
+	&.settings {
+		svg {
+			fill: #fff;
+			/* stroke: #fff; */
+		}
+	}
+}

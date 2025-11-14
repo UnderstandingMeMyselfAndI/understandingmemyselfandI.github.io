@@ -1,0 +1,19 @@
+@import '@/src/globals.css';
+@import '../buttonStyles.css';
+.update-icon.btn {
+	display: flex;
+	row-gap: 0.5rem;
+	column-gap: 0.5rem;
+	min-width: 100%;
+	flex-direction: row;
+	justify-content: center;
+}
+.update-icon svg {
+	path {
+		transform: scale(1.5);
+	}
+}
+.update-icon button {
+	border: none;
+	outline: none;
+}

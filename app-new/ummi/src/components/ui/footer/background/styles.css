@@ -1,0 +1,49 @@
+@import '@/src/globals.css';
+.settingsDrawer:has(.backgroundOptions) {
+	display: flex;
+	flex-direction: column;
+	row-gap: 0.5rem;
+	align-items: center;
+}
+.settingsDrawer:has(.backgroundOptions) > div:first-child {
+	font-size: 0.85rem;
+	color: var(--yellow);
+	max-width: 90%;
+	margin: 0 auto;
+}
+
+.backgroundOptions {
+	display: flex;
+	flex-direction: row;
+	column-gap: 0.5rem;
+	width: 100%;
+	justify-content: space-evenly;
+}
+.backgroundOption {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	row-gap: 0.5rem;
+	cursor: pointer;
+	font-size: 0.9rem;
+	height: 100%;
+	justify-content: space-between;
+}
+.backgroundOption:hover {
+	opacity: 1;
+}
+.backgroundOption:hover svg {
+	opacity: 1;
+}
+.backgroundOption {
+	opacity: 0.5;
+}
+.backgroundOption.active {
+	opacity: 1;
+}
+.backgroundOption svg {
+	fill: var(--primary);
+}
+div.DrawerContent[role='dialog'][data-state='open'] button.backgroundOption {
+	border: none;
+}

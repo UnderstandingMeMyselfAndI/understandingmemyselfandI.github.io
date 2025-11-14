@@ -1,0 +1,8 @@
+.QRCode {
+	margin-top: 3rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-items: center;
+	row-gap: 1rem;
+}

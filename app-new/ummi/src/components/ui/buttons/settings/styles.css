@@ -1,0 +1,12 @@
+@import '@/src/globals.css';
+@import '../buttonStyles.css';
+.settings-icon.btn {
+	outline: none;
+	height: 40px;
+	svg {
+		width: 32px;
+		height: 32px;
+
+		/* //transform: scale(1.5); */
+	}
+}
