@@ -16,6 +16,7 @@ import ButtonShare from "@/src/components/ui/buttons/share/ButtonShare.jsx";
 import useThemeStore from "@/src/themeStore";
 import Logo from "@/src/components/ui/logo/Logo.jsx";
 import iconEmojiVWHand from "./components/icons/iconEmojiVWHand";
+import SpeedDialSettings from "./components/ui/settings/speedDIal/SpeedDialSettings.jsx";
 function App() {
 	const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme);
 	if (theme !== null) {
@@ -34,11 +35,9 @@ function App() {
 		<div className="app">
 			<div className="main">
 				<div className="inner">
-					<div className="settingsContainer">
-						<SettingsDrawer />
-						<FontSizeDrawer />
-						<ButtonShare />
-					</div>
+					<SpeedDialSettings className={"speed-dial-settings"}/>
+					<div className="content">
+
 					<div className="header">
 						<Logo />
 						<h1>
@@ -55,20 +54,36 @@ function App() {
 							</p>
 							<p>I hope you find it useful.</p>
 						</div>
-						<div className="subtitle start">Tap a heading to read out about the tool.</div>
+						
 					</div>
-					<h2>Tools:</h2>
+					
+						<h2>Tools:</h2>
+						<div>Tap a heading to read out about the tool.</div>
 					<AccordionAcro />
 
 					<div className="footer">
 						<div className="install">Add to your home screen video instructions</div>
 						<div className="links">
-							<a href="https://www.youtube.com/watch?v=O1xEXKB6tNg" target="_blank" rel="noopener noreferrer">
-								<div className="android logo" dangerouslySetInnerHTML={{__html: iconAndroid}} />
+							<a
+								href="https://www.youtube.com/watch?v=O1xEXKB6tNg"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<div
+									className="android logo"
+									dangerouslySetInnerHTML={{__html: iconAndroid}}
+								/>
 								<div>Android</div>
 							</a>
-							<a href="https://www.youtube.com/watch?v=B7fKs4dTeu0" target="_blank" rel="noopener noreferrer">
-								<div className="apple logo" dangerouslySetInnerHTML={{__html: iconApple}} />
+							<a
+								href="https://www.youtube.com/watch?v=B7fKs4dTeu0"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<div
+									className="apple logo"
+									dangerouslySetInnerHTML={{__html: iconApple}}
+								/>
 								<div>Apple iOS</div>
 							</a>
 						</div>
@@ -76,9 +91,13 @@ function App() {
 
 						<p>
 							This app was inspired by the amazing people who facilitate groups and meetings at{" "}
-							<a href="https://www.nottinghamrecoverynetwork.com/" target="_blank" rel="noopener noreferrer">
+							<a
+								href="https://www.nottinghamrecoverynetwork.com/"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
 								Nottingham Recovery Network
-							</a>{" "}
+							</a>
 							in Nottingham UK and their hard work and dedication to help people through their recovery journey.
 							<br />
 						</p>
@@ -104,7 +123,11 @@ function App() {
 						<p>
 							Drop us an email at the address below with your feedback.
 							<br /> <br />
-							<a href="mailto:ummi.toolbox@gmail.com?subject=UMMI%20Toolbox%20Feedback" target="_blank" rel="noopener noreferrer">
+							<a
+								href="mailto:ummi.toolbox@gmail.com?subject=UMMI%20Toolbox%20Feedback"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
 								ummi.toolbox@gmail.com
 							</a>
 						</p>
@@ -130,18 +153,31 @@ function App() {
 						<p>It is constantly evolving from the feedback received and new ideas to help us get better together.</p>
 						<p>
 							If you want to help keep this app free for all of us and help the development please consider{" "}
-							<a href="https://www.buymeacoffee.com/ummi" target="_blank" rel="noopener noreferrer">
+							<a
+								href="https://www.buymeacoffee.com/ummi"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
 								Buying us a coffee or giving a small donation
 							</a>
-							<p>&hearts; &#x2661; We would really appreciate it.&#x2661; &hearts; </p>
+							<br /><br /> We would really appreciate it.&#x2661; &hearts; <br />
 						</p>
 					</div>
+				
+					<FooterMetadata />
+					</div>
+					<div className="bgImgs">
+					<div
+						className="icon peacehand"
+						dangerouslySetInnerHTML={{__html: iconEmojiPeaceHand}}
+					/>
+					<div
+						className="icon thumbsup"
+						dangerouslySetInnerHTML={{__html: iconEmojiThumbsup}}
+					/>
 				</div>
-				<FooterMetadata />
-				<div className="bgImgs">
-					<div className="icon peacehand" dangerouslySetInnerHTML={{__html: iconEmojiPeaceHand}} />
-					<div className="icon thumbsup" dangerouslySetInnerHTML={{__html: iconEmojiThumbsup}} />
 				</div>
+				
 			</div>
 		</div>
 	);

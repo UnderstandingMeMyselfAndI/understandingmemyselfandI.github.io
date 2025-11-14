@@ -2,7 +2,7 @@ import React from "react";
 import {Accordion} from "radix-ui";
 // import ButtonScenario from '../ui/buttons/ButtonScenario';
 import ScenarioDialog from "../dialog/ScenarioDialog";
-import {ChevronDownIcon} from "@radix-ui/react-icons";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import "./styles.css";
 import "./scenariosStyles.css?inline";
 import PropTypes from "prop-types";
@@ -18,10 +18,22 @@ const AccordionAcronymns = () => {
 	});
 	const displayData = showFavouriteData === "true" ? favouriteData : data;
 	return (
-		<Accordion.Root className="AccordionRoot" type="single" defaultValue="" collapsible>
+		<Accordion.Root
+			className="AccordionRoot"
+			type="single"
+			defaultValue=""
+			collapsible
+		>
 			{displayData.map(item => (
-				<Accordion.Item className="AccordionItem" key={item.id} value={"item-" + item.id}>
-					<AccordionTrigger value={"item-" + item.id} className={item.title}>
+				<Accordion.Item
+					className="AccordionItem"
+					key={item.id}
+					value={"item-" + item.id}
+				>
+					<AccordionTrigger
+						value={"item-" + item.id}
+						className={item.title}
+					>
 						{item.title}
 					</AccordionTrigger>
 					<AccordionContent>{item.content}</AccordionContent>
@@ -29,7 +41,12 @@ const AccordionAcronymns = () => {
 						<div className="title">Scenarios</div>
 						<div className="scenariosGroup">
 							{item.scenarios.map((scenario, index) => (
-								<ScenarioDialog btnLabel={scenario.btnLabel} title={scenario.title} content={scenario.content} key={"scenario-" + index} />
+								<ScenarioDialog
+									btnLabel={scenario.btnLabel}
+									title={scenario.title}
+									content={scenario.content}
+									key={"scenario-" + index}
+								/>
 							))}
 						</div>
 					</div>
@@ -41,10 +58,20 @@ const AccordionAcronymns = () => {
 
 const AccordionTrigger = React.forwardRef(({children, value, className, ...props}, forwardedRef) => (
 	<Accordion.Header className="AccordionHeader">
-		<Accordion.Trigger className={classNames("AccordionTrigger ", className)} {...props} ref={forwardedRef}>
-			<Favourite id={value} className={children.replaceAll(".", "")} />
+		<Accordion.Trigger
+			className={classNames("AccordionTrigger ", className)}
+			{...props}
+			ref={forwardedRef}
+		>
+			<Favourite
+				id={value}
+				className={children.replaceAll(".", "")}
+			/>
 			<div className={children.replaceAll(".", "") + " AccordionTriggerTitle "}>{children}</div>
-			<ChevronDownIcon className="AccordionChevron" aria-hidden />
+			<ExpandMoreIcon
+				className="AccordionChevron"
+				aria-hidden
+			/>
 		</Accordion.Trigger>
 	</Accordion.Header>
 ));
@@ -57,7 +84,11 @@ AccordionTrigger.propTypes = {
 AccordionTrigger.displayName = "AccordionTrigger";
 
 const AcronymFooter = React.forwardRef(({children, className, ...props}, forwardedRef) => (
-	<div className={classNames("AcronymFooter", className)} {...props} ref={forwardedRef}>
+	<div
+		className={classNames("AcronymFooter", className)}
+		{...props}
+		ref={forwardedRef}
+	>
 		{children}
 	</div>
 ));
@@ -68,19 +99,35 @@ AcronymFooter.propTypes = {
 AcronymFooter.displayName = "AcronymFooter";
 
 const AccordionContent = React.forwardRef(({children, className, ...props}, forwardedRef) => (
-	<Accordion.Content className={classNames("AccordionContent", className)} {...props} ref={forwardedRef}>
+	<Accordion.Content
+		className={classNames("AccordionContent", className)}
+		{...props}
+		ref={forwardedRef}
+	>
 		<>
 			<div className="AccordionContentText">
-				<div className="AcronymDefinition" dangerouslySetInnerHTML={{__html: children.explanation}} />
+				<div
+					className="AcronymDefinition"
+					dangerouslySetInnerHTML={{__html: children.explanation}}
+				/>
 
 				<div className="AcronymContainer">
 					{children?.acronyms?.map((acronym, index) => (
-						<div className="Acronym-part" key={index}>
+						<div
+							className="Acronym-part"
+							key={index}
+						>
 							<div className="Acronym-letter-group">
 								{/* <div className='Acronym-letter'>{acronym.letter}</div> */}
-								<div className="Acronym-letter-meaning" dangerouslySetInnerHTML={{__html: acronym.meaning}} />
+								<div
+									className="Acronym-letter-meaning"
+									dangerouslySetInnerHTML={{__html: acronym.meaning}}
+								/>
 							</div>
-							<div className="Acronym-definition" dangerouslySetInnerHTML={{__html: acronym.definition}} />
+							<div
+								className="Acronym-definition"
+								dangerouslySetInnerHTML={{__html: acronym.definition}}
+							/>
 						</div>
 					))}
 				</div>
