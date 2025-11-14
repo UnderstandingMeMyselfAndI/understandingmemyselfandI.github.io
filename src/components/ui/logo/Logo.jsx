@@ -1,7 +1,7 @@
 import "./styles.css";
 
-import smartLogo from "@/src/assets/icondark.png";
-import smartLogoDark from "@/src/assets/icondark.png";
+import smartLogo from "@/src/assets/ummi-logo.png";
+import smartLogoDark from "@/src/assets/ummi-logo.png";
 
 import useThemeStore from "@/src/themeStore";
 const Logo = () => {
