@@ -1,23 +1,24 @@
-import './styles.css';
+import "./styles.css";
 
-import smartLogo from '@/src/assets/iconlight136w.avif';
-import smartLogoDark from '@/src/assets/icondark136w.avif';
+import smartLogo from "@/src/assets/icondark.png";
+import smartLogoDark from "@/src/assets/icondark.png";
 
-import useThemeStore from '@/src/themeStore';
+import useThemeStore from "@/src/themeStore";
 const Logo = () => {
-	const theme = useThemeStore((state) => state.theme);
+	const theme = useThemeStore(state => state.theme);
 	return (
-		<div>
+		<div className="logo">
 			<img
-				src={theme === 'light' ? smartLogoDark : smartLogo}
-				className='logo'
-				alt='Your Recovery toolbox logo'
-				width='136'
-				height='131'
+				src={theme === "light" ? smartLogoDark : smartLogo}
+				className="logo"
+				alt="Your Recovery toolbox logo"
+				width="100"
+				height="100"
 			/>
+			Ummi
 		</div>
 	);
 };
 
-Logo.displayName = 'Logo';
+Logo.displayName = "Logo";
 export default Logo;
