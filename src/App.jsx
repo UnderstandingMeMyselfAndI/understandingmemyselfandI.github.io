@@ -1,21 +1,23 @@
 import "./globals.css";
 import "./App.css";
 
-import AccordionAcro from "./components/ui/AcronymAccordion/AccordionAcro.jsx";
-import SettingsDrawer from "./components/ui/settings/SettingsDrawer.jsx";
-import FontSizeDrawer from "./components/ui/settings/FontSIzeDrawer.jsx";
-import FooterMetadata from "./components/ui/footer/FooterMetadata.jsx";
-import applyTheme from "@/src/components/theme/applyTheme";
-import iconAndroid from "@/src/components/icons/iconAndroid.jsx";
-import iconApple from "@/src/components/icons/iconApple.jsx";
-import iconEmojiFistup from "@/src/components/icons/iconEmojiFistup.jsx";
-import iconEmojiPeaceHand from "@/src/components/icons/iconEmojiPeaceHand.jsx";
-import iconEmojiThumbsup from "@/src/components/icons/iconEmojiThumbsup.jsx";
-import QRCode from "@/src/components/ui/QRCode/QRCode.jsx";
-import ButtonShare from "@/src/components/ui/buttons/share/ButtonShare.jsx";
-import useThemeStore from "@/src/themeStore";
-import Logo from "@/src/components/ui/logo/Logo.jsx";
+import AccordionAcro from "ui/AcronymAccordion/AccordionAcro";
+
+import SettingsDrawer from "ui/settings/SettingsDrawer.jsx";
+import FontSizeDrawer from "ui/settings/FontSizeDrawer.jsx";
+import FooterMetadata from "ui/footer/FooterMetadata.jsx";
+import applyTheme from "components/theme/applyTheme";
+import iconAndroid from "icons/iconAndroid.jsx";
+import iconApple from "icons/iconApple.jsx";
+import iconEmojiFistup from "icons/iconEmojiFistup.jsx";
+import iconEmojiPeaceHand from "icons/iconEmojiPeaceHand.jsx";
+import iconEmojiThumbsup from "icons/iconEmojiThumbsup.jsx";
+import QRCode from "ui/QRCode/QRCode.jsx";
+import ButtonShare from "buttons/share/ButtonShare.jsx";
+import useThemeStore from "@/themeStore";
+import Logo from "ui/logo/Logo.jsx";
 import iconEmojiVWHand from "./components/icons/iconEmojiVWHand";
+import "./utils/EventsManager.js";
 function App() {
 	const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme);
 	if (theme !== null) {
@@ -46,7 +48,48 @@ function App() {
 							<br />
 							Me,Myself &amp; I
 						</h1>
-						<div className="subtitle">
+					</div>
+					<section className="intro">
+						<p>
+							Quick access to the tools (usually acronyms) learnt in therapy groups like
+							<br />
+							CBT, ACT and SMART.
+						</p>
+						<p>Use the app as your toolbox.</p>
+						<p>Tap a heading to read out about the tool.</p>
+					</section>
+					<h2>Tools:</h2>
+					<AccordionAcro />
+
+					<div className="footer">
+						<div className="install">Add to your home screen video instructions</div>
+						<div className="links">
+							<a
+								href="https://www.youtube.com/watch?v=O1xEXKB6tNg"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<div
+									className="android logo"
+									dangerouslySetInnerHTML={{__html: iconAndroid}}
+								/>
+								<div>Android</div>
+							</a>
+							<a
+								href="https://www.youtube.com/watch?v=B7fKs4dTeu0"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<div
+									className="apple logo"
+									dangerouslySetInnerHTML={{__html: iconApple}}
+								/>
+								<div>Apple iOS</div>
+							</a>
+						</div>
+						<QRCode label="Share the app, scan the QR Code" />
+
+						<section className="about">
 							<p>The tools we learn to cope with our emotions, thoughts, feelings and mental health are ace, but remembering them can be hard.</p>
 							<p>This app is your toolbox so you can carry those tools around with you for whenever you need them.</p>
 							<p>
@@ -54,29 +97,14 @@ function App() {
 								when we need them - not a bunch of paperwork.
 							</p>
 							<p>I hope you find it useful.</p>
-						</div>
-						<div className="subtitle start">Tap a heading to read out about the tool.</div>
-					</div>
-					<h2>Tools:</h2>
-					<AccordionAcro />
-
-					<div className="footer">
-						<div className="install">Add to your home screen video instructions</div>
-						<div className="links">
-							<a href="https://www.youtube.com/watch?v=O1xEXKB6tNg" target="_blank" rel="noopener noreferrer">
-								<div className="android logo" dangerouslySetInnerHTML={{__html: iconAndroid}} />
-								<div>Android</div>
-							</a>
-							<a href="https://www.youtube.com/watch?v=B7fKs4dTeu0" target="_blank" rel="noopener noreferrer">
-								<div className="apple logo" dangerouslySetInnerHTML={{__html: iconApple}} />
-								<div>Apple iOS</div>
-							</a>
-						</div>
-						<QRCode label="Share the app, scan the QR Code" />
-
+						</section>
 						<p>
 							This app was inspired by the amazing people who facilitate groups and meetings at{" "}
-							<a href="https://www.nottinghamrecoverynetwork.com/" target="_blank" rel="noopener noreferrer">
+							<a
+								href="https://www.nottinghamrecoverynetwork.com/"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
 								Nottingham Recovery Network
 							</a>{" "}
 							in Nottingham UK and their hard work and dedication to help people through their recovery journey.
@@ -104,7 +132,11 @@ function App() {
 						<p>
 							Drop us an email at the address below with your feedback.
 							<br /> <br />
-							<a href="mailto:ummi.toolbox@gmail.com?subject=UMMI%20Toolbox%20Feedback" target="_blank" rel="noopener noreferrer">
+							<a
+								href="mailto:ummi.toolbox@gmail.com?subject=UMMI%20Toolbox%20Feedback"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
 								ummi.toolbox@gmail.com
 							</a>
 						</p>
@@ -130,17 +162,27 @@ function App() {
 						<p>It is constantly evolving from the feedback received and new ideas to help us get better together.</p>
 						<p>
 							If you want to help keep this app free for all of us and help the development please consider{" "}
-							<a href="https://www.buymeacoffee.com/ummi" target="_blank" rel="noopener noreferrer">
+							<a
+								href="https://www.buymeacoffee.com/ummi"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
 								Buying us a coffee or giving a small donation
 							</a>
-							<p>&hearts; &#x2661; We would really appreciate it.&#x2661; &hearts; </p>
+							<div>&hearts; &#x2661; We would really appreciate it.&#x2661; &hearts; </div>
 						</p>
 					</div>
 				</div>
 				<FooterMetadata />
 				<div className="bgImgs">
-					<div className="icon peacehand" dangerouslySetInnerHTML={{__html: iconEmojiPeaceHand}} />
-					<div className="icon thumbsup" dangerouslySetInnerHTML={{__html: iconEmojiThumbsup}} />
+					<div
+						className="icon peacehand"
+						dangerouslySetInnerHTML={{__html: iconEmojiPeaceHand}}
+					/>
+					<div
+						className="icon thumbsup"
+						dangerouslySetInnerHTML={{__html: iconEmojiThumbsup}}
+					/>
 				</div>
 			</div>
 		</div>

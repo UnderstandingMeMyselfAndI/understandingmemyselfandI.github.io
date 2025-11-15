@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import metadata from '@/src/metadata.json';
-import { fetchVersionData, compareVersions } from '@/src/utils/checkVersion';
-import './styles.css';
+import {useEffect, useState} from "react";
+import metadata from "@/metadata.json";
+import {fetchVersionData, compareVersions} from "@/utils/checkVersion";
+import "./styles.css";
 function FooterMetadata() {
 	//const [remoteVersion, setRemoteVersion] = useState(null);
 	const [isUpdateAvailable, setIsUpdateAvailable] = useState(false);
@@ -21,13 +21,11 @@ function FooterMetadata() {
 	const year = new Date().getFullYear();
 
 	return (
-		<div className='version-footer'>
+		<div className="version-footer">
 			&copy; {year} flpdigital.com
-			<div className='sf-footer-version'>
+			<div className="sf-footer-version">
 				{`Version ${metadata.buildMajor}.${metadata.buildMinor}.${metadata.buildRevision} `}
-				{isUpdateAvailable && (
-					<span className='update'> (Update available - go to settings)</span>
-				)}
+				{isUpdateAvailable && <span className="update"> (Update available - go to settings)</span>}
 			</div>
 		</div>
 	);

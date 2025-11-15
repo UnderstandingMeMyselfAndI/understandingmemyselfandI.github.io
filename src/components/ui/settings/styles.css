@@ -1,4 +1,4 @@
-@import '@/src/globals.css';
+@import "@/globals.css";
 .btn button {
 	all: unset;
 }
@@ -59,7 +59,7 @@ button img {
 button:hover {
 	background-color: transparent;
 }
-[data-vaul-overlay][data-vaul-snap-points-overlay='true'] {
+[data-vaul-overlay][data-vaul-snap-points-overlay="true"] {
 	opacity: 0.75;
 }
 .settingsDrawerCont {
@@ -70,7 +70,7 @@ button:hover {
 	overflow-y: auto;
 	width: 100%;
 }
-div.DrawerContent[role='dialog'][data-state='open'] {
+div.DrawerContent[role="dialog"][data-state="open"] {
 	background-color: var(--background);
 	color: var(--primary);
 	padding-bottom: 0;
@@ -78,17 +78,17 @@ div.DrawerContent[role='dialog'][data-state='open'] {
 	/* height: 60vh; */
 }
 
-div.DrawerContent[role='dialog'][data-state='open'] h2 {
+div.DrawerContent[role="dialog"][data-state="open"] h2 {
 	font-weight: 400;
 	padding: 20px 0;
 }
-div.DrawerContent[role='dialog'][data-state='open'] h2:after {
+div.DrawerContent[role="dialog"][data-state="open"] h2:after {
 	display: none;
 }
-div.DrawerContent[role='dialog'][data-state='open'] > div:first-child {
+div.DrawerContent[role="dialog"][data-state="open"] > div:first-child {
 	display: none;
 }
-div.DrawerContent[role='dialog'][data-state='open'] > div {
+div.DrawerContent[role="dialog"][data-state="open"] > div {
 	display: flex;
 	row-gap: 20px;
 
@@ -96,31 +96,31 @@ div.DrawerContent[role='dialog'][data-state='open'] > div {
 	margin: 40px auto 0 auto;
 	padding-bottom: 40px;
 }
-div.DrawerContent[role='dialog'][data-state='open'] button {
+div.DrawerContent[role="dialog"][data-state="open"] button {
 	outline: none;
 	background: transparent;
 	border: 1px solid var(--primary);
 }
-div.DrawerContent[role='dialog'][data-state='open'] button:hover,
-div.DrawerContent[role='dialog'][data-state='open'] button:focus-within {
+div.DrawerContent[role="dialog"][data-state="open"] button:hover,
+div.DrawerContent[role="dialog"][data-state="open"] button:focus-within {
 	outline: none;
 }
-div.DrawerContent[role='dialog'][data-state='open'] > div h2 {
+div.DrawerContent[role="dialog"][data-state="open"] > div h2 {
 	width: 100%;
 	text-align: center;
 	display: none;
 }
-div.DrawerContent[role='dialog'][data-state='open'] > div h2::after {
+div.DrawerContent[role="dialog"][data-state="open"] > div h2::after {
 	display: none;
 }
-div.DrawerContent[role='dialog'][data-state='open'] .drawerFooter {
+div.DrawerContent[role="dialog"][data-state="open"] .drawerFooter {
 	display: flex;
 	align-content: center;
 	flex-wrap: wrap;
 	width: 100%;
 	padding: 0;
 }
-div.DrawerContent[role='dialog'][data-state='open'] .drawerFooter button {
+div.DrawerContent[role="dialog"][data-state="open"] .drawerFooter button {
 	width: fit-content;
 	padding: 8px 12px;
 	border: 1px solid #5d5d5d;

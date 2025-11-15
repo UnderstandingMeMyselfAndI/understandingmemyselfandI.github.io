@@ -1,9 +1,9 @@
 import "./styles.css";
 
-import smartLogo from "@/src/assets/ummi-logo.png";
-import smartLogoDark from "@/src/assets/ummi-logo.png";
+import smartLogo from "@/assets/icons/UmmiIcon.svg";
+import smartLogoDark from "@/assets/icons/UmmiIcon.svg";
 
-import useThemeStore from "@/src/themeStore";
+import useThemeStore from "@/themeStore";
 const Logo = () => {
 	const theme = useThemeStore(state => state.theme);
 	return (

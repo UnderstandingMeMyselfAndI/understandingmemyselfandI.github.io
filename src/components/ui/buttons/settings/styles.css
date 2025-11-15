@@ -1,5 +1,5 @@
-@import '@/src/globals.css';
-@import '../buttonStyles.css';
+@import "@/globals.css";
+@import "../buttonStyles.css";
 .settings-icon.btn {
 	outline: none;
 	height: 40px;

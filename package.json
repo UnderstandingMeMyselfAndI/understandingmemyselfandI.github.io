@@ -1,7 +1,7 @@
 {
-	"name": "understanding-me-myself-and-i",
+	"name": "ummi",
 	"private": true,
-	"version": "0.0.0",
+	"version": "0.5.0",
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
@@ -10,6 +10,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@mui/icons-material": "^7.3.5",
 		"@radix-ui/colors": "^3.0.0",
 		"@radix-ui/react-accordion": "^1.2.12",
 		"@radix-ui/react-alert-dialog": "^1.0.4",
@@ -25,8 +26,8 @@
 		"clsx": "^2.0.0",
 		"lucide-react": "^0.263.1",
 		"radix-ui": "^1.4.3",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
+		"react": "18.3.1",
+		"react-dom": "18.3.1",
 		"react-redux": "^9.2.0",
 		"tailwind-merge": "^1.14.0",
 		"tailwindcss-animate": "^1.0.6",

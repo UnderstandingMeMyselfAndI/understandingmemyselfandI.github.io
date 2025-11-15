@@ -5,10 +5,10 @@ import "./stylesDrawerSetting.css";
 
 import ButtonSettings from "../buttons/settings/ButtonSettings.jsx";
 // import CheckboxOffline from '../footer/offlineCheckbox/OfflineCheckbox.jsx';
-import iconAndroid from "@/src/components/icons/iconAndroid.jsx";
-import iconApple from "@/src/components/icons/iconApple.jsx";
+import iconAndroid from "icons/iconAndroid.jsx";
+import iconApple from "icons/iconApple.jsx";
 import BackgroundOptions from "../footer/background/BackgroundOptions";
-import CheckboxFilterFavourites from "@/src/components/ui/CheckboxFilterFavourites/CheckboxFilterFavourites.jsx";
+import CheckboxFilterFavourites from "@/components/ui/CheckboxFilterFavourites/CheckboxFilterFavourites.jsx";
 import ButtonUpdate from "../buttons/update/ButtonUpdate.jsx";
 export function DrawerSettings() {
 	return (
@@ -39,12 +39,26 @@ export function DrawerSettings() {
 
 							<p>Add to your home screen video instructions</p>
 							<div className="links">
-								<a href="https://www.youtube.com/watch?v=O1xEXKB6tNg" target="_blank" rel="noopener noreferrer">
-									<div className="android logo" dangerouslySetInnerHTML={{__html: iconAndroid}} />
+								<a
+									href="https://www.youtube.com/watch?v=O1xEXKB6tNg"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<div
+										className="android logo"
+										dangerouslySetInnerHTML={{__html: iconAndroid}}
+									/>
 									<div>Android</div>
 								</a>
-								<a href="https://www.youtube.com/watch?v=B7fKs4dTeu0" target="_blank" rel="noopener noreferrer">
-									<div className="apple logo" dangerouslySetInnerHTML={{__html: iconApple}} />
+								<a
+									href="https://www.youtube.com/watch?v=B7fKs4dTeu0"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<div
+										className="apple logo"
+										dangerouslySetInnerHTML={{__html: iconApple}}
+									/>
 									<div>Apple iOS</div>
 								</a>
 							</div>

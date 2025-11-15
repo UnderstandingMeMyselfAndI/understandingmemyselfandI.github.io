@@ -1,15 +1,15 @@
-'use client';
-import React, { useEffect } from 'react';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Label } from '@/components/ui/label';
-import './styles.css';
-const storageKey = 'filterFavs';
+"use client";
+import React, {useEffect} from "react";
+import {Checkbox} from "ui/checkboxes/checkbox";
+import {Label} from "ui/label";
+import "./styles.css";
+const storageKey = "filterFavs";
 
 const getStoredValue = () => {
 	return localStorage.getItem(storageKey);
 };
 export function CheckboxFilterFavourites() {
-	const isChecked = getStoredValue() === 'true' ? true : false;
+	const isChecked = getStoredValue() === "true" ? true : false;
 
 	const [checked, setChecked] = React.useState(isChecked);
 	useEffect(() => {
@@ -17,17 +17,20 @@ export function CheckboxFilterFavourites() {
 	}, [checked]);
 
 	return (
-		<div className='CheckboxFilterFavouritesCont'>
-			<div className='option'>
+		<div className="CheckboxFilterFavouritesCont">
+			<div className="option">
 				<Checkbox
-					id='CheckboxFilterFavoruites'
+					id="CheckboxFilterFavoruites"
 					checked={checked}
 					onClick={() => {
-						setChecked((prevIsChecked) => !prevIsChecked);
+						setChecked(prevIsChecked => !prevIsChecked);
 						location.reload();
 					}}
 				/>
-				<Label htmlFor='CheckboxFilterFavoruites' className='label'>
+				<Label
+					htmlFor="CheckboxFilterFavoruites"
+					className="label"
+				>
 					Show only my favourites
 				</Label>
 			</div>

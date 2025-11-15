@@ -1,4 +1,4 @@
-@import '@/src/globals.css';
+@import "@/globals.css";
 .settingsDrawer:has(.backgroundOptions) {
 	display: flex;
 	flex-direction: column;
@@ -44,6 +44,6 @@
 .backgroundOption svg {
 	fill: var(--primary);
 }
-div.DrawerContent[role='dialog'][data-state='open'] button.backgroundOption {
+div.DrawerContent[role="dialog"][data-state="open"] button.backgroundOption {
 	border: none;
 }
