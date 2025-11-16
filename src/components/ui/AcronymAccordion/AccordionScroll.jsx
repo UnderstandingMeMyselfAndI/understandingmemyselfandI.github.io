@@ -16,9 +16,10 @@ import "./AccordionStyles.css";
 // Configuration constants - easily adjustable
 const SCROLL_EFFECT_CONFIG = {
 	minOpacity: 0.15, // Minimum opacity (15%)
-	minScale: 0.85, // Minimum scale (85%)
-	fadeBoundary: 0.15, // 15% from top/bottom
-	transitionSpeed: "0.1s ease-out",
+	minScale: 0.5, // Minimum scale (85%)
+	fadeBoundary: 0.35, // 15% from top/bottom
+	innerFadeBoundary: 0.15, // 15% from top/bottom
+	transitionSpeed: "0.25s ease-out", // speed when scrolling
 };
 
 // Custom hook for scroll-based opacity and scale
@@ -53,10 +54,11 @@ const useScrollEffects = (config = SCROLL_EFFECT_CONFIG, isExpanded = false) => 
 		const viewportCenter = windowHeight / 2;
 		const distanceFromCenter = Math.abs(elementCenter - viewportCenter);
 		const fadeEndDistance = windowHeight * config.fadeBoundary;
+		const innerFadeEndDistance = viewportCenter * config.innerFadeBoundary;
 
 		// Calculate both opacity and scale based on the same scroll position
-		const opacityProgress = distanceFromCenter / fadeEndDistance;
-		const scaleProgress = distanceFromCenter / fadeEndDistance;
+		const opacityProgress = (distanceFromCenter - innerFadeEndDistance) / fadeEndDistance;
+		const scaleProgress = (distanceFromCenter - innerFadeEndDistance) / fadeEndDistance;
 
 		let newOpacity = 1 - opacityProgress * (1 - config.minOpacity);
 		let newScale = 1 - scaleProgress * (1 - config.minScale);
@@ -205,6 +207,13 @@ export default function AccordionScroll() {
 
 	const handleChange = panel => (event, newExpanded) => {
 		setExpanded(newExpanded ? panel : false);
+		// newExpanded
+		// 	? 0
+		// 	: window.scrollTo({
+		// 			top: window.scrollY + 100,
+		// 			left: 0,
+		// 			behavior: "smooth",
+		// 	  });
 	};
 
 	const componentData = data;

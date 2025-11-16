@@ -8,18 +8,21 @@ div.AccordionRoot {
 }
 div.AccordionRoot > div {
 	transition: opacity 0.1s ease-out;
+	background: rgba(50, 50, 50, 0.2);
+	border-radius: 8px;
 }
 div.MuiPaper-root {
 	margin: 0.75rem 0;
 	border: none;
-
-	outline: 1px solid rgba(150, 150, 150, 0.4);
-	border-radius: 6px 6px 6px 6px;
+	background: var(--mainBackground);
+	outline: 1px solid rgba(50, 50, 50, 0.2);
+	/* border-radius: 8px 8px 8px 8px; */
 
 	box-shadow: unset;
 	background: none;
 	text-shadow: 2px 0px 7px rgba(0, 0, 0, 0.49);
 	position: relative;
+
 	&.Mui-expanded {
 		background: var(--mainBackground);
 		position: fixed;
@@ -27,10 +30,11 @@ div.MuiPaper-root {
 		left: 1rem;
 		z-index: 1000;
 		width: calc(100vw - 2rem);
+		border-radius: 8px 8px 8px 8px;
 
 		div.MuiCollapse-wrapperInner {
 			overflow-y: scroll;
-			border-radius: 4px;
+			/* border-radius: 8px; */
 			width: 98%;
 			margin: 0 auto;
 			max-height: 88vh;
@@ -114,7 +118,7 @@ h3.MuiAccordion-heading {
 	width: 100%;
 	margin: 0 0 0.5rem 0;
 	outline: 1px solid #707070;
-	border-radius: 6px;
+	border-radius: 8px;
 	padding: 0.5rem 0;
 
 	&.active {
@@ -165,11 +169,13 @@ h3.MuiAccordion-heading {
 			text-decoration-thickness: 3px;
 			text-decoration-style: double;
 			text-decoration-line: underline;
+			color: var(--lightBlue);
 
 			&::first-letter {
 				font-weight: 900;
 				font-size: 3.1rem;
 				color: var(--yellow);
+				margin-right: 0.1rem;
 			}
 		}
 		div:nth-child(2) {
