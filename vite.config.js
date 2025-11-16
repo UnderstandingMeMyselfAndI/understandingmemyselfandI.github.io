@@ -6,6 +6,10 @@ const __dirname = path.dirname("./src");
 import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 // https://vitejs.dev/config/
 export default defineConfig({
+	build: {
+		outDir: "./docs",
+		emptyOutDir: true, // also necessary
+	},
 	plugins: [react(), commonjs(), cssInjectedByJsPlugin()],
 	resolve: {
 		alias: {
