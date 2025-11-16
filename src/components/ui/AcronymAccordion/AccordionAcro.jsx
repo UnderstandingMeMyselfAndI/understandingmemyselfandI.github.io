@@ -19,12 +19,6 @@ const AccordionDemo = () => {
 		const idFromLocalStorage = localStorage.getItem(`favourite-item-${a.id}`);
 		return idFromLocalStorage === "true";
 	});
-	const handleTriggerClick = e => {
-		console.log("trigger changed e ", eE);
-	};
-	const handleAccordionChange = (event, expanded) => {
-		console.log("Accordion changed expanded ", expanded);
-	};
 	const displayData = showFavouriteData === "true" ? favouriteData : data;
 	return (
 		<Accordion.Root
@@ -34,75 +28,57 @@ const AccordionDemo = () => {
 			collapsible
 			onChange={handleAccordionChange}
 		>
-			{displayData.map(item =>
-				item ? (
-					<Accordion.Item
-						className="AccordionItem"
-						key={item.id}
+			{displayData.map(item => (
+				<Accordion.Item
+					className="AccordionItem"
+					key={item.id}
+					value={"item-" + item.id}
+				>
+					<AccordionTrigger
 						value={"item-" + item.id}
+						className={item.title}
 					>
-						<AccordionTrigger
-							value={"item-" + item.id}
-							className={item.title}
-						>
-							{item.title}
-						</AccordionTrigger>
-						<AccordionContent>{item.content}</AccordionContent>
-						<div className="scenarios">
-							<div className="title">Scenarios</div>
-							<div className="scenariosGroup">
-								{item.scenarios.map((scenario, index) => (
-									<ScenarioDialog
-										btnLabel={scenario.btnLabel}
-										title={scenario.title}
-										content={scenario.content}
-										key={"scenario-" + index}
-									/>
-								))}
-							</div>
+						{item.title}
+					</AccordionTrigger>
+					<AccordionContent>{item.content}</AccordionContent>
+					<div className="scenarios">
+						<div className="title">Scenarios</div>
+						<div className="scenariosGroup">
+							{item.scenarios.map((scenario, index) => (
+								<ScenarioDialog
+									btnLabel={scenario.btnLabel}
+									title={scenario.title}
+									content={scenario.content}
+									key={"scenario-" + index}
+								/>
+							))}
 						</div>
-					</Accordion.Item>
-				) : (
-					<Skeleton
-						variant="rounded"
-						animation="wave"
-					/>
-				)
-			)}
+					</div>
+				</Accordion.Item>
+			))}
 		</Accordion.Root>
 	);
 };
 
-const AccordionTrigger = React.forwardRef(({children, value, className, ...props}, forwardedRef) => {
-	return children ? (
-		<Accordion.Header className="AccordionHeader">
-			<Accordion.Trigger
-				className={classNames("AccordionTrigger ", className)}
-				{...props}
-				ref={forwardedRef}
-			>
-				<Favourite
-					id={value}
-					className={children.replaceAll(".", "")}
-				/>
-				<div className={children.replaceAll(".", "") + " AccordionTriggerTitle "}>{children}</div>
-				{/* <ExpandMoreIcon
-						className="AccordionChevron"
-						aria-hidden
-					/> */}
-				<CloseIcon
-					className="AccordionClose"
-					aria-hidden
-				/>
-			</Accordion.Trigger>
-		</Accordion.Header>
-	) : (
-		<Skeleton
-			variant="rounded"
-			animation="wave"
-		/>
-	);
-});
+const AccordionTrigger = React.forwardRef(({children, value, className, ...props}, forwardedRef) => (
+	<Accordion.Header className="AccordionHeader">
+		<Accordion.Trigger
+			className={classNames("AccordionTrigger ", className)}
+			{...props}
+			ref={forwardedRef}
+		>
+			<Favourite
+				id={value}
+				className={children.replaceAll(".", "")}
+			/>
+			<div className={children.replaceAll(".", "") + " AccordionTriggerTitle "}>{children}</div>
+			<ChevronDownIcon
+				className="AccordionChevron"
+				aria-hidden
+			/>
+		</Accordion.Trigger>
+	</Accordion.Header>
+));
 
 AccordionTrigger.propTypes = {
 	className: PropTypes.string,
@@ -111,22 +87,15 @@ AccordionTrigger.propTypes = {
 };
 AccordionTrigger.displayName = "AccordionTrigger";
 
-const AcronymFooter = React.forwardRef(({children, className, ...props}, forwardedRef) => {
-	return children ? (
-		<div
-			className={classNames("AcronymFooter", className)}
-			{...props}
-			ref={forwardedRef}
-		>
-			{children}
-		</div>
-	) : (
-		<Skeleton
-			variant="rounded"
-			animation="wave"
-		/>
-	);
-});
+const AcronymFooter = React.forwardRef(({children, className, ...props}, forwardedRef) => (
+	<div
+		className={classNames("AcronymFooter", className)}
+		{...props}
+		ref={forwardedRef}
+	>
+		{children}
+	</div>
+));
 AcronymFooter.propTypes = {
 	className: PropTypes.string,
 	children: PropTypes.node.isRequired,

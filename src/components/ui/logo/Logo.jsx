@@ -13,8 +13,8 @@ const Logo = ({showText = true, classes = ""}) => {
 				src={theme === "light" ? smartLogoDark : smartLogo}
 				className="logo"
 				alt="Your Recovery toolbox logo"
-				width="100"
-				height="100"
+				width="80"
+				height="80"
 			/>
 			{text}
 		</div>

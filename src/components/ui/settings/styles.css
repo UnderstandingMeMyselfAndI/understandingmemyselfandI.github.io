@@ -6,6 +6,15 @@
 	display: flex;
 	width: 40px;
 }
+.settingsContainer {
+	position: relative;
+	z-index: 100;
+	top: 12px;
+	left: 12px;
+	display: flex;
+	flex-direction: column;
+	row-gap: 0.25rem;
+}
 .fontSize.settings {
 	margin-top: 0px;
 }

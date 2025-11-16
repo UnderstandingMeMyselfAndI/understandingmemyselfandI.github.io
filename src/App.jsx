@@ -20,6 +20,7 @@ import useThemeStore from "@/themeStore";
 import Logo from "ui/logo/Logo.jsx";
 import iconEmojiVWHand from "./components/icons/iconEmojiVWHand";
 
+import SpeedDialSettings from "./components/ui/settings/speedDIal/SpeedDialSettings.jsx";
 function App() {
 	const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme);
 	if (theme !== null) {
@@ -38,11 +39,9 @@ function App() {
 		<div className="app">
 			<div className="main">
 				<div className="inner">
-					<div className="settingsContainer">
-						<SettingsDrawer />
-						<FontSizeDrawer />
-						<ButtonShare />
-					</div>
+					<SpeedDialSettings className={"speed-dial-settings"}/>
+					<div className="content">
+
 					<div className="header">
 						<Logo />
 						<Logo
@@ -54,18 +53,19 @@ function App() {
 							<br />
 							Me,Myself &amp; I
 						</h1>
+						<div className="subtitle">
+							<p>The tools we learn to cope with our emotions, thoughts, feelings and mental health are ace, but remembering them can be hard.</p>
+							<p>This app is your toolbox so you can carry those tools around with you for whenever you need them.</p>
+							<p>
+								The app is free to use and always will be. It is created and maintained by someone who is on a similar recovery journey to you, and needed somewhere quick to access the tools we learn
+								when we need them - not a bunch of paperwork.
+							</p>
+							<p>I hope you find it useful.</p>
+						</div>
+						<div className="subtitle start">Tap a heading to read out about the tool.</div>
 					</div>
-					<section className="intro">
-						<p>
-							Quick access to the tools (usually acronyms) learnt in therapy groups like
-							<br />
-							CBT, ACT and SMART.
-						</p>
-						<p>Use the app as your toolbox.</p>
-						<p>Tap a heading to read out about the tool.</p>
-					</section>
 					<h2>Tools:</h2>
-					<AccordionScroll />
+					<AccordionAcro />
 
 					<div className="footer">
 						<div className="install">Add to your home screen video instructions</div>
@@ -95,22 +95,9 @@ function App() {
 						</div>
 						<QRCode label="Share the app, scan the QR Code" />
 
-						<section className="about">
-							<p>The tools we learn to cope with our emotions, thoughts, feelings and mental health are ace, but remembering them can be hard.</p>
-							<p>This app is your toolbox so you can carry those tools around with you for whenever you need them.</p>
-							<p>
-								The app is free to use and always will be. It is created and maintained by someone who is on a similar recovery journey to you, and needed somewhere quick to access the tools we learn
-								when we need them - not a bunch of paperwork.
-							</p>
-							<p>I hope you find it useful.</p>
-						</section>
 						<p>
-							This app was inspired by the amazing people who facilitate groups and meetings at
-							<a
-								href="https://www.nottinghamrecoverynetwork.com/"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
+							This app was inspired by the amazing people who facilitate groups and meetings at{" "}
+							<a href="https://www.nottinghamrecoverynetwork.com/" target="_blank" rel="noopener noreferrer">
 								Nottingham Recovery Network
 							</a>
 							in Nottingham UK and their hard work and dedication to help people through their recovery journey.
@@ -175,12 +162,13 @@ function App() {
 							>
 								Buying us a coffee or giving a small donation
 							</a>
-							<span>&hearts; &#x2661; We would really appreciate it.&#x2661; &hearts; </span>
+							<p>&hearts; &#x2661; We would really appreciate it.&#x2661; &hearts; </p>
 						</p>
 					</div>
-				</div>
-				<FooterMetadata />
-				<div className="bgImgs">
+				
+					<FooterMetadata />
+					</div>
+					<div className="bgImgs">
 					<div
 						className="icon peacehand"
 						dangerouslySetInnerHTML={{__html: iconEmojiPeaceHand}}
@@ -190,6 +178,12 @@ function App() {
 						dangerouslySetInnerHTML={{__html: iconEmojiThumbsup}}
 					/>
 				</div>
+				<FooterMetadata />
+				<div className="bgImgs">
+					<div className="icon peacehand" dangerouslySetInnerHTML={{__html: iconEmojiPeaceHand}} />
+					<div className="icon thumbsup" dangerouslySetInnerHTML={{__html: iconEmojiThumbsup}} />
+				</div>
+				
 			</div>
 		</div>
 	);
