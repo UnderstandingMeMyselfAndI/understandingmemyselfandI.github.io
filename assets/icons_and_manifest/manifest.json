@@ -1,0 +1,15 @@
+{
+  "name": "Understanding Me, Myself & I",
+  "short_name": "Ummi",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000"
+}
