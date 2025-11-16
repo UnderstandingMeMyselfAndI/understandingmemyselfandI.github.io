@@ -134,6 +134,7 @@ const AccordionItemWithEffects = ({item, index, expanded, handleChange, config =
 
 	const wrapperStyle = useMemo(() => {
 		if (isExpanded) {
+			//
 			// When expanded, remove all transforms and positioning from wrapper
 			return {
 				opacity: 1,
