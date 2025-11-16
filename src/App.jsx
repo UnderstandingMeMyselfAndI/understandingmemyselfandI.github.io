@@ -1,7 +1,9 @@
 import "./globals.css";
 import "./App.css";
 
-import AccordionAcro from "ui/AcronymAccordion/AccordionAcro";
+// import AccordionAcro from "ui/AcronymAccordion/AccordionAcro";
+// import MainAccordions from "ui/AcronymAccordion/AccordionMain";
+import AccordionScroll from "ui/AcronymAccordion/AccordionScroll";
 
 import SettingsDrawer from "ui/settings/SettingsDrawer.jsx";
 import FontSizeDrawer from "ui/settings/FontSizeDrawer.jsx";
@@ -17,7 +19,7 @@ import ButtonShare from "buttons/share/ButtonShare.jsx";
 import useThemeStore from "@/themeStore";
 import Logo from "ui/logo/Logo.jsx";
 import iconEmojiVWHand from "./components/icons/iconEmojiVWHand";
-import "./utils/EventsManager.js";
+
 function App() {
 	const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme);
 	if (theme !== null) {
@@ -43,6 +45,10 @@ function App() {
 					</div>
 					<div className="header">
 						<Logo />
+						<Logo
+							classes={"small"}
+							showText={false}
+						/>
 						<h1>
 							Understanding
 							<br />
@@ -59,7 +65,7 @@ function App() {
 						<p>Tap a heading to read out about the tool.</p>
 					</section>
 					<h2>Tools:</h2>
-					<AccordionAcro />
+					<AccordionScroll />
 
 					<div className="footer">
 						<div className="install">Add to your home screen video instructions</div>
@@ -99,14 +105,14 @@ function App() {
 							<p>I hope you find it useful.</p>
 						</section>
 						<p>
-							This app was inspired by the amazing people who facilitate groups and meetings at{" "}
+							This app was inspired by the amazing people who facilitate groups and meetings at
 							<a
 								href="https://www.nottinghamrecoverynetwork.com/"
 								target="_blank"
 								rel="noopener noreferrer"
 							>
 								Nottingham Recovery Network
-							</a>{" "}
+							</a>
 							in Nottingham UK and their hard work and dedication to help people through their recovery journey.
 							<br />
 						</p>
@@ -169,7 +175,7 @@ function App() {
 							>
 								Buying us a coffee or giving a small donation
 							</a>
-							<div>&hearts; &#x2661; We would really appreciate it.&#x2661; &hearts; </div>
+							<span>&hearts; &#x2661; We would really appreciate it.&#x2661; &hearts; </span>
 						</p>
 					</div>
 				</div>

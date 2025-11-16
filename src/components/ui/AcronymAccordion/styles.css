@@ -22,6 +22,13 @@
 	outline: 1px solid #707070;
 	border-radius: 6px;
 	padding: 0.5rem 0;
+	&.active {
+		position: fixed;
+		top: 0;
+		left: 0;
+		background: var(--mainBackground);
+		z-index: 100;
+	}
 }
 
 .AccordionItem[data-state="open"] {

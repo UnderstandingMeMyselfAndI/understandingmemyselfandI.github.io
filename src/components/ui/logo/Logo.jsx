@@ -4,10 +4,11 @@ import smartLogo from "@/assets/icons/UmmiIcon.svg";
 import smartLogoDark from "@/assets/icons/UmmiIcon.svg";
 
 import useThemeStore from "@/themeStore";
-const Logo = () => {
+const Logo = ({showText = true, classes = ""}) => {
 	const theme = useThemeStore(state => state.theme);
+	const text = showText ? "Ummi" : "";
 	return (
-		<div className="logo">
+		<div className={"logo " + classes}>
 			<img
 				src={theme === "light" ? smartLogoDark : smartLogo}
 				className="logo"
@@ -15,7 +16,7 @@ const Logo = () => {
 				width="100"
 				height="100"
 			/>
-			Ummi
+			{text}
 		</div>
 	);
 };

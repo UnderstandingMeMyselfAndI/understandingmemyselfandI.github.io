@@ -1,4 +1,4 @@
-const EventManager = (function () {
+const EventsManager = (function () {
 	const _callbacks = new Map(),
 		// _cbs = _callbacks,
 		_get = key => _callbacks.get(key),
@@ -28,8 +28,7 @@ const EventManager = (function () {
 			if (typeof cb !== "function") return false;
 
 			// Prevent duplicate registrations
-			// const key = Symbol(); // Simple unique key
-			const key = `${name}_${cb.toString().hashCode()}`;
+			const key = Symbol(); // Simple unique key
 			if (_has(key)) {
 				console.warn(`EventManager: Duplicate registration for ${name}`);
 				return false;
@@ -51,7 +50,6 @@ const EventManager = (function () {
 			return false;
 		},
 		_remove = key => {
-			// const key = `${name}_${cb.toString().hashCode()}`;
 			const cback = _get(key);
 
 			if (cback) {
@@ -66,11 +64,10 @@ const EventManager = (function () {
 				_removeEl(cb.name, cb.wrapped, cb.options);
 			});
 			_callbacks.clear();
-			console.log("EventManager: All events cleaned up");
 		};
 
-	_add("load", () => console.log("Loaded"));
-	_add("scroll", () => console.log("Scrolling"));
+	// _add("load", () => console.log("Loaded"));
+	// _add("scroll", () => console.log("Scrolling"));
 	// Public API
 	return {
 		add: _add,
@@ -78,13 +75,4 @@ const EventManager = (function () {
 		destroy: _destroy,
 	};
 })();
-// Simple hash function for callback identification
-String.prototype.hashCode = function () {
-	let hash = 0;
-	for (let i = 0; i < this.length; i++) {
-		const char = this.charCodeAt(i);
-		hash = (hash << 5) - hash + char;
-		hash = hash & hash; // Convert to 32-bit integer
-	}
-	return hash;
-};
+export default EventsManager;

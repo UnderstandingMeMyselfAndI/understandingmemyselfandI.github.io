@@ -1,5 +1,5 @@
 .logo {
-	font-size: 2.2rem;
+	font-size: 2rem;
 	font-weight: 800;
 	color: #bcb6ea;
 	display: flex;
@@ -9,4 +9,28 @@
 	align-items: center;
 	margin-top: 0;
 	padding-top: 1rem !important;
+	width: 80px;
+	transition: all 0.3s ease-in-out;
+	&.small {
+		position: fixed;
+		top: 1rem;
+		right: 1rem;
+		/* width: 100px;
+		height: 150px; */
+		transform: scale(0.4) translate(50%, -80%);
+		color: #3c394e;
+		font-weight: 900;
+		z-index: 500;
+		&::after {
+			content: " ";
+			position: absolute;
+			width: 140px;
+			height: 140px;
+			background-color: #bcb6ea;
+			border-radius: 50%;
+			z-index: -1;
+			opacity: 0.4;
+			transform: translateY(-7%);
+		}
+	}
 }

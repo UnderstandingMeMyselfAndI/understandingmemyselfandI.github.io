@@ -1,0 +1,196 @@
+@import "@/globals.css";
+
+div.AccordionRoot {
+	background-color: transparent;
+	margin: 0;
+	margin-top: 0.5rem;
+	position: relative;
+}
+div.AccordionRoot > div {
+	transition: opacity 0.1s ease-out;
+}
+div.MuiPaper-root {
+	margin: 0.75rem 0;
+	border: none;
+
+	outline: 1px solid rgba(150, 150, 150, 0.4);
+	border-radius: 6px 6px 6px 6px;
+
+	box-shadow: unset;
+	background: none;
+	text-shadow: 2px 0px 7px rgba(0, 0, 0, 0.49);
+	position: relative;
+	&.Mui-expanded {
+		background: var(--mainBackground);
+		position: fixed;
+		top: 8px;
+		left: 1rem;
+		z-index: 1000;
+		width: calc(100vw - 2rem);
+
+		div.MuiCollapse-wrapperInner {
+			overflow-y: scroll;
+
+			border-radius: 4px;
+			width: 98%;
+			margin: 0 auto;
+			max-height: 88vh;
+			background-color: rgba(0, 0, 0, 0.05);
+			position: relative;
+			z-index: 1;
+		}
+	}
+	&::before {
+		display: none;
+	}
+}
+h3.MuiAccordion-heading {
+	word-break: break-all;
+	word-wrap: break-word;
+	color: var(--lightBlue);
+	transition: all 0.3s ease-in-out;
+	text-align: center;
+
+	button.MuiButtonBase-root {
+		justify-content: center;
+		column-gap: 1rem;
+		min-height: 48px;
+
+		span.MuiAccordionSummary-content {
+			flex-grow: 1;
+			flex-wrap: wrap;
+			margin: 0.5rem 0;
+			align-content: center;
+			align-items: center;
+			column-gap: 1.5rem;
+			/* outline: 1px solid #999; */
+			transition: all 0.2s ease-in-out;
+			div.AccordionItemFavouritem {
+				height: fit-content;
+			}
+			span.MuiTypography-root {
+				font-size: 2.25rem;
+				font-weight: 700;
+				transition: all 0.2s ease-in-out;
+				text-align: center;
+				/* outline: 1px solid #999; */
+				flex-grow: 1;
+			}
+			div.AccordionItemFavourite {
+				position: static;
+				transition: all 0.5s ease-in-out;
+			}
+			&.Mui-expanded {
+				width: 100%;
+
+				span.MuiTypography-root {
+					font-size: 3.2rem;
+					color: var(--yellow);
+					font-weight: 700;
+					transition: all 0.35s ease-in-out;
+				}
+				div.AccordionItemFavourite {
+					position: absolute;
+					top: 34px;
+					left: 16px;
+					transition: all 0.35s ease-in-out;
+				}
+			}
+		}
+		span.MuiAccordionSummary-expandIconWrapper {
+			svg {
+				fill: #fff;
+			}
+			display: block;
+			&.Mui-expanded {
+				display: none;
+			}
+		}
+	}
+}
+.MuiAccordion-root,
+.accordion {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin: 0 0 0.5rem 0;
+	outline: 1px solid #707070;
+	border-radius: 6px;
+	padding: 0.5rem 0;
+
+	&.active {
+		position: fixed;
+		top: 0;
+		left: 0;
+		background: var(--mainBackground);
+		z-index: 100;
+		transition: all 0.4s ease-in-out;
+	}
+	.btn.close {
+		display: none;
+		position: absolute;
+		right: 1rem;
+		top: 32px;
+		width: 30px;
+		height: 30px;
+	}
+	&.Mui-expanded {
+		.btn.close {
+			display: block;
+		}
+	}
+	header {
+		display: flex;
+		h3 {
+			margin: 0;
+			font-size: 1.375rem;
+			transition: all 0.3s ease-in-out;
+		}
+	}
+	.btn.scenario button {
+		background-color: transparent;
+	}
+}
+
+.MuiAccordionDetails-root {
+	color: var(--primary);
+	font-size: 1rem;
+	line-height: 1.3;
+	> div {
+		margin: 1rem 0;
+		text-align: left;
+		div:first-child {
+			font-size: 2.2rem;
+			font-weight: 600;
+			text-decoration-color: #32323226;
+			text-decoration-thickness: 3px;
+			text-decoration-style: double;
+			text-decoration-line: underline;
+
+			&::first-letter {
+				font-weight: 900;
+				font-size: 3.1rem;
+				color: var(--yellow);
+			}
+		}
+		div:nth-child(2) {
+			color: var(--lightBlue);
+			margin: 1rem 0 1rem 1rem;
+		}
+	}
+}
+.MuiAccordionSummary-expandIconWrapper {
+	width: 36px;
+	height: 36px;
+	.Mui-expanded {
+		display: none;
+	}
+	svg {
+		width: 100%;
+		height: 100%;
+		path {
+			fill: var(--yellow);
+			stroke: var(--yellow);
+		}
+	}
+}
