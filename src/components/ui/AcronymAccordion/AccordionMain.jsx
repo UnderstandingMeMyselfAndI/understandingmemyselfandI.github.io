@@ -60,7 +60,7 @@ export default function MainAccordions() {
 								id={"item-" + item?.id}
 								className={item?.title?.replaceAll(".", "")}
 							/>
-							<Typography component="span">{item.title}</Typography>
+							<span>{item.title}</span>
 
 							<CloseIcon
 								className={"btn close"}

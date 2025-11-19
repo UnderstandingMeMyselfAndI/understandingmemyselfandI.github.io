@@ -1,8 +1,8 @@
 // import useThemeStore from '../../themeStore';
 // const storageKey = 'themeOption';
 
-const applyTheme = ({ theme }) => {
-	document.documentElement.classList.remove('light', 'dark', 'system');
+const applyTheme = ({theme}) => {
+	document.documentElement.classList.remove("light", "dark", "system");
 	document.documentElement.classList.add(theme);
 	// useThemeStore.setState({ theme: theme });
 

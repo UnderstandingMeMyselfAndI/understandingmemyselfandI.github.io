@@ -1,0 +1,6 @@
+.favourite.chosen svg {
+	fill: var(--yellow);
+}
+.favourite svg {
+	fill: var(--yellow);
+}

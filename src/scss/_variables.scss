@@ -1,0 +1,260 @@
+@use "sass:math";
+@use "../globals.css";
+/**
+ * Generates a responsive font size using CSS clamp().
+ *
+ * @param {Number} $minFontSize - The minimum font size (e.g., 1rem or 16px).
+ * @param {Number} $maxFontSize - The maximum font size (e.g., 3.5rem or 56px).
+ * @param {Number} $minDeviceWidth - The minimum viewport width (e.g., 20rem or 320px).
+ * @param {Number} $maxDeviceWidth - The maximum viewport width (e.g., 80rem or 1280px).
+ * @return {String} A CSS clamp() function string.
+
+ 
+// --- Usage Example ---
+.hero-title {
+  // Example: 1rem (16px) at 320px screen width up to 3.5rem (56px) at 1280px
+  font-size: responsiveFontSize(1rem, 3.5rem, 20rem, 80rem);
+}
+
+.subtitle {
+    // Another example using px values
+    font-size: responsiveFontSize(14px, 24px, 400px, 1000px);
+}
+
+output
+
+.hero-title {
+  font-size: clamp(1rem, -0.875rem + 8.33333vw, 3.5rem);
+}
+
+.subtitle {
+  font-size: clamp(14px, 5px + 2.5vw, 24px);
+}
+// --- END Usage Example ---
+ */
+@function responsiveFontSize($minFontSize, $maxFontSize, $minDeviceWidth, $maxDeviceWidth) {
+	// Convert all inputs to base units (e.g., px) for consistent calculation
+	$minFontSizePx: math.div(math.div($minFontSize, 1), 1px) * 1px;
+	$maxFontSizePx: math.div(math.div($maxFontSize, 1), 1px) * 1px;
+	$minDeviceWidthPx: math.div(math.div($minDeviceWidth, 1), 1px) * 1px;
+	$maxDeviceWidthPx: math.div(math.div($maxDeviceWidth, 1), 1px) * 1px;
+
+	// Calculate the slope (unitless)
+	$slope: math.div($maxFontSizePx - $minFontSizePx, $maxDeviceWidthPx - $minDeviceWidthPx);
+
+	// Calculate the Y-axis intersection (in a base unit like rem, assuming 1rem = 16px here)
+	// To keep it simple in pure Sass math, we keep it in px first and then add the unit later
+	$yAxisIntersectionPx: -$minDeviceWidthPx * $slope + $minFontSizePx;
+
+	// Format the intermediate value for the clamp function
+	// Convert px Y-axis intersection to rem for standard best practice
+	$yAxisIntersectionRem: math.div($yAxisIntersectionPx, 16px) * 1rem;
+	$slopeVw: $slope * 100vw; // Convert unitless slope to vw percentage
+
+	// Return the final clamp string
+	@return clamp($minFontSize, $yAxisIntersectionRem + $slopeVw, $maxFontSize);
+}
+
+$breakpoint-small: 425px;
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 1025px;
+$breakpoint-desktop: 1025px;
+
+// device widths for responsive font sizes
+$minDeviceWidth: 400px;
+$maxDeviceWidth: 1025px;
+
+//-------------------------------------------------------------
+// Content
+//-------------------------------------------------------------
+
+$inner_content_max_width: 100vw;
+$inner_content_max_width_mobile: 100vw;
+$inner_content_width: 1920px;
+$inner_content_width_mobile: 1360px;
+$inner_content_width_slim: 1360px;
+$inner_content_width_header_footer: 1360px;
+$gutters: 1.75rem;
+$gutters_mobile: 1.75rem;
+//-------------------------------------------------------------
+// Content
+//-------------------------------------------------------------
+$logo_dur: 1.74s;
+$hover_dur: 0.4s;
+$scrollbar_width: 12px;
+
+//-------------------------------------------------------------
+// Design
+//-------------------------------------------------------------
+$border_radius_sml: 8px;
+$border_radius_lrg: 12px;
+//-------------------------------------------------------------
+// Header
+//-------------------------------------------------------------
+$header_height: 70px;
+
+//------------------------------------------------------
+// Typography
+//------------------------------------------------------
+// see https://css-tricks.com/linearly-scale-font-size-with-css-clamp-based-on-the-viewport/
+//
+// slope = (maxFontSize - minFontSize) / (maxWidth - minWidth)
+// yAxisIntersection = -minWidth * slope + minFontSize
+// preferredValue = yAxisIntersection[rem] + (slope * 100)[vw]
+// clamp(minimum, preferred, maximum);
+// font-size: clamp(1rem, -0.875rem + 8.333vw, 3.5rem);
+//
+
+// ------------------------------------------
+// Default fields font size
+// ------------------------------------------
+
+$default_size_min: 16px;
+$default_size_max: 20px;
+$default_size: responsiveFontSize($default_size_min, $default_size_max, $minDeviceWidth, $maxDeviceWidth);
+
+$default_text_color: var(--text_primary);
+$default_line_height: 1.4;
+
+// ------------------------------------------
+// Logo font size
+// ------------------------------------------
+
+$logo_lrg_size_min: 38px;
+$logo_lrg_size_max: 50px;
+$logo_lrg_size: responsiveFontSize($logo_lrg_size_min, $logo_lrg_size_max, $minDeviceWidth, $maxDeviceWidth);
+$logo_lrg_color: var(--text_primary);
+$logo_lrg_weight: 900;
+$logo_lrg_line_height: 1.2;
+
+// ------------------------------------------
+// H5 font size
+// ------------------------------------------
+
+$h1_size_min: 34px;
+$h1_size_max: 50px;
+$h1_size: responsiveFontSize($h1_size_min, $h1_size_max, $minDeviceWidth, $maxDeviceWidth);
+$h1_color: var(--text_primary);
+$h1_weight: 800;
+$h1_line_height: 1.2;
+
+// ------------------------------------------
+// H2 font size
+// ------------------------------------------
+
+$h2_size_min: 28px;
+$h2_size_max: 45px;
+$h2_size: responsiveFontSize($h2_size_min, $h2_size_max, $minDeviceWidth, $maxDeviceWidth);
+
+$h2_color: var(--text_primary);
+$h2_weight: 700;
+$h2_line_height: 1.4;
+
+// ------------------------------------------
+// H3 font size
+// ------------------------------------------
+
+$h3_size_min: 24px;
+$h3_size_max: 46px;
+$h3_size: responsiveFontSize($h3_size_min, $h3_size_max, $minDeviceWidth, $maxDeviceWidth);
+$h3_color: var(--text_primary);
+$h3_weight: 700;
+$h3_line_height: 1.2;
+
+// ------------------------------------------
+// H4 font size
+// ------------------------------------------
+
+$h4_size_min: 22px;
+$h4_size_max: 36px;
+$h4_size: responsiveFontSize($h4_size_min, $h4_size_max, $minDeviceWidth, $maxDeviceWidth);
+
+$h4_color: var(--text_primary);
+$h4_weight: 500;
+$h4_line_height: 1.2;
+
+// ------------------------------------------
+// H5 font size
+// ------------------------------------------
+
+$h5_size_min: 18px;
+$h5_size_max: 28px;
+$h5_size: responsiveFontSize($h5_size_min, $h5_size_max, $minDeviceWidth, $maxDeviceWidth);
+
+$h5_color: var(--text_primary);
+$h5_weight: 500;
+$h5_line_height: 1.2;
+
+// ------------------------------------------
+// Subtitle font size
+// ------------------------------------------
+
+$subtitle_size_min: 14px;
+$subtitle_size_max: 16px;
+$subtitle_size: 3vw;
+$subtitle_size: responsiveFontSize($subtitle_size_min, $subtitle_size_max, $minDeviceWidth, $maxDeviceWidth);
+
+$subtitle_color: var(--text_primary);
+$subtitle_weight: 400;
+$subtitle_style: normal;
+
+// ------------------------------------------
+// Small font size
+// ------------------------------------------
+
+$small_size_min: 10px;
+$small_size_max: 16px;
+$small_size: 3.5vw;
+$small_size: responsiveFontSize($small_size_min, $small_size_max, $minDeviceWidth, $maxDeviceWidth);
+
+$small_color: var(--text_primary);
+$small_weight: 400;
+$small_style: normal;
+
+// ------------------------------------------
+// Date font size
+// ------------------------------------------
+
+$date_size_min: 12px;
+$date_size_max: 14px;
+$date_size: responsiveFontSize($date_size_min, $date_size_max, $minDeviceWidth, $maxDeviceWidth);
+
+$date_color: var(--text_primary);
+$date_weight: 200;
+$date_style: normal;
+
+// ------------------------------------------
+// Paragraph font size
+// ------------------------------------------
+
+$p_size_min: 14px;
+$p_size_max: 18px;
+$p_size: responsiveFontSize($p_size_min, $p_size_max, $minDeviceWidth, $maxDeviceWidth);
+
+$p_color: var(--text_primary);
+$p_weight: 400;
+$p_line_height: 1.4;
+
+// ------------------------------------------
+// Button font size
+// ------------------------------------------
+
+$btn_size_min: 14px;
+$btn_size_max: 18px;
+$btn_size: responsiveFontSize($btn_size_min, $btn_size_max, $minDeviceWidth, $maxDeviceWidth);
+
+$btn_color: var(--text_primary);
+$btn_weight: 400;
+$btn_line_height: 1.4;
+
+$easing_funtion: cubic-bezier(0.81, 0, 0.33, 0.99);
+
+// ------------------------------------------
+// Input fields font size
+// ------------------------------------------
+
+$input_color: var(--text_primary);
+
+$input_font_family: "Plus Jakarta Sans", sans-serif;
+$input_font_size: $default_size;
+$input_font-weight: 400;

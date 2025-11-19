@@ -2,16 +2,21 @@ import path from "path";
 import {defineConfig} from "vite";
 import react from "@vitejs/plugin-react";
 import commonjs from "vite-plugin-commonjs";
+
 const __dirname = path.dirname("./src");
 import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 // https://vitejs.dev/config/
 export default defineConfig({
 	root: "./",
+	base: "./",
+	publicDir: "public",
 	build: {
 		minify: "terser",
+		cssMinify: false,
 		outDir: "./docs",
 		emptyOutDir: true, // also necessary,
 		commonjsOptions: {transformMixedEsModules: true}, // Change
+		cssCodeSplit: true,
 	},
 	plugins: [react(), commonjs(), cssInjectedByJsPlugin()],
 	resolve: {
@@ -21,7 +26,10 @@ export default defineConfig({
 			buttons: path.resolve(__dirname, "./src/components/ui/buttons/"),
 			ui: path.resolve(__dirname, "./src/components/ui/"),
 			components: path.resolve(__dirname, "./src/components/"),
+
 			public: path.resolve(__dirname, "./public/"),
+			data: path.resolve(__dirname, "./src/data/"),
+			scss: path.resolve(__dirname, "./src/scss/"),
 		},
 	},
 });

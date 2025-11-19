@@ -2,7 +2,7 @@
 import PropTypes from "prop-types";
 import "./styles.css";
 
-import useThemeStore from "@/themeStore";
+import useThemeStore from "@/store/useThemeStore";
 export function BackgroundOption({icon, option, label}) {
 	const theme = useThemeStore.getState().theme;
 	const classActive = option === theme ? "active" : "";

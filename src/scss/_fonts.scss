@@ -1,0 +1,95 @@
+@use "_variables";
+@use "sass:math";
+
+@font-face {
+	font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+	font-family: "Plus Jakarta Sans";
+	font-style: normal;
+	src: local("Plus Jakarta Sans"), url("https://fsw.flpdigital.com/wp-content/themes/fsw2025/dist/fonts/PlusJakartaSans-VariableFont_wght.woff") format("woff"),
+		url("https://fsw.flpdigital.com/wp-content/themes/fsw2025/dist/fonts/PlusJakartaSans-VariableFont_wght.woff2") format("woff2");
+}
+@font-face {
+	font-display: swap;
+	font-family: "Plus Jakarta Sans";
+	font-style: italic;
+	src: local("Plus Jakarta Sans"), url("https://fsw.flpdigital.com/wp-content/themes/fsw2025/dist/fonts/PlusJakartaSans-Italic-VariableFont_wght.woff") format("woff"),
+		url("https://fsw.flpdigital.com/wp-content/themes/fsw2025/dist/fonts/PlusJakartaSans-Italic-VariableFont_wght.woff") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+body {
+	font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+	font-weight: 200;
+	font-style: normal;
+	line-height: variables.$default_line_height;
+	-webkit-font-smoothing: antialiased; // antialiased subpixel-antialiased
+	-moz-osx-font-smoothing: grayscale; // grayscale auto
+	text-rendering: geometricPrecision; // optimizeLegibility geometricPrecision
+
+	font-size: variables.$p_size;
+
+	button,
+	input,
+	select,
+	textarea {
+		font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif !important;
+		font-weight: 400 !important;
+		font-style: normal;
+		line-height: variables.$default_line_height;
+		font-size: variables.$p_size;
+	}
+
+	input::placeholder {
+		color: #ccc;
+		font-weight: 300 !important;
+	}
+	section.layout {
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			font-family: "Plus Jakarta Sans", Georgia, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+			font-weight: 600;
+			font-style: normal;
+			line-height: variables.$default_line_height;
+			padding: 0;
+			margin: 1rem 0;
+			color: #252020;
+		}
+	}
+
+	h1 {
+		font-size: variables.$h1_size;
+		font-weight: variables.$h1_weight;
+		color: var(--lightBlue2);
+		max-width: 90%;
+		width: 90%;
+	}
+
+	h2 {
+		font-size: variables.$h2_size;
+		font-weight: variables.$h2_weight;
+		color: var(--yellow);
+	}
+	h3 {
+		font-size: variables.$h3_size;
+		font-weight: variables.$h3_weight;
+	}
+	h4 {
+		font-size: variables.$h4_size;
+		font-weight: variables.$h4_weight;
+	}
+	h5 {
+		font-size: variables.$h5_size;
+		font-weight: variables.$h5_weight;
+	}
+	p {
+		font-size: variables.$p_size;
+		font-weight: variables.$p_weight;
+		line-height: 1.4;
+	}
+	strong {
+		font-weight: 700;
+	}
+}

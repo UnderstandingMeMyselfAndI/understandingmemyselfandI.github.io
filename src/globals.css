@@ -1,14 +1,19 @@
 :root {
+	--border-radius: 6px;
 	--blueBackground: #1b869e;
 	--mainBackground: linear-gradient(140deg, rgba(27, 134, 158, 1) 0%, rgb(157, 30, 30) 81%);
 	--background: oklch(0.145 0 0);
 	--foreground: oklch(0.985 0 0);
-	--yellow: #83db6d;
-	--yellow2: #a7fd91;
+	--yellow: #92dc41;
+	--yellow2: #7dbd38;
 	--lightBlue: #bcb6ea;
+	--lightBlue2: #c8c3ee;
 	--blue: #4d477c;
 	--lightGrey: #ccc;
 	--lighGreyBg: #819ec9;
+	--red: #e83737;
+	--green: #257e94;
+	--greyDark: #181818;
 	--grey: #999;
 	--card: oklch(0.205 0 0);
 	--card-foreground: oklch(0.985 0 0);
@@ -55,7 +60,10 @@
 	--primary-foreground: oklch(0.985 0 0);
 	--yellow: oklch(0.145 0 0);
 	--grey: oklch(0.145 0 0);
+	--red: #868686;
 	--lightBlue: oklch(0.145 0 0);
+	--lightBlue2: oklch(0.145 0 0);
+
 	--lightGreyBg: oklch(63.676% 0.00007 271.152);
 	--secondary: oklch(0.145 0 0);
 	--secondary-foreground: oklch(0.205 0 0);
@@ -88,9 +96,11 @@
 	--foreground: oklch(0.985 0 0);
 	--yellow: oklch(0.985 0 0);
 	--lightBlue: oklch(0.985 0 0);
+	--lightBlue2: oklch(0.985 0 0);
 	--lightGrey: oklch(0.985 0 0);
 	--lightGreyBg: oklch(0.409, 0%, 0.89876);
 	--grey: oklch(0.985 0 0);
+	--red: #868686;
 	--card: oklch(0.205 0 0);
 	--card-foreground: oklch(0.985 0 0);
 	--popover: oklch(0.269 0 0);

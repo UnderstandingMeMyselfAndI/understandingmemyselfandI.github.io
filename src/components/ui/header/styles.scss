@@ -1,0 +1,22 @@
+@import "@/globals.css";
+
+.in {
+	width: 100%;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+	.r1,
+	.r2 {
+		width: 100%;
+	}
+	.r2 {
+		display: flex;
+		justify-content: center;
+		column-gap: 6px;
+		.w1:after {
+			content: ",";
+			color: var(--grey);
+		}
+	}
+}

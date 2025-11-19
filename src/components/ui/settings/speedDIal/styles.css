@@ -1,29 +1,33 @@
-@import "@/src/globals.css";
+@import "@/globals.css";
 body {
-	div.MuiBox-root {
-		position: absolute;
+	/* div.MuiBox-root {
+		position: relative;
 		top: 0;
 		z-index: 100;
 		width: 100%;
+	} */
+	div.MuiBox-root {
+		width: 100vw;
+		height: 100vh;
+		transform: translateX(1rem);
 	}
 	div.speed-dial-settings {
-		z-index: 10000 !important;
+		z-index: 1000;
 		position: fixed;
-		/* width: 100%; */
-		right: 0;
+
+		right: 1rem;
 		left: auto;
 		top: 1rem;
 		text-shadow: none;
-
-		button.MuiButtonBase-root.MuiFab-root.MuiFab-circular.MuiSpeedDial-fab {
-			background-color: var(--speedDialMainButtonBackground);
-		}
+	}
+	button.MuiButtonBase-root.MuiFab-root.MuiFab-circular.MuiSpeedDial-fab {
+		background-color: var(--greyDark);
 	}
 }
 #SettingsSpeedDial-actions {
 	span {
 		button {
-			background-color: var(--speedDialButtonBackground);
+			background-color: var(--greyDark);
 			svg {
 				fill: var(--primary);
 			}
@@ -31,12 +35,19 @@ body {
 	}
 }
 #SettingsSpeedDial-actions span.MuiSpeedDialAction-staticTooltipLabel {
-	transform-origin: 100% 50%;
+	/* transform-origin: 100% 50%;
 	left: 50%;
 	top: 50%;
 	right: auto;
-	margin-right: 8px;
+	margin-right: 8px; */
 	/* width: fit-content; */
+	min-width: fit-content;
+	width: fit-content;
+	display: block;
+	background-color: var(--greyDark);
+	color: var(--primary);
+	font-size: 0.85rem;
+	font-weight: 300;
 }
 /* 
 .MuiSpeedDialAction-staticTooltip.MuiSpeedDialAction-tooltipPlacementLeft {

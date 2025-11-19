@@ -9,38 +9,73 @@ div.AccordionRoot {
 div.AccordionRoot > div {
 	transition: opacity 0.1s ease-out;
 	background: rgba(50, 50, 50, 0.2);
-	border-radius: 8px;
+	border-radius: var(--border-radius);
+}
+
+/* Style for expanded accordion */
+.expanded-accordion {
+	position: relative;
+	transition: all 0.3s ease;
+}
+.AccordionItem {
+	transition: all 0.3s ease;
+}
+
+span.MuiTypography-root {
+	font-family: "Plus Jakarta Sans", sans-serif;
+}
+div.accBack {
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--mainBackground);
+	opacity: 0.1;
+	border-radius: var(--border-radius);
+}
+div.expanded-accordion {
+	div.accBack {
+		opacity: 0.6;
+	}
 }
 div.MuiPaper-root {
 	margin: 0.75rem 0;
 	border: none;
-	background: var(--mainBackground);
-	outline: 1px solid rgba(50, 50, 50, 0.2);
-	/* border-radius: 8px 8px 8px 8px; */
 
+	border-radius: var(--border-radius);
 	box-shadow: unset;
 	background: none;
 	text-shadow: 2px 0px 7px rgba(0, 0, 0, 0.49);
 	position: relative;
+	display: flex;
+	flex-direction: column;
+	div.MuiCollapse-wrapperInner {
+		flex-grow: 1;
+	}
 
 	&.Mui-expanded {
-		background: var(--mainBackground);
-		position: fixed;
-		top: 8px;
-		left: 1rem;
+		/* background: var(--mainBackground); */
+		background: rgba(20, 20, 20, 0.4);
+		/* position: fixed;
+		top: 2vh;
+		left: 1rem; */
 		z-index: 1000;
-		width: calc(100vw - 2rem);
-		border-radius: 8px 8px 8px 8px;
+		width: calc(100%);
+		/* min-height: calc(100vh - 4.5rem); */
+		/* max-height: 80vh; */
+		border-radius: var(--border-radius);
+		outline: 1px solid rgba(150, 150, 150, 0.25);
 
 		div.MuiCollapse-wrapperInner {
 			overflow-y: scroll;
-			/* border-radius: 8px; */
-			width: 98%;
-			margin: 0 auto;
-			max-height: 88vh;
-			background-color: rgba(0, 0, 0, 0.05);
+			background-color: rgba(0, 0, 0, 0.15);
 			position: relative;
 			z-index: 1;
+		}
+		div.AccordionItemFavourite {
+			display: none;
 		}
 	}
 	&::before {
@@ -56,7 +91,7 @@ h3.MuiAccordion-heading {
 
 	button.MuiButtonBase-root {
 		justify-content: center;
-		column-gap: 1rem;
+		column-gap: 0rem;
 		min-height: 48px;
 
 		span.MuiAccordionSummary-content {
@@ -65,32 +100,33 @@ h3.MuiAccordion-heading {
 			margin: 0.5rem 0;
 			align-content: center;
 			align-items: center;
-			column-gap: 1.5rem;
+			column-gap: 0.5rem;
 			/* outline: 1px solid #999; */
 			transition: all 0.2s ease-in-out;
-			div.AccordionItemFavouritem {
-				height: fit-content;
-			}
+
 			span.MuiTypography-root {
-				font-size: 2.25rem;
+				font-size: 1.8rem;
 				font-weight: 700;
 				transition: all 0.2s ease-in-out;
 				text-align: center;
 				/* outline: 1px solid #999; */
 				flex-grow: 1;
+				margin-left: 30px;
 			}
 			div.AccordionItemFavourite {
-				position: static;
+				position: absolute;
+				height: fit-content;
 				transition: all 0.5s ease-in-out;
 			}
 			&.Mui-expanded {
 				width: 100%;
 
 				span.MuiTypography-root {
-					font-size: 3.2rem;
+					font-size: 2rem;
 					color: var(--yellow);
 					font-weight: 700;
 					transition: all 0.35s ease-in-out;
+					margin-left: 0px;
 				}
 				div.AccordionItemFavourite {
 					position: absolute;
@@ -111,6 +147,12 @@ h3.MuiAccordion-heading {
 		}
 	}
 }
+/* Ensure expanded accordion content is properly sized */
+.MuiPaper-root.MuiAccordion-root {
+	transition: all 0.3s ease;
+	outline: 1px solid rgba(150, 150, 150, 0.25);
+	background-color: rgba(94, 111, 207, 0.2);
+}
 .MuiAccordion-root,
 .accordion {
 	display: flex;
@@ -118,14 +160,16 @@ h3.MuiAccordion-heading {
 	width: 100%;
 	margin: 0 0 0.5rem 0;
 	outline: 1px solid #707070;
-	border-radius: 8px;
+	border-radius: var(--border-radius);
 	padding: 0.5rem 0;
+	position: relative;
+	background: transparent;
 
 	&.active {
-		position: fixed;
+		/* position: fixed;
 		top: 0;
-		left: 0;
-		background: var(--mainBackground);
+		left: 0; */
+		/* background: var(--mainBackground); */
 		z-index: 100;
 		transition: all 0.4s ease-in-out;
 	}
@@ -133,7 +177,7 @@ h3.MuiAccordion-heading {
 		display: none;
 		position: absolute;
 		right: 1rem;
-		top: 32px;
+		top: 4px;
 		width: 30px;
 		height: 30px;
 	}
@@ -157,30 +201,30 @@ h3.MuiAccordion-heading {
 
 .MuiAccordionDetails-root {
 	color: var(--primary);
-	font-size: 1rem;
+	font-size: 0.8rem;
 	line-height: 1.3;
 	> div {
 		margin: 1rem 0;
 		text-align: left;
 		div:first-child {
-			font-size: 2.2rem;
-			font-weight: 600;
-			text-decoration-color: #32323226;
-			text-decoration-thickness: 3px;
-			text-decoration-style: double;
-			text-decoration-line: underline;
-			color: var(--lightBlue);
+			font-size: 1.4rem;
+			font-weight: 700;
+
+			color: var(--lightGrey);
 
 			&::first-letter {
 				font-weight: 900;
-				font-size: 3.1rem;
-				color: var(--yellow);
+				font-size: 2rem;
+				color: var(--primary);
 				margin-right: 0.1rem;
+				text-decoration-color: var(--yellow);
+				text-decoration-thickness: 3px;
+				text-decoration-style: solid;
+				text-decoration-line: underline;
 			}
 		}
 		div:nth-child(2) {
-			color: var(--lightBlue);
-			margin: 1rem 0 1rem 1rem;
+			margin: 0.5rem 0 1rem 1.5rem;
 		}
 	}
 }
