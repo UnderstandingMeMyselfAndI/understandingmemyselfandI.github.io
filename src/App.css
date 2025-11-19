@@ -13,6 +13,7 @@ html {
 	min-height: 100vh;
 	width: 100%;
 	height: 100%;
+	background-color: #000;
 }
 body {
 	width: 100%;
@@ -26,6 +27,7 @@ body {
 }
 body * {
 	text-shadow: 1px 1px 2px rgba(50, 50, 50, 0.2) !important;
+	color: var(--primary);
 }
 #root {
 	width: 100%;
@@ -37,6 +39,7 @@ body * {
 	background: var(--mainBackground);
 }
 body {
+	user-select: none;
 	*.MuiTypography-root {
 		font-family: "Plus Jakarta Sans", sans-serif;
 		color: var(--primary);
@@ -132,18 +135,6 @@ body .app {
 	}
 }
 
-header {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	height: 100vh;
-	row-gap: 1.25rem;
-	margin: 0 auto;
-	padding: 0;
-}
-
 .card {
 	padding: 0.5rem 0;
 	width: 50%;
@@ -204,28 +195,9 @@ div[data-vaul-overlay][data-vaul-snap-points-overlay="true"] {
 	color: #888;
 }
 
-.header .logo {
-	/* height: 18vh;
-	max-height: 300px;
-	min-height: 100px; */
-	padding-top: 1em;
-	will-change: filter;
-	transition: filter 300ms;
-}
-
 .card {
 	padding: 0.5rem 0;
 	width: 50%;
-}
-.header {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	row-gap: 1.25rem;
-	margin: 0 auto;
-	padding: 0;
 }
 
 .subtitle {

@@ -196,7 +196,33 @@
 		transform: translateX(10%);
 	}
 }
-@keyframes move-pulse-down-loop-200 {
+@keyframes move-down-loop-50 {
+	0% {
+		transform: translateY(0%);
+	}
+
+	50% {
+		transform: translateY(50%);
+	}
+
+	100% {
+		transform: translateY(0%);
+	}
+}
+@keyframes move-down-loop-100 {
+	0% {
+		transform: translateY(0%);
+	}
+
+	50% {
+		transform: translateY(100%);
+	}
+
+	100% {
+		transform: translateY(0%);
+	}
+}
+@keyframes move-down-loop-200 {
 	0% {
 		transform: translateY(0%);
 	}
@@ -209,16 +235,120 @@
 		transform: translateY(0%);
 	}
 }
-@keyframes scale-pulse-loop-60 {
+@keyframes scale-loop-100-10-100 {
 	0% {
-		transform: translateY(0%);
+		transform: scale(100%);
 	}
 
 	50% {
-		transform: translateY(200%);
+		transform: scale(10%);
 	}
 
 	100% {
-		transform: translateY(0%);
+		transform: scale(100%);
+	}
+}
+@keyframes scale-loop-100-20-100 {
+	0% {
+		transform: scale(100%);
+	}
+
+	50% {
+		transform: scale(20%);
+	}
+
+	100% {
+		transform: scale(100%);
+	}
+}
+@keyframes scale-loop-100-30-100 {
+	0% {
+		transform: scale(100%);
+	}
+
+	50% {
+		transform: scale(30%);
+	}
+
+	100% {
+		transform: scale(100%);
+	}
+}
+@keyframes scale-loop-100-40-100 {
+	0% {
+		transform: scale(100%);
+	}
+
+	50% {
+		transform: scale(40%);
+	}
+
+	100% {
+		transform: scale(100%);
+	}
+}
+@keyframes scale-loop-100-50-100 {
+	0% {
+		transform: scale(100%);
+	}
+
+	50% {
+		transform: scale(50%);
+	}
+
+	100% {
+		transform: scale(100%);
+	}
+}
+@keyframes scale-loop-100-60-100 {
+	0% {
+		transform: scale(100%);
+	}
+
+	50% {
+		transform: scale(60%);
+	}
+
+	100% {
+		transform: scale(100%);
+	}
+}
+@keyframes scale-loop-100-70-100 {
+	0% {
+		transform: scale(100%);
+	}
+
+	50% {
+		transform: scale(70%);
+	}
+
+	100% {
+		transform: scale(100%);
+	}
+}
+@keyframes scale-loop-100-80-100 {
+	0% {
+		transform: scale(100%);
+	}
+
+	50% {
+		transform: scale(80%);
+	}
+
+	100% {
+		transform: scale(100%);
+	}
+}
+@keyframes scale-loop-100-90-100 {
+	0% {
+		transform: scale(100%);
+	}
+
+	50% {
+		transform: scale(90%);
+	}
+
+	100% {
+		transform: scale(100%);
 	}
 }

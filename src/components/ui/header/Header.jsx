@@ -23,7 +23,7 @@ const Header = ({classes = ""}) => {
 	return (
 		<header className={`stage-${stage} ${classes}`}>
 			<div className="home-logo">
-				<Logo classes="home" />
+				<Logo />
 			</div>
 			<h1>
 				<span className="in">
@@ -37,7 +37,9 @@ const Header = ({classes = ""}) => {
 					</div>
 				</span>
 			</h1>
-			<ArrowDownwardOutlinedIcon className="arrow" />
+			<div className="arrow-cont">
+				<ArrowDownwardOutlinedIcon className="arrow" />
+			</div>
 		</header>
 	);
 };

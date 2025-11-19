@@ -1,5 +1,36 @@
 @import "@/globals.css";
 
+header {
+	user-select: none;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 90dvh;
+	max-height: 90dvh;
+	row-gap: 1.25rem;
+	margin: 0 auto;
+	padding: 0;
+
+	.home-logo {
+		max-width: 40vw;
+		.logo {
+			max-width: 100%;
+		}
+	}
+}
+/*.header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	row-gap: 1.25rem;
+	margin: 0 auto;
+	padding: 0;
+}*/
+
 .in {
 	width: 100%;
 	display: flex;
@@ -20,11 +51,21 @@
 		}
 	}
 }
-.arrow {
+.arrow-cont {
+	opacity: 0;
+}
+
+.arrow-cont {
 	position: absolute;
-	top: 86vh;
+	top: 80vh;
 	left: 50%;
 	transform: translate(-50%, -50%) scale(1.8);
 	z-index: 10;
-	opacity: 0.5;
+	opacity: 0;
+	transition: all 1s ease-in-out;
+	svg.arrow {
+		opacity: 0.5;
+
+		fill: var(--lightBlue);
+	}
 }
