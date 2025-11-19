@@ -1,6 +1,8 @@
 import * as React from "react";
 import {useState, useEffect} from "react";
 import Logo from "ui/logo/Logo.jsx";
+import ArrowDownwardOutlinedIcon from "@mui/icons-material/ArrowDownwardOutlined";
+
 // import clamp from "@/js/utils.js";
 import "../../../scss/Animation.css";
 import "./AnimationIntro.scss";
@@ -35,6 +37,7 @@ const Header = ({classes = ""}) => {
 					</div>
 				</span>
 			</h1>
+			<ArrowDownwardOutlinedIcon className="arrow" />
 		</header>
 	);
 };

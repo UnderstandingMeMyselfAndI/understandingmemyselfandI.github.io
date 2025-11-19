@@ -20,3 +20,11 @@
 		}
 	}
 }
+.arrow {
+	position: absolute;
+	top: 86vh;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(1.8);
+	z-index: 10;
+	opacity: 0.5;
+}

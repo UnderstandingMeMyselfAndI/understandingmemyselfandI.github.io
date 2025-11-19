@@ -91,6 +91,13 @@ $tf: cubic-bezier(0.365, 0.403, 0, 1);
 		animation-timing-function: $tf, $tf, $tf;
 		transition: all $dur0_4 $tf;
 	}
+	.arrow {
+		animation-name: move-pulse-down-200, scale-pulse-loop-60;
+		animation-duration: 1.5s, 1.5s;
+		animation-delay: 0, 0;
+		animation-timing-function: $tf, $tf;
+		animation-iteration-count: infinite;
+	}
 }
 .stage-2 {
 	.home-logo {
@@ -102,7 +109,19 @@ $tf: cubic-bezier(0.365, 0.403, 0, 1);
 		transform: scale(1) translateY(0);
 		transition: all $durIn_1 $tf;
 	}
+	.arrow {
+		opacity: 0.5;
+		transition: all $durIn_1 $tf;
+	}
 }
+.stage-2 {
+	.arrow {
+		transform: scale(0.6) translateY(1200%);
+		transition: all $dur0_1 $tf;
+		opacity: 0.25;
+	}
+}
+
 .stage-3 {
 	.home-logo {
 		opacity: 0;
@@ -140,5 +159,10 @@ $tf: cubic-bezier(0.365, 0.403, 0, 1);
 	.w4 {
 		// transform: translateX(160%);
 		transition: all $dur0_4 $tf;
+	}
+	.arrow {
+		transform: scale(0.6) translateY(1600%);
+		transition: all 2s $tf;
+		opacity: 0;
 	}
 }

@@ -228,7 +228,7 @@ $date_style: normal;
 // ------------------------------------------
 
 $p_size_min: 14px;
-$p_size_max: 18px;
+$p_size_max: 16px;
 $p_size: responsiveFontSize($p_size_min, $p_size_max, $minDeviceWidth, $maxDeviceWidth);
 
 $p_color: var(--text_primary);

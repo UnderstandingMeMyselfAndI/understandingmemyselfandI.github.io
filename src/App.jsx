@@ -5,7 +5,6 @@ import React, {useState, useRef, useEffect, useCallback, useMemo} from "react";
 import Header from "ui/header/Header";
 import useThemeStore from "@/store/useThemeStore";
 import applyTheme from "components/theme/applyTheme";
-
 import AccordionScroll from "ui/AcronymAccordion/AccordionScroll";
 import SettingsDrawer from "ui/settings/SettingsDrawer.jsx";
 import FontSizeDrawer from "ui/settings/FontSizeDrawer.jsx";

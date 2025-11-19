@@ -1,3 +1,4 @@
+@use "@/scss/_variables.scss";
 @import "@/globals.css";
 
 div.AccordionRoot {
@@ -73,6 +74,8 @@ div.MuiPaper-root {
 			background-color: rgba(0, 0, 0, 0.15);
 			position: relative;
 			z-index: 1;
+			min-height: calc(90vh - 120px);
+			font-size: variables.$p_size;
 		}
 		div.AccordionItemFavourite {
 			display: none;

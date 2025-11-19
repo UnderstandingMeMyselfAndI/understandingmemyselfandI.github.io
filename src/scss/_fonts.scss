@@ -42,21 +42,20 @@ body {
 		color: #ccc;
 		font-weight: 300 !important;
 	}
-	section.layout {
-		h1,
-		h2,
-		h3,
-		h4,
-		h5,
-		h6 {
-			font-family: "Plus Jakarta Sans", Georgia, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-			font-weight: 600;
-			font-style: normal;
-			line-height: variables.$default_line_height;
-			padding: 0;
-			margin: 1rem 0;
-			color: #252020;
-		}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: "Plus Jakarta Sans", Georgia, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+		font-weight: 600;
+		font-style: normal;
+		line-height: variables.$default_line_height;
+		padding: 0;
+		margin: 1rem 0;
+		color: #252020;
 	}
 
 	h1 {

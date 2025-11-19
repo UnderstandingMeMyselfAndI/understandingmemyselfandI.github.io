@@ -12,7 +12,7 @@ import data from "../../../data/data.js";
 import Favourite from "../favourite/Favourite.jsx";
 import {useScrollEffects, SCROLL_EFFECT_CONFIG} from "./useScrollEffects";
 import "../../../globals.css";
-import "./AccordionStyles.css";
+import "./AccordionStyles.scss";
 
 // Configuration constants - easily adjustable
 // const SCROLL_EFFECT_CONFIG = {
@@ -91,6 +91,7 @@ const AccordionItemWithEffects = ({item, index, expanded, handleChange, config =
 			backgroundColor: "var(--mainBackground)",
 			boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
 			maxHeight: "calc(90vh - 40px)",
+			minHeight: "calc(90vh - 40px)",
 			height: "calc(90vh - 40px)",
 			overflow: "auto",
 			"& .MuiAccordionDetails-root": {
