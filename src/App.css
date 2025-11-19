@@ -67,6 +67,7 @@ h3 {
 }
 
 .inner {
+	max-width: 600px;
 	position: relative;
 	.content {
 		position: relative;
