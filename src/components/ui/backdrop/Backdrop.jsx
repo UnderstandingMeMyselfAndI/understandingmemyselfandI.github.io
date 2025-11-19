@@ -4,7 +4,7 @@ import bgImg from "/bgs/2.jpg";
 import "./styles.scss";
 
 const allImages = Object.values(data);
-const newImgInterval = 3000;
+const newImgInterval = 10000;
 
 export default function Backdrop() {
 	const [images, setImages] = useState([allImages[0], allImages[1]]);
