@@ -1,11 +1,11 @@
 @use "../../../scss/variables";
-
+@import "@/globals.css";
 .logo {
 	width: fit-content;
 	height: fit-content;
 	font-size: variables.$logo_lrg_size;
 	font-weight: variables.$logo_lrg_weight;
-	color: var(--yellow2); /*#92dc41*/
+	color: var(--yellow); /*#92dc41*/
 	display: flex;
 	justify-content: center;
 	align-items: center;
