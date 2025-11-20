@@ -131,7 +131,7 @@ $logo_lrg_line_height: 1.2;
 // H5 font size
 // ------------------------------------------
 
-$h1_size_min: 34px;
+$h1_size_min: 42px;
 $h1_size_max: 75px;
 $h1_size: responsiveFontSize($h1_size_min, $h1_size_max, $minDeviceWidth, $maxDeviceWidth);
 $h1_color: var(--text_primary);
@@ -142,7 +142,7 @@ $h1_line_height: 1.2;
 // H2 font size
 // ------------------------------------------
 
-$h2_size_min: 28px;
+$h2_size_min: 36px;
 $h2_size_max: 55px;
 $h2_size: responsiveFontSize($h2_size_min, $h2_size_max, $minDeviceWidth, $maxDeviceWidth);
 

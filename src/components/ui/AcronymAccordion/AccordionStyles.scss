@@ -211,7 +211,7 @@ h3.MuiAccordion-heading {
 	width: 100%;
 	height: auto;
 	min-height: fit-content;
-	margin-bottom: 20rem;
+	margin-bottom: 2rem;
 	/* overflow: hidden;*/
 }
 .MuiAccordionDetails-root {
@@ -257,7 +257,7 @@ h3.MuiAccordion-heading {
 				&:after {
 					content: "";
 					width: 110%;
-					height: 140%;
+					height: 160%;
 					position: absolute;
 					top: -20%;
 					transform: translate(0, -50%);
