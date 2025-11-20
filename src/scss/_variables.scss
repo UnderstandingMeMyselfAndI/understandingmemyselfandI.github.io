@@ -132,7 +132,7 @@ $logo_lrg_line_height: 1.2;
 // ------------------------------------------
 
 $h1_size_min: 34px;
-$h1_size_max: 50px;
+$h1_size_max: 75px;
 $h1_size: responsiveFontSize($h1_size_min, $h1_size_max, $minDeviceWidth, $maxDeviceWidth);
 $h1_color: var(--text_primary);
 $h1_weight: 800;
@@ -143,7 +143,7 @@ $h1_line_height: 1.2;
 // ------------------------------------------
 
 $h2_size_min: 28px;
-$h2_size_max: 45px;
+$h2_size_max: 55px;
 $h2_size: responsiveFontSize($h2_size_min, $h2_size_max, $minDeviceWidth, $maxDeviceWidth);
 
 $h2_color: var(--text_primary);
@@ -155,7 +155,7 @@ $h2_line_height: 1.4;
 // ------------------------------------------
 
 $h3_size_min: 24px;
-$h3_size_max: 46px;
+$h3_size_max: 41px;
 $h3_size: responsiveFontSize($h3_size_min, $h3_size_max, $minDeviceWidth, $maxDeviceWidth);
 $h3_color: var(--text_primary);
 $h3_weight: 700;

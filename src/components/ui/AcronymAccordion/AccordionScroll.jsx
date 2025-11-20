@@ -155,7 +155,23 @@ const AccordionItemWithEffects = ({item, index, expanded, handleChange, config =
 					<div dangerouslySetInnerHTML={{__html: item.content.explanation}} />
 					{item.content.acronyms.map((acronym, acronymIndex) => (
 						<div key={"acronymn-" + acronymIndex}>
-							<div key={"m-" + acronymIndex}>{acronym.meaning}</div>
+							<div
+								className="Acronym-title"
+								key={"t-" + acronymIndex}
+							>
+								<div
+									className="Acronym-letter"
+									key={"l-" + acronymIndex}
+								>
+									{acronym.letter}
+								</div>
+								<div
+									className="Acronym-word"
+									key={"m-" + acronymIndex}
+								>
+									{acronym.meaning}
+								</div>
+							</div>
 							<div
 								key={"d-" + acronymIndex}
 								className="Acronym-definition"

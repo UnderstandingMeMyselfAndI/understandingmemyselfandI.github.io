@@ -38,7 +38,7 @@ const AccordionDemo = () => {
 						value={"item-" + item.id}
 						className={item.title}
 					>
-						{item.title}
+						<div>{item.title}</div>
 					</AccordionTrigger>
 					<AccordionContent>{item.content}</AccordionContent>
 					<div className="scenarios">
@@ -122,7 +122,7 @@ const AccordionContent = React.forwardRef(({children, className, ...props}, forw
 							key={index}
 						>
 							<div className="Acronym-letter-group">
-								{/* <div className='Acronym-letter'>{acronym.letter}</div> */}
+								<div className="Acronym-letter">{acronym.letter}</div>
 								<div
 									className="Acronym-letter-meaning"
 									dangerouslySetInnerHTML={{__html: acronym.meaning}}
