@@ -52,7 +52,7 @@ header {
 	}
 }
 .arrow-cont {
-	opacity: 1;
+	opacity: 0;
 }
 
 .arrow-cont {
@@ -61,7 +61,7 @@ header {
 	left: 50%;
 	transform: translate(-50%, -50%) scale(1.8);
 	z-index: 10;
-	opacity: 1;
+	opacity: 0;
 	transition: all 1s ease-in-out;
 	svg.arrow {
 		opacity: 0.5;
