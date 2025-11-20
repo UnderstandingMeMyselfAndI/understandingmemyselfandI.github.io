@@ -90,10 +90,10 @@ const AccordionItemWithEffects = ({item, index, expanded, handleChange, config =
 			position: "relative",
 			backgroundColor: "var(--mainBackground)",
 			boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
-			maxHeight: "calc(90vh - 40px)",
-			minHeight: "calc(90vh - 40px)",
-			height: "calc(90vh - 40px)",
-			overflow: "auto",
+			// maxHeight: "calc(90vh - 40px)",
+			// minHeight: "100%",
+			// height: "fit-content",
+			// overflow: "auto",
 			"& .MuiAccordionDetails-root": {
 				maxHeight: "calc(90vh - 120px)", // Account for header height
 				overflow: "auto",
