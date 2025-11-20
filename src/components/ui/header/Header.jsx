@@ -37,6 +37,7 @@ const Header = ({classes = ""}) => {
 					</div>
 				</span>
 			</h1>
+
 			<div className="arrow-cont">
 				<ArrowDownwardOutlinedIcon className="arrow" />
 			</div>
