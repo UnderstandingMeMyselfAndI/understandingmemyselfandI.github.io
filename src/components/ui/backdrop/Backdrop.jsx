@@ -8,7 +8,7 @@ const newImgInterval = 10000;
 
 export default function Backdrop() {
 	const [images, setImages] = useState([allImages[0], allImages[1]]);
-	const [activeIndex, setActiveIndex] = useState(0);
+	const [activeIndex, setActiveIndex] = useState(6);
 	const [usedImages, setUsedImages] = useState([allImages[0].id, allImages[1].id]);
 
 	const getNewUniqueImage = () => {

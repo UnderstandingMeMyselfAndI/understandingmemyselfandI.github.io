@@ -62,7 +62,7 @@ $breakpoint-desktop: 1025px;
 
 // device widths for responsive font sizes
 $minDeviceWidth: 400px;
-$maxDeviceWidth: 1025px;
+$maxDeviceWidth: 625px;
 
 //-------------------------------------------------------------
 // Content
@@ -128,6 +128,39 @@ $logo_lrg_weight: 900;
 $logo_lrg_line_height: 1.2;
 
 // ------------------------------------------
+// Ancronym title font size
+// ------------------------------------------
+
+$acc_title_size_min: 56px;
+$acc_title_size_max: 78px;
+$acc_title_size: responsiveFontSize($acc_title_size_min, $acc_title_size_max, $minDeviceWidth, $maxDeviceWidth);
+$acc_title_color: var(--text_primary);
+$acc_title_weight: 800;
+$acc_title_line_height: 1.2;
+
+// ------------------------------------------
+// Ancronym letter font size
+// ------------------------------------------
+
+$letter_size_min: 48px;
+$letter_size_max: 75px;
+$letter_size: responsiveFontSize($letter_size_min, $letter_size_max, $minDeviceWidth, $maxDeviceWidth);
+$letter_color: var(--text_primary);
+$letter_weight: 800;
+$letter_line_height: 1.2;
+
+// ------------------------------------------
+// Ancronym word font size
+// ------------------------------------------
+
+$acc_wrd_size_min: 38px;
+$acc_wrd_size_max: 45px;
+$acc_wrd_size: responsiveFontSize($acc_wrd_size_min, $acc_wrd_size_max, $minDeviceWidth, $maxDeviceWidth);
+$acc_wrd_color: var(--text_primary);
+$acc_wrd_weight: 800;
+$acc_wrd_line_height: 1.2;
+
+// ------------------------------------------
 // H5 font size
 // ------------------------------------------
 
@@ -142,7 +175,7 @@ $h1_line_height: 1.2;
 // H2 font size
 // ------------------------------------------
 
-$h2_size_min: 36px;
+$h2_size_min: 40px;
 $h2_size_max: 55px;
 $h2_size: responsiveFontSize($h2_size_min, $h2_size_max, $minDeviceWidth, $maxDeviceWidth);
 

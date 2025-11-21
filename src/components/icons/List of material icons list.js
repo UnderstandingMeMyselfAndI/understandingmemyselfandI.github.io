@@ -71,6 +71,32 @@ import PublishedWithChangesIcon from "@mui/icons-material/PublishedWithChanges";
 // new releases
 import NewReleasesOutlinedIcon from "@mui/icons-material/NewReleasesOutlined";
 
+// auto awesome
+// filled
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
+import GeneratingTokensIcon from "@mui/icons-material/GeneratingTokens";
+import PhotoFilterIcon from "@mui/icons-material/PhotoFilter";
+import AutoFixNormalIcon from "@mui/icons-material/AutoFixNormal";
+import CameraEnhanceIcon from "@mui/icons-material/CameraEnhance";
+import MovieFilterIcon from "@mui/icons-material/MovieFilter";
+// outline
+import AutoAwesomeOutlinedIcon from "@mui/icons-material/AutoAwesomeOutlined";
+import AutoFixHighOutlinedIcon from "@mui/icons-material/AutoFixHighOutlined";
+import AutoFixNormalOutlinedIcon from "@mui/icons-material/AutoFixNormalOutlined";
+import GeneratingTokensOutlinedIcon from "@mui/icons-material/GeneratingTokensOutlined";
+import FaceRetouchingNaturalOutlinedIcon from "@mui/icons-material/FaceRetouchingNaturalOutlined";
+import TipsAndUpdatesOutlinedIcon from "@mui/icons-material/TipsAndUpdatesOutlined";
+import PhotoFilterOutlinedIcon from "@mui/icons-material/PhotoFilterOutlined";
+import MovieFilterOutlinedIcon from "@mui/icons-material/MovieFilterOutlined";
+import AutoFixOffOutlinedIcon from "@mui/icons-material/AutoFixOffOutlined";
+import SettingsSuggestOutlinedIcon from "@mui/icons-material/SettingsSuggestOutlined";
+import PhotoFilterOutlinedIcon from "@mui/icons-material/PhotoFilterOutlined";
+
+// tools
+import HomeRepairServiceOutlinedIcon from "@mui/icons-material/HomeRepairServiceOutlined";
+import HandymanOutlinedIcon from "@mui/icons-material/HandymanOutlined";
+
 //Dark mode
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
@@ -89,3 +115,18 @@ import StyleIcon from "@mui/icons-material/Style";
 import FormatColorFillOutlinedIcon from "@mui/icons-material/FormatColorFillOutlined";
 import ColorLensOutlinedIcon from "@mui/icons-material/ColorLensOutlined";
 import PaletteOutlinedIcon from "@mui/icons-material/PaletteOutlined";
+
+// emergency
+// outlined
+import MedicationOutlinedIcon from "@mui/icons-material/MedicationOutlined";
+import MedicalServicesOutlinedIcon from "@mui/icons-material/MedicalServicesOutlined";
+
+import EmergencyShareOutlinedIcon from "@mui/icons-material/EmergencyShareOutlined";
+import LocalPharmacyOutlinedIcon from "@mui/icons-material/LocalPharmacyOutlined";
+
+// filled
+import MedicationIcon from "@mui/icons-material/Medication";
+import LocalPharmacyIcon from "@mui/icons-material/LocalPharmacy";
+import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
+import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
+import MedicalInformationIcon from "@mui/icons-material/MedicalInformation";

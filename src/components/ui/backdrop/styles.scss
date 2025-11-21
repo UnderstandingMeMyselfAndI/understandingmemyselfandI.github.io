@@ -12,15 +12,13 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		z-index: 0;
-
 		animation-timing-function: cubic-bezier(0.365, 0.403, 0, 1);
 		animation-name: fade-out;
 		animation-duration: 0.75s;
 		animation-delay: 0;
 		animation-fill-mode: forwards;
 		animation-iteration-count: 1;
-		z-index: 1;
+		z-index: -1;
 		opacity: 1;
 		height: 100%;
 		width: 100%;

@@ -1,25 +1,21 @@
-import React, {useState, useRef, useEffect, useCallback, useMemo} from "react";
+"use client";
+import React, {useState} from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import Header from "ui/header/Header";
 import useThemeStore from "@/store/useThemeStore";
 import applyTheme from "components/theme/applyTheme";
 import AccordionScroll from "ui/AcronymAccordion/AccordionScroll";
-import SettingsDrawer from "ui/settings/SettingsDrawer.jsx";
-import FontSizeDrawer from "ui/settings/FontSizeDrawer.jsx";
+import ScrollPosition from "./components/utils/ScrollPosition";
 import FooterMetadata from "ui/footer/FooterMetadata.jsx";
 
 import iconAndroid from "icons/iconAndroid.jsx";
 import iconApple from "icons/iconApple.jsx";
-import iconEmojiPeaceHand from "icons/iconEmojiPeaceHand.jsx";
-import iconEmojiThumbsup from "icons/iconEmojiThumbsup.jsx";
+
 import QRCode from "ui/QRCode/QRCode.jsx";
 import AccordionBottomNavigation from "ui/AcronymAccordion/AccordionBottomNavigation";
-import Logo from "ui/logo/Logo.jsx";
-import LogoFloating from "ui/logo/LogoFloating.jsx";
-import ScenarioModal from "ui/modals/scenarioModal";
 import Backdrop from "ui/backdrop/Backdrop";
-
+import EmergencyButton from "buttons/emergency/EmergencyButton";
 import "./globals.css";
 
 import "./App.css";
@@ -29,6 +25,9 @@ import SpeedDialSettings from "./components/ui/settings/speedDial/SpeedDialSetti
 function App() {
 	// const [showScenarioModal, setShowScenarioModal] = React.useState(false);
 	const [contentID, setContentID] = React.useState(null);
+	const [open, setOpen] = useState(true);
+	//const [favouriteId, setFavouriteId] = useState(null);
+
 	const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme);
 	if (theme !== null) {
 		applyTheme({theme: theme});
@@ -42,8 +41,17 @@ function App() {
 		localStorage.setItem(useThemeStore.getState().storageKeyTheme, themeFromStore);
 	});
 	const [expanded, setExpanded] = useState(false);
-	const [favourite, setFavourite] = useState(0);
-	const [open, setOpen] = useState(true);
+
+	// const [favourite, setFavourite] = React.useState(() => {
+	// 	const storedFavourite = localStorage.getItem(`favourite-${id}`);
+	// 	return storedFavourite; // === 'true';
+	// });
+	// const handleToggleFavourite = id => {
+	// 	const storedFavourite = localStorage.getItem(`favourite-${id}`);
+	// 	const newFavourite = !storedFavourite;
+	// 	localStorage.setItem(`favourite-${id}`, newFavourite.toString());
+	// 	setFavourite(newFavourite);
+	// };
 
 	const handleChange = panel => (event, newExpanded) => {
 		setExpanded(newExpanded ? panel : false);
@@ -51,7 +59,6 @@ function App() {
 	};
 
 	const closeAccordion = close => (event, newClose) => {
-		console.log("toggleDrawer close ", close, "newClose ", newClose);
 		setOpen(open => !open);
 		setExpanded(close => !close);
 	};
@@ -60,6 +67,7 @@ function App() {
 		<React.Fragment>
 			<CssBaseline />
 			<div className="app">
+				<EmergencyButton />
 				<div className="main">
 					<div className="inner">
 						{/* <SpeedDialSettings className={"speed-dial-settings"} /> */}
@@ -189,27 +197,28 @@ function App() {
 								</p>
 							</div>
 						</div>
-						<Backdrop />
+
 						<FooterMetadata />
-						<div className="bgImgs">
-							<div
-								className="icon peacehand"
-								dangerouslySetInnerHTML={{__html: iconEmojiPeaceHand}}
-							/>
-							<div
-								className="icon thumbsup"
-								dangerouslySetInnerHTML={{__html: iconEmojiThumbsup}}
-							/>
-						</div>
+						{/* <div className="bgImgs">
+								<div
+									className="icon peacehand"
+									dangerouslySetInnerHTML={{__html: iconEmojiPeaceHand}}
+								/>
+								<div
+									className="icon thumbsup"
+									dangerouslySetInnerHTML={{__html: iconEmojiThumbsup}}
+								/>
+							</div> */}
 					</div>
 				</div>
 
 				<AccordionBottomNavigation
 					open={open}
 					onClick={closeAccordion(open)}
-					isFavourite={favourite}
 				/>
+				<Backdrop />
 			</div>
+			<ScrollPosition />
 		</React.Fragment>
 	);
 }

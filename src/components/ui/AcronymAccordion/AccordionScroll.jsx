@@ -2,12 +2,10 @@ import React, {useState, useRef, useEffect, useCallback, useMemo} from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
-import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import CloseIcon from "@mui/icons-material/Close";
 import Skeleton from "@mui/material/Skeleton";
 import ScenarioDialog from "../dialog/ScenarioDialog";
-
+import useAppStore from "@/store/useAppStore";
 import data from "../../../data/data.js";
 import Favourite from "../favourite/Favourite.jsx";
 import {useScrollEffects, SCROLL_EFFECT_CONFIG} from "./useScrollEffects";
@@ -29,13 +27,17 @@ const AccordionItemWithEffects = ({item, index, expanded, handleChange, config =
 	const [ref, effects, disableScrollEffects, enableScrollEffects] = useScrollEffects(config, isExpanded);
 	const accordionRef = useRef(null);
 	const previousExpandedState = useRef(isExpanded);
+	const setAcronymnID = useAppStore(state => state.setAcronymnID);
+	const toggleIsExpanded = useAppStore(state => state.toggleIsExpanded);
 
 	// Handle scroll behavior on expand/collapse
 	useEffect(() => {
 		if (accordionRef.current) {
+			toggleIsExpanded();
 			if (isExpanded) {
 				// Disable scroll effects for all items when expanded
 				disableScrollEffects();
+				setAcronymnID(index);
 
 				// Scroll to position when expanded (5vh from top)
 				setTimeout(() => {
@@ -141,6 +143,7 @@ const AccordionItemWithEffects = ({item, index, expanded, handleChange, config =
 				sx={expandedStyles}
 			>
 				<AccordionSummary
+					className={"AcronymTitle"}
 					expandIcon={<ExpandMoreIcon />}
 					aria-controls={"panel" + index + "-content"}
 					id={"panel" + index + "-header"}
@@ -149,7 +152,20 @@ const AccordionItemWithEffects = ({item, index, expanded, handleChange, config =
 						id={"item-" + item?.id}
 						className={item?.title?.replaceAll(".", "")}
 					/>
-					<Typography component="span">{item.title}</Typography>
+					<div className="cont">
+						{item.title.split(".").map(
+							(subItem, index) =>
+								subItem && (
+									<div
+										className="active"
+										key={index}
+										data-content={subItem}
+									>
+										{subItem}
+									</div>
+								)
+						)}
+					</div>
 				</AccordionSummary>
 				<AccordionDetails>
 					<div dangerouslySetInnerHTML={{__html: item.content.explanation}} />
