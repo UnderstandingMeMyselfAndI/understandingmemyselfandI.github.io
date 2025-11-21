@@ -27,8 +27,8 @@ import "@/scss/_fonts.scss";
 import bgImg from "/bgs/Ummi-bg-1.avif";
 import SpeedDialSettings from "./components/ui/settings/speedDial/SpeedDialSettings.jsx";
 function App() {
-	const [openToolSnackbox, setOpenToolSnackbox] = useState(true);
-	const [openEmergencyToolSnackbox, setOpenEmergencyToolSnackbox] = useState(true);
+	const [openToolSnackbox, setOpenToolSnackbox] = useState(false);
+	const [openEmergencyToolSnackbox, setOpenEmergencyToolSnackbox] = useState(false);
 	const toolAdded = useAppStore(state => state.toolAdded);
 	const emergencyToolAdded = useAppStore(state => state.emergencyToolAdded);
 
