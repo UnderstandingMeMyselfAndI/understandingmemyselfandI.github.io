@@ -144,19 +144,19 @@ const Header = ({classes = ""}) => {
 
 				tl3.to(".w3", {duration: 1.5, rotateY: "1080deg"}, "+=6");
 
-				tl4.to(
-					".w0",
-					{
-						duration: 1.25,
-						delay: 16,
-						onStart: self => {
-							const obj = document.querySelector(".w0");
-							console.log("onFinish", obj.classList);
-							obj.classList.contains("active") ? obj.classList.remove("active") : obj.classList.add("active");
-						},
-					},
-					"+=4"
-				);
+				// tl4.to(
+				// 	".w0",
+				// 	{
+				// 		duration: 1.25,
+				// 		delay: 16,
+				// 		onStart: self => {
+				// 			const obj = document.querySelector(".w0");
+				// 			console.log("onFinish", obj.classList);
+				// 			obj.classList.contains("active") ? obj.classList.remove("active") : obj.classList.add("active");
+				// 		},
+				// 	},
+				// 	"+=4"
+				// );
 			}
 			// if (scrollStage > 1) {
 			// 	gsap.to(".homelogo", {
