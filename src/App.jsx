@@ -67,7 +67,7 @@ function App() {
 		<React.Fragment>
 			<CssBaseline />
 			<div className="app">
-				<EmergencyButton />
+				{/* <EmergencyButton /> */}
 				<div className="main">
 					<div className="inner">
 						{/* <SpeedDialSettings className={"speed-dial-settings"} /> */}
