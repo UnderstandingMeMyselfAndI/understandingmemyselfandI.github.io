@@ -175,31 +175,31 @@ const data = [
 		],
 		cats: [],
 	},
-	{
-		id: 7,
-		title: "E.G.O.",
-		content: {
-			acronyms: [
-				{letter: "E", meaning: "Edging", definition: "<p>Slowly pushing boundaries, thinking “just this once won’t hurt”</p>", scenario: ""},
-				{letter: "G", meaning: "God", definition: "<p>Or whatever you call your Higher Power, your better self, the universe—anything bigger than your ego</p>", scenario: ""},
-				{letter: "O", meaning: "Out", definition: "<p>When pride and self-will run the show, good sense gets locked outside</p>", scenario: ""},
-			],
-			explanation: "<p>Classic 12-step humor: E.G.O. = Edging God Out. When your ego’s driving, you’re headed for a ditch.</p>",
-		},
-		scenarios: [
-			{
-				title: "Thinking You Don’t Need Meetings Anymore",
-				content: "<p>After 6 months clean you think “I’ve got this, I don’t need all that anymore.” Classic ego move. Reality check: humility keeps you safe, pride writes relapse stories.</p>",
-				btnLabel: "Check the Ego",
-			},
-			{
-				title: "I Can Have Just One",
-				content: "<p>“I’m different now, one drink won’t hurt.” That’s the ego talking. Remember who’s really in charge of addiction—spoiler: not you.</p>",
-				btnLabel: "Stay Humble",
-			},
-		],
-		cats: [],
-	},
+	// {
+	// 	id: 7,
+	// 	title: "E.G.O.",
+	// 	content: {
+	// 		acronyms: [
+	// 			{letter: "E", meaning: "Edging", definition: "<p>Slowly pushing boundaries, thinking “just this once won’t hurt”</p>", scenario: ""},
+	// 			{letter: "G", meaning: "God", definition: "<p>Or whatever you call your Higher Power, your better self, the universe—anything bigger than your ego</p>", scenario: ""},
+	// 			{letter: "O", meaning: "Out", definition: "<p>When pride and self-will run the show, good sense gets locked outside</p>", scenario: ""},
+	// 		],
+	// 		explanation: "<p>Classic 12-step humor: E.G.O. = Edging God Out. When your ego’s driving, you’re headed for a ditch.</p>",
+	// 	},
+	// 	scenarios: [
+	// 		{
+	// 			title: "Thinking You Don’t Need Meetings Anymore",
+	// 			content: "<p>After 6 months clean you think “I’ve got this, I don’t need all that anymore.” Classic ego move. Reality check: humility keeps you safe, pride writes relapse stories.</p>",
+	// 			btnLabel: "Check the Ego",
+	// 		},
+	// 		{
+	// 			title: "I Can Have Just One",
+	// 			content: "<p>“I’m different now, one drink won’t hurt.” That’s the ego talking. Remember who’s really in charge of addiction—spoiler: not you.</p>",
+	// 			btnLabel: "Stay Humble",
+	// 		},
+	// 	],
+	// 	cats: [],
+	// },
 	{
 		id: 8,
 		title: "F.E.A.R.",
@@ -231,31 +231,31 @@ const data = [
 		],
 		cats: [],
 	},
-	{
-		id: 9,
-		title: "G.O.D.",
-		content: {
-			acronyms: [
-				{letter: "G", meaning: "Good", definition: "<p>Something positive and bigger than your addiction</p>", scenario: ""},
-				{letter: "O", meaning: "Orderly", definition: "<p>Not chaos, not your drunk brain at 2 a.m.</p>", scenario: ""},
-				{letter: "D", meaning: "Direction", definition: "<p>A nicer way to think about “Higher Power” without getting religious</p>", scenario: ""},
-			],
-			explanation: "<p>When people in meetings say “turn it over to your Higher Power,” this is what a lot of them actually mean—no dogma required.</p>",
-		},
-		scenarios: [
-			{
-				title: "Powerless Over a Craving",
-				content: "<p>You’ve tried everything and the craving is still screaming. G.O.D. reminder: you don’t have to run this show alone today.</p>",
-				btnLabel: "Let Go a Little",
-			},
-			{
-				title: "Making Amends Feels Impossible",
-				content: "<p>You’re stuck on step 9. Ask for Good Orderly Direction—sometimes the next right action shows up when you stop forcing it.</p>",
-				btnLabel: "Ask for Help",
-			},
-		],
-		cats: [],
-	},
+	// {
+	// 	id: 9,
+	// 	title: "G.O.D.",
+	// 	content: {
+	// 		acronyms: [
+	// 			{letter: "G", meaning: "Good", definition: "<p>Something positive and bigger than your addiction</p>", scenario: ""},
+	// 			{letter: "O", meaning: "Orderly", definition: "<p>Not chaos, not your drunk brain at 2 a.m.</p>", scenario: ""},
+	// 			{letter: "D", meaning: "Direction", definition: "<p>A nicer way to think about “Higher Power” without getting religious</p>", scenario: ""},
+	// 		],
+	// 		explanation: "<p>When people in meetings say “turn it over to your Higher Power,” this is what a lot of them actually mean—no dogma required.</p>",
+	// 	},
+	// 	scenarios: [
+	// 		{
+	// 			title: "Powerless Over a Craving",
+	// 			content: "<p>You’ve tried everything and the craving is still screaming. G.O.D. reminder: you don’t have to run this show alone today.</p>",
+	// 			btnLabel: "Let Go a Little",
+	// 		},
+	// 		{
+	// 			title: "Making Amends Feels Impossible",
+	// 			content: "<p>You’re stuck on step 9. Ask for Good Orderly Direction—sometimes the next right action shows up when you stop forcing it.</p>",
+	// 			btnLabel: "Ask for Help",
+	// 		},
+	// 	],
+	// 	cats: [],
+	// },
 	{
 		id: 10,
 		title: "H.A.L.T.",
@@ -394,28 +394,28 @@ const data = [
 		],
 		cats: [],
 	},
-	{
-		id: 15,
-		title: "N.U.T.S.",
-		content: {
-			acronyms: [
-				{letter: "N", meaning: "Not", definition: "<p>Simple. Today you’re choosing…</p>", scenario: ""},
-				{letter: "U", meaning: "Using", definition: "<p>No substance, no matter how loud the urge gets</p>", scenario: ""},
-				{letter: "T", meaning: "This", definition: "<p>Just today. One day at a time.</p>", scenario: ""},
-				{letter: "S", meaning: "Substance", definition: "<p>Or behavior—whatever your thing is</p>", scenario: ""},
-			],
-			explanation: "<p>Silly but dead serious. Recovery really can be this straightforward: Not Using This Substance (or behavior) today.</p>",
-		},
-		scenarios: [
-			{
-				title: "Morning Commitment",
-				content: "<p>Wake up and tell yourself: “Today I’m N.U.T.S.—not using this substance.” That’s the whole plan. Tomorrow you can decide again.</p>",
-				btnLabel: "One Day Only",
-			},
-			{title: "Craving Hits Hard", content: "<p>Urge is screaming. Look at it and say “Nope, I’m N.U.T.S. today.” Sometimes the simplest slogans work the best.</p>", btnLabel: "Keep It Simple"},
-		],
-		cats: [],
-	},
+	// {
+	// 	id: 15,
+	// 	title: "N.U.T.S.",
+	// 	content: {
+	// 		acronyms: [
+	// 			{letter: "N", meaning: "Not", definition: "<p>Simple. Today you’re choosing…</p>", scenario: ""},
+	// 			{letter: "U", meaning: "Using", definition: "<p>No substance, no matter how loud the urge gets</p>", scenario: ""},
+	// 			{letter: "T", meaning: "This", definition: "<p>Just today. One day at a time.</p>", scenario: ""},
+	// 			{letter: "S", meaning: "Substance", definition: "<p>Or behavior—whatever your thing is</p>", scenario: ""},
+	// 		],
+	// 		explanation: "<p>Silly but dead serious. Recovery really can be this straightforward: Not Using This Substance (or behavior) today.</p>",
+	// 	},
+	// 	scenarios: [
+	// 		{
+	// 			title: "Morning Commitment",
+	// 			content: "<p>Wake up and tell yourself: “Today I’m N.U.T.S.—not using this substance.” That’s the whole plan. Tomorrow you can decide again.</p>",
+	// 			btnLabel: "One Day Only",
+	// 		},
+	// 		{title: "Craving Hits Hard", content: "<p>Urge is screaming. Look at it and say “Nope, I’m N.U.T.S. today.” Sometimes the simplest slogans work the best.</p>", btnLabel: "Keep It Simple"},
+	// 	],
+	// 	cats: [],
+	// },
 	{
 		id: 16,
 		title: "P.I.E.",

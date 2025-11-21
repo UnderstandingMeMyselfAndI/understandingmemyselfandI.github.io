@@ -1,14 +1,17 @@
 "use client";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import Header from "ui/header/Header";
 import useThemeStore from "@/store/useThemeStore";
+import useAppStore from "@/store/useAppStore";
 import applyTheme from "components/theme/applyTheme";
 import AccordionScroll from "ui/AcronymAccordion/AccordionScroll";
 import ScrollPosition from "./components/utils/ScrollPosition";
 import FooterMetadata from "ui/footer/FooterMetadata.jsx";
-
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 import iconAndroid from "icons/iconAndroid.jsx";
 import iconApple from "icons/iconApple.jsx";
 
@@ -16,6 +19,7 @@ import QRCode from "ui/QRCode/QRCode.jsx";
 import AccordionBottomNavigation from "ui/AcronymAccordion/AccordionBottomNavigation";
 import Backdrop from "ui/backdrop/Backdrop";
 import EmergencyButton from "buttons/emergency/EmergencyButton";
+import Snackbar from "@mui/material/Snackbar";
 import "./globals.css";
 
 import "./App.css";
@@ -23,6 +27,11 @@ import "@/scss/_fonts.scss";
 import bgImg from "/bgs/Ummi-bg-1.avif";
 import SpeedDialSettings from "./components/ui/settings/speedDial/SpeedDialSettings.jsx";
 function App() {
+	const [openToolSnackbox, setOpenToolSnackbox] = useState(true);
+	const [openEmergencyToolSnackbox, setOpenEmergencyToolSnackbox] = useState(true);
+	const toolAdded = useAppStore(state => state.toolAdded);
+	const emergencyToolAdded = useAppStore(state => state.emergencyToolAdded);
+
 	// const [showScenarioModal, setShowScenarioModal] = React.useState(false);
 	const [contentID, setContentID] = React.useState(null);
 	const [open, setOpen] = useState(true);
@@ -42,6 +51,13 @@ function App() {
 	});
 	const [expanded, setExpanded] = useState(false);
 
+	useEffect(() => {
+		setOpenToolSnackbox(true);
+	}, [toolAdded]);
+	useEffect(() => {
+		setOpenEmergencyToolSnackbox(true);
+	}, [emergencyToolAdded]);
+
 	// const [favourite, setFavourite] = React.useState(() => {
 	// 	const storedFavourite = localStorage.getItem(`favourite-${id}`);
 	// 	return storedFavourite; // === 'true';
@@ -52,6 +68,59 @@ function App() {
 	// 	localStorage.setItem(`favourite-${id}`, newFavourite.toString());
 	// 	setFavourite(newFavourite);
 	// };
+
+	const handleCloseToolbox = (event, reason) => {
+		if (reason === "clickaway") {
+			return;
+		}
+
+		setOpenToolSnackbox(false);
+	};
+	const handleCloseEmergencyToolbox = (event, reason) => {
+		if (reason === "clickaway") {
+			return;
+		}
+
+		setOpenEmergencyToolSnackbox(false);
+	};
+	const actionToolbox = (
+		<React.Fragment>
+			<Button
+				color="secondary"
+				size="small"
+				onClick={handleCloseToolbox}
+			>
+				UNDO
+			</Button>
+			<IconButton
+				size="small"
+				aria-label="close"
+				color="inherit"
+				onClick={handleCloseToolbox}
+			>
+				<CloseIcon fontSize="small" />
+			</IconButton>
+		</React.Fragment>
+	);
+	const actionEmergencyToolbox = (
+		<React.Fragment>
+			<Button
+				color="secondary"
+				size="small"
+				onClick={handleCloseEmergencyToolbox}
+			>
+				UNDO
+			</Button>
+			<IconButton
+				size="small"
+				aria-label="close"
+				color="inherit"
+				onClick={handleCloseEmergencyToolbox}
+			>
+				<CloseIcon fontSize="small" />
+			</IconButton>
+		</React.Fragment>
+	);
 
 	const handleChange = panel => (event, newExpanded) => {
 		setExpanded(newExpanded ? panel : false);
@@ -215,6 +284,22 @@ function App() {
 				<AccordionBottomNavigation
 					open={open}
 					onClick={closeAccordion(open)}
+				/>
+				<Snackbar
+					anchorOrigin={{vertical: "top", horizontal: "left"}}
+					open={openToolSnackbox}
+					autoHideDuration={4000}
+					message={toolAdded ? "Added to your toolbox" : "Removed from to your toolbox"}
+					action={actionToolbox}
+					onClose={handleCloseToolbox}
+				/>
+				<Snackbar
+					anchorOrigin={{vertical: "top", horizontal: "left"}}
+					open={openEmergencyToolSnackbox}
+					autoHideDuration={4000}
+					message={emergencyToolAdded ? "Added to your emrgency toolbox" : "Removed from to your emergency toolbox"}
+					action={actionEmergencyToolbox}
+					onClose={handleCloseEmergencyToolbox}
 				/>
 				<Backdrop />
 			</div>

@@ -20,22 +20,28 @@ export default function AccordionBottomNavigation({open, onClick}) {
 	const [lastID, setLastID] = React.useState(null);
 	const [isEmergency, setIsEmergency] = React.useState(false);
 
+	const setToolAdded = useAppStore(state => state.setToolAdded);
+	const setEmergencyToolAdded = useAppStore(state => state.setEmergencyToolAdded);
+
 	const handleChange = show => (event, newShow) => {
 		onClick(open => !open);
-		console.log("handleChange", show, newShow, event);
 	};
 	const handleToggleFavouriteTool = () => {
 		const newFavourite = !isFavourite;
 		localStorage.setItem(`favourite-${acronymnID}`, newFavourite.toString());
 
 		setIsFavourite(newFavourite);
-		console.log("handleToggleFavouriteTool", newFavourite);
+
+		setToolAdded(newFavourite);
 	};
 	const handleToggleEmergencyTool = () => {
 		setIsEmergency(isEmergency => !isEmergency);
 
 		console.log("handleToggleEmergencyTool", isEmergency);
 	};
+	React.useEffect(() => {
+		setEmergencyToolAdded(isEmergency);
+	}, [isEmergency]);
 
 	React.useEffect(() => {
 		const storedFavourite = localStorage.getItem(`favourite-${acronymnID}`);
