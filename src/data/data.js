@@ -387,35 +387,35 @@ const data = [
 		cats: ["C.B.T", "D.B.T", "Emergency", "Grounding", "Assumptions", "Plans", "Urges", "Cravings", "Thoughts", "Emotions", "Mood", "Mental Health", "Anxiety", "Stress", "Depressed", "Low Mood"],
 		videos: [],
 	},
-	{
-		id: 17,
-		title: "P.L.E.A.S.E.",
-		content: {
-			acronyms: [
-				{letter: "P", meaning: "PhysicaL illness", definition: "<p>Treat any physical illness—pain or sickness makes everything harder</p>", scenario: ""},
-				{letter: "L", meaning: "Eat balanced", definition: "<p>Don’t let your body run on junk and caffeine</p>", scenario: ""},
-				{letter: "E", meaning: "Avoid mood-altering substances", definition: "<p>Even the “harmless” ones can mess with your brain chemistry</p>", scenario: ""},
-				{letter: "A", meaning: "Sleep", definition: "<p>Get enough—sleep deprivation turns you into a toddler</p>", scenario: ""},
-				{letter: "S", meaning: "Shower & self-care", definition: "<p>Basic hygiene and feeling human matter more than you think</p>", scenario: ""},
-				{letter: "E", meaning: "Exercise", definition: "<p>Move your body daily—even a walk counts</p>", scenario: ""},
-			],
-			explanation: "<p>DBT’s master self-care checklist. When you neglect your body, your emotions get dramatic and your coping skills go offline.</p>",
-		},
-		scenarios: [
-			{
-				title: "Feeling Irritable and Fragile",
-				content: "<p>Run the P.L.E.A.S.E. check: haven’t slept well in days, living on energy drinks, no exercise. Fix those first—then see how “impossible” life still feels.</p>",
-				btnLabel: "Body First",
-			},
-			{
-				title: "Pre-Menstrual Craving Spike",
-				content: "<p>PMDD or PMS hitting hard? Extra points for treating PhysicaL illness, Eating balanced food, and getting Sleep. Your brain will thank you.</p>",
-				btnLabel: "Self-Care Saves the Day",
-			},
-		],
-		cats: ["C.B.T", "D.B.T", "Emergency", "Grounding", "Assumptions", "Plans", "Urges", "Cravings", "Thoughts", "Emotions", "Mood", "Mental Health", "Anxiety", "Stress", "Depressed", "Low Mood"],
-		videos: [],
-	},
+	// {
+	// 	id: 17,
+	// 	title: "P.L.E.A.S.E.",
+	// 	content: {
+	// 		acronyms: [
+	// 			{letter: "P", meaning: "PhysicaL illness", definition: "<p>Treat any physical illness—pain or sickness makes everything harder</p>", scenario: ""},
+	// 			{letter: "L", meaning: "Eat balanced", definition: "<p>Don’t let your body run on junk and caffeine</p>", scenario: ""},
+	// 			{letter: "E", meaning: "Avoid mood-altering substances", definition: "<p>Even the “harmless” ones can mess with your brain chemistry</p>", scenario: ""},
+	// 			{letter: "A", meaning: "Sleep", definition: "<p>Get enough—sleep deprivation turns you into a toddler</p>", scenario: ""},
+	// 			{letter: "S", meaning: "Shower & self-care", definition: "<p>Basic hygiene and feeling human matter more than you think</p>", scenario: ""},
+	// 			{letter: "E", meaning: "Exercise", definition: "<p>Move your body daily—even a walk counts</p>", scenario: ""},
+	// 		],
+	// 		explanation: "<p>DBT’s master self-care checklist. When you neglect your body, your emotions get dramatic and your coping skills go offline.</p>",
+	// 	},
+	// 	scenarios: [
+	// 		{
+	// 			title: "Feeling Irritable and Fragile",
+	// 			content: "<p>Run the P.L.E.A.S.E. check: haven’t slept well in days, living on energy drinks, no exercise. Fix those first—then see how “impossible” life still feels.</p>",
+	// 			btnLabel: "Body First",
+	// 		},
+	// 		{
+	// 			title: "Pre-Menstrual Craving Spike",
+	// 			content: "<p>PMDD or PMS hitting hard? Extra points for treating PhysicaL illness, Eating balanced food, and getting Sleep. Your brain will thank you.</p>",
+	// 			btnLabel: "Self-Care Saves the Day",
+	// 		},
+	// 	],
+	// 	cats: ["C.B.T", "D.B.T", "Emergency", "Grounding", "Assumptions", "Plans", "Urges", "Cravings", "Thoughts", "Emotions", "Mood", "Mental Health", "Anxiety", "Stress", "Depressed", "Low Mood"],
+	// 	videos: [],
+	// },
 	{
 		id: 18,
 		title: "P.P.P",
