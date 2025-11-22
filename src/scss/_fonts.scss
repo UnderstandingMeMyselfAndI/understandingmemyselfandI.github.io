@@ -5,15 +5,15 @@
 	font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
 	font-family: "Plus Jakarta Sans";
 	font-style: normal;
-	src: local("Plus Jakarta Sans"), url("https://fsw.flpdigital.com/wp-content/themes/fsw2025/dist/fonts/PlusJakartaSans-VariableFont_wght.woff") format("woff"),
-		url("https://fsw.flpdigital.com/wp-content/themes/fsw2025/dist/fonts/PlusJakartaSans-VariableFont_wght.woff2") format("woff2");
+	src: local("Plus Jakarta Sans"), url("hhttps://understandingmemyselfandi.github.io/fonts/PlusJakartaSans-VariableFont_wght.woff") format("woff"),
+		url("https://understandingmemyselfandi.github.io/fonts/PlusJakartaSans-VariableFont_wght.woff2") format("woff2");
 }
 @font-face {
 	font-display: swap;
 	font-family: "Plus Jakarta Sans";
 	font-style: italic;
-	src: local("Plus Jakarta Sans"), url("https://fsw.flpdigital.com/wp-content/themes/fsw2025/dist/fonts/PlusJakartaSans-Italic-VariableFont_wght.woff") format("woff"),
-		url("https://fsw.flpdigital.com/wp-content/themes/fsw2025/dist/fonts/PlusJakartaSans-Italic-VariableFont_wght.woff") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+	src: local("Plus Jakarta Sans"), url("https://understandingmemyselfandi.github.io//fonts/PlusJakartaSans-Italic-VariableFont_wght.woff") format("woff"),
+		url("https://understandingmemyselfandi.github.io//fonts/PlusJakartaSans-Italic-VariableFont_wght.woff") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 body {
