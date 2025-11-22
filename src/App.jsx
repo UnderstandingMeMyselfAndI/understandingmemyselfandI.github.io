@@ -103,7 +103,9 @@ function App() {
 								handleChange={handleChange}
 							/>
 							<section className="footer">
-								<h4>Want to add the app to your home screen?</h4>
+								<h4>
+									<u>Want to add the app to your home screen?</u>
+								</h4>
 								<p>Follow these video instructions for your platform</p>
 								<div className="links">
 									<a
@@ -151,9 +153,11 @@ function App() {
 								</p>
 
 								<p>
-									<b>
-										<u>FEEDBACK</u>
-									</b>
+									<h4>
+										<b>
+											<u>FEEDBACK</u>
+										</b>
+									</h4>
 								</p>
 								<p>
 									Like everyone dealing with mental health and going through recovery, these tools and this app can only get better and improve if we know what works, what doesn&apos;t, what you like
