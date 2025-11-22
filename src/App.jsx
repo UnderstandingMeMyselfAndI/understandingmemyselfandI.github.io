@@ -221,8 +221,8 @@ function App() {
 
 				<BackdropParallax
 					initialImageId={2}
-					initialDelay={6000}
-					interval={10000}
+					initialDelay={3000}
+					interval={6000}
 					parallaxStrength={0}
 				/>
 			</div>

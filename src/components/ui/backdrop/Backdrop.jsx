@@ -47,8 +47,13 @@ export default function Backdrop({initialImageId = null}) {
 	useEffect(() => {
 		const interval = setInterval(() => {
 			const newImg = getNewUniqueImage();
+			const prevID = usedIds[usedIds.length - 1];
+			const prevImg = images.map(img => prevID);
+			console.lg("prevID", prevID);
+			console.lg("prevImg", prevImg);
 
-			setImages(prev => (activeIndex === 0 ? [prev[0], newImg] : [newImg, prev[1]]));
+			// setImages(prev => (activeIndex === 0 ? [prevImg, newImg] : [newImg, prevImg]));
+			setImages(prev => [prevImg, newImg]);
 			setActiveIndex(prev => 1 - prev); // toggle 0 ↔ 1
 		}, newImgInterval);
 

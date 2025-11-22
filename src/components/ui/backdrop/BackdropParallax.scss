@@ -30,15 +30,15 @@
 
 /* Normal cycling images */
 .cont img.active {
-	opacity: 0;
+	opacity: 1;
 	animation: fadeIn 2s ease-out forwards;
-	z-index: 1;
+	z-index: 0;
 }
 
 .cont img.inactive {
-	opacity: 1;
+	opacity: 0;
 	animation: fadeOut 2s ease-out forwards;
-	z-index: -1;
+	z-index: 1;
 }
 
 .cont img.hidden {
