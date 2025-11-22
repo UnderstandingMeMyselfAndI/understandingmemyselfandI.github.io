@@ -103,8 +103,8 @@ function App() {
 								handleChange={handleChange}
 							/>
 							<section className="footer">
-								<h4>Add the app to your home screen?</h4>
-								<p>Here are video instructions for your platform</p>
+								<h4>Want to aAdd the app to your home screen?</h4>
+								<p>Follow these video instructions for your platform</p>
 								<div className="links">
 									<a
 										href="https://www.youtube.com/watch?v=O1xEXKB6tNg"
@@ -137,14 +137,15 @@ function App() {
 								</div>
 
 								<p>
-									This app was inspired by the amazing people who facilitate groups and meetings at{" "}
+									This app was inspired by the amazing people who facilitate groups and meetings at
 									<a
 										href="https://www.nottinghamrecoverynetwork.com/"
 										target="_blank"
 										rel="noopener noreferrer"
 									>
-										Nottingham Recovery Network
+										Nottingham Recovery Network (NRN)
 									</a>
+									<br />
 									in Nottingham UK and their hard work and dedication to help people through their recovery journey.
 									<br />
 								</p>

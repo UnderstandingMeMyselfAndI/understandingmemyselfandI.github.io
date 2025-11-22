@@ -275,22 +275,25 @@ section.footer {
 		margin: 1rem 0;
 		display: flex;
 		justify-content: space-evenly;
+		column-gap: 2rem;
 
 		a {
 			display: flex;
 			flex-flow: column wrap;
 			justify-content: center;
+			align-content: center;
 			align-items: center;
-			padding: 2rem 3rem;
+			padding: 2rem 1rem;
 			row-gap: 1rem;
 			border-radius: var(--border-radius);
 			outline: 1px solid #666;
 			text-decoration: none;
 			font-size: variables.$h5_size;
+			width: calc(50% - 1rem);
 
 			svg {
-				width: 60px;
-				height: 60px;
+				width: 40px;
+				height: 40px;
 			}
 		}
 	}
