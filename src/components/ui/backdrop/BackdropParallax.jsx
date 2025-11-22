@@ -22,8 +22,6 @@ export default function BackdropParallax({initialImageId = null, initialDelay = 
 	const [activeIndex, setActiveIndex] = useState(0); // 0 or 1
 	const [hasStarted, setHasStarted] = useState(false);
 	const usedIds = useRef(new Set([images[0].id]));
-	const [curImg, setCurImg] = useState(images[0]);
-	const [nextImg, setNextImg] = useState(images[1]);
 
 	// Get next unique image
 	const getNextImage = () => {
@@ -41,32 +39,21 @@ export default function BackdropParallax({initialImageId = null, initialDelay = 
 		usedIds.current.add(next.id);
 		return next;
 	};
-	function getLastItem(_set) {
-		return [..._set].pop();
-	}
+
 	// Start cycling after initialDelay
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			setHasStarted(true);
 
 			// First transition
-			const nextImgLoop = getNextImage();
-			setCurImg(nextImg);
-			setNextImg(nextImgLoop);
-
-			setImages(prev => (activeIndex === 0 ? [nextImg, curImg] : [nextImg, curImg]));
+			const nextImg = getNextImage();
+			setImages(prev => (activeIndex === 0 ? [prev[0], nextImg] : [nextImg, prev[1]]));
 			setActiveIndex(prev => 1 - prev);
 
 			// Subsequent transitions
 			const intervalId = setInterval(() => {
 				const nextImg = getNextImage();
-				const prevID = Array.from(usedIds.current).pop() || 0;
-				const prevImg = getLastItem(usedIds.current);
-				setCurImg(prevImg);
-				setNextImg(nextImg);
-
-				setImages(prev => (activeIndex === 0 ? [nextImg, curImg] : [nextImg, curImg]));
-
+				setImages(prev => (activeIndex === 0 ? [prev[0], nextImg] : [nextImg, prev[1]]));
 				setActiveIndex(prev => 1 - prev);
 			}, interval);
 
@@ -109,14 +96,14 @@ export default function BackdropParallax({initialImageId = null, initialDelay = 
 
 				{/* Regular cross-fading slots */}
 				<img
-					src={nextImg.url || bgImg}
-					alt={nextImg.alt || "Backdrop"}
-					className={activeIndex === 0 ? "active" : hasStarted ? "active" : "hidden"}
+					src={images[0].url || bgImg}
+					alt={images[0].alt || "Backdrop"}
+					className={activeIndex === 0 ? "active" : hasStarted ? "inactive" : "hidden"}
 				/>
 				<img
-					src={curImg.url || bgImg}
-					alt={curImg.alt || "Backdrop"}
-					className={activeIndex === 1 ? "inactive" : hasStarted ? "inactive" : "hidden"}
+					src={images[1].url || bgImg}
+					alt={images[1].alt || "Backdrop"}
+					className={activeIndex === 1 ? "active" : hasStarted ? "inactive" : "hidden"}
 				/>
 			</div>
 		</div>
