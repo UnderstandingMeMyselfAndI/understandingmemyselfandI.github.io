@@ -101,15 +101,15 @@ const AccordionItemWithEffects = ({item, index, acronymID, expanded, handleChang
 	const wrapperStyle = useMemo(() => {
 		if (isExpanded) {
 			return {
-				// opacity: 1,
-				// transform: "none",
-				// position: "relative",
-				// transfrom: "translateY(-50%)",
-				// top: "50%",
-				// zIndex: 1000,
-				// marginBottom: "20px",
+				opacity: 1,
+				transform: "none",
+				position: "relative",
+				transfrom: "translateY(-50%)",
+				top: "50%",
+				zIndex: 10,
+				marginBottom: "20px",
 				// Add margin top to position 5vh from top when scrolled into view
-				// marginTop: "5vh",
+				marginTop: "5vh",
 			};
 		}
 

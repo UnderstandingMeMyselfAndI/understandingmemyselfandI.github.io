@@ -149,11 +149,17 @@ const Header = ({classes = ""}) => {
 				// tlArrow1.to(".a1", {duration: 0.65, y: 0, scale: 0.5, autoAlpha: 0}, 0);
 				// tlArrow1.to(".a1", {duration: 0.35, y: 140, scale: 1.3, autoAlpha: 0.5}, 0);
 				// tlArrow1.to(".a1", {duration: 0.95, y: 280, scale: 0.35, autoAlpha: 0.25}, ">");
-
+				gsap.set(".a1", {y: 0, rotateZ: 180, autoAlpha: 0});
 				let tlArrow2 = gsap.timeline({repeat: -1, ease: "power4.inOut", delay: 4});
-				tlArrow2.to(".a2", {duration: 0.85, y: 30, scale: 0.5, autoAlpha: 0.05}, 0.0);
-				tlArrow2.to(".a2", {duration: 0.85, y: 120, scale: 1.5, autoAlpha: 0.5}, 0.0);
-				tlArrow2.to(".a2", {duration: 0.37, y: 260, scale: 0.5, autoAlpha: 0.25}, ">");
+
+				tlArrow2.to(".a1", {duration: 0.85, y: 460, scale: 0.5, autoAlpha: 0.0}, ">");
+				tlArrow2.to(".a1", {duration: 0.65, y: 220, scale: 1.5, autoAlpha: 0.5}, ">");
+				tlArrow2.to(".a1", {duration: 0.65, y: 0, scale: 0.5, autoAlpha: 0.0}, ">");
+
+				// let tlArrow2 = gsap.timeline({repeat: -1, ease: "power4.inOut", delay: 4});
+				// tlArrow2.to(".a2", {duration: 0.85, y: 30, scale: 0.5, autoAlpha: 0.05}, 0.0);
+				// tlArrow2.to(".a2", {duration: 0.85, y: 120, scale: 1.5, autoAlpha: 0.5}, 0.0);
+				// tlArrow2.to(".a2", {duration: 0.37, y: 260, scale: 0.5, autoAlpha: 0.25}, ">");
 
 				// let tlArrow3 = gsap.timeline({repeat: -1, ease: "power4.inOut", delay: 4});
 				// tlArrow3.to(".a3", {duration: 0.5, y: 0, ease: "power4.inOut", scale: 0.25, autoAlpha: 0.1}, 0.1);
@@ -300,14 +306,6 @@ const Header = ({classes = ""}) => {
 				</div>
 				<div className="arrow-grp-1">
 					<div className="arrow-cont a1">
-						<ArrowDownwardOutlinedIcon className="arrow" />
-					</div>
-				</div>
-				<div className="arrow-cont a2">
-					<ArrowDownwardOutlinedIcon className="arrow" />
-				</div>
-				<div className="arrow-grp-3">
-					<div className="arrow-cont a3">
 						<ArrowDownwardOutlinedIcon className="arrow" />
 					</div>
 				</div>

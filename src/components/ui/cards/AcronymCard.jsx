@@ -109,8 +109,8 @@ const AcronymCard = () => {
 				<div></div>
 			</section>
 			<div className="footer">
-				<ButtonEmergencyToolbox id={accData?.id} />
-				<ButtonToolbox id={accData?.id} />
+				{/* <ButtonEmergencyToolbox id={accData?.id} />
+				<ButtonToolbox id={accData?.id} /> */}
 				<div
 					className="btn close"
 					onClick={handleClose}
