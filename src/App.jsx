@@ -32,6 +32,10 @@ function App() {
 	const [open, setOpen] = useState(true);
 	const [expanded, setExpanded] = useState(false);
 	const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme);
+	const showAccCard = useAppStore(state => state.showAccCard);
+	// const setShowAccCard = useAppStore(state => state.setShowAccCard);
+	//const setEmergencyToolAdded = useAppStore(state => state.setEmergencyToolAdded);
+
 	if (theme !== null) {
 		applyTheme({theme: theme});
 		useThemeStore.setState({
@@ -46,12 +50,19 @@ function App() {
 
 	const handleChange = panel => (event, newExpanded) => {
 		setExpanded(newExpanded ? panel : false);
-		setOpen(open => !open);
+		setOpen(!open);
+		// setShowAccCard(!open);
+		console.log("expanded ", expanded);
+		if (expanded !== false) {
+			useAppStore.setState({showAccCard: true});
+		} else {
+			useAppStore.setState({showAccCard: false});
+		}
 	};
 
 	const closeAccordion = close => (event, newClose) => {
 		setOpen(open => !open);
-		setExpanded(close => !close);
+		setExpanded(!close);
 	};
 	const emergencyToolAdded = useAppStore(state => state.emergencyToolAdded);
 	useEffect(() => {
@@ -75,7 +86,7 @@ function App() {
 						{/* <ScenarioModal /> */}
 
 						<div className="content">
-							<AcronymCard />
+							{showAccCard && <AcronymCard />}
 							<Header />
 							<section className="intro">
 								<p>The tools we learn to cope with our emotions, thoughts, feelings and mental health are ace, but remembering them can be hard.</p>

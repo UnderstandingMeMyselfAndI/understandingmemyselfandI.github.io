@@ -19,28 +19,35 @@ const ButtonEmergencyToolbox = ({id}) => {
 	const active = useAppStore(state => state.active);
 	const storedVal = localStore.get(storeKeys.toolbox, id);
 
+	console.log("*************** ButtonEmergencyToolbox ");
+
 	const setTool = val => {
-		console.log("emergencyToolAdded setTool active ", active, " val ", val, " acronymnID ", acronymnID);
 		// if (!active) return;
-		localStore.set(storeKeys.emergency, id, val);
+		localStore.set(storeKeys.emergency, acronymnID, val);
+
 		setIsInToolbox(val);
 		setEmergencyToolAdded(val);
-		console.log("emergencyToolAdded setTool acronymID", acronymnID, " toolAdded ", emergencyToolAdded);
 	};
 
 	useEffect(() => {
-		if (storedVal !== null) setIsInToolbox(Boolean(storedVal));
+		if (storedVal !== null) {
+			if (storedVal === "true") {
+				setIsInToolbox(true);
+				console.log("ButtonEmergencyToolbox TRUE ");
+			}
+			if (storedVal === "false") {
+				setIsInToolbox(false);
+			}
+		} else {
+			// setIsInToolbox(false);
+		}
 	}, [storedVal]);
-
-	useEffect(() => {
-		setTool(isInToolbox);
-	}, [isInToolbox]);
 
 	return (
 		<div
 			className={"btn toolbox emrgcy" + (isInToolbox ? " active" : "")}
 			key="toolbox-emergency-btn"
-			onClick={() => setIsInToolbox(!isInToolbox)}
+			onClick={() => setTool(!isInToolbox)}
 		>
 			{isInToolbox ? <MedicationIcon /> : <MedicationOutlinedIcon />}
 		</div>

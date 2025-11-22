@@ -8,6 +8,10 @@ import data from "../../../data/data.js";
 import {storeKeys, localStore} from "@/data/localStore.js";
 import CloseIcon from "@mui/icons-material/Close";
 import "./styles.scss";
+function getAccData(id) {
+	return data.find(acc => acc.id === id);
+	// return data.find(id => data.id === id);
+}
 
 const AcronymCard = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -19,33 +23,20 @@ const AcronymCard = () => {
 	const setActive = useAppStore(state => state.setActive);
 	const active = useAppStore(state => state.active);
 
-	function getAccData(id) {
-		return data.find(acc => acc.id === id);
-		// return data.find(id => data.id === id);
-	}
-
 	useEffect(() => {
 		if (acronymnID === null || acronymnID === undefined) return;
-		const storedVal = localStore.get(storeKeys.toolbox, acronymnID);
-		storedValue && setStoredValue(storedVal);
 
 		if (getAccData(acronymnID) !== undefined) {
 			setAccData(getAccData(acronymnID));
 			setIsOpen(true);
-		} else {
-			// setIsOpen(false);
 		}
 
 		console.log("acronymnID", acronymnID);
 	}, [acronymnID]);
 
-	useEffect(() => {
-		console.log("AcronymCard active", active);
-	}, [active]);
-
 	const handleClose = () => {
 		setIsOpen(false);
-		setActive(false);
+		// setActive(false);
 	};
 
 	return (

@@ -52,19 +52,20 @@ const localStore = (() => {
 			return localStorage.getItem(`${which}-${id}`);
 		},
 		_set = (which, id, value) => {
-			if (!_validate(which, id, value)) return;
-			if (_isItem(which, id)) {
-				localStorage.setItem(`${which}-${id}`, value);
-			}
+			//if (!_validate(which, id, value)) return;
+			console.log("_set", which, id, value);
+			localStorage.setItem(`${which}-${id}`, value);
 		},
 		_remove = (which, id) => {
-			if (!_validate(which, id)) return;
-			if (_isItem(which, id)) localStorage.removeItem(`${which}-${id}`);
+			//if (!_validate(which, id)) return;
+			localStorage.removeItem(`${which}-${id}`);
 		},
 		_get = (which, id) => {
-			if (!_validate(which, id)) return;
-			if (_isItem(which, id)) return localStorage.getItem(`${which}-${id}`);
-			return false;
+			//	if (!_validate(which, id)) return;
+			//if (_isItem(which, id)) {
+			return localStorage.getItem(`${which}-${id}`) || null;
+			//}
+			// return null;
 		};
 
 	return {

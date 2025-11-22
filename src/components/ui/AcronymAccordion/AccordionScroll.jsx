@@ -22,15 +22,16 @@ const AccordionItemWithEffects = ({item, index, acronymID, expanded, handleChang
 	const previousExpandedState = useRef(isExpanded);
 	const setAcronymnID = useAppStore(state => state.setAcronymnID);
 	const toggleIsSelected = useAppStore(state => state.toggleIsSelected);
+	const setShowAccCard = useAppStore(state => state.setShowAccCard);
 
 	// Handle scroll behavior on expand/collapse
 	useEffect(() => {
 		if (accordionRef.current) {
-			toggleIsSelected();
 			if (isExpanded) {
 				// Disable scroll effects for all items when expanded
 				disableScrollEffects();
 				setAcronymnID(acronymID);
+				setShowAccCard(true);
 
 				// Scroll to position when expanded (5vh from top)
 				// setTimeout(() => {
@@ -47,6 +48,7 @@ const AccordionItemWithEffects = ({item, index, acronymID, expanded, handleChang
 				// 	}
 				// }, 10);
 			} else if (previousExpandedState.current === true) {
+				setShowAccCard(false);
 				// Only scroll to center when transitioning from expanded to collapsed
 				setTimeout(() => {
 					if (accordionRef.current) {
