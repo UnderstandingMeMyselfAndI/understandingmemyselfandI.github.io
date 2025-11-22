@@ -103,7 +103,7 @@ function App() {
 								handleChange={handleChange}
 							/>
 							<section className="footer">
-								<h4>Want to aAdd the app to your home screen?</h4>
+								<h4>Want to add the app to your home screen?</h4>
 								<p>Follow these video instructions for your platform</p>
 								<div className="links">
 									<a
