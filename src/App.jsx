@@ -4,7 +4,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import Header from "ui/header/Header";
 import useThemeStore from "@/store/useThemeStore";
-import useAppStore from "@/store/useAppStore";
+import useAppStore from "@/store/useThemeStore";
+
 import applyTheme from "components/theme/applyTheme";
 import AccordionScroll from "ui/AcronymAccordion/AccordionScroll";
 import ScrollPosition from "./components/utils/ScrollPosition";
@@ -14,29 +15,22 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import iconAndroid from "icons/iconAndroid.jsx";
 import iconApple from "icons/iconApple.jsx";
-
+import EmergencyButton from "buttons/emergency/EmergencyButton";
 import QRCode from "ui/QRCode/QRCode.jsx";
 import AccordionBottomNavigation from "ui/AcronymAccordion/AccordionBottomNavigation";
 import Backdrop from "ui/backdrop/Backdrop";
-import EmergencyButton from "buttons/emergency/EmergencyButton";
-import Snackbar from "@mui/material/Snackbar";
+import BackdropParallax from "ui/backdrop/BackdropParallax";
+import Snackbars from "ui/snackbars/Snackbars";
+import AcronymCard from "@/components/ui/cards/AcronymCard.jsx";
 import "./globals.css";
 
-import "./App.css";
+import "./App.scss";
 import "@/scss/_fonts.scss";
 import bgImg from "/bgs/Ummi-bg-1.avif";
 import SpeedDialSettings from "./components/ui/settings/speedDial/SpeedDialSettings.jsx";
 function App() {
-	const [openToolSnackbox, setOpenToolSnackbox] = useState(false);
-	const [openEmergencyToolSnackbox, setOpenEmergencyToolSnackbox] = useState(false);
-	const toolAdded = useAppStore(state => state.toolAdded);
-	const emergencyToolAdded = useAppStore(state => state.emergencyToolAdded);
-
-	// const [showScenarioModal, setShowScenarioModal] = React.useState(false);
-	const [contentID, setContentID] = React.useState(null);
 	const [open, setOpen] = useState(true);
-	//const [favouriteId, setFavouriteId] = useState(null);
-
+	const [expanded, setExpanded] = useState(false);
 	const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme);
 	if (theme !== null) {
 		applyTheme({theme: theme});
@@ -49,78 +43,6 @@ function App() {
 		applyTheme({theme: themeFromStore});
 		localStorage.setItem(useThemeStore.getState().storageKeyTheme, themeFromStore);
 	});
-	const [expanded, setExpanded] = useState(false);
-
-	useEffect(() => {
-		setOpenToolSnackbox(true);
-	}, [toolAdded]);
-	useEffect(() => {
-		setOpenEmergencyToolSnackbox(true);
-	}, [emergencyToolAdded]);
-
-	// const [favourite, setFavourite] = React.useState(() => {
-	// 	const storedFavourite = localStorage.getItem(`favourite-${id}`);
-	// 	return storedFavourite; // === 'true';
-	// });
-	// const handleToggleFavourite = id => {
-	// 	const storedFavourite = localStorage.getItem(`favourite-${id}`);
-	// 	const newFavourite = !storedFavourite;
-	// 	localStorage.setItem(`favourite-${id}`, newFavourite.toString());
-	// 	setFavourite(newFavourite);
-	// };
-
-	const handleCloseToolbox = (event, reason) => {
-		if (reason === "clickaway") {
-			return;
-		}
-
-		setOpenToolSnackbox(false);
-	};
-	const handleCloseEmergencyToolbox = (event, reason) => {
-		if (reason === "clickaway") {
-			return;
-		}
-
-		setOpenEmergencyToolSnackbox(false);
-	};
-	const actionToolbox = (
-		<React.Fragment>
-			<Button
-				color="secondary"
-				size="small"
-				onClick={handleCloseToolbox}
-			>
-				UNDO
-			</Button>
-			<IconButton
-				size="small"
-				aria-label="close"
-				color="inherit"
-				onClick={handleCloseToolbox}
-			>
-				<CloseIcon fontSize="small" />
-			</IconButton>
-		</React.Fragment>
-	);
-	const actionEmergencyToolbox = (
-		<React.Fragment>
-			<Button
-				color="secondary"
-				size="small"
-				onClick={handleCloseEmergencyToolbox}
-			>
-				UNDO
-			</Button>
-			<IconButton
-				size="small"
-				aria-label="close"
-				color="inherit"
-				onClick={handleCloseEmergencyToolbox}
-			>
-				<CloseIcon fontSize="small" />
-			</IconButton>
-		</React.Fragment>
-	);
 
 	const handleChange = panel => (event, newExpanded) => {
 		setExpanded(newExpanded ? panel : false);
@@ -131,6 +53,15 @@ function App() {
 		setOpen(open => !open);
 		setExpanded(close => !close);
 	};
+	const emergencyToolAdded = useAppStore(state => state.emergencyToolAdded);
+	useEffect(() => {
+		console.log("emergencyToolAdded ", emergencyToolAdded);
+	}, [emergencyToolAdded]);
+
+	const toolAdded = useAppStore(state => state.toolAdded);
+	useEffect(() => {
+		console.log("toolAdded ", toolAdded);
+	}, [toolAdded]);
 
 	return (
 		<React.Fragment>
@@ -139,10 +70,12 @@ function App() {
 				{/* <EmergencyButton /> */}
 				<div className="main">
 					<div className="inner">
+						<Snackbars />
 						{/* <SpeedDialSettings className={"speed-dial-settings"} /> */}
 						{/* <ScenarioModal /> */}
 
 						<div className="content">
+							<AcronymCard />
 							<Header />
 							<section className="intro">
 								<p>The tools we learn to cope with our emotions, thoughts, feelings and mental health are ace, but remembering them can be hard.</p>
@@ -158,9 +91,9 @@ function App() {
 								expanded={expanded}
 								handleChange={handleChange}
 							/>
-
-							<div className="footer">
-								<div className="install">Add to your home screen video instructions</div>
+							<section className="footer">
+								<h4>Add the app to your home screen?</h4>
+								<p>Here are video instructions for your platform</p>
 								<div className="links">
 									<a
 										href="https://www.youtube.com/watch?v=O1xEXKB6tNg"
@@ -187,10 +120,10 @@ function App() {
 								</div>
 								<QRCode label="Share the app, scan the QR Code" />
 
-								<section>
+								<div>
 									<p>The tools we learn to cope with our emotions, thoughts, feelings and mental health are ace, but remembering them can be hard.</p>
 									<p>This app is your toolbox so you can carry those tools around with you for whenever you need them.</p>
-								</section>
+								</div>
 
 								<p>
 									This app was inspired by the amazing people who facilitate groups and meetings at{" "}
@@ -264,7 +197,7 @@ function App() {
 									<br />
 									<span>&hearts; &#x2661; We would really appreciate it.&#x2661; &hearts; </span>
 								</p>
-							</div>
+							</section>
 						</div>
 
 						<FooterMetadata />
@@ -281,27 +214,17 @@ function App() {
 					</div>
 				</div>
 
-				<AccordionBottomNavigation
+				{/* <AccordionBottomNavigation
 					open={open}
 					onClick={closeAccordion(open)}
+				/> */}
+
+				<BackdropParallax
+					initialImageId={2}
+					initialDelay={6000}
+					interval={10000}
+					parallaxStrength={0}
 				/>
-				<Snackbar
-					anchorOrigin={{vertical: "top", horizontal: "left"}}
-					open={openToolSnackbox}
-					autoHideDuration={4000}
-					message={toolAdded ? "Added to your toolbox" : "Removed from to your toolbox"}
-					action={actionToolbox}
-					onClose={handleCloseToolbox}
-				/>
-				<Snackbar
-					anchorOrigin={{vertical: "top", horizontal: "left"}}
-					open={openEmergencyToolSnackbox}
-					autoHideDuration={4000}
-					message={emergencyToolAdded ? "Added to your emrgency toolbox" : "Removed from to your emergency toolbox"}
-					action={actionEmergencyToolbox}
-					onClose={handleCloseEmergencyToolbox}
-				/>
-				<Backdrop />
 			</div>
 			<ScrollPosition />
 		</React.Fragment>

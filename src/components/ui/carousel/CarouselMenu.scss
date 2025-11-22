@@ -1,0 +1,356 @@
+@use "@/scss/_variables.scss";
+@import "@/globals.css";
+
+div.AccordionRoot {
+	background-color: transparent;
+	margin: 0;
+	margin-top: 0.5rem;
+	position: relative;
+}
+div.AccordionRoot > div {
+	transition: opacity 0.1s ease-out;
+	background: rgba(50, 50, 50, 0.2);
+	border-radius: var(--border-radius);
+}
+
+/* Style for expanded accordion */
+.expanded-accordion {
+	position: relative;
+	transition: var(--transition);
+}
+.AccordionItem {
+	transition: var(--transition);
+}
+
+span.MuiTypography-root {
+	font-family: "Plus Jakarta Sans", sans-serif;
+}
+div.accBack {
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--mainBackground);
+	opacity: 0.1;
+	border-radius: var(--border-radius);
+}
+div.expanded-accordion {
+	transition: var(--transition);
+}
+div.MuiPaper-root {
+	margin: 0.75rem 0;
+	border: none;
+
+	border-radius: var(--border-radius);
+	box-shadow: unset;
+	background: none;
+	text-shadow: 2px 0px 7px rgba(0, 0, 0, 0.49);
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	div.MuiCollapse-wrapperInner {
+		flex-grow: 1;
+		transition: var(--transition);
+	}
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+	&::-webkit-scrollbar {
+		display: none;
+	}
+	&.Mui-expanded {
+		background: rgba(20, 20, 20, 0.4);
+		z-index: 1000;
+		width: 100%;
+		height: 100%;
+
+		border-radius: var(--border-radius);
+		outline: 1px solid rgba(150, 150, 150, 0.25);
+
+		div.MuiCollapse-wrapperInner {
+			background-color: rgba(0, 0, 0, 0.15);
+			position: relative;
+			z-index: 1;
+
+			// height: 100%;
+			font-size: variables.$p_size;
+		}
+		div.AccordionItemFavourite {
+			display: none;
+		}
+	}
+	&::before {
+		display: none;
+	}
+}
+h3.MuiAccordion-heading {
+	word-break: break-all;
+	word-wrap: break-word;
+	color: var(--lightBlue);
+	transition: all 0.3s ease-in-out;
+	text-align: center;
+
+	button.MuiButtonBase-root {
+		justify-content: center;
+		column-gap: 0rem;
+		min-height: 48px;
+
+		span.MuiAccordionSummary-content {
+			flex-grow: 1;
+			flex-wrap: wrap;
+			margin: 0.5rem 0;
+			align-content: center;
+			align-items: center;
+			column-gap: 0.5rem;
+			// outline: 1px solid #999;
+			transition: all 0.2s ease-in-out;
+			height: auto;
+			// outline: 1px solid #f00;
+			padding: 1rem 0;
+			.cont {
+				display: flex;
+				font-size: variables.$acc_title_size;
+				line-height: 1.1;
+				font-weight: 900;
+				transition: all 0.2s ease-in-out;
+				text-align: center;
+				column-gap: 0.25rem;
+				margin-left: 30px;
+				opacity: 1;
+				/* outline: 1px solid #999; */
+				flex-grow: 1;
+				column-gap: 0.65rem;
+				justify-content: center;
+
+				> div {
+					position: relative;
+					// outline: 1px solid #ccc;
+					height: 100%;
+					&::after {
+						content: "";
+						// font-size: variables.$h2_size;
+						position: absolute;
+						bottom: 0%;
+						right: 0;
+						width: 7px;
+						height: 7px;
+						border-radius: 50%;
+						opacity: 0.5;
+						background-color: var(--primary);
+						// outline: 2px solid var(--primary);
+						transform: translate(120%, -100%);
+					}
+				}
+			}
+
+			div.AccordionItemFavourite {
+				position: absolute;
+				height: fit-content;
+				transition: all 0.5s ease-in-out;
+			}
+			&.Mui-expanded {
+				width: 100%;
+
+				.cont {
+					color: var(--orange);
+					// background-color: rgba(237, 241, 0, 0.8);
+					transition: all 0.35s ease-in-out;
+					margin-left: 0px;
+					// > div {
+					// 	&.active {
+					// 		position: relative;
+					// 		&::before {
+					// 			content: attr(data-content);
+					// 			transform: scale(1.25, 1.2) translate(-0%, -0%);
+					// 			position: absolute;
+					// 			top: 0;
+					// 			left: 0;
+					// 			z-index: -1;
+					// 			font-size: variables.$acc_title_size;
+					// 			// color: rgba(255, 165, 0, 0.9);
+					// 			color: transparent;
+					// 			-webkit-text-stroke: 2px rgba(150, 150, 150, 0.8);
+					// 		}
+					// 	}
+					// }
+				}
+				div.AccordionItemFavourite {
+					position: absolute;
+					top: 34px;
+					left: 16px;
+					transition: all 0.35s ease-in-out;
+				}
+			}
+		}
+		span.MuiAccordionSummary-expandIconWrapper {
+			svg {
+				fill: #fff;
+			}
+			display: block;
+			&.Mui-expanded {
+				display: none;
+			}
+		}
+	}
+}
+
+.MuiPaper-root.MuiAccordion-root {
+	transition: all 0.3s ease;
+	outline: 1px solid rgba(150, 150, 150, 0.25);
+	background-color: rgba(94, 111, 207, 0.2);
+}
+.MuiAccordion-root,
+.accordion {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin: 0 0 0.5rem 0;
+	outline: 1px solid #707070;
+	border-radius: var(--border-radius);
+	padding: 0.5rem 0;
+	position: relative;
+	background: transparent;
+
+	&.active {
+		z-index: 100;
+		transition: all 0.4s ease-in-out;
+	}
+	.btn.close {
+		display: none;
+		position: absolute;
+		right: 1rem;
+		top: 4px;
+		width: 30px;
+		height: 30px;
+	}
+	&.Mui-expanded {
+		.btn.close {
+			display: block;
+		}
+	}
+	header {
+		display: flex;
+		h3 {
+			margin: 0;
+			font-size: variables.$h1_size;
+			transition: all 0.3s ease-in-out;
+		}
+	}
+	.btn.scenario button {
+		background-color: transparent;
+	}
+}
+.MuiAccordion-root .MuiCollapse-root {
+	max-height: calc(90vh - 150px);
+	overflow-y: scroll;
+}
+.MuiAccordion-region {
+	width: 100%;
+	height: auto;
+	min-height: fit-content;
+	margin-bottom: 2rem;
+}
+
+.MuiAccordionDetails-root {
+	color: var(--primary);
+	font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif !important;
+	font-weight: 300;
+	min-height: fit-content;
+	height: 100%;
+	width: 100%;
+	margin-bottom: 2rem;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: space-evenly;
+
+	> div:first-child {
+		margin: 2rem 0 1rem 0;
+		color: var(--primary);
+	}
+	> div {
+		margin: 1rem 0;
+		text-align: left;
+		color: var(--lightBlue);
+		div.Acronym-title {
+			width: 90%;
+			margin: 0 auto;
+			position: relative;
+			line-height: 1.1;
+
+			div.Acronym-letter {
+				position: absolute;
+				font-weight: 900;
+				font-size: variables.$letter_size_min;
+
+				color: rgba(255, 165, 0, 0.9);
+				-webkit-text-stroke: 2px rgba(150, 150, 150, 0.8);
+				height: fit-content;
+				transform: translateY(-6%);
+
+				&::after {
+					width: 100%;
+					height: 100%;
+					-webkit-text-stroke: 1px rgba(150, 120, 120, 0.6);
+				}
+				&::after {
+					content: "";
+					width: 140%;
+					height: 200%;
+					position: absolute;
+					top: -40%;
+					transform: translate(0, -80%);
+					left: 0;
+					z-index: -2;
+					transform: rotateZ(-6deg) skew(0.03turn, 12deg) translate(-12px, -6px) scale(0.9, 0.5);
+					outline: 1px solid rgba(150, 150, 150, 0.5);
+					background-color: rgba(20, 20, 20, 0.4);
+				}
+			}
+			div.Acronym-word {
+				font-size: variables.$acc_wrd_size;
+				font-weight: 800;
+				margin: 0;
+				color: rgba(180, 180, 180, 1);
+				-webkit-text-stroke: 0.5px var(--primary);
+				position: relative;
+				transform: translatex(2%);
+
+				&::first-letter {
+					opacity: 0;
+					font-weight: 900;
+					font-size: variables.$h1_size;
+				}
+				&::before {
+					content: "";
+					width: 100%;
+					height: 100%;
+					position: absolute;
+					top: 0;
+					left: 0;
+					z-index: -1;
+					transform: rotateZ(-2deg) skew(-0.09turn, 6deg) translate(-20px, 10px) scale(0.9, 0.5);
+					outline: 1px solid #185301;
+				}
+			}
+		}
+		div.Acronym-definition {
+			margin: 1.5rem 0 1.5rem 1rem;
+		}
+	}
+}
+.MuiAccordionSummary-expandIconWrapper {
+	width: 36px;
+	height: 36px;
+	.Mui-expanded {
+		display: none;
+	}
+	svg {
+		width: 100%;
+		height: 100%;
+		path {
+			fill: var(--yellow);
+			stroke: var(--yellow);
+		}
+	}
+}

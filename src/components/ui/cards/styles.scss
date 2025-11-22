@@ -1,0 +1,302 @@
+@use "@/scss/_variables.scss";
+@import "@/globals.css";
+
+$gutters: 1rem;
+.AcronymCard {
+	opacity: 0;
+	transition: all 0.2s ease-out;
+	transform: scale(1.025);
+	z-index: -10;
+	&.open {
+		opacity: 1;
+		transform: scale(1);
+		transition: all 0.2s ease-in;
+		z-index: 99;
+	}
+}
+div.AcronymCard {
+	// padding: 1rem 0;
+	display: flex;
+	flex-flow: column nowrap;
+
+	outline: 1px solid #00f;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+
+	position: fixed;
+	top: calc($gutters * 0.5);
+	left: calc($gutters * 0.5);
+
+	transition: var(--transition);
+	background: rgba(20, 20, 20, 1);
+	overflow: clip;
+
+	border-radius: var(--border-radius);
+	outline: 1px solid rgba(150, 150, 150, 0.25);
+	transition: var(--transition);
+	color: var(--primary);
+	height: calc(100dvh - $gutters);
+	width: calc(100vw - $gutters);
+	text-shadow: 2px 0px 7px rgba(0, 0, 0, 0.49);
+	padding: 0;
+	margin: 0;
+
+	.header {
+		display: flex;
+		position: relative;
+		align-items: center;
+		justify-content: center;
+		color: var(--orange);
+
+		text-align: center;
+		// background-color: #5a0a0a;
+
+		transition: var(--transition);
+		width: 100%;
+		height: 100px;
+		padding: 0;
+		margin: 0;
+		font-size: variables.$h1_size;
+		// flex: 1;
+		// flex-grow: 1;
+
+		div.toolboxes {
+			display: flex;
+			flex-flow: column wrap;
+			row-gap: 0.5rem;
+			justify-content: center;
+			align-items: center;
+			// outline: 1px solid #ccc;
+			position: absolute;
+			top: 50%;
+			left: 1rem;
+			transform: translate(0, -50%);
+
+			div.btn.toolbox {
+				width: 20px;
+				height: 20px;
+				// outline: 1px solid #ccc;
+				> svg {
+					width: 20px;
+					height: 20px;
+				}
+			}
+		}
+		.cont {
+			display: flex;
+			flex-flow: row nowrap;
+			font-size: variables.$h1_size;
+			line-height: 1.1;
+			font-weight: 900;
+			// justify-content: center;
+			align-items: center;
+			// align-content: center;
+			text-align: center;
+			column-gap: 0.25rem;
+			//margin-left: 30px;
+			// opacity: 1;
+			// outline: 1px solid #999;
+
+			// flex-grow: 1;
+			width: fit-content;
+			height: fit-content;
+			column-gap: 0.65rem;
+			justify-content: center;
+
+			> div {
+				position: relative;
+				// outline: 1px solid #ccc;
+				height: 100%;
+				&::after {
+					content: "";
+					// font-size: variables.$h2_size;
+					position: absolute;
+					bottom: 0%;
+					right: 0;
+					width: 7px;
+					height: 7px;
+					border-radius: 50%;
+					opacity: 0.5;
+					background-color: var(--primary);
+					// outline: 2px solid var(--primary);
+					transform: translate(120%, -100%);
+				}
+			}
+		}
+		.btn.close {
+			position: absolute;
+			z-index: 999;
+			right: 1rem;
+			top: 50%;
+			transform: translate(0, -50%);
+			svg {
+				// fill: #fff;
+				stroke: #fff;
+			}
+		}
+	}
+	section.AccContent {
+		position: static;
+		// outline: 1px solid #0f0;
+		overflow-y: scroll;
+		height: auto;
+		flex-grow: 1;
+		max-height: calc(100% - 100px);
+		height: 300px;
+		border-top: 1px solid rgba(40, 40, 40, 0.9);
+		border-bottom: 1px solid rgba(40, 40, 40, 0.9);
+		div.AccExplanation {
+			height: fit-content;
+			text-align: left;
+		}
+		div.AccGroup {
+			color: var(--primary);
+			font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif !important;
+			font-weight: 300;
+			min-height: fit-content;
+			height: 100%;
+			width: 90%;
+			margin: 0 auto;
+			margin-bottom: 2rem;
+			display: flex;
+			flex-flow: column nowrap;
+			justify-content: space-evenly;
+
+			> div:first-child {
+				margin: 2rem 0 1rem 0;
+				color: var(--primary);
+			}
+			div.AccDetails {
+				margin: 1rem 0;
+				text-align: left;
+				color: var(--lightBlue);
+				div.Acc-letter-group {
+					width: 90%;
+					margin: 0 auto;
+					position: relative;
+					line-height: 1.1;
+					height: fit-content;
+					// outline: 1px solid #f00;
+
+					div.Acc-letter {
+						position: absolute;
+						z-index: 1;
+						font-weight: 900;
+						font-size: variables.$letter_size_min;
+
+						color: var(--orange);
+						-webkit-text-stroke: 2px rgba(150, 150, 150, 0.8);
+						height: fit-content;
+						transform: translateX(-5%);
+						width: 40px;
+						text-align: right;
+						// outline: 1px solid #ccc;
+
+						// &::after {
+						// 	width: 100%;
+						// 	height: 100%;
+						// 	-webkit-text-stroke: 1px rgba(150, 120, 120, 0.6);
+						// }
+						&::after {
+							content: "";
+							width: 140%;
+							height: 200%;
+							position: absolute;
+							top: -40%;
+							transform: translate(0, -80%);
+							left: 0;
+							z-index: -2;
+							transform: rotateZ(-6deg) skew(0.03turn, 12deg) translate(-12px, -6px) scale(0.9, 0.5);
+							outline: 1px solid rgba(150, 150, 150, 0.5);
+							background-color: rgba(216, 14, 14, 0.4);
+						}
+					}
+
+					div.Acc-word {
+						font-size: variables.$acc_wrd_size;
+						font-weight: 800;
+						line-height: 1.1;
+						margin: 0;
+						color: rgba(180, 180, 180, 1);
+						-webkit-text-stroke: 0.5px var(--primary);
+						position: relative;
+						transform: translate(0px, 12px);
+						width: calc(100% - 30px);
+						margin-left: 40px;
+						position: relative;
+						// outline: 1px solid #ccc;
+
+						// &::first-letter {
+						// 	opacity: 0;
+						// 	width: 0;
+						// 	display: none;
+						// 	font-weight: 900;
+						// 	font-size: variables.$h1_size;
+						// }
+						&::before {
+							content: "";
+							width: 80%;
+							height: 100%;
+							position: absolute;
+							top: -20%;
+							left: -20px;
+							// transform: translate(-20px, -150%);
+							z-index: -1;
+							transform: rotateZ(-2deg) skew(-0.09turn, 6deg) translate(-20px, 10px) scale(0.9, 0.5);
+							outline: 1px solid #185301;
+						}
+					}
+				}
+				div.Acc-definition {
+					margin: 1.5rem 0 1.5rem 1rem;
+				}
+			}
+		}
+	}
+	.footer {
+		width: 100%;
+		height: 60px;
+		// outline: 1px solid #f00;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-evenly;
+		align-items: center;
+		position: relative;
+
+		> div {
+			// outline: 1px solid rgb(201, 89, 89);
+			height: fit-content;
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: space-evenly;
+			align-items: center;
+			padding: 10px;
+			flex-grow: 1;
+			height: 100%;
+			position: relative;
+			&::before {
+				content: "";
+				height: 60%;
+				width: 100%;
+				flex-grow: 1;
+				border-right: 1px solid rgba(50, 50, 50, 0.5);
+				position: absolute;
+				top: 20%;
+				left: 0;
+				// z-index: -1;
+			}
+		}
+
+		&::after {
+			content: "";
+			width: 100%;
+			height: 100%;
+			background: rgba(10, 10, 10, 0.9);
+			position: absolute;
+			top: 0px;
+			left: 0;
+			z-index: -1;
+		}
+	}
+}

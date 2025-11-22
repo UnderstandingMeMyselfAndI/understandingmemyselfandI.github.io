@@ -3,49 +3,57 @@ import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ButtonToolbox from "../buttons/toolbox/ButtonToolbox";
 import Skeleton from "@mui/material/Skeleton";
 import ScenarioDialog from "../dialog/ScenarioDialog";
 import useAppStore from "@/store/useAppStore";
 import data from "../../../data/data.js";
 import Favourite from "../favourite/Favourite.jsx";
-import ButtonToolbox from "../buttons/toolbox/ButtonToolbox";
-import ButtonEmergencyToolbox from "../buttons/toolbox/ButtonEmergencyToolbox";
 import {useScrollEffects, SCROLL_EFFECT_CONFIG} from "./useScrollEffects";
 import "../../../globals.css";
 import "./AccordionStyles.scss";
 
+// Configuration constants - easily adjustable
+// const SCROLL_EFFECT_CONFIG = {
+// 	minOpacity: 0.15, // Minimum opacity (15%)
+// 	minScale: 0.5, // Minimum scale (85%)
+// 	fadeBoundary: 0.35, // 15% from top/bottom
+// 	innerFadeBoundary: 0.15, // 15% from top/bottom
+// 	transitionSpeed: "0.25s ease-out", // speed when scrolling
+// };
+
 // Individual Accordion Item with opacity and scale effects
-const AccordionItemWithEffects = ({item, index, acronymID, expanded, handleChange, config = SCROLL_EFFECT_CONFIG}) => {
+const AccordionItemWithEffects = ({item, index, expanded, handleChange, config = SCROLL_EFFECT_CONFIG}) => {
 	const isExpanded = expanded === "panel" + index;
 	const [ref, effects, disableScrollEffects, enableScrollEffects] = useScrollEffects(config, isExpanded);
 	const accordionRef = useRef(null);
 	const previousExpandedState = useRef(isExpanded);
 	const setAcronymnID = useAppStore(state => state.setAcronymnID);
-	const toggleIsSelected = useAppStore(state => state.toggleIsSelected);
+	const toggleIsExpanded = useAppStore(state => state.toggleIsExpanded);
 
 	// Handle scroll behavior on expand/collapse
 	useEffect(() => {
 		if (accordionRef.current) {
-			toggleIsSelected();
+			toggleIsExpanded();
 			if (isExpanded) {
 				// Disable scroll effects for all items when expanded
 				disableScrollEffects();
-				setAcronymnID(acronymID);
+				setAcronymnID(index);
 
 				// Scroll to position when expanded (5vh from top)
-				// setTimeout(() => {
-				// 	if (accordionRef.current) {
-				// 		const element = accordionRef.current;
-				// 		const rect = element.getBoundingClientRect();
-				// 		const elementTop = rect.top + window.pageYOffset;
-				// 		const targetScrollY = elementTop - window.innerHeight * 0.05; // 5vh from top
+				setTimeout(() => {
+					if (accordionRef.current) {
+						const element = accordionRef.current;
+						const rect = element.getBoundingClientRect();
+						const elementTop = rect.top + window.pageYOffset;
+						const targetScrollY = elementTop - window.innerHeight * 0.05; // 5vh from top
 
-				// 		window.scrollTo({
-				// 			top: targetScrollY,
-				// 			behavior: "smooth",
-				// 		});
-				// 	}
-				// }, 10);
+						window.scrollTo({
+							top: targetScrollY,
+							behavior: "smooth",
+						});
+					}
+				}, 10);
 			} else if (previousExpandedState.current === true) {
 				// Only scroll to center when transitioning from expanded to collapsed
 				setTimeout(() => {
@@ -82,15 +90,15 @@ const AccordionItemWithEffects = ({item, index, acronymID, expanded, handleChang
 		if (!isExpanded) return {};
 
 		return {
-			// position: "relative",
-			// backgroundColor: "var(--mainBackground)",
+			position: "relative",
+			backgroundColor: "var(--mainBackground)",
 			boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
 			// maxHeight: "calc(90vh - 40px)",
 			// minHeight: "100%",
 			// height: "fit-content",
 			// overflow: "auto",
 			"& .MuiAccordionDetails-root": {
-				// maxHeight: "calc(90vh - 120px)", // Account for header height
+				maxHeight: "calc(90vh - 120px)", // Account for header height
 				overflow: "auto",
 			},
 		};
@@ -99,15 +107,13 @@ const AccordionItemWithEffects = ({item, index, acronymID, expanded, handleChang
 	const wrapperStyle = useMemo(() => {
 		if (isExpanded) {
 			return {
-				// opacity: 1,
-				// transform: "none",
-				// position: "relative",
-				// transfrom: "translateY(-50%)",
-				// top: "50%",
-				// zIndex: 1000,
-				// marginBottom: "20px",
+				opacity: 1,
+				transform: "none",
+				position: "relative",
+				zIndex: 1000,
+				marginBottom: "20px",
 				// Add margin top to position 5vh from top when scrolled into view
-				// marginTop: "5vh",
+				marginTop: "5vh",
 			};
 		}
 
@@ -141,16 +147,12 @@ const AccordionItemWithEffects = ({item, index, acronymID, expanded, handleChang
 					className={"AcronymTitle"}
 					expandIcon={<ExpandMoreIcon />}
 					aria-controls={"panel" + index + "-content"}
-					id={"panel" + item?.id + "-header"}
+					id={"panel" + index + "-header"}
 				>
-					{/* <Favourite
-						id={"item-" + item?.id}
+					<ButtonToolbox
+						id={item?.id}
 						className={item?.title?.replaceAll(".", "")}
-					/> */}
-					{/* <div className="toolboxes">
-						<ButtonEmergencyToolbox id={item?.id} />
-						<ButtonToolbox id={item?.id} />
-					</div> */}
+					/>
 					<div className="cont">
 						{item.title.split(".").map(
 							(subItem, index) =>
@@ -166,9 +168,38 @@ const AccordionItemWithEffects = ({item, index, acronymID, expanded, handleChang
 						)}
 					</div>
 				</AccordionSummary>
-				{/* <AccordionDetails>{parse(item.content.explanation)}</AccordionDetails> */}
+				<AccordionDetails>
+					{/* <div dangerouslySetInnerHTML={{__html: item.content.explanation}} /> */}
+					<div>{item.content.explanation}</div>
+					{/* {item.content.acronyms.map((acronym, acronymIndex) => (
+						<div key={"acronymn-" + acronymIndex}>
+							<div
+								className="Acronym-title"
+								key={"t-" + acronymIndex}
+							>
+								<div
+									className="Acronym-letter"
+									key={"l-" + acronymIndex}
+								>
+									{acronym.letter}
+								</div>
+								<div
+									className="Acronym-word"
+									key={"m-" + acronymIndex}
+								>
+									{acronym.meaning}
+								</div>
+							</div>
+							<div
+								key={"d-" + acronymIndex}
+								className="Acronym-definition"
+								dangerouslySetInnerHTML={{__html: acronym.definition}}
+							/>
+						</div>
+					))} */}
+				</AccordionDetails>
 			</Accordion>
-			{/* <div className="accBack"></div> */}
+			<div className="accBack"></div>
 		</div>
 	);
 };
@@ -178,9 +209,9 @@ export default function AccordionScroll({expanded, handleChange}) {
 	// You can easily override the default config here
 	const customConfig = {
 		...SCROLL_EFFECT_CONFIG,
-		// minOpacity: 0.2, // Uncomment to override
-		// minScale: 0.3, // Uncomment to override
-		// fadeBoundary: 0.2, // Uncomment to override
+		// minOpacity: 0.2,    // Uncomment to override
+		// minScale: 0.9,      // Uncomment to override
+		// fadeBoundary: 0.2,  // Uncomment to override
 	};
 
 	return (
@@ -190,7 +221,6 @@ export default function AccordionScroll({expanded, handleChange}) {
 					<AccordionItemWithEffects
 						key={"accordion-" + index}
 						item={item}
-						acronymID={item?.id}
 						index={index}
 						expanded={expanded}
 						handleChange={handleChange}

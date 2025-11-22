@@ -2,11 +2,11 @@ import {useRef, useState, useEffect, useCallback, useMemo} from "react";
 
 // Configuration constants - easily adjustable
 const SCROLL_EFFECT_CONFIG = {
-	minOpacity: 0.25, // Minimum opacity (15%)
-	minScale: 0.35, // Minimum scale (85%)
+	minOpacity: 0.15, // Minimum opacity (15%)
+	minScale: 0.5, // Minimum scale (85%)
 	fadeBoundary: 0.35, // 15% from top/bottom
 	innerFadeBoundary: 0.15, // 15% from top/bottom
-	transitionSpeed: "0.35s ease-out", // speed when scrolling
+	transitionSpeed: "0.25s ease-out", // speed when scrolling
 };
 
 // Custom hook for scroll-based opacity and scale

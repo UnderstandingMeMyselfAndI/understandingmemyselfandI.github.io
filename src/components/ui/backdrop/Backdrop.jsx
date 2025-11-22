@@ -1,70 +1,105 @@
 import React, {useState, useEffect} from "react";
-import data from "data/imgData.js";
+import ImageData from "data/imgData.js"; // ← make sure it's default export
 import bgImg from "/bgs/2.jpg";
 import "./styles.scss";
 
-const allImages = Object.values(data);
+const allImages = ImageData; // already an array
 const newImgInterval = 10000;
 
-export default function Backdrop() {
-	const [images, setImages] = useState([allImages[0], allImages[1]]);
+export default function Backdrop({initialImageId = null}) {
+	// Allow parent to control first image, otherwise random
+	const getInitialImages = () => {
+		if (initialImageId) {
+			const forced = allImages.find(img => img.id === initialImageId) || allImages[0];
+			const second = allImages.find(img => img.id !== forced.id) || allImages[1] || forced;
+			return [forced, second];
+		}
+		// Random start
+		const idx1 = Math.floor(Math.random() * allImages.length);
+		let idx2;
+		do {
+			idx2 = Math.floor(Math.random() * allImages.length);
+		} while (idx2 === idx1 && allImages.length > 1);
+		return [allImages[idx1], allImages[idx2] || allImages[0]];
+	};
+
+	const [images, setImages] = useState(getInitialImages());
 	const [activeIndex, setActiveIndex] = useState(0);
-	const [usedImages, setUsedImages] = useState([allImages[0].id, allImages[1].id]);
+	const [usedIds, setUsedIds] = useState(images.map(img => img.id));
 
 	const getNewUniqueImage = () => {
-		const availableImages = allImages.filter(img => !usedImages.includes(img.id));
+		const available = allImages.filter(img => !usedIds.includes(img.id));
 
-		// If no unique images left, reset used images (keep current ones used)
-		if (availableImages.length === 0) {
-			setUsedImages([images[0].id, images[1].id]);
-			const newImage = allImages.find(img => img.id !== images[0].id && img.id !== images[1].id) || allImages[0];
-			return newImage;
+		if (available.length === 0) {
+			// Reset pool but keep the two currently displayed images used
+			const keep = images.map(i => i.id);
+			setUsedIds(keep);
+			const next = allImages.find(img => !keep.includes(img.id)) || allImages[0];
+			return next;
 		}
 
-		// Pick random image from available ones
-		const randomIndex = Math.floor(Math.random() * availableImages.length);
-		const newImage = availableImages[randomIndex];
-
-		// Add to used images
-		setUsedImages(prev => [...prev, newImage.id]);
-
-		return newImage;
+		const randomIdx = Math.floor(Math.random() * available.length);
+		const newImg = available[randomIdx];
+		setUsedIds(prev => [...prev, newImg.id]);
+		return newImg;
 	};
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			// The image at activeIndex stays, the other gets replaced
-			const newImage = getNewUniqueImage();
+			const newImg = getNewUniqueImage();
 
-			if (activeIndex === 0) {
-				// Keep image[0], replace image[1]
-				setImages(prev => [prev[0], newImage]);
-			} else {
-				// Keep image[1], replace image[0]
-				setImages(prev => [newImage, prev[1]]);
-			}
-
-			// Toggle active index for next cycle
-			setActiveIndex(prev => (prev === 0 ? 1 : 0));
+			setImages(prev => (activeIndex === 0 ? [prev[0], newImg] : [newImg, prev[1]]));
+			setActiveIndex(prev => 1 - prev); // toggle 0 ↔ 1
 		}, newImgInterval);
 
 		return () => clearInterval(interval);
-	}, [activeIndex, usedImages]);
+	}, [activeIndex, usedIds]); // dependencies are correct now
+
+	// parralax
+	useEffect(() => {
+		// Only run in browser
+		if (typeof window === "undefined") return;
+
+		const handleScroll = () => {
+			const scrolled = window.pageYOffset;
+			const rate = scrolled * -0.5; // negative = moves up when scrolling down
+
+			// Apply to both images (active + inactive)
+			const images = document.querySelectorAll(".cont img");
+			images.forEach(img => {
+				img.style.transform = `translateY(${rate}px)`;
+			});
+		};
+
+		// throttled for buttery-smooth 60fps
+		let ticking = false;
+		const onScroll = () => {
+			if (!ticking) {
+				window.requestAnimationFrame(() => {
+					handleScroll();
+					ticking = false;
+				});
+				ticking = true;
+			}
+		};
+
+		window.addEventListener("scroll", onScroll, {passive: true});
+		return () => window.removeEventListener("scroll", onScroll);
+	}, []);
 
 	return (
 		<div className="backdrop">
-			<div className="vig"></div>
+			<div className="vig" />
 			<div className="cont">
 				<img
-					className={activeIndex === 0 ? "active" : ""}
 					src={images[0]?.url || bgImg}
-					alt={images[0]?.alt || "Backdrop image"}
+					alt={images[0]?.alt || "Backdrop"}
+					className={activeIndex === 0 ? "active" : "inactive"}
 				/>
-
 				<img
-					className={activeIndex === 1 ? "active" : ""}
 					src={images[1]?.url || bgImg}
-					alt={images[1]?.alt || "Backdrop image"}
+					alt={images[1]?.alt || "Backdrop"}
+					className={activeIndex === 1 ? "active" : "inactive"}
 				/>
 			</div>
 		</div>

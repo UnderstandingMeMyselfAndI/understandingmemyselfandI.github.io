@@ -1,3 +1,4 @@
+@use "./scss/_variables.scss";
 @import "@/globals.css";
 
 :root {
@@ -35,9 +36,10 @@ body * {
 	padding: 0;
 	text-align: center;
 	overflow: hidden;
-	background: var(--mainBackground);
+	// background: var(--mainBackground);
 }
 body {
+	background-color: #101010;
 	user-select: none;
 	*.MuiTypography-root {
 		font-family: "Plus Jakarta Sans", sans-serif;
@@ -50,7 +52,7 @@ body {
 			max-width: 90dvw;
 			left: 5dvw;
 			transform: translateX(0);
-			background: var(--mainBackground);
+			// background: var(--mainBackground);
 			border: none;
 			border-image: none;
 		}
@@ -61,6 +63,7 @@ body h2 {
 }
 #root {
 	background: var(--background);
+	background-color: #101010;
 }
 .app {
 	position: relative;
@@ -68,9 +71,9 @@ body h2 {
 	width: 100%;
 	height: 100%;
 
-	max-width: 600px;
-	margin: 0 auto;
 	.main {
+		max-width: 600px;
+		margin: 0 auto;
 		.inner {
 			.content {
 				position: relative;
@@ -249,7 +252,7 @@ div[data-vaul-overlay][data-vaul-snap-points-overlay="true"] {
 .read-the-docs {
 	color: #888;
 }
-.footer {
+section.footer {
 	display: flex;
 	flex-direction: column;
 	row-gap: 0.5rem;
@@ -262,11 +265,41 @@ div[data-vaul-overlay][data-vaul-snap-points-overlay="true"] {
 	/* box-shadow: 0 2px 10px var(--black-a4); */
 	margin: 0 auto;
 	margin-top: 2rem;
+	h4 {
+		color: var(--primary);
+		max-width: 80%;
+		margin: 1rem auto;
+	}
 
 	.links {
+		margin: 1rem 0;
 		display: flex;
 		justify-content: space-evenly;
+
+		a {
+			display: flex;
+			flex-flow: column wrap;
+			justify-content: center;
+			align-items: center;
+			padding: 2rem 3rem;
+			row-gap: 1rem;
+			border-radius: var(--border-radius);
+			outline: 1px solid #666;
+			text-decoration: none;
+			font-size: variables.$h5_size;
+
+			svg {
+				width: 60px;
+				height: 60px;
+			}
+		}
 	}
+
+	.links a {
+		display: flex;
+		flex-flow: column wrap;
+	}
+
 	a {
 		width: fit-content;
 		/* display: flex;

@@ -1,0 +1,73 @@
+.backdrop {
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	overflow: hidden;
+}
+
+.cont {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.cont img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 120vh; // room for parallax
+	object-fit: cover;
+	object-position: center top;
+	will-change: transform;
+}
+
+/* Initial image — appears instantly, no animation */
+.cont img.initial-full {
+	opacity: 1 !important;
+	animation: none !important;
+	z-index: 5;
+}
+
+/* Normal cycling images */
+.cont img.active {
+	opacity: 0;
+	animation: fadeIn 2s ease-out forwards;
+	z-index: 1;
+}
+
+.cont img.inactive {
+	opacity: 1;
+	animation: fadeOut 2s ease-out forwards;
+	z-index: -1;
+}
+
+.cont img.hidden {
+	opacity: 0;
+	animation: none;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeOut {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+.vig {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background: radial-gradient(circle, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.85) 80%);
+	z-index: 10;
+}

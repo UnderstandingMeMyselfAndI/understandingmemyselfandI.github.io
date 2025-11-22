@@ -6,13 +6,13 @@ const useAppStore = create(set => ({
 	scrollStage: 0,
 	bgImageID: 0,
 	acronymnID: 0,
-	isExpanded: false,
+	active: false,
 	setToolAdded: added => set(state => ({toolAdded: added})),
-	setEmergencyToolAdded: added => set(state => ({toolAdded: added})),
+	setEmergencyToolAdded: added => set(state => ({emergencyToolAdded: added})),
 	setbgImageID: id => set(state => ({bgImageID: id})),
 	setAcronymnID: id => set(state => ({acronymnID: id})),
 	setScrollStage: stage => set(state => ({scrollStage: stage})),
-	toggleIsExpanded: () => set(state => ({isExpanded: !state.isExpanded})),
-	setIsExpanded: expanded => set(state => ({isExpanded: expanded})),
+	toggleIsSelected: () => set(state => ({isToolSelected: !state.isToolSelected})),
+	setActive: active => set(state => ({active: active})),
 }));
 export default useAppStore;

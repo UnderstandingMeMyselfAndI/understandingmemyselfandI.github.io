@@ -118,7 +118,7 @@ const Header = ({classes = ""}) => {
 	};
 
 	useEffect(() => {
-		console.log("scrollStage", scrollStage);
+		// console.log("scrollStage", scrollStage);
 	}, [scrollStage]);
 	useGSAP(
 		() => {
@@ -132,7 +132,7 @@ const Header = ({classes = ""}) => {
 			gsap.set(".w3", {autoAlpha: 0, rotateY: "1080deg", x: 0, y: 0});
 			// gsap.set(".w2", {autoAlpha: 0, scaleY: "-100%", x: 0, y: 0});
 
-			console.log("scrollStage", scrollStage);
+			// console.log("scrollStage", scrollStage);
 			if (scrollStage === 0) {
 				tl.to(".homelogo", {autoAlpha: 1, scale: 1}, 2);
 				tl.to(".wgrp", {autoAlpha: 1, scale: 1}, 0.75);

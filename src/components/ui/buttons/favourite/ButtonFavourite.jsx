@@ -3,19 +3,22 @@ import * as React from "react";
 
 import StarOutlinedIcon from "@mui/icons-material/StarOutlined";
 import StarOutlineOutlinedIcon from "@mui/icons-material/StarOutlineOutlined";
+
+import {storeKeys, localStore} from "@/data/localStore";
 import "./styles.css";
 
 const ButtonFavourite = ({id, className}) => {
 	const [favourite, setFavourite] = React.useState(() => {
-		const storedFavourite = localStorage.getItem(`favourite-${id}`);
-		return storedFavourite;
+		// const storedFavourite = localStorage.getItem(`favourite-${id}`);
+		const storedVal = localStore.get(storeKeys.favourite, id);
+		return storedVal;
 	});
 
 	const imgClassName = favourite ? "favourite chosen" : "favourite";
 	const icon = favourite ? StarOutlineOutlinedIcon : StarOutlinedIcon;
 
 	React.useEffect(() => {
-		const storedFavourite = localStorage.getItem(`favourite-${id}`);
+		const storedFavourite = localStore.get(storeKeys.favourite, id);
 		if (storedFavourite !== null) {
 			setFavourite(storedFavourite === "true");
 		}
@@ -25,7 +28,8 @@ const ButtonFavourite = ({id, className}) => {
 		e.stopPropagation();
 		const newFavourite = !favourite;
 
-		localStorage.setItem(`favourite-${id}`, newFavourite.toString());
+		// localStorage.setItem(`favourite-${id}`, newFavourite.toString());
+		localStore.set(storeKeys.favourite, id, newFavourite.toString());
 		setFavourite(newFavourite);
 	};
 
