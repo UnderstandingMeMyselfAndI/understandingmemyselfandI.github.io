@@ -3,58 +3,49 @@ import {useState, useEffect} from "react";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import useAppStore from "@/store/useAppStore";
 import ToggleButton from "@mui/material/ToggleButton";
-
 import HandymanIcon from "@mui/icons-material/Handyman";
 import HandymanOutlinedIcon from "@mui/icons-material/HandymanOutlined";
-
 import {storeKeys, localStore} from "@/data/localStore.js";
-
 import "./styles.scss";
 
 const ButtonToolbox = ({id}) => {
 	const [isInToolbox, setIsInToolbox] = useState(false);
 
-	const storedVal = localStore.get(storeKeys.toolbox, id);
 	const acronymnID = useAppStore(state => state.acronymnID);
-	const setToolAdded = useAppStore(state => state.setToolAdded);
 
-	console.log("*************** ButtonToolbox ");
-
-	// setIsInToolbox(storedVal === "true");
-
-	const setTool = val => {
-		// if (!active) return;
-		localStore.set(storeKeys.toolbox, acronymnID, val);
-
-		console.log("storedVal storeKeys.toolbox ", storeKeys.toolbox, " acronymnID ", acronymnID, " val ", val);
-		setToolAdded(val);
-		setIsInToolbox(val);
-	};
+	const storedValTB = localStore.get(storeKeys.toolbox, id);
+	const toggleTool = useAppStore(state => state.toggleTool);
+	const toolAdded = useAppStore(state => state.toolAdded);
 
 	useEffect(() => {
-		if (storedVal !== null) {
-			if (storedVal === "true") {
+		console.log("ButtonToolbox storedValTB", storedValTB);
+		if (storedValTB !== null) {
+			if (storedValTB === "true") {
 				setIsInToolbox(true);
 			}
-			if (storedVal === "false") {
+			if (storedValTB === "false") {
 				setIsInToolbox(false);
 			}
 		}
-	}, [storedVal]);
+	}, [storedValTB]);
+
 	useEffect(() => {
-		console.log("useeffect");
-	}, []);
+		localStore.set(storeKeys.toolbox, acronymnID, toolAdded);
+		setIsInToolbox(toolAdded);
+	}, [toolAdded]);
 
 	return (
 		<div
 			className={"btn toolbox" + (isInToolbox ? " active" : "")}
 			key="toolbox-btn"
-			onClick={() => setTool(!isInToolbox)}
+			onClick={toggleTool}
+			aria-label="Toggle toolbox"
 		>
 			{isInToolbox ? <HandymanIcon /> : <HandymanOutlinedIcon />}
 		</div>
 	);
 };
+
 ButtonToolbox.displayName = "ButtonToolbox";
 
 export default ButtonToolbox;

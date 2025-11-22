@@ -1,4 +1,4 @@
-// import useThemeStore from '../../themeStore';
+// import {useThemeStore} from '../../themeStore';
 // const storageKey = 'themeOption';
 
 const applyTheme = ({theme}) => {

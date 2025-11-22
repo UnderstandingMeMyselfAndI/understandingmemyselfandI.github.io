@@ -53,7 +53,7 @@ export default function BackdropParallax({initialImageId = null, initialDelay = 
 			// Subsequent transitions
 			const intervalId = setInterval(() => {
 				const nextImg = getNextImage();
-				setImages(prev => (activeIndex === 0 ? [prev[0], nextImg] : [nextImg, prev[1]]));
+				setImages(prev => (activeIndex === 0 ? [prev[0], nextImg] : [prev[1], nextImg]));
 				setActiveIndex(prev => 1 - prev);
 			}, interval);
 

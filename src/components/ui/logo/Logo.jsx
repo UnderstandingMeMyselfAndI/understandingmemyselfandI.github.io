@@ -3,7 +3,7 @@ import "./styles.scss";
 import smartLogo from "@/assets/icons/UmmiIcon.svg";
 import smartLogoDark from "@/assets/icons/UmmiIcon.svg";
 
-import useThemeStore from "@/store/useThemeStore";
+import {useThemeStore} from "@/store/useThemeStore";
 const Logo = ({showText = true, classes = ""}) => {
 	const theme = useThemeStore(state => state.theme);
 	const text = showText ? "Ummi" : "";

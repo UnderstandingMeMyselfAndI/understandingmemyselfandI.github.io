@@ -1,58 +1,46 @@
-import * as React from "react";
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import useAppStore from "@/store/useAppStore";
-
 import {storeKeys, localStore} from "@/data/localStore.js";
-
 import MedicationIcon from "@mui/icons-material/Medication";
 import MedicationOutlinedIcon from "@mui/icons-material/MedicationOutlined";
-
 import "./styles.scss";
 
 const ButtonEmergencyToolbox = ({id}) => {
-	const [isInToolbox, setIsInToolbox] = useState(false);
-	const [isToggle, setIsToggle] = useState(false);
-
+	const [isInEmergemcyToolbox, setIsInEmergencyToolbox] = useState(false);
 	const acronymnID = useAppStore(state => state.acronymnID);
+	const storedValETB = localStore.get(storeKeys.emergency, id);
+
 	const emergencyToolAdded = useAppStore(state => state.emergencyToolAdded);
-	const setEmergencyToolAdded = useAppStore(state => state.setEmergencyToolAdded);
-	const active = useAppStore(state => state.active);
-	const storedVal = localStore.get(storeKeys.toolbox, id);
-
-	console.log("*************** ButtonEmergencyToolbox ");
-
-	const setTool = val => {
-		// if (!active) return;
-		localStore.set(storeKeys.emergency, acronymnID, val);
-
-		setIsInToolbox(val);
-		setEmergencyToolAdded(val);
-	};
+	const toggleEmergencyTool = useAppStore(state => state.toggleEmergencyTool);
 
 	useEffect(() => {
-		if (storedVal !== null) {
-			if (storedVal === "true") {
-				setIsInToolbox(true);
-				console.log("ButtonEmergencyToolbox TRUE ");
+		console.log("ButtonEmergencyToolbox storedValETB", storedValETB);
+		if (storedValETB !== null) {
+			if (storedValETB === "true") {
+				setIsInEmergencyToolbox(true);
 			}
-			if (storedVal === "false") {
-				setIsInToolbox(false);
+			if (storedValETB === "false") {
+				setIsInEmergencyToolbox(false);
 			}
-		} else {
-			// setIsInToolbox(false);
 		}
-	}, [storedVal]);
+	}, [storedValETB]);
+
+	useEffect(() => {
+		localStore.set(storeKeys.emergency, acronymnID, emergencyToolAdded);
+		setIsInEmergencyToolbox(emergencyToolAdded);
+	}, [emergencyToolAdded]);
 
 	return (
 		<div
-			className={"btn toolbox emrgcy" + (isInToolbox ? " active" : "")}
+			className={`btn toolbox emrgcy ${isInEmergemcyToolbox ? "active" : ""}`}
 			key="toolbox-emergency-btn"
-			onClick={() => setTool(!isInToolbox)}
+			onClick={toggleEmergencyTool}
 		>
-			{isInToolbox ? <MedicationIcon /> : <MedicationOutlinedIcon />}
+			{isInEmergemcyToolbox ? <MedicationIcon /> : <MedicationOutlinedIcon />}
 		</div>
 	);
 };
+
 ButtonEmergencyToolbox.displayName = "ButtonEmergencyToolbox";
 
 export default ButtonEmergencyToolbox;

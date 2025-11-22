@@ -23,11 +23,13 @@
 }
 
 .cont img.active {
+	opacity: 1;
 	animation: fadeIn 1.2s cubic-bezier(0.365, 0.403, 0, 1) forwards;
-	z-index: 2;
+	z-index: 0;
 }
 
 .cont img.inactive {
+	opacity: 0;
 	animation: fadeOut 1.2s cubic-bezier(0.365, 0.403, 0, 1) forwards;
 	z-index: 1;
 }

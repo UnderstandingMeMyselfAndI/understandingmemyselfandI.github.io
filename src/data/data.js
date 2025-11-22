@@ -182,38 +182,38 @@ const data = [
 		videos: [],
 	},
 
-	{
-		id: 8,
-		title: "F.E.A.R.",
-		content: {
-			acronyms: [
-				{
-					letter: "F",
-					meaning: "False / Fuck",
-					definition: "<p>Two versions (both useful):</p><p>1. False Evidence Appearing Real (CBT)</p><p>2. Fuck Everything And Run (the meeting-room classic)</p>",
-					scenario: "",
-				},
-				{letter: "E", meaning: "Evidence / Everything", definition: "<p>Your brain is making stuff up and selling it as facts… or just panicking</p>", scenario: ""},
-				{letter: "A", meaning: "Appearing / And", definition: "<p>It feels totally real in the moment</p>", scenario: ""},
-				{letter: "R", meaning: "Real / Run", definition: "<p>…but it’s usually not. Fear is a terrible fortune-teller.</p>", scenario: ""},
-			],
-			explanation: "<p>Pick your flavor of F.E.A.R.—both remind you that fear lies for a living.</p>",
-		},
-		scenarios: [
-			{
-				title: "First Meeting Jitters",
-				content: "<p>You’re terrified to walk into your first recovery meeting. Brain says “everyone will judge me.” That’s False Evidence Appearing Real. You go anyway and people hug you.</p>",
-				btnLabel: "Face the Fear",
-			},
-			{
-				title: "Relapse Anxiety",
-				content: "<p>“If I feel this bad again I’ll definitely use.” Fear talking. Most people who feel bad… just feel bad for a bit and then feel better.</p>",
-				btnLabel: "Call Its Bluff",
-			},
-		],
-		cats: ["C.B.T", "D.B.T", "Emergency", "Grounding", "Assumptions", "Plans", "Urges", "Cravings", "Thoughts", "Emotions", "Mood", "Mental Health", "Anxiety", "Stress", "Depressed", "Low Mood"],
-		videos: [],
-	},
+	// {
+	// 	id: 8,
+	// 	title: "F.E.A.R.",
+	// 	content: {
+	// 		acronyms: [
+	// 			{
+	// 				letter: "F",
+	// 				meaning: "False / Fuck",
+	// 				definition: "<p>Two versions (both useful):</p><p>1. False Evidence Appearing Real (CBT)</p><p>2. Fuck Everything And Run (the meeting-room classic)</p>",
+	// 				scenario: "",
+	// 			},
+	// 			{letter: "E", meaning: "Evidence / Everything", definition: "<p>Your brain is making stuff up and selling it as facts… or just panicking</p>", scenario: ""},
+	// 			{letter: "A", meaning: "Appearing / And", definition: "<p>It feels totally real in the moment</p>", scenario: ""},
+	// 			{letter: "R", meaning: "Real / Run", definition: "<p>…but it’s usually not. Fear is a terrible fortune-teller.</p>", scenario: ""},
+	// 		],
+	// 		explanation: "<p>Pick your flavor of F.E.A.R.—both remind you that fear lies for a living.</p>",
+	// 	},
+	// 	scenarios: [
+	// 		{
+	// 			title: "First Meeting Jitters",
+	// 			content: "<p>You’re terrified to walk into your first recovery meeting. Brain says “everyone will judge me.” That’s False Evidence Appearing Real. You go anyway and people hug you.</p>",
+	// 			btnLabel: "Face the Fear",
+	// 		},
+	// 		{
+	// 			title: "Relapse Anxiety",
+	// 			content: "<p>“If I feel this bad again I’ll definitely use.” Fear talking. Most people who feel bad… just feel bad for a bit and then feel better.</p>",
+	// 			btnLabel: "Call Its Bluff",
+	// 		},
+	// 	],
+	// 	cats: ["C.B.T", "D.B.T", "Emergency", "Grounding", "Assumptions", "Plans", "Urges", "Cravings", "Thoughts", "Emotions", "Mood", "Mental Health", "Anxiety", "Stress", "Depressed", "Low Mood"],
+	// 	videos: [],
+	// },
 
 	{
 		id: 10,

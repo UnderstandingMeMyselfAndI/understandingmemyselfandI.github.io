@@ -53,16 +53,18 @@ export default function Snackbars() {
 	}, [toolAdded]);
 
 	useEffect(() => {
+		const message = emergencyToolAdded ? msgs.emergency.added : msgs.emergency.removed;
 		console.log("emergencyToolAdded ", emergencyToolAdded);
+		setSnackPack(prev => [...prev, {message, key: new Date().getTime()}]);
 	}, [emergencyToolAdded]);
 
 	useEffect(() => {
 		// if (scrollStage < 1) return;
-		console.log("snackPack emergencyToolAdded emergencyToolAdded ", emergencyToolAdded);
-		const message = emergencyToolAdded ? msgs.emergency.added : msgs.emergency.removed;
+		console.log("snackPack emergencyToolAdded toolAdded ", toolAdded);
+		const message = emergencyToolAdded ? msgs.tool.added : msgs.tool.removed;
 
 		setSnackPack(prev => [...prev, {message, key: new Date().getTime()}]);
-	}, [emergencyToolAdded]);
+	}, [toolAdded]);
 
 	const handleClose = (event, reason) => {
 		if (reason === "clickaway") {

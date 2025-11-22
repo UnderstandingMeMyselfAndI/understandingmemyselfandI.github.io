@@ -3,8 +3,8 @@ import React, {useEffect, useState} from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import Header from "ui/header/Header";
-import useThemeStore from "@/store/useThemeStore";
-import useAppStore from "@/store/useThemeStore";
+import {useThemeStore} from "@/store/useThemeStore";
+import useAppStore from "@/store/useAppStore";
 
 import applyTheme from "components/theme/applyTheme";
 import AccordionScroll from "ui/AcronymAccordion/AccordionScroll";
@@ -32,7 +32,7 @@ function App() {
 	const [open, setOpen] = useState(true);
 	const [expanded, setExpanded] = useState(false);
 	const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme);
-	const showAccCard = useAppStore(state => state.showAccCard);
+	const setShowAccCard = useAppStore(state => state.setShowAccCard);
 	// const setShowAccCard = useAppStore(state => state.setShowAccCard);
 	//const setEmergencyToolAdded = useAppStore(state => state.setEmergencyToolAdded);
 
@@ -50,20 +50,10 @@ function App() {
 
 	const handleChange = panel => (event, newExpanded) => {
 		setExpanded(newExpanded ? panel : false);
-		setOpen(!open);
-		// setShowAccCard(!open);
-		console.log("expanded ", expanded);
-		if (expanded !== false) {
-			useAppStore.setState({showAccCard: true});
-		} else {
-			useAppStore.setState({showAccCard: false});
-		}
+		// setShowAccCard(newExpanded);
+		setOpen(newExpanded);
 	};
 
-	const closeAccordion = close => (event, newClose) => {
-		setOpen(open => !open);
-		setExpanded(!close);
-	};
 	const emergencyToolAdded = useAppStore(state => state.emergencyToolAdded);
 	useEffect(() => {
 		console.log("emergencyToolAdded ", emergencyToolAdded);
@@ -86,7 +76,7 @@ function App() {
 						{/* <ScenarioModal /> */}
 
 						<div className="content">
-							{showAccCard && <AcronymCard />}
+							<AcronymCard />
 							<Header />
 							<section className="intro">
 								<p>The tools we learn to cope with our emotions, thoughts, feelings and mental health are ace, but remembering them can be hard.</p>
@@ -152,13 +142,12 @@ function App() {
 									<br />
 								</p>
 
-								<p>
-									<h4>
-										<b>
-											<u>FEEDBACK</u>
-										</b>
-									</h4>
-								</p>
+								<h4>
+									<b>
+										<u>FEEDBACK</u>
+									</b>
+								</h4>
+
 								<p>
 									Like everyone dealing with mental health and going through recovery, these tools and this app can only get better and improve if we know what works, what doesn&apos;t, what you like
 									and what you don&apos;t like.

@@ -20,24 +20,33 @@ const AcronymCard = () => {
 
 	const acronymnID = useAppStore(state => state.acronymnID);
 	const toolAdded = useAppStore(state => state.toolAdded);
-	const setActive = useAppStore(state => state.setActive);
-	const active = useAppStore(state => state.active);
+	const setShowAccCard = useAppStore(state => state.setShowAccCard);
+	const showAccCard = useAppStore(state => state.showAccCard);
 
 	useEffect(() => {
 		if (acronymnID === null || acronymnID === undefined) return;
 
-		if (getAccData(acronymnID) !== undefined) {
-			setAccData(getAccData(acronymnID));
-			setIsOpen(true);
-		}
+		// if (getAccData(acronymnID) !== undefined) {
+		setAccData(getAccData(acronymnID));
+		setIsOpen(showAccCard);
+		// }
 
-		console.log("acronymnID", acronymnID);
-	}, [acronymnID]);
+		console.log("showAccCard", showAccCard);
+	}, [showAccCard]);
+
+	useEffect(() => {
+		setIsOpen(showAccCard);
+		console.log("showAccCard", acronymnID, " data ", getAccData(acronymnID));
+		showAccCard && setAccData(getAccData(acronymnID));
+	}, [showAccCard]);
 
 	const handleClose = () => {
-		setIsOpen(false);
-		// setActive(false);
+		setShowAccCard(false);
 	};
+	useEffect(() => {
+		console.log("showAccCard", acronymnID, " data ", getAccData(acronymnID));
+		setAccData(getAccData(acronymnID));
+	}, [acronymnID]);
 
 	return (
 		<div

@@ -28,10 +28,11 @@ const AccordionItemWithEffects = ({item, index, acronymID, expanded, handleChang
 	useEffect(() => {
 		if (accordionRef.current) {
 			if (isExpanded) {
+				setShowAccCard(isExpanded);
+				console.log("isExpanded", isExpanded);
 				// Disable scroll effects for all items when expanded
 				disableScrollEffects();
-				setAcronymnID(acronymID);
-				setShowAccCard(true);
+				setAcronymnID(item?.id);
 
 				// Scroll to position when expanded (5vh from top)
 				// setTimeout(() => {
@@ -48,7 +49,6 @@ const AccordionItemWithEffects = ({item, index, acronymID, expanded, handleChang
 				// 	}
 				// }, 10);
 			} else if (previousExpandedState.current === true) {
-				setShowAccCard(false);
 				// Only scroll to center when transitioning from expanded to collapsed
 				setTimeout(() => {
 					if (accordionRef.current) {

@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import smartLogo from "@/assets/icons/UmmiIcon.svg";
 import smartLogoDark from "@/assets/icons/UmmiIcon.svg";
-import useThemeStore from "@/store/useThemeStore";
+import {useThemeStore} from "@/store/useThemeStore";
 import "./styles.scss";
 
 const LogoFloating = ({showText = true, classes = ""}) => {

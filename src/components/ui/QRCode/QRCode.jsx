@@ -2,7 +2,7 @@ import QRCodeIconBlack from "@/assets/qr-code-src-app-black-318.png";
 import QRCodeIconWhite from "@/assets/qr-code-src-app-white-318.png";
 
 // import getStoredTheme from '@/components/theme/getStoredTheme';
-import useThemeStore from "@/store/useThemeStore";
+import {useThemeStore} from "@/store/useThemeStore";
 import "./styles.css";
 import PropTypes from "prop-types";
 import {useShallow} from "zustand/react/shallow";
