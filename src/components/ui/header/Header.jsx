@@ -134,9 +134,9 @@ const Header = ({classes = ""}) => {
 
 			// console.log("scrollStage", scrollStage);
 			if (scrollStage === 0) {
-				tl.to(".homelogo", {autoAlpha: 1, scale: 1}, 2);
+				tl.to(".homelogo", {autoAlpha: 1, scale: 1}, 1);
 				tl.to(".wgrp", {autoAlpha: 1, scale: 1}, 0.75);
-				tl2.to(".w0", {autoAlpha: 1, scale: 1, x: 0, y: 0}, "2.75");
+				tl2.to(".w0", {autoAlpha: 1, scale: 1, x: 0, y: 0}, "1.75");
 				tl2.to(".w1", {autoAlpha: 1, scale: 1, x: 0, y: 0}, "-=0.5");
 				tl2.to(".w2", {autoAlpha: 1, scale: 1, x: 0, y: 0}, "-=0.35");
 				tl2.to(".w3", {autoAlpha: 1, duration: 1.5, rotateY: 0, x: 0, y: 0}, "-=0.5");
