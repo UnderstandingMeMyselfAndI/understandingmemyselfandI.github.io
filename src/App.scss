@@ -65,6 +65,12 @@ body h2 {
 	background: var(--background);
 	background-color: #101010;
 }
+.ummi {
+	font-weight: 900;
+	color: var(--lightBlue);
+	font-size: variables.$ummi_size;
+}
+
 .app {
 	position: relative;
 	z-index: 10;

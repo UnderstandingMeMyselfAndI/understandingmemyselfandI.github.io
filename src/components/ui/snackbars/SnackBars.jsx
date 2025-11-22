@@ -31,9 +31,7 @@ export default function Snackbars() {
 
 	useEffect(() => {
 		if (scrollStage < 2) return;
-		console.log("snackPack  ");
 		if (snackPack.length && !messageInfo) {
-			console.log("snackPack  ", snackPack, " message ", messageInfo?.message, " open", open);
 			// Set a new snack when we don't have an active one
 			setMessageInfo({...snackPack[0]});
 			setSnackPack(prev => prev.slice(1));
@@ -45,8 +43,6 @@ export default function Snackbars() {
 	}, [snackPack, messageInfo, open]);
 
 	useEffect(() => {
-		console.log("snackPack toolAdded ", toolAdded);
-		// if (scrollStage < 1) return;
 		const message = toolAdded ? msgs.tool.added : msgs.tool.removed;
 
 		setSnackPack(prev => [...prev, {message, key: new Date().getTime()}]);
@@ -61,7 +57,7 @@ export default function Snackbars() {
 	useEffect(() => {
 		// if (scrollStage < 1) return;
 		console.log("snackPack emergencyToolAdded toolAdded ", toolAdded);
-		const message = emergencyToolAdded ? msgs.tool.added : msgs.tool.removed;
+		const message = toolAdded ? msgs.tool.added : msgs.tool.removed;
 
 		setSnackPack(prev => [...prev, {message, key: new Date().getTime()}]);
 	}, [toolAdded]);

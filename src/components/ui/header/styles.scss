@@ -1,3 +1,4 @@
+@use "./scss/Animation.css";
 @import "@/globals.css";
 
 header {
@@ -43,6 +44,7 @@ header.stage-3 {
 	flex-flow: column nowrap;
 	justify-content: center;
 	align-items: center;
+	margin-bottom: -20vh;
 	.r1,
 	.r2 {
 		width: 100%;
@@ -98,18 +100,33 @@ header.stage-3 {
 .arrow-cont {
 	opacity: 0;
 }
-
+.arrow-grp-1 {
+	transform: translate(-0px, 0);
+	// opacity: 0.6;
+}
+.arrow-grp-3 {
+	transform: translate(40px, 0px);
+	// opacity: 0;
+}
 .arrow-cont {
-	position: absolute;
-	top: 80vh;
-	left: 50%;
-	transform: translate(-50%, -50%) scale(1.8);
-	z-index: 10;
-	opacity: 0;
-	transition: all 1s ease-in-out;
-	svg.arrow {
-		opacity: 0.5;
+	// position: absolute;
+	// top: 80vh;
+	// left: 50%;
+	// transform: translate(-100%, -50%) scale(3);
+	// z-index: 10;
+	// opacity: 1;
+	// transition: all 1s ease-in-out;
 
+	// animation-timing-function: ease-in-out, ease-in-out, ease-in-out;
+	// animation-name: move-out-down-200, fade-out, flip-y, move-in-up-200;
+	// animation-duration: 3000ms, 1000ms, 50ms, 1000ms;
+	// animation-delay: 0.65s, 0.65s, 0.65s;
+	// animation-fill-mode: forwards;
+	// animation-iteration-count: infinite;
+	svg.arrow {
+		width: 34px;
+		height: 34px;
+		opacity: 0.75;
 		fill: var(--lightBlue);
 	}
 }

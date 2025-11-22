@@ -115,6 +115,15 @@
 		transform: translateY(0%);
 	}
 }
+@keyframes move-in-up-200 {
+	0% {
+		transform: translateY(200%);
+	}
+
+	100% {
+		transform: translateY(0%);
+	}
+}
 @keyframes move-out-up {
 	0% {
 		transform: translateY(0%);
@@ -350,5 +359,14 @@
 
 	100% {
 		transform: scale(100%);
+	}
+}
+@keyframes flip-y {
+	0% {
+		transform: scaleY(0%);
+	}
+
+	100% {
+		transform: scaleY(-100%);
 	}
 }

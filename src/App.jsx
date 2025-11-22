@@ -10,6 +10,7 @@ import applyTheme from "components/theme/applyTheme";
 import AccordionScroll from "ui/AcronymAccordion/AccordionScroll";
 import ScrollPosition from "./components/utils/ScrollPosition";
 import FooterMetadata from "ui/footer/FooterMetadata.jsx";
+import Intro from "ui/sections/Intro.jsx";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
@@ -78,12 +79,7 @@ function App() {
 						<div className="content">
 							<AcronymCard />
 							<Header />
-							<section className="intro">
-								<p>The tools we learn to cope with our emotions, thoughts, feelings and mental health are ace, but remembering them can be hard.</p>
-								<p>
-									<b className="ummi">Ummi</b> was created to be your toolbox so you can carry those tools around with you for whenever you need them.
-								</p>
-							</section>
+							<Intro />
 							<section className="tools">
 								<h2>Tools:</h2>
 								<p>Tap a heading to read out about the tool.</p>

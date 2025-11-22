@@ -269,6 +269,18 @@ $p_weight: 400;
 $p_line_height: 1.4;
 
 // ------------------------------------------
+// Ummi font size
+// ------------------------------------------
+
+$ummi_size_min: 22px;
+$ummi_size_max: 26px;
+$ummi_size: responsiveFontSize($ummi_size_min, $ummi_size_max, $minDeviceWidth, $maxDeviceWidth);
+
+$ummi_color: var(--lightBlue);
+$ummi_weight: 400;
+$ummi_line_height: 1.4;
+
+// ------------------------------------------
 // Button font size
 // ------------------------------------------
 
