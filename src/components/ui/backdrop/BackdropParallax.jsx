@@ -7,31 +7,22 @@ const allImages = ImageData;
 const DEFAULT_INTERVAL = 10000;
 
 export default function BackdropParallax({initialImageId = null, initialDelay = 0, interval = DEFAULT_INTERVAL, parallaxStrength = 0.5}) {
-	// Initial pair of images
-	const getInitialPair = () => {
-		const first = initialImageId ? allImages.find(i => i.id === initialImageId) || allImages[0] : allImages[Math.floor(Math.random() * allImages.length)];
+	// Always keep two images: bottom (current) and top (incoming)
+	const [bottomImage, setBottomImage] = useState(null);
+	const [topImage, setTopImage] = useState(null);
+	const [isTransitioning, setIsTransitioning] = useState(false);
+	const usedIds = useRef(new Set());
 
-		let second = first;
-		while (second.id === first.id && allImages.length > 1) {
-			second = allImages[Math.floor(Math.random() * allImages.length)];
-		}
-		return [first, second];
-	};
-
-	const [images, setImages] = useState(getInitialPair());
-	const [activeIndex, setActiveIndex] = useState(0); // 0 or 1
-	const [hasStarted, setHasStarted] = useState(false);
-	const usedIds = useRef(new Set([images[0].id]));
-
-	// Get next unique image
+	// Select random unused image
 	const getNextImage = () => {
 		let available = allImages.filter(img => !usedIds.current.has(img.id));
 
 		if (available.length === 0) {
-			// Reset pool but keep the two currently shown
-			const keep = images.map(i => i.id);
-			usedIds.current = new Set(keep);
-			available = allImages.filter(img => !keep.includes(img.id));
+			// Reset pool, but keep currently displayed images
+			const currentlyUsed = bottomImage ? [bottomImage.id] : [];
+			if (topImage) currentlyUsed.push(topImage.id);
+			usedIds.current = new Set(currentlyUsed);
+			available = allImages.filter(img => !currentlyUsed.includes(img.id));
 		}
 
 		const next = available.length > 0 ? available[Math.floor(Math.random() * available.length)] : allImages[0];
@@ -40,71 +31,106 @@ export default function BackdropParallax({initialImageId = null, initialDelay = 
 		return next;
 	};
 
+	// Initial setup
+	useEffect(() => {
+		const firstImage = initialImageId ? allImages.find(i => i.id === initialImageId) || allImages[0] : allImages[Math.floor(Math.random() * allImages.length)];
+
+		usedIds.current.add(firstImage.id);
+		setBottomImage(firstImage);
+		setTopImage(null);
+		setIsTransitioning(false);
+	}, [initialImageId]);
+
 	// Start cycling after initialDelay
 	useEffect(() => {
+		if (!bottomImage) return;
+
 		const timer = setTimeout(() => {
-			setHasStarted(true);
-
-			// First transition
-			const nextImg = getNextImage();
-			setImages(prev => (activeIndex === 0 ? [prev[0], nextImg] : [nextImg, prev[1]]));
-			setActiveIndex(prev => 1 - prev);
-
-			// Subsequent transitions
-			const intervalId = setInterval(() => {
-				const nextImg = getNextImage();
-				setImages(prev => (activeIndex === 0 ? [prev[0], nextImg] : [prev[1], nextImg]));
-				setActiveIndex(prev => 1 - prev);
-			}, interval);
-
-			return () => clearInterval(intervalId);
+			startCycle();
 		}, initialDelay);
 
 		return () => clearTimeout(timer);
-	}, [initialDelay, interval]);
+	}, [bottomImage, initialDelay]);
 
-	// Parallax only on the active image
+	// Main cycling logic
+	const startCycle = () => {
+		const intervalId = setInterval(() => {
+			const nextImage = getNextImage();
+
+			// Step 1: Set the new image as top (will fade in)
+			setTopImage(nextImage);
+			setIsTransitioning(true);
+
+			// Step 2: After fade-in completes, move top → bottom, clear top
+			setTimeout(() => {
+				setBottomImage(nextImage);
+				setTopImage(null);
+				setIsTransitioning(false);
+			}, 2000); // Match your fade duration (2s)
+		}, interval);
+
+		return () => clearInterval(intervalId);
+	};
+	// Safe preview of next image without affecting usedIds
+	// Add this useEffect near your other effects
+	useEffect(() => {
+		if (!bottomImage) return;
+
+		const preloadNext = () => {
+			const available = allImages.filter(img => !usedIds.current.has(img.id) && img.id !== bottomImage.id && (!topImage || img.id !== topImage.id));
+
+			if (available.length > 0) {
+				const next = available[Math.floor(Math.random() * available.length)];
+				const img = new Image();
+				img.src = next.url;
+			}
+		};
+
+		// Preload immediately
+		preloadNext();
+
+		// Preload one more ~2 seconds before next transition
+		const preloadInterval = setInterval(preloadNext, Math.max(interval - 2000, 1000));
+
+		return () => clearInterval(preloadInterval);
+	}, [bottomImage, topImage, interval]);
+
+	// Parallax effect on scroll
 	useEffect(() => {
 		if (parallaxStrength === 0) return;
 
 		const onScroll = () => {
 			const offset = window.pageYOffset * parallaxStrength;
-			const activeImg = document.querySelector(".cont img.active");
-			if (activeImg) {
-				activeImg.style.transform = `translateY(-${offset}px)`;
-			}
+			document.querySelectorAll(".cont img").forEach(img => {
+				img.style.transform = `translateY(-${offset}px)`;
+			});
 		};
 
 		window.addEventListener("scroll", onScroll, {passive: true});
 		return () => window.removeEventListener("scroll", onScroll);
-	}, [parallaxStrength, activeIndex]);
+	}, [parallaxStrength]);
 
-	const isInitialLoad = !hasStarted;
+	if (!bottomImage) return null;
 
 	return (
 		<div className="backdrop">
 			<div className="vig" />
 			<div className="cont">
-				{/* Initial image – appears instantly, full opacity */}
-				{isInitialLoad && (
+				{/* Bottom layer - always visible */}
+				<img
+					src={bottomImage.url || bgImg}
+					alt={bottomImage.alt || "Backdrop"}
+					className="bottom"
+				/>
+
+				{/* Top layer - fades in during transition */}
+				{topImage && (
 					<img
-						src={images[0].url || bgImg}
-						alt={images[0].alt || "Initial backdrop"}
-						className="initial-full"
+						src={topImage.url || bgImg}
+						alt={topImage.alt || "Backdrop"}
+						className={`top ${isTransitioning ? "fading-in" : ""}`}
 					/>
 				)}
-
-				{/* Regular cross-fading slots */}
-				<img
-					src={images[0].url || bgImg}
-					alt={images[0].alt || "Backdrop"}
-					className={activeIndex === 0 ? "active" : hasStarted ? "inactive" : "hidden"}
-				/>
-				<img
-					src={images[1].url || bgImg}
-					alt={images[1].alt || "Backdrop"}
-					className={activeIndex === 1 ? "active" : hasStarted ? "inactive" : "hidden"}
-				/>
 			</div>
 		</div>
 	);
