@@ -60,15 +60,15 @@ function App() {
 		setOpen(newExpanded);
 	};
 
-	const emergencyToolAdded = useAppStore(state => state.emergencyToolAdded);
-	useEffect(() => {
-		// console.log("emergencyToolAdded ", emergencyToolAdded);
-	}, [emergencyToolAdded]);
+	// const emergencyToolAdded = useAppStore(state => state.emergencyToolAdded);
+	// useEffect(() => {
+	// 	// console.log("emergencyToolAdded ", emergencyToolAdded);
+	// }, [emergencyToolAdded]);
 
-	const toolAdded = useAppStore(state => state.toolAdded);
-	useEffect(() => {
-		// console.log("toolAdded ", toolAdded);
-	}, [toolAdded]);
+	// const toolAdded = useAppStore(state => state.toolAdded);
+	// useEffect(() => {
+	// 	// console.log("toolAdded ", toolAdded);
+	// }, [toolAdded]);
 
 	return (
 		<React.Fragment>

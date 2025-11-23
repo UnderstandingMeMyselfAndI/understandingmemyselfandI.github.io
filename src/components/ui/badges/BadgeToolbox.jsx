@@ -9,6 +9,11 @@ import Alert from "@mui/material/Alert";
 import {storeKeys, localStore} from "data/localStore.js";
 import data from "data/data.js";
 import Slide from "@mui/material/Slide";
+import CheckIcon from "@mui/icons-material/Check";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import HandymanOutlinedIcon from "@mui/icons-material/HandymanOutlined";
+import strings from "data/strings.js";
 import "./BadgeToolbox.scss";
 
 export default function BadgeToolbox() {
@@ -67,11 +72,15 @@ export default function BadgeToolbox() {
 			>
 				<Alert
 					onClose={handleClose}
-					severity="success"
+					severity={showToolsOnly ? "success" : "info"}
 					variant="filled"
 					sx={{width: "100%"}}
+					iconMapping={{
+						success: <HandymanOutlinedIcon fontSize="inherit" />,
+						info: <CheckCircleOutlineIcon fontSize="inherit" />,
+					}}
 				>
-					{showToolsOnly ? "Showing only the tools you selected" : "Showing all tools"}
+					{showToolsOnly ? strings.tools.list.yourToolsFiltered : strings.tools.list.unfiltered}
 				</Alert>
 			</Snackbar>
 			<div className={"badge-cont " + ("stg-" + scrollStage) + (showAccCard ? " hide" : "")}>

@@ -17,8 +17,6 @@ const ScrollPosition = ({children, classes = ""}) => {
 
 	useEffect(() => {
 		if (stage !== scrollStage) {
-			console.log("stage", stage);
-			console.log("scrollStage", scrollStage);
 			setScrollStage(stage);
 		}
 	}, [stage]);

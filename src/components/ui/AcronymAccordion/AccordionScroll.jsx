@@ -12,6 +12,8 @@ import ButtonToolbox from "../buttons/toolbox/ButtonToolbox";
 import ButtonEmergencyToolbox from "../buttons/toolbox/ButtonEmergencyToolbox";
 import {useScrollEffects, SCROLL_EFFECT_CONFIG} from "./useScrollEffects";
 import {triggerGlobalRecalc} from "@/hooks/useGlobalRecalcTrigger.js";
+import {storeKeys, localStore} from "@/data/localStore.js";
+
 import "../../../globals.css";
 import "./AccordionStyles.scss";
 
@@ -181,7 +183,9 @@ const AccordionItemWithEffects = ({item, index, acronymID, expanded, handleChang
 	);
 };
 export default function AccordionScroll({expanded, handleChange}) {
-	const componentData = data;
+	const {showToolsOnly} = useAppStore();
+	const ids = data.map(item => item.id);
+	const userToolIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids);
 
 	// You can easily override the default config here
 	const customConfig = {
@@ -190,6 +194,7 @@ export default function AccordionScroll({expanded, handleChange}) {
 		// minScale: 0.3, // Uncomment to override
 		// fadeBoundary: 0.2, // Uncomment to override
 	};
+	const componentData = showToolsOnly ? data.filter(item => userToolIDs.includes(item.id)) : data; //userToolIDs;
 
 	return (
 		<div className={"AccordionRoot" + (expanded ? " expanded" : "")}>

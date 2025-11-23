@@ -10,9 +10,7 @@ import "./styles.scss";
 
 const ButtonToolbox = ({id}) => {
 	const [isInToolbox, setIsInToolbox] = useState(false);
-
 	const acronymnID = useAppStore(state => state.acronymnID);
-
 	const storedValTB = localStore.get(storeKeys.toolbox, id);
 	const toggleTool = useAppStore(state => state.toggleTool);
 	const toolAdded = useAppStore(state => state.toolAdded);

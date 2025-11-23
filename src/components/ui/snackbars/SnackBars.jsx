@@ -6,18 +6,8 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import useAppStore from "@/store/useAppStore";
 import Slide from "@mui/material/Slide";
+import strings from "data/strings.js";
 import "./styles.scss";
-
-const msgs = {
-	tool: {
-		added: "Tool added",
-		removed: "Tool removed",
-	},
-	emergency: {
-		added: "Emergency tool added",
-		removed: "Emergency tool removed",
-	},
-};
 
 export default function Snackbars() {
 	const [snackPack, setSnackPack] = useState([]);
@@ -43,22 +33,19 @@ export default function Snackbars() {
 	}, [snackPack, messageInfo, open]);
 
 	useEffect(() => {
-		const message = toolAdded ? msgs.tool.added : msgs.tool.removed;
+		const message = toolAdded ? strings.toolbox.added : strings.toolbox.removed;
 
 		setSnackPack(prev => [...prev, {message, key: new Date().getTime()}]);
 	}, [toolAdded]);
 
 	useEffect(() => {
-		const message = emergencyToolAdded ? msgs.emergency.added : msgs.emergency.removed;
-		console.log("emergencyToolAdded ", emergencyToolAdded);
+		const message = emergencyToolAdded ? strings.toolbox.emergency.added : strings.toolbox.emergency.removed;
 		setSnackPack(prev => [...prev, {message, key: new Date().getTime()}]);
 	}, [emergencyToolAdded]);
 
 	useEffect(() => {
 		// if (scrollStage < 1) return;
-		console.log("snackPack emergencyToolAdded toolAdded ", toolAdded);
-		const message = toolAdded ? msgs.tool.added : msgs.tool.removed;
-
+		const message = toolAdded ? strings.toolbox.added : strings.toolbox.removed;
 		setSnackPack(prev => [...prev, {message, key: new Date().getTime()}]);
 	}, [toolAdded]);
 
