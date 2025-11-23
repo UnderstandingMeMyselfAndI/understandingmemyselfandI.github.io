@@ -21,11 +21,25 @@ export default function BadgeToolbox() {
 	const allAccronyms = data;
 	const ids = allAccronyms.map(item => item.id);
 	const count = localStore.getCountByLabel(storeKeys.toolbox, ids);
-	const {showToolsOnly, toggleShowToolsOnly, scrollStage, showAccCard} = useAppStore();
+	const {showToolsOnly, toggleShowToolsOnly, scrollStage, showAccCard, setAccData} = useAppStore();
 	const blueGreyBase = "#819ec9";
 	const blueGreyMain = alpha(blueGreyBase, 0.95);
 	const greyBase = "#303030ff";
 	const greyMain = alpha(greyBase, 0.75);
+
+	useEffect(() => {
+		if (showToolsOnly) {
+			const ids = data.map(item => item.id);
+			const userToolIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids);
+			const cData = data.filter(item => userToolIDs.includes(item.id));
+			console.log("setAccData", cData);
+			// setUserToolIDs(userToolIDs);
+			setAccData(cData);
+		} else {
+			setAccData(data);
+			console.log("setAccData", data);
+		}
+	}, [showToolsOnly, data, setAccData]);
 
 	const theme = createTheme({
 		palette: {

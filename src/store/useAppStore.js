@@ -12,6 +12,8 @@ const useAppStore = create(set => ({
 	toolCount: 0,
 	showToolsOnly: false,
 	userToolIDs: [],
+	accData: [],
+	setAccData: data => set(state => ({accData: data})),
 	addTool: tool => set(state => ({userToolIDs: [...state.userToolIDs, tool]})),
 	removeTool: id => set(state => ({userToolIDs: state.userToolIDs.filter(t => t.id !== id)})),
 
