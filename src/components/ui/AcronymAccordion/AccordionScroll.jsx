@@ -185,7 +185,7 @@ const AccordionItemWithEffects = ({item, index, acronymID, expanded, handleChang
 };
 export default function AccordionScroll({expanded, handleChange}) {
 	// const {showToolsOnly} = useAppStore();
-	console.log("AccordionScroll");
+	// console.log("AccordionScroll");
 
 	// const {accData} = useAppStore();
 
