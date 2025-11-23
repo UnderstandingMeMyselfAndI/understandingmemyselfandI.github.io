@@ -25,6 +25,14 @@ body {
 	margin: 0;
 	background: var(--mainBackground);
 	text-shadow: 2px 2px 2px rgba(50, 50, 50, 0.2);
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		color: var(--primary);
+	}
 }
 body * {
 	text-shadow: 1px 1px 2px rgba(50, 50, 50, 0.2) !important;
@@ -70,7 +78,60 @@ body h2 {
 	color: var(--lightBlue);
 	font-size: variables.$ummi_size;
 }
-
+body .app {
+	h1 {
+		font-size: variables.$h1_size;
+		font-weight: variables.$h1_weight;
+		color: var(--primary);
+	}
+	h2 {
+		font-size: variables.$h2_size;
+		font-weight: variables.$h2_weight;
+		color: var(--primary);
+	}
+	h3 {
+		font-size: variables.$h3_size;
+		font-weight: variables.$h3_weight;
+		color: var(--primary);
+	}
+	h4 {
+		font-size: variables.$h4_size;
+		font-weight: variables.$h4_weight;
+		color: var(--primary);
+	}
+	h5 {
+		font-size: variables.$h5_size;
+		font-weight: variables.$h5_weight;
+		color: var(--primary);
+	}
+	section {
+		h1 {
+			font-size: variables.$h1_size;
+			font-weight: variables.$h1_weight;
+			color: var(--primary);
+		}
+		h2 {
+			font-size: variables.$h2_size;
+			font-weight: variables.$h2_weight;
+			color: var(--primary);
+		}
+		h3 {
+			font-size: variables.$h3_size;
+			font-weight: variables.$h3_weight;
+			color: var(--primary);
+		}
+		h4 {
+			font-size: variables.$h4_size;
+			font-weight: variables.$h4_weight;
+			color: var(--primary);
+		}
+		h5 {
+			font-size: variables.$h5_size;
+			font-weight: variables.$h5_weight;
+			color: var(--primary);
+		}
+	}
+}
 .app {
 	position: relative;
 	z-index: 10;
@@ -127,6 +188,12 @@ button:focus-visible {
 
 .tools {
 	color: var(--primary);
+	h2,
+	h2 u,
+	h3,
+	h3 u {
+		color: var(--yellow);
+	}
 }
 .hide {
 	display: none;
@@ -275,8 +342,28 @@ section.footer {
 	margin: 0 auto;
 	margin-top: 2rem;
 	line-height: 1.5;
+	h1 {
+		font-size: variables.$h1_size;
+		font-weight: variables.$h1_weight;
+	}
+	h2 {
+		font-size: variables.$h2_size;
+		font-weight: variables.$h2_weight;
+	}
+	h3 {
+		font-size: variables.$h3_size;
+		font-weight: variables.$h3_weight;
+	}
 	h4 {
-		color: var(--primary);
+		font-size: variables.$h4_size;
+		font-weight: variables.$h4_weight;
+	}
+	h5 {
+		font-size: variables.$h5_size;
+		font-weight: variables.$h5_weight;
+	}
+	h4 {
+		font-size: variables.$h4_size;
 		max-width: 80%;
 		margin: 1rem auto;
 	}
@@ -357,7 +444,6 @@ section.footer {
 	u {
 		text-decoration-color: var(--yellow);
 		text-decoration-thickness: 4px;
-		font-weight: 600;
 	}
 }
 .sf-footer-version {

@@ -114,7 +114,7 @@ $default_size_max: 20px;
 $default_size: responsiveFontSize($default_size_min, $default_size_max, $minDeviceWidth, $maxDeviceWidth);
 
 $default_text_color: var(--text_primary);
-$default_line_height: 1.4;
+$default_line_height: 1.2;
 
 // ------------------------------------------
 // Logo font size
@@ -180,18 +180,18 @@ $h2_size_max: 55px;
 $h2_size: responsiveFontSize($h2_size_min, $h2_size_max, $minDeviceWidth, $maxDeviceWidth);
 
 $h2_color: var(--text_primary);
-$h2_weight: 700;
+$h2_weight: 900;
 $h2_line_height: 1.4;
 
 // ------------------------------------------
 // H3 font size
 // ------------------------------------------
 
-$h3_size_min: 24px;
-$h3_size_max: 40px;
+$h3_size_min: 28px;
+$h3_size_max: 48px;
 $h3_size: responsiveFontSize($h3_size_min, $h3_size_max, $minDeviceWidth, $maxDeviceWidth);
 $h3_color: var(--text_primary);
-$h3_weight: 700;
+$h3_weight: 900;
 $h3_line_height: 1.2;
 
 // ------------------------------------------
@@ -203,7 +203,7 @@ $h4_size_max: 36px;
 $h4_size: responsiveFontSize($h4_size_min, $h4_size_max, $minDeviceWidth, $maxDeviceWidth);
 
 $h4_color: var(--text_primary);
-$h4_weight: 500;
+$h4_weight: 700;
 $h4_line_height: 1.2;
 
 // ------------------------------------------
