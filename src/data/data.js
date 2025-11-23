@@ -568,7 +568,11 @@ const data = [
 			},
 		],
 		cats: ["C.B.T", "D.B.T", "Emergency", "Grounding", "Assumptions", "Plans", "Urges", "Cravings", "Thoughts", "Emotions", "Mood", "Mental Health", "Anxiety", "Stress", "Depressed", "Low Mood"],
-		videos: [],
+		videos: [
+			{title: "SMART Goals Explained", url: "https://www.youtube.com/watch?v=1-SvuFIQjK8"},
+			{title: "SMART Goals Quick Overview with 21 SMART Goals Examples", url: "https://www.youtube.com/watch?v=elJcG83m-qg"},
+			{title: "How to Set SMART Goals ", url: "https://www.youtube.com/watch?v=i0QfCZjASX8"},
+		],
 	},
 	{
 		id: 23,
