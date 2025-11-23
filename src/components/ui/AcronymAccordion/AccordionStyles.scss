@@ -108,6 +108,10 @@ h3.MuiAccordion-heading {
 		column-gap: 0rem;
 		min-height: 48px;
 
+		span.MuiAccordionSummary-expandIconWrapper {
+			display: none;
+		}
+
 		span.MuiAccordionSummary-content {
 			flex-flow: row nowrap;
 			flex-grow: 1;

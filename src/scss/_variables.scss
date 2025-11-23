@@ -143,7 +143,7 @@ $acc_title_line_height: 1.2;
 // ------------------------------------------
 
 $letter_size_min: 48px;
-$letter_size_max: 75px;
+$letter_size_max: 78px;
 $letter_size: responsiveFontSize($letter_size_min, $letter_size_max, $minDeviceWidth, $maxDeviceWidth);
 $letter_color: var(--text_primary);
 $letter_weight: 800;
@@ -153,8 +153,8 @@ $letter_line_height: 1.2;
 // Ancronym word font size
 // ------------------------------------------
 
-$acc_wrd_size_min: 34px;
-$acc_wrd_size_max: 50px;
+$acc_wrd_size_min: 36px;
+$acc_wrd_size_max: 54px;
 $acc_wrd_size: responsiveFontSize($acc_wrd_size_min, $acc_wrd_size_max, $minDeviceWidth, $maxDeviceWidth);
 $acc_wrd_color: var(--text_primary);
 $acc_wrd_weight: 800;
