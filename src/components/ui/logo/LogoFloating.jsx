@@ -7,7 +7,7 @@ import "./styles.scss";
 
 const LogoFloating = ({showText = true, classes = "", showName = true}) => {
 	const theme = useThemeStore(state => state.theme);
-	const [show, setShow] = useState(true);
+	const [show, setShow] = useState(false);
 	const text = showText ? "Ummi" : "";
 	const componentClasses = show ? "logo show " + classes : "logo " + classes;
 	useEffect(() => {
