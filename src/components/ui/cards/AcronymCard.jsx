@@ -23,6 +23,7 @@ import parse from "html-react-parser";
 import data from "../../../data/data.js";
 // import {storeKeys, localStore} from "@/data/localStore.js";
 import CloseIcon from "@mui/icons-material/Close";
+import Skeleton from "@mui/material/Skeleton";
 import "./styles.scss";
 function getAccData(id) {
 	return data.find(acc => acc.id === id);
@@ -52,17 +53,21 @@ const AcronymCard = () => {
 			<div className="inner">
 				<div className="header">
 					<div className="title cont">
-						{accData?.title.split(".").map(
-							(letter, index) =>
-								letter && (
-									<div
-										className="active"
-										key={index}
-										data-content={letter}
-									>
-										{letter}
-									</div>
-								)
+						{accData ? (
+							accData?.title.split(".").map(
+								(letter, index) =>
+									letter && (
+										<div
+											className="active"
+											key={index}
+											data-content={letter}
+										>
+											{letter}
+										</div>
+									)
+							)
+						) : (
+							<Skeleton animation="wave" />
 						)}
 					</div>
 				</div>
@@ -71,7 +76,7 @@ const AcronymCard = () => {
 					ref={contentRef}
 				>
 					<div className="AccGroup">
-						<div className="AccExplanation">{accData && parse(accData?.content.explanation)}</div>
+						<div className="AccExplanation">{accData?.content ? parse(accData.content.explanation) : <Skeleton animation="wave" />}</div>
 
 						{accData?.content.acronyms.map((acronym, index) => (
 							<div
@@ -100,7 +105,7 @@ const AcronymCard = () => {
 									key={"d-" + index}
 									className="Acc-definition"
 								>
-									{acronym.definition && parse(acronym.definition)}
+									{acronym.definition ? parse(acronym.definition) : <Skeleton animation="wave" />}
 								</div>
 							</div>
 						))}
@@ -108,33 +113,38 @@ const AcronymCard = () => {
 					{accData?.videos.length > 0 && (
 						<div className="videos">
 							<h2>VIDEOS</h2>
-							{console.log("videos", accData?.videos)}
-							{console.log("accData?.videos.length  ", accData?.videos.length)}
+
 							{accData?.videos.map((video, index) => (
 								<div
 									className="video"
 									key={index}
 								>
 									<div className="title">{parse(video.title)}</div>
-									<MediaController
-										style={{
-											width: "100%",
-											aspectRatio: "16/9",
-										}}
-									>
-										<ReactPlayer
-											src={video.url}
-											className="player"
-										/>
-										<MediaControlBar className="controls">
-											<MediaPlayButton />
+									<div className="player">
+										{video ? (
+											<MediaController
+												style={{
+													width: "100%",
+													aspectRatio: "16/9",
+												}}
+											>
+												<ReactPlayer src={video.url} />
+												<MediaControlBar className="controls">
+													<MediaPlayButton />
 
-											<MediaMuteButton />
-											<MediaVolumeRange />
-											<MediaPlaybackRateButton />
-											<MediaFullscreenButton />
-										</MediaControlBar>
-									</MediaController>
+													<MediaMuteButton />
+													<MediaVolumeRange />
+													<MediaPlaybackRateButton />
+													<MediaFullscreenButton />
+												</MediaControlBar>
+											</MediaController>
+										) : (
+											<Skeleton
+												animation="wave"
+												className="video-skeleton"
+											/>
+										)}
+									</div>
 								</div>
 							))}
 						</div>

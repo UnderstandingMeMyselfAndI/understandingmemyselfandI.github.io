@@ -284,39 +284,56 @@ div.AcronymCard {
 	.videos {
 		width: 100%;
 		padding-bottom: 2rem;
+		display: flex;
+		flex-flow: column nowrap;
+		row-gap: 3rem;
 
 		h2 {
 			font-size: variables.$h3_size;
 			text-decoration: 4px underline var(--yellow);
 			color: var(--primary);
 		}
-
-		.player {
-			width: 100%;
-			min-width: 100%;
-			// height: 150vw;
-			// min-height: 100%;
-			// aspect-ratio: 1.777777777777778;
-			margin: 0 0 0.5rem 0;
-			background-color: #12121b;
-			iframe {
-				width: 100%;
-				min-height: 100%;
-				background-color: #12121b;
-			}
-		}
-		.controls {
-			min-width: 100%;
-			background-color: #12121b;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
 		.video {
+			width: 92%;
+			height: fit-content;
+			margin: 0 auto;
+			background-color: rgba(10, 10, 10, 0.6);
+			outline: 1px solid rgba(50, 50, 50, 0.4);
 			.title {
-				margin: 0.5rem 0;
+				font-weight: 600;
+				line-height: 1.2;
+				color: var(--lightBlue);
+				font-size: variables.$h4_size;
+				padding: 1.25rem 0.75rem;
+				// margin: 1.5rem auto 1rem auto;
 			}
-			padding-bottom: 2rem;
+			.player {
+				width: 100%;
+				min-width: 100%;
+				background-color: #12121b;
+				youtube-video {
+					width: 100%;
+					min-width: 100%;
+					aspect-ratio: 16/9;
+				}
+				.video-skeleton {
+					width: 100%;
+					height: 100%;
+				}
+				iframe {
+					width: 100%;
+					min-height: 100%;
+					background-color: #12121b;
+					outline: 1px solid #f00;
+				}
+			}
+			.controls {
+				min-width: 100%;
+				background-color: #12121b;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
 		}
 	}
 	.footer {
