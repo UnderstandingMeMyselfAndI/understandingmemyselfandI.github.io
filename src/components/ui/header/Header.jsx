@@ -133,7 +133,7 @@ const Header = ({classes = ""}) => {
 			// gsap.set(".w2", {autoAlpha: 0, scaleY: "-100%", x: 0, y: 0});
 
 			// console.log("scrollStage", scrollStage);
-			if (scrollStage === 0) {
+			if (scrollStage < 4) {
 				tl.to(".homelogo", {autoAlpha: 1, scale: 1}, 1);
 				tl.to(".wgrp", {autoAlpha: 1, scale: 1}, 0.75);
 				tl2.to(".w0", {autoAlpha: 1, scale: 1, x: 0, y: 0}, "1.75");

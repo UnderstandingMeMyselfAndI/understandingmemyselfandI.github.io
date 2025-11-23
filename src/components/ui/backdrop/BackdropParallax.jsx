@@ -7,128 +7,106 @@ const allImages = ImageData;
 const DEFAULT_INTERVAL = 10000;
 
 export default function BackdropParallax({initialImageId = null, initialDelay = 0, interval = DEFAULT_INTERVAL, parallaxStrength = 0.5}) {
-	// Always keep two images: bottom (current) and top (incoming)
-	const [bottomImage, setBottomImage] = useState(null);
-	const [topImage, setTopImage] = useState(null);
-	const [isTransitioning, setIsTransitioning] = useState(false);
+	const [currentImage, setCurrentImage] = useState(null);
+	const [nextImage, setNextImage] = useState(null);
+	const [isFading, setIsFading] = useState(false);
 	const usedIds = useRef(new Set());
+	const intervalRef = useRef(null);
 
-	// Select random unused image
 	const getNextImage = () => {
 		let available = allImages.filter(img => !usedIds.current.has(img.id));
-
 		if (available.length === 0) {
-			// Reset pool, but keep currently displayed images
-			const currentlyUsed = bottomImage ? [bottomImage.id] : [];
-			if (topImage) currentlyUsed.push(topImage.id);
-			usedIds.current = new Set(currentlyUsed);
-			available = allImages.filter(img => !currentlyUsed.includes(img.id));
+			const keep = currentImage ? [currentImage.id] : [];
+			if (nextImage) keep.push(nextImage.id);
+			usedIds.current = new Set(keep);
+			available = allImages.filter(img => !keep.includes(img.id));
 		}
-
 		const next = available.length > 0 ? available[Math.floor(Math.random() * available.length)] : allImages[0];
-
 		usedIds.current.add(next.id);
 		return next;
 	};
 
-	// Initial setup
+	// Initial image
 	useEffect(() => {
-		const firstImage = initialImageId ? allImages.find(i => i.id === initialImageId) || allImages[0] : allImages[Math.floor(Math.random() * allImages.length)];
-
-		usedIds.current.add(firstImage.id);
-		setBottomImage(firstImage);
-		setTopImage(null);
-		setIsTransitioning(false);
+		const first = initialImageId ? allImages.find(i => i.id === initialImageId) || allImages[0] : allImages[Math.floor(Math.random() * allImages.length)];
+		usedIds.current.add(first.id);
+		setCurrentImage(first);
 	}, [initialImageId]);
 
-	// Start cycling after initialDelay
+	// Cycling
 	useEffect(() => {
-		if (!bottomImage) return;
+		if (!currentImage) return;
 
 		const timer = setTimeout(() => {
-			startCycle();
+			intervalRef.current = setInterval(() => {
+				const next = getNextImage();
+				setNextImage(next);
+				setIsFading(true);
+
+				// After fade, swap
+				setTimeout(() => {
+					setCurrentImage(next);
+					setNextImage(null);
+					setIsFading(false);
+				}, 1950); // Slightly less than 2s to avoid race
+			}, interval); // Fixed: No stray ) here
 		}, initialDelay);
 
-		return () => clearTimeout(timer);
-	}, [bottomImage, initialDelay]);
+		return () => {
+			clearTimeout(timer);
+			if (intervalRef.current) clearInterval(intervalRef.current);
+		};
+	}, [currentImage, initialDelay, interval]);
 
-	// Main cycling logic
-	const startCycle = () => {
-		const intervalId = setInterval(() => {
-			const nextImage = getNextImage();
-
-			// Step 1: Set the new image as top (will fade in)
-			setTopImage(nextImage);
-			setIsTransitioning(true);
-
-			// Step 2: After fade-in completes, move top → bottom, clear top
-			setTimeout(() => {
-				setBottomImage(nextImage);
-				setTopImage(null);
-				setIsTransitioning(false);
-			}, 2000); // Match your fade duration (2s)
-		}, interval);
-
-		return () => clearInterval(intervalId);
-	};
-	// Safe preview of next image without affecting usedIds
-	// Add this useEffect near your other effects
+	// Preload
 	useEffect(() => {
-		if (!bottomImage) return;
-
-		const preloadNext = () => {
-			const available = allImages.filter(img => !usedIds.current.has(img.id) && img.id !== bottomImage.id && (!topImage || img.id !== topImage.id));
-
+		if (!currentImage) return;
+		const preload = () => {
+			const available = allImages.filter(img => !usedIds.current.has(img.id) && img.id !== currentImage.id && (!nextImage || img.id !== nextImage.id));
 			if (available.length > 0) {
-				const next = available[Math.floor(Math.random() * available.length)];
-				const img = new Image();
-				img.src = next.url;
+				new Image().src = available[Math.floor(Math.random() * available.length)].url;
 			}
 		};
+		preload();
+		const id = setInterval(preload, Math.max(interval - 4000, 6000)); // Safe min 6s
+		return () => clearInterval(id);
+	}, [currentImage, nextImage, interval]);
 
-		// Preload immediately
-		preloadNext();
-
-		// Preload one more ~2 seconds before next transition
-		const preloadInterval = setInterval(preloadNext, Math.max(interval - 2000, 1000));
-
-		return () => clearInterval(preloadInterval);
-	}, [bottomImage, topImage, interval]);
-
-	// Parallax effect on scroll
+	// Parallax
 	useEffect(() => {
 		if (parallaxStrength === 0) return;
-
 		const onScroll = () => {
 			const offset = window.pageYOffset * parallaxStrength;
 			document.querySelectorAll(".cont img").forEach(img => {
 				img.style.transform = `translateY(-${offset}px)`;
 			});
 		};
-
 		window.addEventListener("scroll", onScroll, {passive: true});
 		return () => window.removeEventListener("scroll", onScroll);
 	}, [parallaxStrength]);
 
-	if (!bottomImage) return null;
+	if (!currentImage) return null;
 
 	return (
 		<div className="backdrop">
 			<div className="vig" />
 			<div className="cont">
-				{/* Bottom layer - always visible */}
+				{/* Current image - always present */}
 				<img
-					src={bottomImage.url || bgImg}
-					alt={bottomImage.alt || "Backdrop"}
-					className="bottom"
+					key={currentImage.id + "-current"}
+					src={currentImage.url || bgImg}
+					alt={currentImage.alt || "Backdrop"}
+					className="layer current"
 				/>
 
-				{/* Top layer - fades in during transition */}
-				{topImage && (
+				{/* Next image - only during fade, forced fresh DOM node */}
+				{nextImage && (
 					<img
-						src={topImage.url || bgImg}
-						alt={topImage.alt || "Backdrop"}
-						className={`top ${isTransitioning ? "fading-in" : ""}`}
+						key={nextImage.id + "-next"} // This forces new DOM node every time
+						src={nextImage.url || bgImg}
+						alt={nextImage.alt || "Next backdrop"}
+						className="layer next"
+						style={{animation: isFading ? "fadeIn 2s ease-out forwards" : "none"}}
 					/>
 				)}
 			</div>

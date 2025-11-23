@@ -49,6 +49,7 @@
 		"vite-plugin-commonjs": "^0.10.4",
 		"vite-plugin-css-injected-by-js": "^3.5.2",
 		"vite-plugin-inline-source": "^4.0.1",
+		"workbox-precaching": "^7.4.0",
 		"zustand": "^5.0.8"
 	},
 	"devDependencies": {

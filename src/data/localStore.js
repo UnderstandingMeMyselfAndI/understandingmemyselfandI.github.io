@@ -60,6 +60,15 @@ const localStore = (() => {
 			//if (!_validate(which, id)) return;
 			localStorage.removeItem(`${which}-${id}`);
 		},
+		_getCountByLabel = (which, ids = []) => {
+			let count = 0;
+			ids.forEach((id, i) => {
+				if (localStorage.getItem(`${which}-${id}`) === "true") {
+					count++;
+				}
+			});
+			return count;
+		},
 		_get = (which, id) => {
 			//	if (!_validate(which, id)) return;
 			//if (_isItem(which, id)) {
@@ -75,6 +84,7 @@ const localStore = (() => {
 		set: _set,
 		remove: _remove,
 		get: _get,
+		getCountByLabel: _getCountByLabel,
 	};
 })();
 const storeKeys = {

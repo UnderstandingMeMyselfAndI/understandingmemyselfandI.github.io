@@ -5,7 +5,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Header from "ui/header/Header";
 import {useThemeStore} from "@/store/useThemeStore";
 import useAppStore from "@/store/useAppStore";
-
+import LogoFloating from "./components/ui/logo/LogoFloating";
 import applyTheme from "components/theme/applyTheme";
 import AccordionScroll from "ui/AcronymAccordion/AccordionScroll";
 import ScrollPosition from "./components/utils/ScrollPosition";
@@ -23,6 +23,7 @@ import Backdrop from "ui/backdrop/Backdrop";
 import BackdropParallax from "ui/backdrop/BackdropParallax";
 import Snackbars from "ui/snackbars/Snackbars";
 import AcronymCard from "@/components/ui/cards/AcronymCard.jsx";
+import BadgeToolbox from "./components/ui/badges/BadgeToolbox";
 import "./globals.css";
 
 import "./App.scss";
@@ -34,6 +35,8 @@ function App() {
 	const [expanded, setExpanded] = useState(false);
 	const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme);
 	const setShowAccCard = useAppStore(state => state.setShowAccCard);
+	const showAccCard = useAppStore(state => state.showAccCard);
+	const setIsExpanded = useAppStore(state => state.setIsExpanded);
 	// const setShowAccCard = useAppStore(state => state.setShowAccCard);
 	//const setEmergencyToolAdded = useAppStore(state => state.setEmergencyToolAdded);
 
@@ -50,19 +53,21 @@ function App() {
 	});
 
 	const handleChange = panel => (event, newExpanded) => {
+		// console.log("newExpanded", newExpanded);
 		setExpanded(newExpanded ? panel : false);
-		// setShowAccCard(newExpanded);
+		setIsExpanded(newExpanded !== false);
+		setShowAccCard(newExpanded !== false);
 		setOpen(newExpanded);
 	};
 
 	const emergencyToolAdded = useAppStore(state => state.emergencyToolAdded);
 	useEffect(() => {
-		console.log("emergencyToolAdded ", emergencyToolAdded);
+		// console.log("emergencyToolAdded ", emergencyToolAdded);
 	}, [emergencyToolAdded]);
 
 	const toolAdded = useAppStore(state => state.toolAdded);
 	useEffect(() => {
-		console.log("toolAdded ", toolAdded);
+		// console.log("toolAdded ", toolAdded);
 	}, [toolAdded]);
 
 	return (
@@ -71,13 +76,18 @@ function App() {
 			<div className="app">
 				{/* <EmergencyButton /> */}
 				<div className="main">
-					<div className="inner">
+					<BadgeToolbox />
+					<LogoFloating
+						classes=" logo small"
+						showName={false}
+					/>
+					<AcronymCard />
+					<div className={"inner" + (showAccCard ? " card-open" : "")}>
 						<Snackbars />
 						{/* <SpeedDialSettings className={"speed-dial-settings"} /> */}
 						{/* <ScenarioModal /> */}
 
 						<div className="content">
-							<AcronymCard />
 							<Header />
 							<Intro />
 							<section className="tools">
@@ -134,7 +144,7 @@ function App() {
 										Nottingham Recovery Network (NRN)
 									</a>
 									<br />
-									in Nottingham UK and their hard work and dedication to help people through their recovery journey.
+									Nottingham UK and their hard work and dedication to help people through their recovery journey.
 									<br />
 								</p>
 

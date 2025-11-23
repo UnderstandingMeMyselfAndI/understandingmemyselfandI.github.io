@@ -14,7 +14,7 @@
 	--lighGreyBg: #819ec9;
 	--red: #e83737;
 	--green: #257e94;
-	--greyDark: #181818;
+	--greyDark: #0a0a0a;
 	--grey: #999;
 	--card: oklch(0.205 0 0);
 	--card-foreground: oklch(0.985 0 0);
@@ -46,6 +46,7 @@
 	--sidebar-border: oklch(1 0 0 / 10%);
 	--sidebar-ring: oklch(0.439 0 0);
 	--transition: 0.35s cubic-bezier(0.53, 0, 0.54, 1);
+	--transition2: 0.35s cubic-bezier(0.3, 0, 0.74, 1);
 }
 .light {
 	--blueBackground: oklch(0.985 0 0);

@@ -11,7 +11,7 @@
 	height: 100%;
 }
 
-.cont img {
+.cont img.layer {
 	position: absolute;
 	inset: 0;
 	width: 100%;
@@ -21,15 +21,15 @@
 	will-change: transform;
 }
 
-.cont img.bottom {
+.layer.current {
 	z-index: 1;
 	opacity: 1;
 }
 
-.cont img.top {
+.layer.next {
 	z-index: 2;
 	opacity: 0;
-	animation: fadeIn 2s ease-out forwards;
+	/* Animation is applied inline via style={} to force restart */
 }
 
 @keyframes fadeIn {
@@ -45,6 +45,6 @@
 	position: absolute;
 	inset: 0;
 	pointer-events: none;
-	background: radial-gradient(circle, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.85) 80%);
+	background: radial-gradient(circle, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.65) 90%);
 	z-index: 10;
 }

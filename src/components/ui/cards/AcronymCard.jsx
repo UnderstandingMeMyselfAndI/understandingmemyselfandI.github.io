@@ -14,114 +14,97 @@ function getAccData(id) {
 }
 
 const AcronymCard = () => {
-	const [isOpen, setIsOpen] = useState(false);
-	const [storedValue, setStoredValue] = useState(null);
 	const [accData, setAccData] = useState(null);
 
 	const acronymnID = useAppStore(state => state.acronymnID);
-	const toolAdded = useAppStore(state => state.toolAdded);
 	const setShowAccCard = useAppStore(state => state.setShowAccCard);
 	const showAccCard = useAppStore(state => state.showAccCard);
 
 	useEffect(() => {
-		if (acronymnID === null || acronymnID === undefined) return;
-
-		// if (getAccData(acronymnID) !== undefined) {
+		console.log("AcronymCard acronymnID", acronymnID);
 		setAccData(getAccData(acronymnID));
-		setIsOpen(showAccCard);
-		// }
-
-		console.log("showAccCard", showAccCard);
-	}, [showAccCard]);
-
-	useEffect(() => {
-		setIsOpen(showAccCard);
-		console.log("showAccCard", acronymnID, " data ", getAccData(acronymnID));
-		showAccCard && setAccData(getAccData(acronymnID));
-	}, [showAccCard]);
+	}, [acronymnID]);
 
 	const handleClose = () => {
 		setShowAccCard(false);
 	};
-	useEffect(() => {
-		console.log("showAccCard", acronymnID, " data ", getAccData(acronymnID));
-		setAccData(getAccData(acronymnID));
-	}, [acronymnID]);
 
 	return (
 		<div
-			className={"AcronymCard" + (isOpen ? " open" : "")}
+			className={"AcronymCard" + (showAccCard ? " open" : "")}
 			key="acronym-card"
 		>
-			<div className="header">
-				<div className="title cont">
-					{accData?.title.split(".").map(
-						(letter, index) =>
-							letter && (
-								<div
-									className="active"
-									key={index}
-									data-content={letter}
-								>
-									{letter}
-								</div>
-							)
-					)}
+			<div className="inner">
+				<div className="header">
+					<div className="title cont">
+						{accData?.title.split(".").map(
+							(letter, index) =>
+								letter && (
+									<div
+										className="active"
+										key={index}
+										data-content={letter}
+									>
+										{letter}
+									</div>
+								)
+						)}
+					</div>
 				</div>
-			</div>
-			<section className="AccContent">
-				<div className="AccGroup">
-					<div className="AccExplanation">{accData && parse(accData?.content.explanation)}</div>
+				<section className="AccContent">
+					<div className="AccGroup">
+						<div className="AccExplanation">{accData && parse(accData?.content.explanation)}</div>
 
-					{accData?.content.acronyms.map((acronym, index) => (
-						<div
-							key={"acronymn-" + index}
-							className="AccDetails"
-						>
+						{accData?.content.acronyms.map((acronym, index) => (
 							<div
-								className="Acc-letter-group"
-								key={"t-" + index}
+								key={"acronymn-" + index}
+								className="AccDetails"
 							>
 								<div
-									className="Acc-letter"
-									key={"l-" + index}
+									className="Acc-letter-group"
+									key={"t-" + index}
 								>
-									{acronym.letter}
+									<div
+										className="Acc-letter"
+										key={"l-" + index}
+									>
+										{acronym.letter}
+									</div>
+									<div
+										className="Acc-word"
+										key={"m-" + index}
+									>
+										{acronym.meaning.substring(1)}
+									</div>
 								</div>
 								<div
-									className="Acc-word"
-									key={"m-" + index}
+									key={"d-" + index}
+									className="Acc-definition"
 								>
-									{acronym.meaning.substring(1)}
+									{acronym.definition && parse(acronym.definition)}
 								</div>
 							</div>
-							<div
-								key={"d-" + index}
-								className="Acc-definition"
-							>
-								{acronym.definition && parse(acronym.definition)}
-							</div>
-						</div>
-					))}
-				</div>
+						))}
+					</div>
 
-				<div></div>
-				<div></div>
-			</section>
-			<div className="footer">
-				{/* <ButtonEmergencyToolbox id={accData?.id} />
-				<ButtonToolbox id={accData?.id} /> */}
-				<div
-					className="btn close"
-					onClick={handleClose}
-				>
-					<CloseIcon />
+					<div></div>
+					<div></div>
+				</section>
+				<div className="footer">
+					{/* <ButtonEmergencyToolbox id={accData?.id} />
+					 */}
+					<ButtonToolbox id={accData?.id} />
+					<div
+						className="btn close"
+						onClick={handleClose}
+					>
+						<CloseIcon />
+					</div>
 				</div>
 			</div>
 		</div>
 	);
 };
-
 AcronymCard.displayName = "AcronymCard";
 
 export default AcronymCard;

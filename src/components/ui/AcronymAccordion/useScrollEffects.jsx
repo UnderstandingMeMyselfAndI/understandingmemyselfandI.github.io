@@ -1,5 +1,5 @@
 import {useRef, useState, useEffect, useCallback, useMemo} from "react";
-
+import {useGlobalRecalcTrigger, triggerGlobalRecalc} from "@/hooks/useGlobalRecalcTrigger.js";
 // Configuration constants - easily adjustable
 const SCROLL_EFFECT_CONFIG = {
 	minOpacity: 0.25, // Minimum opacity (15%)
@@ -16,6 +16,12 @@ const useScrollEffects = (config = SCROLL_EFFECT_CONFIG, isExpanded = false) => 
 	const [windowHeight, setWindowHeight] = useState(0);
 	const scrollEnabled = useRef(true);
 	const animationFrameId = useRef(null);
+
+	useGlobalRecalcTrigger(() => {
+		if (!isExpanded && scrollEnabled.current) {
+			calculateEffects();
+		}
+	});
 
 	// Update window height on resize
 	useEffect(() => {
@@ -125,6 +131,20 @@ const useScrollEffects = (config = SCROLL_EFFECT_CONFIG, isExpanded = false) => 
 		}, 50);
 	}, [calculateEffects]);
 
-	return useMemo(() => [ref, effects, disableScrollEffects, enableScrollEffects], [effects, disableScrollEffects, enableScrollEffects]);
+	// Inside useScrollEffects hook, add this function
+	const forceRecalculate = useCallback(() => {
+		// Cancel any pending frame
+		if (animationFrameId.current) {
+			cancelAnimationFrame(animationFrameId.current);
+		}
+
+		// Force immediate recalculation
+		animationFrameId.current = requestAnimationFrame(() => {
+			calculateEffects();
+			animationFrameId.current = null;
+		});
+	}, [calculateEffects]);
+
+	return useMemo(() => [ref, effects, disableScrollEffects, enableScrollEffects, forceRecalculate], [effects, disableScrollEffects, enableScrollEffects, forceRecalculate]);
 };
 export {useScrollEffects, SCROLL_EFFECT_CONFIG};

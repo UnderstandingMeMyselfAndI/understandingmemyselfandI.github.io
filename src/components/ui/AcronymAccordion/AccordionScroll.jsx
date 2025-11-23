@@ -11,73 +11,78 @@ import Favourite from "../favourite/Favourite.jsx";
 import ButtonToolbox from "../buttons/toolbox/ButtonToolbox";
 import ButtonEmergencyToolbox from "../buttons/toolbox/ButtonEmergencyToolbox";
 import {useScrollEffects, SCROLL_EFFECT_CONFIG} from "./useScrollEffects";
+import {triggerGlobalRecalc} from "@/hooks/useGlobalRecalcTrigger.js";
 import "../../../globals.css";
 import "./AccordionStyles.scss";
 
 // Individual Accordion Item with opacity and scale effects
 const AccordionItemWithEffects = ({item, index, acronymID, expanded, handleChange, config = SCROLL_EFFECT_CONFIG}) => {
 	const isExpanded = expanded === "panel" + index;
-	const [ref, effects, disableScrollEffects, enableScrollEffects] = useScrollEffects(config, isExpanded);
+	const [ref, effects, disableScrollEffects, enableScrollEffects, forceRecalculate] = useScrollEffects(config, isExpanded);
 	const accordionRef = useRef(null);
 	const previousExpandedState = useRef(isExpanded);
 	const setAcronymnID = useAppStore(state => state.setAcronymnID);
-	const toggleIsSelected = useAppStore(state => state.toggleIsSelected);
+	const showAccCard = useAppStore(state => state.showAccCard);
 	const setShowAccCard = useAppStore(state => state.setShowAccCard);
+	const setIsExpanded = useAppStore(state => state.setIsExpanded);
 
+	useEffect(() => {
+		if (!setShowAccCard) {
+			const timer = setTimeout(() => {
+				forceRecalculate();
+				console.log("forceRecalculate");
+			}, 1000);
+		}
+	}, [setShowAccCard, forceRecalculate]);
 	// Handle scroll behavior on expand/collapse
 	useEffect(() => {
-		if (accordionRef.current) {
-			if (isExpanded) {
-				setShowAccCard(isExpanded);
-				console.log("isExpanded", isExpanded);
-				// Disable scroll effects for all items when expanded
-				disableScrollEffects();
-				setAcronymnID(item?.id);
+		if (!accordionRef.current) return;
 
-				// Scroll to position when expanded (5vh from top)
-				// setTimeout(() => {
-				// 	if (accordionRef.current) {
-				// 		const element = accordionRef.current;
-				// 		const rect = element.getBoundingClientRect();
-				// 		const elementTop = rect.top + window.pageYOffset;
-				// 		const targetScrollY = elementTop - window.innerHeight * 0.05; // 5vh from top
+		if (isExpanded) {
+			// === EXPANDING ===
+			// setShowAccCard(true);
+			setAcronymnID(item?.id);
+			//setIsExpanded(true);
+			disableScrollEffects(); // Full opacity while expanded
+		} else if (previousExpandedState.current === true) {
+			// Step 1: Re-enable scroll effects
+			enableScrollEffects();
+			// setShowAccCard(false);
+			//setIsExpanded(false);
+			// ONE LINE FIX — triggers recalc on ALL items at once
+			setTimeout(() => {
+				triggerGlobalRecalc(); // ← This is the real fix
+			}, 380);
 
-				// 		window.scrollTo({
-				// 			top: targetScrollY,
-				// 			behavior: "smooth",
-				// 		});
-				// 	}
-				// }, 10);
-			} else if (previousExpandedState.current === true) {
-				// Only scroll to center when transitioning from expanded to collapsed
-				setTimeout(() => {
-					if (accordionRef.current) {
-						const element = accordionRef.current;
-						const rect = element.getBoundingClientRect();
-						const elementTop = rect.top + window.pageYOffset;
-						const elementHeight = rect.height;
-						const windowHeight = window.innerHeight;
+			// Step 2: Wait for MUI collapse animation to finish (~300ms)
+			//     Then do TWO things: scroll to center + recalculate effects
+			const timer = setTimeout(() => {
+				const element = accordionRef.current;
+				if (!element) return;
 
-						// Calculate the scroll position to center the element
-						const targetScrollY = elementTop - windowHeight / 2 + elementHeight / 2;
+				// Get fresh geometry after collapse
+				const rect = element.getBoundingClientRect();
+				const elementTop = rect.top + window.pageYOffset;
 
-						window.scrollTo({
-							top: targetScrollY,
-							behavior: "smooth",
-						});
+				// Scroll to center the item smoothly
+				const targetScrollY = elementTop - window.innerHeight / 2 + element.offsetHeight / 2;
 
-						// Re-enable scroll effects after collapse
-						setTimeout(() => {
-							enableScrollEffects();
-						}, 100);
-					}
-				}, 300); // Wait for collapse animation to complete
-			}
+				window.scrollTo({
+					top: targetScrollY,
+					behavior: "smooth",
+				});
+
+				// Step 3: Force recalculation of opacity/scale for ALL items
+				//     This fixes the "stuck" or wrong opacity bug
+				forceRecalculate();
+			}, 500); // 400ms safely covers MUI's collapse animation
+
+			return () => clearTimeout(timer);
 		}
 
-		// Update previous state
+		// Track previous state
 		previousExpandedState.current = isExpanded;
-	}, [isExpanded, disableScrollEffects, enableScrollEffects]);
+	}, [isExpanded, item?.id, setAcronymnID, setShowAccCard, disableScrollEffects, enableScrollEffects, forceRecalculate]);
 
 	// Memoize expanded styles to prevent unnecessary recalculations
 	const expandedStyles = useMemo(() => {
@@ -132,6 +137,7 @@ const AccordionItemWithEffects = ({item, index, acronymID, expanded, handleChang
 				className={"AccordionItem"}
 				key={"accordion-" + index}
 				expanded={isExpanded}
+				// onChange={handleChange(true), }
 				onChange={handleChange("panel" + index)}
 				slotProps={{
 					transition: {unmountOnExit: true},
@@ -186,7 +192,7 @@ export default function AccordionScroll({expanded, handleChange}) {
 	};
 
 	return (
-		<div className={"AccordionRoot"}>
+		<div className={"AccordionRoot" + (expanded ? " expanded" : "")}>
 			{componentData.map((item, index) =>
 				item ? (
 					<AccordionItemWithEffects

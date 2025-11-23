@@ -75,40 +75,30 @@
 // }
 .logo.small {
 	position: fixed;
-	top: 1.75rem;
-	left: 1.75rem;
-	width: 80px;
+	top: 1.25rem;
+	left: 1rem;
+	width: 46px;
+	height: 46px;
 
 	padding: 0;
 	margin: 0;
 	display: block;
 	z-index: 1000;
-	transform: translateY(calc((36px + 1.75rem + 20px) * -1));
-	opacity: 1;
-	transition: all 0.25s ease-in-out;
+	transform: translateX(calc((30px) * -1)) scale(0.7);
+	opacity: 0;
+	transition: all 0.25s cubic-bezier(0.3, 0, 0.74, 1);
 	color: #00f;
 	img {
 		padding: 0;
 		margin: 0;
-		width: 80px;
-		height: 80px;
+		width: 100%;
+		height: 100%;
+		margin: 0.5rem;
 	}
-	&::after {
-		content: "";
-		position: absolute;
-		width: 170%;
-		height: 170%;
-		background-color: var(--green);
-		z-index: -1;
-		border-radius: 50%;
-		left: -35%;
-		top: -35%;
-		opacity: 1;
-		box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
-	}
+
 	&.show {
-		transform: translateY(0);
+		transform: translateX(0) scale(1);
 		opacity: 1;
-		transition: all 0.25s ease-in-out;
+		transition: all 0.2s ecubic-bezier(0.3, 0, 0.74, 1);
 	}
 }
