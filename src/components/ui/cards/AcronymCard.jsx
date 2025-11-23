@@ -4,20 +4,20 @@ import useAppStore from "@/store/useAppStore";
 import ButtonToolbox from "../buttons/toolbox/ButtonToolbox";
 import BackdropParallax from "ui/backdrop/BackdropParallax";
 import ReactPlayer from "react-player";
-import {MediaController} from "media-chrome/react";
-// import {
-// 	MediaController,
-// 	MediaControlBar,
-// 	MediaTimeRange,
-// 	MediaTimeDisplay,
-// 	MediaVolumeRange,
-// 	MediaPlaybackRateButton,
-// 	MediaPlayButton,
-// 	MediaSeekBackwardButton,
-// 	MediaSeekForwardButton,
-// 	MediaMuteButton,
-// 	MediaFullscreenButton,
-// } from "media-chrome/react";
+// import {MediaController} from "media-chrome/react";
+import {
+	MediaController,
+	MediaControlBar,
+	MediaTimeRange,
+	MediaTimeDisplay,
+	MediaVolumeRange,
+	MediaPlaybackRateButton,
+	MediaPlayButton,
+	MediaSeekBackwardButton,
+	MediaSeekForwardButton,
+	MediaMuteButton,
+	MediaFullscreenButton,
+} from "media-chrome/react";
 // import ButtonEmergencyToolbox from "../buttons/toolbox/ButtonEmergencyToolbox";
 import parse from "html-react-parser";
 import data from "../../../data/data.js";
@@ -126,17 +126,14 @@ const AcronymCard = () => {
 											src={video.url}
 											className="player"
 										/>
-										{/* <MediaControlBar>
+										<MediaControlBar className="controls">
 											<MediaPlayButton />
-											<MediaSeekBackwardButton seekOffset={10} />
-											<MediaSeekForwardButton seekOffset={10} />
-											<MediaTimeRange />
-											<MediaTimeDisplay showDuration />
+
 											<MediaMuteButton />
 											<MediaVolumeRange />
 											<MediaPlaybackRateButton />
 											<MediaFullscreenButton />
-										</MediaControlBar> */}
+										</MediaControlBar>
 									</MediaController>
 								</div>
 							))}
