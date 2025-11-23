@@ -1,7 +1,9 @@
 import * as React from "react";
-import {useState, useEffect} from "react";
+import {useState, useEffect, useRef} from "react";
 import useAppStore from "@/store/useAppStore";
 import ButtonToolbox from "../buttons/toolbox/ButtonToolbox";
+import BackdropParallax from "ui/backdrop/BackdropParallax";
+
 import ButtonEmergencyToolbox from "../buttons/toolbox/ButtonEmergencyToolbox";
 import parse from "html-react-parser";
 import data from "../../../data/data.js";
@@ -19,10 +21,13 @@ const AcronymCard = () => {
 	const acronymnID = useAppStore(state => state.acronymnID);
 	const setShowAccCard = useAppStore(state => state.setShowAccCard);
 	const showAccCard = useAppStore(state => state.showAccCard);
-
+	const contentRef = useRef(null);
+	const content = document.querySelector(".AccContent");
 	useEffect(() => {
-		console.log("AcronymCard acronymnID", acronymnID);
+		//console.log("AcronymCard acronymnID", acronymnID);
 		setAccData(getAccData(acronymnID));
+		contentRef.current.scrollTop = 0; //.scrollTop(0);
+		console.log("content ", content);
 	}, [acronymnID]);
 
 	const handleClose = () => {
@@ -51,7 +56,10 @@ const AcronymCard = () => {
 						)}
 					</div>
 				</div>
-				<section className="AccContent">
+				<section
+					className="AccContent"
+					ref={contentRef}
+				>
 					<div className="AccGroup">
 						<div className="AccExplanation">{accData && parse(accData?.content.explanation)}</div>
 
@@ -72,6 +80,7 @@ const AcronymCard = () => {
 									</div>
 									<div
 										className="Acc-word"
+										data-len={acronym.meaning.length}
 										key={"m-" + index}
 									>
 										{acronym.meaning.substring(1)}
@@ -101,6 +110,13 @@ const AcronymCard = () => {
 						<CloseIcon />
 					</div>
 				</div>
+
+				<BackdropParallax
+					initialImageId={3}
+					initialDelay={3000}
+					interval={6000}
+					parallaxStrength={0}
+				/>
 			</div>
 		</div>
 	);

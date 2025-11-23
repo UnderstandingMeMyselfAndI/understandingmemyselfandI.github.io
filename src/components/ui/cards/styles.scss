@@ -48,17 +48,18 @@ div.AcronymCard {
 		align-items: center;
 		align-content: center;
 		color: var(--primary);
+		overflow: hodden;
 		&::after {
 			content: "";
 			width: 100%;
 			height: 100%;
 			background: #333333;
-			background: linear-gradient(336deg, rgba(20, 20, 20, 0.75) 30%, rgba(0, 0, 0, 0.75) 100%);
+			background: linear-gradient(336deg, rgba(10, 10, 10, 0.75) 30%, rgba(0, 0, 0, 0.75) 100%);
 			position: absolute;
 			top: 0px;
 			left: 0;
 			z-index: -1;
-			opacity: 1;
+			opacity: 0.5;
 		}
 	}
 
@@ -73,7 +74,8 @@ div.AcronymCard {
 
 		transition: var(--transition);
 		width: 100%;
-		height: 150px;
+		height: 140px;
+		min-height: 140px;
 		padding: 0;
 		margin: 0;
 		font-size: variables.$h1_size;
@@ -86,7 +88,6 @@ div.AcronymCard {
 			row-gap: 0.5rem;
 			justify-content: center;
 			align-items: center;
-			// outline: 1px solid #ccc;
 			position: absolute;
 			top: 50%;
 			left: 1rem;
@@ -96,7 +97,6 @@ div.AcronymCard {
 			div.btn.toolbox {
 				width: 20px;
 				height: 20px;
-				// outline: 1px solid #ccc;
 				> svg {
 					width: 20px;
 					height: 20px;
@@ -110,11 +110,11 @@ div.AcronymCard {
 			flex-flow: row nowrap;
 			opacity: 1;
 
-			font-size: variables.$h1_size;
+			font-size: variables.$acc_title_size;
 			color: var(--orange);
 			-webkit-text-stroke: 2px var(--orange);
 			line-height: 1.1;
-			font-weight: 900;
+			font-weight: variables.$acc_title_weight;
 
 			justify-content: center;
 			align-items: center;
@@ -123,6 +123,8 @@ div.AcronymCard {
 
 			width: fit-content;
 			height: fit-content;
+
+			letter-spacing: 4px;
 
 			> div {
 				position: relative;
@@ -133,7 +135,7 @@ div.AcronymCard {
 					content: "";
 					position: absolute;
 					z-index: -1;
-					bottom: -3px;
+					bottom: 0px;
 					right: 0;
 					width: 7px;
 					height: 7px;
@@ -154,18 +156,14 @@ div.AcronymCard {
 			top: 0px;
 			left: 0;
 			z-index: -1;
-			opacity: 0.85;
+			opacity: 0.15;
 		}
 	}
 	section.AccContent {
 		position: static;
-		// outline: 1px solid #0f0;
 		overflow-y: scroll;
 		height: fit-content;
 		flex-grow: 1;
-
-		// height: 300px;
-
 		border-top: 1px solid rgba(40, 40, 40, 0.9);
 		border-bottom: 1px solid rgba(44, 44, 44, 0.9);
 		position: relative;
@@ -187,7 +185,7 @@ div.AcronymCard {
 			justify-content: space-evenly;
 
 			> div:first-child {
-				margin: 2rem 0 1rem 0;
+				margin: 1rem 0 1rem 0;
 				color: var(--primary);
 			}
 			div.AccDetails {
@@ -195,13 +193,11 @@ div.AcronymCard {
 				text-align: left;
 				color: var(--lightBlue);
 				div.Acc-letter-group {
-					width: 90%;
+					width: 96%;
 					margin: 0 auto;
 					position: relative;
 					line-height: 1.1;
 					height: fit-content;
-					// outline: 1px solid #f00;
-
 					div.Acc-letter {
 						position: absolute;
 						z-index: 10;
@@ -210,28 +206,41 @@ div.AcronymCard {
 
 						color: var(--orange);
 						-webkit-text-stroke: 2px var(--orange);
-						// -webkit-text-stroke: 2px rgba(255, 255, 255, 0.65);
 						height: fit-content;
 						transform: translateX(-5%);
 						width: 40px;
-						text-align: right;
+						text-align: center;
 						opacity: 1;
 
 						&::after {
 							content: "";
-							width: 140%;
-							height: 200%;
+							width: 200%;
+							height: 300%;
 							position: absolute;
-							top: -40%;
-							transform: translate(0, -80%);
-							left: 0;
+							top: -90%;
+							left: -30%;
+							transform: translate(-30%, -80%);
+
 							z-index: -2;
 							transform: rotateZ(-6deg) skew(0.03turn, 12deg) translate(-12px, -6px) scale(0.9, 0.5);
-							outline: 1px solid rgba(150, 150, 150, 0.25);
-							background-color: rgba(216, 14, 14, 0.24);
+							outline: 1px solid rgba(150, 150, 150, 0.5);
 						}
 					}
-
+					div.Acc-word[data-len] {
+						--len: attr(data-len);
+						// background-color: red;
+						&::before {
+							content: "";
+							width: 80%; //calc(10% * var(--len));
+							height: 200%;
+							position: absolute;
+							top: -60%;
+							left: -16%;
+							z-index: -1;
+							transform: rotateZ(-2deg) skew(-0.09turn, 6deg) translate(-20px, 10px) scale(0.9, 0.5);
+							outline: 1px solid #185301;
+						}
+					}
 					div.Acc-word {
 						font-size: variables.$acc_wrd_size;
 						font-weight: 800;
@@ -244,27 +253,6 @@ div.AcronymCard {
 						width: calc(100% - 30px);
 						margin-left: 40px;
 						position: relative;
-						// outline: 1px solid #ccc;
-
-						// &::first-letter {
-						// 	opacity: 0;
-						// 	width: 0;
-						// 	display: none;
-						// 	font-weight: 900;
-						// 	font-size: variables.$h1_size;
-						// }
-						&::before {
-							content: "";
-							width: 80%;
-							height: 100%;
-							position: absolute;
-							top: -20%;
-							left: -20px;
-							// transform: translate(-20px, -150%);
-							z-index: -1;
-							transform: rotateZ(-2deg) skew(-0.09turn, 6deg) translate(-20px, 10px) scale(0.9, 0.5);
-							outline: 1px solid #185301;
-						}
 					}
 				}
 				div.Acc-definition {
@@ -280,14 +268,14 @@ div.AcronymCard {
 			top: 0px;
 			left: 0;
 			z-index: -1;
-			opacity: 0.45;
+			opacity: 0.15;
 			// background: rgba(62, 97, 133, 0);
 			background: linear-gradient(-8deg, rgba(0, 0, 0, 0) 60%, rgb(10, 10, 10, 1) 100%);
 		}
 	}
 	.footer {
 		width: 100%;
-		height: 60px;
+		height: 100px;
 		// outline: 1px solid #f00;
 		display: flex;
 		flex-flow: row wrap;
@@ -329,7 +317,20 @@ div.AcronymCard {
 			top: 0px;
 			left: 0;
 			z-index: -1;
-			opacity: 0.85;
+			opacity: 0.15;
 		}
+	}
+
+	&::after {
+		content: "";
+		width: 100%;
+		height: 100%;
+		background: #000000;
+		// background: linear-gradient(336deg, rgba(10, 10, 10, 0.75) 30%, rgba(0, 0, 0, 0.75) 100%);
+		position: absolute;
+		top: 0px;
+		left: 0;
+		z-index: -100;
+		opacity: 1;
 	}
 }

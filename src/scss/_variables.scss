@@ -131,8 +131,8 @@ $logo_lrg_line_height: 1.2;
 // Ancronym title font size
 // ------------------------------------------
 
-$acc_title_size_min: 40px;
-$acc_title_size_max: 70px;
+$acc_title_size_min: 60px;
+$acc_title_size_max: 90px;
 $acc_title_size: responsiveFontSize($acc_title_size_min, $acc_title_size_max, $minDeviceWidth, $maxDeviceWidth);
 $acc_title_color: var(--text_primary);
 $acc_title_weight: 800;
