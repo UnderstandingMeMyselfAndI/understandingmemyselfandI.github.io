@@ -3,11 +3,25 @@ import {useState, useEffect, useRef} from "react";
 import useAppStore from "@/store/useAppStore";
 import ButtonToolbox from "../buttons/toolbox/ButtonToolbox";
 import BackdropParallax from "ui/backdrop/BackdropParallax";
-
-import ButtonEmergencyToolbox from "../buttons/toolbox/ButtonEmergencyToolbox";
+import ReactPlayer from "react-player";
+import {MediaController} from "media-chrome/react";
+// import {
+// 	MediaController,
+// 	MediaControlBar,
+// 	MediaTimeRange,
+// 	MediaTimeDisplay,
+// 	MediaVolumeRange,
+// 	MediaPlaybackRateButton,
+// 	MediaPlayButton,
+// 	MediaSeekBackwardButton,
+// 	MediaSeekForwardButton,
+// 	MediaMuteButton,
+// 	MediaFullscreenButton,
+// } from "media-chrome/react";
+// import ButtonEmergencyToolbox from "../buttons/toolbox/ButtonEmergencyToolbox";
 import parse from "html-react-parser";
 import data from "../../../data/data.js";
-import {storeKeys, localStore} from "@/data/localStore.js";
+// import {storeKeys, localStore} from "@/data/localStore.js";
 import CloseIcon from "@mui/icons-material/Close";
 import "./styles.scss";
 function getAccData(id) {
@@ -91,7 +105,43 @@ const AcronymCard = () => {
 							</div>
 						))}
 					</div>
-
+					{accData?.videos.length > 0 && (
+						<div className="videos">
+							<h2>VIDEOS</h2>
+							{console.log("videos", accData?.videos)}
+							{console.log("accData?.videos.length  ", accData?.videos.length)}
+							{accData?.videos.map((video, index) => (
+								<div
+									className="video"
+									key={index}
+								>
+									<div className="title">{parse(video.title)}</div>
+									<MediaController
+										style={{
+											width: "100%",
+											aspectRatio: "16/9",
+										}}
+									>
+										<ReactPlayer
+											src={video.url}
+											className="player"
+										/>
+										{/* <MediaControlBar>
+											<MediaPlayButton />
+											<MediaSeekBackwardButton seekOffset={10} />
+											<MediaSeekForwardButton seekOffset={10} />
+											<MediaTimeRange />
+											<MediaTimeDisplay showDuration />
+											<MediaMuteButton />
+											<MediaVolumeRange />
+											<MediaPlaybackRateButton />
+											<MediaFullscreenButton />
+										</MediaControlBar> */}
+									</MediaController>
+								</div>
+							))}
+						</div>
+					)}
 					<div></div>
 					<div></div>
 				</section>

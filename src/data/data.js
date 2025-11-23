@@ -27,7 +27,7 @@ const data = [
 			},
 		],
 		cats: ["C.B.T", "D.B.T", "Emergency", "Grounding", "Assumptions", "Plans", "Urges", "Cravings", "Thoughts", "Emotions", "Mood", "Mental Health", "Anxiety", "Stress", "Depressed", "Low Mood"],
-		videos: [],
+		videos: [{title: "The ABCDEs of Coping with Urges", url: "https://www.youtube.com/watch?v=4Pmd7pzQI1M"}],
 	},
 	{
 		id: 2,
@@ -113,7 +113,10 @@ const data = [
 			},
 		],
 		cats: ["C.B.T", "D.B.T", "Emergency", "Grounding", "Assumptions", "Plans", "Urges", "Cravings", "Thoughts", "Emotions", "Mood", "Mental Health", "Anxiety", "Stress", "Depressed", "Low Mood"],
-		videos: [],
+		videos: [
+			{title: "Cost Benefit Analysis (CBA) ", url: "https://www.youtube.com/watch?v=k2e2TNSTurs"},
+			{title: "How Does Cost-Benefit Analysis Help In SMART Recovery?", url: "https://www.youtube.com/watch?v=ii1zvNDbzd0"},
+		],
 	},
 	{
 		id: 5,
@@ -148,7 +151,7 @@ const data = [
 			},
 		],
 		cats: ["C.B.T", "D.B.T", "Emergency", "Grounding", "Assumptions", "Plans", "Urges", "Cravings", "Thoughts", "Emotions", "Mood", "Mental Health", "Anxiety", "Stress", "Depressed", "Low Mood"],
-		videos: [],
+		videos: [{title: "The DEADs Tool Explained", url: "https://www.youtube.com/watch?v=rHl3STAGl-I"}],
 	},
 	{
 		id: 6,
@@ -179,7 +182,7 @@ const data = [
 			},
 		],
 		cats: ["C.B.T", "D.B.T", "Emergency", "Grounding", "Assumptions", "Plans", "Urges", "Cravings", "Thoughts", "Emotions", "Mood", "Mental Health", "Anxiety", "Stress", "Depressed", "Low Mood"],
-		videos: [],
+		videos: [{title: "The DISARM Tool Explained", url: "https://www.youtube.com/watch?v=pAVbXlXBthA"}],
 	},
 
 	// {
@@ -300,7 +303,7 @@ const data = [
 			},
 		],
 		cats: ["C.B.T", "D.B.T", "Emergency", "Grounding", "Assumptions", "Plans", "Urges", "Cravings", "Thoughts", "Emotions", "Mood", "Mental Health", "Anxiety", "Stress", "Depressed", "Low Mood"],
-		videos: [],
+		videos: [{title: "The Hierarchy of Values Tool (HOV)", url: "https://www.youtube.com/watch?v=RW63Ddsgol0"}],
 	},
 	{
 		id: 13,
@@ -471,7 +474,14 @@ const data = [
 			},
 		],
 		cats: ["C.B.T", "D.B.T", "Emergency", "Grounding", "Assumptions", "Plans", "Urges", "Cravings", "Thoughts", "Emotions", "Mood", "Mental Health", "Anxiety", "Stress", "Depressed", "Low Mood"],
-		videos: [],
+		videos: [
+			{title: "The RAIN Technique Explained? - Stress Free Mindset", url: "https://www.youtube.com/watch?v=8etCPEto4z4"},
+			{title: "The RAIN Method", url: "https://www.youtube.com/watch?v=wN0XtQumGBk"},
+			{title: "RAIN-Method: Meditation for emotional self-regulation", url: "https://www.youtube.com/watch?v=olCAX_C0iM8"},
+			{title: "5-Minute Meditations: R.A.I.N Technique", url: "https://www.youtube.com/watch?v=v6k5gv3nxQ8"},
+			{title: "Mindful Meditation - The R-A-I-N Technique", url: "https://www.youtube.com/watch?v=kC7dJQt5BBw"},
+			{title: "Guided Meditation: Dissolving the Trance of Unworthiness with RAIN with Tara Brach", url: "https://www.youtube.com/watch?v=Ytr1V1R1rOw"},
+		],
 	},
 	{
 		id: 20,
@@ -508,7 +518,7 @@ const data = [
 		content: {
 			acronyms: [
 				{letter: "R", meaning: "Rational", definition: "<p>Think it through logically - what does the evidence actually say about this situation?</p>", scenario: ""},
-				{letter: "E", meaning: "Emotional", definition: "<p>Honor your feelings without letting them run the show - they're information, not instructions</p>", scenario: ""},
+				{letter: "E", meaning: "Emotive", definition: "<p>Honor your feelings without letting them run the show - they're information, not instructions</p>", scenario: ""},
 				{letter: "I", meaning: "Imagery", definition: "<p>Use your imagination for good - picture yourself handling things well and feeling proud</p>", scenario: ""},
 			],
 			explanation: "<p>Balance your head and your heart with some positive visualization - the trifecta of healthy coping.</p>",
@@ -585,7 +595,7 @@ const data = [
 			},
 		],
 		cats: ["C.B.T", "D.B.T", "Emergency", "Grounding", "Assumptions", "Plans", "Urges", "Cravings", "Thoughts", "Emotions", "Mood", "Mental Health", "Anxiety", "Stress", "Depressed", "Low Mood"],
-		videos: [],
+		videos: [{title: "DBT Distress Tolerance STOP Skill", url: "https://www.youtube.com/watch?v=8ykrSYe6UMk"}],
 	},
 	{
 		id: 24,
@@ -614,7 +624,10 @@ const data = [
 			},
 		],
 		cats: ["C.B.T", "D.B.T", "Emergency", "Grounding", "Assumptions", "Plans", "Urges", "Cravings", "Thoughts", "Emotions", "Mood", "Mental Health", "Anxiety", "Stress", "Depressed", "Low Mood"],
-		videos: [],
+		videos: [
+			{title: "Fact-Checking - A CBT tool", url: "https://www.youtube.com/watch?v=4GEjZVZq1V0"},
+			{title: "Cognitive Fusion and Defusion in ACT", url: "https://www.youtube.com/watch?v=CpdVMs818AE"},
+		],
 	},
 	{
 		id: 25,
@@ -640,7 +653,10 @@ const data = [
 			},
 		],
 		cats: ["C.B.T", "D.B.T", "Emergency", "Grounding", "Assumptions", "Plans", "Urges", "Cravings", "Thoughts", "Emotions", "Mood", "Mental Health", "Anxiety", "Stress", "Depressed", "Low Mood"],
-		videos: [],
+		videos: [
+			{title: "TIP Skills: Reduce Extreme Emotions Quickly", url: "https://www.youtube.com/watch?v=UuvH_j9O0f4"},
+			{title: "The TIPP Technique", url: "https://www.youtube.com/watch?v=8nVady7A3Qo"},
+		],
 	},
 	{
 		id: 26,
@@ -729,7 +745,7 @@ const data = [
 			},
 		],
 		cats: ["C.B.T", "D.B.T", "Emergency", "Grounding", "Assumptions", "Plans", "Urges", "Cravings", "Thoughts", "Emotions", "Mood", "Mental Health", "Anxiety", "Stress", "Depressed", "Low Mood"],
-		videos: [],
+		videos: [{title: "Urge Surfing Meditation", url: "https://www.youtube.com/watch?v=dHzS_RBtnXE"}],
 	},
 	{
 		id: 28,
@@ -757,8 +773,64 @@ const data = [
 			},
 		],
 		cats: ["C.B.T", "D.B.T", "Emergency", "Grounding", "Assumptions", "Plans", "Urges", "Cravings", "Thoughts", "Emotions", "Mood", "Mental Health", "Anxiety", "Stress", "Depressed", "Low Mood"],
-		videos: [],
+		videos: [{title: "Unconditional Self Acceptance (USA) Explained", url: "https://www.youtube.com/watch?v=sgM32-FF6gA"}],
 	},
+	// {
+	// 	id: 30,
+	// 	title: "V.A.C.I", NEEDS INFO
+	// 	content: {
+	// 		acronyms: [
+	// 			{letter: "U", meaning: "Unconditional", definition: "<p>You're worthy of love and respect just because you exist - no performance required</p>", scenario: ""},
+	// 			{letter: "L", meaning: "Life", definition: "<p>NEED INFO</p>", scenario: ""},
+	// 			{letter: "A", meaning: "Acceptance", definition: "<p>Embracing yourself as you are right now, while still working toward who you want to become</p>", scenario: ""},
+	// 		],
+	// 		explanation: "<p>The foundation of lasting recovery - learning to be on your own team, especially when you mess up.</p>",
+	// 	},
+	// 	scenarios: [
+	// 		{
+	// 			title: "After a Relapse",
+	// 			content:
+	// 				"<p><b>Unconditional:</b><br />Your worth doesn't decrease because you used again.</p><p><b>Self:</b><br />You're a complex person dealing with a difficult challenge, not just 'an addict.'</p><p><b>Acceptance:</b><br />Accept that you slipped while still believing <u>you can get back on track.</u></p>",
+	// 			btnLabel: "Unconditional Self Acceptance",
+	// 		},
+	// 		{
+	// 			title: "Comparing Yourself to Others",
+	// 			content:
+	// 				"<p><b>Unconditional:</b><br />Your value isn't determined by how you stack up against others.</p><p><b>Self:</b><br />Focus on your whole journey, not just where you are right now.</p><p><b>Acceptance:</b><br />Embrace your current progress while working <u>toward your goals without self-criticism.</u></p>",
+	// 			btnLabel: "Comparing Yourself to Others",
+	// 		},
+	// 	],
+	// 	cats: ["C.B.T", "D.B.T", "Emergency", "Grounding", "Assumptions", "Plans", "Urges", "Cravings", "Thoughts", "Emotions", "Mood", "Mental Health", "Anxiety", "Stress", "Depressed", "Low Mood"],
+	// 	videos: [{title: "Unconditional Self Acceptance (USA) Explained", url: "https://www.youtube.com/watch?v=sgM32-FF6gA"}],
+	// },
+	// {
+	// 	id: 30,
+	// 	title: "U.L.A",
+	// 	content: {
+	// 		acronyms: [
+	// 			{letter: "U", meaning: "Unconditional", definition: "<p>You're worthy of love and respect just because you exist - no performance required</p>", scenario: ""},
+	// 			{letter: "L", meaning: "Life", definition: "<p>NEED INFO</p>", scenario: ""},
+	// 			{letter: "A", meaning: "Acceptance", definition: "<p>Embracing yourself as you are right now, while still working toward who you want to become</p>", scenario: ""},
+	// 		],
+	// 		explanation: "<p>The foundation of lasting recovery - learning to be on your own team, especially when you mess up.</p>",
+	// 	},
+	// 	scenarios: [
+	// 		{
+	// 			title: "After a Relapse",
+	// 			content:
+	// 				"<p><b>Unconditional:</b><br />Your worth doesn't decrease because you used again.</p><p><b>Self:</b><br />You're a complex person dealing with a difficult challenge, not just 'an addict.'</p><p><b>Acceptance:</b><br />Accept that you slipped while still believing <u>you can get back on track.</u></p>",
+	// 			btnLabel: "Unconditional Self Acceptance",
+	// 		},
+	// 		{
+	// 			title: "Comparing Yourself to Others",
+	// 			content:
+	// 				"<p><b>Unconditional:</b><br />Your value isn't determined by how you stack up against others.</p><p><b>Self:</b><br />Focus on your whole journey, not just where you are right now.</p><p><b>Acceptance:</b><br />Embrace your current progress while working <u>toward your goals without self-criticism.</u></p>",
+	// 			btnLabel: "Comparing Yourself to Others",
+	// 		},
+	// 	],
+	// 	cats: ["C.B.T", "D.B.T", "Emergency", "Grounding", "Assumptions", "Plans", "Urges", "Cravings", "Thoughts", "Emotions", "Mood", "Mental Health", "Anxiety", "Stress", "Depressed", "Low Mood"],
+	// 	videos: [{title: "Unconditional Self Acceptance (USA) Explained", url: "https://www.youtube.com/watch?v=sgM32-FF6gA"}],
+	// },
 	{
 		id: 29,
 		title: "W.A.I.T.",
@@ -786,7 +858,7 @@ const data = [
 			},
 		],
 		cats: ["C.B.T", "D.B.T", "Emergency", "Grounding", "Assumptions", "Plans", "Urges", "Cravings", "Thoughts", "Emotions", "Mood", "Mental Health", "Anxiety", "Stress", "Depressed", "Low Mood"],
-		videos: [{title: "", url: "", desc: ""}],
+		videos: [],
 	},
 ];
 export default data;
