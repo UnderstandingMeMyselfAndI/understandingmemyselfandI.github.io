@@ -15,7 +15,8 @@ $width: 28px;
 	&.stg-0,
 	&.stg-1,
 	&.stg-2,
-	&.stg-3 {
+	&.stg-3,
+	&.hide {
 		opacity: 0;
 		transform: translateX(30px) scale(0.7);
 		transition: all 0.25s cubic-bezier(0.3, 0, 0.74, 1);

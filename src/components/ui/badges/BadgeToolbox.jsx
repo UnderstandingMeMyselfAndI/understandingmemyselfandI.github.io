@@ -17,7 +17,7 @@ export default function BadgeToolbox() {
 	const allAccronyms = data;
 	const ids = allAccronyms.map(item => item.id);
 	const count = localStore.getCountByLabel(storeKeys.toolbox, ids);
-	const {showToolsOnly, toggleShowToolsOnly, scrollStage} = useAppStore();
+	const {showToolsOnly, toggleShowToolsOnly, scrollStage, showAccCard} = useAppStore();
 
 	const blueGreyBase = "#819ec9";
 	const blueGreyMain = alpha(blueGreyBase, 0.95);
@@ -75,7 +75,7 @@ export default function BadgeToolbox() {
 					{showToolsOnly ? "Showing only the tools you selected" : "Showing all tools"}
 				</Alert>
 			</Snackbar>
-			<div className={"badge-cont " + ("stg-" + scrollStage)}>
+			<div className={"badge-cont " + ("stg-" + scrollStage) + (showAccCard ? " hide" : "")}>
 				<ThemeProvider theme={theme}>
 					<Badge
 						className={"badge toolbox" + (showToolsOnly ? " active" : "")}
