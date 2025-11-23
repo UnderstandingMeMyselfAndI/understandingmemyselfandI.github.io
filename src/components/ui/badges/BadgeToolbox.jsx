@@ -1,7 +1,6 @@
 import * as React from "react";
-import {useState, useEffect} from "react";
+import {useEffect} from "react";
 import Badge from "@mui/material/Badge";
-import MailIcon from "@mui/icons-material/Mail";
 import {createTheme, alpha, getContrastRatio, ThemeProvider} from "@mui/material/styles";
 import useAppStore from "@/store/useAppStore";
 import HandymanIcon from "@mui/icons-material/Handyman";
@@ -18,10 +17,8 @@ export default function BadgeToolbox() {
 	const ids = allAccronyms.map(item => item.id);
 	const count = localStore.getCountByLabel(storeKeys.toolbox, ids);
 	const {showToolsOnly, toggleShowToolsOnly, scrollStage, showAccCard} = useAppStore();
-
 	const blueGreyBase = "#819ec9";
 	const blueGreyMain = alpha(blueGreyBase, 0.95);
-
 	const greyBase = "#303030ff";
 	const greyMain = alpha(greyBase, 0.75);
 
@@ -43,8 +40,10 @@ export default function BadgeToolbox() {
 	});
 
 	useEffect(() => {
-		setOpenAlert(false);
-		setOpenAlert(true);
+		if (scrollStage > 2) {
+			setOpenAlert(false);
+			setOpenAlert(true);
+		}
 	}, [showToolsOnly]);
 
 	const handleClose = () => {

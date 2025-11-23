@@ -17,17 +17,13 @@ function getAccData(id) {
 
 const AcronymCard = () => {
 	const [accData, setAccData] = useState(null);
-
 	const acronymnID = useAppStore(state => state.acronymnID);
 	const setShowAccCard = useAppStore(state => state.setShowAccCard);
 	const showAccCard = useAppStore(state => state.showAccCard);
 	const contentRef = useRef(null);
-	const content = document.querySelector(".AccContent");
 	useEffect(() => {
-		//console.log("AcronymCard acronymnID", acronymnID);
 		setAccData(getAccData(acronymnID));
-		contentRef.current.scrollTop = 0; //.scrollTop(0);
-		console.log("content ", content);
+		contentRef.current.scrollTop = 0;
 	}, [acronymnID]);
 
 	const handleClose = () => {

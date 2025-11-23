@@ -33,22 +33,26 @@ div.AcronymCard {
 		position: relative;
 		height: calc(100dvh - $gutters);
 		width: calc(100vw - $gutters);
-		margin-left: calc($gutters * 0.5);
-		margin-top: calc($gutters * 0.5);
+		overflow: clip;
+		left: 50%;
+		// margin-top: calc($gutters * 0.5);
+		max-width: 600px; /// for desktop viewers
+		transform: translate(-50%, 0%);
 
 		text-shadow: 2px 0px 7px rgba(0, 0, 0, 0.49);
 		outline: 1px solid rgba(150, 150, 150, 0.25);
 		transition: var(--transition);
 		border-radius: var(--border-radius);
 		background-color: rgba(60, 64, 83, 0.2);
-		overflow: clip;
+
 		display: flex;
 		flex-flow: column nowrap;
 		justify-content: center;
 		align-items: center;
 		align-content: center;
 		color: var(--primary);
-		overflow: hodden;
+		overflow: hidden;
+
 		&::after {
 			content: "";
 			width: 100%;
@@ -69,9 +73,7 @@ div.AcronymCard {
 		align-items: center;
 		justify-content: center;
 		color: var(--orange);
-
 		text-align: center;
-
 		transition: var(--transition);
 		width: 100%;
 		height: 140px;
@@ -202,13 +204,13 @@ div.AcronymCard {
 						position: absolute;
 						z-index: 10;
 						font-weight: 900;
-						font-size: variables.$letter_size_min;
+						font-size: variables.$letter_size;
 
 						color: var(--orange);
 						-webkit-text-stroke: 2px var(--orange);
 						height: fit-content;
 						transform: translateX(-5%);
-						width: 40px;
+						width: 48px;
 						text-align: center;
 						opacity: 1;
 
@@ -251,12 +253,18 @@ div.AcronymCard {
 						position: relative;
 						transform: translate(0px, 12px);
 						width: calc(100% - 30px);
-						margin-left: 40px;
+						margin-left: 13%;
 						position: relative;
 					}
 				}
 				div.Acc-definition {
 					margin: 1.5rem 0 1.5rem 1rem;
+					u {
+						line-height: variables.$acc_wrd_line_height;
+						font-weight: 800;
+						text-decoration: 3px underline var(--yellow);
+						color: var(--primary);
+					}
 				}
 			}
 		}
