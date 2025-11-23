@@ -128,7 +128,13 @@ const AcronymCard = () => {
 													aspectRatio: "16/9",
 												}}
 											>
-												<ReactPlayer src={video.url} />
+												<ReactPlayer
+													src={video.url}
+													style={{
+														width: "100%",
+														height: "100%",
+													}}
+												/>
 												<MediaControlBar className="controls">
 													<MediaPlayButton />
 
