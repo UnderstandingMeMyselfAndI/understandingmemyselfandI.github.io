@@ -4,7 +4,7 @@
 	"description": "Understanding Me Myself & I is an app for mental health, wellbeing, and recovery providing quick access to therapy tools learnt in Cognitive Behavioural Therapy (CBT), Dialectical Behaviour Therapy (DBT) and other therapies.",
 	"start_url": "/index.html?fullscreen=true",
 
-	"background_color": "#036075",
+	"background_color": "#007bff",
 	"theme_color": "#007bff",
 	"orientation": "portrait",
 	"lang": "en",
