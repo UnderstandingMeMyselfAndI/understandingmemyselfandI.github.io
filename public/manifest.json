@@ -10,7 +10,7 @@
 	"lang": "en",
 	"dir": "ltr",
 	"display_override": ["window-controls-overlay"],
-	"display": "fullscreen",
+	"display": "standalone",
 
 	"share_target": {
 		"action": "/s",
