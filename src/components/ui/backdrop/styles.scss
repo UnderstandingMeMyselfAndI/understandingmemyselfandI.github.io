@@ -1,37 +1,66 @@
+@use "@/scss/_variables.scss";
+@import "@/globals.css";
 .backdrop {
 	position: fixed;
 	inset: 0;
 	z-index: -1;
 	overflow: hidden;
-}
+	// &::after {
+	// 	content: "";
+	// 	position: absolute;
+	// 	z-index: -1;
+	// 	width: 100%;
+	// 	height: 100%;
+	// 	background-color: var(orange);
+	// }
+	// &::before {
+	// 	content: "";
+	// 	position: absolute;
+	// 	inset: -5%; // slight oversize for stronger effect
+	// 	background: inherit;
+	// 	background-attachment: fixed;
+	// 	background-size: cover;
+	// 	background-position: center top;
+	// 	filter: blur(1px); // optional: dreamy look
+	// 	z-index: 0;
+	// }
+	.cont {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		opacity: 0.6;
+		img {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			height: 120vh; // gives space for the parallax movement
+			object-fit: cover;
+			/* Start invisible for incoming images */
+			opacity: 0;
+			top: -10vh; // optional: start a bit higher
+			left: 0;
+			will-change: transform;
+		}
+		img.active {
+			opacity: 1;
+			animation: fadeIn 1.2s cubic-bezier(0.365, 0.403, 0, 1) forwards;
+			z-index: 0;
+		}
+		img.inactive {
+			opacity: 0;
+			animation: fadeOut 1.2s cubic-bezier(0.365, 0.403, 0, 1) forwards;
+			z-index: 1;
+		}
+	}
 
-.cont {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	opacity: 0.6;
-}
-
-.cont img {
-	position: absolute;
-	inset: 0;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	/* Start invisible for incoming images */
-	opacity: 0;
-}
-
-.cont img.active {
-	opacity: 1;
-	animation: fadeIn 1.2s cubic-bezier(0.365, 0.403, 0, 1) forwards;
-	z-index: 0;
-}
-
-.cont img.inactive {
-	opacity: 0;
-	animation: fadeOut 1.2s cubic-bezier(0.365, 0.403, 0, 1) forwards;
-	z-index: 1;
+	.vig {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		background: radial-gradient(circle, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.4) 80%);
+		z-index: 3;
+	}
 }
 
 /* If you want the old image to fade out slightly slower */
@@ -51,33 +80,4 @@
 	to {
 		opacity: 0;
 	}
-}
-
-.cont img {
-	height: 120vh; // gives space for the parallax movement
-	width: 100%;
-	object-fit: cover;
-	position: absolute;
-	top: -10vh; // optional: start a bit higher
-	left: 0;
-	will-change: transform;
-}
-.backdrop::before {
-	content: "";
-	position: absolute;
-	inset: -5%; // slight oversize for stronger effect
-	background: inherit;
-	background-attachment: fixed;
-	background-size: cover;
-	background-position: center top;
-	filter: blur(1px); // optional: dreamy look
-	z-index: 0;
-}
-
-.vig {
-	position: absolute;
-	inset: 0;
-	pointer-events: none;
-	background: radial-gradient(circle, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.4) 80%);
-	z-index: 3;
 }

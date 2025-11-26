@@ -11,20 +11,19 @@
 	box-sizing: border-box;
 }
 html {
-	min-height: 100vh;
 	width: 100%;
 	height: 100%;
-	background-color: #000;
 }
 body {
 	width: 100%;
 	height: 100%;
-	overflow-x: hidden;
+	// overflow-x: hidden;
 	color: var(--primary);
-	padding: 0 0 0 0;
+	padding: 0;
 	margin: 0;
-	background: var(--blueBackground);
-	text-shadow: 2px 2px 2px rgba(50, 50, 50, 0.2);
+	user-select: none;
+	// background-color: var(--mainBackground);
+	// text-shadow: 2px 2px 2px rgba(50, 50, 50, 0.2);
 	h1,
 	h2,
 	h3,
@@ -33,78 +32,61 @@ body {
 	h6 {
 		color: var(--primary);
 	}
-	user-select: none;
+
+	h2 {
+		margin: 0.75rem 0 1.5rem 0;
+	}
 }
-body * {
-	text-shadow: 1px 1px 2px rgba(50, 50, 50, 0.2) !important;
-}
+
 #root {
 	width: 100%;
 	min-height: 100%;
-	margin: 0 auto;
+	margin: 0;
 	padding: 0;
 	text-align: center;
 	overflow: hidden;
-	// background: var(--blueBackground);
+	background: transparent;
+	// position: relative;
+	// top: 0;
+}
+:focus {
+	outline: none;
+	box-shadow: none;
+}
+svg:focus,
+button:focus,
+svg:focus-visible,
+button:focus-visible {
+	outline: none;
+	border: none;
+	box-shadow: none;
 }
 body {
-	background-color: var(--blueBackground);
-	user-select: none;
-	*.MuiTypography-root {
-		font-family: "Plus Jakarta Sans", sans-serif;
-		color: var(--primary);
-	}
-	div.MuiModal-root {
-		max-width: 100dvw;
-		font-family: "Plus Jakarta Sans", sans-serif;
-		div.MuiBox-root {
-			max-width: 90dvw;
-			left: 5dvw;
-			transform: translateX(0);
-			// background: var(--blueBackground);
-			border: none;
-			border-image: none;
+	background: var(--mainBackground) !important;
+	.app {
+		position: relative;
+		z-index: 10;
+		width: 100%;
+		// height: 100%;
+
+		.main {
+			max-width: 100vw;
+			width: 90vw;
+			margin: 0 auto;
+			padding: 0;
+			position: relative;
+
+			max-width: 600px;
+
+			> .inner {
+				width: 100%;
+
+				.content {
+					position: relative;
+				}
+			}
 		}
-	}
-}
-body h2 {
-	margin: 0.75rem 0 1.5rem 0;
-}
-#root {
-	background: var(--blueBackground);
-}
-.ummi {
-	font-weight: 900;
-	color: var(--lightBlue);
-	font-size: variables.$ummi_size;
-}
-body .app {
-	h1 {
-		font-size: variables.$h1_size;
-		font-weight: variables.$h1_weight;
-		color: var(--primary);
-	}
-	h2 {
-		font-size: variables.$h2_size;
-		font-weight: variables.$h2_weight;
-		color: var(--primary);
-	}
-	h3 {
-		font-size: variables.$h3_size;
-		font-weight: variables.$h3_weight;
-		color: var(--primary);
-	}
-	h4 {
-		font-size: variables.$h4_size;
-		font-weight: variables.$h4_weight;
-		color: var(--primary);
-	}
-	h5 {
-		font-size: variables.$h5_size;
-		font-weight: variables.$h5_weight;
-		color: var(--primary);
-	}
-	section {
+
 		h1 {
 			font-size: variables.$h1_size;
 			font-weight: variables.$h1_weight;
@@ -130,32 +112,28 @@ body .app {
 			font-weight: variables.$h5_weight;
 			color: var(--primary);
 		}
-	}
-}
-.app {
-	position: relative;
-	z-index: 10;
-	width: 100%;
-	height: 100%;
-
-	.main {
-		max-width: 100vw;
-		width: 90vw;
-		margin: 0 auto;
-		padding: 0;
-		position: relative;
-
-		max-width: 600px;
-
-		> .inner {
-			width: 100%;
-
-			.content {
-				position: relative;
+		.ummi {
+			font-weight: 900;
+			color: var(--lightBlue);
+			font-size: variables.$ummi_size;
+		}
+		*.MuiTypography-root {
+			font-family: "Plus Jakarta Sans", sans-serif;
+			color: var(--primary);
+		}
+		div.MuiModal-root {
+			max-width: 100dvw;
+			font-family: "Plus Jakarta Sans", sans-serif;
+			div.MuiBox-root {
+				max-width: 90dvw;
+				left: 5dvw;
+				transform: translateX(0);
+				border: none;
+				border-image: none;
 			}
 		}
-	}
-	/* .bg-img {
+
+		/* .bg-img {
 		position: fixed;
 		width: 100%;
 		min-width: 100vw;
@@ -166,24 +144,7 @@ body .app {
 		object-fit: cover;
 		opacity: 0.4;
 	} */
-}
-.main {
-}
-h3 {
-	all: unset;
-	transition: all 0.3s ease-in-out;
-}
-:focus {
-	outline: none;
-	box-shadow: none;
-}
-svg:focus,
-button:focus,
-svg:focus-visible,
-button:focus-visible {
-	outline: none;
-	border: none;
-	box-shadow: none;
+	}
 }
 
 .tools {

@@ -241,11 +241,6 @@ function App() {
 					</div>
 				</div>
 
-				{/* <AccordionBottomNavigation
-					open={open}
-					onClick={closeAccordion(open)}
-				/> */}
-
 				<BackdropParallax
 					initialImageId={3}
 					initialDelay={3000}

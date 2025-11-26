@@ -48,7 +48,7 @@ export default function BackdropParallax({initialImageId = null, initialDelay = 
 					setCurrentImage(next);
 					setNextImage(null);
 					setIsFading(false);
-				}, 1950); // Slightly less than 2s to avoid race
+				}, 950); // Slightly less than 2s to avoid race
 			}, interval); // Fixed: No stray ) here
 		}, initialDelay);
 
@@ -73,17 +73,17 @@ export default function BackdropParallax({initialImageId = null, initialDelay = 
 	}, [currentImage, nextImage, interval]);
 
 	// Parallax
-	useEffect(() => {
-		if (parallaxStrength === 0) return;
-		const onScroll = () => {
-			const offset = window.pageYOffset * parallaxStrength;
-			document.querySelectorAll(".cont img").forEach(img => {
-				img.style.transform = `translateY(-${offset}px)`;
-			});
-		};
-		window.addEventListener("scroll", onScroll, {passive: true});
-		return () => window.removeEventListener("scroll", onScroll);
-	}, [parallaxStrength]);
+	// useEffect(() => {
+	// 	if (parallaxStrength === 0) return;
+	// 	const onScroll = () => {
+	// 		const offset = window.pageYOffset * parallaxStrength;
+	// 		document.querySelectorAll(".cont img").forEach(img => {
+	// 			img.style.transform = `translateY(-${offset}px)`;
+	// 		});
+	// 	};
+	// 	window.addEventListener("scroll", onScroll, {passive: true});
+	// 	return () => window.removeEventListener("scroll", onScroll);
+	// }, [parallaxStrength]);
 
 	if (!currentImage) return null;
 
