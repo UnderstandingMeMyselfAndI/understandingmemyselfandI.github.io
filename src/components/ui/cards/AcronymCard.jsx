@@ -11,6 +11,7 @@ import data from "../../../data/data.js";
 // import {storeKeys, localStore} from "@/data/localStore.js";
 import CloseIcon from "@mui/icons-material/Close";
 import Skeleton from "@mui/material/Skeleton";
+import KeyboardReturnOutlinedIcon from "@mui/icons-material/KeyboardReturnOutlined";
 import "./styles.scss";
 function getAccData(id) {
 	return data.find(acc => acc.id === id);
@@ -144,7 +145,7 @@ const AcronymCard = () => {
 						className="btn close"
 						onClick={handleClose}
 					>
-						<CloseIcon />
+						<KeyboardReturnOutlinedIcon />
 					</div>
 				</div>
 

@@ -1,9 +1,8 @@
 @use "@/scss/_variables.scss";
 @import "@/globals.css";
 
-$gutters: 1rem;
-.AcronymCard {
-}
+$gutters: 0;
+
 div.AcronymCard {
 	// padding: 1rem 0;
 	z-index: -10;
@@ -29,21 +28,16 @@ div.AcronymCard {
 	}
 
 	.inner {
-		// display: none;
 		position: relative;
-		height: calc(100dvh - $gutters);
-		width: calc(100vw - $gutters);
+		height: 100dvh;
+		width: 100vw;
 		overflow: clip;
-		left: 50%;
-		top: 50%;
-		// margin-top: calc($gutters * 0.5);
-		max-width: 600px; /// for desktop viewers
-		transform: translate(-50%, -50%);
+		left: 0;
+		top: 0;
 
 		text-shadow: 2px 0px 7px rgba(0, 0, 0, 0.49);
 		outline: 1px solid rgba(150, 150, 150, 0.25);
 		transition: var(--transition);
-		// border-radius: var(--border-radius);
 		background-color: rgba(60, 64, 83, 0.2);
 
 		display: flex;
@@ -97,15 +91,6 @@ div.AcronymCard {
 			left: 1rem;
 			z-index: 10;
 			transform: translate(0, -50%);
-
-			div.btn.toolbox {
-				width: 20px;
-				height: 20px;
-				> svg {
-					width: 20px;
-					height: 20px;
-				}
-			}
 		}
 		> .title.cont {
 			position: relative;
@@ -359,7 +344,7 @@ div.AcronymCard {
 	}
 	.footer {
 		width: 100%;
-		height: 100px;
+		height: 140px;
 		// outline: 1px solid #f00;
 		display: flex;
 		flex-flow: row wrap;
@@ -389,6 +374,14 @@ div.AcronymCard {
 				top: 20%;
 				left: 0;
 				// z-index: -1;
+			}
+		}
+		.btn {
+			width: 50%;
+			height: 100%;
+			svg {
+				height: 1.75rem;
+				width: 1.75rem;
 			}
 		}
 
