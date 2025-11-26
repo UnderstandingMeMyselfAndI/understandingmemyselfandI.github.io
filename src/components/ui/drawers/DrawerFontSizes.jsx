@@ -1,5 +1,4 @@
 "use client";
-import {Button} from "@/components/ui/button";
 import {Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerTrigger, DrawerTitle} from "@/components/ui/drawer";
 import "./styles.css";
 import ButtonFontSize from "../buttons/ButtonFontSize.jsx";
@@ -18,13 +17,19 @@ export function DrawerFontSize() {
 					<DrawerTitle className="hide">TItle</DrawerTitle>
 					<div className="settingsDrawerCont">
 						<div className="settingsDrawer">
-							<ButtonFontSize size="decrease" label="Smaller" />
-							<ButtonFontSize size="increase" label="Bigger" />
+							<ButtonFontSize
+								size="decrease"
+								label="Smaller"
+							/>
+							<ButtonFontSize
+								size="increase"
+								label="Bigger"
+							/>
 						</div>
 
 						<DrawerFooter className="drawerFooter">
 							<DrawerClose asChild>
-								<Button variant="outline">Close</Button>
+								<button>Close</button>
 							</DrawerClose>
 						</DrawerFooter>
 					</div>

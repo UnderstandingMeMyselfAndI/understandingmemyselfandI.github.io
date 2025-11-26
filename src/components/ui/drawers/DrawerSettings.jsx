@@ -1,5 +1,4 @@
 "use client";
-import {Button} from "@/components/ui/button";
 import {Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerTrigger, DrawerTitle} from "@/components/ui/drawer";
 import "./stylesDrawerSetting.css";
 
@@ -65,7 +64,7 @@ export function DrawerSettings() {
 						</div>
 						<DrawerFooter className="drawerFooter">
 							<DrawerClose asChild>
-								<Button variant="outline">Close</Button>
+								<button>Close</button>
 							</DrawerClose>
 						</DrawerFooter>
 					</div>

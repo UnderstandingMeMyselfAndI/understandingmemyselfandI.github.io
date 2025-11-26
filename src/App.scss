@@ -23,7 +23,7 @@ body {
 	color: var(--primary);
 	padding: 0 0 0 0;
 	margin: 0;
-	background: var(--mainBackground);
+	background: var(--blueBackground);
 	text-shadow: 2px 2px 2px rgba(50, 50, 50, 0.2);
 	h1,
 	h2,
@@ -45,10 +45,10 @@ body * {
 	padding: 0;
 	text-align: center;
 	overflow: hidden;
-	// background: var(--mainBackground);
+	// background: var(--blueBackground);
 }
 body {
-	background-color: #101010;
+	background-color: var(--blueBackground);
 	user-select: none;
 	*.MuiTypography-root {
 		font-family: "Plus Jakarta Sans", sans-serif;
@@ -61,7 +61,7 @@ body {
 			max-width: 90dvw;
 			left: 5dvw;
 			transform: translateX(0);
-			// background: var(--mainBackground);
+			// background: var(--blueBackground);
 			border: none;
 			border-image: none;
 		}
@@ -71,8 +71,7 @@ body h2 {
 	margin: 0.75rem 0 1.5rem 0;
 }
 #root {
-	background: var(--background);
-	background-color: #101010;
+	background: var(--blueBackground);
 }
 .ummi {
 	font-weight: 900;

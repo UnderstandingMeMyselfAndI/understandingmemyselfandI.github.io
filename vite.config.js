@@ -2,7 +2,7 @@ import path from "path";
 import {defineConfig} from "vite";
 import react from "@vitejs/plugin-react";
 import commonjs from "vite-plugin-commonjs";
-
+// import {analyzer} from "vite-bundle-analyzer";
 const __dirname = path.dirname("./src");
 import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 // https://vitejs.dev/config/
@@ -25,12 +25,19 @@ export default defineConfig({
 					"mui-icons": ["@mui/icons-material"],
 					"mui-material": ["@mui/material"],
 					"@gsap/react": ["@gsap/react"],
+
 					gsap: ["gsap"],
 				},
 			},
 		},
+		watch: {
+			include: ["src/**"],
+			// excude: ["src/assets/**"],
+			clearScreen: false,
+			skipWrite: false,
+		},
 	},
-	plugins: [react(), commonjs(), cssInjectedByJsPlugin()],
+	plugins: [react(), commonjs(), cssInjectedByJsPlugin() /*, analyzer() uncomment for bundle analyzer*/],
 	resolve: {
 		alias: {
 			"@": path.resolve(__dirname, "./src/"),

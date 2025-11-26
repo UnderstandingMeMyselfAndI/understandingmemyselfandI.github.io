@@ -21,11 +21,14 @@ div.AccordionRoot > div {
 	background: rgba(50, 50, 50, 0.2);
 	border-radius: var(--border-radius);
 }
-
-/* Style for expanded accordion */
-.expanded-accordion {
-	position: relative;
-	transition: all var(--transition);
+.AccordionItemWithEffects {
+}
+.carousel-item-cont {
+	/* Style for expanded accordion */
+	.active {
+		position: relative;
+		transition: all var(--transition);
+	}
 }
 .AccordionItem {
 	transition: all var(--transition);
@@ -57,6 +60,7 @@ div.MuiPaper-root {
 		display: none;
 	}
 }
+h3,
 h3.MuiAccordion-heading {
 	word-break: break-all;
 	word-wrap: break-word;

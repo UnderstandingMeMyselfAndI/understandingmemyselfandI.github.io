@@ -53,13 +53,6 @@
 	}
 }
 
-.vig {
-	position: absolute;
-	inset: 0;
-	pointer-events: none;
-	background: radial-gradient(circle, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.6) 80%);
-	z-index: 3;
-}
 .cont img {
 	height: 120vh; // gives space for the parallax movement
 	width: 100%;
@@ -79,4 +72,12 @@
 	background-position: center top;
 	filter: blur(1px); // optional: dreamy look
 	z-index: 0;
+}
+
+.vig {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background: radial-gradient(circle, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.4) 80%);
+	z-index: 3;
 }

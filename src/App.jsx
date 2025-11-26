@@ -7,23 +7,24 @@ import {useThemeStore} from "@/store/useThemeStore";
 import useAppStore from "@/store/useAppStore";
 import LogoFloating from "./components/ui/logo/LogoFloating";
 import applyTheme from "components/theme/applyTheme";
-import AccordionScroll from "ui/AcronymAccordion/AccordionScroll";
+// import AccordionScroll from "ui/AcronymAccordion/AccordionScroll";
 import ScrollPosition from "./components/utils/ScrollPosition";
 import FooterMetadata from "ui/footer/FooterMetadata.jsx";
 import Intro from "ui/sections/Intro.jsx";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
+// import Button from "@mui/material/Button";
+// import IconButton from "@mui/material/IconButton";
+// import CloseIcon from "@mui/icons-material/Close";
 import iconAndroid from "icons/iconAndroid.jsx";
 import iconApple from "icons/iconApple.jsx";
-import EmergencyButton from "buttons/emergency/EmergencyButton";
+// import EmergencyButton from "buttons/emergency/EmergencyButton";
 import QRCode from "ui/QRCode/QRCode.jsx";
-import AccordionBottomNavigation from "ui/AcronymAccordion/AccordionBottomNavigation";
-import Backdrop from "ui/backdrop/Backdrop";
+// import AccordionBottomNavigation from "ui/AcronymAccordion/AccordionBottomNavigation";
+// import Backdrop from "ui/backdrop/Backdrop";
 import BackdropParallax from "ui/backdrop/BackdropParallax";
 import Snackbars from "ui/snackbars/Snackbars";
 import AcronymCard from "@/components/ui/cards/AcronymCard.jsx";
 import BadgeToolbox from "./components/ui/badges/BadgeToolbox";
+import MenuCarousel from "./components/ui/menu/MenuCarousel";
 import "./globals.css";
 
 import "./App.scss";
@@ -31,13 +32,13 @@ import "@/scss/_fonts.scss";
 import bgImg from "/bgs/Ummi-bg-1.avif";
 import SpeedDialSettings from "./components/ui/settings/speedDial/SpeedDialSettings.jsx";
 function App() {
-	const [open, setOpen] = useState(true);
+	// const [open, setOpen] = useState(true);
 	const [expanded, setExpanded] = useState(false);
 	const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme);
 	const setShowAccCard = useAppStore(state => state.setShowAccCard);
 	const showAccCard = useAppStore(state => state.showAccCard);
 	const setIsExpanded = useAppStore(state => state.setIsExpanded);
-	// const setShowAccCard = useAppStore(state => state.setShowAccCard);
+	const setAcronymnID = useAppStore(state => state.setAcronymnID);
 	//const setEmergencyToolAdded = useAppStore(state => state.setEmergencyToolAdded);
 
 	if (theme !== null) {
@@ -53,11 +54,20 @@ function App() {
 	});
 
 	const handleChange = panel => (event, newExpanded) => {
-		// console.log("newExpanded", newExpanded);
+		console.log("newExpanded", newExpanded);
 		setExpanded(newExpanded ? panel : false);
 		setIsExpanded(newExpanded !== false);
 		setShowAccCard(newExpanded !== false);
-		setOpen(newExpanded);
+		// setOpen(newExpanded);
+	};
+	event;
+	const handleMenuClick = id => () => {
+		console.log("handleMenuClick ", id);
+		setAcronymnID(id);
+		setExpanded(true);
+		setIsExpanded(true);
+		setShowAccCard(true);
+		// setOpen(!true);
 	};
 
 	// const emergencyToolAdded = useAppStore(state => state.emergencyToolAdded);
@@ -96,9 +106,15 @@ function App() {
 								</h2>
 								<p>Tap a heading to read out about the tool.</p>
 							</section>
-							<AccordionScroll
+							{/* <AccordionScroll
 								expanded={expanded}
 								handleChange={handleChange}
+							/> */}
+							<MenuCarousel
+								expanded={expanded}
+								handleChange={handleChange}
+								handleMenuClick={handleMenuClick}
+								show={!showAccCard}
 							/>
 							<section className="footer">
 								<h2>

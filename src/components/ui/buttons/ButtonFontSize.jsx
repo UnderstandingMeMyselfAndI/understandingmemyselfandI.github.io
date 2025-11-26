@@ -1,16 +1,10 @@
-import { Button } from '@/components/ui/button';
-// import {
-// 	Tooltip,
-// 	TooltipContent,
-// 	TooltipTrigger,
-// } from '@/components/ui/tooltip';
-import iconIncreaseFontSize from '/src/components/icons/iconFontSizeIncrease.jsx';
-import iconDescreaseFontSize from '/src/components/icons/iconFontSizeDecrease.jsx';
-import './buttonStyles.css';
-import PropTypes from 'prop-types';
+import iconIncreaseFontSize from "/src/components/icons/iconFontSizeIncrease.jsx";
+import iconDescreaseFontSize from "/src/components/icons/iconFontSizeDecrease.jsx";
 
+import PropTypes from "prop-types";
+import "./buttonStyles.css";
 const stepFontSizePx = 1;
-const storageKeyBaseFontSize = 'baseFontSize';
+const storageKeyBaseFontSize = "baseFontSize";
 let rootFontSize = 16;
 const minFontSize = 14;
 const maxFontSize = 34;
@@ -20,37 +14,35 @@ const getStoredBaseFontSize = () => {
 	return storedBaseFontSize ? storedBaseFontSize : rootFontSize;
 };
 
-const setBaseFontSize = (size) => {
-	rootFontSize =
-		size === 'increase'
-			? rootFontSize + stepFontSizePx
-			: rootFontSize - stepFontSizePx;
-	const newBaseFontSize = Math.min(
-		Math.max(rootFontSize, minFontSize),
-		maxFontSize
-	);
+const setBaseFontSize = size => {
+	rootFontSize = size === "increase" ? rootFontSize + stepFontSizePx : rootFontSize - stepFontSizePx;
+	const newBaseFontSize = Math.min(Math.max(rootFontSize, minFontSize), maxFontSize);
 	if (newBaseFontSize >= maxFontSize) rootFontSize = maxFontSize;
 	if (newBaseFontSize <= minFontSize) rootFontSize = minFontSize;
-	document.documentElement.style.fontSize = newBaseFontSize + 'px';
+	document.documentElement.style.fontSize = newBaseFontSize + "px";
 	localStorage.setItem(storageKeyBaseFontSize, newBaseFontSize.toString());
 };
 
-const ButtonFontSize = ({ size, label }) => {
-	const icon =
-		size === 'increase' ? iconIncreaseFontSize : iconDescreaseFontSize;
-	const alt = size === 'increase' ? 'increase font size' : 'decrease font size';
+const ButtonFontSize = ({size, label}) => {
+	const icon = size === "increase" ? iconIncreaseFontSize : iconDescreaseFontSize;
+	const alt = size === "increase" ? "increase font size" : "decrease font size";
 	const handleClick = () => {
 		setBaseFontSize(size);
 	};
 	return (
-		<div className='btn' onClick={handleClick}>
-			<Button
-				variant='outline'
-				className={'font-size-btn-' + size}
-				aria-label={'Font Size ' + label}
+		<div
+			className="btn"
+			onClick={handleClick}
+		>
+			<button
+				className={"font-size-btn-" + size}
+				aria-label={"Font Size " + label}
 			>
-				<div dangerouslySetInnerHTML={{ __html: icon }} alt={alt} />
-			</Button>
+				<div
+					dangerouslySetInnerHTML={{__html: icon}}
+					alt={alt}
+				/>
+			</button>
 			<div>{label}</div>
 		</div>
 	);
@@ -59,8 +51,7 @@ const ButtonFontSize = ({ size, label }) => {
 const applyStoredScale = () => {
 	const storedBaseFontSize = getStoredBaseFontSize();
 
-	storedBaseFontSize &&
-		(document.documentElement.style.fontSize = storedBaseFontSize + 'px');
+	storedBaseFontSize && (document.documentElement.style.fontSize = storedBaseFontSize + "px");
 };
 
 applyStoredScale();

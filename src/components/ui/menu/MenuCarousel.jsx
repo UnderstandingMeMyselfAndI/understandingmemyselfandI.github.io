@@ -1,10 +1,10 @@
 import {useRef, useEffect, useMemo} from "react";
-import Accordion from "@mui/material/Accordion";
+// import Accordion from "@mui/material/Accordion";
 // import AccordionDetails from "@mui/material/AccordionDetails";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+// import AccordionSummary from "@mui/material/AccordionSummary";
+// import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Skeleton from "@mui/material/Skeleton";
-
+// import ScenarioDialog from "../dialog/ScenarioDialog";
 import useAppStore from "@/store/useAppStore";
 import data from "../../../data/data.js";
 // import Favourite from "../favourite/Favourite.jsx";
@@ -17,15 +17,15 @@ import {triggerGlobalRecalc} from "@/hooks/useGlobalRecalcTrigger.js";
 import PropTypes from "prop-types";
 
 import "../../../globals.css";
-import "./AccordionStyles.scss";
+import "./MenuCarousel.scss";
 
 // Individual Accordion Item with opacity and scale effects
-const AccordionItemWithEffects = ({item, index, acronymID, expanded, handleChange, config = SCROLL_EFFECT_CONFIG}) => {
+const MenuItemWithEffects = ({item, index, acronymID, expanded, handleChange, handleMenuClick, config = SCROLL_EFFECT_CONFIG}) => {
 	const isExpanded = expanded === "panel" + index;
 	const [ref, effects, disableScrollEffects, enableScrollEffects, forceRecalculate] = useScrollEffects(config, isExpanded);
 	const accordionRef = useRef(null);
 	const previousExpandedState = useRef(isExpanded);
-	const setAcronymnID = useAppStore(state => state.setAcronymnID);
+
 	// const showAccCard = useAppStore(state => state.showAccCard);
 	const setShowAccCard = useAppStore(state => state.setShowAccCard);
 	// const setIsExpanded = useAppStore(state => state.setIsExpanded);
@@ -45,7 +45,7 @@ const AccordionItemWithEffects = ({item, index, acronymID, expanded, handleChang
 		if (isExpanded) {
 			// === EXPANDING ===
 			// setShowAccCard(true);
-			setAcronymnID(item?.id);
+			// setAcronymnID(item?.id);
 			//setIsExpanded(true);
 			disableScrollEffects(); // Full opacity while expanded
 		} else if (previousExpandedState.current === true) {
@@ -85,7 +85,7 @@ const AccordionItemWithEffects = ({item, index, acronymID, expanded, handleChang
 
 		// Track previous state
 		previousExpandedState.current = isExpanded;
-	}, [isExpanded, item?.id, setAcronymnID, setShowAccCard, disableScrollEffects, enableScrollEffects, forceRecalculate]);
+	}, [isExpanded, item.id, setShowAccCard, disableScrollEffects, enableScrollEffects, forceRecalculate]);
 
 	// Memoize expanded styles to prevent unnecessary recalculations
 	const expandedStyles = useMemo(() => {
@@ -133,24 +133,25 @@ const AccordionItemWithEffects = ({item, index, acronymID, expanded, handleChang
 		<div
 			ref={ref}
 			style={wrapperStyle}
-			className={"carousel-item-cont" + (isExpanded ? " active" : "")}
+			className={"carousel-item" + (isExpanded ? " active" : "")}
 		>
-			<Accordion
+			<div
 				ref={accordionRef}
-				className={"AccordionItem"}
+				className={"AccordionItem item"}
 				key={"accordion-" + index}
-				expanded={isExpanded}
+				// expanded={isExpanded}
 				// onChange={handleChange(true), }
-				onChange={handleChange("panel" + index)}
-				slotProps={{
-					transition: {unmountOnExit: true},
-					heading: {component: "h3"},
-				}}
-				sx={expandedStyles}
+				// onChange={handleChange("panel" + index)}
+				onClick={handleMenuClick(item?.id)}
+				// slotProps={{
+				// 	transition: {unmountOnExit: true},
+				// 	heading: {component: "h3"},
+				// }}
+				// sx={expandedStyles}
+				style={expandedStyles}
 			>
-				<AccordionSummary
-					className={"AcronymTitle"}
-					expandIcon={<ExpandMoreIcon />}
+				<div
+					className={"AcronymTitle title"}
 					aria-controls={"panel" + index + "-content"}
 					id={"panel" + item?.id + "-header"}
 				>
@@ -162,12 +163,12 @@ const AccordionItemWithEffects = ({item, index, acronymID, expanded, handleChang
 						<ButtonEmergencyToolbox id={item?.id} />
 						<ButtonToolbox id={item?.id} />
 					</div> */}
-					<div className="cont">
+					<div className="cont letters-cont">
 						{item.title.split(".").map(
 							(subItem, index) =>
 								subItem && (
 									<div
-										className="active"
+										className="letter"
 										key={index}
 										data-content={subItem}
 									>
@@ -176,22 +177,23 @@ const AccordionItemWithEffects = ({item, index, acronymID, expanded, handleChang
 								)
 						)}
 					</div>
-				</AccordionSummary>
+				</div>
 				{/* <AccordionDetails>{parse(item.content.explanation)}</AccordionDetails> */}
-			</Accordion>
+			</div>
 			{/* <div className="accBack"></div> */}
 		</div>
 	);
 };
-AccordionItemWithEffects.propTypes = {
+MenuItemWithEffects.propTypes = {
 	item: PropTypes.object,
 	index: PropTypes.number,
 	acronymID: PropTypes.number,
 	expanded: PropTypes.string,
 	handleChange: PropTypes.func,
+	handleMenuClick: PropTypes.func,
 	config: PropTypes.object,
 };
-export default function AccordionScroll({expanded, handleChange}) {
+export default function MenuCarousel({expanded, handleChange, handleMenuClick}) {
 	// const {showToolsOnly} = useAppStore();
 	// console.log("AccordionScroll");
 
@@ -210,7 +212,7 @@ export default function AccordionScroll({expanded, handleChange}) {
 		<div className={"AccordionRoot" + (expanded ? " expanded" : "")}>
 			{componentData.map((item, index) =>
 				item ? (
-					<AccordionItemWithEffects
+					<MenuItemWithEffects
 						className="AccordionItemWithEffects"
 						key={"accordion-" + index}
 						item={item}
@@ -218,6 +220,7 @@ export default function AccordionScroll({expanded, handleChange}) {
 						index={index}
 						expanded={expanded}
 						handleChange={handleChange}
+						handleMenuClick={handleMenuClick}
 						config={customConfig}
 					/>
 				) : (
@@ -231,9 +234,10 @@ export default function AccordionScroll({expanded, handleChange}) {
 		</div>
 	);
 }
-AccordionScroll.propTypes = {
+MenuCarousel.propTypes = {
 	expanded: PropTypes.string,
 	handleChange: PropTypes.func,
+	handleMenuClick: PropTypes.func,
 };
 // function Scenarios(item) {
 // 	return (

@@ -1,6 +1,6 @@
 :root {
 	--border-radius: 6px;
-	--blueBackground: #1b869e;
+	--blueBackground: #036075;
 	--mainBackground: linear-gradient(140deg, rgba(27, 134, 158, 1) 0%, rgb(157, 30, 30) 81%);
 	--background: oklch(0.145 0 0);
 	--foreground: oklch(0.985 0 0);

@@ -1,23 +1,10 @@
-import * as React from "react";
+// import * as React from "react";
 import {useState, useEffect, useRef} from "react";
 import useAppStore from "@/store/useAppStore";
 import ButtonToolbox from "../buttons/toolbox/ButtonToolbox";
 import BackdropParallax from "ui/backdrop/BackdropParallax";
 import ReactPlayer from "react-player";
-// import {MediaController} from "media-chrome/react";
-import {
-	MediaController,
-	MediaControlBar,
-	MediaTimeRange,
-	MediaTimeDisplay,
-	MediaVolumeRange,
-	MediaPlaybackRateButton,
-	MediaPlayButton,
-	MediaSeekBackwardButton,
-	MediaSeekForwardButton,
-	MediaMuteButton,
-	MediaFullscreenButton,
-} from "media-chrome/react";
+
 // import ButtonEmergencyToolbox from "../buttons/toolbox/ButtonEmergencyToolbox";
 import parse from "html-react-parser";
 import data from "../../../data/data.js";
@@ -27,7 +14,6 @@ import Skeleton from "@mui/material/Skeleton";
 import "./styles.scss";
 function getAccData(id) {
 	return data.find(acc => acc.id === id);
-	// return data.find(id => data.id === id);
 }
 
 const AcronymCard = () => {
@@ -122,28 +108,20 @@ const AcronymCard = () => {
 									<div className="title">{parse(video.title)}</div>
 									<div className="player">
 										{video ? (
-											<MediaController
+											<ReactPlayer
+												light={false}
+												controls={true}
+												src={video.url}
 												style={{
 													width: "100%",
-													aspectRatio: "16/9",
+													height: "100%",
 												}}
-											>
-												<ReactPlayer
-													src={video.url}
-													style={{
-														width: "100%",
-														height: "100%",
-													}}
-												/>
-												<MediaControlBar className="controls">
-													<MediaPlayButton />
-
-													<MediaMuteButton />
-													<MediaVolumeRange />
-													<MediaPlaybackRateButton />
-													<MediaFullscreenButton />
-												</MediaControlBar>
-											</MediaController>
+												config={{
+													youtube: {
+														color: "black",
+													},
+												}}
+											/>
 										) : (
 											<Skeleton
 												animation="wave"
