@@ -182,7 +182,7 @@ div.AcronymCard {
 			}
 			div.AccDetails {
 				width: 100%;
-				// overflow: hidden;
+				overflow-x: hidden;
 				margin: 1rem 0;
 				text-align: left;
 				color: var(--lightBlue);
