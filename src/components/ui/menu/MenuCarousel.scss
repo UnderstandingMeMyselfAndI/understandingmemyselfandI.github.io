@@ -36,12 +36,12 @@ div.AccordionRoot {
 		.letters-cont {
 			display: flex;
 			font-size: variables.$acc_title_size;
-			line-height: 1.1;
-			font-weight: 900;
+			line-height: variables.$acc_title_line_height;
+			font-weight: variables.$acc_title_weight;
 			text-align: center;
 			column-gap: 0.65rem;
 			justify-content: center;
-
+			padding: 1.5rem 2rem;
 			div.letter {
 				position: relative;
 				// outline: 1px solid #ccc;

@@ -10,6 +10,7 @@ import parse from "html-react-parser";
 import data from "../../../data/data.js";
 // import {storeKeys, localStore} from "@/data/localStore.js";
 import OndemandVideoOutlinedIcon from "@mui/icons-material/OndemandVideoOutlined";
+import HdrAutoOutlinedIcon from "@mui/icons-material/HdrAutoOutlined";
 import Skeleton from "@mui/material/Skeleton";
 import KeyboardReturnOutlinedIcon from "@mui/icons-material/KeyboardReturnOutlined";
 import "./styles.scss";
@@ -30,6 +31,24 @@ const AcronymCard = () => {
 
 	const handleClose = () => {
 		setShowAccCard(false);
+	};
+
+	const smoothScrollTo = e => {
+		e.preventDefault();
+		const element = document.getElementById("videos");
+		element.scrollIntoView({
+			block: "start",
+			behavior: "smooth", // smooth scroll
+		});
+	};
+	const smoothToAccronym = e => {
+		e.preventDefault();
+		const element = document.getElementById("AccContent");
+		element.scrollTo({
+			top: 0,
+			left: 0,
+			behavior: "smooth", // smooth scroll
+		});
 	};
 
 	return (
@@ -60,6 +79,7 @@ const AcronymCard = () => {
 				</div>
 				<section
 					className="AccContent"
+					id="AccContent"
 					ref={contentRef}
 				>
 					<div className="AccGroup">
@@ -146,12 +166,21 @@ const AcronymCard = () => {
 					<ButtonToolbox id={accData?.id} />
 					{accData?.videos.length > 0 && (
 						<button
-							onClick={() => (window.location = "/#videos")}
+							onClick={smoothScrollTo}
 							className="btn video"
 						>
 							<OndemandVideoOutlinedIcon />
 						</button>
 					)}
+					{accData?.videos.length > 0 && (
+						<button
+							onClick={smoothToAccronym}
+							className="btn top"
+						>
+							<HdrAutoOutlinedIcon />
+						</button>
+					)}
+
 					<div
 						className="btn close"
 						onClick={handleClose}

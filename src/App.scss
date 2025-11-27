@@ -62,6 +62,7 @@ button:focus-visible {
 	box-shadow: none;
 }
 body {
+	overscroll-behavior-y: contain;
 	background: #819ec9;
 	background: var(--mainBackground) !important;
 	.app {

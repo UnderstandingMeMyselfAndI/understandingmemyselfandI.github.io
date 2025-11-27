@@ -15,4 +15,5 @@ const cnf = {
 		},
 	},
 };
+
 export default cnf;

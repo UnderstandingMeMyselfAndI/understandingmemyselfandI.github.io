@@ -35,10 +35,11 @@ function App() {
 	// const [open, setOpen] = useState(true);
 	const [expanded, setExpanded] = useState(false);
 	const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme);
-	const setShowAccCard = useAppStore(state => state.setShowAccCard);
-	const showAccCard = useAppStore(state => state.showAccCard);
+	// const setShowAccCard = useAppStore(state => state.setShowAccCard);
+	// const showAccCard = useAppStore(state => state.showAccCard);
 	const setIsExpanded = useAppStore(state => state.setIsExpanded);
 	const setAcronymnID = useAppStore(state => state.setAcronymnID);
+	const {showToolsOnly, showAccCard, setShowAccCard} = useAppStore();
 	//const setEmergencyToolAdded = useAppStore(state => state.setEmergencyToolAdded);
 
 	if (theme !== null) {
@@ -115,6 +116,7 @@ function App() {
 								handleChange={handleChange}
 								handleMenuClick={handleMenuClick}
 								show={!showAccCard}
+								showToolsOnly={!showToolsOnly}
 							/>
 							<section className="footer">
 								<h2>

@@ -193,11 +193,11 @@ MenuItemWithEffects.propTypes = {
 	handleMenuClick: PropTypes.func,
 	config: PropTypes.object,
 };
-export default function MenuCarousel({expanded, handleChange, handleMenuClick}) {
+export default function MenuCarousel({expanded, showToolsOnly, handleChange, handleMenuClick}) {
 	// const {showToolsOnly} = useAppStore();
 	// console.log("AccordionScroll");
 
-	// const {accData} = useAppStore();
+	const {accData} = useAppStore();
 
 	// You can easily override the default config here
 	const customConfig = {
@@ -206,7 +206,7 @@ export default function MenuCarousel({expanded, handleChange, handleMenuClick}) 
 		// minScale: 0.3, // Uncomment to override
 		// fadeBoundary: 0.2, // Uncomment to override
 	};
-	const componentData = data; //showToolsOnly ? accData : data; //userToolIDs;
+	const componentData = showToolsOnly ? accData : data; //userToolIDs;
 
 	return (
 		<div className={"AccordionRoot" + (expanded ? " expanded" : "")}>

@@ -131,23 +131,23 @@ $logo_lrg_line_height: 1.2;
 // Ancronym title font size
 // ------------------------------------------
 
-$acc_title_size_min: 60px;
-$acc_title_size_max: 90px;
+$acc_title_size_min: 40px;
+$acc_title_size_max: 60px;
 $acc_title_size: responsiveFontSize($acc_title_size_min, $acc_title_size_max, $minDeviceWidth, $maxDeviceWidth);
 $acc_title_color: var(--text_primary);
 $acc_title_weight: 900;
-$acc_title_line_height: 1.2;
+$acc_title_line_height: 1.1;
 
 // ------------------------------------------
 // Ancronym letter font size
 // ------------------------------------------
 
-$letter_size_min: 54px;
-$letter_size_max: 76px;
+$letter_size_min: 44px;
+$letter_size_max: 66px;
 $letter_size: responsiveFontSize($letter_size_min, $letter_size_max, $minDeviceWidth, $maxDeviceWidth);
 $letter_color: var(--text_primary);
 $letter_weight: 800;
-$letter_line_height: 1.2;
+$letter_line_height: 1;
 
 // ------------------------------------------
 // Ancronym word font size
@@ -158,7 +158,7 @@ $acc_wrd_size_max: 60px;
 $acc_wrd_size: responsiveFontSize($acc_wrd_size_min, $acc_wrd_size_max, $minDeviceWidth, $maxDeviceWidth);
 $acc_wrd_color: var(--text_primary);
 $acc_wrd_weight: 800;
-$acc_wrd_line_height: 1.6;
+$acc_wrd_line_height: 1;
 
 // ------------------------------------------
 // H5 font size
