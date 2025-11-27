@@ -3,9 +3,9 @@
 .MuiSnackbar-anchorOriginTopLeft {
 	width: fit-content;
 	padding: 0;
+	z-index: 19999 !important;
 }
 .MuiSnackbar-root {
-	z-index: 9999;
 	.MuiSnackbarContent-root {
 		background-color: var(--orange);
 		// text-shadow: 4px 0px 7px rgba(0, 0, 0, 0.8);

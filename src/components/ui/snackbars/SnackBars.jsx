@@ -67,7 +67,7 @@ export default function Snackbars() {
 				key={messageInfo ? messageInfo.key : undefined}
 				anchorOrigin={{vertical: "top", horizontal: "center"}}
 				open={open}
-				autoHideDuration={2000}
+				autoHideDuration={20000}
 				onClose={handleClose}
 				slots={{transition: Slide}}
 				slotProps={{transition: {onExited: handleExited}}}
