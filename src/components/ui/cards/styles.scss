@@ -418,7 +418,8 @@ div.AcronymCard {
 		z-index: 10;
 		border-top: 1px solid rgba(122, 59, 141, 0.5);
 
-		> div {
+		> div,
+		> button {
 			// outline: 1px solid rgb(201, 89, 89);
 			height: fit-content;
 			display: flex;
@@ -442,8 +443,10 @@ div.AcronymCard {
 			}
 		}
 		.btn {
-			width: 50%;
+			flex: 1;
 			height: 100%;
+			background: transparent;
+			border: none;
 			svg {
 				height: 1.75rem;
 				width: 1.75rem;

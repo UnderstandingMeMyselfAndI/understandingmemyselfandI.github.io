@@ -9,7 +9,7 @@ import ReactPlayer from "react-player";
 import parse from "html-react-parser";
 import data from "../../../data/data.js";
 // import {storeKeys, localStore} from "@/data/localStore.js";
-import CloseIcon from "@mui/icons-material/Close";
+import OndemandVideoOutlinedIcon from "@mui/icons-material/OndemandVideoOutlined";
 import Skeleton from "@mui/material/Skeleton";
 import KeyboardReturnOutlinedIcon from "@mui/icons-material/KeyboardReturnOutlined";
 import "./styles.scss";
@@ -98,7 +98,10 @@ const AcronymCard = () => {
 						))}
 					</div>
 					{accData?.videos.length > 0 && (
-						<div className="videos">
+						<div
+							className="videos"
+							id="videos"
+						>
 							<h2>VIDEOS</h2>
 
 							{accData?.videos.map((video, index) => (
@@ -141,6 +144,14 @@ const AcronymCard = () => {
 					{/* <ButtonEmergencyToolbox id={accData?.id} />
 					 */}
 					<ButtonToolbox id={accData?.id} />
+					{accData?.videos.length > 0 && (
+						<button
+							onClick={() => (window.location = "/#videos")}
+							className="btn video"
+						>
+							<OndemandVideoOutlinedIcon />
+						</button>
+					)}
 					<div
 						className="btn close"
 						onClick={handleClose}
