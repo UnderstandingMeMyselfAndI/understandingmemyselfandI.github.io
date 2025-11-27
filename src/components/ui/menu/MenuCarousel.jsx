@@ -1,4 +1,4 @@
-import {useRef, useEffect, useMemo} from "react";
+import {useRef, useEffect, useMemo, useState} from "react";
 // import Accordion from "@mui/material/Accordion";
 // import AccordionDetails from "@mui/material/AccordionDetails";
 // import AccordionSummary from "@mui/material/AccordionSummary";
@@ -7,6 +7,7 @@ import Skeleton from "@mui/material/Skeleton";
 // import ScenarioDialog from "../dialog/ScenarioDialog";
 import useAppStore from "@/store/useAppStore";
 import data from "../../../data/data.js";
+import HandymanIcon from "@mui/icons-material/Handyman";
 // import Favourite from "../favourite/Favourite.jsx";
 // import ButtonToolbox from "../buttons/toolbox/ButtonToolbox";
 // import ButtonEmergencyToolbox from "../buttons/toolbox/ButtonEmergencyToolbox";
@@ -20,7 +21,7 @@ import "../../../globals.css";
 import "./MenuCarousel.scss";
 
 // Individual Accordion Item with opacity and scale effects
-const MenuItemWithEffects = ({item, index, acronymID, expanded, handleChange, handleMenuClick, config = SCROLL_EFFECT_CONFIG}) => {
+const MenuItemWithEffects = ({item, isUserTool, index, acronymID, expanded, handleChange, handleMenuClick, config = SCROLL_EFFECT_CONFIG}) => {
 	const isExpanded = expanded === "panel" + index;
 	const [ref, effects, disableScrollEffects, enableScrollEffects, forceRecalculate] = useScrollEffects(config, isExpanded);
 	const accordionRef = useRef(null);
@@ -139,15 +140,7 @@ const MenuItemWithEffects = ({item, index, acronymID, expanded, handleChange, ha
 				ref={accordionRef}
 				className={"AccordionItem item"}
 				key={"accordion-" + index}
-				// expanded={isExpanded}
-				// onChange={handleChange(true), }
-				// onChange={handleChange("panel" + index)}
 				onClick={handleMenuClick(item?.id)}
-				// slotProps={{
-				// 	transition: {unmountOnExit: true},
-				// 	heading: {component: "h3"},
-				// }}
-				// sx={expandedStyles}
 				style={expandedStyles}
 			>
 				<div
@@ -155,14 +148,7 @@ const MenuItemWithEffects = ({item, index, acronymID, expanded, handleChange, ha
 					aria-controls={"panel" + index + "-content"}
 					id={"panel" + item?.id + "-header"}
 				>
-					{/* <Favourite
-						id={"item-" + item?.id}
-						className={item?.title?.replaceAll(".", "")}
-					/> */}
-					{/* <div className="toolboxes">
-						<ButtonEmergencyToolbox id={item?.id} />
-						<ButtonToolbox id={item?.id} />
-					</div> */}
+					{isUserTool && <HandymanIcon />}
 					<div className="cont letters-cont">
 						{item.title.split(".").map(
 							(subItem, index) =>
@@ -178,15 +164,14 @@ const MenuItemWithEffects = ({item, index, acronymID, expanded, handleChange, ha
 						)}
 					</div>
 				</div>
-				{/* <AccordionDetails>{parse(item.content.explanation)}</AccordionDetails> */}
 			</div>
-			{/* <div className="accBack"></div> */}
 		</div>
 	);
 };
 MenuItemWithEffects.propTypes = {
 	item: PropTypes.object,
 	index: PropTypes.number,
+	isUserTool: PropTypes.bool,
 	acronymID: PropTypes.number,
 	expanded: PropTypes.string,
 	handleChange: PropTypes.func,
@@ -194,10 +179,11 @@ MenuItemWithEffects.propTypes = {
 	config: PropTypes.object,
 };
 export default function MenuCarousel({expanded, showToolsOnly, handleChange, handleMenuClick}) {
-	// const {showToolsOnly} = useAppStore();
-	// console.log("AccordionScroll");
-
+	const [carouselData, setCarouselData] = useState(data);
 	const {accData} = useAppStore();
+	useEffect(() => {
+		showToolsOnly ? setCarouselData(accData) : setCarouselData(data);
+	}, [accData, showToolsOnly]);
 
 	// You can easily override the default config here
 	const customConfig = {
@@ -206,11 +192,11 @@ export default function MenuCarousel({expanded, showToolsOnly, handleChange, han
 		// minScale: 0.3, // Uncomment to override
 		// fadeBoundary: 0.2, // Uncomment to override
 	};
-	const componentData = showToolsOnly ? accData : data; //userToolIDs;
+	// const componentData = showToolsOnly ? accData : data; //userToolIDs;
 
 	return (
 		<div className={"AccordionRoot" + (expanded ? " expanded" : "")}>
-			{componentData.map((item, index) =>
+			{carouselData.map((item, index) =>
 				item ? (
 					<MenuItemWithEffects
 						className="AccordionItemWithEffects"
@@ -222,6 +208,7 @@ export default function MenuCarousel({expanded, showToolsOnly, handleChange, han
 						handleChange={handleChange}
 						handleMenuClick={handleMenuClick}
 						config={customConfig}
+						isUserTool={data.includes(item.id)}
 					/>
 				) : (
 					<Skeleton
@@ -238,6 +225,7 @@ MenuCarousel.propTypes = {
 	expanded: PropTypes.string,
 	handleChange: PropTypes.func,
 	handleMenuClick: PropTypes.func,
+	showToolsOnly: PropTypes.bool,
 };
 // function Scenarios(item) {
 // 	return (

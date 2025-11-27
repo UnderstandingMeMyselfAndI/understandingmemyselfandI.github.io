@@ -9,9 +9,9 @@ import Alert from "@mui/material/Alert";
 import {storeKeys, localStore} from "data/localStore.js";
 import data from "data/data.js";
 import Slide from "@mui/material/Slide";
-import CheckIcon from "@mui/icons-material/Check";
+// import CheckIcon from "@mui/icons-material/Check";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+// import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import HandymanOutlinedIcon from "@mui/icons-material/HandymanOutlined";
 import strings from "data/strings.js";
 import "./BadgeToolbox.scss";
@@ -32,14 +32,15 @@ export default function BadgeToolbox() {
 			const ids = data.map(item => item.id);
 			const userToolIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids);
 			const cData = data.filter(item => userToolIDs.includes(item.id));
-			console.log("setAccData", cData);
+			console.log("setAccData USER ", cData);
 			// setUserToolIDs(userToolIDs);
 			setAccData(cData);
-		} else {
-			setAccData(data);
-			console.log("setAccData", data);
 		}
-	}, [showToolsOnly, data, setAccData]);
+		// } else {
+		// 	console.log("setAccData ALL ", data);
+		// 	setAccData(data);
+		// }
+	}, [setAccData, showToolsOnly]);
 
 	const theme = createTheme({
 		palette: {
@@ -63,7 +64,7 @@ export default function BadgeToolbox() {
 			setOpenAlert(false);
 			setOpenAlert(true);
 		}
-	}, [showToolsOnly]);
+	}, [showToolsOnly, scrollStage]);
 
 	const handleClose = () => {
 		setOpenAlert(false);
@@ -82,7 +83,7 @@ export default function BadgeToolbox() {
 				autoHideDuration={2000}
 				onClose={handleClose}
 				slots={{transition: Slide}}
-				anchorOrigin={{vertical: "bottom", horizontal: "center"}}
+				anchorOrigin={{vertical: "top", horizontal: "center"}}
 			>
 				<Alert
 					onClose={handleClose}

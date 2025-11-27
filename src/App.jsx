@@ -26,21 +26,16 @@ import AcronymCard from "@/components/ui/cards/AcronymCard.jsx";
 import BadgeToolbox from "./components/ui/badges/BadgeToolbox";
 import MenuCarousel from "./components/ui/menu/MenuCarousel";
 import "./globals.css";
-
 import "./App.scss";
 import "@/scss/_fonts.scss";
-import bgImg from "/bgs/Ummi-bg-1.avif";
-import SpeedDialSettings from "./components/ui/settings/speedDial/SpeedDialSettings.jsx";
+// import bgImg from "/bgs/Ummi-bg-1.avif";
+// import SpeedDialSettings from "./components/ui/settings/speedDial/SpeedDialSettings.jsx";
 function App() {
-	// const [open, setOpen] = useState(true);
 	const [expanded, setExpanded] = useState(false);
 	const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme);
-	// const setShowAccCard = useAppStore(state => state.setShowAccCard);
-	// const showAccCard = useAppStore(state => state.showAccCard);
 	const setIsExpanded = useAppStore(state => state.setIsExpanded);
 	const setAcronymnID = useAppStore(state => state.setAcronymnID);
 	const {showToolsOnly, showAccCard, setShowAccCard} = useAppStore();
-	//const setEmergencyToolAdded = useAppStore(state => state.setEmergencyToolAdded);
 
 	if (theme !== null) {
 		applyTheme({theme: theme});
@@ -116,7 +111,7 @@ function App() {
 								handleChange={handleChange}
 								handleMenuClick={handleMenuClick}
 								show={!showAccCard}
-								showToolsOnly={!showToolsOnly}
+								showToolsOnly={showToolsOnly}
 							/>
 							<section className="footer">
 								<h2>
