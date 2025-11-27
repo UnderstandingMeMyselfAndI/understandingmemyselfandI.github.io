@@ -5,7 +5,7 @@
 	"start_url": "/index.html?fullscreen=true",
 
 	"background_color": "#819ec9",
-	"theme_color": "#819ec9",
+	"theme_color": "#000000",
 	"orientation": "portrait",
 	"lang": "en",
 	"dir": "ltr",
