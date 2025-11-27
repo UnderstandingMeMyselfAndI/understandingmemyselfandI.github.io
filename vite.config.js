@@ -1,15 +1,29 @@
 import path from "path";
+import fs from "fs";
 import {defineConfig} from "vite";
 import react from "@vitejs/plugin-react";
 import commonjs from "vite-plugin-commonjs";
 // import {analyzer} from "vite-bundle-analyzer";
-const __dirname = path.dirname("./src");
 import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
+
+const __dirname = path.dirname("./src");
+//version meta data
+const metadata = JSON.parse(fs.readFileSync("./src/metadata.json", "utf-8"));
+
+// Generate list of all built font files
+// const fontFiles = fs
+// 	.readdirSync(path.resolve(__dirname, "docs/assets")) // ← after first build
+// 	.filter(file => file.endsWith(".woff2") || file.endsWith(".woff"))
+// 	.map(file => `/assets/${file}`);
 // https://vitejs.dev/config/
 export default defineConfig({
 	root: "./",
 	base: "./",
 	publicDir: "public",
+	define: {
+		__BUILD_METADATA__: JSON.stringify(metadata),
+		// __PRECACHE_FONTS__: JSON.stringify(fontFiles),
+	},
 	build: {
 		minify: "terser",
 		cssMinify: false,
