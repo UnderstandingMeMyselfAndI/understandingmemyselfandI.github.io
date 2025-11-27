@@ -65,7 +65,7 @@ export default function Snackbars() {
 			<Snackbar
 				className={"snackbars"}
 				key={messageInfo ? messageInfo.key : undefined}
-				anchorOrigin={{vertical: "top", horizontal: "left"}}
+				anchorOrigin={{vertical: "top", horizontal: "center"}}
 				open={open}
 				autoHideDuration={2000}
 				onClose={handleClose}

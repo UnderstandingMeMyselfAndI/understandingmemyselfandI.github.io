@@ -1,16 +1,21 @@
 @import "@/globals.css";
 .MuiSnackbar-root,
 .MuiSnackbar-anchorOriginTopLeft {
+	width: fit-content;
+	padding: 0;
 }
 .MuiSnackbar-root {
 	z-index: 9999;
 	.MuiSnackbarContent-root {
+		background-color: var(--orange);
+		// text-shadow: 4px 0px 7px rgba(0, 0, 0, 0.8);
+		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
 		.MuiSnackbarContent-message {
-			background-color: var(--orange);
 			color: var(--greyDark);
+			font-weight: 700;
+			font-size: 1rem;
 			padding: 0.74rem 1rem;
-			text-shadow: 4px 0px 7px rgba(0, 0, 0, 0.8);
-			box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 		}
 	}
 }
