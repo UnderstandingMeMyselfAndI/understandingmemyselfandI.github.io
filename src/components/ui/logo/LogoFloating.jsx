@@ -17,7 +17,7 @@ const LogoFloating = ({showText = true, classes = "", showName = true}) => {
 		window.addEventListener("scroll", () => {
 			window.scrollY > 600 ? setShow(true) : setShow(false);
 		});
-	}, [window.scrollY, show, setShow]);
+	}, [show, setShow]);
 
 	return (
 		<div className={componentClasses}>

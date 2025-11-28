@@ -16,10 +16,7 @@ export default function Snackbars() {
 
 	const {scrollStage, toolAdded} = useAppStore();
 
-	console.log("MOUNT  SNACKBARS --------------------------------------------");
-
 	useEffect(() => {
-		console.log("SNACKBARS useEffect scrollStage");
 		if (scrollStage < 3) return;
 		if (snackPack.length && !messageInfo) {
 			// Set a new snack when we don't have an active one

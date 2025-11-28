@@ -25,31 +25,10 @@ export default function BadgeToolbox() {
 	const [numTools, setNumTools] = React.useState(positiveIDs.length);
 
 	const {showToolsOnly, toggleShowToolsOnly, userToolIDs} = useAppStore();
-	const blueGreyBase = "#819ec9";
-	const blueGreyMain = alpha(blueGreyBase, 0.95);
-	const greyBase = "#303030ff";
-	const greyMain = alpha(greyBase, 0.75);
 
 	useEffect(() => {
 		setNumTools(userToolIDs.length);
 	}, [userToolIDs]);
-
-	const theme = createTheme({
-		palette: {
-			blueGrey: {
-				main: blueGreyMain,
-				light: alpha(blueGreyBase, 0.5),
-				dark: alpha(blueGreyBase, 0.95),
-				contrastText: getContrastRatio(blueGreyMain, "#fff") > 4.5 ? "#fff" : "#111",
-			},
-			darkGrey: {
-				main: greyMain,
-				light: alpha(greyBase, 0.5),
-				dark: alpha(greyBase, 0.95),
-				contrastText: getContrastRatio(greyMain, "#fff") > 4.5 ? "#fff" : "#111",
-			},
-		},
-	});
 
 	useEffect(() => {
 		window.addEventListener("scroll", () => {
@@ -90,19 +69,17 @@ export default function BadgeToolbox() {
 				</Alert>
 			</Snackbar>
 			<div className={"badge-cont " + (open ? "" : " hide")}>
-				<ThemeProvider theme={theme}>
-					<Badge
-						className={"badge toolbox" + (showToolsOnly ? " active" : "")}
-						badgeContent={positiveIDs.length}
-						onClick={handleOpen}
-						anchorOrigin={{
-							vertical: "top",
-							horizontal: "right",
-						}}
-					>
-						<HandymanIcon className="icon" />
-					</Badge>
-				</ThemeProvider>
+				<Badge
+					className={"badge toolbox" + (showToolsOnly ? " active" : "")}
+					badgeContent={positiveIDs.length}
+					onClick={handleOpen}
+					anchorOrigin={{
+						vertical: "top",
+						horizontal: "right",
+					}}
+				>
+					<HandymanIcon className="icon" />
+				</Badge>
 			</div>
 		</div>
 	);
