@@ -69,6 +69,7 @@ const useScrollEffects = (config = SCROLL_EFFECT_CONFIG, isExpanded = false) => 
 
 	// Throttled scroll handler
 	const handleScroll = useCallback(() => {
+		console.log("handleScroll isExpanded ", isExpanded);
 		if (animationFrameId.current) {
 			cancelAnimationFrame(animationFrameId.current);
 		}

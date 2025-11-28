@@ -1,9 +1,5 @@
-// service-worker.js
-const metadata = typeof __BUILD_METADATA__ !== "undefined" ? __BUILD_METADATA__ : {buildMajor: 1, buildMinor: 0, buildRevision: 0, buildTag: "dev"};
-
 // service worker version number
-const SW_VERSION = `${metadata.buildMajor}.${metadata.buildMinor}.${metadata.buildRevision}`;
-
+const SW_VERSION = 1;
 const IDB_VERSION = 1;
 
 // cache name including version number
@@ -19,21 +15,17 @@ const staticFiles = [
 	"/icons/maskable-icon-512x512.png",
 	"/icons/pwa-192x192.png",
 	"/icons/pwa-512x512.png",
-	"/icons/pwa-512x512.png",
 	"/icons/QRCodes/qr-code-src-app-white-318.png",
 	"/icons/QRCodes/qr-code-src-app-dark-318.png",
 	"/fonts/PlusJakartaSans-VariableFont_wght.woff",
 	"/fonts/PlusJakartaSans-Italic-VariableFont_wght.woff",
 ];
 
-const fontFiles = typeof __PRECACHE_FONTS__ !== "undefined" ? __PRECACHE_FONTS__ : []; // fallback for dev
-// Dynamically generate all 47 background images
-const bgImages = Array.from({length: 47}, (_, i) => `/bgs/${i + 1}.jpg`);
 // routes to cache
-const routes = ["/"];
-//const routes = ["/", "/about"];
+const routes = ["/", "/about"];
+
 // combine static files and routes to cache
-const filesToCache = [...routes, ...staticFiles, ...fontFiles, ...bgImages];
+const filesToCache = [...routes, ...staticFiles];
 
 const requestsToRetryWhenOffline = [];
 

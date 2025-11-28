@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite --host",
-		"dev:https": "vite --host --https",   
+		"dev:https": "vite --host --https",
 		"build": "node generate-buildno.js && vite build",
 		"lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
 		"preview": "vite preview"
@@ -37,7 +37,6 @@
 		"tailwindcss-animate": "^1.0.6",
 		"terser": "^5.44.0",
 		"vaul": "^1.1.2",
-		"vite-plugin-commonjs": "^0.10.4",
 		"vite-plugin-css-injected-by-js": "^3.5.2",
 		"vite-plugin-inline-source": "^4.0.1",
 		"workbox-precaching": "^7.4.0",
@@ -57,7 +56,11 @@
 		"postcss-import": "^16.1.1",
 		"tailwindcss": "^3.3.3",
 		"vite": "^6.4.1",
-		"vite-bundle-analyzer": "^1.2.3"
+		"vite-bundle-analyzer": "^1.2.3",
+		"vite-plugin-commonjs": "^0.10.4",
+		"vite-plugin-pwa": "^1.1.0",
+		"workbox-build": "^7.4.0",
+		"workbox-window": "^7.4.0"
 	},
 	"peerDependencies": {
 		"react": "^17.0.0 || ^18.0.0 || ^19.0.0",

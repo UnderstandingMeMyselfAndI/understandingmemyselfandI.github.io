@@ -1,26 +1,30 @@
-import React, {useState, useRef, useEffect, useCallback, useMemo} from "react";
+import {useState, useEffect} from "react";
 import useAppStore from "@/store/useAppStore";
-
+// import PropTypes from "prop-types";
+import "./ScrollPosition.scss";
 function clamp(value, min, max) {
 	return Math.max(min, Math.min(value, max));
 }
-const ScrollPosition = ({children, classes = ""}) => {
+const ScrollPosition = () => {
 	const [stage, setStage] = useState(0);
-	const setScrollStage = useAppStore(state => state.setScrollStage);
+	const {setScrollStage, setActivity} = useAppStore();
 	const scrollStage = useAppStore(state => state.scrollStage);
 	useEffect(() => {
 		window.addEventListener("scroll", () => {
-			const nextStage = clamp(Math.floor(window.scrollY / (window.innerHeight * 0.2)), 0, 20);
+			const nextStage = clamp(Math.floor(window.scrollY / (window.innerHeight * 0.5)), 0, 20);
 			setStage(nextStage);
+			// console.log("stage", stage);
+			// setActivity(stage);
 		});
-	}, [window.scrollY, stage, setStage]);
+	}, [stage, setStage]);
 
 	useEffect(() => {
 		if (stage !== scrollStage) {
 			setScrollStage(stage);
 		}
-	}, [stage]);
+	}, [stage, setScrollStage, scrollStage]);
 
-	return <div className={`stage-${stage} ${classes}`}>{children}</div>;
+	return <div className={`stage-${stage} scrollPosition`}></div>;
 };
+ScrollPosition.PropTypes = {};
 export default ScrollPosition;

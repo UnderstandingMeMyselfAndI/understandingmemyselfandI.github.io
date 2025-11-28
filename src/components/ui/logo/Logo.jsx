@@ -1,7 +1,7 @@
 import "./styles.scss";
 
-import smartLogo from "@/assets/icons/UmmiIcon.svg";
-import smartLogoDark from "@/assets/icons/UmmiIcon.svg";
+import smartLogo from "@/assets/icons/UmmiIcon.min.svg";
+import smartLogoDark from "@/assets/icons/UmmiIcon.min.svg";
 
 import {useThemeStore} from "@/store/useThemeStore";
 const Logo = ({showText = true, classes = ""}) => {

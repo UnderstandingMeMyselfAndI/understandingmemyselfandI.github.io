@@ -13,6 +13,7 @@ const strings = {
 			yourToolsFiltered: "Showing YOUR tools", //"Showing only the tools you selected"
 		},
 	},
+	activities: [],
 };
 
 export default strings;

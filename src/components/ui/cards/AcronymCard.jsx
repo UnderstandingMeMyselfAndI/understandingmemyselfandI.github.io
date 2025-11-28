@@ -19,15 +19,21 @@ function getAccData(id) {
 }
 
 const AcronymCard = () => {
+	const [open, setOpen] = useState(false);
 	const [accData, setAccData] = useState(null);
-	const acronymnID = useAppStore(state => state.acronymnID);
-	const setShowAccCard = useAppStore(state => state.setShowAccCard);
-	const showAccCard = useAppStore(state => state.showAccCard);
+	// const acronymnID = useAppStore(state => state.acronymnID);
+	// const setShowAccCard = useAppStore(state => state.setShowAccCard);
+	// const showAccCard = useAppStore(state => state.showAccCard);
+	const {acronymnID, showAccCard, setShowAccCard} = useAppStore();
 	const contentRef = useRef(null);
 	useEffect(() => {
 		setAccData(getAccData(acronymnID));
 		contentRef.current.scrollTop = 0;
 	}, [acronymnID]);
+
+	useEffect(() => {
+		setOpen(showAccCard);
+	}, [showAccCard]);
 
 	const handleClose = () => {
 		setShowAccCard(false);
@@ -53,7 +59,7 @@ const AcronymCard = () => {
 
 	return (
 		<div
-			className={"AcronymCard" + (showAccCard ? " open" : "")}
+			className={"AcronymCard" + (open ? " open" : "")}
 			key="acronym-card"
 		>
 			<div className="inner">

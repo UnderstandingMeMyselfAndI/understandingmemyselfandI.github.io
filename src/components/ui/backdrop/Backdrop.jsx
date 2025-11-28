@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import ImageData from "data/imgData.js"; // ← make sure it's default export
-import bgImg from "/bgs/2.jpg";
+import bgImg from "/bgs/2.avif";
 import "./styles.scss";
 
 const allImages = ImageData; // already an array

@@ -1,8 +1,8 @@
-import React, {useState, useEffect, useRef} from "react";
+import {useState, useEffect, useRef} from "react";
 import ImageData from "data/imgData.js";
-import bgImg from "/bgs/2.jpg";
+import bgImg from "/bgs/2.avif";
 import "./BackdropParallax.scss";
-
+import PropTypes from "prop-types";
 const allImages = ImageData;
 const DEFAULT_INTERVAL = 10000;
 
@@ -12,19 +12,6 @@ export default function BackdropParallax({initialImageId = null, initialDelay = 
 	const [isFading, setIsFading] = useState(false);
 	const usedIds = useRef(new Set());
 	const intervalRef = useRef(null);
-
-	const getNextImage = () => {
-		let available = allImages.filter(img => !usedIds.current.has(img.id));
-		if (available.length === 0) {
-			const keep = currentImage ? [currentImage.id] : [];
-			if (nextImage) keep.push(nextImage.id);
-			usedIds.current = new Set(keep);
-			available = allImages.filter(img => !keep.includes(img.id));
-		}
-		const next = available.length > 0 ? available[Math.floor(Math.random() * available.length)] : allImages[0];
-		usedIds.current.add(next.id);
-		return next;
-	};
 
 	// Initial image
 	useEffect(() => {
@@ -36,7 +23,18 @@ export default function BackdropParallax({initialImageId = null, initialDelay = 
 	// Cycling
 	useEffect(() => {
 		if (!currentImage) return;
-
+		const getNextImage = () => {
+			let available = allImages.filter(img => !usedIds.current.has(img.id));
+			if (available.length === 0) {
+				const keep = currentImage ? [currentImage.id] : [];
+				if (nextImage) keep.push(nextImage.id);
+				usedIds.current = new Set(keep);
+				available = allImages.filter(img => !keep.includes(img.id));
+			}
+			const next = available.length > 0 ? available[Math.floor(Math.random() * available.length)] : allImages[0];
+			usedIds.current.add(next.id);
+			return next;
+		};
 		const timer = setTimeout(() => {
 			intervalRef.current = setInterval(() => {
 				const next = getNextImage();
@@ -56,7 +54,7 @@ export default function BackdropParallax({initialImageId = null, initialDelay = 
 			clearTimeout(timer);
 			if (intervalRef.current) clearInterval(intervalRef.current);
 		};
-	}, [currentImage, initialDelay, interval]);
+	}, [currentImage, initialDelay, interval, nextImage]);
 
 	// Preload
 	useEffect(() => {
@@ -72,18 +70,17 @@ export default function BackdropParallax({initialImageId = null, initialDelay = 
 		return () => clearInterval(id);
 	}, [currentImage, nextImage, interval]);
 
-	// Parallax
-	// useEffect(() => {
-	// 	if (parallaxStrength === 0) return;
-	// 	const onScroll = () => {
-	// 		const offset = window.pageYOffset * parallaxStrength;
-	// 		document.querySelectorAll(".cont img").forEach(img => {
-	// 			img.style.transform = `translateY(-${offset}px)`;
-	// 		});
-	// 	};
-	// 	window.addEventListener("scroll", onScroll, {passive: true});
-	// 	return () => window.removeEventListener("scroll", onScroll);
-	// }, [parallaxStrength]);
+	useEffect(() => {
+		if (parallaxStrength === 0) return;
+		const onScroll = () => {
+			const offset = window.pageYOffset * parallaxStrength;
+			document.querySelectorAll(".cont img").forEach(img => {
+				img.style.transform = `translateY(-${offset}px)`;
+			});
+		};
+		window.addEventListener("scroll", onScroll, {passive: true});
+		return () => window.removeEventListener("scroll", onScroll);
+	}, [parallaxStrength]);
 
 	if (!currentImage) return null;
 
@@ -113,3 +110,10 @@ export default function BackdropParallax({initialImageId = null, initialDelay = 
 		</div>
 	);
 }
+
+BackdropParallax.propTypes = {
+	initialImageId: PropTypes.string,
+	initialDelay: PropTypes.number,
+	interval: PropTypes.number,
+	parallaxStrength: PropTypes.number,
+};

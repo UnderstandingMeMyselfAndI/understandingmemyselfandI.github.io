@@ -30,6 +30,8 @@ span.tooltip {
 	opacity: 0.5;
 	transition: all var(--transition2);
 	animation: bounce-out 0.25s ease-in-out;
+	position: relative;
+	z-index: 40000;
 	svg {
 		width: $width;
 		height: $width;
@@ -64,7 +66,6 @@ span.tooltip {
 }
 .snackBar.alert {
 	z-index: 30000;
-
 	height: fit-content;
 	div.MuiPaper-root {
 		height: fit-content;

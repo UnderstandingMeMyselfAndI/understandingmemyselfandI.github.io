@@ -1,246 +1,286 @@
-import {useRef, useEffect, useMemo, useState} from "react";
-// import Accordion from "@mui/material/Accordion";
-// import AccordionDetails from "@mui/material/AccordionDetails";
-// import AccordionSummary from "@mui/material/AccordionSummary";
-// import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import React from "react";
+import {useRef, useEffect, useCallback, useMemo, useState} from "react";
 import Skeleton from "@mui/material/Skeleton";
-// import ScenarioDialog from "../dialog/ScenarioDialog";
+import HandymanIcon from "@mui/icons-material/Handyman";
+import PropTypes from "prop-types";
 import useAppStore from "@/store/useAppStore";
 import data from "../../../data/data.js";
-import HandymanIcon from "@mui/icons-material/Handyman";
-// import Favourite from "../favourite/Favourite.jsx";
-// import ButtonToolbox from "../buttons/toolbox/ButtonToolbox";
-// import ButtonEmergencyToolbox from "../buttons/toolbox/ButtonEmergencyToolbox";
-// import HandymanOutlinedIcon from "@mui/icons-material/HandymanOutlined";
-import {useScrollEffects, SCROLL_EFFECT_CONFIG} from "./useScrollEffects";
-import {triggerGlobalRecalc} from "@/hooks/useGlobalRecalcTrigger.js";
-// import {storeKeys, localStore} from "@/data/localStore.js";
-import PropTypes from "prop-types";
-
-import "../../../globals.css";
 import "./MenuCarousel.scss";
+// Default configuration
+const DEFAULT_CONFIG = {
+	minOpacity: 0.2,
+	minScale: 0.5,
+	fadeBoundary: 0.2,
+	centerZoneHeight: 0.4,
+	transitionSpeed: "0.2s",
+};
 
-// Individual Accordion Item with opacity and scale effects
-const MenuItemWithEffects = ({item, isUserTool, index, acronymID, expanded, handleChange, handleMenuClick, config = SCROLL_EFFECT_CONFIG}) => {
-	const isExpanded = expanded === "panel" + index;
-	const [ref, effects, disableScrollEffects, enableScrollEffects, forceRecalculate] = useScrollEffects(config, isExpanded);
-	const accordionRef = useRef(null);
-	const previousExpandedState = useRef(isExpanded);
+// Custom hook for scroll effects
+const useScrollEffects = (config = DEFAULT_CONFIG) => {
+	const itemsRef = useRef([]);
+	const rafId = useRef(null);
+	const isActive = useRef(true);
 
-	// const showAccCard = useAppStore(state => state.showAccCard);
-	const setShowAccCard = useAppStore(state => state.setShowAccCard);
-	// const setIsExpanded = useAppStore(state => state.setIsExpanded);
+	const calculateEffects = useCallback(() => {
+		if (!isActive.current) return;
+
+		const viewportHeight = window.innerHeight;
+		const viewportCenter = viewportHeight / 2;
+
+		// Calculate boundaries
+		const fadeBoundaryPixels = viewportHeight * config.fadeBoundary;
+		const centerZonePixels = viewportHeight * config.centerZoneHeight;
+		const centerZoneTop = viewportCenter - centerZonePixels / 2;
+		const centerZoneBottom = viewportCenter + centerZonePixels / 2;
+
+		itemsRef.current.forEach(item => {
+			if (!item?.element) return;
+
+			const rect = item.element.getBoundingClientRect();
+			const elementCenter = rect.top + rect.height / 2;
+
+			let opacity = 1;
+			let scale = 1;
+
+			// Check if element is outside center zone
+			if (elementCenter < centerZoneTop || elementCenter > centerZoneBottom) {
+				let distance = 0;
+
+				if (elementCenter < centerZoneTop) {
+					distance = (centerZoneTop - elementCenter) / fadeBoundaryPixels;
+				} else {
+					distance = (elementCenter - centerZoneBottom) / fadeBoundaryPixels;
+				}
+
+				// Exponential falloff
+				const progress = Math.min(1, Math.max(0, distance));
+				const exponentialProgress = progress * progress;
+
+				opacity = 1 - (1 - config.minOpacity) * exponentialProgress;
+				scale = 1 - (1 - config.minScale) * exponentialProgress;
+			}
+
+			// Apply styles with transition
+			item.element.style.opacity = opacity;
+			item.element.style.transform = `scale(${scale})`;
+		});
+
+		rafId.current = requestAnimationFrame(calculateEffects);
+	}, [config]);
+
+	const start = useCallback(() => {
+		if (isActive.current) return;
+		isActive.current = true;
+		rafId.current = requestAnimationFrame(calculateEffects);
+	}, [calculateEffects]);
+
+	const stop = useCallback(() => {
+		isActive.current = false;
+		if (rafId.current) {
+			cancelAnimationFrame(rafId.current);
+			rafId.current = null;
+		}
+	}, []);
+
+	const registerItem = useCallback((index, element) => {
+		itemsRef.current[index] = {element};
+	}, []);
+
+	const unregisterItem = useCallback(index => {
+		itemsRef.current[index] = null;
+	}, []);
 
 	useEffect(() => {
-		if (!setShowAccCard) {
-			setTimeout(() => {
-				forceRecalculate();
-				console.log("forceRecalculate");
-			}, 1000);
-		}
-	}, [setShowAccCard, forceRecalculate]);
-	// Handle scroll behavior on expand/collapse
+		start();
+		return () => stop();
+	}, [start, stop]);
+
+	return {
+		start,
+		stop,
+		registerItem,
+		unregisterItem,
+	};
+};
+
+// Individual list item component
+const VerticalListItem = ({children, index, registerItem, unregisterItem, style = {}}) => {
+	const elementRef = useRef(null);
+
 	useEffect(() => {
-		if (!accordionRef.current) return;
-
-		if (isExpanded) {
-			// === EXPANDING ===
-			// setShowAccCard(true);
-			// setAcronymnID(item?.id);
-			//setIsExpanded(true);
-			disableScrollEffects(); // Full opacity while expanded
-		} else if (previousExpandedState.current === true) {
-			// Re-enable scroll effects
-			enableScrollEffects();
-
-			// Triggers recalc on ALL items at once
-			setTimeout(() => {
-				triggerGlobalRecalc(); // ← This is the real fix
-			}, 380);
-
-			// Wait for MUI collapse animation to finish (~300ms)
-			//     Then do TWO things: scroll to center + recalculate effects
-			// const timer = setTimeout(() => {
-			const element = accordionRef.current;
-			if (!element) return;
-
-			// Get fresh geometry after collapse
-			const rect = element.getBoundingClientRect();
-			const elementTop = rect.top + window.pageYOffset;
-
-			// Scroll to center the item smoothly
-			const targetScrollY = elementTop - window.innerHeight / 2 + element.offsetHeight / 2;
-
-			window.scrollTo({
-				top: targetScrollY,
-				behavior: "smooth",
-			});
-
-			// Step 3: Force recalculation of opacity/scale for ALL items
-			//     This fixes the "stuck" or wrong opacity bug
-			forceRecalculate();
-			// }, 500); // 400ms safely covers MUI's collapse animation
-
-			// return () => clearTimeout(timer);
+		if (elementRef.current) {
+			registerItem(index, elementRef.current);
 		}
 
-		// Track previous state
-		previousExpandedState.current = isExpanded;
-	}, [isExpanded, item.id, setShowAccCard, disableScrollEffects, enableScrollEffects, forceRecalculate]);
-
-	// Memoize expanded styles to prevent unnecessary recalculations
-	const expandedStyles = useMemo(() => {
-		if (!isExpanded) return {};
-
-		return {
-			// position: "relative",
-			// backgroundColor: "var(--mainBackground)",
-			boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
-			// maxHeight: "calc(90vh - 40px)",
-			// minHeight: "100%",
-			// height: "fit-content",
-			// overflow: "auto",
-			"& .MuiAccordionDetails-root": {
-				// maxHeight: "calc(90vh - 120px)", // Account for header height
-				overflow: "auto",
-			},
-		};
-	}, [isExpanded]);
-
-	const wrapperStyle = useMemo(() => {
-		if (isExpanded) {
-			return {
-				opacity: 1,
-				transform: "none",
-				position: "relative",
-				transfrom: "translateY(-50%)",
-				top: "50%",
-				zIndex: 10,
-				marginBottom: "20px",
-				// Add margin top to position 5vh from top when scrolled into view
-				marginTop: "5vh",
-			};
-		}
-
-		return {
-			opacity: effects.opacity,
-			transform: `scale(${effects.scale})`,
-			transition: `opacity ${config.transitionSpeed}, transform ${config.transitionSpeed}`,
-			transformOrigin: "center center",
-		};
-	}, [effects.opacity, effects.scale, config.transitionSpeed, isExpanded]);
+		return () => unregisterItem(index);
+	}, [index, registerItem, unregisterItem]);
 
 	return (
 		<div
-			ref={ref}
-			style={wrapperStyle}
-			className={"carousel-item" + (isExpanded ? " active" : "")}
+			ref={elementRef}
+			className={"list-item"}
+			style={{
+				width: "100%",
+				// height: "100px",
+				transition: "opacity 0.2s, transform 0.2s",
+				transformOrigin: "center center",
+				...style,
+			}}
 		>
-			<div
-				ref={accordionRef}
-				className={"AccordionItem item"}
-				key={"accordion-" + index}
-				onClick={handleMenuClick(item?.id)}
-				style={expandedStyles}
-			>
-				<div
-					className={"AcronymTitle title"}
-					aria-controls={"panel" + index + "-content"}
-					id={"panel" + item?.id + "-header"}
-				>
-					{isUserTool && <HandymanIcon />}
-					<div className="cont letters-cont">
-						{item.title.split(".").map(
-							(subItem, index) =>
-								subItem && (
-									<div
-										className="letter"
-										key={index}
-										data-content={subItem}
-									>
-										{subItem}
-									</div>
-								)
-						)}
-					</div>
-				</div>
-			</div>
+			{children}
 		</div>
 	);
 };
-MenuItemWithEffects.propTypes = {
-	item: PropTypes.object,
-	index: PropTypes.number,
-	isUserTool: PropTypes.bool,
-	acronymID: PropTypes.number,
-	expanded: PropTypes.string,
-	handleChange: PropTypes.func,
-	handleMenuClick: PropTypes.func,
-	config: PropTypes.object,
+
+VerticalListItem.propTypes = {
+	children: PropTypes.node,
+	index: PropTypes.number.isRequired,
+	registerItem: PropTypes.func.isRequired,
+	unregisterItem: PropTypes.func.isRequired,
+	style: PropTypes.object,
 };
-export default function MenuCarousel({expanded, showToolsOnly, handleChange, handleMenuClick}) {
+
+// Main vertical list component
+const VerticalList = ({children, config = DEFAULT_CONFIG, isActive = true, itemStyle = {}, className = ""}) => {
+	const {start, stop, registerItem, unregisterItem} = useScrollEffects(config);
+
+	// Control scroll listener
+	useEffect(() => {
+		if (isActive) {
+			start();
+		} else {
+			stop();
+		}
+	}, [isActive, start, stop]);
+
+	const items = useMemo(() => {
+		return React.Children.map(children, (child, index) => (
+			<VerticalListItem
+				className={"list-item"}
+				key={index}
+				index={index}
+				registerItem={registerItem}
+				unregisterItem={unregisterItem}
+				style={itemStyle}
+			>
+				{child}
+			</VerticalListItem>
+		));
+	}, [children, registerItem, unregisterItem, itemStyle]);
+
+	return (
+		<div
+			className={`accronym-menu ${className}`}
+			style={{width: "100%"}}
+		>
+			{items}
+		</div>
+	);
+};
+
+VerticalList.propTypes = {
+	children: PropTypes.node.isRequired,
+	config: PropTypes.shape({
+		minOpacity: PropTypes.number,
+		minScale: PropTypes.number,
+		fadeBoundary: PropTypes.number,
+		centerZoneHeight: PropTypes.number,
+		transitionSpeed: PropTypes.string,
+	}),
+	isActive: PropTypes.bool,
+	itemStyle: PropTypes.object,
+	className: PropTypes.string,
+};
+
+const MenuCarousel = ({showToolsOnly}) => {
+	const [open, setOpen] = useState(false);
 	const [carouselData, setCarouselData] = useState(data);
-	const {accData} = useAppStore();
+	const {accData, activity, setActivity, setAcronymnID, setShowAccCard} = useAppStore();
 	useEffect(() => {
 		showToolsOnly ? setCarouselData(accData) : setCarouselData(data);
 	}, [accData, showToolsOnly]);
 
-	// You can easily override the default config here
-	const customConfig = {
-		...SCROLL_EFFECT_CONFIG,
-		// minOpacity: 0.2, // Uncomment to override
-		// minScale: 0.3, // Uncomment to override
-		// fadeBoundary: 0.2, // Uncomment to override
+	useEffect(() => {
+		setOpen(activity === "tools");
+	}, [activity]);
+
+	const handleClick = id => () => {
+		setAcronymnID(id);
+		setShowAccCard(true);
+		setActivity(1);
 	};
-	// const componentData = showToolsOnly ? accData : data; //userToolIDs;
+
+	const customConfig = {
+		minOpacity: 0.3,
+		minScale: 0.2,
+		fadeBoundary: 0.4,
+		centerZoneHeight: 0.05,
+		transitionSpeed: "0.15s",
+	};
+
+	const items = carouselData.map((item, index) => {
+		if (!item) {
+			return (
+				<Skeleton
+					key={`skeleton-${index}`}
+					variant="rounded"
+					width="100%"
+					height={200}
+					animation="wave"
+				/>
+			);
+		}
+
+		return (
+			<div
+				key={item.id ?? index}
+				className={"carousel-item" + " " + item.id}
+				onClick={handleClick(item.id)}
+			>
+				<div
+					className="AccordionItem inner item"
+					style={{cursor: "pointer"}}
+				>
+					<div
+						className="title"
+						aria-controls={`Accronym-${index}-content`}
+						id={`panel${item?.id}-header`}
+					>
+						{accData.some(d => d.id === item.id) && <HandymanIcon className="icon" />}
+
+						<div className="letters-cont">
+							{item.title.split(".").map(
+								(subItem, i) =>
+									subItem && (
+										<div
+											key={i}
+											className="letter"
+											data-content={subItem}
+										>
+											{subItem}
+										</div>
+									)
+							)}
+						</div>
+					</div>
+				</div>
+			</div>
+		);
+	});
 
 	return (
-		<div className={"AccordionRoot" + (expanded ? " expanded" : "")}>
-			{carouselData.map((item, index) =>
-				item ? (
-					<MenuItemWithEffects
-						className="AccordionItemWithEffects"
-						key={"accordion-" + index}
-						item={item}
-						acronymID={item?.id}
-						index={index}
-						expanded={expanded}
-						handleChange={handleChange}
-						handleMenuClick={handleMenuClick}
-						config={customConfig}
-						isUserTool={data.includes(item.id)}
-					/>
-				) : (
-					<Skeleton
-						key={"skeleton-" + index}
-						variant="rounded"
-						animation="wave"
-					/>
-				)
-			)}
+		<div className={"AccordionRoot" + (open ? " expanded" : "")}>
+			<VerticalList
+				config={customConfig}
+				isActive={true}
+				itemStyle={{marginBottom: "10px"}}
+			>
+				{items}
+			</VerticalList>
 		</div>
 	);
-}
+};
 MenuCarousel.propTypes = {
-	expanded: PropTypes.string,
-	handleChange: PropTypes.func,
-	handleMenuClick: PropTypes.func,
 	showToolsOnly: PropTypes.bool,
 };
-// function Scenarios(item) {
-// 	return (
-// 		<div className="scenarios">
-// 			<div className="title">Scenarios</div>
-// 			<div className="scenariosGroup">
-// 				{item.scenarios.map((scenario, i) => (
-// 					<ScenarioDialog
-// 						btnLabel={scenario.btnLabel}
-// 						title={scenario.title}
-// 						content={scenario.content}
-// 						key={"scenario-" + i}
-// 					/>
-// 				))}
-// 			</div>
-// 		</div>
-// 	);
-// }
+export default MenuCarousel;

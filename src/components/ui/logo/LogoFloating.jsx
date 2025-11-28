@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react";
-import smartLogo from "@/assets/icons/UmmiIcon.svg";
-import smartLogoDark from "@/assets/icons/UmmiIcon.svg";
+import smartLogo from "@/assets/icons/UmmiIcon.min.svg";
+import smartLogoDark from "@/assets/icons/UmmiIcon.min.svg";
 import {useThemeStore} from "@/store/useThemeStore";
 import useAppStore from "@/store/useAppStore";
 import icon from "@/assets/icons/UmmiIcon.min.svg";

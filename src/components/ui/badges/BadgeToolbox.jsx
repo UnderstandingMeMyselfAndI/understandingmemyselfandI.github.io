@@ -17,30 +17,22 @@ import strings from "data/strings.js";
 import "./BadgeToolbox.scss";
 
 export default function BadgeToolbox() {
-	const [openAlert, setOpenAlert] = React.useState(false);
 	const allAccronyms = data;
 	const ids = allAccronyms.map(item => item.id);
-	const count = localStore.getCountByLabel(storeKeys.toolbox, ids);
-	const {showToolsOnly, toggleShowToolsOnly, scrollStage, showAccCard, setAccData} = useAppStore();
+	const positiveIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids);
+	const [openAlert, setOpenAlert] = React.useState(false);
+	const [open, setOpen] = React.useState(false);
+	const [numTools, setNumTools] = React.useState(positiveIDs.length);
+
+	const {showToolsOnly, toggleShowToolsOnly, userToolIDs} = useAppStore();
 	const blueGreyBase = "#819ec9";
 	const blueGreyMain = alpha(blueGreyBase, 0.95);
 	const greyBase = "#303030ff";
 	const greyMain = alpha(greyBase, 0.75);
 
 	useEffect(() => {
-		if (showToolsOnly) {
-			const ids = data.map(item => item.id);
-			const userToolIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids);
-			const cData = data.filter(item => userToolIDs.includes(item.id));
-			console.log("setAccData USER ", cData);
-			// setUserToolIDs(userToolIDs);
-			setAccData(cData);
-		}
-		// } else {
-		// 	console.log("setAccData ALL ", data);
-		// 	setAccData(data);
-		// }
-	}, [setAccData, showToolsOnly]);
+		setNumTools(userToolIDs.length);
+	}, [userToolIDs]);
 
 	const theme = createTheme({
 		palette: {
@@ -60,11 +52,10 @@ export default function BadgeToolbox() {
 	});
 
 	useEffect(() => {
-		if (scrollStage > 2) {
-			setOpenAlert(false);
-			setOpenAlert(true);
-		}
-	}, [showToolsOnly, scrollStage]);
+		window.addEventListener("scroll", () => {
+			window.scrollY > 600 ? setOpen(true) : setOpen(false);
+		});
+	}, [setOpen]);
 
 	const handleClose = () => {
 		setOpenAlert(false);
@@ -98,12 +89,11 @@ export default function BadgeToolbox() {
 					{showToolsOnly ? strings.tools.list.yourToolsFiltered : strings.tools.list.unfiltered}
 				</Alert>
 			</Snackbar>
-			<div className={"badge-cont " + ("stg-" + scrollStage) + (showAccCard ? " hide" : "")}>
+			<div className={"badge-cont " + (open ? "" : " hide")}>
 				<ThemeProvider theme={theme}>
 					<Badge
 						className={"badge toolbox" + (showToolsOnly ? " active" : "")}
-						badgeContent={count}
-						color="darkGrey"
+						badgeContent={positiveIDs.length}
 						onClick={handleOpen}
 						anchorOrigin={{
 							vertical: "top",

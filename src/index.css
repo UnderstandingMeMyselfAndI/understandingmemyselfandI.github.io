@@ -5,5 +5,5 @@
 	width: env(titlebar-area-width, 100%);
 	height: env(titlebar-area-height, 40px);
 	-webkit-app-region: drag;
-	app-region: drag;
+	/* app-region: drag; */
 }

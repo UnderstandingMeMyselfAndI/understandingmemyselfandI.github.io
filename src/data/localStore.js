@@ -19,7 +19,6 @@ const localStore = (() => {
 		},
 		_set = (which, id, value) => {
 			//if (!_validate(which, id, value)) return;
-			console.log("_set", which, id, value);
 			localStorage.setItem(`${which}-${id}`, value);
 		},
 		_remove = (which, id) => {

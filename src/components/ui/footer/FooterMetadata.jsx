@@ -24,7 +24,7 @@ function FooterMetadata() {
 		<div className="version-footer">
 			&copy; {year} flpdigital.com
 			<div className="sf-footer-version">
-				{`Version ${metadata.buildMajor}.${metadata.buildMinor}.${metadata.buildRevision} `}
+				{`Version ${metadata.buildMajor}.${metadata.buildMinor}.${metadata.buildRevision} ${metadata.buildTag}  `}
 				{isUpdateAvailable && <span className="update"> (Update available - go to settings)</span>}
 			</div>
 		</div>

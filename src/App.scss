@@ -22,8 +22,6 @@ body {
 	padding: 0;
 	margin: 0;
 	user-select: none;
-	// background-color: var(--mainBackground);
-	// text-shadow: 2px 2px 2px rgba(50, 50, 50, 0.2);
 	h1,
 	h2,
 	h3,
@@ -44,10 +42,6 @@ body {
 	margin: 0;
 	padding: 0;
 	text-align: center;
-	overflow: hidden;
-	background: transparent;
-	// position: relative;
-	// top: 0;
 }
 :focus {
 	outline: none;
@@ -62,8 +56,7 @@ button:focus-visible {
 	box-shadow: none;
 }
 body {
-	overscroll-behavior-y: contain;
-	background: #819ec9;
+	// overscroll-behavior-y: contain;
 	background: var(--mainBackground) !important;
 	.app {
 		position: relative;
@@ -79,7 +72,10 @@ body {
 			position: relative;
 
 			max-width: 600px;
-
+			.activities {
+				position: relative;
+				z-index: 3000;
+			}
 			> .inner {
 				width: 100%;
 
@@ -147,6 +143,21 @@ body {
 		opacity: 0.4;
 	} */
 	}
+	// .activity {
+	// 	&.show {
+	// 		opacity: 1;
+	// 		display: block;
+	// 		transition: all 0.35s var(--transition);
+	// 	}
+	// 	&.hide {
+	// 		opacity: 0;
+	// 		transition: all 0.35s var(--transition);
+	// 	}
+	// 	&.dormant {
+	// 		display: none;
+	// 		z-index: -10;
+	// 	}
+	// }
 }
 
 .tools {
@@ -158,9 +169,7 @@ body {
 		color: var(--yellow);
 	}
 }
-.hide {
-	display: none;
-}
+
 .settingsContainer {
 	position: fixed;
 	top: 12px;
@@ -224,7 +233,6 @@ section.intro {
 }
 .logo.android svg path {
 	fill: var(--primary);
-	/* stroke: var(--background); */
 }
 div[data-vaul-overlay][data-vaul-snap-points-overlay="true"] {
 	opacity: 0.35;
@@ -273,7 +281,6 @@ div[data-vaul-overlay][data-vaul-snap-points-overlay="true"] {
 }
 .logo.android svg path {
 	fill: var(--primary);
-	/* stroke: var(--background); */
 }
 div[data-vaul-overlay][data-vaul-snap-points-overlay="true"] {
 	opacity: 0.35;
@@ -301,7 +308,6 @@ section.footer {
 	text-align: center;
 	width: 100%;
 	background-color: transparent;
-	/* box-shadow: 0 2px 10px var(--black-a4); */
 	margin: 0 auto;
 	margin-top: 2rem;
 	line-height: 1.5;

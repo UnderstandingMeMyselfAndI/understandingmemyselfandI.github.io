@@ -3,8 +3,8 @@ import {Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerTrigger, DrawerT
 import "./styles.css";
 
 import ButtonSettings from "buttons/settings/ButtonSettings.jsx";
-import iconAndroid from "icons/iconAndroid.jsx";
-import iconApple from "icons/iconApple.jsx";
+import iconAndroid from "@icons/iconAndroid.jsx";
+import iconApple from "@icons/iconApple.jsx";
 import BackgroundOptions from "ui/footer/background/BackgroundOptions";
 import CheckboxFilterFavourites from "ui/CheckboxFilterFavourites/CheckboxFilterFavourites.jsx";
 import ButtonUpdate from "buttons/update/ButtonUpdate.jsx";
