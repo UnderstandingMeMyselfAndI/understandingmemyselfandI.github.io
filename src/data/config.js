@@ -17,7 +17,7 @@ const cnf = {
 
 	duration: {
 		hide: {
-			snackbar: 200000,
+			snackbar: 2000,
 		},
 		show: {},
 		ani: {

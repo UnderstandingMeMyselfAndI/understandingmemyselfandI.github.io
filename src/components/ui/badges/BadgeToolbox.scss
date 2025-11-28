@@ -1,5 +1,7 @@
+@use "@/scss/variables";
 @import "@/globals.css";
 @import "@/scss/Animation.css";
+
 span.MuiBadge-badge.MuiBadge-standard {
 	color: #fff;
 }
@@ -10,7 +12,7 @@ $width: 28px;
 	right: 1.5rem;
 	opacity: 1;
 	transition: all 0.25s cubic-bezier(0.3, 0, 0.74, 1);
-	z-index: 10000;
+	z-index: 4000;
 	transform: translateX(0) scale(1);
 	&.stg-0,
 	&.stg-1,
@@ -78,20 +80,35 @@ span.tooltip {
 		flex-direction: row;
 		position: relative;
 		// color: var(--secondary);
-		&::after {
-			content: "";
-			width: 100%;
-			height: 100%;
-			position: absolute;
-			top: 0;
-			left: 0;
-			z-index: -1;
-			border-radius: 0;
-			top: 0;
-			left: 0;
-			background: var(--mainBackground);
-			opacity: 1;
-			border-radius: 8px;
+		// &::after {
+		// 	content: "";
+		// 	width: 100%;
+		// 	height: 100%;
+		// 	position: absolute;
+		// 	top: 0;
+		// 	left: 0;
+		// 	z-index: -1;
+		// 	border-radius: 0;
+		// 	top: 0;
+		// 	left: 0;
+		// 	background: var(--mainBackground);
+		// 	opacity: 1;
+		// 	border-radius: 8px;
+		// }
+	}
+}
+.MuiSnackbar-anchorOriginTopLeft {
+	> div {
+		// outline: 1px solid #0f0;
+		background: var(--mainBackground) !important;
+		.MuiSnackbarContent-message {
+			color: var(--primary);
+			font-weight: variables.$p_weight;
+			font-size: variables.$p_size;
+			padding: 0.74rem 1rem;
 		}
 	}
+}
+.snackbars {
+	z-index: 5000;
 }

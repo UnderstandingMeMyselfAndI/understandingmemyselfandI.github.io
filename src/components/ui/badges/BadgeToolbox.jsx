@@ -13,7 +13,8 @@ import Slide from "@mui/material/Slide";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 // import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import HandymanOutlinedIcon from "@mui/icons-material/HandymanOutlined";
-import strings from "data/strings.js";
+import {cnf, strings} from "data/config.js";
+
 import "./BadgeToolbox.scss";
 
 export default function BadgeToolbox() {
@@ -24,7 +25,7 @@ export default function BadgeToolbox() {
 	const [open, setOpen] = React.useState(false);
 	const [numTools, setNumTools] = React.useState(positiveIDs.length);
 
-	const {showToolsOnly, toggleShowToolsOnly, userToolIDs} = useAppStore();
+	const {showToolsOnly, toggleShowToolsOnly, userToolIDs, setMessage} = useAppStore();
 
 	useEffect(() => {
 		setNumTools(userToolIDs.length);
@@ -47,27 +48,6 @@ export default function BadgeToolbox() {
 
 	return (
 		<div>
-			<Snackbar
-				className={"snackBar alert"}
-				open={openAlert}
-				autoHideDuration={2000}
-				onClose={handleClose}
-				slots={{transition: Slide}}
-				anchorOrigin={{vertical: "top", horizontal: "center"}}
-			>
-				<Alert
-					onClose={handleClose}
-					severity={showToolsOnly ? "success" : "info"}
-					variant="filled"
-					sx={{width: "100%"}}
-					iconMapping={{
-						success: <HandymanOutlinedIcon fontSize="inherit" />,
-						info: <CheckCircleOutlineIcon fontSize="inherit" />,
-					}}
-				>
-					{showToolsOnly ? strings.tools.list.yourToolsFiltered : strings.tools.list.unfiltered}
-				</Alert>
-			</Snackbar>
 			<div className={"badge-cont " + (open ? "" : " hide")}>
 				<Badge
 					className={"badge toolbox" + (showToolsOnly ? " active" : "")}

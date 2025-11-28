@@ -6,30 +6,45 @@
 	width: fit-content;
 	padding: 0;
 }
-.snackbars {
-	z-index: 40000;
+.MuiSnackbar-anchorOriginTopCenter {
+	// outline: 1px solid #f00;
 }
-.MuiSnackbar-root {
-	.MuiSnackbarContent-root {
-		background: var(--mainBackground);
-		// // text-shadow: 4px 0px 7px rgba(0, 0, 0, 0.8);
-		// box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 
+.MuiSnackbar-anchorOriginTopLeft {
+	> div {
+		// outline: 1px solid #0f0;
+		background: var(--mainBackground) !important;
 		.MuiSnackbarContent-message {
 			color: var(--primary);
 			font-weight: variables.$p_weight;
 			font-size: variables.$p_size;
 			padding: 0.74rem 1rem;
 		}
-		&::after {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			z-index: -1;
-			background: var(--mainBackground);
-		}
 	}
 }
+.snackbars {
+	z-index: 5000;
+}
+// .MuiSnackbar-root,
+// .snackbars {
+// 	.snackbar.alert {
+// 		background: var(--mainBackground) !important;
+// 	}
+// 	.MuiSnackbarContent-root {
+// 		.MuiSnackbarContent-message {
+// 			color: var(--primary);
+// 			font-weight: variables.$p_weight;
+// 			font-size: variables.$p_size;
+// 			padding: 0.74rem 1rem;
+// 		}
+// 		&::after {
+// 			content: "";
+// 			position: absolute;
+// 			top: 0;
+// 			left: 0;
+// 			width: 100%;
+// 			height: 100%;
+// 			z-index: 9999;
+// 		}
+// 	}
+// }

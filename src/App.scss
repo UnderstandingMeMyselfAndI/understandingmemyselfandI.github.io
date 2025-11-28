@@ -74,7 +74,7 @@ body {
 			max-width: 600px;
 			.activities {
 				position: relative;
-				z-index: 3000;
+				z-index: 2000;
 			}
 			> .inner {
 				width: 100%;
@@ -177,7 +177,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	row-gap: 0.25rem;
-	z-index: 4000;
+	z-index: 2000;
 }
 .big {
 	font-size: 2rem;

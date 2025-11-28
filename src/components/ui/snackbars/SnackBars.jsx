@@ -2,9 +2,15 @@ import * as React from "react";
 import {useEffect, useState} from "react";
 import Snackbar from "@mui/material/Snackbar";
 import useAppStore from "@/store/useAppStore";
+import HandymanIcon from "@mui/icons-material/Handyman";
+import Alert from "@mui/material/Alert";
 import Slide from "@mui/material/Slide";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+
+import HandymanOutlinedIcon from "@mui/icons-material/HandymanOutlined";
+
 // import strings from "data/strings.js";
 import {cnf, strings} from "data/config.js";
 import "./styles.scss";
@@ -14,7 +20,9 @@ export default function Snackbars() {
 	const [open, setOpen] = useState(false);
 	const [messageInfo, setMessageInfo] = useState(undefined);
 
-	const {scrollStage, toolAdded} = useAppStore();
+	const {scrollStage, toolAdded, showToolsOnly} = useAppStore();
+
+	console.log("SNACKBARS mount");
 
 	useEffect(() => {
 		if (scrollStage < 3) return;
@@ -25,17 +33,34 @@ export default function Snackbars() {
 			setOpen(true);
 		} else if (snackPack.length && messageInfo && open) {
 			// Close an active snack when a new one is added
-			setOpen(false);
+			setOpen(true);
 		}
 	}, [scrollStage, snackPack, messageInfo, open]);
+	useEffect(() => {
+		console.log("SNACKBARS open ", open);
+	}, [open]);
+	useEffect(() => {
+		if (scrollStage < 3) return;
+		console.log("SNACKBARS toolAdded ", toolAdded);
+		setOpen(true);
+	}, [toolAdded, scrollStage]);
+	useEffect(() => {
+		if (scrollStage < 3) return;
+		console.log("SNACKBARS useEffect toolAdded");
 
-	// useEffect(() => {
-	// 	console.log("SNACKBARS useEffect toolAdded");
-	// 	if (scrollStage < 3) return;
-	// 	const message = toolAdded ? strings.toolbox.added : strings.toolbox.removed;
-	// 	scrollStage > 1 && setSnackPack(prev => [...prev, {message, key: new Date().getTime()}]);
-	// 	// setMessage(message);
-	// }, [toolAdded, scrollStage]);
+		const message = toolAdded ? strings.toolbox.added : strings.toolbox.removed;
+		setSnackPack(prev => [...prev, {message, key: new Date().getTime()}]);
+		setOpen(true);
+	}, [toolAdded, scrollStage]);
+
+	useEffect(() => {
+		if (scrollStage < 3) return;
+		console.log("SNACKBARS useEffect message");
+		const message = showToolsOnly ? strings.tools.list.yourToolsFiltered : strings.tools.list.unfiltered;
+
+		setSnackPack(prev => [...prev, {message, key: new Date().getTime()}]);
+		setOpen(true);
+	}, [showToolsOnly, scrollStage]);
 
 	// useEffect(() => {
 	// 	if (scrollStage < 3) return;
@@ -57,28 +82,26 @@ export default function Snackbars() {
 	return (
 		<div>
 			<Snackbar
-				className={"snackbars"}
-				key={messageInfo ? messageInfo.key : undefined}
-				anchorOrigin={{vertical: "top", horizontal: "center"}}
+				className={"snackBar alert"}
 				open={open}
 				autoHideDuration={cnf?.duration?.hide.snackbar || 2000}
 				onClose={handleClose}
 				slots={{transition: Slide}}
-				slotProps={{transition: {onExited: handleExited}}}
-				message={messageInfo ? messageInfo.message : undefined}
-				action={
-					<React.Fragment>
-						<IconButton
-							aria-label="close"
-							color="inherit"
-							sx={{p: 0.5}}
-							onClick={handleClose}
-						>
-							<CloseIcon />
-						</IconButton>
-					</React.Fragment>
-				}
-			/>
+				anchorOrigin={{vertical: "top", horizontal: "left"}}
+			>
+				<Alert
+					onClose={handleClose}
+					severity={toolAdded ? "success" : "info"}
+					variant="filled"
+					sx={{width: "100%"}}
+					iconMapping={{
+						success: <HandymanOutlinedIcon fontSize="inherit" />,
+						info: <CheckCircleOutlineIcon fontSize="inherit" />,
+					}}
+				>
+					{toolAdded ? strings.toolbox.added : strings.toolbox.removed}
+				</Alert>
+			</Snackbar>
 		</div>
 	);
 }

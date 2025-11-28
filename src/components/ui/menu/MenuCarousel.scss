@@ -145,16 +145,10 @@ div.AccordionRoot {
 						position: absolute;
 						right: 0.5rem;
 						top: 0.5rem;
-						width: 16px;
-						height: 16px;
-						svg {
-							fill: red; //var(--yellow);
-							stroke: red; //ar(--yellow);
-							path {
-								fill: red; //var(--yellow);
-								stroke: red; //var(--yellow);
-							}
-						}
+						width: 20px;
+						height: 20px;
+						fill: var(--yellow2);
+						stroke: var(--yellow2);
 					}
 				}
 			}

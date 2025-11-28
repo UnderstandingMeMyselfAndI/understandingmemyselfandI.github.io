@@ -2,6 +2,7 @@ import React from "react";
 import {useRef, useEffect, useCallback, useMemo, useState} from "react";
 import Skeleton from "@mui/material/Skeleton";
 import HandymanIcon from "@mui/icons-material/Handyman";
+import {storeKeys, localStore} from "@/data/localStore.js";
 import PropTypes from "prop-types";
 import useAppStore from "@/store/useAppStore";
 import data from "../../../data/data.js";
@@ -196,6 +197,9 @@ const MenuCarousel = ({showToolsOnly}) => {
 	const [open, setOpen] = useState(false);
 	const [carouselData, setCarouselData] = useState(data);
 	const {accData, activity, setActivity, setAcronymnID, setShowAccCard} = useAppStore();
+	const ids = data.map(item => item.id);
+	const positiveIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids);
+
 	useEffect(() => {
 		showToolsOnly ? setCarouselData(accData) : setCarouselData(data);
 	}, [accData, showToolsOnly]);
@@ -219,6 +223,8 @@ const MenuCarousel = ({showToolsOnly}) => {
 	};
 
 	const items = carouselData.map((item, index) => {
+		const isSelected = positiveIDs.find(id => id === item.id);
+
 		if (!item) {
 			return (
 				<Skeleton
@@ -234,7 +240,7 @@ const MenuCarousel = ({showToolsOnly}) => {
 		return (
 			<div
 				key={item.id ?? index}
-				className={"carousel-item" + " " + item.id}
+				className={"carousel-item"}
 				onClick={handleClick(item.id)}
 			>
 				<div
@@ -246,7 +252,7 @@ const MenuCarousel = ({showToolsOnly}) => {
 						aria-controls={`Accronym-${index}-content`}
 						id={`panel${item?.id}-header`}
 					>
-						{accData.some(d => d.id === item.id) && <HandymanIcon className="icon" />}
+						{isSelected && <HandymanIcon className="icon" />}
 
 						<div className="letters-cont">
 							{item.title.split(".").map(

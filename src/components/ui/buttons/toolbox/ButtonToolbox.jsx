@@ -17,10 +17,6 @@ const ButtonToolbox = () => {
 	const ids = data.map(item => item.id);
 	const positiveIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids);
 
-	console.log("MOUNT  -----------------------------");
-	console.log("positiveIDs 1 ", positiveIDs);
-	console.log("acronymnID ", acronymnID);
-
 	// const selectedToolIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox);
 
 	// useEffect(() => {
@@ -31,8 +27,10 @@ const ButtonToolbox = () => {
 	const handleClick = () => {
 		const isIn = !inToolbox;
 
+		console.log("btn click inToolbox ", inToolbox, isIn);
+
 		if (isIn) {
-			if (positiveIDs.find(id => id === acronymnID)) return;
+			// if (positiveIDs.find(id => id === acronymnID)) return;
 
 			console.log("ADD -----------------------------");
 			console.log("positiveIDs before ", positiveIDs);
