@@ -9,7 +9,7 @@ $width: 28px;
 .badge-cont {
 	position: fixed;
 	top: 1.5rem;
-	right: 1.5rem;
+	left: 1.5rem;
 	opacity: 1;
 	transition: all 0.25s cubic-bezier(0.3, 0, 0.74, 1);
 	z-index: 4000;
@@ -20,7 +20,7 @@ $width: 28px;
 	&.stg-3,
 	&.hide {
 		opacity: 0;
-		transform: translateX(30px) scale(0.7);
+		transform: translateX(-30px) scale(0.7);
 		transition: all 0.25s cubic-bezier(0.3, 0, 0.74, 1);
 	}
 }

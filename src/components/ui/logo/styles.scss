@@ -79,7 +79,7 @@
 .logo.small {
 	position: fixed;
 	top: 0.75rem;
-	left: 0.75rem;
+	right: 0.75rem;
 	width: 65px;
 	height: 65px;
 
@@ -87,7 +87,7 @@
 	margin: 0;
 	display: block;
 	z-index: 4000;
-	// transform: translateX(calc((30px) * -1)) scale(0.7);
+	transform: translateX(calc((-30px) * -1)) scale(0.7);
 	opacity: 0;
 	transition: all var(--transition);
 	img {
@@ -100,7 +100,7 @@
 	}
 
 	&.show {
-		transform: translateX(0) scale(1);
+		transform: translateX(0px) scale(1);
 		opacity: 1;
 		transition: all var(--transition);
 	}
