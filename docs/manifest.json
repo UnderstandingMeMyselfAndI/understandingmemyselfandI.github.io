@@ -3,7 +3,7 @@
 	"short_name": "Ummi",
 	"description": "Understanding Me Myself & I is an app for mental health, wellbeing, and recovery providing quick access to therapy tools learnt in Cognitive Behavioural Therapy (CBT), Dialectical Behaviour Therapy (DBT) and other therapies.",
 	"start_url": "/index.html?fullscreen=true",
-	"background_color": "#819ec9",
+	"background_color": "#000000",
 	"theme_color": "#000000",
 	"orientation": "portrait",
 	"lang": "en",
