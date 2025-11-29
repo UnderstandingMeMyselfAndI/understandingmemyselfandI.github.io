@@ -7,7 +7,7 @@ function clamp(value, min, max) {
 }
 const ScrollPosition = () => {
 	const [stage, setStage] = useState(0);
-	const {setScrollStage, setActivity} = useAppStore();
+	const setScrollStage = useAppStore(s => s.setScrollStage);
 	const scrollStage = useAppStore(state => state.scrollStage);
 	useEffect(() => {
 		window.addEventListener("scroll", () => {
@@ -24,7 +24,7 @@ const ScrollPosition = () => {
 		}
 	}, [stage, setScrollStage, scrollStage]);
 
-	return <div className={`stage-${stage} scrollPosition`}></div>;
+	return <div className={`st-${stage}`}></div>;
 };
 ScrollPosition.PropTypes = {};
 export default ScrollPosition;

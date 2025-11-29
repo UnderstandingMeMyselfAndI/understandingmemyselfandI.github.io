@@ -1,19 +1,17 @@
 import * as React from "react";
 import {useEffect} from "react";
 import Badge from "@mui/material/Badge";
-import {createTheme, alpha, getContrastRatio, ThemeProvider} from "@mui/material/styles";
+// import {createTheme, alpha, getContrastRatio, ThemeProvider} from "@mui/material/styles";
 import useAppStore from "@/store/useAppStore";
 import HandymanIcon from "@mui/icons-material/Handyman";
-import Snackbar from "@mui/material/Snackbar";
-import Alert from "@mui/material/Alert";
+
 import {storeKeys, localStore} from "data/localStore.js";
 import data from "data/data.js";
-import Slide from "@mui/material/Slide";
 // import CheckIcon from "@mui/icons-material/Check";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+// import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 // import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import HandymanOutlinedIcon from "@mui/icons-material/HandymanOutlined";
-import {cnf, strings} from "data/config.js";
+// import HandymanOutlinedIcon from "@mui/icons-material/HandymanOutlined";
+import {strings} from "data/config.js";
 
 import "./BadgeToolbox.scss";
 
@@ -21,11 +19,14 @@ export default function BadgeToolbox() {
 	const allAccronyms = data;
 	const ids = allAccronyms.map(item => item.id);
 	const positiveIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids);
-	const [openAlert, setOpenAlert] = React.useState(false);
+	// const [openAlert, setOpenAlert] = React.useState(false);
 	const [open, setOpen] = React.useState(false);
 	const [numTools, setNumTools] = React.useState(positiveIDs.length);
 
-	const {showToolsOnly, toggleShowToolsOnly, userToolIDs, setMessage} = useAppStore();
+	const toggleShowToolsOnly = useAppStore(s => s.toggleShowToolsOnly);
+	const userToolIDs = useAppStore(s => s.userToolIDs);
+	const showToolsOnly = useAppStore(s => s.showToolsOnly);
+	const setMessage = useAppStore(s => s.setMessage);
 
 	useEffect(() => {
 		setNumTools(userToolIDs.length);
@@ -37,12 +38,14 @@ export default function BadgeToolbox() {
 		});
 	}, [setOpen]);
 
-	const handleClose = () => {
-		setOpenAlert(false);
-	};
-
-	const handleOpen = () => {
-		setOpenAlert(true);
+	const handleTouch = () => {
+		// set the message as the opposite here
+		if (showToolsOnly) {
+			setMessage(strings.tools.list.unfiltered);
+		} else {
+			setMessage(strings.tools.list.yourToolsFiltered);
+		}
+		// setOpenAlert(true);
 		toggleShowToolsOnly();
 	};
 
@@ -52,7 +55,7 @@ export default function BadgeToolbox() {
 				<Badge
 					className={"badge toolbox" + (showToolsOnly ? " active" : "")}
 					badgeContent={positiveIDs.length}
-					onClick={handleOpen}
+					onClick={handleTouch}
 					anchorOrigin={{
 						vertical: "top",
 						horizontal: "right",

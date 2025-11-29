@@ -1,0 +1,11 @@
+@use "@/scss/variables";
+@import "@/globals.css";
+section.tools {
+	color: var(--primary);
+	h2 {
+		font-size: variables.$h2_size;
+		u {
+			text-decoration: underline solid 6px var(--yellow);
+		}
+	}
+}

@@ -117,22 +117,14 @@ const Header = ({classes = ""}) => {
 		},
 	};
 
-	useEffect(() => {
-		// console.log("scrollStage", scrollStage);
-	}, [scrollStage]);
 	useGSAP(
 		() => {
 			const tl = gsap.timeline({defaults: {duration: 0.65, ease: "power3.inOut"}});
 			const tl2 = gsap.timeline({defaults: {duration: 0.65, ease: "power3.inOut"}});
-
 			const tl3 = gsap.timeline({repeat: -1, repeatDelay: 0.5, yoyo: true, defaults: {duration: 0.65, ease: "power3.inOut"}});
-			const tl4 = gsap.timeline({repeat: -1, repeatDelay: 0, defaults: {duration: 5, ease: "power3.inOut"}});
-			const tl5 = gsap.timeline({repeat: -1, repeatDelay: 0, yoyo: true, defaults: {duration: 5, ease: "power3.inOut"}});
 
 			gsap.set(".w3", {autoAlpha: 0, rotateY: "1080deg", x: 0, y: 0});
-			// gsap.set(".w2", {autoAlpha: 0, scaleY: "-100%", x: 0, y: 0});
 
-			// console.log("scrollStage", scrollStage);
 			if (scrollStage < 4) {
 				tl.to(".homelogo", {autoAlpha: 1, scale: 1}, 1);
 				tl.to(".wgrp", {autoAlpha: 1, scale: 1}, 0.75);
@@ -144,136 +136,16 @@ const Header = ({classes = ""}) => {
 
 				tl3.to(".w3", {duration: 1.5, rotateY: "1080deg"}, "+=6");
 
-				// gsap.set(".arrow-cont", {autoAlpha: 0, x: 0, y: 0});
-				// let tlArrow1 = gsap.timeline({repeat: -1, ease: "power4.inOut", delay: 4});
-				// tlArrow1.to(".a1", {duration: 0.65, y: 0, scale: 0.5, autoAlpha: 0}, 0);
-				// tlArrow1.to(".a1", {duration: 0.35, y: 140, scale: 1.3, autoAlpha: 0.5}, 0);
-				// tlArrow1.to(".a1", {duration: 0.95, y: 280, scale: 0.35, autoAlpha: 0.25}, ">");
 				gsap.set(".a1", {y: 0, rotateZ: 180, autoAlpha: 0});
 				let tlArrow2 = gsap.timeline({repeat: -1, ease: "power4.inOut", delay: 4});
 
 				tlArrow2.to(".a1", {duration: 0.85, y: 460, scale: 0.5, autoAlpha: 0.0}, ">");
 				tlArrow2.to(".a1", {duration: 0.65, y: 220, scale: 1.5, autoAlpha: 0.5}, ">");
 				tlArrow2.to(".a1", {duration: 0.65, y: 0, scale: 0.5, autoAlpha: 0.0}, ">");
-
-				// let tlArrow2 = gsap.timeline({repeat: -1, ease: "power4.inOut", delay: 4});
-				// tlArrow2.to(".a2", {duration: 0.85, y: 30, scale: 0.5, autoAlpha: 0.05}, 0.0);
-				// tlArrow2.to(".a2", {duration: 0.85, y: 120, scale: 1.5, autoAlpha: 0.5}, 0.0);
-				// tlArrow2.to(".a2", {duration: 0.37, y: 260, scale: 0.5, autoAlpha: 0.25}, ">");
-
-				// let tlArrow3 = gsap.timeline({repeat: -1, ease: "power4.inOut", delay: 4});
-				// tlArrow3.to(".a3", {duration: 0.5, y: 0, ease: "power4.inOut", scale: 0.25, autoAlpha: 0.1}, 0.1);
-				// tlArrow3.to(".a3", {duration: 0.35, y: 80, ease: "power4.inOut", scale: 1.2, autoAlpha: 0.5}, 0.1);
-				// tlArrow3.to(".a3", {duration: 0.37, y: 180, ease: "power4.inOut", scale: 0.35, autoAlpha: 0.15}, ">");
-
-				// tlArrow1.to(".a1", {duration: 0.5, y: 200, scale: 0.95, autoAlpha: 0.85}, ">");
-				// tlArrow1.to(".a1", {duration: 0.5, y: 160, scale: 0.45, autoAlpha: 0.5}, ">");
-				// tlArrow1.to(".a1", {duration: 0.5, y: 80, scale: 0.85, autoAlpha: 0.35}, ">");
-				// tlArrow1.to(".a2", {duration: 0.5, y: -60, scale: 0.2, autoAlpha: 0.1}, ">");
-
-				// let tlArrow2 = gsap.timeline({repeat: -1, ease: "power4.inOut"});
-				// tlArrow2.to(".a2", {duration: 0.25, y: 0, scale: 1, autoAlpha: 0}, 0.05);
-				// tlArrow2.to(".a2", {duration: 0.25, y: 100, scale: 0.75, autoAlpha: 0.5}, ">");
-				// tlArrow2.to(".a2", {duration: 0.25, y: 200, scale: 0.95, autoAlpha: 0.85}, ">");
-				// tlArrow2.to(".a2", {duration: 0.25, y: 160, scale: 0.45, autoAlpha: 0.5}, ">");
-				// tlArrow2.to(".a2", {duration: 0.25, y: 80, scale: 0.85, autoAlpha: 0.35}, ">");
-				// tlArrow2.to(".a2", {duration: 0.25, y: -60, scale: 0.2, autoAlpha: 0.1}, ">");
-
-				// let tlArrow3 = gsap.timeline({repeat: -1, ease: "power4.inOut"});
-				// tlArrow3.to(".a3", {duration: 0.25, y: 0, scale: 1, autoAlpha: 0}, 1.4);
-				// tlArrow3.to(".a3", {duration: 0.25, y: 100, scale: 0.75, autoAlpha: 0.5}, ">");
-				// tlArrow3.to(".a3", {duration: 0.25, y: 200, scale: 0.95, autoAlpha: 0.85}, ">");
-				// tlArrow3.to(".a3", {duration: 0.25, y: 160, scale: 0.45, autoAlpha: 0.5}, ">");
-				// tlArrow3.to(".a3", {duration: 0.25, y: 80, scale: 0.85, autoAlpha: 0.35}, ">");
-				// tlArrow3.to(".a3", {duration: 0.25, y: -60, scale: 0.2, autoAlpha: 0.1}, ">");
-
-				// tlArrow.play();
-				// tlArrow
-				// 	.to(".arrow-cont", {duration: 0.25, alpha: 1, y: 0, scale: 1})
-				// 	.to(".arrow-cont", {duration: 0.25, alpha: 0.25, scale: 0.5, y: 30})
-				// 	.to(".arrow-cont", {duration: 0.25, scale: 1, alpha: 1, y: 0, scale: 1});
-				// tl4.to(".arrow-cont", {duration: 0.5, scale: 0.5}, "+=0.75");
-
-				// tl4.to(
-				// 	".w0",
-				// 	{
-				// 		duration: 1.25,
-				// 		delay: 16,
-				// 		onStart: self => {
-				// 			const obj = document.querySelector(".w0");
-				// 			console.log("onFinish", obj.classList);
-				// 			obj.classList.contains("active") ? obj.classList.remove("active") : obj.classList.add("active");
-				// 		},
-				// 	},
-				// 	"+=4"
-				// );
 			}
-			// if (scrollStage > 1) {
-			// 	gsap.to(".homelogo", {
-			// 		autoAlpha: 1,
-			// 		duration: 1,
-			// 		scale: 1,
-			// 		delay: 3,
-			// 	});
-			// 	gsap.to(".wgrp", {
-			// 		autoAlpha: 1,
-			// 		duration: 1,
-			// 		scale: 1,
-			// 		delay: 3,
-			// 	});
-			// 	gsap.to(".w0", {
-			// 		opacity: 1,
-			// 		duration: 1,
-			// 		scale: 1,
-			// 		delay: 3,
-			// 	});
-			// }
 		},
 		{dependencies: [cnf, scrollStage], revertOnUpdate: true}
 	);
-
-	// useGSAP(
-	// 	() => {
-
-	// 			gsap.to(".home-logo", {
-	// 				autoAlpha: 1,
-	// 				x: 0,
-	// 				y: 0,
-	// 			});
-	// 			gsap.fromTo(".wgrp", {
-	// 				autoAlpha: 1,
-	// 				x: 0,
-	// 				y: 0,
-	// 			});
-	// 			gsap.fromTo(".w0", {
-	// 				autoAlpha: 1,
-	// 				x: 0,
-	// 				y: 0,
-	// 			});
-	// 			gsap.fromTo(".w2", {
-	// 				autoAlpha: 1,
-	// 				x: 0,
-	// 				y: 0,
-	// 			});
-	// 			gsap.fromTo(".w1", {
-	// 				autoAlpha: 1,
-	// 				x: 0,
-	// 				y: 0,
-	// 			});
-	// 			gsap.fromTo(".w3", {
-	// 				autoAlpha: 1,
-	// 				x: 0,
-	// 				y: 0,
-	// 			};
-	// 			gsap.fromTo(".w4", {
-	// 				autoAlpha: 1,
-	// 				x: 0,
-	// 				y: 0,
-	// 			});
-
-	// 	},
-	// 	{dependencies: [cnf, scrollStage], revertOnUpdate: true}
-	// );
 
 	return (
 		<header ref={cont}>

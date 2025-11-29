@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import metadata from "@/metadata.json";
 import {fetchVersionData, compareVersions} from "@/utils/checkVersion";
-import "./styles.css";
+import "./styles.scss";
 function FooterMetadata() {
 	//const [remoteVersion, setRemoteVersion] = useState(null);
 	const [isUpdateAvailable, setIsUpdateAvailable] = useState(false);

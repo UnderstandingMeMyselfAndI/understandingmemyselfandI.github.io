@@ -23,16 +23,11 @@ import BadgeToolbox from "ui/badges/BadgeToolbox";
 
 import Snackbars from "ui/snackbars/Snackbars";
 
-import "./globals.css";
 import "./App.scss";
-import "@/scss/_fonts.scss";
 
 // import SpeedDialSettings from "./components/ui/settings/speedDial/SpeedDialSettings.jsx";
 function App() {
-	// const [expanded, setExpanded] = useState(false);
 	const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme);
-	// const setIsExpanded = useAppStore(state => state.setIsExpanded);
-	// const setAcronymnID = useAppStore(state => state.setAcronymnID);
 
 	if (theme !== null) {
 		applyTheme({theme: theme});
@@ -40,11 +35,6 @@ function App() {
 			theme: theme,
 		});
 	}
-	useThemeStore.subscribe(() => {
-		const themeFromStore = useThemeStore.getState().theme;
-		applyTheme({theme: themeFromStore});
-		localStorage.setItem(useThemeStore.getState().storageKeyTheme, themeFromStore);
-	});
 
 	return (
 		<React.Fragment>
@@ -57,34 +47,18 @@ function App() {
 						classes=" logo small"
 						showName={false}
 					/>
-					<Snackbars />
+
 					<div className="activities">
 						<Header />
 						<Introduction />
 						<AcronymCard />
-						<Tools />
+						<Tools id="tools" />
 						<Footer />
 					</div>
-					<ScrollPosition />
-					<div className={"inner"}>
-						{/* <SpeedDialSettings className={"speed-dial-settings"} /> */}
-						{/* <ScenarioModal /> */}
 
-						<div className="content"></div>
-
-						{/* <div className="bgImgs">
-								<div
-									className="icon peacehand"
-									dangerouslySetInnerHTML={{__html: iconEmojiPeaceHand}}
-								/>
-								<div
-									className="icon thumbsup"
-									dangerouslySetInnerHTML={{__html: iconEmojiThumbsup}}
-								/>
-							</div> */}
-					</div>
+					<Snackbars />
 				</div>
-
+				<ScrollPosition />
 				<BackdropParallax
 					initialImageId={3}
 					initialDelay={3000}

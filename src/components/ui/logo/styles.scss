@@ -1,7 +1,9 @@
 @use "../../../scss/variables";
 @import "@/globals.css";
-.logo {
-	width: fit-content;
+.Ummi-logo {
+	width: 10vw;
+	min-width: 140px;
+	max-width: 200px;
 	height: fit-content;
 	font-size: variables.$logo_lrg_size;
 	font-weight: variables.$logo_lrg_weight;
@@ -12,9 +14,10 @@
 	position: relative;
 	flex-flow: column wrap;
 	z-index: 4000;
+
 	.img {
 		width: 100%;
-		max-width: 76px;
+		max-width: 176px;
 		height: fit-content;
 		display: flex;
 		justify-content: center;
@@ -22,25 +25,35 @@
 			width: 100%;
 			height: auto;
 		}
+		&::after {
+			content: "";
+			width: 180%;
+			height: 130%;
+			transform: translate(0, -30%) scale(2.75);
+			background: radial-gradient(rgba(30, 30, 30, 5) 10%, rgba(30, 30, 30, 0) 50%);
+			opacity: 0.43;
+			position: absolute;
+			z-index: -1;
+		}
 	}
 	div:last-child {
 		font-family: "Plus Jakarta Sans", sans-serif;
 	}
 }
-.shdw {
-	position: relative;
-	width: 90vw;
-	height: 90vw;
+// .shdw {
+// 	position: relative;
+// 	width: 90vw;
+// 	height: 90vw;
 
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-content: center;
-	align-items: center;
+// 	display: flex;
+// 	flex-direction: column;
+// 	flex-wrap: wrap;
+// 	justify-content: center;
+// 	align-content: center;
+// 	align-items: center;
 
-	/* outline: 1px solid #00f; */
-}
+// 	/* outline: 1px solid #00f; */
+// }
 // .shdw::after {
 // 	content: "";
 // 	position: absolute;

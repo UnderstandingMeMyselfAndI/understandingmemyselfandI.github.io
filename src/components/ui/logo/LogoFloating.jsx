@@ -3,14 +3,16 @@ import smartLogo from "@/assets/icons/UmmiIcon.min.svg";
 import smartLogoDark from "@/assets/icons/UmmiIcon.min.svg";
 import {useThemeStore} from "@/store/useThemeStore";
 import useAppStore from "@/store/useAppStore";
-import icon from "@/assets/icons/UmmiIcon.min.svg";
+import PropTypes from "prop-types";
+
 import "./styles.scss";
 
 const LogoFloating = ({showText = true, classes = "", showName = true}) => {
 	const theme = useThemeStore(state => state.theme);
 	const [show, setShow] = useState(false);
 
-	const {showAccCard} = useAppStore();
+	const showAccCard = useAppStore(s => s.showAccCard);
+
 	const text = showText ? "Ummi" : "";
 	const componentClasses = show && !showAccCard ? "logo show " + classes : "logo " + classes;
 	useEffect(() => {
@@ -31,6 +33,10 @@ const LogoFloating = ({showText = true, classes = "", showName = true}) => {
 		</div>
 	);
 };
-
+LogoFloating.propTypes = {
+	showText: PropTypes.bool,
+	classes: PropTypes.string,
+	showName: PropTypes.bool,
+};
 LogoFloating.displayName = "LogoFloating";
 export default LogoFloating;

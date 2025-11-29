@@ -6,7 +6,8 @@ import "./styles.scss";
 import PropTypes from "prop-types";
 const Tools = () => {
 	const [open, setOpen] = useState(true);
-	const {activity, setAcronymnID, setShowAccCard, showToolsOnly} = useAppStore();
+
+	const activity = useAppStore(s => s.activity);
 
 	const activityID = activities.find(activity => (activity.url === "tools" ? activity.id : null));
 
@@ -21,7 +22,7 @@ const Tools = () => {
 					<u>Tools:</u>
 				</h2>
 				<p>Tap a heading to read out about the tool.</p>
-				<MenuCarousel showToolsOnly={showToolsOnly} />
+				<MenuCarousel />
 			</section>
 		</div>
 	);

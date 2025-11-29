@@ -1,5 +1,5 @@
 import * as React from "react";
-import {useState, useEffect} from "react";
+import {useState, useMemo} from "react";
 import PropTypes from "prop-types";
 import data from "@/data/data";
 import useAppStore from "@/store/useAppStore";
@@ -7,49 +7,34 @@ import useAppStore from "@/store/useAppStore";
 import HandymanIcon from "@mui/icons-material/Handyman";
 import HandymanOutlinedIcon from "@mui/icons-material/HandymanOutlined";
 import {storeKeys, localStore} from "@/data/localStore.js";
+import {strings} from "data/config.js";
 import "./styles.scss";
 
-const ButtonToolbox = () => {
-	const {acronymnID, setToolIDs, setToolAdded} = useAppStore();
-	const storedValue = localStore.get(storeKeys.toolbox, acronymnID);
-	const [inToolbox, setInToolbox] = useState(storedValue ? storedValue === "true" : false);
+const ButtonToolbox = ({id}) => {
+	const setToolIDs = useAppStore(s => s.setToolIDs);
+	const setMessage = useAppStore(s => s.setMessage);
 
 	const ids = data.map(item => item.id);
-	const positiveIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids);
-
-	// const selectedToolIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox);
-
-	// useEffect(() => {
-	// 	console.log("userToolIDs USEEFFECT -----------------------------");
-	// 	console.log("userToolIDs 2 ", positiveIDs);
-	// }, [positiveIDs]);
+	const positiveIDs = useMemo(() => localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids), [ids]);
+	const positiveIDsSet = useMemo(() => new Set(positiveIDs), [positiveIDs]);
+	const isSelected = positiveIDsSet.has(id);
+	const [inToolbox, setInToolbox] = useState(isSelected);
 
 	const handleClick = () => {
 		const isIn = !inToolbox;
 
-		console.log("btn click inToolbox ", inToolbox, isIn);
-
 		if (isIn) {
-			// if (positiveIDs.find(id => id === acronymnID)) return;
-
-			console.log("ADD -----------------------------");
-			console.log("positiveIDs before ", positiveIDs);
-			localStore.set(storeKeys.toolbox, acronymnID, isIn);
-			const newIDs = [...positiveIDs, acronymnID];
+			localStore.set(storeKeys.toolbox, id, isIn);
+			const newIDs = [...positiveIDs, id];
 			setToolIDs(newIDs);
-			setToolAdded(true);
-			console.log("positiveIDs after ", newIDs);
-			console.log("-----------------------------------");
+			setInToolbox(true);
+			setMessage(strings.toolbox.added);
 		} else {
-			//removeTool(id);
-			console.log("REMOVE accronymId  ", acronymnID);
-			console.log("positiveIDs before: ", positiveIDs);
-			const newIDs = positiveIDs.filter(t => t.id !== acronymnID);
-			localStore.set(storeKeys.toolbox, acronymnID, isIn);
-			console.log("newIDs after: ", newIDs);
+			const newIDs = positiveIDs.filter(t => t.id !== id);
+			localStore.set(storeKeys.toolbox, id, isIn);
+			setMessage(strings.toolbox.removed);
 			setToolIDs(newIDs);
-			setToolAdded(false);
-			console.log("-----------------------------------");
+			setInToolbox(true);
 		}
 
 		setInToolbox(isIn);
@@ -62,11 +47,13 @@ const ButtonToolbox = () => {
 			onClick={handleClick}
 			aria-label="Toggle toolbox"
 		>
-			{inToolbox ? <HandymanIcon /> : <HandymanOutlinedIcon />}
+			{inToolbox ? <HandymanIcon key="toolbox-btn-icon" /> : <HandymanOutlinedIcon key="toolbox-btn-icon" />}
 		</div>
 	);
 };
-ButtonToolbox.propTypes = {};
+ButtonToolbox.propTypes = {
+	id: PropTypes.number,
+};
 ButtonToolbox.displayName = "ButtonToolbox";
 
 export default ButtonToolbox;

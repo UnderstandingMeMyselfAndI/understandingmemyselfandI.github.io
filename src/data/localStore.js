@@ -44,6 +44,9 @@ const localStore = (() => {
 
 			return out;
 		},
+		_isTrue = (which, id) => {
+			return localStorage.getItem(`${which}-${id}`) ? (localStorage.getItem(`${which}-${id}`) === "true" ? true : false) : false || null;
+		},
 		_get = (which, id) => {
 			//	if (!_validate(which, id)) return;
 			//if (_isItem(which, id)) {
@@ -59,6 +62,7 @@ const localStore = (() => {
 		set: _set,
 		remove: _remove,
 		get: _get,
+		isTrue: _isTrue,
 		getCountByLabel: _getCountByLabel,
 		getSelectedIDsByLabel: _getSelectedIDsByLabel,
 	};

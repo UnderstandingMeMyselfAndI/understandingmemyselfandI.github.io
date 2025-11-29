@@ -6,7 +6,8 @@ import "./styles.scss";
 
 const Introduction = () => {
 	const [open, setOpen] = useState(false);
-	const {activity} = useAppStore();
+
+	const activity = useAppStore(s => s.activity);
 
 	const activityID = activities.find(activity => (activity.url === "introduction" ? activity.id : null));
 

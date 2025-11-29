@@ -97,18 +97,7 @@ span.tooltip {
 		// }
 	}
 }
-.MuiSnackbar-anchorOriginTopLeft {
-	> div {
-		// outline: 1px solid #0f0;
-		background: var(--mainBackground) !important;
-		.MuiSnackbarContent-message {
-			color: var(--primary);
-			font-weight: variables.$p_weight;
-			font-size: variables.$p_size;
-			padding: 0.74rem 1rem;
-		}
-	}
-}
+
 .snackbars {
 	z-index: 5000;
 }

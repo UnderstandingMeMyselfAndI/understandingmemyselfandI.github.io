@@ -142,6 +142,7 @@ div.AccordionRoot {
 						}
 					}
 					.icon {
+						opacity: 0;
 						position: absolute;
 						right: 0.5rem;
 						top: 0.5rem;
@@ -149,6 +150,9 @@ div.AccordionRoot {
 						height: 20px;
 						fill: var(--yellow2);
 						stroke: var(--yellow2);
+					}
+					.icon.active {
+						opacity: 1;
 					}
 				}
 			}

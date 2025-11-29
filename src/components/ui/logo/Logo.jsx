@@ -8,7 +8,7 @@ const Logo = ({showText = true, classes = ""}) => {
 	const theme = useThemeStore(state => state.theme);
 	const text = showText ? "Ummi" : "";
 	return (
-		<div className={"logo" + (classes ? " " + classes : "")}>
+		<div className={"Ummi-logo" + (classes ? " " + classes : "")}>
 			<div className={"img"}>
 				<img
 					src={theme === "light" ? smartLogoDark : smartLogo}

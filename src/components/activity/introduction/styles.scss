@@ -3,3 +3,33 @@
 .i2 {
 	// opacity: 0;
 }
+section.intro {
+	/* font-weight: 400;
+	font-size: 1rem; */
+
+	color: var(--primary);
+	margin: 2.5rem 0;
+	height: 50vh;
+	display: flex;
+	flex-flow: column wrap;
+	row-gap: 3.5rem;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.2rem;
+	margin-top: 120dvh;
+	position: relative;
+	z-index: 10;
+
+	p {
+		font-size: 1.2rem;
+		margin-bottom: 0.5rem;
+	}
+	&.tip {
+		/* font-size: 0.85rem; */
+		color: var(--yellow);
+		/* font-weight: 400; */
+	}
+	&.start {
+		font-weight: 600;
+	}
+}

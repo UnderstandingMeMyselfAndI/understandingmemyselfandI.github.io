@@ -4,7 +4,7 @@ import useAppStore from "@/store/useAppStore";
 import ButtonToolbox from "../buttons/toolbox/ButtonToolbox";
 import BackdropParallax from "ui/backdrop/BackdropParallax";
 import ReactPlayer from "react-player";
-
+import {storeKeys, localStore} from "@/data/localStore.js";
 // import ButtonEmergencyToolbox from "../buttons/toolbox/ButtonEmergencyToolbox";
 import parse from "html-react-parser";
 import data from "../../../data/data.js";
@@ -21,10 +21,11 @@ function getAccData(id) {
 const AcronymCard = () => {
 	const [open, setOpen] = useState(false);
 	const [accData, setAccData] = useState(null);
-	// const acronymnID = useAppStore(state => state.acronymnID);
-	// const setShowAccCard = useAppStore(state => state.setShowAccCard);
-	// const showAccCard = useAppStore(state => state.showAccCard);
-	const {acronymnID, showAccCard, setShowAccCard} = useAppStore();
+
+	const acronymnID = useAppStore(s => s.acronymnID);
+	const showAccCard = useAppStore(s => s.showAccCard);
+	const setShowAccCard = useAppStore(s => s.setShowAccCard);
+
 	const contentRef = useRef(null);
 	useEffect(() => {
 		setAccData(getAccData(acronymnID));
@@ -166,24 +167,32 @@ const AcronymCard = () => {
 					<div></div>
 					<div></div>
 				</section>
-				<div className="footer">
+				<div
+					className="footer"
+					key="acronym-card-footer"
+				>
 					{/* <ButtonEmergencyToolbox id={accData?.id} />
 					 */}
-					<ButtonToolbox id={accData?.id} />
+					<ButtonToolbox
+						id={accData?.id}
+						key={`toolbox-btn-${accData?.id}`}
+					/>
 					{accData?.videos.length > 0 && (
 						<button
 							onClick={smoothScrollTo}
 							className="btn video"
+							key={`video-btn-${accData?.id}`}
 						>
-							<OndemandVideoOutlinedIcon />
+							<OndemandVideoOutlinedIcon key={`video-icon-${accData?.id}`} />
 						</button>
 					)}
 					{accData?.videos.length > 0 && (
 						<button
 							onClick={smoothToAccronym}
 							className="btn top"
+							key={`goto-top-btn-${accData?.id}`}
 						>
-							<HdrAutoOutlinedIcon />
+							<HdrAutoOutlinedIcon key={`goto-top-icon-${accData?.id}`} />
 						</button>
 					)}
 

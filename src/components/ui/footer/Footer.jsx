@@ -4,7 +4,7 @@ import iconAndroid from "icons/iconAndroid.jsx";
 import iconApple from "icons/iconApple.jsx";
 import QRCode from "ui/QRCode/QRCode.jsx";
 import FooterMetadata from "ui/footer/FooterMetadata.jsx";
-import "./styles.css";
+import "./styles.scss";
 function Footer() {
 	return (
 		// <div className="activity  ">

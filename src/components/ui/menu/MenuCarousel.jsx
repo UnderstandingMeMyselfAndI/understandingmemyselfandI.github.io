@@ -193,20 +193,29 @@ VerticalList.propTypes = {
 	className: PropTypes.string,
 };
 
-const MenuCarousel = ({showToolsOnly}) => {
+const MenuCarousel = () => {
 	const [open, setOpen] = useState(false);
-	const [carouselData, setCarouselData] = useState(data);
-	const {accData, activity, setActivity, setAcronymnID, setShowAccCard} = useAppStore();
+	const showToolsOnly = useAppStore(s => s.showToolsOnly);
+
 	const ids = data.map(item => item.id);
 	const positiveIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids);
 
-	useEffect(() => {
-		showToolsOnly ? setCarouselData(accData) : setCarouselData(data);
-	}, [accData, showToolsOnly]);
+	// Memoize the accData calculation
+	const accData = useMemo(() => {
+		const ids = data.map(item => item.id);
+		const positiveIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids);
+		return data.filter(obj => positiveIDs.includes(obj.id));
+	}, []); // Empty dependency array if these don't change
 
-	useEffect(() => {
-		setOpen(activity === "tools");
-	}, [activity]);
+	// Memoize the final carouselData
+	const carouselData = useMemo(() => {
+		return showToolsOnly ? accData : data;
+	}, [showToolsOnly, accData]);
+
+	const setActivity = useAppStore(s => s.setActivity);
+	const setAcronymnID = useAppStore(s => s.setAcronymnID);
+	const setShowAccCard = useAppStore(s => s.setShowAccCard);
+	const positiveIDsSet = useMemo(() => new Set(positiveIDs), [positiveIDs]);
 
 	const handleClick = id => () => {
 		setAcronymnID(id);
@@ -215,15 +224,15 @@ const MenuCarousel = ({showToolsOnly}) => {
 	};
 
 	const customConfig = {
-		minOpacity: 0.3,
-		minScale: 0.2,
-		fadeBoundary: 0.4,
-		centerZoneHeight: 0.05,
-		transitionSpeed: "0.15s",
+		minOpacity: 0.35,
+		minScale: 0.35,
+		fadeBoundary: 0.35,
+		centerZoneHeight: 0.025,
+		transitionSpeed: "0.25s",
 	};
 
 	const items = carouselData.map((item, index) => {
-		const isSelected = positiveIDs.find(id => id === item.id);
+		const isSelected = positiveIDsSet.has(item.id); // O(1) lookup
 
 		if (!item) {
 			return (
@@ -239,12 +248,13 @@ const MenuCarousel = ({showToolsOnly}) => {
 
 		return (
 			<div
-				key={item.id ?? index}
+				key={`AccordionItem-cont-${item.id ?? index}`}
 				className={"carousel-item"}
 				onClick={handleClick(item.id)}
 			>
 				<div
 					className="AccordionItem inner item"
+					key={`AccordionItem-${item.id ?? index}`}
 					style={{cursor: "pointer"}}
 				>
 					<div
@@ -252,7 +262,10 @@ const MenuCarousel = ({showToolsOnly}) => {
 						aria-controls={`Accronym-${index}-content`}
 						id={`panel${item?.id}-header`}
 					>
-						{isSelected && <HandymanIcon className="icon" />}
+						<HandymanIcon
+							className={"icon" + (isSelected ? " active" : "")}
+							key={`AccordionItem-icon-${item.id ?? index}`}
+						/>
 
 						<div className="letters-cont">
 							{item.title.split(".").map(
@@ -286,7 +299,5 @@ const MenuCarousel = ({showToolsOnly}) => {
 		</div>
 	);
 };
-MenuCarousel.propTypes = {
-	showToolsOnly: PropTypes.bool,
-};
+MenuCarousel.propTypes = {};
 export default MenuCarousel;
