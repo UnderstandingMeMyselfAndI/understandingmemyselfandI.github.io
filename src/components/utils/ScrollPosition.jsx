@@ -11,7 +11,7 @@ const ScrollPosition = () => {
 	const scrollStage = useAppStore(state => state.scrollStage);
 	useEffect(() => {
 		window.addEventListener("scroll", () => {
-			const nextStage = clamp(Math.floor(window.scrollY / (window.innerHeight * 0.5)), 0, 20);
+			const nextStage = clamp(Math.floor(window.scrollY / (window.innerHeight * 0.25)), 0, 20);
 			setStage(nextStage);
 			// console.log("stage", stage);
 			// setActivity(stage);
