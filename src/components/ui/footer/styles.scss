@@ -140,4 +140,12 @@ section.footer {
 	.logo.android svg path {
 		fill: var(--primary);
 	}
+	.big {
+		font-size: variables.$h2_size;
+	}
+	span.big4.r90 {
+		display: block;
+		font-size: variables.$h1_size;
+		transform: rotate(90deg);
+	}
 }
