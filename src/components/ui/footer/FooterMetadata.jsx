@@ -22,7 +22,7 @@ function FooterMetadata() {
 
 	return (
 		<div className="version-footer">
-			&copy; {year} flpdigital.com
+			&copy; {year} <span className="ummi">Ummi</span>
 			<div className="sf-footer-version">
 				{`Version ${metadata.buildMajor}.${metadata.buildMinor}.${metadata.buildRevision} ${metadata.buildTag}  `}
 				{isUpdateAvailable && <span className="update"> (Update available - go to settings)</span>}

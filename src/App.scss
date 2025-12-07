@@ -98,6 +98,10 @@ body {
 				color: var(--lightBlue);
 				font-size: variables.$ummi_size;
 			}
+			.ummi-blue {
+				font-weight: 900;
+				color: var(--lightBlue);
+			}
 			*.MuiTypography-root {
 				font-family: "Plus Jakarta Sans", sans-serif;
 				color: var(--primary);
@@ -159,6 +163,9 @@ body {
 		outline: none;
 		border: none;
 		box-shadow: none;
+	}
+	section{
+		margin:1.5rem 0;
 	}
 }
 

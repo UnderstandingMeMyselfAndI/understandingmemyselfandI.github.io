@@ -9,10 +9,12 @@ function Footer() {
 	return (
 		// <div className="activity  ">
 		<section className="footer">
-			<h2>
-				<u>Add to your home screen?</u>
-			</h2>
-			<p>Follow these video instructions for your platform</p>
+			<h3>
+				<u>Add <span className="ummi-blue">Ummi</span> as an app?</u>
+			</h3>
+			<p>You can add <span className="ummi">Ummi</span> to your home screen just like any other app.</p>
+
+			<p>Follow these video instructions for your device:</p>
 			<div className="links">
 				<a
 					href="https://www.youtube.com/watch?v=O1xEXKB6tNg"
@@ -37,12 +39,17 @@ function Footer() {
 					<div>Apple iOS</div>
 				</a>
 			</div>
-			<QRCode label="Share the app, scan the QR Code" />
+			<section className="qr">
+				<h3><u>Spread the love</u></h3>
+				<p><u>Share the app,</u> <br/><u>scan the QR Code</u></p>
+				<QRCode label="" />
+			</section>
+			
 
-			<div>
+			{/* <div>
 				<p>The tools we learn to cope with our emotions, thoughts, feelings and mental health are ace, but remembering them can be hard.</p>
 				<p>This app is your toolbox so you can carry those tools around with you for whenever you need them.</p>
-			</div>
+			</div> */}
 
 			<p>
 				This app was inspired by the amazing people who facilitate groups and meetings at

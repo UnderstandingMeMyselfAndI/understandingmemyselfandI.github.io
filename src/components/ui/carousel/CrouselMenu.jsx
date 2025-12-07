@@ -8,7 +8,7 @@ import Skeleton from "@mui/material/Skeleton";
 import ScenarioDialog from "../dialog/ScenarioDialog";
 import useAppStore from "@/store/useAppStore";
 import data from "../../../data/data.js";
-import Favourite from "../favourite/Favourite.jsx";
+
 import {useScrollEffects, SCROLL_EFFECT_CONFIG} from "./useScrollEffects";
 import "../../../globals.css";
 import "./AccordionStyles.scss";
@@ -205,7 +205,7 @@ const AccordionItemWithEffects = ({item, index, expanded, handleChange, config =
 };
 export default function AccordionScroll({expanded, handleChange}) {
 	const componentData = data;
-
+	
 	// You can easily override the default config here
 	const customConfig = {
 		...SCROLL_EFFECT_CONFIG,

@@ -224,7 +224,6 @@ $h5_line_height: 1.2;
 
 $subtitle_size_min: 14px;
 $subtitle_size_max: 16px;
-$subtitle_size: 3vw;
 $subtitle_size: responsiveFontSize($subtitle_size_min, $subtitle_size_max, $minDeviceWidth, $maxDeviceWidth);
 
 $subtitle_color: var(--text_primary);
@@ -237,12 +236,21 @@ $subtitle_style: normal;
 
 $small_size_min: 10px;
 $small_size_max: 16px;
-$small_size: 3.5vw;
+
 $small_size: responsiveFontSize($small_size_min, $small_size_max, $minDeviceWidth, $maxDeviceWidth);
 
 $small_color: var(--text_primary);
 $small_weight: 400;
 $small_style: normal;
+
+$lrg_size_min: 22px;
+$lrg_size_max: 28px;
+$lrg_size: responsiveFontSize($lrg_size_min, $lrg_size_max, $minDeviceWidth, $maxDeviceWidth);
+
+$lrg_color: var(--text_primary);
+$lrg_weight: 600;
+$lrg_style: normal;
+$lrg_line_height: 1.2;
 
 // ------------------------------------------
 // Date font size

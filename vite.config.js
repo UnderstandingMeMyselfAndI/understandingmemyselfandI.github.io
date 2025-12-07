@@ -47,6 +47,8 @@ export default defineConfig({
 		watch: {
 			include: ["src/**"],
 			// excude: ["src/assets/**"],
+			excude: ["node_modules/**", "dist/**"],
+
 			clearScreen: false,
 			skipWrite: false,
 		},

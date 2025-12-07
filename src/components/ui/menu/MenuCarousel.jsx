@@ -196,9 +196,13 @@ VerticalList.propTypes = {
 const MenuCarousel = () => {
 	const [open, setOpen] = useState(false);
 	const showToolsOnly = useAppStore(s => s.showToolsOnly);
+	const userToolIDs = useAppStore(s => s.userToolIDs);
+	console.log("userToolIDs", userToolIDs);
 
 	const ids = data.map(item => item.id);
-	const positiveIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids);
+
+	const positiveIDs = useMemo(() => localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids), [ids]);
+	const positiveIDsSet = useMemo(() => new Set(positiveIDs), [positiveIDs]);
 
 	// Memoize the accData calculation
 	const accData = useMemo(() => {
@@ -215,7 +219,7 @@ const MenuCarousel = () => {
 	const setActivity = useAppStore(s => s.setActivity);
 	const setAcronymnID = useAppStore(s => s.setAcronymnID);
 	const setShowAccCard = useAppStore(s => s.setShowAccCard);
-	const positiveIDsSet = useMemo(() => new Set(positiveIDs), [positiveIDs]);
+	
 
 	const handleClick = id => () => {
 		setAcronymnID(id);
