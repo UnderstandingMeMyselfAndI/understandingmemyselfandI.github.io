@@ -42,9 +42,18 @@ export default function BadgeToolbox() {
 		// set the message as the opposite here
 		if (showToolsOnly) {
 			setMessage(strings.tools.list.unfiltered);
+			
 		} else {
 			setMessage(strings.tools.list.yourToolsFiltered);
 		}
+		setTimeout(() => {
+		
+			const el = document.getElementById("tools");
+			console.log("el", el);	
+			el.scrollIntoView({ behavior: "smooth", block: "start" })
+
+		}, 0);
+
 		// setOpenAlert(true);
 		toggleShowToolsOnly();
 	};

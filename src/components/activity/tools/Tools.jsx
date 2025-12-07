@@ -17,7 +17,7 @@ const Tools = () => {
 
 	return (
 		<div className={"activity" + (open ? " show" : " ")}>
-			<section className="tools">
+			<section className="tools" id="tools">
 				<h2>
 					<u>Tools:</u>
 				</h2>
