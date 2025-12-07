@@ -19,6 +19,7 @@ export default function BadgeToolbox() {
 	const allAccronyms = data;
 	const ids = allAccronyms.map(item => item.id);
 	const positiveIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids);
+	const showAccCard = useAppStore(s => s.showAccCard);
 	// const [openAlert, setOpenAlert] = React.useState(false);
 	const [open, setOpen] = React.useState(false);
 	const [numTools, setNumTools] = React.useState(positiveIDs.length);
@@ -37,6 +38,10 @@ export default function BadgeToolbox() {
 			window.scrollY > 600 ? setOpen(true) : setOpen(false);
 		});
 	}, [setOpen]);
+
+	useEffect(() => {
+		setOpen(!showAccCard);
+	}, [showAccCard,setOpen]);
 
 	const handleTouch = () => {
 		// set the message as the opposite here

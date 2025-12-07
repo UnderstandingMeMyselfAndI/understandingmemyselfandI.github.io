@@ -13,6 +13,7 @@ import "./styles.scss";
 const ButtonToolbox = ({id}) => {
 	const setToolIDs = useAppStore(s => s.setToolIDs);
 	const setMessage = useAppStore(s => s.setMessage);
+	
 
 	const ids = data.map(item => item.id);
 	const positiveIDs = useMemo(() => localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids), [ids]);
