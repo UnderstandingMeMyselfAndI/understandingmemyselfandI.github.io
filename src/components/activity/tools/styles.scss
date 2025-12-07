@@ -6,6 +6,46 @@ section.tools {
 		font-size: variables.$h2_size;
 		u {
 			text-decoration: underline solid 6px var(--yellow);
+			position: relative;
+			display: inline-block;
+
+			&::after {
+				content: " ";
+				width: 145%;
+				height: 60%;
+				background-color: var(--yellow);
+				opacity: 0.4;
+				position: absolute;
+				top: 20%;
+				left:-15%;
+				z-index: -1;
+
+				margin-top: 5%;
+				margin-left: -5.5%;
+				
+			}
 		}
 	}
+	p u{
+			// text-decoration: none;
+			position: relative;
+			display: inline-block;
+			text-decoration-color: var(--yellow);
+			text-decoration-thickness: 4px;
+			// &::after {
+			// 	content: " ";
+			// 	width: 145%;
+			// 	height: 60%;
+			// 	background-color: var(--yellow);
+			// 	opacity: 0.4;
+			// 	position: absolute;
+			// 	top: 20%;
+			// 	left:-15%;
+			// 	z-index: -1;
+
+			// 	margin-top: 5%;
+			// 	margin-left: -5.5%;
+				
+			// }
+		}
 }
