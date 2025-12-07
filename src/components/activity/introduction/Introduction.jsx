@@ -17,10 +17,13 @@ const Introduction = () => {
 
 	return (
 		<div className={"activity" + (open ? " show" : " hide")}>
-			<section className="intro">
-				<div className="i1">The tools we learn to cope with our emotions, thoughts, feelings and mental health are ace, but remembering them can be hard.</div>
+			
+			<section className="intro">				
+				<div className="i1">
+					<h2><u>Hey</u></h2>
+					<p>The tools we learn to cope with our emotions, thoughts, feelings and mental health are ace, but remembering them can be hard.</p></div>
 				<div className="i2">
-					<b className="ummi">Ummi</b> was created to be your toolbox so you can carry those tools around with you for whenever you need them.
+					<p><b className="ummi">Ummi</b> was created to be your toolbox so you can carry those tools around with you for whenever you need them.</p>
 				</div>
 			</section>
 		</div>

@@ -49,7 +49,7 @@ export default function BadgeToolbox() {
 		setTimeout(() => {
 		
 			const el = document.getElementById("tools");
-			console.log("el", el);	
+
 			el.scrollIntoView({ behavior: "smooth", block: "start" })
 
 		}, 0);

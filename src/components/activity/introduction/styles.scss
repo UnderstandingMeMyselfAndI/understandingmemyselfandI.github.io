@@ -1,3 +1,4 @@
+@use "./scss/_variables.scss";
 @import "@/globals.css";
 .i1,
 .i2 {
@@ -31,5 +32,30 @@ section.intro {
 	}
 	&.start {
 		font-weight: 600;
+	}
+	h2{
+		font-size:variables.$h1_size;
+
+		u{
+			// text-decoration: none;
+			position: relative;
+			display: inline-block;
+			text-decoration-color: var(--yellow);
+			&::after {
+				content: " ";
+				width: 145%;
+				height: 60%;
+				background-color: var(--yellow);
+				opacity: 0.4;
+				position: absolute;
+				top: 20%;
+				left:-15%;
+				z-index: -1;
+
+				margin-top: 5%;
+				margin-left: -5.5%;
+				transform:rotate(-3deg);
+			}
+		}
 	}
 }
