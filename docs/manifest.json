@@ -24,7 +24,7 @@
 			"src": "/icons/UmmiIcon.svg",
 			"sizes": "any",
 			"type": "image/svg+xml",
-			"purpose": "maskable"
+			
 		},
 		{
 			"src": "/icons/72.png",
