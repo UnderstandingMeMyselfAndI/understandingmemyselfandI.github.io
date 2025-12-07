@@ -40,6 +40,7 @@ export default function BadgeToolbox() {
 	}, [setOpen]);
 
 	useEffect(() => {
+		if (window.scrollY < 600) return;
 		setOpen(!showAccCard);
 	}, [showAccCard,setOpen]);
 
