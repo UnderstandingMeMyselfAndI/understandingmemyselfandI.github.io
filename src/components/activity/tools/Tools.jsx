@@ -22,7 +22,7 @@ const Tools = () => {
 					<u>Tools:</u>
 				</h2>
 				<p>Tap a heading to find out <br /> how to use the tool.</p>
-				<p>Some tools now have <u><b>videos</b></u><br /> to help explain them.</p>
+				<p>Look out for <u><b>videos</b></u><br /> that explain them.</p>
 				<MenuCarousel />
 			</section>
 		</div>

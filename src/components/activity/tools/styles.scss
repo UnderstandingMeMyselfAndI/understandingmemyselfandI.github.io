@@ -2,6 +2,9 @@
 @import "@/globals.css";
 section.tools {
 	color: var(--primary);
+	max-width:100vw;
+	display:flex;
+	flex-flow:column nowrap;
 	h2 {
 		font-size: variables.$h2_size;
 		u {
