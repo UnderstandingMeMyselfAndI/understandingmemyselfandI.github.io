@@ -108,7 +108,7 @@ const Snackbars = () => {
 				autoHideDuration={cnf?.duration?.hide.snackbar || 2000}
 				onClose={handleClose}
 				slots={{transition: Slide}}
-				anchorOrigin={{vertical: "top", horizontal: "left"}}
+				anchorOrigin={{vertical: "bottom", horizontal: "left"}}
 			>
 				<Alert
 					onClose={handleClose}
