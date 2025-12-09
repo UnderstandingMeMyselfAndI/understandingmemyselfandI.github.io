@@ -65,18 +65,18 @@ function Footer() {
 				<br />
 			</p>
 
-			<h2>
+			<h3>
 				<u>FEEDBACK</u>
-			</h2>
+			</h3>
 
 			<p>
-				Like everyone dealing with mental health and going through recovery, these tools and this app can only get better and improve if we know what works, what doesn&apos;t, what you like and what
-				you don&apos;t like.
+				Like everyone going through recovery and/or dealing with their mental health, these tools and this app can only get better and improve if we know what works, what doesn&apos;t, what works for you and what doesn&apos;t. 
 			</p>
 			<p>Is there something missing? Does something not make sense? Could it be better?</p>
 			<p>
-				<b>Positive or negative</b> we want to hear your thoughts. <u>Have a rant if you need to</u>, but just let us know what <b>you like and what you don&apos;t like</b>. <br /> <br />
-				<u>
+			<b>Positive or negative</b> we want to hear your thoughts.
+			</p>
+			<p>	<u>
 					ALL feedback is appreciated and
 					<br />
 					we get stronger together
