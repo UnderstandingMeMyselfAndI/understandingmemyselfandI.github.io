@@ -28,7 +28,8 @@ section.footer {
 	margin: 0 auto;
 	margin-top: 2rem;
 	line-height: 1.5;
-
+	position: relative;
+    z-index: 5000;
 	h1 {
 		font-size: variables.$h1_size;
 		font-weight: variables.$h1_weight;

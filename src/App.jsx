@@ -1,10 +1,26 @@
 "use client";
 import React from "react";
 // import "components/utils/activities.js";
+
+// import { HashRouter } from 'react-router-dom';
+// // Example:
+// import { HashRouter } from 'react-router-dom';
+
+// function App() {
+//   return (
+//     <HashRouter>
+//       <Routes>
+//         <Route path="/" element={<Home />} />
+//         <Route path="/gallery" element={<Gallery />} />
+//       </Routes>
+//     </HashRouter>
+//   );
+// }
+
 import CssBaseline from "@mui/material/CssBaseline";
 
 import {useThemeStore} from "@/store/useThemeStore";
-import useAppStore from "@/store/useAppStore";
+// import DaysCounter from "./components/ui/DaysCounter/DaysCounter";
 import applyTheme from "components/theme/applyTheme";
 
 import ScrollPosition from "components/utils/ScrollPosition";
@@ -41,6 +57,7 @@ function App() {
 			<CssBaseline />
 			<div className="app">
 				{/* <EmergencyButton /> */}
+				
 				<div className="main">
 					<BadgeToolbox />
 					<LogoFloating
@@ -50,6 +67,7 @@ function App() {
 
 					<div className="activities">
 						<Header />
+						
 						<Introduction />
 						<AcronymCard />
 						<Tools id="tools" />
