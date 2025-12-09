@@ -11,10 +11,10 @@ section.intro {
 	color: var(--primary);
 	margin: 2.5rem 0;
 	height: 50vh;
-	width:100%;
+	width: 100vw;
 	max-width:90vw;
 	display: flex;
-	flex-flow: column wrap;
+	flex-flow: column nowrap;
 	row-gap: 3.5rem;
 	justify-content: center;
 	align-items: center;

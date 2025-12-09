@@ -62,4 +62,18 @@ export function clamp(value, min, max) {
 	return Math.max(min, Math.min(value, max));
 }
 
-export default {clamp, isSet, isUndefined, isNull, hashCode, inRange, isNumeric, arrowSVG, debounce, isColorLight, getElementPageOffsetTop};
+export function extractYouTubeId(url) {
+  if (!url) return null;
+  
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  const match = url.match(regExp);
+  
+  return (match && match[2].length === 11) ? match[2] : null;
+}
+
+// Optional: validate if it's a YouTube URL
+export function isYouTubeUrl(url) {
+  return /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)/.test(url);
+}
+
+export default {clamp, isSet, isUndefined, isNull, hashCode, inRange, isNumeric, arrowSVG, debounce, isColorLight, getElementPageOffsetTop,extractYouTubeId,isYouTubeUrl};

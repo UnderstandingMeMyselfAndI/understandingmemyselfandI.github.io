@@ -3,8 +3,10 @@ import {useState, useEffect, useRef} from "react";
 import useAppStore from "@/store/useAppStore";
 import ButtonToolbox from "../buttons/toolbox/ButtonToolbox";
 import BackdropParallax from "ui/backdrop/BackdropParallax";
-import ReactPlayer from "react-player";
-import {storeKeys, localStore} from "@/data/localStore.js";
+
+import LiteYouTubeEmbed from 'react-lite-youtube-embed';
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
+// import {storeKeys, localStore} from "@/data/localStore.js";
 // import ButtonEmergencyToolbox from "../buttons/toolbox/ButtonEmergencyToolbox";
 import parse from "html-react-parser";
 import data from "../../../data/data.js";
@@ -13,6 +15,8 @@ import OndemandVideoOutlinedIcon from "@mui/icons-material/OndemandVideoOutlined
 import HdrAutoOutlinedIcon from "@mui/icons-material/HdrAutoOutlined";
 import Skeleton from "@mui/material/Skeleton";
 import KeyboardReturnOutlinedIcon from "@mui/icons-material/KeyboardReturnOutlined";
+
+import {extractYouTubeId} from "@/js/utils.js";
 import "./styles.scss";
 function getAccData(id) {
 	return data.find(acc => acc.id === id);
@@ -129,7 +133,7 @@ const AcronymCard = () => {
 							className="videos"
 							id="videos"
 						>
-							<h2>VIDEOS</h2>
+							<h3>VIDEOS</h3>
 
 							{accData?.videos.map((video, index) => (
 								<div
@@ -139,19 +143,26 @@ const AcronymCard = () => {
 									<div className="title">{parse(video.title)}</div>
 									<div className="player">
 										{video ? (
-											<ReactPlayer
-												light={false}
-												controls={true}
-												src={video.url}
-												style={{
-													width: "100%",
-													height: "100%",
-												}}
-												config={{
-													youtube: {
-														color: "black",
-													},
-												}}
+											// <ReactPlayer
+											// 	light={false}
+											// 	controls={true}
+											// 	src={video.url}
+											// 	style={{
+											// 		width: "100%",
+											// 		height: "100%",
+											// 	}}
+											// 	config={{
+											// 		youtube: {
+											// 			color: "black",
+											// 		},
+											// 	}}
+											// />
+
+											<LiteYouTubeEmbed
+												id={extractYouTubeId(video.url)}											
+												title={video.title}
+												key={"video-" + index}
+          										poster="hqdefault"
 											/>
 										) : (
 											<Skeleton

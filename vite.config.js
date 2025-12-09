@@ -34,12 +34,10 @@ export default defineConfig({
 		rollupOptions: {
 			output: {
 				manualChunks: {
-					"react-player": ["react-player"], // Group Vue and Vue Router into a 'vendor' chunk
-					"media-chrome": ["media-chrome"],
+					"react-dom": ["react-dom"],
 					"mui-icons": ["@mui/icons-material"],
 					"mui-material": ["@mui/material"],
 					"@gsap/react": ["@gsap/react"],
-
 					gsap: ["gsap"],
 				},
 			},

@@ -132,7 +132,7 @@ div.AcronymCard {
 					opacity: 0.75;
 					background-color: var(--yellow);
 					// outline: 2px solid var(--primary);
-					transform: translate(120%, -100%);
+					transform: translate(120%, -50%);
 				}
 			}
 		}
@@ -158,6 +158,7 @@ div.AcronymCard {
 		width: 100%;
 		flex: 1 1;
 		position: relative;
+		margin:0;
 		div.AccExplanation {
 			height: fit-content;
 			text-align: left;
@@ -206,9 +207,9 @@ div.AcronymCard {
 						color: var(--orange);
 						-webkit-text-stroke: 2px var(--orange);
 						height: fit-content;
-						transform: translateX(-5%);
-						min-width: 19%;
-
+						transform: translate(15px, -0.5px);
+						min-width: 10.5%;
+						// outline:1px solid #ccc;
 						text-align: center;
 						opacity: 1;
 
@@ -303,8 +304,8 @@ div.AcronymCard {
 						color: rgba(250, 250, 250, 1);
 						-webkit-text-stroke: 2px rgba(255, 255, 255, 0.45);
 						position: relative;
-						transform: translate(0px, 8px);
-						width: calc(100% - 30px);
+						transform: translate(0px, 7px);
+						width: calc(100% - 35px);
 						margin-left: 14%;
 						position: relative;
 					}
@@ -342,7 +343,8 @@ div.AcronymCard {
 		flex-flow: column nowrap;
 		row-gap: 2rem;
 
-		h2 {
+		h2,
+		h3 {
 			font-size: variables.$h3_size;
 			text-decoration: 4px underline var(--yellow);
 			color: var(--primary);
@@ -360,6 +362,7 @@ div.AcronymCard {
 				line-height: 1.2;
 				color: var(--primary);
 				font-size: variables.$h4_size;
+				text-shadow: 0px 0px 10px rgba(10,10,10,0.50);
 				padding: 1.25rem 0.75rem;
 				position: relative;
 				z-index: 1;
@@ -368,7 +371,7 @@ div.AcronymCard {
 			.player {
 				width: 100%;
 				min-width: 100%;
-				background-color: #12121b;
+				// background-color: #12121b;
 				aspect-ratio: 16/9;
 				position: relative;
 				z-index: 1;
@@ -384,8 +387,8 @@ div.AcronymCard {
 				iframe {
 					width: 100%;
 					min-height: 100%;
-					background-color: #12121b;
-					outline: 1px solid #f00;
+					// background-color: #12121b;
+					// outline: 1px solid #f00;
 				}
 			}
 			.controls {
@@ -399,7 +402,7 @@ div.AcronymCard {
 				content: "";
 				width: 100%;
 				height: 100%;
-				background-color: var(--blue);
+				background-color: rgba(20,20,20,0.4);
 				position: absolute;
 				left: 0;
 				top: 0;

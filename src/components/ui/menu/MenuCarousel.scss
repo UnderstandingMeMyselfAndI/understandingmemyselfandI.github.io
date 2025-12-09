@@ -26,9 +26,9 @@ div.AccordionRoot {
 			border-radius: var(--border-radius);
 			margin: 0.5rem auto;
 
-			// width: fit-content;
+			 width: fit-content;
 			// min-width: 60vw;
-			max-width: 70vw;
+			max-width: 80vw;
 			position: relative;
 			// outline: 1px solid #ccc;
 			cursor: pointer;
@@ -139,6 +139,26 @@ div.AccordionRoot {
 							// 	transform: translate(120%, -100%);
 							// 	z-index: -1;
 							// }
+							
+							position: relative;
+							height: 100%;
+							// outline: 1px solid #ccc;
+							margin-right: 2px;
+							&::after {
+								content: "";
+								position: absolute;
+								z-index: -1;
+								bottom: 0px;
+								right: 0;
+								width: 6px;
+								height: 6px;
+								border-radius: 50%;
+								opacity: 0.75;
+								background-color: var(--primary);
+								// outline: 2px solid var(--primary);
+								transform: translate(120%, 50%);
+							}
+			
 						}
 					}
 					.icon {
