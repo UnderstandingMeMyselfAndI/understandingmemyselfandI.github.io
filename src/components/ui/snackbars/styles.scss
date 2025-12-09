@@ -2,6 +2,7 @@
 @import "@/globals.css";
 
 .MuiSnackbar-root,
+.MuiSnackbar-anchorOriginTopCenter,
 .MuiSnackbar-anchorOriginTopLeft {
 	width: fit-content;
 	padding: 0;
@@ -9,7 +10,7 @@
 .MuiSnackbar-anchorOriginTopCenter {
 	// outline: 1px solid #f00;
 }
-
+.MuiSnackbar-anchorOriginTopCenter,
 .MuiSnackbar-anchorOriginBottomLeft {
 	> div {
 		// outline: 1px solid #0f0;
