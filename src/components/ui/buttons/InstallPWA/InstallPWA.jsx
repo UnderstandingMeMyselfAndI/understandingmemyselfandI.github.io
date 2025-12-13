@@ -1,11 +1,10 @@
 import React ,{ useEffect, useState } from 'react'
 
 import Logo from 'ui/logo/Logo'
-import UmmiIcon from 'components/icons/UmmiIcon2.svg'
+// import UmmiIcon from 'components/icons/UmmiIcon2.svg'
 import "./InstallPWA.scss"
-import { cnf } from 'data/config'
+// import { cnf } from 'data/config'
 import useAppStore from '@/store/useAppStore'
-// import isAppInstalled from '@/utils/isAppInstalled.js'
 
 const InstallPWA = () => {
 
@@ -76,10 +75,10 @@ const InstallPWA = () => {
      <div>
       
         <button
-           aria-label="install"
-        className="install"
-        onClick={handleClick}
-      >
+            aria-label="install"
+            className="install"
+            onClick={handleClick}
+          >
           <Logo classes='small' showText={false} /><span> Install Ummi</span>
         </button>
       </div>

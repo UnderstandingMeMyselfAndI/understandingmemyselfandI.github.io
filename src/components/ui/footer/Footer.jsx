@@ -4,6 +4,7 @@ import useAppStore from "@/store/useAppStore";
 import QRCode from "ui/QRCode/QRCode.jsx";
 import FooterMetadata from "ui/footer/FooterMetadata.jsx";
 import InstallPWA from "ui/buttons/InstallPWA/InstallPWA";
+import {getPWADisplayMode} from "@/utils/isAppInstalled";
 import "./styles.scss";
 function Footer() {
 
@@ -14,17 +15,16 @@ function Footer() {
 	return (
 		// <div className="activity  ">
 		<section className="footer" id="installInstructions">
-			
+			{!isInstalled || getPWADisplayMode() !== 'fullscreen' && (
 				<>
-				<h3>
-					<u>Add the <span className="ummi-blue">Ummi</span> app?</u>
-				</h3>
-				<p>You can install Ummi to your {isMobile ? "device" : "desktop"}<br /> just like any other app.</p>
-				<p>Click the button below</p>
-
-				<InstallPWA />
+					<h3>
+						<u>Add the <span className="ummi-blue">Ummi</span> app?</u>
+					</h3>
+					<p>You can install Ummi to your {isMobile ? "device" : "desktop"}<br /> just like any other app.</p>
+					
+					<InstallPWA />
 				</>
-			
+			)}
 			
 			<section className="qr">
 				<h3><u>Spread the love</u></h3>

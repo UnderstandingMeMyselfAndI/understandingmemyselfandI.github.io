@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import useAppStore from "@/store/useAppStore";
 import { activities } from "@/data/config";
 import InstallPWA from "ui/buttons/InstallPWA/InstallPWA";
+import {getPWADisplayMode} from "@/utils/isAppInstalled";
 
 import "@/utils/IsMobile.js";
 import "./styles.scss";
@@ -10,6 +11,7 @@ import "./styles.scss";
 const Introduction = () => {
 	const [open, setOpen] = useState(false);
 
+	const isInstalled = useAppStore(s => s.isInstalled);	
 
 	const activity = useAppStore(s => s.activity);
 	const isMobile =  useAppStore(s => s.isMobile);
@@ -33,8 +35,12 @@ const Introduction = () => {
 				</div>
 				<div className="i3">
 					<p>The app is being constantly updated with <b><u>new tools</u></b>, <b><u>video guides</u></b>, <b><u>success stories</u></b>, and <b><u>motivational content</u></b> to help you cope with your emotions, thoughts, feelings and mental health throughout <b><u>your journey.</u></b></p>
-					<p><b className="ummi">Ummi</b> can be added to your {isMobile ? "home screen" : "desktop"} for easy access. <br /><a href="#installInstructions"><b><u>Use the button below</u></b></a>.</p>
-					<InstallPWA />
+					
+					{!isInstalled || getPWADisplayMode() !== 'fullscreen' && (
+					<><p><b className="ummi">Ummi</b> can be added to your {isMobile ? "home screen" : "desktop"} for easy access. </p>
+					
+					<InstallPWA /></>
+				)}
 				</div>
 			</section>
 		// </div>

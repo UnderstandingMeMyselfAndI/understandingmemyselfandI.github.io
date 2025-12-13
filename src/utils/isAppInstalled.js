@@ -1,5 +1,5 @@
 import useAppStore from "@/store/useAppStore";
-function getPWADisplayMode() {
+export function getPWADisplayMode() {
   if (document.referrer.startsWith('android-app://'))
     return 'twa';
   if (window.matchMedia('(display-mode: browser)').matches)
@@ -15,14 +15,14 @@ function getPWADisplayMode() {
 
   return 'unknown';
 }
-const isAppInstalled = () => {
+export const isAppInstalled = () => {
 
   useAppStore.setState({ isInstalled: getPWADisplayMode() === 'fullscreen' });
    console.log(" getPWADisplayMode ", getPWADisplayMode());
     
     window.addEventListener('DOMContentLoaded', () => {
 
-        console.log(" getPWADisplayMode ", getPWADisplayMode());
+        console.log("getPWADisplayMode ", getPWADisplayMode());
         
         useAppStore.setState({ isInstalled: getPWADisplayMode() === 'fullscreen' });
         
