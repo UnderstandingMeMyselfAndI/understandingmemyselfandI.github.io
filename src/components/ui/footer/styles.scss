@@ -23,13 +23,13 @@ section.footer {
 	margin: 0.25rem 1.25rem;
 	color: var(--primary);
 	text-align: center;
-	width: 100%;
+	width: 90%;
 	background-color: transparent;
 	margin: 0 auto;
 	margin-top: 2rem;
 	line-height: 1.5;
 	position: relative;
-    z-index: 2000;
+    z-index: 3000;
 	h1 {
 		font-size: variables.$h1_size;
 		font-weight: variables.$h1_weight;

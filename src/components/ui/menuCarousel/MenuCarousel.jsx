@@ -197,7 +197,7 @@ const MenuCarousel = () => {
 	const [open, setOpen] = useState(false);
 	const showToolsOnly = useAppStore(s => s.showToolsOnly);
 	const userToolIDs = useAppStore(s => s.userToolIDs);
-	console.log("userToolIDs", userToolIDs);
+	// console.log("userToolIDs", userToolIDs);
 
 	const ids = data.map(item => item.id);
 

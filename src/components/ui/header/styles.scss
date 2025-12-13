@@ -5,7 +5,7 @@ header {
 	position: fixed;
 	top: 0;
 	left: 0;
-	z-index: 0;
+	z-index: 1000;
 	user-select: none;
 	height: 300dvh;
 	width: 100vw;
@@ -25,7 +25,9 @@ header {
 	}
 	.home-logo {
 		margin-top: -20vh;
-		max-width: 40vw;
+		min-width: 90px;
+		max-width: 140px;
+		width: 10vw;
 		opacity: 0;
 		transform: scale(1.2);
 		.logo {

@@ -1,7 +1,7 @@
 {
-	"name": "Understanding Me, Myself, and I",
+	"name": "Ummi",
 	"short_name": "Ummi",
-	"description": "Understanding Me Myself & I is an app for mental health, wellbeing, and recovery providing quick access to therapy tools learnt in Cognitive Behavioural Therapy (CBT), Dialectical Behaviour Therapy (DBT) and other therapies.",
+	"description": "Understanding Me Myself & I (Ummi) is an app for mental health, wellbeing, and recovery providing quick access to therapy tools learnt in Cognitive Behavioural Therapy (CBT), Dialectical Behaviour Therapy (DBT) and other therapies.",
 	"start_url": "/index.html?fullscreen=true",
 	"background_color": "#000000",
 	"theme_color": "#000000",

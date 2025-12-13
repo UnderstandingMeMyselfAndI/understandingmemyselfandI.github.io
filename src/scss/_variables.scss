@@ -104,7 +104,7 @@ $header_height: 70px;
 // clamp(minimum, preferred, maximum);
 // font-size: clamp(1rem, -0.875rem + 8.333vw, 3.5rem);
 //
-
+$font_family: "Plus Jakarta Sans", sans-serif;
 // ------------------------------------------
 // Default fields font size
 // ------------------------------------------
@@ -120,7 +120,7 @@ $default_line_height: 1.2;
 // Logo font size
 // ------------------------------------------
 
-$logo_lrg_size_min: 38px;
+$logo_lrg_size_min: 36px;
 $logo_lrg_size_max: 50px;
 $logo_lrg_size: responsiveFontSize($logo_lrg_size_min, $logo_lrg_size_max, $minDeviceWidth, $maxDeviceWidth);
 $logo_lrg_color: var(--text_primary);
@@ -131,7 +131,7 @@ $logo_lrg_line_height: 1.2;
 // Ancronym title font size
 // ------------------------------------------
 
-$acc_title_size_min: 40px;
+$acc_title_size_min: 48px;
 $acc_title_size_max: 60px;
 $acc_title_size: responsiveFontSize($acc_title_size_min, $acc_title_size_max, $minDeviceWidth, $maxDeviceWidth);
 $acc_title_color: var(--text_primary);
@@ -164,7 +164,7 @@ $acc_wrd_line_height: 1;
 // H5 font size
 // ------------------------------------------
 
-$h1_size_min: 42px;
+$h1_size_min: 38px;
 $h1_size_max: 72px;
 $h1_size: responsiveFontSize($h1_size_min, $h1_size_max, $minDeviceWidth, $maxDeviceWidth);
 $h1_color: var(--text_primary);
@@ -229,6 +229,18 @@ $subtitle_size: responsiveFontSize($subtitle_size_min, $subtitle_size_max, $minD
 $subtitle_color: var(--text_primary);
 $subtitle_weight: 400;
 $subtitle_style: normal;
+
+
+// ------------------------------------------
+// Menu font size
+// ------------------------------------------
+
+$menu_size_min: 34px;
+$menu_size_max: 50px;
+$menu_size: responsiveFontSize($menu_size_min, $menu_size_max, $minDeviceWidth, $maxDeviceWidth);
+$menu_color: var(--text_primary);
+$menu_weight: 100;
+$menu_line_height: 1.1;
 
 // ------------------------------------------
 // Small font size

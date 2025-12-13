@@ -76,7 +76,7 @@ button:hover {
 	display: flex;
 	flex-direction: column;
 	row-gap: 0.5rem;
-	overflow-y: auto;
+	
 	width: 100%;
 }
 div.DrawerContent[role="dialog"][data-state="open"] {

@@ -32,7 +32,7 @@ body {
 	select,
 	textarea {
 		font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif !important;
-		font-weight: 400 !important;
+		// font-weight: 400 !important;
 		font-style: normal;
 		line-height: variables.$default_line_height;
 		font-size: variables.$p_size;
@@ -40,7 +40,7 @@ body {
 
 	input::placeholder {
 		color: #ccc;
-		font-weight: 300 !important;
+		// font-weight: 300 !important;
 	}
 
 	h1,

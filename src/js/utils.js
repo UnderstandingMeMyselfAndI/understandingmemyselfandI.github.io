@@ -76,4 +76,21 @@ export function isYouTubeUrl(url) {
   return /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)/.test(url);
 }
 
-export default {clamp, isSet, isUndefined, isNull, hashCode, inRange, isNumeric, arrowSVG, debounce, isColorLight, getElementPageOffsetTop,extractYouTubeId,isYouTubeUrl};
+export function smoothScroll(){
+    let x = document.querySelectorAll('a[href*="#"]');
+	for (let i = 0; i < x.length; i++){
+		
+		x[i].onclick = function () {
+		  
+			let target = document.querySelector(this.hash);
+			target.scrollIntoView({
+				behavior:'smooth',
+				alignToTop:true,
+				block:'start'
+			});
+		}
+	}
+}
+
+
+export default {smoothScroll, clamp, isSet, isUndefined, isNull, hashCode, inRange, isNumeric, arrowSVG, debounce, isColorLight, getElementPageOffsetTop,extractYouTubeId,isYouTubeUrl};

@@ -5,4 +5,8 @@
 	align-items: center;
 	justify-items: center;
 	row-gap: 1rem;
+	img{
+		width:260px;
+		height:260px;
+	}
 }

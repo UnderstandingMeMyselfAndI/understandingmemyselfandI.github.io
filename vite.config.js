@@ -38,6 +38,7 @@ export default defineConfig({
 					"mui-icons": ["@mui/icons-material"],
 					"mui-material": ["@mui/material"],
 					"@gsap/react": ["@gsap/react"],
+
 					gsap: ["gsap"],
 				},
 			},

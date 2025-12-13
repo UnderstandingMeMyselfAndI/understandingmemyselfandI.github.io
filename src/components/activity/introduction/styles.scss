@@ -10,9 +10,8 @@ section.intro {
 
 	color: var(--primary);
 	margin: 2.5rem 0;
-	height: 50vh;
-	width: 100vw;
-	max-width:90vw;
+	// min-height: 50vh;
+	width: 100%;
 	display: flex;
 	flex-flow: column nowrap;
 	row-gap: 3.5rem;
@@ -21,8 +20,8 @@ section.intro {
 	font-size: 1.2rem;
 	margin-top: 120dvh;
 	position: relative;
-	z-index: 10;
-
+	z-index: 3010;
+	overflow-x:clip;
 
 
 	p {
@@ -60,6 +59,15 @@ section.intro {
 				margin-left: -5.5%;
 				transform:rotate(-3deg);
 			}
+		}
+	}
+	.i3{
+		u{
+			text-decoration-color: var(--yellow);
+			text-decoration-thickness: 3px;
+		}
+		b{
+			color: var(--lightBlue);
 		}
 	}
 }

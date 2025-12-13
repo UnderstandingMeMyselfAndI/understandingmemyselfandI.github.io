@@ -16,9 +16,8 @@ div.AccordionRoot {
 	flex-flow: column wrap;
 	justify-content: center;
 	align-items: center;
-	// &.expanded {
-	// 	display: none;
-	// }
+	z-index:3000;
+
 	div.accronym-menu {
 		div.list-item {
 			transition: all var(--transition);
@@ -108,7 +107,7 @@ div.AccordionRoot {
 						column-gap: 0.65rem;
 						justify-content: center;
 						align-items: center;
-						padding: 1.5rem 0.5rem;
+						// padding: 1.5rem 0.5rem; // don't add padding here
 
 						height: 100%;
 						width: 100%;
@@ -122,27 +121,8 @@ div.AccordionRoot {
 							// outline: 1px solid #ccc;
 							height: fit-content;
 							width: fit-content;
-
-							color: #fff; //var(--primary);
-							// &::after {
-							// 	content: "";
-							// 	// font-size: variables.$h2_size;
-							// 	position: absolute;
-							// 	bottom: 0%;
-							// 	right: 0;
-							// 	width: 7px;
-							// 	height: 7px;
-							// 	border-radius: 50%;
-							// 	opacity: 0.5;
-							// 	background-color: var(--primary);
-							// 	// outline: 2px solid var(--primary);
-							// 	transform: translate(120%, -100%);
-							// 	z-index: -1;
-							// }
-							
+							color: #fff;							
 							position: relative;
-							height: 100%;
-							// outline: 1px solid #ccc;
 							margin-right: 2px;
 							&::after {
 								content: "";
@@ -150,13 +130,13 @@ div.AccordionRoot {
 								z-index: -1;
 								bottom: 0px;
 								right: 0;
-								width: 6px;
-								height: 6px;
+								width: 7px;
+								height: 7px;
 								border-radius: 50%;
 								opacity: 0.75;
 								background-color: var(--primary);
 								// outline: 2px solid var(--primary);
-								transform: translate(120%, 50%);
+								transform: translate(140%, -80%);
 							}
 			
 						}

@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+
 // import "components/utils/activities.js";
 
 // import { HashRouter } from 'react-router-dom';
@@ -39,10 +40,17 @@ import BadgeToolbox from "ui/badges/BadgeToolbox";
 
 import Snackbars from "ui/snackbars/Snackbars";
 
+import DaysCounter from "ui/DaysCounter/DaysCounter";
+import AppMenu from "./components/ui/menu/AppMenu";
+import CookieConsent from "./components/ui/cookieConsent/CookieConsent";
+import {smoothScroll} from "./js/utils.js";
+
 import "./App.scss";
 
 // import SpeedDialSettings from "./components/ui/settings/speedDial/SpeedDialSettings.jsx";
 function App() {
+
+	smoothScroll();
 	const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme);
 
 	if (theme !== null) {
@@ -53,18 +61,22 @@ function App() {
 	}
 
 	return (
-		<React.Fragment>
-			<CssBaseline />
+		<div>
+			{/* <CssBaseline /> */}
 			<div className="app">
+				<CookieConsent />
 				{/* <EmergencyButton /> */}
+				{/* <DaysCounter /> */}
 				
+				{/* <AppMenu />	 */}
 				<div className="main">
 					<BadgeToolbox />
 					<LogoFloating
 						classes=" logo small"
 						showName={false}
 					/>
-
+					
+				
 					<div className="activities">
 						<Header />
 						
@@ -74,8 +86,9 @@ function App() {
 						<Footer />
 					</div>
 
-					<Snackbars />
+					
 				</div>
+				<Snackbars />
 				<ScrollPosition />
 				<BackdropParallax
 					initialImageId={3}
@@ -84,7 +97,7 @@ function App() {
 					parallaxStrength={0}
 				/>
 			</div>
-		</React.Fragment>
+		</div>
 	);
 }
 

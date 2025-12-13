@@ -90,8 +90,8 @@ const DaysCounter = () => {
     <div className="days-counter">   
       <div className="days-counter-container">
         <div className="days-counter-header">
-          <h1 className="days-counter-title">Days Counter</h1>
-          <p className="days-counter-subtitle">Track time since important dates</p>
+          <h1 className="days-counter-title">Days.</h1>
+          {/* <p className="days-counter-subtitle">Track time since important dates</p> */}
         </div>
 
         {dates.length === 0 && (
@@ -120,32 +120,11 @@ const DaysCounter = () => {
           {dates.map((date, index) => (
             <div key={date.id} className="days-counter-card">
               <div className="days-counter-card-header">
-                <div className="days-counter-card-info">
-                  <input
-                    type="text"
-                    placeholder="Label (e.g., Wedding Day, Started Job)"
-                    value={date.label}
-                    onChange={(e) => updateDate(index, date.selectedDate, e.target.value)}
-                    className="days-counter-label-input"
-                  />
-                  <div className="days-counter-date-controls">
-                    {date.selectedDate && (
-                      <span className="days-counter-selected-date">
-                        Since: {formatDate(date.selectedDate)}
-                      </span>
-                    )}
-                    <input
-                      type="datetime-local"
-                      value={date.selectedDate || ''}
-                      onChange={(e) => updateDate(index, e.target.value, date.label)}
-                      min={getTenYearsAgo()}
-                      max={getToday()}
-                      className="days-counter-date-input"
-                    />
-                  </div>
-                </div>
+
+               
+
                 <div className="days-counter-card-actions">
-                  <button
+                  {/* <button
                     onClick={() => resetDate(index)}
                     className="days-counter-reset-btn"
                     title="Reset date"
@@ -154,7 +133,7 @@ const DaysCounter = () => {
                       <polyline points="23 4 23 10 17 10"></polyline>
                       <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
                     </svg>
-                  </button>
+                  </button> */}
                   <button
                     onClick={() => deleteDate(index)}
                     className="days-counter-delete-btn"
@@ -169,19 +148,23 @@ const DaysCounter = () => {
               </div>
 
               {date.selectedDate ? (
-                <div className="days-counter-stats">
-                  <div className="days-counter-stat days-counter-stat-days">
-                    <span className="days-counter-stat-label">Days:</span>{' '}
-                    <span className="days-counter-stat-value">{currentTimes[index] && currentTimes[index].days !== undefined ? currentTimes[index].days.toLocaleString() : 0}</span>
+                <div className="days-counter-values">
+                  <div className="days-counter-stat">                   
+                    
+                      <span className="value">
+                        {currentTimes[index] && currentTimes[index].days !== undefined ? currentTimes[index].days.toLocaleString() : 0}</span>
+                      <span className="label">days</span>
                   </div>
-                  <div className="days-counter-stat days-counter-stat-hours">
-                    <span className="days-counter-stat-label">Hours:</span>{' '}
-                    <span className="days-counter-stat-value">{currentTimes[index] && currentTimes[index].hours !== undefined ? currentTimes[index].hours.toLocaleString() : 0}</span>
+                  <div className="days-counter-stat-group"> 
+                  <div className="days-counter-stat">                   
+                      <span className="value">{currentTimes[index] && currentTimes[index].hours !== undefined ? currentTimes[index].hours.toLocaleString() : 0}</span>
+                      <span className="label">hours</span>
                   </div>
-                  <div className="days-counter-stat days-counter-stat-minutes">
-                    <span className="days-counter-stat-label">Minutes:</span>{' '}
-                    <span className="days-counter-stat-value">{currentTimes[index] && currentTimes[index].minutes !== undefined ? currentTimes[index].minutes.toLocaleString() : 0}</span>
-                  </div>
+                  <div className="days-counter-stat">
+                      <span className="value">{currentTimes[index] && currentTimes[index].minutes !== undefined ? currentTimes[index].minutes.toLocaleString() : 0}</span>
+                       <span className="label">minutes</span>
+                    </div>
+                     </div>
                 </div>
               ) : (
                 <div className="days-counter-no-date">
@@ -194,6 +177,40 @@ const DaysCounter = () => {
                   <p className="days-counter-no-date-text">Select a date to start tracking</p>
                 </div>
               )}
+               <div className="title">
+               <input
+                    type="text"
+                    placeholder="Title (New Start, Since Sober, Since Using... )"
+                    value={date.label}
+                    onChange={(e) => updateDate(index, date.selectedDate, e.target.value)}
+                    className="days-counter-title-input"
+                />
+                </div>
+              <div className="footer">
+                  <div className="days-counter-card-info">
+                  
+                  <div className="days-counter-date-controls">
+                    {date.selectedDate ? (
+                      <span className="days-counter-selected-date">
+                        Since: {formatDate(date.selectedDate)}
+                      </span>
+                    ) : (
+                    <></>
+                    )}
+                     {!date.selectedDate ? (
+                    <input
+                      type="datetime-local"
+                      value={date.selectedDate || ''}
+                      onChange={(e) => updateDate(index, e.target.value, date.label)}
+                      min={getTenYearsAgo()}
+                      max={getToday()}
+                      className="days-counter-date-input"
+                      />
+                      ) : ( <> </>)}
+                  </div>
+                </div>
+                
+              </div>
             </div>
           ))}
         </div>
@@ -203,11 +220,11 @@ const DaysCounter = () => {
             onClick={addDate}
             className="days-counter-add-another-btn"
           >
-            <svg className="days-counter-add-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            {/* <svg className="days-counter-add-icon" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2">
               <line x1="12" y1="5" x2="12" y2="19"></line>
               <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg>
-            Add Another Date ({dates.length}/3)
+            </svg> */}
+           ({dates.length}/2)
           </button>
         )}
       </div>

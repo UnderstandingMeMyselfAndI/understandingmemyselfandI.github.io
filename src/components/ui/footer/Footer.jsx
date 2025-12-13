@@ -1,44 +1,31 @@
-"use client";
-// import React, {useState} from "react";
-import iconAndroid from "icons/iconAndroid.jsx";
-import iconApple from "icons/iconApple.jsx";
+
+import useAppStore from "@/store/useAppStore";
+
 import QRCode from "ui/QRCode/QRCode.jsx";
 import FooterMetadata from "ui/footer/FooterMetadata.jsx";
+import InstallPWA from "ui/buttons/InstallPWA/InstallPWA";
 import "./styles.scss";
 function Footer() {
+
+	const isMobile = useAppStore(s => s.isMobile);
+	const isInstalled = useAppStore(s => s.isInstalled);
+	
+	
 	return (
 		// <div className="activity  ">
-		<section className="footer">
-			<h3>
-				<u>Add <span className="ummi-blue">Ummi</span> as an app?</u>
-			</h3>
-			<p>You can add <span className="ummi">Ummi</span> to your home screen just like any other app.</p>
+		<section className="footer" id="installInstructions">
+			
+				<>
+				<h3>
+					<u>Add the <span className="ummi-blue">Ummi</span> app?</u>
+				</h3>
+				<p>You can install Ummi to your {isMobile ? "device" : "desktop"}<br /> just like any other app.</p>
+				<p>Click the button below</p>
 
-			<p>Follow these video instructions for your device:</p>
-			<div className="links">
-				<a
-					href="https://www.youtube.com/watch?v=O1xEXKB6tNg"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<div
-						className="android logo"
-						dangerouslySetInnerHTML={{__html: iconAndroid}}
-					/>
-					<div>Android</div>
-				</a>
-				<a
-					href="https://www.youtube.com/watch?v=B7fKs4dTeu0"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<div
-						className="apple logo"
-						dangerouslySetInnerHTML={{__html: iconApple}}
-					/>
-					<div>Apple iOS</div>
-				</a>
-			</div>
+				<InstallPWA />
+				</>
+			
+			
 			<section className="qr">
 				<h3><u>Spread the love</u></h3>
 				<p><u>Share the app,</u> <br/><u>scan the QR Code</u></p>

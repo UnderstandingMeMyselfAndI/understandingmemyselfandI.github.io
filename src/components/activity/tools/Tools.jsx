@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import useAppStore from "@/store/useAppStore";
 import {activities} from "@/data/config";
-import MenuCarousel from "@/components/ui/menu/MenuCarousel";
+import MenuCarousel from "@/components/ui/menuCarousel/MenuCarousel";
 import "./styles.scss";
 import PropTypes from "prop-types";
 const Tools = () => {

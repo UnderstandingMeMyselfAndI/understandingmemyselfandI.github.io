@@ -7,23 +7,25 @@ div.AcronymCard {
 	z-index: -10;
 	opacity: 0;
 	visibility: hidden;
-	position: absolute;
-	width: 100vw;
 
+	width: 100vw;
+	max-width:var(--appMaxWidth);
 	height: 100vh;
 	position: fixed;
+	
 	padding: 0;
-	margin: 0;
+	margin: 0 auto;
 	top: 0;
-	left: 0;
+	left: 50%;
 	background: rgba(0, 0, 0, 0.85);
 	transition: all 0.2s ease-out;
-	transform: scale(1.025);
+	transform: scale(1.025) translate(50%,0);
+	
 	&.open {
 		opacity: 1;
-		transform: scale(1);
+		transform: scale(1) translate(-50%,0);
 		transition: all 0.2s ease-in;
-		z-index: 3000;
+		z-index: 3500;
 		visibility: visible;
 	}
 
@@ -102,7 +104,7 @@ div.AcronymCard {
 			font-size: variables.$acc_title_size;
 			color: var(--lightBlue);
 			-webkit-text-stroke: 2px var(--lightBlue);
-			line-height: 1.1;
+			line-height: 1;
 			font-weight: variables.$acc_title_weight;
 
 			justify-content: center;
@@ -153,7 +155,7 @@ div.AcronymCard {
 		font-weight: variables.$p_weight;
 		line-height: variables.$p_line_height;
 		position: static;
-		overflow-y: scroll;
+		// overflow-y: scroll;
 		height: fit-content;
 		width: 100%;
 		flex: 1 1;
@@ -196,7 +198,7 @@ div.AcronymCard {
 					width: 92%;
 					margin: 0 auto;
 					position: relative;
-					line-height: 1.1;
+					line-height: 1;
 					height: fit-content;
 					div.Acc-letter {
 						position: absolute;
@@ -221,7 +223,6 @@ div.AcronymCard {
 							top: -90%;
 							left: -30%;
 							transform: translate(-30%, -80%);
-
 							z-index: -2;
 							transform: rotateZ(-6deg) skew(0.03turn, 12deg) translate(-12px, -6px) scale(0.9, 0.5);
 							outline: 1px solid rgba(150, 150, 150, 0.5);
@@ -306,8 +307,9 @@ div.AcronymCard {
 						position: relative;
 						transform: translate(0px, 7px);
 						width: calc(100% - 35px);
-						margin-left: 14%;
+						margin-left: 12.5%;
 						position: relative;
+						z-index:10;
 					}
 				}
 				div.Acc-definition {

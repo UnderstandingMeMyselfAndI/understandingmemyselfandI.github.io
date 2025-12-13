@@ -21,7 +21,6 @@ const Snackbars = () => {
 	const toolAdded = useAppStore(s => s.toolAdded);
 	const message = useAppStore(s => s.message);
 
-	console.log("SNACKBARS mount");
 
 	// useEffect(() => {
 	// 	if (scrollStage < 3) return;
@@ -74,17 +73,7 @@ const Snackbars = () => {
 	// Only show snackbars after scrollStage >= 3
 	const canShow = true; //scrollStage >= 3;
 
-	// tool added/removed handling
-	// useEffect(() => {
-	// 	if (!canShow || toolAdded === undefined) return;
 
-	// 	setMessage2(toolAdded ? strings.toolbox.added : strings.toolbox.removed);
-	// 	setSeverity(toolAdded ? "success" : "info");
-	// 	setOpen(true);
-	// 	console.log("SNACKBAR toolAdded");
-	// }, [toolAdded, canShow]);
-
-	// generic message handling (showToolsOnly or any other string message)
 	useEffect(() => {
 		if (!canShow || !message) return;
 
@@ -92,7 +81,6 @@ const Snackbars = () => {
 		setSeverity("info");
 		setOpen(true);
 
-		console.log("SNACKBAR message");
 	}, [message, canShow]);
 
 	const handleClose = (e, reason) => {

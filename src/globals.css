@@ -1,4 +1,5 @@
 :root {
+	--appMaxWidth:600px;
 	--border-radius: 6px;
 	--blueBackground: #036075;
 	--mainBackground: linear-gradient(140deg, rgba(27, 134, 158, 1) 0%, rgb(157, 30, 30, 1) 81%);

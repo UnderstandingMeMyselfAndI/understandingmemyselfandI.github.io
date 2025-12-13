@@ -13,8 +13,9 @@ import BlurOnOutlinedIcon from "@mui/icons-material/BlurOnOutlined";
 const cnf = {
 	appName: "Ummi",
 	appLogName: "Understanding Me, Myself, and I",
-	appDescription: "",
-
+	installDescription:"Install the Ummi App",
+	appDescription: "Ummi is a app that provides tools, techniques and content that helps people cope with emotions, thoughts, feelings and mental health.",
+	logoURI: "/UmmiIcon2.svg",
 	duration: {
 		hide: {
 			snackbar: 2000,
