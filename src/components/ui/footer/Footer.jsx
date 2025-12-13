@@ -15,7 +15,7 @@ function Footer() {
 	return (
 		// <div className="activity  ">
 		<section className="footer" id="installInstructions">
-			{!isInstalled || getPWADisplayMode() !== 'fullscreen' && (
+			{getPWADisplayMode() !== 'fullscreen' && (
 				<>
 					<h3>
 						<u>Add the <span className="ummi-blue">Ummi</span> app?</u>

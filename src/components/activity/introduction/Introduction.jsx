@@ -36,7 +36,7 @@ const Introduction = () => {
 				<div className="i3">
 					<p>The app is being constantly updated with <b><u>new tools</u></b>, <b><u>video guides</u></b>, <b><u>success stories</u></b>, and <b><u>motivational content</u></b> to help you cope with your emotions, thoughts, feelings and mental health throughout <b><u>your journey.</u></b></p>
 					
-					{!isInstalled || getPWADisplayMode() !== 'fullscreen' && (
+					{getPWADisplayMode() !== 'fullscreen' && (
 					<><p><b className="ummi">Ummi</b> can be added to your {isMobile ? "home screen" : "desktop"} for easy access. </p>
 					
 					<InstallPWA /></>
