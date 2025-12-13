@@ -1,4 +1,4 @@
-import{r as e}from"../mui-icons-Dm0IDdzG.js";import{g as r}from"../gsap-CL1SgVcg.js";
+import{r as e}from"../mui-icons-fY1YEiK8.js";import{g as r}from"../gsap-CL1SgVcg.js";
 /*!
  * @gsap/react 2.1.2
  * https://gsap.com

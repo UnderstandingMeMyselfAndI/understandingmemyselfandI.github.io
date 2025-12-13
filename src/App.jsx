@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+// import React from "react";
 
 // import "components/utils/activities.js";
 
@@ -18,7 +18,7 @@ import React from "react";
 //   );
 // }
 
-import CssBaseline from "@mui/material/CssBaseline";
+// import CssBaseline from "@mui/material/CssBaseline";
 
 import {useThemeStore} from "@/store/useThemeStore";
 // import DaysCounter from "./components/ui/DaysCounter/DaysCounter";
@@ -35,10 +35,10 @@ import Tools from "components/activity/tools/Tools.jsx";
 
 import BackdropParallax from "ui/backdrop/BackdropParallax";
 
+import Snackbars from "ui/snackbars/Snackbars.jsx";
+
 import AcronymCard from "ui/cards/AcronymCard.jsx";
 import BadgeToolbox from "ui/badges/BadgeToolbox";
-
-import Snackbars from "ui/snackbars/Snackbars";
 
 import DaysCounter from "ui/DaysCounter/DaysCounter";
 import AppMenu from "./components/ui/menu/AppMenu";
@@ -62,7 +62,7 @@ function App() {
 
 	return (
 		<div>
-			{/* <CssBaseline /> */}
+			
 			<div className="app">
 				<CookieConsent />
 				{/* <EmergencyButton /> */}

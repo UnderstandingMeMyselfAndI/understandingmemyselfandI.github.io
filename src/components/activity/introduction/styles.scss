@@ -1,17 +1,10 @@
 @use "./scss/_variables.scss";
 @import "@/globals.css";
-.i1,
-.i2 {
-	// opacity: 0;
-}
+
 section.intro {
-	/* font-weight: 400;
-	font-size: 1rem; */
-	
-	// outline:1px solid yellow;
+
 	color: var(--primary);
 	margin: 2.5rem 0;
-	// min-height: 50vh;
 	width: 100%;
 	display: flex;
 	flex-flow: column nowrap;
@@ -23,14 +16,11 @@ section.intro {
 	z-index: 3010;
 	overflow-x:clip;
 
-
 	p {
 		margin-bottom: 0.5rem;
 	}
 	&.tip {
-		/* font-size: 0.85rem; */
 		color: var(--yellow);
-		/* font-weight: 400; */
 	}
 	&.start {
 		font-weight: 600;
@@ -39,7 +29,6 @@ section.intro {
 		font-size:variables.$h1_size;
 
 		u{
-			// text-decoration: none;
 			position: relative;
 			display: inline-block;
 			text-decoration-color: var(--yellow);

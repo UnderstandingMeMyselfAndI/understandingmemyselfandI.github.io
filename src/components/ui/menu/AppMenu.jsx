@@ -53,7 +53,7 @@ export default function AppMenu() {
         <li onClick={handleClose}>Dailys</li>
         <li onClick={handleClose}>Days Counter</li>
         <li onClick={handleClose}>Tour</li>
-        <li onClick={handleClose}>About</li>
+        <li onClick={handleClose}>Settings</li>
       </ul> 
     </div>
   );

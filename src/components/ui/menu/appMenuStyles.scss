@@ -5,8 +5,8 @@
     top:0;
     right:0;
     left:auto;
-    width:100vw;
-    height:100vh;
+    // width:100vw;
+    // height:100vh;
    
     overflow-x:clip;
     z-index:5000;   
@@ -101,6 +101,11 @@
           
 
     ul#app-menu{
+
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+
         margin:0;
         margin-right:-100%;
         transition:all 0.35s cubic-bezier(0.50,0.00,0.25,1.00);

@@ -1,9 +1,9 @@
 Background/backdrop: 0 and -1
 header: 1000
 Menu: 2000
-Activities/content/Menu/footer: 3000
-Activities: 3500
+content/Menu/footer: 3000
+
 Menu/Badges: 4000
 Snackbars?notifications: 5000
-
+Activities: 5500
 cookie-consent-overlay: 6000

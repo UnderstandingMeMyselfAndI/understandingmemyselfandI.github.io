@@ -24,7 +24,7 @@ const Introduction = () => {
 
 	return (
 		
-		// <div className={"activity" + (open ? " show" : " hide")}>
+		<div className={"activity" + (open ? " show" : " hide")}>
 			
 			<section className="intro">				
 				<div className="i1">
@@ -43,7 +43,7 @@ const Introduction = () => {
 				)}
 				</div>
 			</section>
-		// </div>
+		</div>
 	);
 };
 

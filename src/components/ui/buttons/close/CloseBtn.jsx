@@ -1,0 +1,9 @@
+import "./styles.scss"
+import AddIcon from '@mui/icons-material/Add';
+const CloseBtn = (handleClick) => {
+
+   return <button className="close-btn" onClick={handleClick}><AddIcon /></button>
+
+}
+
+export default CloseBtn

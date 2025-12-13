@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import "./styles.scss";
-
+import AddIcon from '@mui/icons-material/Add';
+import CloseBtn from '../buttons/close/CloseBtn';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import BackdropParallax from '../backdrop/Backdrop';
 const DaysCounter = () => {
   const getInitialDates = () => {
     try {
@@ -64,11 +67,7 @@ const DaysCounter = () => {
     setDates(newDates);
   };
 
-  const resetDate = (index) => {
-    const newDates = [...dates];
-    newDates[index] = { ...newDates[index], selectedDate: null };
-    setDates(newDates);
-  };
+
 
   const deleteDate = (index) => {
     setDates(dates.filter((_, i) => i !== index));
@@ -87,62 +86,35 @@ const DaysCounter = () => {
   };
 
   return (
-    <div className="days-counter">   
-      <div className="days-counter-container">
-        <div className="days-counter-header">
-          <h1 className="days-counter-title">Days.</h1>
-          {/* <p className="days-counter-subtitle">Track time since important dates</p> */}
-        </div>
+    <div className={"days-counter"+ (dates.length === 2 ? " full" : "")}> 
+      <CloseBtn />
+      <div className={"days-counter-container"+ (dates.length === 2 ? " full" : "")}>
+       
 
         {dates.length === 0 && (
           <div className="days-counter-empty-state">
-            <svg className="days-counter-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-              <line x1="16" y1="2" x2="16" y2="6"></line>
-              <line x1="8" y1="2" x2="8" y2="6"></line>
-              <line x1="3" y1="10" x2="21" y2="10"></line>
-            </svg>
-            <p className="days-counter-empty-text">No dates added yet. Start tracking time!</p>
-            <button
-              onClick={addDate}
-              className="days-counter-add-first-btn"
-            >
-              <svg className="days-counter-add-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-              Add Your First Date
-            </button>
+            <div className="days-counter-empty-title">Let's do this</div>
+              <div  className="days-counter-add-first-icon"  onClick={addDate} ><AddIcon /></div>
+              <button
+                onClick={addDate}
+                className="days-counter-add-first-btn"
+              >
+               Add Date
+              </button>
           </div>
         )}
 
-        <div className="days-counter-list">
+        <div className={"days-counter-list"+ (dates.length === 2 ? " full" : "")}>
           {dates.map((date, index) => (
             <div key={date.id} className="days-counter-card">
               <div className="days-counter-card-header">
-
-               
-
                 <div className="days-counter-card-actions">
-                  {/* <button
-                    onClick={() => resetDate(index)}
-                    className="days-counter-reset-btn"
-                    title="Reset date"
-                  >
-                    <svg className="days-counter-action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <polyline points="23 4 23 10 17 10"></polyline>
-                      <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
-                    </svg>
-                  </button> */}
                   <button
                     onClick={() => deleteDate(index)}
                     className="days-counter-delete-btn"
                     title="Delete"
                   >
-                    <svg className="days-counter-action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
+                    <DeleteForeverIcon />
                   </button>
                 </div>
               </div>
@@ -167,32 +139,29 @@ const DaysCounter = () => {
                      </div>
                 </div>
               ) : (
-                <div className="days-counter-no-date">
-                  <svg className="days-counter-no-date-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                  </svg>
-                  <p className="days-counter-no-date-text">Select a date to start tracking</p>
-                </div>
+                
+                  <div className="days-counter-stat-group-new">
+                    <div className="days-counter-stat-new">
+                      <span className="value">0</span>
+                    </div>
+                  </div>
+                 
               )}
-               <div className="title">
-               <input
-                    type="text"
-                    placeholder="Title (New Start, Since Sober, Since Using... )"
-                    value={date.label}
-                    onChange={(e) => updateDate(index, date.selectedDate, e.target.value)}
-                    className="days-counter-title-input"
-                />
+               <div className="new-date">
+                <div className="title">
+                  <input
+                        type="text"
+                        placeholder="Tap here to set a title"
+                        value={date.label}
+                        onChange={(e) => updateDate(index, date.selectedDate, e.target.value)}
+                        className="days-counter-title-input"
+                    />
                 </div>
-              <div className="footer">
-                  <div className="days-counter-card-info">
-                  
-                  <div className="days-counter-date-controls">
-                    {date.selectedDate ? (
-                      <span className="days-counter-selected-date">
-                        Since: {formatDate(date.selectedDate)}
+                <div className="days-counter-selected-date">
+                 
+                  {date.selectedDate ? (                    
+                      <span className="">
+                        {formatDate(date.selectedDate)}
                       </span>
                     ) : (
                     <></>
@@ -207,27 +176,30 @@ const DaysCounter = () => {
                       className="days-counter-date-input"
                       />
                       ) : ( <> </>)}
-                  </div>
-                </div>
-                
+                </div>              
               </div>
             </div>
           ))}
+          <span className="days-counter-note">* All details are saved locally on your device to ensure your privacy.</span>
         </div>
 
-        {dates.length > 0 && dates.length < 3 && (
+        {dates.length > 0 && dates.length < 2 && (
           <button
             onClick={addDate}
             className="days-counter-add-another-btn"
           >
-            {/* <svg className="days-counter-add-icon" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2">
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg> */}
            ({dates.length}/2)
           </button>
         )}
       </div>
+      <div  className="days-counter-backdrop"> 
+        <BackdropParallax
+                  initialImageId={3}
+                  initialDelay={3000}
+                  interval={6000}
+                  parallaxStrength={0}
+                />
+        </div>
     </div>
   );
 }

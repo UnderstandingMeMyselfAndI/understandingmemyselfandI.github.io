@@ -5,6 +5,7 @@ section.tools {
 	max-width:100vw;
 	display:flex;
 	flex-flow:column nowrap;
+	z-index:4000;
 	h2 {
 		font-size: variables.$h2_size;
 		u {
