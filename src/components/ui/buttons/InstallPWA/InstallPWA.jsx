@@ -14,19 +14,14 @@ const InstallPWA = () => {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [isInstallable, setIsInstallable] = useState(false);
 
-  console.trace("isInstallable onLoad ", isInstallable);
   useEffect(() => {
 
-   console.trace("isInstallable useEffect ", isInstallable);
-
     setIsInstalled(!isInstallable);
-    // console.trace("setIsInstalled", isInstallable);
 
   }, [isInstallable, setIsInstalled]);
 
    useEffect(() => {
 
-   console.trace("isInstalled useEffect ", isInstalled);   
 
    }, [isInstalled]);
   
@@ -36,11 +31,9 @@ const InstallPWA = () => {
         setDeferredPrompt(event);
         // isInstallable = true; // Show the install button
         setIsInstallable(true);
-        console.log('PWA install prompt fired');
       }
 
       function handleAppInstalled() {
-        console.log('PWA installed');
         // isInstallable = false; // Hide the install button
         setIsInstallable(false);
       }
@@ -57,9 +50,6 @@ const InstallPWA = () => {
   })
 
   const handleClick = async () => {
-    console.log("handleClick install")
-
-    console.log("deferredPrompt ",deferredPrompt)
     
     if (!deferredPrompt) return;
 
@@ -67,16 +57,18 @@ const InstallPWA = () => {
 
     const choiceResult = await deferredPrompt.userChoice;
     if (choiceResult.outcome === 'accepted') {
-      console.log('User accepted the PWA installation');
+      // console.log('User accepted the PWA installation');
+      setIsInstallable(false);
     } else {
-      console.log('User dismissed the PWA installation');
+      // console.log('User dismissed the PWA installation');
+      setIsInstallable(true);
     }
 
     // Reset after interaction
     // deferredPrompt = null;
     setDeferredPrompt(null);
     // isInstallable = false;
-    setIsInstallable(false);
+   
 
   };
 

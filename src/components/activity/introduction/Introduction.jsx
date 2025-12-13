@@ -10,7 +10,6 @@ import "./styles.scss";
 const Introduction = () => {
 	const [open, setOpen] = useState(false);
 
-	const isInstalled = useAppStore(s => s.isInstalled);
 
 	const activity = useAppStore(s => s.activity);
 	const isMobile =  useAppStore(s => s.isMobile);
@@ -20,12 +19,6 @@ const Introduction = () => {
 	useEffect(() => {
 		setOpen(activityID === activity);
 	}, [activity, activityID]);
-
-	useEffect(() => {
-		console.trace("isInstalled",isInstalled);
-	}, [isInstalled]);
-
-	
 
 	return (
 		
