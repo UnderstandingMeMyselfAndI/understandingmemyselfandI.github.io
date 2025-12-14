@@ -6,6 +6,7 @@ import {storeKeys, localStore} from "@/data/localStore.js";
 import PropTypes from "prop-types";
 import useAppStore from "@/store/useAppStore";
 import data from "../../../data/data.js";
+import {getPWADisplayMode} from "@/utils/isAppInstalled";
 import "./MenuCarousel.scss";
 // Default configuration
 const DEFAULT_CONFIG = {

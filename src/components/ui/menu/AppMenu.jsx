@@ -3,8 +3,9 @@ import * as React from 'react';
 // import Menu from '@mui/material/Menu';
 // import MenuItem from '@mui/material/MenuItem';
 import useAppStore from '@/store/useAppStore';
+import getPWADisplayMode from '@/utils/isAppInstalled';
 
-import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
+// import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 // import Slide from '@mui/material/Slide';
 import './appMenuStyles.scss';
 export const MenuOpenIcon = () => <svg xmlns="http://www.w3.org/2000/svg" height="40px" width="40px"  viewBox="0 -960 960 960"  fill="#ffffff"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>;
@@ -91,14 +92,14 @@ export default function AppMenu() {
           el.scrollIntoView({ behavior: "smooth", block: "start" })
           
         }}>Spread the love</li>
-          <li onClick={() => {
+        {getPWADisplayMode() !== 'fullscreen' && (<li onClick={() => {
           handleClose();
           setActivity(-1);
           const el = document.getElementById("intro");
 
           el.scrollIntoView({ behavior: "smooth", block: "start" })
           
-        }}>Install</li>
+        }}>Install</li>)}
          <li onClick={() => {
            handleClose();
           setActivity(-1);
