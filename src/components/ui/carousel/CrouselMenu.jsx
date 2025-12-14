@@ -206,7 +206,7 @@ const AccordionItemWithEffects = ({item, index, expanded, handleChange, config =
 export default function AccordionScroll({expanded, handleChange}) {
 	const componentData = data;
 	
-	// You can easily override the default config here
+	// Easily override the default config here
 	const customConfig = {
 		...SCROLL_EFFECT_CONFIG,
 		// minOpacity: 0.2,    // Uncomment to override
@@ -238,20 +238,20 @@ export default function AccordionScroll({expanded, handleChange}) {
 	);
 }
 
-function Scenarios(item) {
-	return (
-		<div className="scenarios">
-			<div className="title">Scenarios</div>
-			<div className="scenariosGroup">
-				{item.scenarios.map((scenario, i) => (
-					<ScenarioDialog
-						btnLabel={scenario.btnLabel}
-						title={scenario.title}
-						content={scenario.content}
-						key={"scenario-" + i}
-					/>
-				))}
-			</div>
-		</div>
-	);
-}
+// function Scenarios(item) {
+// 	return (
+// 		<div className="scenarios">
+// 			<div className="title">Scenarios</div>
+// 			<div className="scenariosGroup">
+// 				{item.scenarios.map((scenario, i) => (
+// 					<ScenarioDialog
+// 						btnLabel={scenario.btnLabel}
+// 						title={scenario.title}
+// 						content={scenario.content}
+// 						key={"scenario-" + i}
+// 					/>
+// 				))}
+// 			</div>
+// 		</div>
+// 	);
+// }

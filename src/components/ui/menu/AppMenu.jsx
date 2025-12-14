@@ -73,14 +73,7 @@ export default function AppMenu() {
           el.scrollIntoView({ behavior: "smooth", block: "start" })
         }
         }>Days Counter</li>
-         <li onClick={() => {
-          handleClose();
-          setActivity(-1);
-          const el = document.getElementById("intro");
-
-          el.scrollIntoView({ behavior: "smooth", block: "start" })
-          
-        }}>Install</li>
+       
           
          <li onClick={() => {
            handleClose();
@@ -98,6 +91,14 @@ export default function AppMenu() {
           el.scrollIntoView({ behavior: "smooth", block: "start" })
           
         }}>Spread the love</li>
+          <li onClick={() => {
+          handleClose();
+          setActivity(-1);
+          const el = document.getElementById("intro");
+
+          el.scrollIntoView({ behavior: "smooth", block: "start" })
+          
+        }}>Install</li>
          <li onClick={() => {
            handleClose();
           setActivity(-1);

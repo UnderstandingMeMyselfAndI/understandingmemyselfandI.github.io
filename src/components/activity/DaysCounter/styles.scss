@@ -143,11 +143,12 @@ background:rgba(164, 120, 245, 0.5);
 .days-counter-add-first-btn {
 
   margin:1.5rem auto;
-  background:rgba(31, 31, 31, 0.5);
+
   background:rgba(164, 120, 245, 0.5);
   border:none;
   padding:0.75rem 2rem;
-  outline:1px solid rgba(255,255,255,0.35);
+  outline:1px solid rgba(150,150,150,0.25);
+   box-shadow: 0px 0px 12px 3px rgba(10,10, 10, 0.25);  
   display:flex;
   font-size:1.25rem;
   font-weight:400;

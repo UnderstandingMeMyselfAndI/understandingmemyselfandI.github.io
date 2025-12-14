@@ -118,7 +118,8 @@ const AcronymCard = () => {
 										data-len={acronym.meaning.length}
 										key={"m-" + index}
 									>
-										{acronym.meaning.substring(1)}
+										{/* {acronym.meaning.substring(1)} */}
+										{acronym.meaning}
 									</div>
 								</div>
 								<div

@@ -154,14 +154,7 @@ const AccordionItemWithEffects = ({item, index, acronymID, expanded, handleChang
 					aria-controls={"panel" + index + "-content"}
 					id={"panel" + item?.id + "-header"}
 				>
-					{/* <Favourite
-						id={"item-" + item?.id}
-						className={item?.title?.replaceAll(".", "")}
-					/> */}
-					{/* <div className="toolboxes">
-						<ButtonEmergencyToolbox id={item?.id} />
-						<ButtonToolbox id={item?.id} />
-					</div> */}
+
 					<div className="cont">
 						{item.title.split(".").map(
 							(subItem, index) =>
@@ -177,9 +170,7 @@ const AccordionItemWithEffects = ({item, index, acronymID, expanded, handleChang
 						)}
 					</div>
 				</AccordionSummary>
-				{/* <AccordionDetails>{parse(item.content.explanation)}</AccordionDetails> */}
 			</Accordion>
-			{/* <div className="accBack"></div> */}
 		</div>
 	);
 };
@@ -197,7 +188,7 @@ export default function AccordionScroll({expanded, handleChange}) {
 
 	// const {accData} = useAppStore();
 
-	// You can easily override the default config here
+	//Easily override the default config here
 	const customConfig = {
 		...SCROLL_EFFECT_CONFIG,
 		// minOpacity: 0.2, // Uncomment to override
@@ -235,20 +226,3 @@ AccordionScroll.propTypes = {
 	expanded: PropTypes.string,
 	handleChange: PropTypes.func,
 };
-// function Scenarios(item) {
-// 	return (
-// 		<div className="scenarios">
-// 			<div className="title">Scenarios</div>
-// 			<div className="scenariosGroup">
-// 				{item.scenarios.map((scenario, i) => (
-// 					<ScenarioDialog
-// 						btnLabel={scenario.btnLabel}
-// 						title={scenario.title}
-// 						content={scenario.content}
-// 						key={"scenario-" + i}
-// 					/>
-// 				))}
-// 			</div>
-// 		</div>
-// 	);
-// }
