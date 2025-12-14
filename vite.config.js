@@ -31,6 +31,7 @@ export default defineConfig({
 		emptyOutDir: true, // also necessary,
 		commonjsOptions: {transformMixedEsModules: true}, // Change
 		cssCodeSplit: true,
+		sourcemap: true,
 		rollupOptions: {
 			output: {
 				manualChunks: {
