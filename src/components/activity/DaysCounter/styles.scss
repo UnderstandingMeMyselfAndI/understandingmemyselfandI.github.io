@@ -182,7 +182,7 @@ background:rgba(164, 120, 245, 0.5);
 }
 
 .days-counter-card {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  // box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   padding: 0.25rem;
   transition: all 0.3s;
   // outline:1px solid green;
@@ -505,8 +505,8 @@ input.days-counter-title-input:focus{
 .days-counter-add-another-btn {
   margin:0 auto;
 
-  width: 20vw;
-  height:20vw;
+  width: 80px;
+  height:80px;
  
   background-color:transparent;  
   color: #ffffff;
