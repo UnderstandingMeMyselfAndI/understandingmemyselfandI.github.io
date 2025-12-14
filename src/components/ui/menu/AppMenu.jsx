@@ -61,14 +61,7 @@ export default function AppMenu() {
           el.scrollIntoView({ behavior: "smooth", block: "start" })
           
         }}>Tools</li>
-         <li onClick={() => {
-          handleClose();
-          setActivity(-1);
-          const el = document.getElementById("intro");
-
-          el.scrollIntoView({ behavior: "smooth", block: "start" })
-          
-        }}>Install</li>
+        
         {/* <li onClick={handleClose}>Journeys</li> */}
         {/* <li onClick={handleClose}>Motivation</li> */}
         {/* <li onClick={handleClose}>Dailys</li> */}
@@ -80,14 +73,31 @@ export default function AppMenu() {
           el.scrollIntoView({ behavior: "smooth", block: "start" })
         }
         }>Days Counter</li>
-          <li onClick={() => {
+         <li onClick={() => {
+          handleClose();
+          setActivity(-1);
+          const el = document.getElementById("intro");
+
+          el.scrollIntoView({ behavior: "smooth", block: "start" })
+          
+        }}>Install</li>
+          
+         <li onClick={() => {
+           handleClose();
+          setActivity(-1);
+          const el = document.getElementById("gratitude");
+
+          el.scrollIntoView({ behavior: "smooth", block: "start" })
+        }
+        }>Gratitude</li>
+        <li onClick={() => {
           handleClose();
           setActivity(-1);
           const el = document.getElementById("share");
 
           el.scrollIntoView({ behavior: "smooth", block: "start" })
           
-        }}>Share</li>
+        }}>Spread the love</li>
          <li onClick={() => {
            handleClose();
           setActivity(-1);

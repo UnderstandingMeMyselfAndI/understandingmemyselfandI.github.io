@@ -37,8 +37,9 @@ function Footer() {
 			<section className="days-counter" id="daysCounter">
 				<h3><u>Monitor your progress</u></h3>
 				<p>It can be useful to remind ourselves how far we have come.</p>
+				<p>Set dates that are significant to you.</p>
 				<DaysCounterBtn />
-				<p>Set dates that are significant to you with our Days Counter.</p>
+				
 				<h4><b><u>We respect you</u></b></h4>
 				<p>Any data you provide is stored only on your device and not shared anywhere. You can remove the data at anytime.</p>
 				
@@ -50,7 +51,8 @@ function Footer() {
 				<p>The tools we learn to cope with our emotions, thoughts, feelings and mental health are ace, but remembering them can be hard.</p>
 				<p>This app is your toolbox so you can carry those tools around with you for whenever you need them.</p>
 			</div> */}
-			<section>
+			<section id="gratitude">
+				<div  className="big2"><b><u>Gratitude &amp; Inspiration</u></b></div>
 				<p>
 					This app was inspired by the amazing people who facilitate groups and meetings at
 					<a
@@ -64,6 +66,7 @@ function Footer() {
 					Nottingham UK and their hard work and dedication to help people through their recovery journey.
 					
 				</p>
+				<p className="big2"><b><u>  &#x2661; BIG LOVE  &#x2661; </u></b></p>
 			</section>
 			<section id="feedback">
 				<h3>

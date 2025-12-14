@@ -35,7 +35,6 @@ export default function BadgeToolbox() {
 	}, [userToolIDs]);
 
 	useEffect(() => {
-		console.log("BadgeToolbox activity", activity);
 		setOpen( activity === -1 );
 	}, [activity,setOpen]);
 

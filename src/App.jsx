@@ -35,6 +35,7 @@ import Introduction from "components/activity/introduction/Introduction";
 import Tools from "components/activity/tools/Tools.jsx";
 
 import Backdrop from "ui/backdrop/Backdrop";
+import BackdropParallax from "ui/backdrop/BackdropParallax";
 
 import Snackbars from "ui/snackbars/Snackbars.jsx";
 
@@ -98,11 +99,11 @@ function App() {
 				<ScrollPosition />
 				
 			</div>
-			<Backdrop
+			<BackdropParallax
 					initialImageId={3}
 					initialDelay={3000}
 					interval={6000}
-					parallaxStrength={-1}
+					parallaxStrength={0}
 				/>
 		</div>
 	);

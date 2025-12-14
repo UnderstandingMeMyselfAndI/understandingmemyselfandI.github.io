@@ -4,9 +4,15 @@
 #daysCounter,
 #share,
 #installInstructions{
-	scroll-padding-top: 60px;
+	scroll-padding-top: 260px;
+	padding-top:160px;
+	padding-bottom:100px;
 }
-
+#gratitude{
+	scroll-padding-top: 260px;
+	padding-top:260px;
+	padding-bottom:100px;
+}
 .version-footer {
 	font-size: 1rem;
 	padding: 2rem 0;
@@ -149,6 +155,10 @@ div.footer {
 	}
 	.big {
 		font-size: variables.$h2_size;
+	}
+	.big2 {
+		font-size: variables.$h3_size;
+		font-weight:800;
 	}
 	span.big4.r90 {
 		display: block;
