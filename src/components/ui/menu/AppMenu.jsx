@@ -3,7 +3,7 @@ import * as React from 'react';
 // import Menu from '@mui/material/Menu';
 // import MenuItem from '@mui/material/MenuItem';
 import useAppStore from '@/store/useAppStore';
-import getPWADisplayMode from '@/utils/isAppInstalled';
+import { getPWADisplayMode } from "@/utils/isAppInstalled";
 
 // import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 // import Slide from '@mui/material/Slide';
