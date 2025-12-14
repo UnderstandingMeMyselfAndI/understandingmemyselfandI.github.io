@@ -2,7 +2,7 @@
 import {useState, useEffect, useRef} from "react";
 import useAppStore from "@/store/useAppStore";
 import ButtonToolbox from "../buttons/toolbox/ButtonToolbox";
-import BackdropParallax from "ui/backdrop/BackdropParallax";
+import Backdrop from "ui/backdrop/Backdrop";
 
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
@@ -143,26 +143,12 @@ const AcronymCard = () => {
 									<div className="title">{parse(video.title)}</div>
 									<div className="player">
 										{video ? (
-											// <ReactPlayer
-											// 	light={false}
-											// 	controls={true}
-											// 	src={video.url}
-											// 	style={{
-											// 		width: "100%",
-											// 		height: "100%",
-											// 	}}
-											// 	config={{
-											// 		youtube: {
-											// 			color: "black",
-											// 		},
-											// 	}}
-											// />
-
+											
 											<LiteYouTubeEmbed
 												id={extractYouTubeId(video.url)}											
 												title={video.title}
 												key={"video-" + index}
-          										poster="hqdefault"
+												poster="hqdefault"
 											/>
 										) : (
 											<Skeleton
@@ -215,13 +201,14 @@ const AcronymCard = () => {
 					</div>
 				</div>
 
-				<BackdropParallax
+				
+			</div>
+			<Backdrop
 					initialImageId={3}
 					initialDelay={3000}
 					interval={6000}
 					parallaxStrength={0}
 				/>
-			</div>
 		</div>
 	);
 };

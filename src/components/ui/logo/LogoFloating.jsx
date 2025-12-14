@@ -10,7 +10,7 @@ import "./styles.scss";
 const LogoFloating = ({showText = true, classes = "", showName = true}) => {
 	const theme = useThemeStore(state => state.theme);
 	const [show, setShow] = useState(false);
-
+	const activity = useAppStore(s => s.activity);
 	const showAccCard = useAppStore(s => s.showAccCard);
 
 	const text = showText ? "Ummi" : "";
@@ -20,6 +20,11 @@ const LogoFloating = ({showText = true, classes = "", showName = true}) => {
 			window.scrollY > 600 ? setShow(true) : setShow(false);
 		});
 	}, [show, setShow]);
+
+	useEffect(() => {
+
+			setShow( activity === -1 );
+		}, [activity,setShow]);
 
 	return (
 		<div className={componentClasses}>

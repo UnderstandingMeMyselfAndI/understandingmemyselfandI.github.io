@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 const allImages = ImageData;
 const DEFAULT_INTERVAL = 10000;
 
-export default function BackdropParallax({initialImageId = null, initialDelay = 0, interval = DEFAULT_INTERVAL, parallaxStrength = 0.5}) {
+export default function BackdropParallax({initialImageId = null, initialDelay = 0, interval = DEFAULT_INTERVAL, parallaxStrength = 0}) {
 	const [currentImage, setCurrentImage] = useState(null);
 	const [nextImage, setNextImage] = useState(null);
 	const [isFading, setIsFading] = useState(false);
@@ -75,7 +75,7 @@ export default function BackdropParallax({initialImageId = null, initialDelay = 
 		const onScroll = () => {
 			const offset = window.pageYOffset * parallaxStrength;
 			document.querySelectorAll(".cont img").forEach(img => {
-				img.style.transform = `translateY(-${offset}px)`;
+				// img.style.transform = `translateY(-${offset}px)`;
 			});
 		};
 		window.addEventListener("scroll", onScroll, {passive: true});

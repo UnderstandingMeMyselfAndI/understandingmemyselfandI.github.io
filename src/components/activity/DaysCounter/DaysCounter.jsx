@@ -1,10 +1,41 @@
 import { useState, useEffect } from 'react';
+import { useShallow } from 'zustand/react/shallow'
 import "./styles.scss";
 import AddIcon from '@mui/icons-material/Add';
-import CloseBtn from '../buttons/close/CloseBtn';
+import CloseBtn from '../../ui/buttons/close/CloseBtn';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import BackdropParallax from '../backdrop/Backdrop';
+import BackdropParallax from '../../ui/backdrop/Backdrop';
+import useAppStore from '@/store/useAppStore';
+
+import Dialog from 'components/ui/dialog/Dialog';
 const DaysCounter = () => {
+
+  // const activity = useAppStore(state => state.activity);
+  const setActivity = useAppStore(state => state.setActivity);
+
+  const { activity } = useAppStore(useShallow((state) => ({ activity: state.activity })),)
+
+  const [open, setOpen] = useState(false);
+  const [showDialog, setShowDialog] = useState(false);
+  const [dialogIndex, setDialogIndex] = useState(-1);
+  const [editingDateIndex, setEditingDateIndex] = useState(-1);
+
+  const handleClose = () => {
+    setOpen(false);
+    setActivity(-1);
+  }
+  const handleCloseDialog = () => {
+    setShowDialog(false);
+    // setActivity(-1);
+  }
+ 
+  
+  useEffect(() => {
+   
+    setOpen(activity === 2);
+  }, [activity]);
+
+
   const getInitialDates = () => {
     try {
       const saved = localStorage.getItem('daysCounterDates');
@@ -36,7 +67,7 @@ const DaysCounter = () => {
   }, [dates]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    // const interval = setInterval(() => {
       const now = Date.now();
       const newTimes = {};
       dates.forEach((date, index) => {
@@ -50,9 +81,9 @@ const DaysCounter = () => {
         }
       });
       setCurrentTimes(newTimes);
-    }, 1000);
+    // }, 1000);
 
-    return () => clearInterval(interval);
+    // return () => clearInterval(interval);
   }, [dates]);
 
   const addDate = () => {
@@ -65,12 +96,14 @@ const DaysCounter = () => {
     const newDates = [...dates];
     newDates[index] = { ...newDates[index], selectedDate: dateValue, label: labelValue };
     setDates(newDates);
+    setEditingDateIndex(-1);
   };
 
 
 
   const deleteDate = (index) => {
     setDates(dates.filter((_, i) => i !== index));
+    setShowDialog(false);
   };
 
   const formatDate = (dateString) => {
@@ -85,18 +118,29 @@ const DaysCounter = () => {
     });
   };
 
+  const handleDateClick = (index) => {
+    setEditingDateIndex(index);
+  };
+
   return (
-    <div className={"days-counter"+ (dates.length === 2 ? " full" : "")}> 
-      <CloseBtn />
+    <div className={"days-counter-activity"+ (dates.length === 2 ? " full" : "") + (open ? " open" : "")}> 
+      <CloseBtn handleClick={handleClose} />
+      {showDialog && <Dialog
+        show={showDialog}
+        title="Delete Date"
+        instruction="Are you sure you want to delete this date?"
+        onConfirm={() => deleteDate(dialogIndex)}
+        onCancel={ ()=> handleCloseDialog() }
+      />}
       <div className={"days-counter-container"+ (dates.length === 2 ? " full" : "")}>
        
 
         {dates.length === 0 && (
           <div className="days-counter-empty-state">
             <div className="days-counter-empty-title">Let's do this</div>
-              <div  className="days-counter-add-first-icon"  onClick={addDate} ><AddIcon /></div>
+              <div  className="days-counter-add-first-icon"  onClick={()=>addDate()} ><AddIcon /></div>
               <button
-                onClick={addDate}
+                onClick={()=>addDate()}
                 className="days-counter-add-first-btn"
               >
                Add Date
@@ -109,8 +153,12 @@ const DaysCounter = () => {
             <div key={date.id} className="days-counter-card">
               <div className="days-counter-card-header">
                 <div className="days-counter-card-actions">
+                  
                   <button
-                    onClick={() => deleteDate(index)}
+                    onClick={() => {
+                      setDialogIndex(index);
+                      setShowDialog(true);
+                    }}
                     className="days-counter-delete-btn"
                     title="Delete"
                   >
@@ -159,33 +207,39 @@ const DaysCounter = () => {
                 </div>
                 <div className="days-counter-selected-date">
                  
-                  {date.selectedDate ? (                    
-                      <span className="">
+                  {date.selectedDate && editingDateIndex !== index ? (                    
+                      <span 
+                        className="days-counter-date-display"
+                        onClick={() => handleDateClick(index)}
+                        style={{ cursor: 'pointer' }}
+                      >
                         {formatDate(date.selectedDate)}
                       </span>
                     ) : (
                     <></>
                     )}
-                     {!date.selectedDate ? (
+                     {!date.selectedDate || editingDateIndex === index ? (
                     <input
                       type="datetime-local"
                       value={date.selectedDate || ''}
                       onChange={(e) => updateDate(index, e.target.value, date.label)}
+                      onBlur={() => setEditingDateIndex(-1)}
                       min={getTenYearsAgo()}
                       max={getToday()}
                       className="days-counter-date-input"
+                      autoFocus={editingDateIndex === index}
                       />
                       ) : ( <> </>)}
                 </div>              
               </div>
             </div>
           ))}
-          <span className="days-counter-note">* All details are saved locally on your device to ensure your privacy.</span>
+          <span className="days-counter-note">* All details are saved only on your device to ensure your privacy.</span>
         </div>
 
         {dates.length > 0 && dates.length < 2 && (
           <button
-            onClick={addDate}
+            onClick={()=>addDate()}
             className="days-counter-add-another-btn"
           >
            ({dates.length}/2)

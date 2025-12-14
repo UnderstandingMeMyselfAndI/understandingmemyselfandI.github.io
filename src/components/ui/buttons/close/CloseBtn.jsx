@@ -1,9 +1,11 @@
 import "./styles.scss"
 import AddIcon from '@mui/icons-material/Add';
-const CloseBtn = (handleClick) => {
+const CloseBtn = ({handleClick}) => {
 
-   return <button className="close-btn" onClick={handleClick}><AddIcon /></button>
+      return <button className="close-btn" onClick={handleClick}><AddIcon /></button>
 
 }
-
+// CloseBtn.propTypes = {
+// 	handleClick:function
+// };
 export default CloseBtn

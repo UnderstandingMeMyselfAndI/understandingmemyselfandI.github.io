@@ -1,52 +1,40 @@
 import {create} from "zustand";
-const useAppStore = create(set => ({
-	// bears: 0,
+const useAppStore = create((set) => ({
 	toolAdded: false,
-	emergencyToolAdded: false,
-	acitivty: 0,
+	activity: 0,
 	scrollStage: 0,
-	bgImageID: 0,
 	acronymnID: 0,
 	active: false,
 	showAccCard: false,
 	isMobile: false,
-	toolCount: 0,
 	showToolsOnly: false,
 	userToolIDs: [],
 	accData: [],
 	message: "",
 	showSnackbar: false,
 	isInstalled: false,
-	setIsInstalled: isInstalled => set(state => ({isInstalled: isInstalled})),
-	setIsMobile: isMobile => set(state => ({isMobile: isMobile})),
-	setMessage: msg => set(state => ({message: msg})),
-	setShowSnackbar: show => set(state => ({showSnackbar: show})),
-	setActivity: activity => set(state => ({acitivty: activity})),
-	setAccData: data => set(state => ({accData: data})),
-	addTool: id => set(state => ({userToolIDs: [...state.userToolIDs, id]})),
-	// removeTool: id => set(state => ({userToolIDs: state.userToolIDs.filter(t => t.id !== id)})),
-	setToolIDs: ids => set(state => ({userToolIDs: ids})),
-	setShowToolsOnly: show => set(state => ({showToolsOnly: show})),
-	toggleShowToolsOnly: () => set(state => ({showToolsOnly: !state.showToolsOnly})),
-	setToolCount: count => set(state => ({toolCount: count})),
-	incToolCount: () => set(state => ({toolCount: state.toolCount + 1})),
-	decrementToolCount: () => set(state => ({toolCount: state.toolCount - 1})),
-	setToolAdded: added => set(state => ({toolAdded: added})),
-	toggleTool: () => set(state => ({toolAdded: !state.toolAdded})),
-	setEmergencyToolAdded: added => set(state => ({emergencyToolAdded: added})),
-	toggleEmergencyTool: () => set(state => ({emergencyToolAdded: !state.emergencyToolAdded})),
-	setbgImageID: id => set(state => ({bgImageID: id})),
-	setAcronymnID: id => set(state => ({acronymnID: id})),
-	setScrollStage: stage => set(state => ({scrollStage: stage})),
-	toggleIsSelected: () => set(state => ({isToolSelected: !state.isToolSelected})),
-	setActive: isActive => set(state => ({active: isActive})),
+	setIsInstalled: isInstalled => set(() => ({isInstalled: isInstalled})),
+	setIsMobile: isMobile => set(() => ({isMobile: isMobile})),
+	setMessage: msg => set(() => ({message: msg})),
+	setShowSnackbar: show => set(() => ({showSnackbar: show})),
+	setActivity: id => {
+		console.trace(`setActivity called with value: ${id}`);
+		set(() => ({ activity: id }))
+	
+	},
+	setAccData: data => set(() => ({accData: data})),
+	addTool: id => set((state) => ({userToolIDs: [...state.userToolIDs, id]})),
+	// removeTool: id => set((state) => ({userToolIDs: state.userToolIDs.filter(t => t.id !== id)})),
+	setToolIDs: ids => set(() => ({userToolIDs: ids})),
+	setShowToolsOnly: show => set(() => ({showToolsOnly: show})),
+	toggleShowToolsOnly: () => set((state) => ({showToolsOnly: !state.showToolsOnly})),
+
+	setAcronymnID: id => set(() => ({acronymnID: id})),
+	setScrollStage: stage => set(() => ({scrollStage: stage})),
 	setShowAccCard: show => {
 		console.trace(`setShowAccCard called with value: ${show}`);
-		set(state => ({showAccCard: show}));
+		set(() => ({showAccCard: show}));
 	},
-	setIsExpanded: show => {
-		console.trace(`setIsExpanded called with value: ${show}`);
-		set(state => ({showAccCard: show}));
-	},
+	
 }));
 export default useAppStore;

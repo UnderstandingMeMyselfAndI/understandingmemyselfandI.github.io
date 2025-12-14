@@ -209,6 +209,15 @@ const strings = {
 			title: "About",
 			content: ["About Description", "Paragraph 2"],
 		},
+		{
+			id: 3,
+			name: "daysCounter",
+			title: "Days Counter",
+			btnLabel: "Days Counter",
+			content: ["", ""],
+		},
+
+		
 	],
 	toolbox: {
 		added: "Added to your toolbox",

@@ -1,0 +1,80 @@
+@use "./scss/_variables.scss";
+@import "@/globals.css";
+.dialog-backdrop{
+    display:none;
+    &.show{
+        display:flex;
+    }
+    position:fixed;
+    z-index:8510;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:rgba(10, 10, 10, 0.75);
+}
+.dialog{
+    display:flex;
+    flex-flow:column wrap;
+    position:absolute;
+    z-index:20;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:360px;
+    height:fit-content;
+    row-gap:1.5rem;
+    
+    outline:1px solid rgba(150,150,150,0.15);
+    // box-shadow: 0px 0px 6px 3px rgba(10, 10, 10, 0.5);
+    
+    // border-radius:2px;
+    .dialog-inner{
+        position:relative;
+        width:100%;
+        height:100%;
+        display:flex;
+        flex-flow:column wrap;
+        row-gap:1.5rem;
+        padding:2.5rem 1.5rem 1.5rem 1.5rem;
+        background-color:rgba(10, 10, 10,0.15);
+        &::after{
+            content:"";
+            position:absolute;
+            z-index:-1;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            
+            background:var(--mainBackground);
+        }
+   }
+   
+    .dialog-title{
+        font-size:variables.$h4_size;
+        font-weight:700;
+        color:var(--primary);
+        width:100%;
+    }
+    .dialog-instruction{
+        width:100%;
+    }
+    .dialog-actions{
+        // margin-top:2rem;
+        width:100%;
+        display:flex;
+        column-gap:1.5rem;
+    }
+    button.btn.confirm{
+        background:transparent;
+        outline:1px solid rgba(250,250,250,0.5);
+        
+    }
+    button.btn.cancel{
+        color:#999;
+        background:transparent;
+        outline:1px solid rgba(150,150,150,0.5);
+    }
+    
+}

@@ -20,6 +20,7 @@ export default function BadgeToolbox() {
 	const ids = allAccronyms.map(item => item.id);
 	const positiveIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids);
 	const showAccCard = useAppStore(s => s.showAccCard);
+	const activity = useAppStore(s => s.activity);
 	// const [openAlert, setOpenAlert] = React.useState(false);
 	const [open, setOpen] = React.useState(false);
 	const [numTools, setNumTools] = React.useState(positiveIDs.length);
@@ -34,6 +35,11 @@ export default function BadgeToolbox() {
 	}, [userToolIDs]);
 
 	useEffect(() => {
+		console.log("BadgeToolbox activity", activity);
+		setOpen( activity === -1 );
+	}, [activity,setOpen]);
+
+	useEffect(() => {
 		window.addEventListener("scroll", () => {
 			window.scrollY > 600 ? setOpen(true) : setOpen(false);
 		});
@@ -42,7 +48,7 @@ export default function BadgeToolbox() {
 	useEffect(() => {
 		if (window.scrollY < 600) return;
 		setOpen(!showAccCard);
-	}, [showAccCard,setOpen]);
+	}, [showAccCard, setOpen]);
 
 	const handleTouch = () => {
 		// set the message as the opposite here

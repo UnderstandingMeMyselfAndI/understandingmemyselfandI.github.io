@@ -71,7 +71,7 @@ export default function Backdrop({initialImageId = null}) {
 			// Apply to both images (active + inactive)
 			const images = document.querySelectorAll(".cont img");
 			images.forEach(img => {
-				img.style.transform = `translateY(${rate}px)`;
+				// img.style.transform = `translateY(${rate}px)`;
 			});
 		};
 

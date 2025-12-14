@@ -1,7 +1,12 @@
+
 @import "@/globals.css";
+
 .btn button {
 	all: unset;
+	font-size:1.75rem;
+    font-weight:600;
 }
+/* 
 .btn svg path {
 	fill: var(--primary);
 }
@@ -51,8 +56,30 @@ button:hover {
 	padding: 7px 6px;
 	transition: all 0.3s ease-in-out;
 	display: flex;
-}
+} */
 /*button:hover {
 	background-color: transparent;
 	transform: scale(1.1);
 }*/
+button.btn{
+    /* margin:1.5rem auto; */
+	
+    background:rgba(164, 120, 245, 0.35);
+    border:none;
+    /* padding:0.5rem 1.5rem 0.5rem 1rem; */
+    /* outline:1px solid rgba(20,20,20,0.35); */
+	/* box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.15); */
+    /* display:flex; */
+    /* font-size:1.75rem; */
+    font-weight:600;
+    color:var(--primary);
+    /* flex-flow:row wrap;
+    justify-content:center;
+    align-items:center; */
+    /* gap:0.5rem; */
+    /* border-radius:5px; */
+    cursor:pointer;
+    transition:all 0.3s ease-in-out;
+	 /* width:fit-content; */
+
+}

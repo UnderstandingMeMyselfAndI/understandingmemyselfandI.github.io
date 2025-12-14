@@ -8,7 +8,7 @@ section.intro {
 	width: 100%;
 	display: flex;
 	flex-flow: column nowrap;
-	row-gap: 3.5rem;
+	row-gap: 2.75rem;
 	justify-content: center;
 	align-items: center;
 	margin-top: 120dvh;
@@ -56,6 +56,20 @@ section.intro {
 		}
 		b{
 			color: var(--lightBlue);
+		}
+	}
+	
+	span.ummi{
+		font-size:variables.$h1_size;
+	
+	}
+	.quick-access,
+	.days-section{
+		.title{
+			font-size:variables.$h4_size;
+			font-weight:600;
+			width:80%;
+			margin:0 auto;
 		}
 	}
 }

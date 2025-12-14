@@ -33,14 +33,14 @@ import Footer from "ui/footer/Footer";
 import Introduction from "components/activity/introduction/Introduction";
 import Tools from "components/activity/tools/Tools.jsx";
 
-import BackdropParallax from "ui/backdrop/BackdropParallax";
+import Backdrop from "ui/backdrop/Backdrop";
 
 import Snackbars from "ui/snackbars/Snackbars.jsx";
 
 import AcronymCard from "ui/cards/AcronymCard.jsx";
 import BadgeToolbox from "ui/badges/BadgeToolbox";
 
-import DaysCounter from "ui/DaysCounter/DaysCounter";
+import DaysCounter from "./components/activity/DaysCounter/DaysCounter";
 import AppMenu from "./components/ui/menu/AppMenu";
 import CookieConsent from "./components/ui/cookieConsent/CookieConsent";
 import {smoothScroll} from "./js/utils.js";
@@ -60,13 +60,15 @@ function App() {
 		});
 	}
 
+	console.log("App");
+
 	return (
 		<div>
 			
 			<div className="app">
 				<CookieConsent />
 				{/* <EmergencyButton /> */}
-				{/* <DaysCounter /> */}
+				
 				
 				{/* <AppMenu />	 */}
 				<div className="main">
@@ -81,6 +83,7 @@ function App() {
 						<Header />
 						
 						<Introduction />
+						<DaysCounter />
 						<AcronymCard />
 						<Tools id="tools" />
 						<Footer />
@@ -90,13 +93,14 @@ function App() {
 				</div>
 				<Snackbars />
 				<ScrollPosition />
-				<BackdropParallax
+				
+			</div>
+			<Backdrop
 					initialImageId={3}
 					initialDelay={3000}
 					interval={6000}
-					parallaxStrength={0}
+					parallaxStrength={-1}
 				/>
-			</div>
 		</div>
 	);
 }

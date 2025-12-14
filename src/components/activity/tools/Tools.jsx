@@ -21,8 +21,8 @@ const Tools = () => {
 				<h2>
 					<u>Tools:</u>
 				</h2>
-				<p>Tap a heading to find out <br /> how to use the tool.</p>
-				<p>Look out for <u><b>videos</b></u><br /> that explain them.</p>
+				<p>Tap a heading to find out how to use<br /> the tools and videos that explain them.</p>
+				
 				<MenuCarousel />
 			</section>
 		</div>

@@ -76,7 +76,7 @@ const InstallPWA = () => {
       
         <button
             aria-label="install"
-            className="install"
+            className="install btn"
             onClick={handleClick}
           >
           <Logo classes='small' showText={false} /><span> Install Ummi</span>
