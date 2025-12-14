@@ -17,6 +17,7 @@ const Podcasts = () => {
     return (
         <section id="podcasts" className={"podcasts" + (open ? " show" : " ")}>
             <h2><u>Podcasts</u></h2>
+            <p>The following podcasts are available on Spotify. Following a link will take you to the podcast.</p>
             {data.map((podcast, i) => {
                 return (
                     <div className={"podcast"} key={i}>
