@@ -29,6 +29,7 @@ const AcronymCard = () => {
 	const acronymnID = useAppStore(s => s.acronymnID);
 	const showAccCard = useAppStore(s => s.showAccCard);
 	const setShowAccCard = useAppStore(s => s.setShowAccCard);
+	const setActivity = useAppStore(s => s.setActivity);
 
 	const contentRef = useRef(null);
 	useEffect(() => {
@@ -42,6 +43,7 @@ const AcronymCard = () => {
 
 	const handleClose = () => {
 		setShowAccCard(false);
+		setActivity(-1);
 	};
 
 	const smoothScrollTo = e => {

@@ -28,13 +28,13 @@ function Footer() {
 			)}
 			</section>
 			
-			<section className="qr">
+			<section className="qr" id="share">
 				<h3><u>Spread the love</u></h3>
 				<p><u>Share the app,</u> <br/><u>scan the QR Code</u></p>
 				<QRCode label="" />
 			</section>
 
-			<section className="days-counter">
+			<section className="days-counter" id="daysCounter">
 				<h3><u>Monitor your progress</u></h3>
 				<p>It can be useful to remind ourselves how far we have come.</p>
 				<DaysCounterBtn />
@@ -65,7 +65,7 @@ function Footer() {
 					
 				</p>
 			</section>
-			<section>
+			<section id="feedback">
 				<h3>
 					<u>FEEDBACK</u>
 				</h3>

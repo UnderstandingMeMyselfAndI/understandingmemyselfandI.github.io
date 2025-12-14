@@ -148,7 +148,7 @@ const Header = ({classes = ""}) => {
 	);
 
 	return (
-		<header ref={cont}>
+		<header ref={cont} id="header">
 			<div className="home-grp">
 				<div
 					className="home-logo homelogo"

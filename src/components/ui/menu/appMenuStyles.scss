@@ -1,12 +1,14 @@
 @use "@/scss/_variables.scss";
 @import "@/globals.css";
 .AppMenu{
+    &.hide{
+        display:none;
+    }
     position:fixed;
     top:0;
     right:0;
     left:auto;
-    // width:100vw;
-    // height:100vh;
+   
    
     overflow-x:clip;
     z-index:5000;   
@@ -16,6 +18,11 @@
     row-gap:0rem;
     align-items: flex-end;
     justify-content:flex-start;
+     &:has(.checkbox1:checked){
+        background-color:rgba(20,20,20,0.75);
+        width:100vw;
+        height:100vh;
+    }
    
     .burger-stack{
         background:none;
@@ -73,7 +80,7 @@
         .bar4 {
             bottom: 0;
         }
-        
+       
         /* HAMBURGER 1 */
         .checkbox1:checked + label > .hamburger1 > .bar1{
             transform: rotate(45deg);

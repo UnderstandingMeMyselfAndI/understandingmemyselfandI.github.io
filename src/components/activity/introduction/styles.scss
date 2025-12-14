@@ -1,6 +1,10 @@
 @use "./scss/_variables.scss";
 @import "@/globals.css";
 
+#intro{
+	scroll-padding-top: 60px;
+}
+
 section.intro {
 
 	color: var(--primary);

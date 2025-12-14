@@ -21,6 +21,7 @@
 // import CssBaseline from "@mui/material/CssBaseline";
 
 import {useThemeStore} from "@/store/useThemeStore";
+import useAppStore from "./store/useAppStore";
 // import DaysCounter from "./components/ui/DaysCounter/DaysCounter";
 import applyTheme from "components/theme/applyTheme";
 
@@ -50,6 +51,8 @@ import "./App.scss";
 // import SpeedDialSettings from "./components/ui/settings/speedDial/SpeedDialSettings.jsx";
 function App() {
 
+	const setActivity = useAppStore(s => s.setActivity);
+	setActivity(-1);
 	smoothScroll();
 	const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme);
 
@@ -60,7 +63,7 @@ function App() {
 		});
 	}
 
-	console.log("App");
+
 
 	return (
 		<div>
@@ -70,16 +73,16 @@ function App() {
 				{/* <EmergencyButton /> */}
 				
 				
-				{/* <AppMenu />	 */}
+				<AppMenu />	
 				<div className="main">
 					<BadgeToolbox />
-					<LogoFloating
+					{/* <LogoFloating
 						classes=" logo small"
 						showName={false}
-					/>
+					/> */}
 					
 				
-					<div className="activities">
+					<div className="activities" id="top">
 						<Header />
 						
 						<Introduction />

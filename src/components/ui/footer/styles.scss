@@ -1,5 +1,11 @@
 @use "@/scss/_variables.scss";
 @import "@/globals.css";
+#feedback,
+#daysCounter,
+#share,
+#installInstructions{
+	scroll-padding-top: 60px;
+}
 
 .version-footer {
 	font-size: 1rem;

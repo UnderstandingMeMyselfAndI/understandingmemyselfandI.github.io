@@ -2,6 +2,7 @@ import * as React from 'react';
 // import Button from '@mui/material/Button';
 // import Menu from '@mui/material/Menu';
 // import MenuItem from '@mui/material/MenuItem';
+import useAppStore from '@/store/useAppStore';
 
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 // import Slide from '@mui/material/Slide';
@@ -12,6 +13,9 @@ export const MenuCloseIcon = () => <svg xmlns="http://www.w3.org/2000/svg" heigh
 export default function AppMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(false);
+
+  const setActivity = useAppStore(state => state.setActivity);
+  const activity = useAppStore(state => state.activity);
  
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -28,7 +32,7 @@ export default function AppMenu() {
   };
 
   return (
-    <div className="AppMenu">
+    <div className={"AppMenu"+(activity === -1 ? "" : " hide")}>
       <div
         className="burger-stack"
         id="burger-button"
@@ -47,13 +51,53 @@ export default function AppMenu() {
         </label>
       </div>
       <ul className={open ? " open" : " "} id="app-menu">
-        <li onClick={handleClose}>Tools</li>
-        <li onClick={handleClose}>Journeys</li>
-        <li onClick={handleClose}>Motivation</li>
-        <li onClick={handleClose}>Dailys</li>
-        <li onClick={handleClose}>Days Counter</li>
-        <li onClick={handleClose}>Tour</li>
-        <li onClick={handleClose}>Settings</li>
+
+
+        <li onClick={() => {
+          handleClose();
+          setActivity(-1);
+          const el = document.getElementById("tools");
+
+          el.scrollIntoView({ behavior: "smooth", block: "start" })
+          
+        }}>Tools</li>
+         <li onClick={() => {
+          handleClose();
+          setActivity(-1);
+          const el = document.getElementById("intro");
+
+          el.scrollIntoView({ behavior: "smooth", block: "start" })
+          
+        }}>Install</li>
+        {/* <li onClick={handleClose}>Journeys</li> */}
+        {/* <li onClick={handleClose}>Motivation</li> */}
+        {/* <li onClick={handleClose}>Dailys</li> */}
+        <li onClick={() => {
+           handleClose();
+          setActivity(-1);
+          const el = document.getElementById("daysCounter");
+
+          el.scrollIntoView({ behavior: "smooth", block: "start" })
+        }
+        }>Days Counter</li>
+          <li onClick={() => {
+          handleClose();
+          setActivity(-1);
+          const el = document.getElementById("share");
+
+          el.scrollIntoView({ behavior: "smooth", block: "start" })
+          
+        }}>Share</li>
+         <li onClick={() => {
+           handleClose();
+          setActivity(-1);
+          const el = document.getElementById("feedback");
+
+          el.scrollIntoView({ behavior: "smooth", block: "start" })
+        }
+        }>Feedback</li>
+        {/* <li onClick={handleClose}>Tour</li> */}
+        {/* <li onClick={handleClose}>Settings</li> */}
       </ul> 
     </div>
   );

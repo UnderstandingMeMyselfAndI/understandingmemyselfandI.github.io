@@ -26,7 +26,7 @@ const Introduction = () => {
 		
 		<div className={"activity" + (open ? " show" : " hide")}>
 			
-			<section className="intro">				
+			<section className="intro" id="intro">				
 				<div className="i1">
 					<h2><u>Hey</u></h2>
 					<p>The tools we learn to cope with our<br />emotions, thoughts, feelings<br />and mental health are ace, but<br /> <b><u>remembering them can be hard.</u></b></p></div>
