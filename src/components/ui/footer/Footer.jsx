@@ -6,12 +6,12 @@ import FooterMetadata from "ui/footer/FooterMetadata.jsx";
 import InstallPWA from "ui/buttons/InstallPWA/InstallPWA";
 import { getPWADisplayMode } from "@/utils/isAppInstalled";
 import DaysCounterBtn from "ui/buttons/daysCounter/daysCounterBtn";
+import Podcasts from "components/activity/podcasts/Podcasts";
+
 import "./styles.scss";
 function Footer() {
 
 	const isMobile = useAppStore(s => s.isMobile);
-
-	
 	
 	return (
 		<div className="activity footer" id="installInstructions">
@@ -68,6 +68,8 @@ function Footer() {
 				</p>
 				<p className="big2"><b><u>  &#x2661; BIG LOVE  &#x2661; </u></b></p>
 			</section>
+
+			<Podcasts />
 			<section id="feedback">
 				<h3>
 					<u>FEEDBACK</u>

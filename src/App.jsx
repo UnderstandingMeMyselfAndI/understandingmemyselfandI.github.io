@@ -31,10 +31,11 @@ import LogoFloating from "ui/logo/LogoFloating";
 import Header from "ui/header/Header.jsx";
 
 import Footer from "ui/footer/Footer";
+import Podcasts from "./components/activity/podcasts/Podcasts";
 import Introduction from "components/activity/introduction/Introduction";
 import Tools from "components/activity/tools/Tools.jsx";
 
-import Backdrop from "ui/backdrop/Backdrop";
+// import Backdrop from "ui/backdrop/Backdrop";
 import BackdropParallax from "ui/backdrop/BackdropParallax";
 
 import Snackbars from "ui/snackbars/Snackbars.jsx";
@@ -90,6 +91,7 @@ function App() {
 						<DaysCounter />
 						<AcronymCard />
 						<Tools id="tools" />
+						{/* <Podcasts /> */}
 						<Footer />
 					</div>
 

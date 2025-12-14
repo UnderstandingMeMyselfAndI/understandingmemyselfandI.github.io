@@ -92,6 +92,14 @@ export default function AppMenu() {
           el.scrollIntoView({ behavior: "smooth", block: "start" })
           
         }}>Spread the love</li>
+        <li onClick={() => {
+          handleClose();
+          setActivity(-1);
+          const el = document.getElementById("podcasts");
+
+          el.scrollIntoView({ behavior: "smooth", block: "start" })
+          
+        }}>Podcasts</li>
         {getPWADisplayMode() !== 'fullscreen' && (<li onClick={() => {
           handleClose();
           setActivity(-1);
