@@ -247,12 +247,12 @@ const DaysCounter = () => {
         )}
       </div>
       <div  className="days-counter-backdrop"> 
-        <BackdropParallax
-                  initialImageId={3}
-                  initialDelay={3000}
-                  interval={6000}
-                  parallaxStrength={0}
-                />
+<BackdropParallax
+          initialImageId={4}
+          initialDelay={0}
+          interval={6000}
+          parallaxStrength={0}
+        />
         </div>
     </div>
   );

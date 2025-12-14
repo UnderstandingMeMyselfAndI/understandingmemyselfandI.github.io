@@ -66,6 +66,7 @@ function Footer() {
 					Nottingham UK and their hard work and dedication to help people through their recovery journey.
 					
 				</p>
+				<p>If you live in Nottingham U.K. and need help reach out to them <a href="https://www.nottinghamrecoverynetwork.com/" target="_blank" rel="noopener noreferrer">nottinghamrecoverynetwork.com</a></p>
 				<p className="big2"><b><u>  &#x2661; BIG LOVE  &#x2661; </u></b></p>
 			</section>
 
