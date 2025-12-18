@@ -104,12 +104,14 @@ body {
 				color: var(--primary);
 			}
 			.ummi {
-				font-weight: 900;
+				font-weight: 800;
+				font-variation-settings: "wght" 800;
 				color: var(--lightBlue);
 				font-size: variables.$ummi_size;
 			}
 			.ummi-blue {
-				font-weight: 900;
+				font-weight: 800;
+				font-variation-settings: "wght" 800;
 				color: var(--lightBlue);
 			}
 			*.MuiTypography-root {
