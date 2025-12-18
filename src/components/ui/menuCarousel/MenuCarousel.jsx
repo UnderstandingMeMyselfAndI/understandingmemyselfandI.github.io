@@ -6,7 +6,7 @@ import {storeKeys, localStore} from "@/data/localStore.js";
 import PropTypes from "prop-types";
 import useAppStore from "@/store/useAppStore";
 import data from "../../../data/data.js";
-import {getPWADisplayMode} from "@/utils/isAppInstalled";
+// import {getPWADisplayMode} from "@/utils/isAppInstalled";
 import "./MenuCarousel.scss";
 // Default configuration
 const DEFAULT_CONFIG = {
@@ -197,7 +197,7 @@ VerticalList.propTypes = {
 const MenuCarousel = () => {
 	const [open, setOpen] = useState(false);
 	const showToolsOnly = useAppStore(s => s.showToolsOnly);
-	const userToolIDs = useAppStore(s => s.userToolIDs);
+	// const userToolIDs = useAppStore(s => s.userToolIDs);
 	// console.log("userToolIDs", userToolIDs);
 
 	const ids = data.map(item => item.id);

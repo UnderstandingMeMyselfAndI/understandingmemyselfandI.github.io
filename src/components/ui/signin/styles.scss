@@ -1,0 +1,26 @@
+// Theming
+// Out of the box, Firebase UI provides a neutral light and dark theme with some opinionated styling (colors, border radii etc). These are all controlled via CSS variables, allowing you to update these at will to match any existing UI design guidelines. To modify the variables, override the following CSS variables:
+// :root {
+//   /* The primary color is used for the button and link colors */
+//   --fui-primary: ...;
+//   /* The primary hover color is used for the button and link colors when hovered */
+//   --fui-primary-hover: ...;
+//   /* The primary surface color is used for the button text color */
+//   --fui-primary-surface: ...;
+//   /* The text color used for body text */
+//   --fui-text: ...;
+//   /* The muted text color used for body text, such as subtitles */
+//   --fui-text-muted: ...;
+//   /* The background color of the cards */
+//   --fui-background: ...;
+//   /* The border color used for none input fields */
+//   --fui-border: ...;
+//   /* The input color used for input fields */
+//   --fui-input: ...;
+//   /* The error color used for error messages */
+//   --fui-error: ...;
+//   /* The radius used for the input fields */
+//   --fui-radius: ...;
+//   /* The radius used for the cards */
+//   --fui-radius-card: ...;
+// }

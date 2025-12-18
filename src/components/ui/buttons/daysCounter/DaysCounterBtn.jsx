@@ -2,27 +2,26 @@
 
 import MoreTimeIcon from '@mui/icons-material/MoreTime';
 import useAppStore from '@/store/useAppStore';
+import PropTypes from 'prop-types';
 
 import "./styles.scss";
-const DaysCounterBtn = () => {
+const DaysCounterBtn = ({label = 'Days Counter'}) => {
 
     const setActivity = useAppStore(state => state.setActivity);
 
     const handleClick = () => {		
-        
-        console.log("handleClick");
         setActivity(2);
 	};
 	return (
 		
         <button onClick={() => handleClick()} className="days-counter btn" aria-label="Days Counter">
             <MoreTimeIcon className="icon" />
-            <div>Days Counter</div>
+            <div>{label}</div>
         </button>		
 		
 	);
 };
 DaysCounterBtn.propTypes = {
-	
+	label: PropTypes.string,
 };
 export default DaysCounterBtn;

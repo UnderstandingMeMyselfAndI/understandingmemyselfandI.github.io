@@ -13,6 +13,19 @@ function Footer() {
 
 	const isMobile = useAppStore(s => s.isMobile);
 	
+
+	 const getInitialDates = () => {
+		try {
+		const saved = localStorage.getItem('daysCounterDates');
+		return saved ? JSON.parse(saved) : [];
+		} catch (e) {
+		return [];
+		}
+	};
+
+	const dates = getInitialDates();
+
+	console.log("dates ",dates)
 	return (
 		<div className="activity footer" id="installInstructions">
 		<section>
@@ -36,12 +49,23 @@ function Footer() {
 
 			<section className="days-counter" id="daysCounter">
 				<h3><u>Monitor your progress</u></h3>
-				<p>It can be useful to remind ourselves how far we have come.</p>
-				<p>Set dates that are significant to you.</p>
-				<DaysCounterBtn />
-				
+
+				{dates.length > 0 ? (					
+					<>
+						<p>View your dates:</p>	
+						<DaysCounterBtn label="View your dates" />
+					</>
+				) : (
+					<>
+						<p>It can be useful to remind ourselves how far we have come.</p>
+						<p>Set dates that are significant to you.</p>
+						<DaysCounterBtn />
+					</>
+				)}
+
 				<h4><b><u>We respect you</u></b></h4>
-				<p>Any data you provide is stored only on your device and not shared anywhere. You can remove the data at anytime.</p>
+				<p>Any data you provide is stored only on your device and not shared anywhere.<br />You can remove the data at anytime.</p>
+						
 				
 			</section>
 			

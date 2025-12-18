@@ -26,7 +26,6 @@ const DaysCounter = () => {
   }
   const handleCloseDialog = () => {
     setShowDialog(false);
-    // setActivity(-1);
   }
  
   
@@ -67,7 +66,7 @@ const DaysCounter = () => {
   }, [dates]);
 
   useEffect(() => {
-    // const interval = setInterval(() => {
+    
       const now = Date.now();
       const newTimes = {};
       dates.forEach((date, index) => {
@@ -81,9 +80,7 @@ const DaysCounter = () => {
         }
       });
       setCurrentTimes(newTimes);
-    // }, 1000);
 
-    // return () => clearInterval(interval);
   }, [dates]);
 
   const addDate = () => {
@@ -137,7 +134,7 @@ const DaysCounter = () => {
 
         {dates.length === 0 && (
           <div className="days-counter-empty-state">
-            <div className="days-counter-empty-title">Let's do this</div>
+            <div className="days-counter-empty-title">Let&apos;s do this</div>
               <div  className="days-counter-add-first-icon"  onClick={()=>addDate()} ><AddIcon /></div>
               <button
                 onClick={()=>addDate()}
