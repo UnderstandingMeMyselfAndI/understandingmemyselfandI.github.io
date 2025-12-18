@@ -50,7 +50,8 @@ body {
 	h5,
 	h6 {
 		font-family: "Plus Jakarta Sans", Georgia, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-		font-weight: 600;
+		font-weight: 800;
+		font-variation-settings: "wght" 800;
 		font-style: normal;
 		line-height: variables.$default_line_height;
 		padding: 0;
@@ -90,6 +91,7 @@ body {
 	}
 	strong {
 		font-weight: 700;
+		font-variation-settings: "wght" 700;
 	}
 	* {
 		font-family: "Plus Jakarta Sans", sans-serif;
