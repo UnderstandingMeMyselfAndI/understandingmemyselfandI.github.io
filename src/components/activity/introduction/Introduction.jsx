@@ -1,10 +1,13 @@
 // import * as React from "react";
 import {useEffect, useState} from "react";
 import useAppStore from "@/store/useAppStore";
-import { activities } from "@/data/config";
+import parse from "html-react-parser";
+
 import InstallPWA from "ui/buttons/InstallPWA/InstallPWA";
 import {getPWADisplayMode} from "@/utils/isAppInstalled";
-import DaysCounterBtn from "ui/buttons/daysCounter/daysCounterBtn";
+import DaysCounterCTA from "components/activity/DaysCounter/DaysCounterCTA";
+import { activities ,strings} from "@/data/config";
+import YourPrivacy from "components/ui/sections/privacy/YourPrivacy";
 
 import "@/utils/IsMobile.js";
 import "./styles.scss";
@@ -18,9 +21,16 @@ const Introduction = () => {
 
 	const activityID = activities.find(activity => (activity.url === "introduction" ? activity.id : null));
 
+	const content = strings.activity.find(activity => activity.name === 'introduction') || null;
+	if (content === null) {
+		console.warn('No content found for activity "introduction"');
+	}
+
 	useEffect(() => {
 		setOpen(activityID === activity);
 	}, [activity, activityID]);
+
+	
 
 	return (
 		
@@ -28,26 +38,29 @@ const Introduction = () => {
 			
 			<section className="intro" id="intro">				
 				<div className="i1">
-					<h2><u>Hey</u></h2>
-					<p>The tools we learn to cope with our<br />emotions, thoughts, feelings<br />and mental health are ace, but<br /> <b><u>remembering them can be hard.</u></b></p></div>
-				<div className="i2">
-					<p><span className="ummi">Ummi</span><br />is your toolbox to carry those tools around for when you need them.</p>
+					<h2><u>{content.title}</u></h2>
+					{content?.content?.map((html, i) => {
+						return (
+							<div key={i}>
+								<p>{parse(html)}</p>
+							</div>
+						)
+					})}
 				</div>
-				{getPWADisplayMode() !== 'fullscreen' && (
-					<div className="i3 quick-access">
-						{/* <p>The app is being constantly updated with <b><u>new tools</u></b>, <b><u>video guides</u></b>, <b><u>success stories</u></b>, and <b><u>motivational content</u></b> to help you cope with your emotions, thoughts, feelings and mental health throughout <b><u>your journey.</u></b></p> */}
-						<div className="title">For quick access</div>
+				
+				{/* {getPWADisplayMode() !== 'fullscreen' && (
 					
-						
-						{/* <p><b className="ummi">Ummi</b> can be added to your {isMobile ? "home screen" : "desktop"} for easy access. </p> */}
-					
-						<InstallPWA />
-					</div>)}
+					<InstallCTA />
+				)}
 
-				<div className="days-section">
-					<div className="title">Remind yourself how far you have come.</div>
-					<DaysCounterBtn />
-				</div>
+				<DaysCounterCTA /> */}
+				{/* <div className="respect">
+					<h4><b><u>We respect you<br />and your privacy</u></b></h4>
+					<p>Any data you provide is stored<br /> only on your device.<br />You can remove the data at anytime.</p>
+					<p><b><u>We will never sell your data.</u></b></p>
+						
+				</div> */}
+				{/* <YourPrivacy /> */}
 			</section>
 		</div>
 	);

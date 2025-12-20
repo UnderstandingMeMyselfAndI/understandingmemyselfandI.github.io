@@ -10,6 +10,7 @@ import AutoGraphOutlinedIcon from "@mui/icons-material/AutoGraphOutlined";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import UmmiIcon from "@/components/ui/icons/UmmiIcon";
 import BlurOnOutlinedIcon from "@mui/icons-material/BlurOnOutlined";
+// import { title } from "process";
 const cnf = {
 	appName: "Ummi",
 	appLogName: "Understanding Me, Myself, and I",
@@ -192,31 +193,78 @@ const activities = baseActivities.map(item => ({
 const strings = {
 	activity: [
 		{
-			id: 0,
 			name: "introduction",
-			title: "Introduction",
-			content: ["Introduction", "Paragraph 2"],
+			title: "Hey",
+			content: [
+				'<span className="ummi">Ummi</span><br /> (<b>Understanding Me, Myself, and I</b>)<br /> is your <b><u>FREE</u></b> companion app.',
+				'If you are learning tools to cope with your<br />emotions, thoughts, feelings and mental health<br />by attending <br />ACT, CBT, DBT, REBT, SMART, <br />and Recovery groups,<br />this app is for you',
+				'These tools are ace,<br /><b> <u>but remembering them can be hard.</u></b> ',
+				'<span className="ummi">Ummi</span><br /><b><u>is your toolbox</u></b><br /> to carry those tools around with you<br />for whenever you need them.'
+			]
 		},
 		{
-			id: 1,
+			name: "tools",
+			title: "The Tools",
+			content: [
+				"Tap a heading to find out how to use the tool.",
+				// "Some tools also include videos that help to explain them."
+			],
+			btnLabel: "",
+			cta: {
+				title: '',
+				content: []
+			}
+		},
+		{
 			name: "videos",
 			title: "Videos",
-			content: ["Videos Description", "Paragraph 2"],
+			content: [],
 		},
+		
 		{
-			id: 2,
-			name: "about",
-			title: "About",
-			content: ["About Description", "Paragraph 2"],
-		},
-		{
-			id: 3,
 			name: "daysCounter",
 			title: "Days Counter",
 			btnLabel: "Days Counter",
-			content: ["", ""],
+			content: [],
+			cta: {
+				title: "Days Counter",
+				content: ["Track your progress and remind yourself<br /> how far you have come."]
+			},
 		},
-
+		{
+			name: "install",
+			title: "Install",
+			htmlContent: [],
+			btnLabel: "Install Ummi",
+			cta: {
+				title: 'Add the Ummi App',
+				content: ['Install Ummi for quick access']
+			}
+		},
+		{
+			name: "privacy",
+			title: "<b><u>We respect you<br />and your privacy</u></b>",
+			content: [
+				'Any data you provide to the Ummi app is stored<br /> <b><u>only on your device.</u></b><br />You can remove the data at anytime.',
+				'<b><u>We will never sell your data.</u></b>'],
+			btnLabel: "",
+			cta: {
+				title: '',
+				content: []
+			}
+		},
+		{
+			name: "yourData",
+			title: "Your Data",
+			content: [],
+			btnLabel: "Manage Your Data",
+			cta: {
+				title: 'Manage your data',
+				content: [
+					'Any data you provide is stored<br /> only on your device.<br />You can remove the data at anytime.',
+					'<b><u>We will never sell your data.</u></b>']
+			}
+		},
 		
 	],
 	toolbox: {

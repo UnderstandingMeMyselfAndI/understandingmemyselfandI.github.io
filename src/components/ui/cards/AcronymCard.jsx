@@ -136,7 +136,7 @@ const AcronymCard = () => {
 							className="videos"
 							id="videos"
 						>
-							<h3>VIDEOS</h3>
+							{/* <h3>VIDEOS</h3> */}
 
 							{accData?.videos.map((video, index) => (
 								<div
@@ -164,7 +164,18 @@ const AcronymCard = () => {
 							))}
 						</div>
 					)}
-					<div></div>
+					<div className="tags">
+						{accData?.cats.length > 0 && (
+							<div className="tags">
+								<div className="title">TAGS</div>
+								<div  className="tags-list">
+									{accData?.cats.map((cat, index) => (
+										<div key={"cat-"+index}>{cat}</div>
+									))}
+								</div>
+							</div>
+						)}
+					</div>
 					<div></div>
 				</section>
 				<div
@@ -201,6 +212,7 @@ const AcronymCard = () => {
 						onClick={handleClose}
 					>
 						<KeyboardReturnOutlinedIcon />
+						
 					</div>
 				</div>
 

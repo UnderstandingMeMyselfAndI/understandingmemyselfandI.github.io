@@ -63,6 +63,16 @@ section.intro {
 			color: var(--lightBlue);
 		}
 	}
+	.respect{
+		h4 {
+			font-size: variables.$h4_size;
+			font-weight: variables.$h4_weight;
+		}
+		u {
+			text-decoration-color: var(--yellow);
+			text-decoration-thickness: 4px;
+		}
+	}
 	
 	span.ummi{
 		font-size:variables.$h1_size;

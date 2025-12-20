@@ -74,7 +74,14 @@ export default function AppMenu() {
           el.scrollIntoView({ behavior: "smooth", block: "start" })
         }
         }>Days Counter</li>
-       
+        <li onClick={() => {
+           handleClose();
+          setActivity(-1);
+          const el = document.getElementById("daysCounter");
+
+          el.scrollIntoView({ behavior: "smooth", block: "start" })
+        }
+        }>Lingo &amp; Phrases</li>
           
          <li onClick={() => {
            handleClose();
@@ -92,14 +99,14 @@ export default function AppMenu() {
           el.scrollIntoView({ behavior: "smooth", block: "start" })
           
         }}>Spread the love</li>
-        <li onClick={() => {
+        {/* <li onClick={() => {
           handleClose();
           setActivity(-1);
           const el = document.getElementById("podcasts");
 
           el.scrollIntoView({ behavior: "smooth", block: "start" })
           
-        }}>Podcasts</li>
+        }}>Podcasts</li> */}
         {getPWADisplayMode() !== 'fullscreen' && (<li onClick={() => {
           handleClose();
           setActivity(-1);
@@ -116,6 +123,14 @@ export default function AppMenu() {
           el.scrollIntoView({ behavior: "smooth", block: "start" })
         }
         }>Feedback</li>
+        {/* <li onClick={() => {
+          handleClose();
+          setActivity(-1);
+          const el = document.getElementById("yourdata");
+
+          el.scrollIntoView({ behavior: "smooth", block: "start" })
+          
+        }}>Your data</li>  */}
         {/* <li onClick={handleClose}>Tour</li> */}
         {/* <li onClick={handleClose}>Settings</li> */}
       </ul> 
