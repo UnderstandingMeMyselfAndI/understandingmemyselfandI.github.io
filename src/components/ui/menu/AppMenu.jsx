@@ -29,7 +29,7 @@ export default function AppMenu() {
   const handleClose = () => {
     setAnchorEl(null);
     setOpen(false);
-    console.log("handleClose");
+   
   };
 
   return (

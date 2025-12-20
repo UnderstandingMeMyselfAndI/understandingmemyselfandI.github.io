@@ -1,7 +1,7 @@
 import parse from "html-react-parser";
 import { strings } from "@/data/config";
 import './styles.scss';    
-const YourPrivacy = () => {
+const YourPrivacyCTA = () => {
 
     const context = 'privacy'
 
@@ -10,16 +10,27 @@ const YourPrivacy = () => {
         console.warn('No content found for activity "' + context + '"');
     }
 
+    const handleClick = () => {
+
+        const el = document.getElementById("privacy");
+
+        el?.scrollIntoView({ behavior: "smooth", block: "start" })
+        
+        
+    };  
+
     return (
-        <section className="your-privacy">
+        <section className="your-privacy cta">
             <h4>{parse(content?.title)}</h4>
-            {content?.content?.map((html, i) => {
+            {content?.cta?.content?.map((html, i) => {
                 return (
                     <p key={i}>{parse(html)}</p>
                 )
             })}
+            <button className="btn" onClick={handleClick}>{content?.cta?.btnLabel}</button>
+            
         </section>
     )
 }
 
-export default YourPrivacy
+export default YourPrivacyCTA

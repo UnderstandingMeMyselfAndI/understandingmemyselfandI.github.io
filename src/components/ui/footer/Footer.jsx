@@ -47,7 +47,7 @@ function Footer() {
 				<QRCode label="" />
 			</section>
 
-			<section className="days-counter" id="daysCounter">
+			{/* <section className="days-counter" id="daysCounter">
 				<h3><u>Monitor your progress</u></h3>
 
 				{dates.length > 0 ? (					
@@ -67,7 +67,7 @@ function Footer() {
 				<p>Any data you provide is stored only on your device and not shared anywhere.<br />You can remove the data at anytime.</p>
 						
 				
-			</section>
+			</section> */}
 			
 			
 
@@ -94,7 +94,7 @@ function Footer() {
 				<p className="big2"><b><u>  &#x2661; BIG LOVE  &#x2661; </u></b></p>
 			</section>
 
-			<Podcasts />
+			
 			<section id="feedback">
 				<h3>
 					<u>FEEDBACK</u>

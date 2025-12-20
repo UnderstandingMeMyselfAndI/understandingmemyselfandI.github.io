@@ -33,6 +33,8 @@ import Header from "ui/header/Header.jsx";
 import Footer from "ui/footer/Footer";
 import Podcasts from "./components/activity/podcasts/Podcasts";
 import Introduction from "components/activity/introduction/Introduction";
+import YourPrivacy from "./components/ui/sections/privacy/YourPrivacy";
+import YourPrivacyCTA from "./components/ui/sections/privacy/YourPrivacyCTA";
 import Tools from "components/activity/tools/Tools.jsx";
 
 // import Backdrop from "ui/backdrop/Backdrop";
@@ -88,6 +90,7 @@ function App() {
 						<Header />
 						
 						<Introduction />
+						<YourPrivacyCTA />
 						<DaysCounter />
 						<AcronymCard />
 						<Tools id="tools" />

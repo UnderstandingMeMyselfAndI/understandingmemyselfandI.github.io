@@ -3,11 +3,10 @@ import { activities ,strings} from "@/data/config";
 
 import './styles.scss';
 
-const YourData = () => {
-    const name = 'yourData'
-    const content = strings.activity.find(activity => activity.name === name) || null;
+const PrivacyPolicy = () => {
+    const content = strings.activity.find(activity => activity.name === 'introduction') || null;
 	if (content === null) {
-		console.warn(`No content found for activity "${name}"`);
+		console.warn('No content found for activity "introduction"');
 	}
     return (
         <div className="yourData">
@@ -22,4 +21,4 @@ const YourData = () => {
         </div>
     )
 }
-export default YourData;
+export default PrivacyPolicy;

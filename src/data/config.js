@@ -196,10 +196,14 @@ const strings = {
 			name: "introduction",
 			title: "Hey",
 			content: [
-				'<span className="ummi">Ummi</span><br /> (<b>Understanding Me, Myself, and I</b>)<br /> is your <b><u>FREE</u></b> companion app.',
-				'If you are learning tools to cope with your<br />emotions, thoughts, feelings and mental health<br />by attending <br />ACT, CBT, DBT, REBT, SMART, <br />and Recovery groups,<br />this app is for you',
-				'These tools are ace,<br /><b> <u>but remembering them can be hard.</u></b> ',
-				'<span className="ummi">Ummi</span><br /><b><u>is your toolbox</u></b><br /> to carry those tools around with you<br />for whenever you need them.'
+				{ title: "Ummi", classes: "ummi"},
+				'(<b>Understanding Me, Myself, and I</b>)<br /> is your <b><u>FREE</u></b> companion app.',
+				{ title: "Who is Ummi for?"},
+				'If you are learning tools at groups that use <br />ACT, CBT, DBT, REBT, <br /> and SMART techniques<br /><b><u>this app is for you.</u></b>',
+				'These tools are ace,<br /> and they help to cope with our<br />emotions, thoughts, and feelings.',
+				'<b><u>But remembering them<br /> can be hard.</u></b> ',
+				{ title: "Your toolbox", icon:HandymanIcon},
+				'<span className="ummi">Ummi</span> <b><u>is your toolbox</u></b><br /> to carry those tools around with you<br />for whenever you need them.'
 			]
 		},
 		{
@@ -243,14 +247,19 @@ const strings = {
 		},
 		{
 			name: "privacy",
-			title: "<b><u>We respect you<br />and your privacy</u></b>",
+			title: "We respect you<br />and your privacy",
 			content: [
-				'Any data you provide to the Ummi app is stored<br /> <b><u>only on your device.</u></b><br />You can remove the data at anytime.',
+				'Any personal data you provide to us is stored <b><u>only on your device.</u></b>',
+				
+				'You can remove the data at anytime.',
+				'Any data we send to our servers is encrypted and anonymised so it cannot be used to identify you and is used to improve the app.',
 				'<b><u>We will never sell your data.</u></b>'],
 			btnLabel: "",
 			cta: {
-				title: '',
-				content: []
+				title: 'We respect you<br />and your privacy',
+				content: ['You are fully in control of any data you provide to us and can remove it at any time.'],
+				btnLabel: "Tell me more",
+				route: "/privacy"
 			}
 		},
 		{
