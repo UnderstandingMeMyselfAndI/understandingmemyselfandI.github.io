@@ -7,14 +7,11 @@
     position:fixed;
     top:0;
     right:0;
-    left:auto;
-   
-   
+    left:auto; 
     overflow-x:clip;
-    z-index:5000;   
+    z-index:15000;   
     display:flex;
     flex-flow:column wrap;
-    // align-content: flex-end;
     row-gap:0rem;
     align-items: flex-end;
     justify-content:flex-start;

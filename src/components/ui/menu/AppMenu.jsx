@@ -68,10 +68,10 @@ export default function AppMenu() {
         {/* <li onClick={handleClose}>Dailys</li> */}
         <li onClick={() => {
            handleClose();
-          setActivity(-1);
-          const el = document.getElementById("daysCounter");
+          setActivity(2);
+          // const el = document.getElementById("daysCounter");
 
-          el.scrollIntoView({ behavior: "smooth", block: "start" })
+          // el.scrollIntoView({ behavior: "smooth", block: "start" })
         }
         }>Days Counter</li>
         <li onClick={() => {

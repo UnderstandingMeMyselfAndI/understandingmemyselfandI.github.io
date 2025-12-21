@@ -46,6 +46,7 @@ import AcronymCard from "ui/cards/AcronymCard.jsx";
 import BadgeToolbox from "ui/badges/BadgeToolbox";
 
 import DaysCounter from "./components/activity/DaysCounter/DaysCounter";
+import DaysCounterCTA from "./components/activity/DaysCounter/DaysCounterCTA";
 import AppMenu from "./components/ui/menu/AppMenu";
 import CookieConsent from "./components/ui/cookieConsent/CookieConsent";
 import {smoothScroll} from "./js/utils.js";
@@ -85,6 +86,7 @@ function App() {
 					<Introduction />
 					<YourPrivacyCTA />
 					<Tools id="tools" />
+					<DaysCounterCTA />
 					<Footer />
 					<div className="activities" id="top">		
 						<DaysCounter />
