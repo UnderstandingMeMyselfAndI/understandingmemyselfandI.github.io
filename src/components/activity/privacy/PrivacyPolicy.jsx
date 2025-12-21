@@ -4,12 +4,15 @@ import { activities ,strings} from "@/data/config";
 import './styles.scss';
 
 const PrivacyPolicy = () => {
-    const content = strings.activity.find(activity => activity.name === 'introduction') || null;
+
+    const name = 'privacyPolicy'
+
+    const content = strings.activity.find(activity => activity.name === name) || null;
 	if (content === null) {
-		console.warn('No content found for activity "introduction"');
+		console.warn(`No content found for activity "${name}"`);
 	}
     return (
-        <div className="yourData">
+        <div className="privacyPolicy">
             <h2><u>{content.title}</u></h2>
             {content?.content?.map((html, i) => {
                 return (

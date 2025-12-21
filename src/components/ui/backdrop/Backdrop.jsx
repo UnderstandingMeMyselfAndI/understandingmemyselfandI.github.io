@@ -32,7 +32,7 @@ export default function Backdrop({initialImageId = null}) {
 
 	useEffect(() => {
 
-		const getNewUniqueImage = () => {
+			const getNewUniqueImage = () => {
 		const available = allImages.filter(img => !usedIds.includes(img.id));
 
 		if (available.length === 0) {
@@ -52,11 +52,11 @@ export default function Backdrop({initialImageId = null}) {
 		const interval = setInterval(() => {
 			const newImg = getNewUniqueImage();
 			const prevID = usedIds[usedIds.length - 1];
-			const prevImg = images.map(img => prevID);
+			const prevImg = images.map(() => prevID);
 
 
 			// setImages(prev => (activeIndex === 0 ? [prevImg, newImg] : [newImg, prevImg]));
-			setImages(prev => [prevImg, newImg]);
+			setImages(() => [prevImg, newImg]);
 			setActiveIndex(prev => 1 - prev); // toggle 0 ↔ 1
 		}, newImgInterval);
 

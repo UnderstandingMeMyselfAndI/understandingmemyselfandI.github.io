@@ -7,15 +7,18 @@ import { strings } from "@/data/config";
 import "./styles.scss";
 import PropTypes from "prop-types";
 const Tools = () => {
+
+	const name = 'tools'
+	
 	const [open, setOpen] = useState(true);
 
 	const activity = useAppStore(s => s.activity);
 
-	const activityID = activities.find(activity => (activity.url === "tools" ? activity.id : null));
+	const activityID = activities.find(activity => (activity.url === name ? activity.id : null));
 
-	 const content = strings.activity.find(activity => activity.name === 'tools') || null;
+	 const content = strings.activity.find(activity => activity.name === name) || null;
     if (content === null) {
-        console.warn('No content found for activity "Tools"');
+        console.warn(`No content found for activity "${name}"`);
     }
 
 	useEffect(() => {

@@ -13,17 +13,17 @@ import "@/utils/IsMobile.js";
 import "./styles.scss";
 
 const Introduction = () => {
+	
+	const name = 'introduction'
 	const [open, setOpen] = useState(false);
-
-
 	const activity = useAppStore(s => s.activity);
 	// const isMobile =  useAppStore(s => s.isMobile);
 
-	const activityID = activities.find(activity => (activity.url === "introduction" ? activity.id : null));
+	const activityID = activities.find(activity => (activity.url === name ? activity.id : null));
 
-	const content = strings.activity.find(activity => activity.name === 'introduction') || null;
+	const content = strings.activity.find(activity => activity.name === name) || null;
 	if (content === null) {
-		console.warn('No content found for activity "introduction"');
+		console.warn(`No content found for activity "${name}"`);
 	}
 
 	useEffect(() => {
