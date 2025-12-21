@@ -4,6 +4,7 @@ import useAppStore from "@/store/useAppStore";
 import QRCode from "ui/QRCode/QRCode.jsx";
 import FooterMetadata from "ui/footer/FooterMetadata.jsx";
 import InstallPWA from "ui/buttons/InstallPWA/InstallPWA";
+import InstallCTA from "../install/InstallCTA";
 import { getPWADisplayMode } from "@/utils/isAppInstalled";
 import DaysCounterBtn from "ui/buttons/daysCounter/daysCounterBtn";
 import Podcasts from "components/activity/podcasts/Podcasts";
@@ -25,19 +26,20 @@ function Footer() {
 
 	const dates = getInitialDates();
 
-	console.log("dates ",dates)
+
 	return (
 		<div className="activity footer" id="install">
 		<section>
 			{getPWADisplayMode() !== 'fullscreen' && (
-				<>
-					<h3>
-						<u>Add the <span className="ummi-blue">Ummi</span> app?</u>
-					</h3>
-					<p>You can install Ummi to your {isMobile ? "device" : "desktop"}<br /> just like any other app.</p>
-					
-					<InstallPWA />
-				</>
+					// <>
+					// 	<h3>
+					// 		<u>Add the <span className="ummi-blue">Ummi</span> app?</u>
+					// 	</h3>
+					// 	<p>You can install Ummi to your {isMobile ? "device" : "desktop"}<br /> just like any other app.</p>
+						
+					// 	<InstallPWA />
+					// </>
+					<InstallCTA />
 			)}
 			</section>
 			
