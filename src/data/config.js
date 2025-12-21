@@ -254,7 +254,7 @@ const strings = {
 			htmlContent: [],
 			btnLabel: "Install Ummi",
 			cta: {
-				title: 'Add the Ummi App',
+				title: 'Add the Ummi App?',
 				content: ['Install Ummi for quick access']
 			}
 		},

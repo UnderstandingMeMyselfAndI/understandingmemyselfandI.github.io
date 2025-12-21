@@ -1,6 +1,8 @@
 @use "@/scss/_variables.scss";
 @import "@/globals.css";
 .installCTA {
+	scroll-padding-top: -160px;
+	padding-top:260px;
     .title{
 		font-size:variables.$h4_size;
         font-weight: 600;

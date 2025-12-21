@@ -28,7 +28,7 @@ function Footer() {
 
 
 	return (
-		<div className="activity footer" id="install">
+		<div className="activity footer">
 		<section>
 			{getPWADisplayMode() !== 'fullscreen' && (
 					// <>

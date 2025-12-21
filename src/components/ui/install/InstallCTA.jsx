@@ -11,7 +11,7 @@ const InstallCTA = () => {
 
     return (      
 
-    <div className="installCTA cta">
+    <div className="installCTA cta" id="install">
  
         <div className="title"><span>{content?.cta?.title}</span></div>
         {content?.cta?.content?.map((html, i) => {
