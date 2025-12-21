@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from "react";
+import  {useState, useEffect} from "react";
 import ImageData from "data/imgData.js"; // ← make sure it's default export
 import bgImg from "/bgs/2.avif";
+import Proptypes from "prop-types";
 import "./styles.scss";
 
 const allImages = ImageData; // already an array
@@ -27,7 +28,11 @@ export default function Backdrop({initialImageId = null}) {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [usedIds, setUsedIds] = useState(images.map(img => img.id));
 
-	const getNewUniqueImage = () => {
+
+
+	useEffect(() => {
+
+		const getNewUniqueImage = () => {
 		const available = allImages.filter(img => !usedIds.includes(img.id));
 
 		if (available.length === 0) {
@@ -42,9 +47,8 @@ export default function Backdrop({initialImageId = null}) {
 		const newImg = available[randomIdx];
 		setUsedIds(prev => [...prev, newImg.id]);
 		return newImg;
-	};
-
-	useEffect(() => {
+		};
+		
 		const interval = setInterval(() => {
 			const newImg = getNewUniqueImage();
 			const prevID = usedIds[usedIds.length - 1];
@@ -57,7 +61,7 @@ export default function Backdrop({initialImageId = null}) {
 		}, newImgInterval);
 
 		return () => clearInterval(interval);
-	}, [activeIndex, usedIds]); // dependencies are correct now
+	}, [activeIndex, usedIds,images]); // dependencies are correct now
 
 	// parralax
 	useEffect(() => {
@@ -65,14 +69,14 @@ export default function Backdrop({initialImageId = null}) {
 		if (typeof window === "undefined") return;
 
 		const handleScroll = () => {
-			const scrolled = window.pageYOffset;
-			const rate = scrolled * -0.5; // negative = moves up when scrolling down
+			// const scrolled = window.pageYOffset;
+			// const rate = scrolled * -0.5; // negative = moves up when scrolling down
 
 			// Apply to both images (active + inactive)
-			const images = document.querySelectorAll(".cont img");
-			images.forEach(img => {
-				// img.style.transform = `translateY(${rate}px)`;
-			});
+			// const images = document.querySelectorAll(".cont img");
+			// images.forEach(img => {
+			// 	// img.style.transform = `translateY(${rate}px)`;
+			// });
 		};
 
 		// throttled for buttery-smooth 60fps
@@ -108,4 +112,7 @@ export default function Backdrop({initialImageId = null}) {
 			</div>
 		</div>
 	);
+}
+Backdrop.propTypes = {
+	initialImageId: Proptypes.string,
 }

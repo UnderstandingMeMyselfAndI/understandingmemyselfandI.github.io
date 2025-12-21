@@ -219,7 +219,7 @@ const AcronymCard = () => {
 				
 			</div>
 			<Backdrop
-					initialImageId={3}
+					initialImageId={23}
 					initialDelay={3000}
 					interval={6000}
 					parallaxStrength={0}

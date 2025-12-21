@@ -67,7 +67,7 @@ body {
 
 				.activities {
 					position: relative;
-					z-index: 2000;
+					z-index: 5500;
 				}
 				> .inner {
 					width: 100%;
@@ -130,16 +130,21 @@ body {
 				}
 			}
 			section{
+				.title,
 				h4{
 					text-decoration-thickness: 4px;
 					text-decoration-style: solid;
 					text-decoration-line: underline;
-
 					text-decoration-color: var(--yellow);
 				}
 				b{
 					font-weight:600;
 					font-variation-settings: "wght" 600;
+				}
+				.title{
+					font-size: variables.$h3_size;
+ 					font-weight:800;
+        			font-variation-settings: "wght" 800;
 				}
 			}
 
@@ -191,6 +196,7 @@ body {
 	}
 	section{
 		margin:1.5rem 0;
+		text-shadow: 0 0px 6px rgba(0, 0, 0, 0.4);
 	}
 }
 

@@ -44,9 +44,9 @@ export default function BackdropParallax({initialImageId = null, initialDelay = 
 				// After fade, swap
 				setTimeout(() => {
 					setCurrentImage(next);
-					setNextImage(null);
+					// setNextImage(null);
 					setIsFading(false);
-				}, 950); // Slightly less than 2s to avoid race
+				}, 1950); // Slightly less than 1.5s to avoid race
 			}, interval); // Fixed: No stray ) here
 		}, initialDelay);
 

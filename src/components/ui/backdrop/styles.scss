@@ -5,6 +5,7 @@
 	inset: 0;
 	z-index: 0;
 	overflow: hidden;
+	background:var(--background);
 	// &::after {
 	// 	content: "";
 	// 	position: absolute;
@@ -44,13 +45,13 @@
 		}
 		img.active {
 			opacity: 1;
-			animation: fadeIn 1.2s cubic-bezier(0.365, 0.403, 0, 1) forwards;
-			z-index: 0;
+			animation: fadeIn 2s cubic-bezier(0.5, 0, 0.5,  1) forwards;
+			z-index: 1;
 		}
 		img.inactive {
 			opacity: 0;
-			animation: fadeOut 1.2s cubic-bezier(0.365, 0.403, 0, 1) forwards;
-			z-index: 1;
+			animation: fadeOut 2s cubic-bezier(0.5, 0, 0.5,  1) forwards;
+			z-index: 0;
 		}
 	}
 

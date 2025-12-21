@@ -80,32 +80,24 @@ function App() {
 				<AppMenu />	
 				<div className="main">
 					<BadgeToolbox />
-					{/* <LogoFloating
-						classes=" logo small"
-						showName={false}
-					/> */}
 					
-				
-					<div className="activities" id="top">
-						<Header />
-						
-						<Introduction />
-						<YourPrivacyCTA />
+					<Header />
+					<Introduction />
+					<YourPrivacyCTA />
+					<Tools id="tools" />
+					<Footer />
+					<div className="activities" id="top">		
 						<DaysCounter />
 						<AcronymCard />
-						<Tools id="tools" />
 						{/* <Podcasts /> */}
-						<Footer />
-					</div>
-
-					
+					</div>					
 				</div>
 				<Snackbars />
 				<ScrollPosition />
 				
 			</div>
 			<BackdropParallax
-					initialImageId={3}
+					initialImageId={2}
 					initialDelay={3000}
 					interval={6000}
 					parallaxStrength={0}

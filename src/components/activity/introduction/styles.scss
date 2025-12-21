@@ -4,6 +4,7 @@
 #intro{
 	scroll-padding-top: 60px;
 	padding-top:100px;
+	
 }
 
 section.intro {
@@ -20,9 +21,18 @@ section.intro {
 	position: relative;
 	z-index: 3010;
 	overflow-x:clip;
+	text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+	// h1,h2,h3,h4,h5, p,section{
+	// 	  text-shadow: 0 4px 6px rgba(0, 0, 0, 1);
+	// }
+
+	.sub{
+		margin:4rem 0;
+	}
 
 	p {
 		margin-bottom: 0.5rem;
+		
 	}
 	&.tip {
 		color: var(--yellow);
@@ -74,7 +84,7 @@ section.intro {
 		}
 	}
 	
-	span.ummi{
+	.ummi{
 		font-size:variables.$h1_size;
 	
 	}

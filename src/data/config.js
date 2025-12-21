@@ -196,14 +196,27 @@ const strings = {
 			name: "introduction",
 			title: "Hey",
 			content: [
-				{ title: "Ummi", classes: "ummi"},
-				'(<b>Understanding Me, Myself, and I</b>)<br /> is your <b><u>FREE</u></b> companion app.',
-				{ title: "Who is Ummi for?"},
-				'If you are learning tools at groups that use <br />ACT, CBT, DBT, REBT, <br /> and SMART techniques<br /><b><u>this app is for you.</u></b>',
-				'These tools are ace,<br /> and they help to cope with our<br />emotions, thoughts, and feelings.',
-				'<b><u>But remembering them<br /> can be hard.</u></b> ',
-				{ title: "Your toolbox", icon:HandymanIcon},
-				'<span className="ummi">Ummi</span> <b><u>is your toolbox</u></b><br /> to carry those tools around with you<br />for whenever you need them.'
+				{
+					title: "Ummi",
+					classes: "ummi",
+					content: ['(<b>Understanding Me, Myself, and I</b>)<br /> is your <b><u>FREE</u></b> companion app.'],
+				},
+				{
+					title: "Who is Ummi for?",
+					content: [
+						'If you are learning tools at groups that use <br />ACT, CBT, DBT, REBT, <br /> and SMART techniques<br /><b><u>this app is for you.</u></b>',
+						'These tools are ace,<br /> and they help to cope with our<br />emotions, thoughts, and feelings.',
+						'<b><u>But remembering them<br /> can be hard.</u></b> '
+					],
+				},
+				{
+					title: "Your toolbox",
+					icon: HandymanIcon,
+					content: [
+						'<span className="ummi">Ummi</span> <b><u>is your toolbox</u></b><br /> to carry those tools around with you<br />for whenever you need them.'
+					],
+				},
+				
 			]
 		},
 		{

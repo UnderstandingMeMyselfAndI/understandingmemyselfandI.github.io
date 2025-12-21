@@ -41,13 +41,12 @@ const Introduction = () => {
 					<h2><u>{content.title}</u></h2>
 					{content?.content?.map((cnt, i) => {
 						return (
-							<div key={i}>
-								
-								{typeof cnt === 'string' ? (
-									<p>{parse(cnt)}</p>
-								) : (
-									<h4 className={cnt?.classes}>{parse(cnt?.title)}</h4>
-								)}								
+							<div key={`intro-${i}`} className="sub">							
+
+								<div className={"title " + cnt?.classes}>{parse(cnt?.title)}</div>
+								{cnt?.content?.map((para, k) => {									
+									return(<p key={k}>{parse(para)}</p>)
+								})}
 							</div>
 						)
 					})}
