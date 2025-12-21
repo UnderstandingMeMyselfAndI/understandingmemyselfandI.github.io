@@ -33,41 +33,26 @@ const Introduction = () => {
 	
 
 	return (
-		
-		<div className={"activity" + (open ? " show" : " hide")}>
-			
-			<section className="intro" id="intro">				
-				<div className="i1">
-					<h2><u>{content.title}</u></h2>
+		<div className={'activity' + (open ? ' show' : ' hide')}>
+			<section className='intro' id='intro'>
+				<div className='i1'>
+					<h2>
+						<u>{content.title}</u>
+					</h2>
 					{content?.content?.map((cnt, i) => {
 						return (
-							<div key={`intro-${i}`} className="sub">							
-
-								<div className={"title " + cnt?.classes}>{parse(cnt?.title)}</div>
-								{cnt?.content?.map((para, k) => {									
-									return(<p key={k}>{parse(para)}</p>)
+							<div key={`intro-${i}`} className='sub'>
+								<div className={'title ' + cnt?.classes}>{parse(cnt?.title)}</div>
+								{cnt?.content?.map((para, k) => {
+									return <p key={k}>{parse(para)}</p>
 								})}
 							</div>
 						)
 					})}
 				</div>
-				
-				{/* {getPWADisplayMode() !== 'fullscreen' && (
-					
-					<InstallCTA />
-				)}
-
-				<DaysCounterCTA /> */}
-				{/* <div className="respect">
-					<h4><b><u>We respect you<br />and your privacy</u></b></h4>
-					<p>Any data you provide is stored<br /> only on your device.<br />You can remove the data at anytime.</p>
-					<p><b><u>We will never sell your data.</u></b></p>
-						
-				</div> */}
-				{/* <YourPrivacy /> */}
 			</section>
 		</div>
-	);
+	)
 };
 
 export default Introduction;

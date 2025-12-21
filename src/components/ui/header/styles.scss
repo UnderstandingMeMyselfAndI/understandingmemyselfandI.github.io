@@ -10,9 +10,16 @@ header {
 	height: 300dvh;
 	width: 100vw;
 	padding: 0;
-	margin: 0;
-text-shadow: 0 0px 12px rgba(0, 0, 0, 0.4);
+	margin:0 0 160px 0;
+	text-shadow: 0 0px 12px rgba(0, 0, 0, 0.4);
 	transition: height 0.35s ease-in-out;
+	display:none;
+	opacity:0;
+
+	&.open{
+		display:block;
+		opacity:1;
+	}
 
 	.home-grp {
 		width: 100%;

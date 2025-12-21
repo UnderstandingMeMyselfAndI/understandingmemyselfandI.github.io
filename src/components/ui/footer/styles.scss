@@ -5,13 +5,13 @@
 #share,
 #installInstructions{
 	scroll-padding-top: 260px;
-	padding-top:160px;
-	padding-bottom:100px;
+	
+	padding-bottom:160px;
 }
 #gratitude{
 	scroll-padding-top: 260px;
-	padding-top:260px;
-	padding-bottom:100px;
+	
+	padding-bottom:160px;
 }
 .version-footer {
 	font-size: 1rem;
@@ -32,13 +32,13 @@ div.footer {
 	flex-direction: column;
 	row-gap: 0.5rem;
 
-	margin: 0.25rem 1.25rem;
+	margin: 0 auto;
 	color: var(--primary);
 	text-align: center;
 	width: 90%;
 	background-color: transparent;
-	margin: 0 auto;
-	margin-top: 2rem;
+	
+	
 	line-height: 1.5;
 	position: relative;
     z-index: 3000;

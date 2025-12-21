@@ -1,9 +1,11 @@
 import parse from "html-react-parser";
 import { strings } from "@/data/config";
+import useAppStore from "@/store/useAppStore";
 import './styles.scss';    
 const YourPrivacyCTA = () => {
 
     const context = 'privacy'
+    const setActivity = useAppStore(s => s.setActivity);
 
     const content = strings.activity.find(activity => activity.name === context) || null;
     if (content === null) {
@@ -11,10 +13,8 @@ const YourPrivacyCTA = () => {
     }
 
     const handleClick = () => {
-
-        const el = document.getElementById("privacy");
-
-        el?.scrollIntoView({ behavior: "smooth", block: "start" })
+        console.log("YourPrivacyCTA handleClick");
+        setActivity(10);
         
         
     };  
@@ -27,7 +27,7 @@ const YourPrivacyCTA = () => {
                     <p key={i}>{parse(html)}</p>
                 )
             })}
-            <button className="btn" onClick={handleClick}>{content?.cta?.btnLabel}</button>
+            <button className="btn" onClick={() => handleClick()} >{content?.cta?.btnLabel}</button>
             
         </section>
     )

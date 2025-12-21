@@ -16,6 +16,7 @@
 		"@firebase-oss/ui-react": "^7.0.0-beta",
 		"@gsap/react": "^2.1.2",
 		"@hookform/resolvers": "^5.2.2",
+		"@jmeirinkmarimed/age-gate": "^1.0.34",
 		"@mui/icons-material": "^7.3.5",
 		"@mui/material": "^7.3.5",
 		"@reduxjs/toolkit": "^2.8.2",

@@ -32,8 +32,8 @@ import Header from "ui/header/Header.jsx";
 
 import Footer from "ui/footer/Footer";
 import Podcasts from "./components/activity/podcasts/Podcasts";
-import Introduction from "components/activity/introduction/Introduction";
-import YourPrivacy from "./components/ui/sections/privacy/YourPrivacy";
+import PrivacyPolicy from './components/activity/privacy/PrivacyPolicy'
+import Introduction from 'components/activity/introduction/Introduction'
 import YourPrivacyCTA from "./components/ui/sections/privacy/YourPrivacyCTA";
 import Tools from "components/activity/tools/Tools.jsx";
 
@@ -49,6 +49,7 @@ import DaysCounter from "./components/activity/DaysCounter/DaysCounter";
 import DaysCounterCTA from "./components/activity/DaysCounter/DaysCounterCTA";
 import AppMenu from "./components/ui/menu/AppMenu";
 import CookieConsent from "./components/ui/cookieConsent/CookieConsent";
+import UmmiAgeGate from './components/ui/ageGate/UmmiAgeGate'
 import {smoothScroll} from "./js/utils.js";
 
 import "./App.scss";
@@ -72,40 +73,34 @@ function App() {
 
 	return (
 		<div>
-			
-			<div className="app">
+			<div className='app'>
+				<UmmiAgeGate />
 				<CookieConsent />
 				{/* <EmergencyButton /> */}
-				
-				
-				<AppMenu />	
-				<div className="main">
+
+				<AppMenu />
+				<div className='main'>
 					<BadgeToolbox />
-					
+
 					<Header />
 					<Introduction />
 					<YourPrivacyCTA />
-					<Tools id="tools" />
+					<Tools id='tools' />
 					<DaysCounterCTA />
 					<Footer />
-					<div className="activities" id="top">		
+					<div className='activities' id='top'>
 						<DaysCounter />
 						<AcronymCard />
+						<PrivacyPolicy />
 						{/* <Podcasts /> */}
-					</div>					
+					</div>
 				</div>
 				<Snackbars />
 				<ScrollPosition />
-				
 			</div>
-			<BackdropParallax
-					initialImageId={2}
-					initialDelay={3000}
-					interval={6000}
-					parallaxStrength={0}
-				/>
+			<BackdropParallax initialImageId={2} initialDelay={3000} interval={6000} parallaxStrength={0} />
 		</div>
-	);
+	)
 }
 
 export default App;

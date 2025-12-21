@@ -114,77 +114,91 @@ const icons = [
 const baseActivities = [
 	{
 		id: 0,
-		url: "introduction",
-		title: "Introduction",
+		url: 'introduction',
+		title: 'Introduction',
 
 		menu: true,
 		speedDial: true,
 	},
 	{
 		id: 1,
-		url: "tools",
-		title: "Tools",
+		url: 'tools',
+		title: 'Tools',
 
 		menu: true,
 		speedDial: true,
 	},
 	{
 		id: 2,
-		url: "skills",
-		title: "Techniques",
+		url: 'skills',
+		title: 'Techniques',
 		menu: true,
 		speedDial: true,
 	},
 	{
 		id: 3,
-		url: "motivation",
-		title: "Motivation",
+		url: 'motivation',
+		title: 'Motivation',
 		menu: true,
 		speedDial: true,
 	},
 	{
 		id: 4,
-		url: "inspiration",
-		title: "Inspiration",
+		url: 'inspiration',
+		title: 'Inspiration',
 		menu: true,
 		speedDial: true,
 	},
 	{
 		id: 5,
-		url: "meditiation",
-		title: "Meditation",
+		url: 'meditiation',
+		title: 'Meditation',
 		menu: true,
 		speedDial: true,
 	},
 	{
 		id: 6,
-		url: "videos",
-		title: "Videos",
+		url: 'videos',
+		title: 'Videos',
 		menu: true,
 		speedDial: true,
 	},
 	{
 		id: 7,
-		url: "about",
-		title: "About",
+		url: 'about',
+		title: 'About',
 		menu: true,
 		speedDial: true,
 	},
 	{
 		id: 8,
-		url: "tour",
-		title: "Tour",
+		url: 'tour',
+		title: 'Tour',
 		menu: true,
 		speedDial: true,
 	},
 	{
 		id: 9,
-		url: "search",
-		title: "Search",
+		url: 'search',
+		title: 'Search',
 		menu: true,
 		speedDial: true,
 	},
-];
+	{
+		id: 10,
+		url: 'privacy',
+		title: 'Privacy Policy',
+		menu: true,
+		speedDial: true,
+	},
+	{
+		id: 11,
+		url: 'ccpaprivacy',
+		title: 'CCPA Privacy Policy',
+		menu: true,
+		speedDial: true,
+	},
+]
 const activities = baseActivities.map(item => ({
 	...item,
 	icon: icons[item.id].icon, // add the sequential icon
@@ -193,116 +207,113 @@ const activities = baseActivities.map(item => ({
 const strings = {
 	activity: [
 		{
-			name: "introduction",
-			title: "Hey",
+			name: 'introduction',
+			title: 'Hey',
 			content: [
 				{
-					title: "Ummi",
-					classes: "ummi",
-					content: ['(<b>Understanding Me, Myself, and I</b>)<br /> is your <b><u>FREE</u></b> companion app.'],
+					title: 'Ummi',
+					classes: 'ummi-blue',
+					content: [
+						'(<b><span class="ummi-blue">U</span>nderstanding <span class="ummi-blue">M</span>e, <span class="ummi-blue">M</span>yself, and <span class="ummi-blue">I</span></b>)<br /> is your <b><u>FREE</u></b> companion app.',
+					],
 				},
 				{
-					title: "Who is Ummi for?",
+					title: 'Who is Ummi for?',
 					content: [
 						'If you are learning tools at groups that use ACT, CBT, DBT, REBT, <br /> or SMART techniques<br /><b><u>this app is for you.</u></b>',
 						'These tools are ace,<br /> and they help to cope with our<br />emotions, thoughts, and feelings.',
-						'<b><u>But remembering them<br /> can be hard.</u></b> '
+						'<b><u>But remembering them<br /> can be hard.</u></b> ',
 					],
 				},
 				{
-					title: "Your toolbox",
+					title: 'Your toolbox',
 					icon: HandymanIcon,
-					content: [
-						'<span className="ummi">Ummi</span> <b><u>is your toolbox</u></b><br /> to carry those tools around with you<br />for whenever you need them.'
-					],
+					content: ['<span className="ummi-blue">Ummi</span> <b><u>is your toolbox</u></b><br /> to carry those tools around with you<br />for whenever you need them.'],
 				},
-				
-			]
+			],
 		},
 		{
-			name: "tools",
-			title: "The Tools",
+			name: 'tools',
+			title: 'The Tools',
 			content: [
-				"Tap a heading to find out how to use the tool.",
+				'Tap a heading to find out how to use the tool.',
 				// "Some tools also include videos that help to explain them."
 			],
-			btnLabel: "",
+			btnLabel: '',
 			cta: {
 				title: '',
-				content: []
-			}
-		},
-		{
-			name: "videos",
-			title: "Videos",
-			content: [],
-		},
-		
-		{
-			name: "daysCounter",
-			title: "Days Counter",
-			btnLabel: "Days Counter",
-			content: [],
-			cta: {
-				title: "Days Counter",
-				content: ["Track your progress and remind yourself<br /> how far you have come."]
+				content: [],
 			},
 		},
 		{
-			name: "install",
-			title: "Install",
-			htmlContent: [],
-			btnLabel: "Install Ummi",
+			name: 'videos',
+			title: 'Videos',
+			content: [],
+		},
+
+		{
+			name: 'daysCounter',
+			title: 'Days Counter',
+			btnLabel: 'Days Counter',
+			content: [],
 			cta: {
-				title: 'Add the Ummi App?',
-				content: ['Install Ummi for quick access']
-			}
+				title: 'Days Counter',
+				content: ['Track your progress and remind yourself<br /> how far you have come.'],
+			},
 		},
 		{
-			name: "privacy",
-			title: "We respect you<br />and your privacy",
+			name: 'install',
+			title: 'Install',
+			htmlContent: [],
+			btnLabel: 'Install Ummi',
+			cta: {
+				title: 'Add the Ummi App?',
+				content: ['Install Ummi for quick access'],
+			},
+		},
+		{
+			name: 'privacy',
+			title: 'We respect you<br />and your privacy',
 			content: [
 				'Any personal data you provide to us is stored <b><u>only on your device.</u></b>',
-				
+
 				'You can remove the data at anytime.',
 				'Any data we send to our servers is encrypted and anonymised so it cannot be used to identify you and is used to improve the app.',
-				'<b><u>We will never sell your data.</u></b>'],
-			btnLabel: "",
+				'<b><u>We will never sell your data.</u></b>',
+			],
+			btnLabel: '',
 			cta: {
 				title: 'We respect you<br />and your privacy',
 				content: ['You are fully in control of any data you provide to us and can remove it at any time.'],
-				btnLabel: "Tell me more",
-				route: "/privacy"
-			}
+				btnLabel: 'Tell me more',
+				route: '/privacy',
+			},
 		},
 		{
-			name: "yourData",
-			title: "Your Data",
+			name: 'yourData',
+			title: 'Your Data',
 			content: [],
-			btnLabel: "Manage Your Data",
+			btnLabel: 'Manage Your Data',
 			cta: {
 				title: 'Manage your data',
-				content: [
-					'Any data you provide is stored<br /> only on your device.<br />You can remove the data at anytime.',
-					'<b><u>We will never sell your data.</u></b>']
-			}
+				content: ['Any data you provide is stored<br /> only on your device.<br />You can remove the data at anytime.', '<b><u>We will never sell your data.</u></b>'],
+			},
 		},
-		
 	],
 	toolbox: {
-		added: "Added to your toolbox",
-		removed: "Removed from your toolbox",
+		added: 'Added to your toolbox',
+		removed: 'Removed from your toolbox',
 		emergency: {
-			added: "Added to your emergency toolbox",
-			removed: "Removed from your emergency toolbox",
+			added: 'Added to your emergency toolbox',
+			removed: 'Removed from your emergency toolbox',
 		},
 	},
 	tools: {
 		list: {
-			unfiltered: "Showing ALL tools",
-			yourToolsFiltered: "Showing YOUR tools", //"Showing only the tools you selected"
+			unfiltered: 'Showing ALL tools',
+			yourToolsFiltered: 'Showing YOUR tools', //"Showing only the tools you selected"
 		},
 	},
-};
+}
 
 export {cnf, activities, strings}; //strings activities;

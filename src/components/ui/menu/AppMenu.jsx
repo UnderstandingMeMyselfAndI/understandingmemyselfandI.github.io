@@ -33,73 +33,78 @@ export default function AppMenu() {
   };
 
   return (
-    <div className={"AppMenu"+(activity === -1 ? "" : " hide")}>
-      <div
-        className="burger-stack"
-        id="burger-button"
-        
-         
-      >
-        {/* {open ? <MenuCloseIcon /> : <MenuOpenIcon />} */}
-        <input type="checkbox" id="checkbox1" value={open} checked={open} className="checkbox1 visuallyHidden" onChange={toggleOpen} />
-        <label htmlFor="checkbox1">
-            <div className="hamburger hamburger1">
-                <span className="bar bar1"></span>
-                <span className="bar bar2"></span>
-                <span className="bar bar3"></span>
-                <span className="bar bar4"></span>
-            </div>
-        </label>
-      </div>
-      <ul className={open ? " open" : " "} id="app-menu">
+		<div className={'AppMenu' + (activity === -1 ? '' : ' hide')}>
+			<div className='burger-stack' id='burger-button'>
+				{/* {open ? <MenuCloseIcon /> : <MenuOpenIcon />} */}
+				<input type='checkbox' id='checkbox1' value={open} checked={open} className='checkbox1 visuallyHidden' onChange={toggleOpen} />
+				<label htmlFor='checkbox1'>
+					<div className='hamburger hamburger1'>
+						<span className='bar bar1'></span>
+						<span className='bar bar2'></span>
+						<span className='bar bar3'></span>
+						<span className='bar bar4'></span>
+					</div>
+				</label>
+			</div>
+			<ul className={open ? ' open' : ' '} id='app-menu'>
+				<li
+					onClick={() => {
+						handleClose()
+						setActivity(-1)
+						const el = document.getElementById('tools')
 
+						el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+					}}
+				>
+					Tools
+				</li>
 
-        <li onClick={() => {
-          handleClose();
-          setActivity(-1);
-          const el = document.getElementById("tools");
+				{/* <li onClick={handleClose}>Journeys</li> */}
+				{/* <li onClick={handleClose}>Motivation</li> */}
+				{/* <li onClick={handleClose}>Dailys</li> */}
+				<li
+					onClick={() => {
+						handleClose()
+						setActivity(2)
+						// const el = document.getElementById("daysCounter");
 
-          el.scrollIntoView({ behavior: "smooth", block: "start" })
-          
-        }}>Tools</li>
-        
-        {/* <li onClick={handleClose}>Journeys</li> */}
-        {/* <li onClick={handleClose}>Motivation</li> */}
-        {/* <li onClick={handleClose}>Dailys</li> */}
-        <li onClick={() => {
-           handleClose();
-          setActivity(2);
-          // const el = document.getElementById("daysCounter");
-
-          // el.scrollIntoView({ behavior: "smooth", block: "start" })
-        }
-        }>Days Counter</li>
-        <li onClick={() => {
+						// el.scrollIntoView({ behavior: "smooth", block: "start" })
+					}}
+				>
+					Days Counter
+				</li>
+				{/* <li onClick={() => {
            handleClose();
           setActivity(-1);
           const el = document.getElementById("daysCounter");
 
           el.scrollIntoView({ behavior: "smooth", block: "start" })
         }
-        }>Lingo &amp; Phrases</li>
-          
-         <li onClick={() => {
-           handleClose();
-          setActivity(-1);
-          const el = document.getElementById("gratitude");
+        }>Lingo &amp; Phrases</li> */}
 
-          el.scrollIntoView({ behavior: "smooth", block: "start" })
-        }
-        }>Gratitude</li>
-        <li onClick={() => {
-          handleClose();
-          setActivity(-1);
-          const el = document.getElementById("share");
+				<li
+					onClick={() => {
+						handleClose()
+						setActivity(-1)
+						const el = document.getElementById('gratitude')
 
-          el.scrollIntoView({ behavior: "smooth", block: "start" })
-          
-        }}>Spread the love</li>
-        {/* <li onClick={() => {
+						el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+					}}
+				>
+					Gratitude
+				</li>
+				<li
+					onClick={() => {
+						handleClose()
+						setActivity(-1)
+						const el = document.getElementById('share')
+
+						el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+					}}
+				>
+					Spread the love
+				</li>
+				{/* <li onClick={() => {
           handleClose();
           setActivity(-1);
           const el = document.getElementById("podcasts");
@@ -107,23 +112,31 @@ export default function AppMenu() {
           el.scrollIntoView({ behavior: "smooth", block: "start" })
           
         }}>Podcasts</li> */}
-        {getPWADisplayMode() !== 'fullscreen' && (<li onClick={() => {
-          handleClose();
-          setActivity(-1);
-          const el = document.getElementById("install");
+				{getPWADisplayMode() !== 'fullscreen' && (
+					<li
+						onClick={() => {
+							handleClose()
+							setActivity(-1)
+							const el = document.getElementById('install')
 
-          el.scrollIntoView({ behavior: "smooth", block: "start" })
-          
-        }}>Install</li>)}
-         <li onClick={() => {
-           handleClose();
-          setActivity(-1);
-          const el = document.getElementById("feedback");
+							el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+						}}
+					>
+						Install
+					</li>
+				)}
+				<li
+					onClick={() => {
+						handleClose()
+						setActivity(-1)
+						const el = document.getElementById('feedback')
 
-          el.scrollIntoView({ behavior: "smooth", block: "start" })
-        }
-        }>Feedback</li>
-        {/* <li onClick={() => {
+						el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+					}}
+				>
+					Feedback
+				</li>
+				{/* <li onClick={() => {
           handleClose();
           setActivity(-1);
           const el = document.getElementById("yourdata");
@@ -131,11 +144,11 @@ export default function AppMenu() {
           el.scrollIntoView({ behavior: "smooth", block: "start" })
           
         }}>Your data</li>  */}
-        {/* <li onClick={handleClose}>Tour</li> */}
-        {/* <li onClick={handleClose}>Settings</li> */}
-      </ul> 
-    </div>
-  );
+				{/* <li onClick={handleClose}>Tour</li> */}
+				{/* <li onClick={handleClose}>Settings</li> */}
+			</ul>
+		</div>
+	)
 }
 
 

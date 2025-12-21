@@ -15,21 +15,25 @@ gsap.registerPlugin(useGSAP); // register the hook to avoid React version discre
 // import "./AnimationIntro.scss";
 import "./styles.scss";
 
-const Header = ({classes = ""}) => {
+const Header = ({ classes = "" }) => {
+	
+	const [open, setOpen] = React.useState(false);
 	const [stage, setStage] = React.useState(0);
 
 	const scrollStage = useAppStore(state => state.scrollStage);
+
+	useEffect(() => {
+
+		scrollStage > 2 ? setOpen(false) : setOpen(true);
+		
+	},[scrollStage,setOpen])
 
 	const cont = useRef();
 
 	const logo = useRef();
 	const wGrp = useRef();
 	const w0 = useRef();
-	const w1 = useRef();
-	const w2 = useRef();
-	const w3 = useRef();
-	const w4 = useRef();
-	const w5 = useRef();
+
 
 	const cnf = {
 		from: {
@@ -148,7 +152,7 @@ const Header = ({classes = ""}) => {
 	);
 
 	return (
-		<header ref={cont} id="header">
+		<header ref={cont} id="header" className={'header' + (open ? " open" : "")}>
 			<div className="home-grp">
 				<div
 					className="home-logo homelogo"

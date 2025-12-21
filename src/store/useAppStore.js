@@ -18,9 +18,8 @@ const useAppStore = create((set) => ({
 	setMessage: msg => set(() => ({message: msg})),
 	setShowSnackbar: show => set(() => ({showSnackbar: show})),
 	setActivity: id => {
-		console.trace(`setActivity called with value: ${id}`);
+		// console.trace(`setActivity called with value: ${id}`);
 		set(() => ({ activity: id }))
-	
 	},
 	setAccData: data => set(() => ({accData: data})),
 	addTool: id => set((state) => ({userToolIDs: [...state.userToolIDs, id]})),
@@ -31,9 +30,9 @@ const useAppStore = create((set) => ({
 
 	setAcronymnID: id => set(() => ({acronymnID: id})),
 	setScrollStage: stage => set(() => ({scrollStage: stage})),
-	setShowAccCard: show => {
-		console.trace(`setShowAccCard called with value: ${show}`);
-		set(() => ({showAccCard: show}));
+	setShowAccCard: (show) => {
+		// console.trace(`setShowAccCard called with value: ${show}`);
+		set(() => ({ showAccCard: show }))
 	},
 	
 }));

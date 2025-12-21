@@ -1,0 +1,27 @@
+@use "@/scss/_variables.scss";
+@import "@/globals.css";
+body #root 
+
+    #age-gate-content{
+    width:90% !important;
+    
+    h1#age-gate-header{
+        font-weight:500 !important;
+        font-variation-settings: "wght" 500;
+        font-size:variables.$h4_size !important;
+        line-height:1.25 !important;
+        margin:0;
+    }
+    h3#age-gate-subheader{
+        font-size:22px !important;
+        font-weight:400 !important;
+        font-variation-settings: "wght" 400;
+        width:80% !important;
+        line-height:1.45 !important;
+        margin:2rem auto;
+    }
+    button{
+        font-weight:600 !important;
+        font-variation-settings: "wght" 600;
+    }
+}

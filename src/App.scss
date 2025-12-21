@@ -48,6 +48,7 @@ body {
 		padding: 0;
 		text-align: center;
 		scrollbar-width: 0;
+	}
 		.app {
 			position: relative;
 			top:0;
@@ -56,7 +57,7 @@ body {
 			width: 100%;
 			display:flex;
 			flex-flow:column nowrap;
-// border: 10px solid yellow;
+		}
 
 			.main {
 				scrollbar-width: 0;
@@ -148,34 +149,9 @@ body {
 				}
 			}
 
-			/* .bg-img {
-		position: fixed;
-		width: 100%;
-		min-width: 100vw;
-		height: 100%;
-		top: 0;
-		left: 0;
-		z-index: 0;
-		object-fit: cover;
-		opacity: 0.4;
-	} */
 		}
-	}
-	// .activity {
-	// 	&.show {
-	// 		opacity: 1;
-	// 		display: block;
-	// 		transition: all 0.35s var(--transition);
-	// 	}
-	// 	&.hide {
-	// 		opacity: 0;
-	// 		transition: all 0.35s var(--transition);
-	// 	}
-	// 	&.dormant {
-	// 		display: none;
-	// 		z-index: -10;
-	// 	}
-	// }
+	
+	
 	*,
 	:before,
 	:after {
@@ -198,7 +174,7 @@ body {
 		margin:1.5rem 0;
 		text-shadow: 0 0px 6px rgba(0, 0, 0, 0.4);
 	}
-}
+
 
 .bgImgs {
 	position: absolute;

@@ -17,20 +17,19 @@ const Dialog = ({show , title = '', instruction = '', confirmLabel = 'Okay', onC
     };
     
     return (
-
-        <div className={"dialog-backdrop" + (show ? "  show" : "")}>
-            <div className="dialog">
-                <div className="dialog-inner">
-                    <div className="dialog-title">{title}</div>
-                    <div className="dialog-instruction">{instruction}</div>
-                    <div className="dialog-actions">
-                        <ButtonSimple label={confirmLabel} handleClick={handleConfirm} classes={["confirm"]} />
-                        <ButtonSimple label={cancelLabel} handleClick={handleCancel} classes={["cancel"]} />
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
+			<div className={'dialog-backdrop' + (open ? '  show' : '')}>
+				<div className='dialog'>
+					<div className='dialog-inner'>
+						<div className='dialog-title'>{title}</div>
+						<div className='dialog-instruction'>{instruction}</div>
+						<div className='dialog-actions'>
+							<ButtonSimple label={confirmLabel} handleClick={handleConfirm} classes={['confirm']} />
+							<ButtonSimple label={cancelLabel} handleClick={handleCancel} classes={['cancel']} />
+						</div>
+					</div>
+				</div>
+			</div>
+		)
 }
 Dialog.propTypes = {
     title: PropTypes.string.isRequired,
@@ -42,5 +41,5 @@ Dialog.propTypes = {
     classes: PropTypes.array,
     show: PropTypes.bool.isRequired
 };
-Dialog.displayName = "ButtonSimple";
+Dialog.displayName = 'Dialog'
 export default Dialog;

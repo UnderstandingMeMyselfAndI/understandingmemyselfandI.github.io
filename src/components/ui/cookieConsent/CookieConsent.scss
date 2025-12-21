@@ -267,7 +267,9 @@
       flex: 1;
       justify-content: center;
     }
-
+    button.btn{
+      background:var(--blue);
+    }
     .demo-container {
       min-height: 100vh;
       background: linear-gradient(to bottom right, #eff6ff, #e0e7ff);
@@ -366,7 +368,7 @@
 
     @media (max-width: 640px) {
       .cookie-banner-actions {
-        flex-direction: column;
+        // flex-direction: column;
       }
 
       .btn {
