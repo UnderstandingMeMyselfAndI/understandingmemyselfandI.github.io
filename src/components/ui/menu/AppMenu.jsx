@@ -110,7 +110,7 @@ export default function AppMenu() {
         {getPWADisplayMode() !== 'fullscreen' && (<li onClick={() => {
           handleClose();
           setActivity(-1);
-          const el = document.getElementById("intro");
+          const el = document.getElementById("install");
 
           el.scrollIntoView({ behavior: "smooth", block: "start" })
           

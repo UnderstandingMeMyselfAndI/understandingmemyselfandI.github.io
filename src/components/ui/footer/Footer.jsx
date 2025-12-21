@@ -27,7 +27,7 @@ function Footer() {
 
 	console.log("dates ",dates)
 	return (
-		<div className="activity footer" id="installInstructions">
+		<div className="activity footer" id="install">
 		<section>
 			{getPWADisplayMode() !== 'fullscreen' && (
 				<>
