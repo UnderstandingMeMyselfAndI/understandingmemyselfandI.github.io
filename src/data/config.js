@@ -236,7 +236,7 @@ const strings = {
 			name: 'tools',
 			title: 'The Tools',
 			content: [
-				'Tap a heading to find out how to use the tool.',
+				'Tap a heading for an explanation of the tool, how to use it, scenarios where it might be useful, and more.',
 				// "Some tools also include videos that help to explain them."
 			],
 			btnLabel: '',
