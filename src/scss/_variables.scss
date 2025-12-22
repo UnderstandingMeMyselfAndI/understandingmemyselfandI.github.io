@@ -235,8 +235,8 @@ $subtitle_style: normal;
 // Menu font size
 // ------------------------------------------
 
-$menu_size_min: 34px;
-$menu_size_max: 50px;
+$menu_size_min: 27px;
+$menu_size_max: 38px;
 $menu_size: responsiveFontSize($menu_size_min, $menu_size_max, $minDeviceWidth, $maxDeviceWidth);
 $menu_color: var(--text_primary);
 $menu_weight: 100;

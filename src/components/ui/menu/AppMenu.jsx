@@ -163,6 +163,14 @@ export default function AppMenu() {
 				>
 					Your data &amp; privacy
 				</li>
+				<li
+					onClick={() => {
+						handleClose()
+						setActivity(10)
+					}}
+				>
+					Settings
+				</li>
 				{/* <li onClick={handleClose}>Tour</li> */}
 				{/* <li onClick={handleClose}>Settings</li> */}
 			</ul>

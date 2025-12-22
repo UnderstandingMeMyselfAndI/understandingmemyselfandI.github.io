@@ -107,7 +107,7 @@
     ul#app-menu{
 
         position: fixed;
-        top: 50%;
+        top: calc(50% + 32px);
         transform: translateY(-50%);
 
         margin:0;
@@ -124,10 +124,10 @@
         width:100%;
         display:flex;
         flex-flow:column wrap;
-        // align-content: flex-end;
+        padding: 0;
         align-items: flex-end;
         overflow-y:auto;
-            li{
+        li{
             font-size:variables.$menu_size;
             font-family:variables.$font_family;
             font-weight:variables.$menu_weight;

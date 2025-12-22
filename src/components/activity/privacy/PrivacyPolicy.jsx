@@ -102,7 +102,7 @@ const PrivacyPolicy = () => {
 					<ul>
 						<li>
 							<strong>Usage Data:</strong> Anonymous data about your interactions with the App (e.g., features accessed, time spent, tools viewed) is collected remotely if you
-							consent to analytics via the consent barrier.
+							consent to analytics via the consent banner.
 						</li>
 						<li>
 							<strong>Device & Technical Data:</strong> Information about your device, browser, operating system, and IP address (anonymized where possible).
@@ -205,7 +205,7 @@ const PrivacyPolicy = () => {
 						<li>Object to processing based on legitimate interests.</li>
 						<li>Request data portability.</li>
 						<li>Opt-out of notifications via App settings or device/browser controls.</li>
-						<li>Manage cookies via the consent barrier or browser settings.</li>
+						<li>Manage cookies via the consent banner or browser settings.</li>
 					</ul>
 					<h3>Delete All Data:</h3>
 					<p>You can:</p>
