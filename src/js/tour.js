@@ -1,6 +1,6 @@
 import {driver} from "driver.js";
-import "driver.js/dist/driver.css";
-
+// import "driver.js/dist/driver.css";
+import '../scss/tour.scss';
 
 
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined'
@@ -79,33 +79,45 @@ import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined'
 
 const driverObj = driver({
 	showProgress: true,
-	nextBtnText: '<span>Next</span> ' + ArrowForwardIosOutlinedIcon,
-	prevBtnText: ArrowBackIosOutlinedIcon + ' <span>Back</span>',
+	nextBtnText: '<span>Next</span> <ArrowForwardIosOutlinedIcon />',
+	prevBtnText: '<ArrowBackIosOutlinedIcon />  <span>Back</span>',
 	doneBtnText: '✕',
 	popoverClass: 'flp-theme',
 	steps: [
 		{
 			popover: {
-				title: "<div class='intro title'><span class='t'>A tour?</span><span class='italic'>Let's show<br />you around!</span></div>",
-				description:
-					"<div class='intro'><p><span class='note'>Just a quick note:</span></p><p>Privacy is important to us so everything you do here is only stored on your device.</p><p>Nothing is shared with anyone else. 👍 </p><p>Use the arrows below to continue.</p></div>",
+				title: "<div class='intro title'><span class='t'>A tour?</span><span class='italic'>Let's show<br />you around! 👍 </span></div>",
+				description: "<div class='intro'></p><p>Use the arrows below to continue.</p></div>",
 			},
 		},
 		{
 			element: '#burger-button',
 			popover: {
-				title: "<span class='tSml'>Settings</span>",
+				title: "<span class='tSml'></span>",
 				description: 'Access the menu here.',
 				side: 'left',
 				align: 'start',
 			},
 			onNextClick: () => {
 				console.log('Opening menu from onboarding step 2')
-				const bstack = document.getElementById('burger-button')
-				bstack.click()
+				const tools = document.getElementById('tools')
+				tools.scrollIntoView({ behavior: 'smooth', block: 'start' })
 				setTimeout(() => {
 					driverObj.moveNext()
 				}, 500)
+			},
+		},
+		{
+			element: '#tools',
+			popover: {
+				title: "<span class='tSml'>Tools</span>",
+				description: 'Here are the tools.',
+				side: 'left',
+				align: 'start',
+			},
+			onNextClick: () => {
+				
+				driverObj.moveNext()
 			},
 		},
 		// {
@@ -141,5 +153,4 @@ const driverObj = driver({
 		// },
 	],
 })
-
-driverObj.drive()
+export default driverObj

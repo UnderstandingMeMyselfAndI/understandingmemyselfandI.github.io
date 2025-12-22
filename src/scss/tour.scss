@@ -1,0 +1,218 @@
+@use "@/scss/variables";
+@import "@/globals.css";
+
+
+/* -------------------------------------------------
+Onboarding
+------------------------------------------------ */
+.ob {
+	width: fit-content;
+	height: fit-content;
+}
+body {
+	#driver-popover-content{
+		width:200px;
+		height:300px;
+	}
+	#driver-dummy-element,
+	#driver-popover-content,
+	.driver-popover-title,
+	.driver-popover-description,
+	.driver-popover-footer,
+	.driver-popover-next-btn,
+	.driver-popover-prev-btn,
+	.driver-popover-close-btn,
+	.driver-popover-progress-text,
+	.driver-popover {
+		font-family: "Plus Jakarta Sans", sans-serif !important;
+	}
+	.italic {
+		font-family: "Plus Jakarta Sans", sans-serif !important;
+		font-weight: 500;
+		font-size: 3rem;
+		
+		color: var(--primary);
+	}
+	#driver-popover-content {
+		display: flex !important;
+		flex-flow: column wrap;
+		row-gap: 0rem;
+		padding-top: 2rem;
+		font-family: "Plus Jakarta Sans" !important;
+	}
+
+	.driver-popover.flp-theme {
+		background: rgba(104, 79, 128, 0.8);
+		background: linear-gradient(140deg, rgba(27, 134, 158, 1) 0%, rgb(157, 30, 30) 81%);
+		margin: -3px;
+		.driver-popover-title,
+		.driver-popover-description,
+		.driver-popover-footer,
+		.driver-popover-next-btn,
+		.driver-popover-prev-btn,
+		.driver-popover-close-btn,
+		.driver-popover-progress-text,
+		.driver-popover-description {
+			color: var(--primary);
+			font-size: 1.1rem;
+			line-height: 1.2;
+			font-family: "Plus Jakarta Sans" !important;
+			font-weight: 300;
+		}
+		.driver-popover-description p {
+			font-family: "Plus Jakarta Sans", cursive !important;
+			font-weight: 300 !important;
+		}
+		.driver-popover-title {
+			font-family: "Plus Jakarta Sans", cursive !important;
+			color: var(--primary);
+			line-height: 1;
+
+			.intro.title {
+				width: 100%;
+				display: flex !important;
+				flex-flow: column wrap;
+				row-gap: 1.5rem;
+				margin: 0.5rem 0 1.75rem 0;
+				text-align: center;
+				.t {
+					width: 100%;
+					font-family: "Plus Jakarta Sans", cursive !important;
+					transform: none;
+					font-size: 2.75rem;
+					font-weight: 900;
+					color: var(--primary);
+					width: 100%;
+				}
+				.italic {
+					// font-family: "Kaushan Script", cursive !important;
+					color: var(--primary);
+					line-height: 0.9;
+					font-weight: 400;
+					// transform: rotate(-2.5deg) skew(9deg, 0deg);
+					font-size: 2rem;
+					margin-left: -20px;
+					
+				}
+			}
+		}
+		.driver-popover-progress-text {
+			color: var(--grey);
+			font-size: 1rem;
+		}
+		/* ------------------------------------------------
+		Description
+		------------------------------------------------ */
+		.driver-popover-description {
+			.intro {
+				text-align: center;
+			}
+			p {
+				margin-bottom: 1rem;
+			}
+			p:has(span.note) {
+				text-align: center;
+				margin-bottom: 1rem;
+				font-weight: 100;
+				span.note {
+					
+					font-weight: 100;
+					font-size: 2rem;
+					
+					font-style: italic;
+					display: block;
+					opacity: 0.5;
+				}
+			}
+		}
+		/* ------------------------------------------------
+		Close button
+		------------------------------------------------ */
+		button.driver-popover-close-btn {
+			font-size: 2.25rem;
+			line-height: 20px;
+			margin-top: -3px;
+			font-weight: 200;
+			color: #bebebe !important;
+		}
+		/* ------------------------------------------------
+		Overlay Arrow
+		------------------------------------------------ */
+		.driver-popover-arrow {
+			content: "";
+			position: absolute;
+			/* border: 5px solid #257d94; */
+			background-color: #257d94;
+			width: 13px;
+			height: 13px;
+
+			border: none;
+			&.driver-popover-arrow-side-right {
+				left: -12px;
+				clip-path: polygon(100% 0, 0 50%, 100% 100%);
+			}
+			&.driver-popover-arrow-side-left {
+				clip-path: polygon(100% 50%, 0 0, 0 100%);
+			}
+			&.driver-popover-arrow-side-top {
+				clip-path: polygon(100% 0, 0 0, 50% 100%);
+			}
+			&.driver-popover-arrow-side-bottom {
+				top: -12px;
+				clip-path: polygon(100% 100%, 50% 0, 0 100%);
+			}
+		}
+
+		/* ------------------------------------------------
+		Overlay Footer
+		------------------------------------------------ */
+		.driver-popover-footer {
+			.driver-popover-navigation-btns {
+				column-gap: 0.5rem;
+				button{
+					text-shadow:none
+				}
+				.driver-popover-next-btn,
+				.driver-popover-prev-btn {
+					background: rgba(250, 250, 250, 0.2);
+					color: var(--primary);
+					font-size: 0.8rem;
+					border: none;
+					border-radius: 8px;
+					padding: 0.75rem 1.25rem;
+					display: flex !important;
+					align-items: center;
+					justify-content: center;
+					column-gap: 0.25rem;
+					svg {
+						width: 20px;
+						height: 20px;
+						/* outline: 1px solid #ccc; */
+					}
+					&.driver-popover-btn-disabled {
+						color: #cacaca;
+						svg {
+							width: 20px;
+							height: 20px;
+
+							path {
+								fill: #666;
+								outline: #666;
+							}
+						}
+					}
+				}
+			}
+		}
+		/* ------------------------------------------------
+		Highlighted Element
+		------------------------------------------------ */
+		.driver-active-element {
+		}
+		/* ------------------------------------------------
+		Overlay 
+		------------------------------------------------ */
+		.driver-overlay {
+		}
+	}
+}

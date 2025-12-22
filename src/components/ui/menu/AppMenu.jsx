@@ -4,7 +4,7 @@ import * as React from 'react';
 // import MenuItem from '@mui/material/MenuItem';
 import useAppStore from '@/store/useAppStore';
 import { getPWADisplayMode } from "@/utils/isAppInstalled";
-
+import driverObj from '@/js/tour.js'
 // import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 // import Slide from '@mui/material/Slide';
 import './appMenuStyles.scss';
@@ -27,10 +27,11 @@ export default function AppMenu() {
      setOpen(!open);
   };
   const handleClose = () => {
-    setAnchorEl(null);
-    setOpen(false);
-   
-  };
+		setAnchorEl(null)
+		setOpen(false)
+	}
+	
+
 
   return (
 		<div className={'AppMenu' + (activity === -1 ? '' : ' hide')}>
@@ -58,7 +59,6 @@ export default function AppMenu() {
 				>
 					Tools
 				</li>
-
 				{/* <li onClick={handleClose}>Journeys</li> */}
 				{/* <li onClick={handleClose}>Motivation</li> */}
 				{/* <li onClick={handleClose}>Dailys</li> */}
@@ -82,6 +82,25 @@ export default function AppMenu() {
         }
         }>Lingo &amp; Phrases</li> */}
 
+				<li
+					onClick={() => {
+						handleClose()
+						setActivity(-1)
+						// const el = document.getElementById('gratitude')
+
+						// el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+
+						window.scrollTo({
+							top: 0,
+							left: 0,
+							behavior: 'smooth',
+						})
+
+						// driverObj.drive()
+					}}
+				>
+					Tour
+				</li>
 				<li
 					onClick={() => {
 						handleClose()

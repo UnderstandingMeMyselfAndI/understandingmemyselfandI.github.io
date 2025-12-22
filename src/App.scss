@@ -49,107 +49,126 @@ body {
 		text-align: center;
 		scrollbar-width: 0;
 	}
-		.app {
+	.app {
+		position: relative;
+		top:0;
+		left:0;
+		z-index: 10000;
+		width: 100%;
+		display:flex;
+		flex-flow:column nowrap;
+	}
+
+	.main {
+		scrollbar-width: 0;
+		width: 90%;
+		max-width:var(--appMaxWidth);
+		margin:0 auto;
+		padding: 0;					
+
+		.activities {
 			position: relative;
-			top:0;
-			left:0;
-			z-index: 10000;
+			z-index: 5500;
+		}
+		> .inner {
 			width: 100%;
-			display:flex;
-			flex-flow:column nowrap;
+
+			.content {
+				position: relative;
+			}
 		}
+	}
 
-			.main {
-				scrollbar-width: 0;
-				width: 90%;
-				max-width:var(--appMaxWidth);
-				margin:0 auto;
-				padding: 0;					
-
-				.activities {
-					position: relative;
-					z-index: 5500;
-				}
-				> .inner {
-					width: 100%;
-
-					.content {
-						position: relative;
-					}
-				}
-			}
-
-			h1 {
-				font-size: variables.$h1_size;
-				font-weight: variables.$h1_weight;
-				color: var(--primary);
-			}
-			h2 {
-				font-size: variables.$h2_size;
-				font-weight: variables.$h2_weight;
-				color: var(--primary);
-			}
-			h3 {
-				font-size: variables.$h3_size;
-				font-weight: variables.$h3_weight;
-				color: var(--primary);
-			}
-			h4 {
-				font-size: variables.$h4_size;
-				font-weight: variables.$h4_weight;
-				color: var(--primary);
-			}
-			h5 {
-				font-size: variables.$h5_size;
-				font-weight: variables.$h5_weight;
-				color: var(--primary);
-			}
-			.ummi {
-				font-weight: 800;
-				font-variation-settings: "wght" 800;
-				color: var(--lightBlue);
-				font-size: variables.$ummi_size;
-			}
-			.ummi-blue {
-				font-weight: 800;
-				font-variation-settings: "wght" 800;
-				color: var(--lightBlue);
-			}
-			*.MuiTypography-root {
-				font-family: "Plus Jakarta Sans", sans-serif;
-				color: var(--primary);
-			}
-			div.MuiModal-root {
-				max-width: 100%;
-				font-family: "Plus Jakarta Sans", sans-serif;
-				div.MuiBox-root {
-					max-width: 90dvw;
-					left: 5dvw;
-					transform: translateX(0);
-					border: none;
-					border-image: none;
-				}
-			}
-			section{
-				.title,
-				h4{
-					text-decoration-thickness: 4px;
-					text-decoration-style: solid;
-					text-decoration-line: underline;
-					text-decoration-color: var(--yellow);
-				}
-				b{
-					font-weight:600;
-					font-variation-settings: "wght" 600;
-				}
-				.title{
-					font-size: variables.$h3_size;
- 					font-weight:800;
-        			font-variation-settings: "wght" 800;
-				}
-			}
-
+	h1 {
+		font-size: variables.$h1_size;
+		font-weight: variables.$h1_weight;
+		color: var(--primary);
+	}
+	h2 {
+		font-size: variables.$h2_size;
+		font-weight: variables.$h2_weight;
+		color: var(--primary);
+	}
+	h3 {
+		font-size: variables.$h3_size;
+		font-weight: variables.$h3_weight;
+		color: var(--primary);
+	}
+	h4 {
+		font-size: variables.$h4_size;
+		font-weight: variables.$h4_weight;
+		color: var(--primary);
+	}
+	h5 {
+		font-size: variables.$h5_size;
+		font-weight: variables.$h5_weight;
+		color: var(--primary);
+	}
+	.ummi {
+		font-weight: 800;
+		font-variation-settings: "wght" 800;
+		color: var(--lightBlue);
+		font-size: variables.$ummi_size;
+	}
+	.ummi-blue {
+		font-weight: 800;
+		font-variation-settings: "wght" 800;
+		color: var(--lightBlue);
+	}
+	*.MuiTypography-root {
+		font-family: "Plus Jakarta Sans", sans-serif;
+		color: var(--primary);
+	}
+	div.MuiModal-root {
+		max-width: 100%;
+		font-family: "Plus Jakarta Sans", sans-serif;
+		div.MuiBox-root {
+			max-width: 90dvw;
+			left: 5dvw;
+			transform: translateX(0);
+			border: none;
+			border-image: none;
 		}
+	}
+	section{
+		.title,
+		h4{
+			text-decoration-thickness: 4px;
+			text-decoration-style: solid;
+			text-decoration-line: underline;
+			text-decoration-color: var(--yellow);
+		}
+		b{
+			font-weight:600;
+			font-variation-settings: "wght" 600;
+		}
+		.title{
+			font-size: variables.$h3_size;
+			font-weight:800;
+			font-variation-settings: "wght" 800;
+		}
+	}
+	button.btn{
+		padding:1.25rem 2rem;
+        box-shadow:0px 0px 6px rgba(0, 0, 0, 0.5);
+		position:relative;
+		background-color:transparent;
+        &::after{
+             outline:1px solid var(--lightBlue);
+            position:absolute;
+            content:"";
+            width:100%;
+            height:100%;
+            top:0;
+            left:0;
+            z-index:-1;
+            
+            background-color:var(--blue);
+            opacity:0.5;
+            border-radius:var(--border-radius);
+        }
+	}
+}
 	
 	
 	*,

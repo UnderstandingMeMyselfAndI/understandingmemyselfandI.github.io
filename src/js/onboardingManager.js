@@ -6,7 +6,7 @@ export const initOnboarding = async () => {
 	if (onboardingInitialized) return onboardingInstance;
 
 	// Dynamically import the onboarding to avoid immediate execution
-	const onboardingModule = await import("./onboarding.js");
+	const onboardingModule = await import("./tour.js");
 	onboardingInstance = onboardingModule.default;
 	onboardingInitialized = true;
 

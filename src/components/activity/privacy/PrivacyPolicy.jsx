@@ -112,11 +112,11 @@ const PrivacyPolicy = () => {
 					<ul>
 						<li>
 							<strong>Favourites / Tools in Your Toolbox:</strong> Your list of favourited tools is stored exclusively in your device's local IndexedDB database. We do not have
-							remote access to this data unless you create an account and opt into notification services.
+							remote access to this data.
 						</li>
 						<li>
 							<strong>Days Counter Settings:</strong> Your Days Counter date and notification preferences (e.g., daily, weekly, monthly, annual reminders) are stored locally on
-							your device.
+							your device. We do not have remote access to this data unless you create an account and opt into notification services.
 						</li>
 					</ul>
 				</section>
@@ -125,9 +125,9 @@ const PrivacyPolicy = () => {
 					<h2>4. How We Use Your Information</h2>
 					<p>We use the information we collect to:</p>
 					<ul>
-						<li>Provide, operate, and maintain the App's functionality.</li>
+						<li>Provide, operate, improve and maintain the App's functionality.</li>
 						<li>Authenticate your account and secure access.</li>
-						<li>Send you notifications (e.g., Days Counter reminders or new content updates) only if you explicitly opt-in and consent. You can revoke this at any time.</li>
+						<li>Send you notifications (e.g. Days Counter reminders or new content updates) only if you explicitly opt-in and consent. You can revoke this consent at any time.</li>
 						<li>Improve the App's content and user experience based on anonymous, aggregated analytics (subject to consent).</li>
 						<li>Understand user needs through anonymized and aggregated analysis of optional onboarding responses to better serve our community.</li>
 						<li>Communicate with you regarding your account or inquiries.</li>
@@ -160,6 +160,7 @@ const PrivacyPolicy = () => {
 							<strong>Local Storage:</strong> Favourites and Days Counter data are stored locally in your browser's IndexedDB. You can clear this data at any time via browser
 							settings or the App's "Clear Local Data" function.
 						</li>
+
 						<li>
 							<strong>Remote Storage:</strong> Account information, consented analytics data, and encrypted onboarding responses are stored on secure cloud servers operated by
 							third-party providers (e.g., Firebase/Google Cloud Platform) located in the United States.
@@ -183,13 +184,13 @@ const PrivacyPolicy = () => {
 					<ul>
 						<li>
 							<strong>Service Providers:</strong> Trusted third parties for hosting and backups (e.g., Firebase/Google Cloud), analytics (Google Analytics, with consent), and
-							authentication (Google, Facebook, Twitter via Firebase). They are contractually obligated to handle data confidentially and only for our purposes.
+							authentication (Email, Google, Facebook, Twitter via Firebase). They are contractually obligated to handle data confidentially and only for our purposes.
 						</li>
 						<li>
 							<strong>Legal Requirements:</strong> If required by law or valid public authority requests.
 						</li>
 						<li>
-							<strong>International Transfers:</strong> Data may be processed outside your residence (e.g., in the USA for all remote storage). We use safeguards like Standard
+							<strong>International Transfers:</strong> Data may be processed outside your residence (e.g. in the USA for all remote storage). We use safeguards like Standard
 							Contractual Clauses or equivalent mechanisms to protect transfers, particularly for EEA/UK users.
 						</li>
 					</ul>
@@ -197,7 +198,7 @@ const PrivacyPolicy = () => {
 
 				<section>
 					<h2>8. Your Rights & Choices</h2>
-					<p>Depending on your location (e.g., GDPR, CCPA), you may have rights to:</p>
+					<p>Depending on your location (e.g. GDPR, CCPA), you may have rights to:</p>
 					<ul>
 						<li>Access, update, or delete your personal data.</li>
 						<li>Withdraw consent (e.g., for analytics, notifications, onboarding).</li>

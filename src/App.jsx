@@ -52,10 +52,9 @@ import CookieConsent from "./components/ui/cookieConsent/CookieConsent";
 import UmmiAgeGate from './components/ui/ageGate/UmmiAgeGate'
 import { smoothScroll } from './js/utils.js'
 
-// import './js/onboarding.js'
 
 import "./App.scss";
-
+// TODO: "Clear Local Data" functionality
 // import SpeedDialSettings from "./components/ui/settings/speedDial/SpeedDialSettings.jsx";
 function App() {
 
