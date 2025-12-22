@@ -194,115 +194,94 @@ VerticalList.propTypes = {
 	className: PropTypes.string,
 };
 
+const userData = () => {
+	const ids = data.map((item) => item.id)
+	const positiveIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids)
+	return data.filter((obj) => positiveIDs.includes(obj.id))
+}
+
 const MenuCarousel = () => {
-	const [open, setOpen] = useState(false);
-	const showToolsOnly = useAppStore(s => s.showToolsOnly);
+	const [open, setOpen] = useState(false)
+	const [accData, setAccData] = useState(userData())
+	const showToolsOnly = useAppStore((s) => s.showToolsOnly)
 	// const userToolIDs = useAppStore(s => s.userToolIDs);
 	// console.log("userToolIDs", userToolIDs);
 
-	const ids = data.map(item => item.id);
+	const ids = data.map((item) => item.id)
 
-	const positiveIDs = useMemo(() => localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids), [ids]);
-	const positiveIDsSet = useMemo(() => new Set(positiveIDs), [positiveIDs]);
+	const positiveIDs = useMemo(() => localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids), [ids])
+	const positiveIDsSet = useMemo(() => new Set(positiveIDs), [positiveIDs])
 
 	// Memoize the accData calculation
-	const accData = useMemo(() => {
-		const ids = data.map(item => item.id);
-		const positiveIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids);
-		return data.filter(obj => positiveIDs.includes(obj.id));
-	}, []); // Empty dependency array if these don't change
+	// const accData = useMemo(() => {
+	// 	const ids = data.map((item) => item.id)
+	// 	const positiveIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids)
+	// 	return data.filter((obj) => positiveIDs.includes(obj.id))
+	// }, []) // Empty dependency array if these don't change
+
+	useEffect(() => {
+		setAccData(userData())
+	}, [showToolsOnly])
 
 	// Memoize the final carouselData
 	const carouselData = useMemo(() => {
-		return showToolsOnly ? accData : data;
-	}, [showToolsOnly, accData]);
+		return showToolsOnly ? accData : data
+	}, [showToolsOnly, accData])
 
-	const setActivity = useAppStore(s => s.setActivity);
-	const setAcronymnID = useAppStore(s => s.setAcronymnID);
-	const setShowAccCard = useAppStore(s => s.setShowAccCard);
-	
+	const setActivity = useAppStore((s) => s.setActivity)
+	const setAcronymnID = useAppStore((s) => s.setAcronymnID)
+	const setShowAccCard = useAppStore((s) => s.setShowAccCard)
 
-	const handleClick = id => () => {
-		setAcronymnID(id);
-		setShowAccCard(true);
-		setActivity(1);
-	};
+	const handleClick = (id) => () => {
+		setAcronymnID(id)
+		setShowAccCard(true)
+		setActivity(1)
+	}
 
 	const customConfig = {
 		minOpacity: 0.35,
 		minScale: 0.35,
 		fadeBoundary: 0.35,
 		centerZoneHeight: 0.025,
-		transitionSpeed: "0.25s",
-	};
+		transitionSpeed: '0.25s',
+	}
 
 	const items = carouselData.map((item, index) => {
-		const isSelected = positiveIDsSet.has(item.id); // O(1) lookup
+		const isSelected = positiveIDsSet.has(item.id) // O(1) lookup
 
 		if (!item) {
-			return (
-				<Skeleton
-					key={`skeleton-${index}`}
-					variant="rounded"
-					width="100%"
-					height={200}
-					animation="wave"
-				/>
-			);
+			return <Skeleton key={`skeleton-${index}`} variant='rounded' width='100%' height={200} animation='wave' />
 		}
 
 		return (
-			<div
-				key={`AccordionItem-cont-${item.id ?? index}`}
-				className={"carousel-item"}
-				onClick={handleClick(item.id)}
-			>
-				<div
-					className="AccordionItem inner item"
-					key={`AccordionItem-${item.id ?? index}`}
-					style={{cursor: "pointer"}}
-				>
-					<div
-						className="title"
-						aria-controls={`Accronym-${index}-content`}
-						id={`panel${item?.id}-header`}
-					>
-						<HandymanIcon
-							className={"icon" + (isSelected ? " active" : "")}
-							key={`AccordionItem-icon-${item.id ?? index}`}
-						/>
+			<div key={`AccordionItem-cont-${item.id ?? index}`} className={'carousel-item'} onClick={handleClick(item.id)}>
+				<div className='AccordionItem inner item' key={`AccordionItem-${item.id ?? index}`} style={{ cursor: 'pointer' }}>
+					<div className='title' aria-controls={`Accronym-${index}-content`} id={`panel${item?.id}-header`}>
+						<HandymanIcon className={'icon' + (isSelected ? ' active' : '')} key={`AccordionItem-icon-${item.id ?? index}`} />
 
-						<div className="letters-cont">
-							{item.title.split(".").map(
+						<div className='letters-cont'>
+							{item.title.split('.').map(
 								(subItem, i) =>
 									subItem && (
-										<div
-											key={i}
-											className="letter"
-											data-content={subItem}
-										>
+										<div key={i} className='letter' data-content={subItem}>
 											{subItem}
 										</div>
-									)
+									),
 							)}
 						</div>
 					</div>
 				</div>
 			</div>
-		);
-	});
+		)
+	})
 
 	return (
-		<div className={"AccordionRoot" + (open ? " expanded" : "")}>
-			<VerticalList
-				config={customConfig}
-				isActive={true}
-				itemStyle={{marginBottom: "10px"}}
-			>
+		<div className={'AccordionRoot' + (open ? ' expanded' : '')}>
+			<VerticalList config={customConfig} isActive={true} itemStyle={{ marginBottom: '10px' }}>
 				{items}
 			</VerticalList>
 		</div>
-	);
+	)
 };
 MenuCarousel.propTypes = {};
 export default MenuCarousel;

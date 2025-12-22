@@ -16,74 +16,70 @@ import {strings} from "data/config.js";
 import "./BadgeToolbox.scss";
 
 export default function BadgeToolbox() {
-	const allAccronyms = data;
-	const ids = allAccronyms.map(item => item.id);
-	const positiveIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids);
-	const showAccCard = useAppStore(s => s.showAccCard);
-	const activity = useAppStore(s => s.activity);
+	const allAccronyms = data
+	const ids = allAccronyms.map((item) => item.id)
+	const positiveIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids)
+	const showAccCard = useAppStore((s) => s.showAccCard)
+	const toolsInView = useAppStore((s) => s.toolsInView)
+	// const activity = useAppStore((s) => s.activity)
 	// const [openAlert, setOpenAlert] = React.useState(false);
-	const [open, setOpen] = React.useState(false);
-	const [numTools, setNumTools] = React.useState(positiveIDs.length);
+	const [show, setShow] = React.useState(false)
+	// const [numTools, setNumTools] = React.useState(positiveIDs.length)
 
-	const toggleShowToolsOnly = useAppStore(s => s.toggleShowToolsOnly);
-	const userToolIDs = useAppStore(s => s.userToolIDs);
-	const showToolsOnly = useAppStore(s => s.showToolsOnly);
-	const setMessage = useAppStore(s => s.setMessage);
+	const toggleShowToolsOnly = useAppStore((s) => s.toggleShowToolsOnly)
+	// const userToolIDs = useAppStore((s) => s.userToolIDs)
+	const showToolsOnly = useAppStore((s) => s.showToolsOnly)
+	const setMessage = useAppStore((s) => s.setMessage)
 
-	useEffect(() => {
-		setNumTools(userToolIDs.length);
-	}, [userToolIDs]);
+	// useEffect(() => {
+	// 	setNumTools(userToolIDs.length)
+	// }, [userToolIDs])
 
-	useEffect(() => {
-		setOpen( activity === -1 );
-	}, [activity,setOpen]);
-
-	useEffect(() => {
-		window.addEventListener("scroll", () => {
-			window.scrollY > 600 ? setOpen(true) : setOpen(false);
-		});
-	}, [setOpen]);
+	// useEffect(() => {
+	// 	setOpen(activity === -1)
+	// }, [activity, setOpen])
 
 	useEffect(() => {
-		if (window.scrollY < 600) return;
-		setOpen(!showAccCard);
-	}, [showAccCard, setOpen]);
+		setShow(toolsInView)
+	}, [toolsInView])
+
+	useEffect(() => {
+		if (window.scrollY < 600) return
+		setShow(!showAccCard)
+	}, [showAccCard, setShow])
 
 	const handleTouch = () => {
 		// set the message as the opposite here
 		if (showToolsOnly) {
-			setMessage(strings.tools.list.unfiltered);
-			
+			setMessage(strings.tools.list.unfiltered)
 		} else {
-			setMessage(strings.tools.list.yourToolsFiltered);
+			setMessage(strings.tools.list.yourToolsFiltered)
 		}
 		setTimeout(() => {
-		
-			const el = document.getElementById("tools");
+			const el = document.getElementById('tools')
 
-			el.scrollIntoView({ behavior: "smooth", block: "start" })
-
-		}, 0);
+			el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+		}, 0)
 
 		// setOpenAlert(true);
-		toggleShowToolsOnly();
-	};
+		toggleShowToolsOnly()
+	}
 
 	return (
 		<div>
-			<div className={"badge-cont " + (open ? "" : " hide")}>
+			<div className={'badge-cont ' + (show ? '' : ' hide')}>
 				<Badge
-					className={"badge toolbox" + (showToolsOnly ? " active" : "")}
+					className={'badge toolbox' + (showToolsOnly ? ' active' : '')}
 					badgeContent={positiveIDs.length}
 					onClick={handleTouch}
 					anchorOrigin={{
-						vertical: "top",
-						horizontal: "right",
+						vertical: 'top',
+						horizontal: 'right',
 					}}
 				>
-					<HandymanIcon className="icon" />
+					<HandymanIcon className='icon' />
 				</Badge>
 			</div>
 		</div>
-	);
+	)
 }

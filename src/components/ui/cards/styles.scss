@@ -155,7 +155,8 @@ div.AcronymCard {
 		font-weight: variables.$p_weight;
 		line-height: variables.$p_line_height;
 		position: static;
-		 overflow-y: scroll;
+		overflow-y: scroll;
+		overflow-x: clip;
 		height: fit-content;
 		width: 100%;
 		flex: 1 1;
@@ -180,9 +181,7 @@ div.AcronymCard {
 			margin-bottom: 2rem;
 			display: flex;
 			flex-flow: column nowrap;
-
 			justify-content: space-evenly;
-
 			> div:first-child {
 				margin: 1rem 0 0 0;
 				color: var(--primary);

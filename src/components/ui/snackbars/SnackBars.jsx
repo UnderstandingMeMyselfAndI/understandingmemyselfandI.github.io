@@ -89,30 +89,30 @@ const Snackbars = () => {
 	};
 
 	return (
-		<div>
+		<div className='snackbars'>
 			<Snackbar
-				className={"snackBar alert"}
+				className={'snackBar alert'}
 				open={open}
 				autoHideDuration={cnf?.duration?.hide.snackbar || 2000}
 				onClose={handleClose}
-				slots={{transition: Slide}}
-				anchorOrigin={{vertical: "top", horizontal: "center"}}
+				slots={{ transition: Slide }}
+				anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
 			>
 				<Alert
 					onClose={handleClose}
 					severity={severity}
-					variant="filled"
-					sx={{width: "100%"}}
+					variant='filled'
+					sx={{ width: '100%' }}
 					iconMapping={{
-						success: <HandymanOutlinedIcon fontSize="inherit" />,
-						info: <CheckCircleOutlineIcon fontSize="inherit" />,
+						success: <HandymanOutlinedIcon fontSize='inherit' />,
+						info: <CheckCircleOutlineIcon fontSize='inherit' />,
 					}}
 				>
 					{message2}
 				</Alert>
 			</Snackbar>
 		</div>
-	);
+	)
 };
 
 export default Snackbars;

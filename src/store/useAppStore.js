@@ -10,30 +10,31 @@ const useAppStore = create((set) => ({
 	showToolsOnly: false,
 	userToolIDs: [],
 	accData: [],
-	message: "",
+	message: '',
 	showSnackbar: false,
 	isInstalled: false,
-	setIsInstalled: isInstalled => set(() => ({isInstalled: isInstalled})),
-	setIsMobile: isMobile => set(() => ({isMobile: isMobile})),
-	setMessage: msg => set(() => ({message: msg})),
-	setShowSnackbar: show => set(() => ({showSnackbar: show})),
-	setActivity: id => {
+	toolsInView: false,
+	setToolsInView: (inView) => set(() => ({ toolsInView: inView })),
+	setIsInstalled: (isInstalled) => set(() => ({ isInstalled: isInstalled })),
+	setIsMobile: (isMobile) => set(() => ({ isMobile: isMobile })),
+	setMessage: (msg) => set(() => ({ message: msg })),
+	setShowSnackbar: (show) => set(() => ({ showSnackbar: show })),
+	setActivity: (id) => {
 		// console.trace(`setActivity called with value: ${id}`);
 		set(() => ({ activity: id }))
 	},
-	setAccData: data => set(() => ({accData: data})),
-	addTool: id => set((state) => ({userToolIDs: [...state.userToolIDs, id]})),
+	setAccData: (data) => set(() => ({ accData: data })),
+	addTool: (id) => set((state) => ({ userToolIDs: [...state.userToolIDs, id] })),
 	// removeTool: id => set((state) => ({userToolIDs: state.userToolIDs.filter(t => t.id !== id)})),
-	setToolIDs: ids => set(() => ({userToolIDs: ids})),
-	setShowToolsOnly: show => set(() => ({showToolsOnly: show})),
-	toggleShowToolsOnly: () => set((state) => ({showToolsOnly: !state.showToolsOnly})),
+	setToolIDs: (ids) => set(() => ({ userToolIDs: ids })),
+	setShowToolsOnly: (show) => set(() => ({ showToolsOnly: show })),
+	toggleShowToolsOnly: () => set((state) => ({ showToolsOnly: !state.showToolsOnly })),
 
-	setAcronymnID: id => set(() => ({acronymnID: id})),
-	setScrollStage: stage => set(() => ({scrollStage: stage})),
+	setAcronymnID: (id) => set(() => ({ acronymnID: id })),
+	setScrollStage: (stage) => set(() => ({ scrollStage: stage })),
 	setShowAccCard: (show) => {
 		// console.trace(`setShowAccCard called with value: ${show}`);
 		set(() => ({ showAccCard: show }))
 	},
-	
-}));
+}))
 export default useAppStore;
