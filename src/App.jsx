@@ -50,7 +50,9 @@ import DaysCounterCTA from "./components/activity/DaysCounter/DaysCounterCTA";
 import AppMenu from "./components/ui/menu/AppMenu";
 import CookieConsent from "./components/ui/cookieConsent/CookieConsent";
 import UmmiAgeGate from './components/ui/ageGate/UmmiAgeGate'
-import {smoothScroll} from "./js/utils.js";
+import { smoothScroll } from './js/utils.js'
+
+// import './js/onboarding.js'
 
 import "./App.scss";
 

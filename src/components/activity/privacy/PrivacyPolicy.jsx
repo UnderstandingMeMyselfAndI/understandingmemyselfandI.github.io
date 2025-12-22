@@ -36,6 +36,7 @@ const PrivacyPolicy = () => {
 			<CloseBtn handleClick={handleClose} className='close-btn' />
 			<div className='inner'>
 				<h1>Privacy Policy</h1>
+				<h2>Your data and privacy</h2>
 				<div className='last-updated'>Last Updated: December 21, 2025</div>
 
 				<section>

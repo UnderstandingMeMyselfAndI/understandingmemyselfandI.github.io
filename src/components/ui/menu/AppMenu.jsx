@@ -136,14 +136,14 @@ export default function AppMenu() {
 				>
 					Feedback
 				</li>
-				{/* <li onClick={() => {
-          handleClose();
-          setActivity(-1);
-          const el = document.getElementById("yourdata");
-
-          el.scrollIntoView({ behavior: "smooth", block: "start" })
-          
-        }}>Your data</li>  */}
+				<li
+					onClick={() => {
+						handleClose()
+						setActivity(10)
+					}}
+				>
+					Your data &amp; privacy
+				</li>
 				{/* <li onClick={handleClose}>Tour</li> */}
 				{/* <li onClick={handleClose}>Settings</li> */}
 			</ul>
