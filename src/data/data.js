@@ -399,7 +399,7 @@ const data = [
 					letter: 'O',
 					meaning: 'Of',
 					definition:
-						'<p>The connection between your priorities and your deeper values. This is NOT: What <u>your</u> family wants, What <u>society/u> says or What <u>other people think</u> you should care about. This is about your actual choices, not your intentions.</p>',
+						'<p>The connection between your priorities and your deeper values. This is NOT: What <u>your</u> family wants, What <u>society</u> says or What <u>other people think</u> you should care about. This <u>is about your actual choices</u>, not your intentions.</p>',
 					scenario: '',
 				},
 				{
