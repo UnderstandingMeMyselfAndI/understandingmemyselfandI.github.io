@@ -5,7 +5,9 @@ import HandymanIcon from "@mui/icons-material/Handyman";
 import {storeKeys, localStore} from "@/data/localStore.js";
 import PropTypes from "prop-types";
 import useAppStore from "@/store/useAppStore";
-import data from "../../../data/data.js";
+// import data from "../../../data/data.js";
+import toolsData from "../../../data/tools.js";
+const data = toolsData.tools.nodes;
 // import {getPWADisplayMode} from "@/utils/isAppInstalled";
 import "./MenuCarousel.scss";
 // Default configuration

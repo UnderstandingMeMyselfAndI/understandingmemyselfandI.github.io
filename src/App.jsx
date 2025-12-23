@@ -42,7 +42,8 @@ import BackdropParallax from "ui/backdrop/BackdropParallax";
 
 import Snackbars from "ui/snackbars/Snackbars.jsx";
 
-import AcronymCard from "ui/cards/AcronymCard.jsx";
+// import AcronymCard from "ui/cards/AcronymCard.jsx";
+import AcronymExplained from "./components/activity/acronymExplained/AcronymExplained";
 import BadgeToolbox from "ui/badges/BadgeToolbox";
 
 import DaysCounter from "./components/activity/DaysCounter/DaysCounter";
@@ -91,7 +92,7 @@ function App() {
 					<Footer />
 					<div className='activities' id='top'>
 						<DaysCounter />
-						<AcronymCard />
+						<AcronymExplained />
 						<PrivacyPolicy />
 						{/* <Podcasts /> */}
 					</div>

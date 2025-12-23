@@ -1,7 +1,7 @@
 // import * as React from "react";
 import {useState, useEffect, useRef} from "react";
 import useAppStore from "@/store/useAppStore";
-import ButtonToolbox from "../buttons/toolbox/ButtonToolbox";
+import ButtonToolbox from "buttons/toolbox/ButtonToolbox";
 import Backdrop from "ui/backdrop/Backdrop";
 
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
@@ -9,9 +9,9 @@ import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 // import {storeKeys, localStore} from "@/data/localStore.js";
 // import ButtonEmergencyToolbox from "../buttons/toolbox/ButtonEmergencyToolbox";
 import parse from "html-react-parser";
-import data from '@/data/data.js'
-import toolsData from '@/data/tools.js'
-import scenarios from '@/data/scenarios'
+import data from '@/data/tools.js'
+import videos from '@/data/videosNew.js'
+// import scenarios from '@/data/scenarios'
 // import {storeKeys, localStore} from "@/data/localStore.js";
 import OndemandVideoOutlinedIcon from "@mui/icons-material/OndemandVideoOutlined";
 import HdrAutoOutlinedIcon from "@mui/icons-material/HdrAutoOutlined";
@@ -20,14 +20,14 @@ import KeyboardReturnOutlinedIcon from '@mui/icons-material/KeyboardReturnOutlin
 import {extractYouTubeId} from "@/js/utils.js";
 import "./styles.scss";
 function getAccData(id) {
-	return data.find(acc => acc.id === id);
+	return data.tools.nodes.find(acc => acc.id === id);
 }
-const data = toolsData.tools.nodes
-const AcronymDetail = () => {
+
+const AcronymExplained = () => {
 	// TODO: Intergrate data from CMS
 	const [open, setOpen] = useState(false)
-	const [accData, setAccData] = useState(null)
-	const [scenario, setScenario] = useState([])
+	const [acronymData, setAcronymData] = useState(null)
+	// const [scenario, setScenario] = useState([])
 	const acronymnID = useAppStore((s) => s.acronymnID)
 	const showAccCard = useAppStore((s) => s.showAccCard)
 	const setShowAccCard = useAppStore((s) => s.setShowAccCard)
@@ -35,7 +35,7 @@ const AcronymDetail = () => {
 
 	const contentRef = useRef(null)
 	useEffect(() => {
-		setAccData(getAccData(acronymnID))
+		setAcronymData(getAccData(acronymnID))
 		contentRef.current.scrollTop = 0
 	}, [acronymnID])
 
@@ -67,12 +67,12 @@ const AcronymDetail = () => {
 	}
 
 	return (
-		<div className={'AcronymCard' + (open ? ' open' : '')} key='acronym-card'>
+		<div className={'AcronymExplained' + (open ? ' open' : '')} key='acronym-card'>
 			<div className='inner'>
 				<div className='header'>
 					<div className='title cont'>
-						{accData ? (
-							accData?.title.split('.').map(
+						{acronymData ? (
+							acronymData?.title.split('.').map(
 								(letter, index) =>
 									letter && (
 										<div className='active' key={index} data-content={letter}>
@@ -87,81 +87,80 @@ const AcronymDetail = () => {
 				</div>
 				<section className='AccContent' id='AccContent' ref={contentRef}>
 					<div className='AccGroup'>
-						<div className='AccExplanation'>{accData?.content ? parse(accData.content.explanation) : <Skeleton animation='wave' />}</div>
+						<div className='AccExplanation'>{acronymData?.toolFieldGroup ? parse(acronymData.toolFieldGroup.description) : <Skeleton animation='wave' />}</div>
 
-						{accData?.content.acronyms.map((acronym, index) => (
+						{acronymData?.toolFieldGroup.letters.map((acronym, index) => (
 							<div key={'acronymn-' + index} className='AccDetails'>
 								<div className='Acc-letter-group' key={'t-' + index}>
-									<div className='Acc-letter' key={'l-' + index}>
-										{acronym.letter}
-									</div>
+									
 									<div className='Acc-word' data-len={acronym.meaning.length} key={'m-' + index}>
-										{/* {acronym.meaning.substring(1)} */}
 										{acronym.meaning}
 									</div>
 								</div>
 								<div key={'d-' + index} className='Acc-definition'>
-									{acronym.definition ? parse(acronym.definition) : <Skeleton animation='wave' />}
+									{parse(acronym.definition)}
 								</div>
 							</div>
 						))}
 					</div>
-					{accData?.scenarios.length > 0 && (
+					{acronymData?.toolFieldGroup?.scenariosField?.nodes?.length > 0 && (
 						<div className='scenarios'>
 							<div className='title'>Scenarios</div>
 							<div className='scenarios-inner'>
-								{accData?.scenarios.map((scenario, index) => (
+								{acronymData?.toolFieldGroup?.scenariosField?.nodes?.map((scenario, index) => (
 									<div className='scenario' key={`scenario-${index}`}>
 										<div className='title'>{scenario.title}</div>
-										<div className='content'>{parse(scenario.content)}</div>
+										<div className='content'>{parse(scenario.scenariosFieldGroup?.description)}</div>
 									</div>
 								))}
 							</div>
 						</div>
 					)}
 
-					{accData?.videos.length > 0 && (
-						<div className='videos' id='videos'>
-							{/* <h3>VIDEOS</h3> */}
+					{acronymData?.toolFieldGroup?.videosField?.nodes.length > 0 && (
+						<div className='videos' id='videos' key='videos'>
+							{acronymData?.toolFieldGroup?.videosField?.nodes.map((linkedVideo, index) => {
 
-							{accData?.videos.map((video, index) => (
-								<div className='video' key={index}>
-									<div className='title'>{parse(video.title)}</div>
-									<div className='player'>
-										{video ? (
-											<LiteYouTubeEmbed id={extractYouTubeId(video.url)} title={video.title} key={'video-' + index} poster='hqdefault' />
-										) : (
-											<Skeleton animation='wave' className='video-skeleton' />
-										)}
+								const video = videos.data.videos.nodes.find((v) => v.id === linkedVideo.id)
+								return (
+									<div className='video' key={'video-' + index}>
+										<div className='title'>{parse(video.title)}</div>
+										<div className='player'>
+											{video ? (
+												<LiteYouTubeEmbed id={extractYouTubeId(video.videosFieldGroup.url)} title={video.title} key={'video-' + index} poster='hqdefault' />
+											) : (
+												<Skeleton animation='wave' className='video-skeleton' />
+											)}
+										</div>
 									</div>
-								</div>
-							))}
+								)
+							})}
 						</div>
 					)}
-
-					{accData?.cats.length > 0 && (
+					{/* 
+					{acronymData?.cats.length > 0 && (
 						<div className='tags'>
 							<div className='title'>TAGS</div>
 							<div className='tags-list'>
-								{accData?.cats.map((cat, index) => (
+								{acronymData?.cats.map((cat, index) => (
 									<div key={'cat-' + index}>{cat}</div>
 								))}
 							</div>
 						</div>
-					)}
+					)} */}
 				</section>
 				<div className='footer' key='acronym-card-footer'>
 					{/* <ButtonEmergencyToolbox id={accData?.id} />
 					 */}
-					<ButtonToolbox id={accData?.id} key={`toolbox-btn-${accData?.id}`} />
-					{accData?.videos.length > 0 && (
-						<button onClick={smoothScrollTo} className='btn video' key={`video-btn-${accData?.id}`}>
-							<OndemandVideoOutlinedIcon key={`video-icon-${accData?.id}`} />
+					<ButtonToolbox id={acronymData?.id} key={`toolbox-btn-${acronymData?.id}`} />
+					{acronymData?.toolFieldGroup?.videosField?.nodes.length > 0 && (
+						<button onClick={smoothScrollTo} className='btn video' key={`video-btn-${acronymData?.id}`}>
+							<OndemandVideoOutlinedIcon key={`video-icon-${acronymData?.id}`} />
 						</button>
 					)}
-					{accData?.videos.length > 0 && (
-						<button onClick={smoothToAccronym} className='btn top' key={`goto-top-btn-${accData?.id}`}>
-							<HdrAutoOutlinedIcon key={`goto-top-icon-${accData?.id}`} />
+					{acronymData?.toolFieldGroup?.videosField?.nodes.length > 0 && (
+						<button onClick={smoothToAccronym} className='btn top' key={`goto-top-btn-${acronymData?.id}`}>
+							<HdrAutoOutlinedIcon key={`goto-top-icon-${acronymData?.id}`} />
 						</button>
 					)}
 
@@ -174,8 +173,8 @@ const AcronymDetail = () => {
 		</div>
 	)
 }
-AcronymDetail.displayName = 'AcronymDetail'
+AcronymExplained.displayName = 'AcronymExplained'
 
-export default AcronymDetail
+export default AcronymExplained
 
 

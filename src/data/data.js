@@ -506,8 +506,8 @@ const data = [
 					scenario: '',
 				},
 				{
-					letter: 'P',
-					meaning: 'Encourgament',
+					letter: 'E',
+					meaning: 'Encouragment',
 					definition:
 						'<p>Talk to yourself like your own hype man. Drop some positive self-talk on yourself: "You got this," or "This crap won\'t last forever — I\'m tougher than it." Build yourself up with real talk that gets you back up, no cap.</p>',
 					scenario: '',
@@ -516,20 +516,7 @@ const data = [
 			explanation:
 				"<p>IMPROVE is a straight-up boss move from DBT (that's Dialectical Behavior Therapy, basically a toolkit for dealing with heavy emotions without flipping out).</p><p>It's all about upgrading the moment when life's throwing curveballs at you — keeping your head straight and riding out the storm. Think of it like hacking your brain to chill when stuff's getting intense.</p><p>The whole point? When life's comin' at you hard, IMPROVE helps you survive the storm without crashing and burning. Practice it when you're calm so it's second nature when the heat's on. If you're dealing with heavy stuff, link up with a pro therapist to level it up. Stay strong out there.</p>",
 		},
-		scenarios: [
-			{
-				title: 'People-Pleasing Pattern',
-				content:
-					"<p><b>Identify:</b><br />You always say yes even when overwhelmed.</p><p><b>Challenge:</b><br />Is saying yes really helping anyone if you're burnt out and resentful?</p><p><b>Eliminate:</b><br />Replace automatic 'yes' with 'Let me check my schedule and get back to you.'</p>",
-				btnLabel: 'Break the Pattern',
-			},
-			{
-				title: 'Social Media Comparison',
-				content:
-					'<p><b>Identify:</b><br />Scrolling Instagram makes you feel inadequate.</p><p><b>Challenge:</b><br />Are these highlight reels an accurate picture of reality?</p><p><b>Eliminate:</b><br />Replace mindless scrolling with calling a real friend or going for a walk.</p>',
-				btnLabel: 'Challenge & Change',
-			},
-		],
+		scenarios: [],
 		cats: ['DBT'],
 		videos: [],
 	},
