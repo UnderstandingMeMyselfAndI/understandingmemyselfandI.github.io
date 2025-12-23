@@ -7,15 +7,41 @@ const data = [
 				{
 					letter: 'A',
 					meaning: 'Activating event or trigger',
-					definition: '<p>What actually happened? This is the specific situation or event that got your wheels turning</p>',
+					definition:
+						'<p>What actually happened? This is the specific situation or event that got your motor started, revved up and the wheels spinning. Think back to even before the key was in the ignition.</p>',
 					scenario: '',
 				},
-				{ letter: 'B', meaning: 'Belief', definition: '<p>What story are you telling yourself about what happened? These are your thoughts and interpretations</p>', scenario: '' },
-				{ letter: 'C', meaning: 'Consequence', definition: '<p>How did those thoughts make you feel and act? This is where your emotions and behaviors show up</p>', scenario: '' },
-				{ letter: 'D', meaning: 'Dispute', definition: '<p>Time to play detective with your own thoughts - are they really true and helpful?</p>', scenario: '' },
-				{ letter: 'E', meaning: 'Effective new belief', definition: '<p>Create a healthier, more realistic way of thinking about the situation</p>', scenario: '' },
+				{
+					letter: 'B',
+					meaning: 'Belief',
+					definition:
+						"<p>What story are you telling yourself about what happened? These are your thoughts and interpretations your mind is creating for you. But be sharp enough to spot when your mind is bending the truth. You're no fool.</p>",
+					scenario: '',
+				},
+				{
+					letter: 'C',
+					meaning: 'Consequence',
+					definition:
+						"<p>How did those thoughts make you feel and act? This is where your emotions and behaviors show up and kick into play. Sometimes it's not pretty so prep yourself, think about it and stay cool.</p>",
+					scenario: '',
+				},
+				{
+					letter: 'D',
+					meaning: 'Dispute',
+					definition:
+						"<p>It's time to get full-on detective with your own thoughts - are they really true and helpful or pulling a swerve and working against you? You can spot the blags so don't let them fool you. Take your thoughts to court and give them a grilling.</p>",
+					scenario: '',
+				},
+				{
+					letter: 'E',
+					meaning: 'Effective new belief',
+					definition:
+						'<p>Push the crap to one side and focus on the true stuff. With that you can create a healthier, more realistic way of thinking about the situation and not get blind sided by the BS.</p>',
+					scenario: '',
+				},
 			],
-			explanation: '<p>Your personal toolkit for catching those sneaky negative thoughts and turning them around using proven therapy techniques.</p>',
+			explanation:
+				"<p>A bad-ass tool for catching those sneaky negative thoughts and turning them around using proven therapy techniques. It's also an easy-to-remember one - the first five letters of the alphabet. Get in.</p>",
 		},
 		scenarios: [
 			{
@@ -488,7 +514,7 @@ const data = [
 				},
 			],
 			explanation:
-				"<p>IMPROVE is a straight-up boss move from DBT (that's Dialectical Behavior Therapy, basically a toolkit for dealing with heavy emotions without flipping out). It's all about upgrading the moment when life's throwing curveballs at you—keeping your head straight and riding out the storm. Think of it like hacking your brain to chill when stuff's getting intense.</p><p>The whole point? When life's comin' at you hard, IMPROVE helps you survive the storm without crashing and burning. Practice it when you're calm so it's second nature when the heat's on. If you're dealing with heavy stuff, link up with a pro therapist to level it up. Stay strong out there.</p>",
+				"<p>IMPROVE is a straight-up boss move from DBT (that's Dialectical Behavior Therapy, basically a toolkit for dealing with heavy emotions without flipping out).</p><p>It's all about upgrading the moment when life's throwing curveballs at you — keeping your head straight and riding out the storm. Think of it like hacking your brain to chill when stuff's getting intense.</p><p>The whole point? When life's comin' at you hard, IMPROVE helps you survive the storm without crashing and burning. Practice it when you're calm so it's second nature when the heat's on. If you're dealing with heavy stuff, link up with a pro therapist to level it up. Stay strong out there.</p>",
 		},
 		scenarios: [
 			{
