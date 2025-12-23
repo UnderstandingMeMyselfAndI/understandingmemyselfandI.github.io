@@ -462,7 +462,7 @@ const data = [
 					letter: 'R',
 					meaning: 'Relaxtion',
 					definition:
-						"<p>Loosen up, dude. Do whatever chills you out — deep breaths, stretching, a hot shower, bath or popping on some tunes. Tense up your muscles then let them go, or sip some tea. It's all about dropping that stress from your body so you ain't wound up like a spring.</p>",
+						"<p>Loosen up dude. Do whatever chills you out — deep breaths, stretching, a hot shower, bath or popping on some quality tunes. Tense up your muscles then let them go, or sip some tea and think about your happy place. It's all about dropping that stress from your body so you ain't wound up like a spring.</p>",
 					scenario: '',
 				},
 				{
@@ -483,7 +483,7 @@ const data = [
 					letter: 'P',
 					meaning: 'Encourgament',
 					definition:
-						'<p>Talk to yourself like your own hype man. Drop some positive self-talk on yourself: "You got this," or "This crap won\'t last forever — I\'m tougher than it." Build yourself up with real talk that get you back up, no cap./p>',
+						'<p>Talk to yourself like your own hype man. Drop some positive self-talk on yourself: "You got this," or "This crap won\'t last forever — I\'m tougher than it." Build yourself up with real talk that gets you back up, no cap.</p>',
 					scenario: '',
 				},
 			],
