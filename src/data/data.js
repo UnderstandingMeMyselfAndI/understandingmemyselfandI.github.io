@@ -512,11 +512,27 @@ const data = [
 		title: 'L.F.T.',
 		content: {
 			acronyms: [
-				{ letter: 'L', meaning: 'Low', definition: '<p>Notice when your patience is running thin - this is when bad decisions happen</p>', scenario: '' },
-				{ letter: 'F', meaning: 'Frustration', definition: "<p>That feeling when things aren't going your way - totally normal, but needs managing</p>", scenario: '' },
-				{ letter: 'T', meaning: 'Tolerance', definition: '<p>Build your ability to sit with uncomfortable feelings without needing to escape immediately</p>', scenario: '' },
+				{
+					letter: 'L',
+					meaning: 'Low',
+					definition: '<p>Notice when your patience is running thin - this is when those crappy decisions happen - be a buddy to yourself and do a quick self check-in. </p>',
+					scenario: '',
+				},
+				{
+					letter: 'F',
+					meaning: 'Frustration',
+					definition: "<p>That feeling when things aren't going your way - totally normal, but you've got to get a game plan together.</p>",
+					scenario: '',
+				},
+				{
+					letter: 'T',
+					meaning: 'Tolerance',
+					definition:
+						"<p>Build your ability to sit with uncomfortable thoughts and feelings without needing to escape immediately. You're stronger than you think but if sitting with it gets too much, take a swerve and distract yourself for a bit. You'll get better over time so don't sweat it.</p>",
+					scenario: '',
+				},
 			],
-			explanation: "<p>Learning to deal with life's annoying moments without losing your cool or your progress.</p>",
+			explanation: "<p>Levelling up your toolbox for dealing with life's annoying moments without needing to style it out, losing your cool or your progress.</p>",
 		},
 		scenarios: [
 			{
