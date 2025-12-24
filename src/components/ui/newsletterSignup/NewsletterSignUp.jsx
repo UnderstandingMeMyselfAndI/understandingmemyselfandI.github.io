@@ -76,7 +76,7 @@ const NewsletterSignUp = () => {
 								<div>
 									<div className='sib-form-block'>
 										<div className='title'>Signup to hear about updates &amp; invites.</div>
-										<p>We&apos;ve got plans for lots of helpful new features and other apps. Sign up and well send you invites along with our latest updates.</p>
+										<p>We&apos;ve got plans for lots of helpful new features and other companion apps. If you'd like to hear about them sign up.</p>
 									</div>
 								</div>
 								<div>

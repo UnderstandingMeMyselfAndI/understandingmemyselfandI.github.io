@@ -1,5 +1,7 @@
 @use "@/scss/_variables.scss";
 @import "@/globals.css";
+
+body .app {
     .cookie-consent-overlay {
       position: fixed;
       inset: 0;
@@ -45,7 +47,7 @@
       flex: 1;
     }
 
-    body #root .app h2.cookie-banner-title {
+    h2.cookie-banner-title {
       font-size: 1.75rem;
       // font-weight: 700;
       color:  var(--blue);
@@ -269,6 +271,7 @@
     }
     button.btn{
       background:var(--blue);
+      color:var(--primary)
     }
     .demo-container {
       min-height: 100vh;
@@ -365,6 +368,7 @@
     .btn-danger:hover {
       background: #b91c1c;
     }
+  }
 
     @media (max-width: 640px) {
       .cookie-banner-actions {
