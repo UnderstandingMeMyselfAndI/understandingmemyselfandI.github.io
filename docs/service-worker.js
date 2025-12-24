@@ -323,15 +323,15 @@ const messageHandler = async ({data}) => {
 };
 
 const syncHandler = async e => {
-	console.log("sync event with tag:", e.tag);
+	// console.log("sync event with tag:", e.tag);
 
-	const {tag} = e;
+	const { tag } = e
 
 	switch (tag) {
-		case "retry-request":
-			e.waitUntil(retryRequests());
+		case 'retry-request':
+			e.waitUntil(retryRequests())
 
-			break;
+			break
 	}
 };
 
