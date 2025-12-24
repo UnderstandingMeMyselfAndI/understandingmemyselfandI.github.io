@@ -199,6 +199,36 @@ const data = {
 				},
 			},
 			{
+				databaseId: 'cG9zdDoyMDA=',
+				id: 200,
+				title: 'C.B.T.',
+				toolFieldGroup: {
+					description:
+						'<p>This isn’t a single tool but the core of CBT (Cognitive Behaviour Therapy) skills.</p>\n<p><strong>The CBT Triangle: Your brain’s BS feedback loop that needs you to step up and be the boss.</strong></p>\n<p>The CBT Triangle isn’t some fancy theory—it’s the bare-knuckle truth about why you feel and act the way you do. It’s three points locked in a chain reaction:</p>\n<p><strong>Your Thoughts (T)</strong> create <strong>Your Feelings (F)</strong> which drive <strong>Your Behavior (B)</strong>.</p>\n<p>And then that behavior usually goes and <strong>proves your original stupid thought right if not managed correctly</strong>, keeping you stuck in the loop. It’s your mind’s own trap.</p>\n<p>The CBT Triangle shows us that your <strong>F</strong>eelings aren’t just random—they’re powered by your <strong>T</strong>houghts which lead to your <strong>B</strong>ehaviour.</p>\n<p>Understand your <strong>T,Fs</strong> and you’ll control your <strong>Bs,</strong> propelling your recovery forward like a champ.</p>\n<p>Spot the problem Thoughts and you can flip the script. The power move is catching the <u>Thought </u><em>before</em> it starts the fire. You got to slip into detective mode and keep a close eye on your own mind when it gets sneaky:</p>\n<ul>\n<li><strong>When you feel the Firestorm bubbling up (your Feelings) </strong>— that pit in your stomach, the anger coming on — <u>stop and rewind</u><strong>.</strong> Ask: <em>“What track (T) just started playing right before this hit me?”</em></li>\n<li><strong>Play the track and identify the guilty thought. </strong>Give it the once over and challenge it. Is it a <u>fact </u>or a <u>feeling</u>? Is it <u>helpful</u>? Would you let a friend talk to themselves that way?</li>\n<li><strong>Record a New Track.</strong> If it’s not doing you good. Ditch the tracks with BS lyrics for new ones, filled with facts and the truth.\n<ul>\n<li>\n<ul>\n<li></li>\n<li><u>Old Track:</u> <em>“These cravings are overpowering me. I can have just a bit to shut them up for a while. It’ll be alright”</em></li>\n<li><u>New Track:</u> <em>“I’m boss round here, not my thoughts. That’s my brain playing up again – It’s never just a bit and that path just leads to the gutter. This will pass in the next 20 minutes so I’m changing up my environment, putting some new tunes on and going for a walk. “</em></li>\n<li></li>\n</ul>\n</li>\n</ul>\n</li>\n<li><strong>Watch the Loop Change.</strong> New Thought leads to <u>calmer, curious Feelings</u>. New <u>Feelings lead to different Behavior</u>: you get some fresh air, a fresh perspective and work up your appetite just in time for lunch. The triangle now works <em>for</em> you, not against you. You’re back in the driving seat bossing it.</li>\n</ul>\n<p>The CBT Triangle shows you <u>you’re not helpless against your feelings</u><strong>.</strong> Your thoughts are the control panel and <u>your the boss</u>. If your life’s stuck on a crap channel, stop blaming the world. Check what Thought started playing the channel and then change the channel in your head. Your whole reality fill follow suit. It’s not positive thinking—it’s <u>accurate thinking.</u> Take the mic back from your inner gremlin.</p>\n',
+					letters: [
+						{
+							letter: 'T',
+							meaning: 'Thoughts',
+							definition: '<p>The running commentary in your head or your interpretation of a situation.</p>\n',
+						},
+						{
+							letter: 'F',
+							meaning: 'Feelings',
+							definition: '<p>Feelings are the emotions that hit you because of thoughts like happiness, sadness, anger, anxiety, dread, or shame.</p>\n',
+						},
+						{
+							letter: 'B',
+							meaning: 'Behaviours',
+							definition:
+								'<p>Are your responses to situations. What you actually do because of thoughts and feelings. Procrastinate, swerving work, stumbling through a presentation or just doing nothing at all.</p>\n',
+						},
+					],
+					scenariosField: null,
+					videosField: null,
+					podcastsField: null,
+				},
+			},
+			{
 				databaseId: 'cG9zdDo5OA==',
 				id: 98,
 				title: 'D.E.A.D.S.',
@@ -347,6 +377,127 @@ const data = {
 							},
 						],
 					},
+					podcastsField: null,
+				},
+			},
+			{
+				databaseId: 'cG9zdDoxOTc=',
+				id: 197,
+				title: 'DEAR MAN',
+				toolFieldGroup: {
+					description:
+						'<p>Striaght from the D.B.T. toolbox. DEAR MAN is your script for getting what you need from someone without starting a war or folding like a lawn chair.</p>\n',
+					letters: [
+						{
+							letter: 'D',
+							meaning: 'Describe',
+							definition: '<p>Lay out the facts, just the facts. No drama.</p>\n',
+						},
+						{
+							letter: 'E',
+							meaning: 'Express',
+							definition: '<p>Say how you feel about it. Use &#8220;I&#8221; statements.</p>\n',
+						},
+						{
+							letter: 'A',
+							meaning: 'Assert',
+							definition: '<p>Ask for what you want, straight up. No hints.</p>\n',
+						},
+						{
+							letter: 'R',
+							meaning: 'Reinforce',
+							definition: '<p>Tell them the good that&#8217;ll come if they hear you out.</p>\n',
+						},
+						{
+							letter: 'M',
+							meaning: 'Mindful',
+							definition: '<p>Stay mindful and stick to your point. Don&#8217;t get sidetracked by their noise.</p>\n',
+						},
+						{
+							letter: 'A',
+							meaning: 'Appear Confident',
+							definition: '<p>Fake it &#8217;til you make it. Stand tall, voice steady.</p>\n',
+						},
+						{
+							letter: 'N',
+							meaning: 'Negotiate',
+							definition: '<p>Be willing to bend a little. Find a deal that works.</p>\n',
+						},
+					],
+					scenariosField: null,
+					videosField: null,
+					podcastsField: null,
+				},
+			},
+			{
+				databaseId: 'cG9zdDoxOTk=',
+				id: 199,
+				title: 'FACE',
+				toolFieldGroup: {
+					description:
+						'<p>This one&#8217;s a bit less of a rigid acronym of a tool and more of a handy, street-smart map for dealing with life&#8217;s crap without getting owned by it.</p>\n<p>It&#8217;s the escape plan. <strong>F.A.C.E </strong>is the antidote to F.E.A.R (so check out the F.E.A.R tool). It&#8217;s about unhooking from your mind, taking the feeling with you, and walking toward what you care about anyway.</p>\n<p>Think of <strong>F.A.C.E.</strong> as your playbook for handling emotional hijackings. It’s the opposite of freaking out or shutting down. First, you <strong>F</strong>eel the feeling instead of denying it. You <strong>A</strong>llow it to exist without a war. You <strong>C</strong>ome back to the solid ground of the present moment so you&#8217;re not lost in mental chaos. Finally, you <strong>E</strong>ngage with your life on your terms, taking the feeling <em>with you</em> instead of waiting for it to leave. It’s not about feeling better; it’s about getting better at feeling, so you can live your life full-on, even when it gets messy.</p>\n<p>It’s a core process in ACT (Acceptance Commitment Therapy) for building psychological flexibility.</p>\n',
+					letters: [
+						{
+							letter: 'F',
+							meaning: ' Feelings & Feel Them',
+							definition:
+								'<p>Acknowledge and accept your feelings. Stop running.</p>\n<p>Let yourself actually <em>feel</em> the funky stuff—the anxiety in your chest, the sadness, the anger—without trying to fight it, fix it, or numb it out.</p>\n<p>It&#8217;s about making space for the feeling to just be there.</p>\n<p>It&#8217;s like: Your mind is screaming, &#8220;This anxiety is terrible, make it stop!&#8221; Instead of panicking or reaching for a distraction, you&#8217;d say to yourself: <em>&#8220;Alright, I&#8217;m feeling that tightness. Hello, anxiety. You can sit here, but you don&#8217;t get to drive the car.&#8221;</em></p>\n<p>&nbsp;</p>\n',
+						},
+						{
+							letter: 'A',
+							meaning: 'Allow & Accept ',
+							definition:
+								'<p>Drop the Struggle. This is the active choice to stop wrestling. It&#8217;s saying &#8220;yes&#8221; to the presence of the feeling, even though it&#8217;s making you feel sh*tty. You&#8217;re not saying you <em>like</em> it; you&#8217;re just agreeing that it&#8217;s here, and struggling against it is exhausting you.</p>\n<p>It’s the difference between <strong>trying to hold a beachball underwater</strong> (exhausting, and it keeps popping up) and <strong>just letting it float beside you in the pool</strong>. You accept it&#8217;s there, but you&#8217;re not wasting energy fighting it.</p>\n<p>&nbsp;</p>\n',
+						},
+						{
+							letter: 'C',
+							meaning: 'Connect ',
+							definition:
+								'<p>Connect &amp; Come Back (To the Present Moment). Your mind is probably time-traveling—replaying past failures or freaking out about future disasters that haven&#8217;t happened yet.</p>\n<p>This step is about pulling your attention back to the <strong>here and now</strong>. Use your five senses.</p>\n<p>When you&#8217;re spiraling about a future presentation. You ground yourself: <em>&#8220;Okay, right now, I&#8217;m just sitting in my chair. I feel the fabric. I hear the clock ticking. I see the light on the wall. I&#8217;m not in the presentation; I&#8217;m right here, right now.&#8221;</em></p>\n',
+						},
+						{
+							letter: 'E',
+							meaning: 'Engage ',
+							definition:
+								'<p>Engage &amp; Energize (Do What Matters). Now, with the feeling allowed and your feet back on the ground, you ask: <em>&#8220;What&#8217;s the next right move that lines up with who I want to be?&#8221;</em> You direct your energy <strong>toward</strong> <strong>your values</strong>, <strong>not away from your discomfort</strong>.</p>\n<p>You&#8217;re down and feeling sad so you feel like swerving on plans to meet your friend.</p>\n<p>However, you&#8217;ve allowed the sadness (<strong>F</strong> &amp; <strong>A</strong>), grounded yourself (<strong>C</strong>). Now you <strong>E</strong>: <em>&#8220;Being a reliable buddy matters to me. I&#8217;m gonna go, even if I&#8217;m a little quiet. I&#8217;ll take the sadness along for the ride, and try and ditch it on the way, but I&#8217;m still showing up.&#8221;</em></p>\n',
+						},
+					],
+					scenariosField: null,
+					videosField: null,
+					podcastsField: null,
+				},
+			},
+			{
+				databaseId: 'cG9zdDoxOTg=',
+				id: 198,
+				title: 'FEAR',
+				toolFieldGroup: {
+					description:
+						'<p>A diagnosis of why you&#8217;re stuck. It names the four moves that keep you in a cage.</p>\n<p>The F.E.A.R tool is used to describe the problem and it&#8217;s always hanging with F.A.C.E. tool &#8211; The escape plan which helps identify the solution.</p>\n',
+					letters: [
+						{
+							letter: 'F',
+							meaning: 'Fusion',
+							definition: '<p>Being glued to your thoughts. Believing every worried story your mind tells you.</p>\n',
+						},
+						{
+							letter: 'E',
+							meaning: 'Evaluation',
+							definition: '<p>Judging everything (and yourself) as good/bad.</p>\n',
+						},
+						{
+							letter: 'A',
+							meaning: 'Avoidance',
+							definition: '<p>Running from uncomfortable feelings.</p>\n',
+						},
+						{
+							letter: 'R',
+							meaning: 'Reason-giving',
+							definition: '<p>&#8220;I can&#8217;t do that because&#8230; [insert story here].&#8221;</p>\n',
+						},
+					],
+					scenariosField: null,
+					videosField: null,
 					podcastsField: null,
 				},
 			},
@@ -588,49 +739,49 @@ const data = {
 				title: 'I.M.P.R.O.V.E.',
 				toolFieldGroup: {
 					description:
-						'<div>\n<div>IMPROVE is a straight-up boss move from DBT (that&#8217;s Dialectical Behavior Therapy, basically a toolkit for dealing with heavy emotions without flipping out).</div>\n<div></div>\n<div>It&#8217;s all about upgrading the moment when life&#8217;s throwing curveballs at you — keeping your head straight and riding out the storm. Think of it like hacking your brain to chill when stuff&#8217;s getting intense.</div>\n<div></div>\n<div>The whole point? When life&#8217;s comin&#8217; at you hard, IMPROVE helps you survive the storm without crashing and burning. Practice it when you&#8217;re calm so it&#8217;s second nature when the heat&#8217;s on. If you&#8217;re dealing with heavy stuff, link up with a pro therapist to level it up. Stay strong out there.</div>\n</div>\n',
+						'<p>IMPROVE is a straight-up boss move from DBT (that&#8217;s Dialectical Behavior Therapy, basically a toolkit for dealing with heavy emotions without flipping out).</p>\n<p>It&#8217;s all about upgrading the moment when life&#8217;s throwing curveballs at you — keeping your head straight and riding out the storm. Think of it like hacking your brain to chill when stuff&#8217;s getting intense.</p>\n<p>The whole point? When life&#8217;s comin&#8217; at you hard, IMPROVE helps you survive the storm without crashing and burning. Practice it when you&#8217;re calm so it&#8217;s second nature when the heat&#8217;s on. If you&#8217;re dealing with heavy stuff, link up with a pro therapist to level it up. Stay strong out there.</p>\n',
 					letters: [
 						{
 							letter: 'I',
 							meaning: 'Improve',
 							definition:
-								'<div>\n<div>Picture this: Close your eyes and bounce to a chill spot in your mind, like your fave beach or a cozy crib. Make it vivid — smells, sounds, all that. It&#8217;s like teleporting out of the drama for a sec to recharge.</div>\n</div>\n',
+								'<p>Picture this: Close your eyes and bounce to a chill spot in your mind, like your fave beach or a cozy crib. Make it vivid — smells, sounds, all that. It&#8217;s like teleporting out of the drama for a sec to recharge.</p>\n',
 						},
 						{
 							letter: 'M',
 							meaning: 'Meaning',
 							definition:
-								'<div>\n<div>Flip the script on the bad stuff. Ask yourself, &#8220;What&#8217;s the silver lining here? What can I learn or how can this make me tougher?&#8221;</div>\n<div>It&#8217;s about finding that hidden gem in the mess so it doesn&#8217;t feel pointless.</div>\n</div>\n',
+								'<p>Flip the script on the bad stuff. Ask yourself, &#8220;What&#8217;s the silver lining here? What can I learn or how can this make me tougher?&#8221;</p>\n<p>It&#8217;s about finding that hidden gem in the mess so it doesn&#8217;t feel pointless.</p>\n',
 						},
 						{
 							letter: 'P',
 							meaning: 'Pause (and Positive Vibes)',
 							definition:
-								'<div>\n<div>Take a beat to center yourself. This is like hitting pause, breathing deep, and tapping into your inner strength or thinking about something bigger than the drama, like the universe or your crew. Just a quiet moment to regroup and remind yourself you&#8217;re built for this.</div>\n</div>\n',
+								'<p>Take a beat to center yourself. This is like hitting pause, breathing deep, and tapping into your inner strength or thinking about something bigger than the drama, like the universe or your crew. Just a quiet moment to regroup and remind yourself you&#8217;re built for this.</p>\n',
 						},
 						{
 							letter: 'R',
 							meaning: 'Relaxation',
 							definition:
-								'<div>\n<div>Loosen up dude. Do whatever chills you out — deep breaths, stretching, a hot shower, bath or popping on some quality tunes. Tense up your muscles then let them go, or sip some tea and think about your happy place.</div>\n<div></div>\n<div>It&#8217;s all about dropping that stress from your body so you ain&#8217;t wound up like a spring.</div>\n</div>\n',
+								'<p>Loosen up dude. Do whatever chills you out — deep breaths, stretching, a hot shower, bath or popping on some quality tunes. Tense up your muscles then let them go, or sip some tea and think about your happy place.</p>\n<p>It&#8217;s all about dropping that stress from your body so you ain&#8217;t wound up like a spring.</p>\n',
 						},
 						{
 							letter: 'O',
 							meaning: 'One (thing in the moment)',
 							definition:
-								'<div>\n<div>Lock in on just one thing right now. Don&#8217;t let your brain bounce around like a pinball — focus on breathing, counting steps while you walk, or eating a snack super slow and noticing every bite.</div>\n<div></div>\n<div>Keeps you grounded in the now instead of spiraling on the what-ifs.</div>\n</div>\n',
+								'<p>Lock in on just one thing right now. Don&#8217;t let your brain bounce around like a pinball — focus on breathing, counting steps while you walk, or eating a snack super slow and noticing every bite.</p>\n<p>Keeps you grounded in the now instead of spiraling on the what-ifs.</p>\n',
 						},
 						{
 							letter: 'V',
 							meaning: 'Vacation',
 							definition:
-								'<div>\n<div>Nah, not booking a flight—it&#8217;s a mini-escape in your day. Step away for a sec: watch a funny video, check the latest memes, or dip into a quick game on your phone. Give yourself permission to zone out for 5-10 minutes without guilt, like hitting the reset button.</div>\n</div>\n',
+								'<p>Nah, not booking a flight—it&#8217;s a mini-escape in your day.</p>\n<p>Step away for a sec: watch a funny video, check the latest memes, or dip into a quick game on your phone. Give yourself permission to zone out for 5-10 minutes without guilt, like hitting the reset button.</p>\n',
 						},
 						{
 							letter: 'E',
 							meaning: 'Encouragment',
 							definition:
-								'<div>\n<div>Talk to yourself like your own hype man. Drop some positive self-talk on yourself: &#8220;You got this,&#8221; or &#8220;This crap won&#8217;t last forever — I&#8217;m tougher than it.&#8221; Build yourself up with real talk that gets you back up, no cap.</div>\n</div>\n',
+								'<p>Talk to yourself like your own hype man. Drop some positive self-talk on yourself: &#8220;You got this,&#8221; or &#8220;This crap won&#8217;t last forever — I&#8217;m tougher than it.&#8221; Build yourself up with real talk that gets you back up, no cap.</p>\n',
 						},
 					],
 					scenariosField: null,
@@ -1233,6 +1384,5 @@ const data = {
 			},
 		],
 	},
-}
-   
+}   
 export default data

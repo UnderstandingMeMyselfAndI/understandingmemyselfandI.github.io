@@ -29,6 +29,41 @@ div.AcronymExplained {
 		z-index: 6000;
 		visibility: visible;
 	}
+	ul{
+		list-style:none;
+		margin:1em 0;
+		li{
+			margin:1rem 0
+		}
+	}
+	p b,
+	b,
+	strong {
+		position: relative;
+		display: inline-block;
+		color:var(--yellow);
+		
+	}
+	b::after {
+		content: " ";
+		width: 145%;
+		height: 120%;
+		// background-color: var(--yellow);
+		outline:1px solid var(--yellow);
+		opacity: 0.6;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+		transform:rotate(-3deg) translate(-10%,-25%);
+		margin-top: 5%;
+		margin-left: -5.5%;
+	}
+	u {
+		text-decoration-color: var(--lightBlue);
+		text-decoration-thickness: 3px;
+		color:var(--primary);
+	}
 
 	.inner {
 		position: relative;
@@ -393,33 +428,7 @@ div.AcronymExplained {
 				}
 				.content{
 					margin:1.5rem auto;
-					p b,
-					b {
-						position: relative;
-						display: inline-block;
-						color:var(--yellow);
-						
-					}
-					b::after {
-						content: " ";
-						width: 145%;
-						height: 120%;
-						// background-color: var(--yellow);
-						outline:1px solid var(--yellow);
-						opacity: 0.6;
-						position: absolute;
-						top: 0;
-						left: 0;
-						z-index: -1;
-						transform:rotate(-3deg) translate(-10%,-25%);
-						margin-top: 5%;
-						margin-left: -5.5%;
-					}
-					u {
-						text-decoration-color: var(--lightBlue);
-						text-decoration-thickness: 3px;
-						color:var(--primary);
-					}
+					
 					&::after {
 						content: " ";
 						width: 120%;
