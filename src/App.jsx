@@ -103,7 +103,7 @@ function App() {
 				<ScrollPosition />
 			</div>
 			<BackdropParallax initialImageId={2} initialDelay={3000} interval={6000} parallaxStrength={0} />
-			<NewsletterSignUpFooter />
+
 		</div>
 	)
 }

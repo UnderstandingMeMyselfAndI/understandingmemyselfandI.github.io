@@ -2,16 +2,45 @@
 import './styles.scss'
 import './sib-styles.css'
 
-function handleCaptchaResponse() {
-    let event = new Event('captchaChange')
-    document.getElementById('sib-captcha').dispatchEvent(event)
-}
+// function handleCaptchaResponse() {
+//     let event = new Event('captchaChange')
+//     document.getElementById('sib-captcha').dispatchEvent(event)
+// }
 
 const NewsletterSignUp = () => {
 
+    // const form = document.querySelector("#sib-form");
 
+    // async function sendData() {
+    // // Associate the FormData object with the form element
+    // const formData = new FormData(form);
 
+    // try {
+    //     const response = await fetch("https://d44b221a.sibforms.com/serve/MUIFAE0g4LxL-IJPB9oHCuwCCk416xMC6fH0OjJqoXPGhFtGjlaLcqtzt8FXpSMpiWfi5zpgGdvEC-ZwwTqR_JH95FSvlIoS4MGc4JAjI5nOexmudSKT5oOu5BecdQYz5-HxHtqWmcv2mTb3wMTb3dk3lEFfQLzpdml2idLpdec0PpQYyUFl1G06HPAQ_or6xCpQ9EbxVUDbAg3A0g==", {
+    //     method: "POST",
+    //     // Set the FormData instance as the request body
+    //     body: formData,
+    //     });
+    //     console.log(await response.json());
+    // } catch (e) {
+    //     console.error(e);
+    // }
+    // }
 
+    // // Take over form submission
+    // form.addEventListener('submit', (event) => {
+    //     event.preventDefault()
+    //     sendData()
+    // })
+
+    // const submitFormHandler = (e) => {
+    //     e.preventDefault();
+    //     console.log('submitCaptureFormHandler ', e)
+    // }
+    // const submitCaptureFormHandler = (e) => {
+    //     e.preventDefault()
+    //     console.log("submitCaptureFormHandler ",e)
+    // }
     return (
 			<div className='newsletter-signup-form'>
 				<div className='sib-form'>
@@ -39,13 +68,15 @@ const NewsletterSignUp = () => {
 							<form
 								id='sib-form'
 								method='POST'
+								// onSubmit={submitFormHandler}
+								// onSubmitCapture={submitCaptureFormHandler}
 								action='https://d44b221a.sibforms.com/serve/MUIFAE0g4LxL-IJPB9oHCuwCCk416xMC6fH0OjJqoXPGhFtGjlaLcqtzt8FXpSMpiWfi5zpgGdvEC-ZwwTqR_JH95FSvlIoS4MGc4JAjI5nOexmudSKT5oOu5BecdQYz5-HxHtqWmcv2mTb3wMTb3dk3lEFfQLzpdml2idLpdec0PpQYyUFl1G06HPAQ_or6xCpQ9EbxVUDbAg3A0g=='
 								data-type='subscription'
 							>
 								<div>
 									<div className='sib-form-block'>
 										<div className='title'>Signup for to hear about update drops &amp; invites.</div>
-										<p>We&apos;ve got plans for lots of heloful new features and other apps. Sign up and well send you invites along with our latest updates.</p>
+										<p>We&apos;ve got plans for lots of helpful new features and other apps. Sign up and well send you invites along with our latest updates.</p>
 									</div>
 								</div>
 								<div>

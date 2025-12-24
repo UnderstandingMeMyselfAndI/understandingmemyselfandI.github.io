@@ -6,9 +6,8 @@ if ("serviceWorker" in navigator) {
 
 			// if there is already a new Service Worker waiting when the page is loaded, skip waiting to update immediately
 			if (newServiceWorkerWaiting) {
-				console.log("new sw waiting");
-				window.swUpdate = true;
-				await SWHelper.skipWaiting();
+				window.swUpdate = true
+				await SWHelper.skipWaiting()
 			}
 
 			// listen for service worker updates
@@ -17,23 +16,21 @@ if ("serviceWorker" in navigator) {
 
 				// installing Service Worker found
 				if (installingWorker) {
-					console.log("installing sw found");
-					installingWorker.addEventListener("statechange", async () => {
+					
+					installingWorker.addEventListener('statechange', async () => {
 						// the new Service Worker is installed and waiting to be activated
 						// the outdated caches can be updated and the Service Worker will be activated on the next navigation or reload
-						if (installingWorker.state === "installed" && navigator.serviceWorker.controller) {
-							console.log("new sw installed");
-
-							window.swUpdate = true;
+						if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+							window.swUpdate = true
 
 							setTimeout(async () => {
 								// move the files of the new cache to the old one so when the user navigates to another page or reloads the
 								// current one, the new version will be served immediately. At the same time, this navigation or reload will
 								// cause the waiting service worker to be activated.
-								await SWHelper.prepareCachesForUpdate();
-							}, 500);
+								await SWHelper.prepareCachesForUpdate()
+							}, 500)
 						}
-					});
+					})
 				}
 			});
 		};
@@ -66,9 +63,8 @@ if ("serviceWorker" in navigator) {
 		};
 
 		const retryRequests = () => {
-			console.log("retry requests navigator?.serviceWorker?.controller ", navigator.serviceWorker.controller);
-			navigator?.serviceWorker?.controller?.postMessage({type: "retry-requests"});
-		};
+			navigator?.serviceWorker?.controller?.postMessage({ type: 'retry-requests' })
+		}
 
 		// check if the Service Worker needs to be updated on page navigation or reload
 		// beforeunload is reliably triggered on desktop, pagehide is more reliable on mobile and is the only event that is
