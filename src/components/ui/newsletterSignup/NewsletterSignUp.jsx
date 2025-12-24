@@ -70,12 +70,12 @@ const NewsletterSignUp = () => {
 								method='POST'
 								// onSubmit={submitFormHandler}
 								// onSubmitCapture={submitCaptureFormHandler}
-								action='https://d44b221a.sibforms.com/serve/MUIFAE0g4LxL-IJPB9oHCuwCCk416xMC6fH0OjJqoXPGhFtGjlaLcqtzt8FXpSMpiWfi5zpgGdvEC-ZwwTqR_JH95FSvlIoS4MGc4JAjI5nOexmudSKT5oOu5BecdQYz5-HxHtqWmcv2mTb3wMTb3dk3lEFfQLzpdml2idLpdec0PpQYyUFl1G06HPAQ_or6xCpQ9EbxVUDbAg3A0g=='
+								action='https://d44b221a.sibforms.com/serve/MUIFAG9bHjBGvHfMitSznRDCNuZXxiS6kH8b4asgw944RaenEe1BEeJqoN9B_NPBi-5REYtaaAzd5r1S0w62qZ8BiNWwu640yZV1nqH5t0sDWkT3HoPUbSDbtmpc2WtXV0HGinTfXqAec4nYkmeL4pljFbugbiBXu96gODyE0sDhWU9N_HrZV33ybb2ltjeSuBW2XXyJC6VQ8uqiOw=='
 								data-type='subscription'
 							>
 								<div>
 									<div className='sib-form-block'>
-										<div className='title'>Signup for to hear about update drops &amp; invites.</div>
+										<div className='title'>Signup to hear about updates &amp; invites.</div>
 										<p>We&apos;ve got plans for lots of helpful new features and other apps. Sign up and well send you invites along with our latest updates.</p>
 									</div>
 								</div>
