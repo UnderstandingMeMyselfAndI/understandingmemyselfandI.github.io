@@ -59,28 +59,6 @@ export default function AppMenu() {
 				>
 					Tools
 				</li>
-				{/* <li onClick={handleClose}>Journeys</li> */}
-				{/* <li onClick={handleClose}>Motivation</li> */}
-				{/* <li onClick={handleClose}>Dailys</li> */}
-				<li
-					onClick={() => {
-						handleClose()
-						setActivity(2)
-						// const el = document.getElementById("daysCounter");
-
-						// el.scrollIntoView({ behavior: "smooth", block: "start" })
-					}}
-				>
-					Days Counter
-				</li>
-				{/* <li onClick={() => {
-           handleClose();
-          setActivity(-1);
-          const el = document.getElementById("daysCounter");
-
-          el.scrollIntoView({ behavior: "smooth", block: "start" })
-        }
-        }>Lingo &amp; Phrases</li> */}
 
 				<li
 					onClick={() => {
@@ -104,33 +82,15 @@ export default function AppMenu() {
 				<li
 					onClick={() => {
 						handleClose()
-						setActivity(-1)
-						const el = document.getElementById('gratitude')
+						setActivity(2)
+						// const el = document.getElementById("daysCounter");
 
-						el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+						// el.scrollIntoView({ behavior: "smooth", block: "start" })
 					}}
 				>
-					Gratitude
+					Days Counter
 				</li>
-				<li
-					onClick={() => {
-						handleClose()
-						setActivity(-1)
-						const el = document.getElementById('share')
 
-						el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-					}}
-				>
-					Spread the love
-				</li>
-				{/* <li onClick={() => {
-          handleClose();
-          setActivity(-1);
-          const el = document.getElementById("podcasts");
-
-          el.scrollIntoView({ behavior: "smooth", block: "start" })
-          
-        }}>Podcasts</li> */}
 				{getPWADisplayMode() !== 'fullscreen' && (
 					<li
 						onClick={() => {
@@ -148,6 +108,18 @@ export default function AppMenu() {
 					onClick={() => {
 						handleClose()
 						setActivity(-1)
+						const el = document.getElementById('share')
+
+						el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+					}}
+				>
+					Share
+				</li>
+
+				<li
+					onClick={() => {
+						handleClose()
+						setActivity(-1)
 						const el = document.getElementById('feedback')
 
 						el.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -155,13 +127,36 @@ export default function AppMenu() {
 				>
 					Feedback
 				</li>
+
 				<li
 					onClick={() => {
 						handleClose()
 						setActivity(10)
 					}}
 				>
-					Your data &amp; privacy
+					Your privacy
+				</li>
+				<li>
+					<div className='loginRegister'>
+						<div
+							className='register'
+							onClick={() => {
+								handleClose()
+								setActivity(-1)
+							}}
+						>
+							Register
+						</div>
+						<div
+							className=''
+							onClick={() => {
+								handleClose()
+								setActivity(-1)
+							}}
+						>
+							Login
+						</div>
+					</div>
 				</li>
 				{/* <li
 					onClick={() => {

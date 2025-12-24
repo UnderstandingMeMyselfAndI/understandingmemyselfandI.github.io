@@ -1,10 +1,10 @@
-import {useEffect, useState} from "react";
-import useAppStore from "@/store/useAppStore";
-import {activities} from "@/data/config";
-import "./styles.scss";
+import { useEffect, useState } from 'react'
+import useAppStore from '@/store/useAppStore'
+import { activities } from '@/data/config'
+import './styles.scss'
 
-const Template = () => {
-	const name = 'settings'
+const Settings = () => {
+    const name = 'settings'
 	const [open, setOpen] = useState(false)
 	const activity = useAppStore((s) => s.activity)
 	const activityID = activities.find((activity) => (activity.url === name ? activity.id : null))
@@ -20,6 +20,6 @@ const Template = () => {
 			<section className={name}></section>
 		</div>
 	)
-};
+}
 
-export default Template;
+export default Settings

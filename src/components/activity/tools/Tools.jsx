@@ -48,9 +48,9 @@ const Tools = () => {
 				<h2>
 					<u>{content?.title}</u>
 				</h2>
-				{content?.content?.map((html, i) => {
+				{/* {content?.content?.map((html, i) => {
 					return <p key={i}>{parse(html)}</p>
-				})}
+				})} */}
 
 				<MenuCarousel />
 			</section>

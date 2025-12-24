@@ -284,7 +284,7 @@ const strings = {
 			btnLabel: '',
 			cta: {
 				title: 'We respect you<br />and your privacy',
-				content: ['You are fully in control of any data you provide to us and can remove it at any time.'],
+				content: ['You are fully in control<br />of the data you provide.', 'You can remove it at any time'],
 				btnLabel: 'Find out more',
 				route: '/privacy',
 			},
