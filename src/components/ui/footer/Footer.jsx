@@ -5,8 +5,7 @@ import QRCode from "ui/QRCode/QRCode.jsx";
 import FooterMetadata from "ui/footer/FooterMetadata.jsx";
 import InstallPWA from "ui/buttons/InstallPWA/InstallPWA";
 import InstallCTA from "../install/InstallCTA";
-import { getPWADisplayMode } from "@/utils/isAppInstalled";
-import DaysCounterBtn from "ui/buttons/daysCounter/daysCounterBtn";
+import { getPWADisplayMode } from '@/utils/isAppInstalled'
 import Podcasts from "components/activity/podcasts/Podcasts";
 
 import "./styles.scss";
@@ -54,9 +53,7 @@ function Footer() {
 				<QRCode label='' />
 			</section>
 
-			<section>
-				<script async src='https://eocampaign1.com/form/576ffa74-e079-11f0-8038-67abb6bab823.js' data-form='576ffa74-e079-11f0-8038-67abb6bab823'></script>
-			</section>
+
 
 			{/* <section className="days-counter" id="daysCounter">
 				<h3><u>Monitor your progress</u></h3>
