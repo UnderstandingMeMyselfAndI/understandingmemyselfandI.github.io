@@ -52,7 +52,8 @@ import AppMenu from "./components/ui/menu/AppMenu";
 import CookieConsent from "./components/ui/cookieConsent/CookieConsent";
 import UmmiAgeGate from './components/ui/ageGate/UmmiAgeGate'
 import { smoothScroll } from './js/utils.js'
-
+import NewsletterSignUp from './components/ui/newsletterSignup/NewsletterSignup'
+import NewsletterSignUpFooter from './components/ui/newsletterSignup/NewsletterFooter'
 
 import "./App.scss";
 // TODO: "Clear Local Data" functionality
@@ -89,6 +90,7 @@ function App() {
 					<YourPrivacyCTA />
 					<Tools id='tools' />
 					<DaysCounterCTA />
+					<NewsletterSignUp />
 					<Footer />
 					<div className='activities' id='top'>
 						<DaysCounter />
@@ -101,6 +103,7 @@ function App() {
 				<ScrollPosition />
 			</div>
 			<BackdropParallax initialImageId={2} initialDelay={3000} interval={6000} parallaxStrength={0} />
+			<NewsletterSignUpFooter />
 		</div>
 	)
 }
