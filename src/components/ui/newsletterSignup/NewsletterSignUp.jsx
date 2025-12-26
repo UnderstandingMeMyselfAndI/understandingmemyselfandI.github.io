@@ -107,8 +107,7 @@ const NewsletterSignUp = () => {
 							</div>
 							<div className='form-row'>
 								<p>
-									Get useful updates &amp; exclusive invites
-									<br /> delivered direct to your inbox.
+									Get useful updates &amp; exclusive invites delivered direct to your inbox.
 								</p>
 							</div>
 							{status.error && (
