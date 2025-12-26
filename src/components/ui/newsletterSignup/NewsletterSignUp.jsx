@@ -140,7 +140,11 @@ const NewsletterSignUp = () => {
 											<span className='checkbox checkbox_tick_positive'></span>
 										</label>
 										<div className='consent'>
-											I agree to receive your newsletters and accept the <a href='#' onClick={handlePrivacyClick}>data privacy statement</a>.
+											I agree to receive your newsletters and accept the{' '}
+											<a href='#' onClick={handlePrivacyClick}>
+												data privacy statement
+											</a>
+											.
 										</div>
 									</div>
 									<label className='entry__error entry__error--primary'></label>
@@ -157,7 +161,11 @@ const NewsletterSignUp = () => {
 									</p>
 								</div>
 							</div>
-
+							<div className='form-row privacy'>
+								This app is protected by reCAPTCHA and the Google
+								<a href='https://policies.google.com/privacy'>Privacy Policy</a> and
+								<a href='https://policies.google.com/terms'>Terms of Service</a> apply.
+							</div>
 							<div className='form-row'>
 								<button type='submit' className='signup-button btn' aria-label='Sign Up' disabled={status.loading || !formData.email}>
 									{status.loading ? (
@@ -170,7 +178,6 @@ const NewsletterSignUp = () => {
 									)}
 								</button>
 							</div>
-
 							<input type='text' name='email_address_check' value='' className='input--hidden' />
 							<input type='hidden' name='locale' value='en' />
 						</form>
