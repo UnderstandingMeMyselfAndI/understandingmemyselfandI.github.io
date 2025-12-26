@@ -69,7 +69,7 @@ const Exit = () => {
 					onConfirm={handleDialogueConfirm}
 					onCancel={handleDialogueCancel}
 					confirmLabel='Continue'
-					cancelLabel='Cancel'
+					cancelLabel='Back'
 					classes={['exit-dialog']}
 				>
 					<div className='checkBox-row'>

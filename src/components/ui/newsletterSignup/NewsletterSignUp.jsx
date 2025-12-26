@@ -139,7 +139,7 @@ const NewsletterSignUp = () => {
 											<span className='checkbox checkbox_tick_positive'></span>
 										</label>
 										<div className='consent'>
-											I agree to receive your newsletters and accept the{' '}
+											I agree to receive emails from Ummi and accept the{' '}
 											<a href='#' onClick={handlePrivacyClick}>
 												data privacy statement
 											</a>
