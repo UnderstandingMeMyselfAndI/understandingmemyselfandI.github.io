@@ -10,48 +10,47 @@ import {storeKeys, localStore} from "@/data/localStore.js";
 import {strings} from "data/config.js";
 import "./styles.scss";
 
-const ButtonToolbox = ({id}) => {
-	const setToolIDs = useAppStore(s => s.setToolIDs);
-	const setMessage = useAppStore(s => s.setMessage);
-	
+const ButtonToolbox = ({ id }) => {
+	// const setToolIDs = useAppStore(s => s.setToolIDs);
+	const isEnabled = useAppStore((state) => state.userToolIDs.includes(id))
+	const setMessage = useAppStore((s) => s.setMessage)
+	const removeTool = useAppStore((s) => s.removeTool)
+	const addTool = useAppStore((s) => s.addTool)
 
-	const ids = data.map(item => item.id);
-	const positiveIDs = useMemo(() => localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids), [ids]);
-	const positiveIDsSet = useMemo(() => new Set(positiveIDs), [positiveIDs]);
-	const isSelected = positiveIDsSet.has(id);
-	const [inToolbox, setInToolbox] = useState(isSelected);
+	// const ids = data.map((item) => item.id)
+	// const positiveIDs = useMemo(() => localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids), [ids])
+	// const activeIDs = useAppStore((state) => state.userToolIDs)
+
+	// const positiveIDsSet = useMemo(() => new Set(positiveIDs), [positiveIDs])
+	// const isSelected = positiveIDsSet.has(id);
+	const [inToolbox, setInToolbox] = useState(isEnabled)
 
 	const handleClick = () => {
-		const isIn = !inToolbox;
+		const isIn = !inToolbox
 
 		if (isIn) {
-			localStore.set(storeKeys.toolbox, id, isIn);
-			const newIDs = [...positiveIDs, id];
-			setToolIDs(newIDs);
-			setInToolbox(true);
-			setMessage(strings.toolbox.added);
+			// localStore.set(storeKeys.toolbox, id, isIn)
+			// const newIDs = [...positiveIDs, id]
+			// setToolIDs(newIDs)
+			addTool(id)
+			setMessage(strings.toolbox.added)
 		} else {
-			const newIDs = positiveIDs.filter(t => t.id !== id);
-			localStore.set(storeKeys.toolbox, id, isIn);
-			setMessage(strings.toolbox.removed);
-			setToolIDs(newIDs);
-			setInToolbox(true);
+			// const newIDs = positiveIDs.filter((t) => t.id !== id)
+			// localStore.set(storeKeys.toolbox, id, isIn)
+			removeTool(id)
+			setMessage(strings.toolbox.removed)
+			// setToolIDs(newIDs)
 		}
 
-		setInToolbox(isIn);
-	};
+		setInToolbox(isIn)
+	}
 
 	return (
-		<div
-			className={"btn toolbox" + (inToolbox ? " active" : "")}
-			key="toolbox-btn"
-			onClick={handleClick}
-			aria-label="Toggle toolbox"
-		>
-			{inToolbox ? <HandymanIcon key="toolbox-btn-icon" /> : <HandymanOutlinedIcon key="toolbox-btn-icon" />}
+		<div className={'btn toolbox' + (inToolbox ? ' active' : '')} key='toolbox-btn' onClick={handleClick} aria-label='Toggle toolbox'>
+			{inToolbox ? <HandymanIcon key='toolbox-btn-icon' /> : <HandymanOutlinedIcon key='toolbox-btn-icon' />}
 		</div>
-	);
-};
+	)
+}
 ButtonToolbox.propTypes = {
 	id: PropTypes.number,
 };

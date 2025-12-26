@@ -18,9 +18,11 @@ import "./BadgeToolbox.scss";
 export default function BadgeToolbox() {
 	const allAccronyms = data
 	const ids = allAccronyms.map((item) => item.id)
-	const positiveIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids)
+	// const positiveIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids)
+	const activeIDs = useAppStore((state) => state.userToolIDs)
 	const showAccCard = useAppStore((s) => s.showAccCard)
 	const toolsInView = useAppStore((s) => s.toolsInView)
+
 	// const activity = useAppStore((s) => s.activity)
 	// const [openAlert, setOpenAlert] = React.useState(false);
 	const [show, setShow] = React.useState(false)
@@ -30,14 +32,6 @@ export default function BadgeToolbox() {
 	// const userToolIDs = useAppStore((s) => s.userToolIDs)
 	const showToolsOnly = useAppStore((s) => s.showToolsOnly)
 	const setMessage = useAppStore((s) => s.setMessage)
-
-	// useEffect(() => {
-	// 	setNumTools(userToolIDs.length)
-	// }, [userToolIDs])
-
-	// useEffect(() => {
-	// 	setOpen(activity === -1)
-	// }, [activity, setOpen])
 
 	useEffect(() => {
 		setShow(toolsInView)
@@ -70,7 +64,7 @@ export default function BadgeToolbox() {
 			<div className={'badge-cont ' + (show ? '' : ' hide')}>
 				<Badge
 					className={'badge toolbox' + (showToolsOnly ? ' active' : '')}
-					badgeContent={positiveIDs.length}
+					badgeContent={activeIDs.length}
 					onClick={handleTouch}
 					anchorOrigin={{
 						vertical: 'top',

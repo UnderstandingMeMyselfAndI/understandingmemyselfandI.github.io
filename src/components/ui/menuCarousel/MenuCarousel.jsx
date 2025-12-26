@@ -196,23 +196,28 @@ VerticalList.propTypes = {
 	className: PropTypes.string,
 };
 
-const userData = () => {
-	const ids = data.map((item) => item.id)
-	const positiveIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids)
-	return data.filter((obj) => positiveIDs.includes(obj.id))
-}
+// const userData = () => {
+// 	const ids = data.map((item) => item.id)
+// 	//const positiveIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids)
+// 	const getActiveToolIDs = useAppStore((state) => state.getActiveToolIDs)
+// 	const activeIDs = getActiveToolIDs()
+// 	return data.filter((obj) => activeIDs.includes(obj.id))
+// }
 
 const MenuCarousel = () => {
 	const [open, setOpen] = useState(false)
-	const [accData, setAccData] = useState(userData())
+	// const [accData, setAccData] = useState(userData())
 	const showToolsOnly = useAppStore((s) => s.showToolsOnly)
 	// const userToolIDs = useAppStore(s => s.userToolIDs);
 	// console.log("userToolIDs", userToolIDs);
 
-	const ids = data.map((item) => item.id)
+	// const ids = data.map((item) => item.id)
 
-	const positiveIDs = useMemo(() => localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids), [ids])
-	const positiveIDsSet = useMemo(() => new Set(positiveIDs), [positiveIDs])
+	// const positiveIDs = useMemo(() => localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids), [ids])
+	const getActiveToolIDs = useAppStore((state) => state.getActiveToolIDs)
+	const activeIDs = getActiveToolIDs()
+	console.log('activeIDs', activeIDs)
+	const positiveIDsSet = useMemo(() => new Set(activeIDs), [activeIDs])
 
 	// Memoize the accData calculation
 	// const accData = useMemo(() => {
@@ -221,14 +226,17 @@ const MenuCarousel = () => {
 	// 	return data.filter((obj) => positiveIDs.includes(obj.id))
 	// }, []) // Empty dependency array if these don't change
 
-	useEffect(() => {
-		setAccData(userData())
-	}, [showToolsOnly])
+	// useEffect(() => {
+	// 	const filteredData = data.filter((obj) => activeIDs.includes(obj.id))
+	// 	//setAccData(filteredData)
+	// }, [showToolsOnly, activeIDs])
 
 	// Memoize the final carouselData
 	const carouselData = useMemo(() => {
-		return showToolsOnly ? accData : data
-	}, [showToolsOnly, accData])
+		const filteredData = data.filter((obj) => activeIDs.includes(obj.id))
+		//setAccData(filteredData)
+		return showToolsOnly ? filteredData : data
+	}, [showToolsOnly, activeIDs])
 
 	const setActivity = useAppStore((s) => s.setActivity)
 	const setAcronymnID = useAppStore((s) => s.setAcronymnID)

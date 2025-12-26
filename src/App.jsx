@@ -23,13 +23,10 @@
 import {useThemeStore} from "@/store/useThemeStore";
 import useAppStore from "./store/useAppStore";
 // import DaysCounter from "./components/ui/DaysCounter/DaysCounter";
-import applyTheme from "components/theme/applyTheme";
-
-import ScrollPosition from "components/utils/ScrollPosition";
-
+import applyTheme from 'components/theme/applyTheme'
+import ScrollPosition from 'components/utils/ScrollPosition'
 import LogoFloating from "ui/logo/LogoFloating";
-import Header from "ui/header/Header.jsx";
-
+import Header from 'ui/header/Header.jsx'
 import Footer from "ui/footer/Footer";
 import Podcasts from "./components/activity/podcasts/Podcasts";
 import PrivacyPolicy from './components/activity/privacy/PrivacyPolicy'
@@ -53,32 +50,31 @@ import CookieConsent from "./components/ui/cookieConsent/CookieConsent";
 import UmmiAgeGate from './components/ui/ageGate/UmmiAgeGate'
 import { smoothScroll } from './js/utils.js'
 import NewsletterSignUp from './components/ui/newsletterSignup/NewsletterSignUp'
-
-
+import Exit from './components/ui/exit/Exit'
 import "./App.scss";
 // TODO: "Clear Local Data" functionality
 // import SpeedDialSettings from "./components/ui/settings/speedDial/SpeedDialSettings.jsx";
 function App() {
 
-	const setActivity = useAppStore(s => s.setActivity);
-	setActivity(-1);
-	smoothScroll();
-	const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme);
+
+	const setActivity = useAppStore((s) => s.setActivity)
+	setActivity(-1)
+	smoothScroll()
+	const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme)
 
 	if (theme !== null) {
-		applyTheme({theme: theme});
+		applyTheme({ theme: theme })
 		useThemeStore.setState({
 			theme: theme,
-		});
+		})
 	}
-
-
 
 	return (
 		<div>
 			<div className='app'>
 				<UmmiAgeGate />
 				<CookieConsent />
+				<Exit />
 				{/* <EmergencyButton /> */}
 
 				<AppMenu />
