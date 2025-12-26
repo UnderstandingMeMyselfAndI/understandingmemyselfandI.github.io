@@ -42,7 +42,7 @@ const Exit = () => {
 
 	}
 	const doExit = () => {
-		window.open('https://google.com', '_blank')
+		window.open('https://google.com', '_blank', 'noopener,noreferrer,resizable')
 		exitFullscreen();
 		window.close()
 	}
