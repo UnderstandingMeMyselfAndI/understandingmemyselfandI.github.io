@@ -29,8 +29,21 @@ const Exit = () => {
 			doExit()
 		}
 	}
+	const exitFullscreen = () => {
+		if (document.exitFullscreen) {
+			document.exitFullscreen()
+		} else if (document.webkitExitFullscreen) {
+			document.webkitExitFullscreen()
+		} else if (document.mozCancelFullScreen) {
+			document.mozCancelFullScreen()
+		} else if (document.msExitFullscreen) {
+			document.msExitFullscreen()
+		}
+
+	}
 	const doExit = () => {
 		window.open('https://google.com', '_blank')
+		exitFullscreen();
 		window.close()
 	}
 	const handleDialogueCancel = () => {
@@ -55,7 +68,7 @@ const Exit = () => {
 					instruction={message}
 					onConfirm={handleDialogueConfirm}
 					onCancel={handleDialogueCancel}
-					confirmLabel='Exit'
+					confirmLabel='Continue'
 					cancelLabel='Cancel'
 					classes={['exit-dialog']}
 				>

@@ -271,6 +271,8 @@
                     max-width:100%;
                     width:80%;
                     border:none;
+                    color:var(--primary);
+                    -webkit-text-fill-color:var(--primary);
                 }
                 input.email-input::placeholder {
                     text-align: left;
