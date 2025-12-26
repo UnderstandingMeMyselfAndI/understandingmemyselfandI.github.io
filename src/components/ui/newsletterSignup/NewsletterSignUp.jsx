@@ -84,13 +84,6 @@ const NewsletterSignUp = () => {
 			</div>
 		)
 	}
-	
-
-	// const recaptchaID = '6Lfi5TUsAAAAAJP-2sDeKOyqOIvcK00HK2EiaFW5'
-	// const recaptchaSecretKey = '6Lfi5TUsAAAAAPffRVEoDmLrWiNXEehy7hbZ6j2a'
-	// // const recaptchaSiteKeyv2 = '6LcCFDYsAAAAANYEe4iiL89d-UkjMfK9gikbu9yc'
-	// // const recaptchaSecretKeyv2 = '6Lfi5TUsAAAAAPffRVEoDmLrWiNXEehy7hbZ6j2a'
-	// const recaptchaSiteKeyLegacy = '6Lfi5TUsAAAAAPffRVEoDmLrWiNXEehy7hbZ6j2a'
 
 	const handlePrivacyClick = (e) => {
 		e.preventDefault();
