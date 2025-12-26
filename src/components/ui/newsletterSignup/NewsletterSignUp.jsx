@@ -1,148 +1,191 @@
-
+import useAppStore from '@/store/useAppStore'
+import { useState } from 'react'
 import './styles.scss'
-import './sib-styles.css'
 
-// function handleCaptchaResponse() {
-//     let event = new Event('captchaChange')
-//     document.getElementById('sib-captcha').dispatchEvent(event)
-// }
 
 const NewsletterSignUp = () => {
 
-    // const form = document.querySelector("#sib-form");
+	const setActivity = useAppStore((state) => state.setActivity)
 
-    // async function sendData() {
-    // // Associate the FormData object with the form element
-    // const formData = new FormData(form);
-
-    // try {
-    //     const response = await fetch("https://d44b221a.sibforms.com/serve/MUIFAE0g4LxL-IJPB9oHCuwCCk416xMC6fH0OjJqoXPGhFtGjlaLcqtzt8FXpSMpiWfi5zpgGdvEC-ZwwTqR_JH95FSvlIoS4MGc4JAjI5nOexmudSKT5oOu5BecdQYz5-HxHtqWmcv2mTb3wMTb3dk3lEFfQLzpdml2idLpdec0PpQYyUFl1G06HPAQ_or6xCpQ9EbxVUDbAg3A0g==", {
-    //     method: "POST",
-    //     // Set the FormData instance as the request body
-    //     body: formData,
-    //     });
-    //     console.log(await response.json());
-    // } catch (e) {
-    //     console.error(e);
-    // }
-    // }
-
-    // // Take over form submission
-    // form.addEventListener('submit', (event) => {
-    //     event.preventDefault()
-    //     sendData()
-    // })
-
-    // const submitFormHandler = (e) => {
-    //     e.preventDefault();
-    //     console.log('submitCaptureFormHandler ', e)
-    // }
-    // const submitCaptureFormHandler = (e) => {
-    //     e.preventDefault()
-    //     console.log("submitCaptureFormHandler ",e)
-    // }
-    return (
-			<div className='newsletter-signup-form'>
-				<div className='sib-form'>
-					<div id='sib-form-container' className='sib-form-container'>
-						<div id='error-message' className='sib-form-message-panel'>
-							<div className='sib-form-message-panel__text sib-form-message-panel__text--center'>
-								<svg viewBox='0 0 512 512' className='sib-icon sib-notification__icon'>
-									<path d='M256 40c118.621 0 216 96.075 216 216 0 119.291-96.61 216-216 216-119.244 0-216-96.562-216-216 0-119.203 96.602-216 216-216m0-32C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm-11.49 120h22.979c6.823 0 12.274 5.682 11.99 12.5l-7 168c-.268 6.428-5.556 11.5-11.99 11.5h-8.979c-6.433 0-11.722-5.073-11.99-11.5l-7-168c-.283-6.818 5.167-12.5 11.99-12.5zM256 340c-15.464 0-28 12.536-28 28s12.536 28 28 28 28-12.536 28-28-12.536-28-28-28z' />
-								</svg>
-								<span className='sib-form-message-panel__inner-text'>Your subscription could not be saved. Please try again.</span>
-							</div>
-						</div>
-						<div></div>
-
-						<div id='success-message' className='sib-form-message-panel'>
-							<div className='sib-form-message-panel__text sib-form-message-panel__text--center'>
-								<svg viewBox='0 0 512 512' className='sib-icon sib-notification__icon'>
-									<path d='M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 464c-118.664 0-216-96.055-216-216 0-118.663 96.055-216 216-216 118.664 0 216 96.055 216 216 0 118.663-96.055 216-216 216zm141.63-274.961L217.15 376.071c-4.705 4.667-12.303 4.637-16.97-.068l-85.878-86.572c-4.667-4.705-4.637-12.303.068-16.97l8.52-8.451c4.705-4.667 12.303-4.637 16.97.068l68.976 69.533 163.441-162.13c4.705-4.667 12.303-4.637 16.97.068l8.451 8.52c4.668 4.705 4.637 12.303-.068 16.97z' />
-								</svg>
-								<span className='sib-form-message-panel__inner-text'>Your subscription has been successful.</span>
-							</div>
-						</div>
-						<div></div>
-						<div id='sib-container' className='sib-container--large sib-container--vertical'>
-							<form
-								id='sib-form'
-								method='POST'
-								// onSubmit={submitFormHandler}
-								// onSubmitCapture={submitCaptureFormHandler}
-								action='https://d44b221a.sibforms.com/serve/MUIFAG9bHjBGvHfMitSznRDCNuZXxiS6kH8b4asgw944RaenEe1BEeJqoN9B_NPBi-5REYtaaAzd5r1S0w62qZ8BiNWwu640yZV1nqH5t0sDWkT3HoPUbSDbtmpc2WtXV0HGinTfXqAec4nYkmeL4pljFbugbiBXu96gODyE0sDhWU9N_HrZV33ybb2ltjeSuBW2XXyJC6VQ8uqiOw=='
-								data-type='subscription'
-							>
-								<div>
-									<div className='sib-form-block'>
-										<div className='title'>Signup to hear about updates &amp; invites.</div>
-										<p>We&apos;ve got plans for lots of helpful new features and other companion apps. If you'd like to hear about them sign up.</p>
-									</div>
-								</div>
-								<div>
-									<div className='sib-input sib-form-block'>
-										<div className='form__entry entry_block'>
-											<div className='form__label-row '>
-												<div className='entry__field'>
-													<input className='input ' type='text' id='EMAIL' name='EMAIL' autoComplete='off' placeholder='Email address' data-required='true' required />
-												</div>
-											</div>
-
-											<label className='entry__error entry__error--primary'></label>
-										</div>
-									</div>
-								</div>
-								<div>
-									<div className='sib-optin sib-form-block' data-required='true'>
-										<div className='form__entry entry_mcq'>
-											<div className='form__label-row '>
-												<div className='entry__choice'>
-													<label>
-														<input type='checkbox' className='input_replaced' defaultChecked='1' id='OPT_IN' name='OPT_IN' required />
-														<span className='checkbox checkbox_tick_positive'></span>
-													</label>
-													<span className='consent'>I agree to receive your newsletters and accept the data privacy statement.</span>
-												</div>
-											</div>
-											<label className='entry__error entry__error--primary'></label>
-										</div>
-									</div>
-								</div>
-
-								<div>
-									<div className='sib-captcha sib-form-block'>
-										<div className='form__entry entry_block'>
-											<div className='form__label-row '>
-												<div
-													className='g-recaptcha sib-visible-recaptcha'
-													id='sib-captcha'
-													data-sitekey='6Lfi5TUsAAAAAJP-2sDeKOyqOIvcK00HK2EiaFW5'
-													data-callback='handleCaptchaResponse'
-												></div>
-											</div>
-											<label className='entry__error entry__error--primary'></label>
-										</div>
-									</div>
-								</div>
-								<div>
-									<div className='sib-form-block btn-cont'>
-										<button className='btn sib-form-block__button sib-form-block__button-with-loader' form='sib-form' type='submit'>
-											<svg className='icon clickable__icon progress-indicator__icon sib-hide-loader-icon' viewBox='0 0 512 512'>
-												<path d='M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z' />
-											</svg>
-											SUBSCRIBE
-										</button>
-									</div>
-								</div>
-
-								<input type='text' name='email_address_check' defaultValue='' className='input--hidden' />
-								<input type='hidden' name='locale' value='en' />
-							</form>
-						</div>
+	const onSuccess = (e) => {
+			console.log('onSuccess')
+			console.log(e)
+		}
+		const onError = (e) => {
+			console.log('onError')
+			console.log(e)
+		}
+	const [formData, setFormData] = useState({
+		email: '',
+		
+	})
+	const [status, setStatus] = useState({
+		loading: false,
+		success: false,
+		error: null,
+	})
+	
+	// Your form ID from the embed code
+	const formId =
+		'MUIFALc6BdLxDTN5bUt_Nxxf8w9uI6rUsNhO6T04esvA31bm_6DpC7pGj934CpQpqqUWO48PcndNrWhtNl1tThdGiLUq_9ug9YeW73EJRJEUyt2pBT0QszFGXW6MlGDojXDwwPATPsUn1QHNh6MVO7kXp4J5AEWQSWarZtSIMx68uxLTeUn7Ho56eeY-v6dp4jtFSkGL8E3dBf6wQQ=='
+	
+	const handleChange = (e) => {
+		setFormData({
+			...formData,
+			[e.target.name]: e.target.value,
+		})
+	}
+	
+	const handleSubmit = async (e) => {
+		e.preventDefault()
+		setStatus({ loading: true, success: false, error: null })
+	
+		try {
+			// Create form data for submission
+			const submitData = new FormData()
+			submitData.append('EMAIL', formData.email)
+			submitData.append('email_address_check', '') // Honeypot field
+			submitData.append('locale', 'en')
+	
+			const response = await fetch(`https://d44b221a.sibforms.com/serve/${formId}`, {
+				method: 'POST',
+				body: submitData,
+				mode: 'no-cors', // Required for cross-origin requests
+				})
+				
+				console.log("response")
+				console.log(response)
+	
+			// Since we're using no-cors, we can't read the response
+			// We'll assume success if no error is thrown
+			setStatus({ loading: false, success: true, error: null })
+			setFormData({ email: '' })
+			onSuccess && onSuccess({ email: formData.email })
+		} catch (error) {
+			setStatus({ loading: false, success: false, error: error.message })
+			onError && onError(error.message)
+		}
+	}
+	if (status.success) {
+		return (
+			<div className='signup-success'>
+				<div>
+					<div className='h'>
+						{/* <div className='success-icon'>✅</div> */}
+						<div className='success-icon'>👍🏼</div>
+						<h3>
+							Thanks for
+							<br />
+							signing up.
+						</h3>
 					</div>
+					<p>Check your inbox to confirm your email address.</p>
 				</div>
 			</div>
 		)
-};
+	}
+	
+
+	// const recaptchaID = '6Lfi5TUsAAAAAJP-2sDeKOyqOIvcK00HK2EiaFW5'
+	// const recaptchaSecretKey = '6Lfi5TUsAAAAAPffRVEoDmLrWiNXEehy7hbZ6j2a'
+	// // const recaptchaSiteKeyv2 = '6LcCFDYsAAAAANYEe4iiL89d-UkjMfK9gikbu9yc'
+	// // const recaptchaSecretKeyv2 = '6Lfi5TUsAAAAAPffRVEoDmLrWiNXEehy7hbZ6j2a'
+	// const recaptchaSiteKeyLegacy = '6Lfi5TUsAAAAAPffRVEoDmLrWiNXEehy7hbZ6j2a'
+
+	const handlePrivacyClick = (e) => {
+		e.preventDefault();
+		setActivity(10);
+		
+	}
+	
+	
+	return (
+		<div className='newsletter-signup-form'>
+			<div className='sib-form'>
+				<div id='sib-form-container' className='sib-form-container'>
+					<div id='sib-container' className='sib-container--large sib-container--vertical'>
+						<form onSubmit={handleSubmit} className='signup-form'>
+							<div className='form-row'>
+								<div className='title'>
+									Big things are coming.
+									<br />
+									Be the first to hear.
+								</div>
+							</div>
+							<div className='form-row'>
+								<p>
+									Get useful updates &amp; exclusive invites
+									<br /> delivered direct to your inbox.
+								</p>
+							</div>
+							{status.error && (
+								<div className='error-message'>
+									<span className='error-icon'>⚠️</span>
+									{status.error}
+								</div>
+							)}
+							<div className='form-row'>
+								<input
+									type='email'
+									id='email'
+									name='email'
+									placeholder='Email address'
+									value={formData.email}
+									onChange={handleChange}
+									required
+									data-required='true'
+									disabled={status.loading}
+									className='email-input input'
+								/>
+								<label className='entry__error entry__error--primary'></label>
+							</div>
+							<div className='form-row '>
+								<div>
+									<div className='form__label-row entry__choice '>
+										<label>
+											<input type='checkbox' className='input_replaced' defaultChecked='0' id='OPT_IN' name='OPT_IN' required />
+											<span className='checkbox checkbox_tick_positive'></span>
+										</label>
+										<div className='consent'>
+											I agree to receive your newsletters and accept the <a href='#' onClick={handlePrivacyClick}>data privacy statement</a>.
+										</div>
+									</div>
+									<label className='entry__error entry__error--primary'></label>
+								</div>
+							</div>
+							<div className='form-row privacy'>
+								<div>
+									<p>
+										We use Brevo as our marketing platform. By submitting this form you agree that the personal data you provided will be transferred to Brevo for processing in
+										accordance with{' '}
+										<a href='https://www.brevo.com/en/legal/privacypolicy/' target='_blank' rel='noreferrer'>
+											Brevo's Privacy Policy.
+										</a>
+									</p>
+								</div>
+							</div>
+
+							<div className='form-row'>
+								<button type='submit' className='signup-button btn' aria-label='Sign Up' disabled={status.loading || !formData.email}>
+									{status.loading ? (
+										<>
+											<span className='loading-spinner'></span>
+											Signing you Up...
+										</>
+									) : (
+										'Sign Up'
+									)}
+								</button>
+							</div>
+
+							<input type='text' name='email_address_check' value='' className='input--hidden' />
+							<input type='hidden' name='locale' value='en' />
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	)
+}
 
 export default NewsletterSignUp

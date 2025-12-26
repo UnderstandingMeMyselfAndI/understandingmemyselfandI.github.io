@@ -68,8 +68,8 @@
 			name="google-site-verification"
 			content="z1GZV3sgoFTPrtQLwT4cYGE4cMFm58x1oQO_OB7w464"
 		/>
-		
-		<script type="module" crossorigin src="./assets/index-C6Wj3d6k.js"></script>
+		<script src="https://www.google.com/recaptcha/enterprise.js?render=6LcCFDYsAAAAANYEe4iiL89d-UkjMfK9gikbu9yc"></script>
+		<script type="module" crossorigin src="./assets/index-B4qr5F4D.js"></script>
 		<link rel="modulepreload" crossorigin href="./assets/react-dom-_g6xLlVr.js">
 		<link rel="modulepreload" crossorigin href="./assets/mui-icons-nb_QWBLm.js">
 		<link rel="modulepreload" crossorigin href="./assets/gsap-Cdnh9Ozc.js">
@@ -81,7 +81,7 @@
 	</head>
 
 	<body>
-
+		
 		<div id="root"></div>
 		<script
 			type="module"
@@ -94,17 +94,30 @@
 			window.REQUIRED_ERROR_MESSAGE = "This field cannot be left blank. ";
 			window.GENERIC_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
 			window.translation = {
-				common: {
+			common: {
 				selectedList: '{quantity} list selected',
 				selectedLists: '{quantity} lists selected',
 				selectedOption: '{quantity} selected',
 				selectedOptions: '{quantity} selected',
-				}
+			}
 			};
-
 			var AUTOHIDE = Boolean(1);
-			</script>
+		
+			function reCaptchaOnload(){
+				grecaptcha.execute();
+			}
+			var onSubmit = function(token) {
+				console.log('success! ',token);
+			};
+			var onloadCallback = function() {
+				grecaptcha.render('submit', {
+					'sitekey' : 'your_site_key',
+					'callback' : onSubmit
+				});
+				};
+		</script>
 		<script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
-		<script src="https://www.google.com/recaptcha/api.js?hl=en"></script>
+		<script src="https://www.google.com/recaptcha/api.js?hl=en&onload=onloadCallback&render=explicit"></script>
+		<!-- <script src="https://www.google.com/recaptcha/enterprise.js?render=6Ld-_jYsAAAAAF2cUAL-tfiHfUCsejwRAXbh8kbs"></script> -->
 	</body>
 </html>
