@@ -161,11 +161,7 @@ const NewsletterSignUp = () => {
 									</p>
 								</div>
 							</div>
-							<div className='form-row privacy'>
-								This app is protected by reCAPTCHA and the Google
-								<a href='https://policies.google.com/privacy'>Privacy Policy</a> and
-								<a href='https://policies.google.com/terms'>Terms of Service</a> apply.
-							</div>
+
 							<div className='form-row'>
 								<button type='submit' className='signup-button btn' aria-label='Sign Up' disabled={status.loading || !formData.email}>
 									{status.loading ? (
@@ -177,6 +173,11 @@ const NewsletterSignUp = () => {
 										'Sign Up'
 									)}
 								</button>
+							</div>
+							<div className='form-row privacy-google'>
+								This app is protected by reCAPTCHA and the Google
+								<a href='https://policies.google.com/privacy'>Privacy Policy</a> and
+								<a href='https://policies.google.com/terms'>Terms of Service</a> apply.
 							</div>
 							<input type='text' name='email_address_check' value='' className='input--hidden' />
 							<input type='hidden' name='locale' value='en' />

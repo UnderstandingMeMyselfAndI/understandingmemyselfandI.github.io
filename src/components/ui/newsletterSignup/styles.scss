@@ -193,7 +193,15 @@
                 flex-flow:column wrap;
                 row-gap:2rem;
                 justify-content: center;
-
+                .privacy-google{
+                    font-size:0.75rem;
+                    color:var(--grey);
+                    a{
+                        margin:0 0.25rem;
+                        text-decoration:none;
+                        color:var(--lightBlue);
+                    }
+                }
                 .privacy{
                     font-size:1rem;
                 }
