@@ -58,6 +58,7 @@ import "./App.scss";
 function App() {
 
 	const toolsShowFilterButton = useAppStore((s) => s.toolsShowFilterButton)
+	const enableYourTools = useAppStore((s) => s.enableYourTools)
 	const showExitButton = useAppStore((s) => s.exitShowButton)
 	const setActivity = useAppStore((s) => s.setActivity)
 	setActivity(-1)
@@ -76,7 +77,7 @@ function App() {
 			<div className='app'>
 				<UmmiAgeGate />
 				<CookieConsent />
-				{showExitButton && <Exit />}
+				{showExitButton && enableYourTools && <Exit />}
 				<Settings />
 				{/* <EmergencyButton /> */}
 
