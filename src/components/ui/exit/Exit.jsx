@@ -9,14 +9,14 @@ const Exit = () => {
 	
 	const exitShowDialogue = useAppStore((state) => state.exitShowDialogue)
 	const [showDialog, setShowDialog] = useState(false)
-	const [checked, setChecked] = useState(false)
+	// const [checked, setChecked] = useState(false)
 	
 	const setExitShowDialogue = useAppStore((state) => state.setExitShowDialogue)
 
 	const message =
 		'<p>Your privacy matters.</p><p>This button lets you leave the app immediately and open a neutral website if you need to.</p><p>Use it whenever that feels helpful.</p>'
 
-	const checkBoxInstruction = '<p>Do not show this message again</p>'
+	const checkBoxInstruction = '<p>Show this message again</p>'
 
 	const handleClick = () => {
 		console.log("exitShowDialogue", exitShowDialogue)
@@ -56,7 +56,8 @@ const Exit = () => {
 	}
 	const handleCheckboxChange = (e) => {
 		console.log("e.target.checked", e.target.checked)
-		setChecked(e.target.checked)
+		setShowDialog(e.target.checked)
+		setExitShowDialogue(e.target.checked)
 	}
 
 	return (
@@ -73,7 +74,7 @@ const Exit = () => {
 					classes={['exit-dialog']}
 				>
 					<div className='checkBox-row'>
-						<input type='checkbox' id='showAgain' value='showAgain' checked={checked} onChange={handleCheckboxChange} />
+						<input type='checkbox' id='showAgain' value='showAgain' checked={showDialog} onChange={handleCheckboxChange} />
 						<label htmlFor='showAgain'>{parse(checkBoxInstruction)}</label>
 					</div>
 				</Dialog>

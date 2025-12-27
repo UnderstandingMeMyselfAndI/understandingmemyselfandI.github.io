@@ -9,6 +9,7 @@ import HandymanOutlinedIcon from "@mui/icons-material/HandymanOutlined";
 import {storeKeys, localStore} from "@/data/localStore.js";
 import {strings} from "data/config.js";
 import "./styles.scss";
+import { en } from 'zod/v4/locales'
 
 const ButtonToolbox = ({ id }) => {
 	// const setToolIDs = useAppStore(s => s.setToolIDs);
@@ -16,6 +17,7 @@ const ButtonToolbox = ({ id }) => {
 	const setMessage = useAppStore((s) => s.setMessage)
 	const removeTool = useAppStore((s) => s.removeTool)
 	const addTool = useAppStore((s) => s.addTool)
+		const enableYourTools = useAppStore((s) => s.enableYourTools)
 
 	// const ids = data.map((item) => item.id)
 	// const positiveIDs = useMemo(() => localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids), [ids])
@@ -44,6 +46,7 @@ const ButtonToolbox = ({ id }) => {
 
 		setInToolbox(isIn)
 	}
+	if (!enableYourTools) return null
 
 	return (
 		<div className={'btn toolbox' + (inToolbox ? ' active' : '')} key='toolbox-btn' onClick={handleClick} aria-label='Toggle toolbox'>

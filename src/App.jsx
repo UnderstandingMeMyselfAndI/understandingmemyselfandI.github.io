@@ -51,12 +51,14 @@ import UmmiAgeGate from './components/ui/ageGate/UmmiAgeGate'
 import { smoothScroll } from './js/utils.js'
 import NewsletterSignUp from './components/ui/newsletterSignup/NewsletterSignUp'
 import Exit from './components/ui/exit/Exit'
+import Settings from './components/activity/settings/Settings'
 import "./App.scss";
 // TODO: "Clear Local Data" functionality
 // import SpeedDialSettings from "./components/ui/settings/speedDial/SpeedDialSettings.jsx";
 function App() {
 
-
+	const toolsShowFilterButton = useAppStore((s) => s.toolsShowFilterButton)
+	const showExitButton = useAppStore((s) => s.exitShowButton)
 	const setActivity = useAppStore((s) => s.setActivity)
 	setActivity(-1)
 	smoothScroll()
@@ -74,12 +76,13 @@ function App() {
 			<div className='app'>
 				<UmmiAgeGate />
 				<CookieConsent />
-				<Exit />
+				{showExitButton && <Exit />}
+				<Settings />
 				{/* <EmergencyButton /> */}
 
 				<AppMenu />
 				<div className='main'>
-					<BadgeToolbox />
+					{toolsShowFilterButton && <BadgeToolbox />}
 
 					<Header />
 					<Introduction />

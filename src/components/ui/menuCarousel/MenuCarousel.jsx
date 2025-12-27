@@ -206,30 +206,12 @@ VerticalList.propTypes = {
 
 const MenuCarousel = () => {
 	const [open, setOpen] = useState(false)
-	// const [accData, setAccData] = useState(userData())
+
 	const showToolsOnly = useAppStore((s) => s.showToolsOnly)
-	// const userToolIDs = useAppStore(s => s.userToolIDs);
-	// console.log("userToolIDs", userToolIDs);
-
-	// const ids = data.map((item) => item.id)
-
-	// const positiveIDs = useMemo(() => localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids), [ids])
 	const getActiveToolIDs = useAppStore((state) => state.getActiveToolIDs)
+	const enableYourTools = useAppStore((s) => s.enableYourTools)
 	const activeIDs = getActiveToolIDs()
-	console.log('activeIDs', activeIDs)
 	const positiveIDsSet = useMemo(() => new Set(activeIDs), [activeIDs])
-
-	// Memoize the accData calculation
-	// const accData = useMemo(() => {
-	// 	const ids = data.map((item) => item.id)
-	// 	const positiveIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids)
-	// 	return data.filter((obj) => positiveIDs.includes(obj.id))
-	// }, []) // Empty dependency array if these don't change
-
-	// useEffect(() => {
-	// 	const filteredData = data.filter((obj) => activeIDs.includes(obj.id))
-	// 	//setAccData(filteredData)
-	// }, [showToolsOnly, activeIDs])
 
 	// Memoize the final carouselData
 	const carouselData = useMemo(() => {
@@ -267,7 +249,7 @@ const MenuCarousel = () => {
 			<div key={`AccordionItem-cont-${item.id ?? index}`} className={'carousel-item'} onClick={handleClick(item.id)}>
 				<div className='AccordionItem inner item' key={`AccordionItem-${item.id ?? index}`} style={{ cursor: 'pointer' }}>
 					<div className='title' aria-controls={`Accronym-${index}-content`} id={`panel${item?.id}-header`}>
-						<HandymanIcon className={'icon' + (isSelected ? ' active' : '')} key={`AccordionItem-icon-${item.id ?? index}`} />
+						{enableYourTools && <HandymanIcon className={'icon' + (isSelected ? ' active' : '')} key={`AccordionItem-icon-${item.id ?? index}`} />}
 
 						<div className='letters-cont'>
 							{item.title.split('.').map(

@@ -1,0 +1,94 @@
+@use "@/scss/variables";
+@import "@/globals.css";
+div.activity:has(.settings){ 
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:8000;
+    width:100vw;
+    min-height:100vh;
+    height:100%;
+    // padding:2rem 0;
+    background:var(--greyDark);
+    text-align:right;
+    overflow-y:scroll;
+    overflow-x:clip;
+    display:none;
+    &.show{
+        display:flex;
+    }
+    h3{
+        text-align:left;
+        margin-top:2rem;
+    }
+    .close-btn{
+        position:absolute;
+    }
+    section.settings{
+        width:88%;
+        margin:0 auto;
+        padding:0 0 2rem 0;
+        min-height:100%;    
+            height: fit-content;    
+        display:flex;
+        flex-flow:column nowrap;
+        row-gap:1rem;
+        div.section{
+            display:flex;
+            flex-flow:column nowrap;
+            row-gap:1rem;
+            margin:0 0 2rem 0;
+            .title{
+                text-decoration-color: rgba(150,150,150,0.5);
+                 text-decoration-thickness: 0px;
+                 text-decoration:none;
+                font-weight:800;
+                font-variation-settings: "wght" 800;
+                font-size:1.5rem;
+                margin-right:1rem;
+                color:var(--greyLight);
+            }
+            .setting-title{
+                margin:0 1rem 0rem 0;
+                color:var(--greyLight2);
+            }
+            .row{
+                display:flex;
+                flex-flow:column nowrap;
+                row-gap:1rem;
+                margin:0 0.5rem 0rem 0;
+                padding:0.25rem 0;
+                 
+                .checkBox-row{
+                    display:flex;
+                    column-gap:0.5rem;
+                    // margin-right:1rem;
+                    justify-content:flex-end;
+                    align-items:center;
+                    align-content:center;
+                    margin-bottom:0.5rem;
+                }
+                label{
+                    font-size:0.85rem;
+                    color:var(--greyLight);
+                    transition:all 0.3s ease-in-out;
+                }
+                label.checked{
+                    color:var(--primary);
+                    transition:all 0.3s ease-in-out;
+                }
+            }
+            .row:has(label){
+               
+                border-bottom:1px solid rgba(50,50,50,1);
+            }
+            &:last-child{
+                border-bottom:none;
+                // border-bottom:1px solid rgba(50,50,50,1);
+            }
+        }
+    }
+}
+div.dialog-backdrop.delete-dialog{
+    z-index:8010;
+}

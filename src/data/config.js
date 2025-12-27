@@ -198,6 +198,13 @@ const baseActivities = [
 		menu: true,
 		speedDial: true,
 	},
+	{
+		id: 12,
+		url: 'settings',
+		title: 'Settings',
+		menu: true,
+		speedDial: true,
+	},
 ]
 const activities = baseActivities.map(item => ({
 	...item,
@@ -297,6 +304,17 @@ const strings = {
 			cta: {
 				title: 'Manage your data',
 				content: ['Any data you provide is stored<br /> only on your device.<br />You can remove the data at anytime.', '<b><u>We will never sell your data.</u></b>'],
+			},
+		},
+		{
+			name: 'settings',
+			title: 'Settings',
+			id: 14,
+			content: [],
+			btnLabel: 'Settings',
+			cta: {
+				title: '',
+				content: [''],
 			},
 		},
 	],

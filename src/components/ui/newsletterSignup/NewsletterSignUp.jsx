@@ -6,6 +6,7 @@ import './styles.scss'
 const NewsletterSignUp = () => {
 
 	const setActivity = useAppStore((state) => state.setActivity)
+	const [checked, setChecked] = useState(false)
 
 	const onSuccess = (e) => {
 			console.log('onSuccess')
@@ -91,7 +92,9 @@ const NewsletterSignUp = () => {
 		
 	}
 	
-	
+	const handleCheckboxChange = (e) => {
+		setChecked(e.target.checked);
+	};	
 	return (
 		<div className='newsletter-signup-form'>
 			<div className='sib-form'>
@@ -106,9 +109,7 @@ const NewsletterSignUp = () => {
 								</div>
 							</div>
 							<div className='form-row'>
-								<p>
-									Get useful updates &amp; exclusive invites delivered direct to your inbox.
-								</p>
+								<p>Get useful updates &amp; exclusive invites delivered direct to your inbox.</p>
 							</div>
 							{status.error && (
 								<div className='error-message'>
@@ -124,9 +125,10 @@ const NewsletterSignUp = () => {
 									placeholder='Email address'
 									value={formData.email}
 									onChange={handleChange}
+									// autoComplete
 									required
-									data-required='true'
-									disabled={status.loading}
+									// data-required='true'
+									// disabled={status.loading}
 									className='email-input input'
 								/>
 								<label className='entry__error entry__error--primary'></label>
@@ -134,17 +136,15 @@ const NewsletterSignUp = () => {
 							<div className='form-row '>
 								<div>
 									<div className='form__label-row entry__choice '>
-										<label>
-											<input type='checkbox' className='input_replaced' defaultChecked='0' id='OPT_IN' name='OPT_IN' required />
-											<span className='checkbox checkbox_tick_positive'></span>
-										</label>
-										<div className='consent'>
-											I agree to receive emails from Ummi and accept the{' '}
+										<label className="privacy-label">
+											<input type='checkbox' className='' checked={checked} id='OPT_IN' name='OPT_IN' required onChange={handleCheckboxChange} />
+											{/* <span className='checkbox checkbox_tick_positive'></span> */}I agree to receive emails from Ummi and accept the{' '}
 											<a href='#' onClick={handlePrivacyClick}>
 												data privacy statement
 											</a>
 											.
-										</div>
+										</label>
+										<div className='consent'></div>
 									</div>
 									<label className='entry__error entry__error--primary'></label>
 								</div>
@@ -178,7 +178,7 @@ const NewsletterSignUp = () => {
 								<a href='https://policies.google.com/privacy'>Privacy Policy</a> and
 								<a href='https://policies.google.com/terms'>Terms of Service</a> apply.
 							</div>
-							<input type='text' name='email_address_check' value='' className='input--hidden' />
+							<input type='text' name='email_address_check' defaultValue=''  className='input--hidden' />
 							<input type='hidden' name='locale' value='en' />
 						</form>
 					</div>

@@ -11,6 +11,10 @@ const Dialog = ({ children, show, title = '', instruction = '', confirmLabel = '
 		setOpen(!open)
 		onCancel()
 	}
+	useEffect(() => {
+		setOpen(show)
+	}, [show])
+	
 	const handleConfirm = () => {
 		onConfirm()
 		setOpen(false)

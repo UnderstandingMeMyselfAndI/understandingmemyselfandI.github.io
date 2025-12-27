@@ -13,7 +13,9 @@ export const MenuCloseIcon = () => <svg xmlns="http://www.w3.org/2000/svg" heigh
 
 export default function AppMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [open, setOpen] = React.useState(false);
+	const [open, setOpen] = React.useState(false)
+
+	const showDaysCounter = useAppStore((state) => state.showDaysCounter)
 
   const setActivity = useAppStore(state => state.setActivity);
   const activity = useAppStore(state => state.activity);
@@ -79,17 +81,19 @@ export default function AppMenu() {
 				>
 					Tour
 				</li>
-				<li
-					onClick={() => {
-						handleClose()
-						setActivity(2)
-						// const el = document.getElementById("daysCounter");
+				{showDaysCounter && (
+					<li
+						onClick={() => {
+							handleClose()
+							setActivity(2)
+							// const el = document.getElementById("daysCounter");
 
-						// el.scrollIntoView({ behavior: "smooth", block: "start" })
-					}}
-				>
-					Days Counter
-				</li>
+							// el.scrollIntoView({ behavior: "smooth", block: "start" })
+						}}
+					>
+						Days Counter
+					</li>
+				)}
 
 				{getPWADisplayMode() !== 'fullscreen' && (
 					<li
@@ -158,14 +162,14 @@ export default function AppMenu() {
 						</div>
 					</div>
 				</li>
-				{/* <li
+				<li
 					onClick={() => {
+						setActivity(12)
 						handleClose()
-						setActivity(10)
 					}}
 				>
 					Settings
-				</li> */}
+				</li>
 				{/* <li onClick={handleClose}>Tour</li> */}
 				{/* <li onClick={handleClose}>Settings</li> */}
 			</ul>

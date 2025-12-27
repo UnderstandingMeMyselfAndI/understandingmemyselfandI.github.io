@@ -16,6 +16,8 @@
 	--red: #e83737;
 	--green: #257e94;
 	--greyDark: #0a0a0a;
+	--greyLight: #7a7a7a;
+	--greyLight2: #535353;
 	--grey: #999;
 	--card: oklch(0.205 0 0);
 	--card-foreground: oklch(0.985 0 0);
@@ -63,6 +65,8 @@
 	--primary-foreground: oklch(0.985 0 0);
 	--yellow: oklch(0.145 0 0);
 	--grey: oklch(0.145 0 0);
+	--greyDark: #0a0a0a;
+	--greyLight: #4b4b4b;
 	--red: #868686;
 	--lightBlue: oklch(0.145 0 0);
 	--lightBlue2: oklch(0.145 0 0);

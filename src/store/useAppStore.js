@@ -18,10 +18,39 @@ const useAppStore = create(
 			showSnackbar: false,
 			isInstalled: false,
 			toolsInView: false,
-
+			needUpdate: false,
+			setNeedUpdate: (value) => set({ needUpdate: value }),
+			showDaysCounter: true,
+			setShowDaysCounter: (show) => {
+				set(() => ({ showDaysCounter: show }))
+			},
+			toolsShowFilterButton: true,
+			setToolsShowFilterButton: (show) => {
+				set(() => ({ toolsShowFilterButton: show }))
+			},
+			enableYourTools: true,
+			setEnableYourTools: (show) => {
+				set(() => ({ enableYourTools: show }))
+			},
+			usePINLock: true,
+			setUsePINLock: (use) => {
+				set(() => ({ usePINLock: use }))
+			},
+			exitShowButton: true,
+			setExitShowButton: (show) => {
+				set(() => ({ exitShowButton: show }))
+			},
 			exitShowDialogue: true,
 			setExitShowDialogue: (show) => {
 				set(() => ({ exitShowDialogue: show }))
+			},
+			allowCookies: true,
+			setAllowCookies: (allow) => {
+				set(() => ({ allowCookies: allow }))
+			},
+			allowThirdPartyCookies: true,
+			setAllowThirdPartyCookies: (allow) => {
+				set(() => ({ allowThirdPartyCookies: allow }))
 			},
 			setToolIDs: (ids) => set(() => ({ userToolIDs: ids })),
 			// Adds an ID only if it doesn't already exist (prevents duplicates)
@@ -67,6 +96,12 @@ const useAppStore = create(
 			partialize: (state) => ({
 				exitShowDialogue: state.exitShowDialogue,
 				userToolIDs: state.userToolIDs,
+				toolsShowFilterButton: state.toolsShowFilterButton,
+				exitShowButton: state.exitShowButton,
+				showDaysCounter: state.showDaysCounter,
+				allowCookies: state.allowCookies,
+				usePINLock: state.usePINLock,
+				enableYourTools: state.enableYourTools,
 			}),
 		},
 	),

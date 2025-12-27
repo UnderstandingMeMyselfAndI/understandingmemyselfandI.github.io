@@ -1,30 +1,49 @@
-
-import useAppStore from "@/store/useAppStore";
-
-import QRCode from "ui/QRCode/QRCode.jsx";
-import FooterMetadata from "ui/footer/FooterMetadata.jsx";
-import InstallPWA from "ui/buttons/InstallPWA/InstallPWA";
-import InstallCTA from "../install/InstallCTA";
+import { useEffect, useState } from 'react'
+import useAppStore from '@/store/useAppStore'
+import ButtonUpdate from 'buttons/update/ButtonUpdate'
+import QRCode from 'ui/QRCode/QRCode.jsx'
+import FooterMetadata from 'ui/footer/FooterMetadata.jsx'
+// import InstallPWA from 'ui/buttons/InstallPWA/InstallPWA'
+import InstallCTA from '../install/InstallCTA'
 import { getPWADisplayMode } from '@/utils/isAppInstalled'
-import Podcasts from "components/activity/podcasts/Podcasts";
+// import Podcasts from 'components/activity/podcasts/Podcasts'
 
-import "./styles.scss";
+import './styles.scss'
 function Footer() {
+	// const setNeedUpdate = useAppStore((state) => state.setNeedUpdate)
+	const needUpdate = useAppStore((state) => state.needUpdate)
+	const [needsUpdate, setNeedsUpdate] = useState(false)
+	const [updateMessage, setUpdateMessage] = useState('New version available.')
 
-	const isMobile = useAppStore(s => s.isMobile);
-	
+	useEffect(() => {
+		if ('serviceWorker' in navigator) {
+			// 1. Register Service Worker
+			navigator.serviceWorker.register('/service-worker.js').then((reg) => {
+				// Check for updates
+				reg.addEventListener('updatefound', () => {
+					const newWorker = reg.installing
 
-	 const getInitialDates = () => {
-		try {
-		const saved = localStorage.getItem('daysCounterDates');
-		return saved ? JSON.parse(saved) : [];
-		} catch (e) {
-		return [];
+					newWorker.addEventListener('statechange', () => {
+						// Only notify user when worker is fully installed
+						if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+							setUpdateMessage('New version available!')
+							setNeedsUpdate(true)
+							// Note: You can store the 'reg' in state to call .waiting later
+						}
+					})
+				})
+			})
+
+			// 2. Listen for the 'controllerchange' to reload the page
+			let refreshing = false
+			navigator.serviceWorker.addEventListener('controllerchange', () => {
+				if (!refreshing) {
+					window.location.reload()
+					refreshing = true
+				}
+			})
 		}
-	};
-
-	const dates = getInitialDates();
-
+	}, [])
 
 	return (
 		<div className='activity footer'>
@@ -52,8 +71,6 @@ function Footer() {
 				</p>
 				<QRCode label='' />
 			</section>
-
-
 
 			{/* <section className="days-counter" id="daysCounter">
 				<h3><u>Monitor your progress</u></h3>
@@ -159,16 +176,22 @@ function Footer() {
 				</p>
 				<p>
 					<a href='https://www.buymeacoffee.com/ummi' target='_blank' rel='noopener noreferrer'>
-						Click here to buy me a coffee or give a small donation
+						Click here to buy us a coffee or give a small donation
 					</a>
 					<br />
 					<br />
 					<span>&hearts; &#x2661; We would really appreciate it.&#x2661; &hearts; </span>
 				</p>
 			</section>
+			{needsUpdate && (
+				<div className='update-available'>
+					<div>{updateMessage}</div>
+					<ButtonUpdate />
+				</div>
+			)}
 			<FooterMetadata />
 		</div>
 	)
 }
 
-export default Footer;
+export default Footer
