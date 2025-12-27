@@ -58,6 +58,7 @@ import "./App.scss";
 function App() {
 
 	const toolsShowFilterButton = useAppStore((s) => s.toolsShowFilterButton)
+	const showDaysCounter = useAppStore((s) => s.showDaysCounter)
 	const enableYourTools = useAppStore((s) => s.enableYourTools)
 	const showExitButton = useAppStore((s) => s.exitShowButton)
 	const setActivity = useAppStore((s) => s.setActivity)
@@ -89,11 +90,11 @@ function App() {
 					<Introduction />
 					<YourPrivacyCTA />
 					<Tools id='tools' />
-					<DaysCounterCTA />
+					{showDaysCounter && <DaysCounterCTA />}
 					<NewsletterSignUp />
 					<Footer />
 					<div className='activities' id='top'>
-						<DaysCounter />
+						{showDaysCounter && <DaysCounter />}
 						<AcronymExplained />
 						<PrivacyPolicy />
 						{/* <Podcasts /> */}
