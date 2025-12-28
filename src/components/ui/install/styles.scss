@@ -1,10 +1,22 @@
 @use "@/scss/_variables.scss";
 @import "@/globals.css";
 section div.installCTA {
-	scroll-margin-top: 40vh;
+	scroll-margin-top: 30vh;
 	margin:160px 0 160px 0;
 	scroll-snap-align: center;
+	.homescreenIcon,
+	.shareIcon{
+		display:inline-block;
+		margin-bottom:-13px;
+	}
+	.shareIcon{
+		transform: scale(0.9);
+	}
+	p{
+		line-height:1.6;
+	}
     .title{
+		margin-top:2rem;
 		font-size:variables.$h4_size;
         font-weight: 600;
 		font-variation-settings: "wght" 600;

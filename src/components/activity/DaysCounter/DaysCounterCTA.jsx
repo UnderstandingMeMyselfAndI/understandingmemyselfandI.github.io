@@ -10,16 +10,20 @@ const DaysCounterCTA = () => {
     }
 
     return (
-        <div className="daysCounterCTA cta ">
-            <div className="title"><span>{content?.cta?.title}</span></div>
-            {content?.cta?.content?.map((html, i) => {
-                return (
-                    <p key={i}>{parse(html)}</p>
-                )
-            })}
-            <DaysCounterBtn />
-        </div>
-    )
+			<div className='daysCounterCTA cta '>
+				<div className='title'>
+					<h3>
+						<u>
+							<span>{content?.cta?.title}</span>
+						</u>
+					</h3>
+				</div>
+				{content?.cta?.content?.map((html, i) => {
+					return <p key={i}>{parse(html)}</p>
+				})}
+				<DaysCounterBtn />
+			</div>
+		)
 }
 
 export default DaysCounterCTA

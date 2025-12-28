@@ -20,17 +20,20 @@ const YourPrivacyCTA = () => {
     };  
 
     return (
-        <section className="your-privacy cta">
-            <h4>{parse(content?.title)}</h4>
-            {content?.cta?.content?.map((html, i) => {
-                return (
-                    <p key={i}>{parse(html)}</p>
-                )
-            })}
-            <button className="btn" onClick={() => handleClick()} >{content?.cta?.btnLabel}</button>
-            
-        </section>
-    )
+			<section className='your-privacy cta'>
+				<div className='title'>
+					<h3>
+						<u>{parse(content?.title)}</u>
+					</h3>
+				</div>
+				{content?.cta?.content?.map((html, i) => {
+					return <p key={i}>{parse(html)}</p>
+				})}
+				<button className='btn' onClick={() => handleClick()}>
+					{content?.cta?.btnLabel}
+				</button>
+			</section>
+		)
 }
 
 export default YourPrivacyCTA
