@@ -70,6 +70,11 @@ function Footer() {
 					<u>scan the QR Code</u>
 				</p>
 				<QRCode label='' />
+				<p>
+					<b>
+						<u>www.ummi.now</u>
+					</b>
+				</p>
 			</section>
 
 			{/* <section className="days-counter" id="daysCounter">
@@ -149,9 +154,14 @@ function Footer() {
 				<p>
 					Drop us an email at the address below with your feedback.
 					<br /> <br />
-					<a href='mailto:ummi.toolbox@gmail.com?subject=UMMI%20Toolbox%20Feedback' target='_blank' rel='noopener noreferrer'>
-						ummi.toolbox@gmail.com
+					<a href='mailto:hello@ummi.now?subject=UMMI%20App%20Feedback' target='_blank' rel='noopener noreferrer'>
+						hello@ummi.now
 					</a>
+				</p>
+				<p>
+					<b>
+						<u>www.ummi.now</u>
+					</b>
 				</p>
 			</section>
 			<section>
