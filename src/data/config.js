@@ -227,15 +227,15 @@ const strings = {
 				{
 					title: 'Who is Ummi for?',
 					content: [
-						'If you are learning tools at groups that use ACT, CBT, DBT, REBT, <br /> or SMART techniques<br /><b><u>this app is for you.</u></b>',
-						'These tools are ace,<br /> and they help to cope with our<br />emotions, thoughts, and feelings.',
-						'<b><u>But remembering them<br /> can be hard.</u></b> ',
+						'If you are learning tools at groups that use ACT, CBT, DBT, REBT, <br /> or SMART therapies<br /><b><u>this app is for you.</u></b>',
+						'These tools are ace,',
+						'<b><u>but remembering them<br /> can be hard.</u></b> ',
 					],
 				},
 				{
 					title: 'Your toolbox',
 					icon: HandymanIcon,
-					content: ['<span className="ummi-blue">Ummi</span> <b><u>is your toolbox</u></b><br /> to carry those tools around with you<br />for whenever you need them.'],
+					content: ['<span className="ummi-blue">Ummi</span> <b><u>is your toolbox</u></b><br /> to carry these tools around with you<br />for whenever you need them.'],
 				},
 			],
 		},
