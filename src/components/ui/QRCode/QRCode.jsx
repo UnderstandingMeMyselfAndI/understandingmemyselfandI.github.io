@@ -1,5 +1,5 @@
-import QRCodeIconBlack from 'public/QRCodes/qr-code-black-320.png'
-import QRCodeIconWhite from 'public/QRCodes/qr-code-white-320.png'
+import QRCodeIconBlack from '/QRCodes/qr-code-black-320.png'
+import QRCodeIconWhite from '/QRCodes/qr-code-white-320.png'
 
 // import getStoredTheme from '@/components/theme/getStoredTheme';
 import { useThemeStore } from '@/store/useThemeStore'

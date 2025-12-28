@@ -120,6 +120,15 @@ const Settings = () => {
 	const handleClearUserData = () => {
 		setShowDeleteDialog(true)
 	}
+	const resetAll = () => {
+		YourToolboxSettings.set(true)
+		YourToolsSettings.set(true)
+		DaysCounterSettings.set(true)
+		QuickExitSettings.set(true)
+		QuickExitMessageSettings.set(true)
+		PINLockSettings.set(true)
+		AnalyticsCookiesSettings.set(true)
+	}
 	const handleClose = () => {
 		// console.log('YourToolsSettings.state ', YourToolsSettings.state)
 		if (!YourToolsSettings.state) {
@@ -144,6 +153,7 @@ const Settings = () => {
 	}
 	const handleConfirmDeleteData = () => {
 		localStorage.clear()
+		resetAll()
 		setShowConfirmDeleteDialog(true)
 		setShowDeleteDialog(false)
 	}

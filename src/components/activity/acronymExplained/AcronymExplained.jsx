@@ -118,7 +118,7 @@ const AcronymExplained = () => {
 								{acronymData?.toolFieldGroup?.scenariosField?.nodes?.map((scenario, index) => (
 									<div className='scenario' key={`scenario-${index}`}>
 										<div className='title'>{scenario.title}</div>
-										<div className='content'>{parse(scenario.scenariosFieldGroup?.description)}</div>
+										{scenario.scenariosFieldGroup?.description && <div className='content'>{parse(scenario.scenariosFieldGroup?.description)}</div>}
 									</div>
 								))}
 							</div>

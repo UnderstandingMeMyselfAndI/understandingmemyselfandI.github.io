@@ -1,6 +1,6 @@
 import InstallPWA from "ui/buttons/InstallPWA/InstallPWA";
-import appleShareIcon from 'public/icons/apple-share-white-40x40.png'
-import appleAddToHomescreen from 'public/icons/apple-add-to-homescreen-white-40x40.png'
+import appleShareIcon from '/icons/apple-share-white-40x40.png'
+import appleAddToHomescreen from '/icons/apple-add-to-homescreen-white-40x40.png'
 import parse from "html-react-parser";
 import { strings } from "@/data/config";
 import './styles.scss';
