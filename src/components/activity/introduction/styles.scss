@@ -34,6 +34,11 @@ section.intro {
 		margin-bottom: 0.5rem;
 		
 	}
+	p u {
+		text-decoration-color: var(--yellow);
+		text-decoration-thickness: 4px;
+		
+	}
 	&.tip {
 		color: var(--yellow);
 	}

@@ -41,6 +41,10 @@ header#header {
 			max-width: 100%;
 		}
 	}
+	u {
+		text-decoration-color: var(--yellow);
+		text-decoration-thickness: 4px;
+	}
 }
 header.stage-3 {
 	height: auto;

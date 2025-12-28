@@ -228,8 +228,8 @@ const strings = {
 					title: 'Who is Ummi for?',
 					content: [
 						'If you are learning tools at groups that use ACT, CBT, DBT, REBT, <br /> or SMART therapies<br /><b><u>this app is for you.</u></b>',
-						'These tools are ace,',
-						'<b><u>but remembering them<br /> can be hard.</u></b> ',
+						'These tools are ace.',
+						'<b><u>But remembering them<br /> can be hard.</u></b> ',
 					],
 				},
 				{
