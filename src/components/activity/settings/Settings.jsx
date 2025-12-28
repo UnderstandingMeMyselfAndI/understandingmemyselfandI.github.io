@@ -191,15 +191,15 @@ const Settings = () => {
 							<u>Your privacy is very important to us.</u>
 						</b>
 					</p>
-					<p>For maximum privacy you can disable all customisable features.</p>
+					<p>For complete privacy you can disable all customisable features.</p>
 					<p>You can re-enable features whenever that feels helpful. </p>
 					<p>
 						Features that are disabled are hidden. <br />
 						You can re-enable features at any time when you need them.
 					</p>
 					<p>
-						To remove all data use the "Delete Your Data" button
-						<br /> at the bottom of settings.
+						To remove all data use the "Clear Your Data" button
+						<br /> at the bottom.
 					</p>
 				</div>
 				<CloseBtn handleClick={handleClose} />
