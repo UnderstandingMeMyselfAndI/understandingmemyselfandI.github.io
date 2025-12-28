@@ -59,6 +59,8 @@ const Settings = () => {
 	// Settings
 	//--------------------------------------------------------------------------
 
+	const settings = []
+
 	const YourToolboxSettings = Setting(
 		'YourToolbox',
 		(state) => state.toolboxFilterEnabled,
@@ -66,7 +68,7 @@ const Settings = () => {
 		'Enable "Your Toolbox" filter button',
 		'Shows only the tools in your toolbox.',
 	)
-
+	settings.push(YourToolboxSettings)
 	const YourToolsSettings = Setting(
 		'YourTools',
 		(state) => state.yourToolsEnabled,
@@ -75,6 +77,7 @@ const Settings = () => {
 		'Favourite tools you like, and add them to your "toolbox" for quick access.',
 	)
 	YourToolsSettings.addHandler(YourToolboxSettings.handler)
+	settings.push(YourToolsSettings)
 
 	const DaysCounterSettings = Setting(
 		'DaysCounter',
@@ -83,6 +86,7 @@ const Settings = () => {
 		'Enable Days Counter',
 		'Set up to two dates and see how many days since the dates.',
 	)
+	settings.push(DaysCounterSettings)
 
 	const QuickExitSettings = Setting(
 		'QuickExit',
@@ -91,6 +95,7 @@ const Settings = () => {
 		'Enable Quick Exit',
 		'Lets you leave the app immediately and open a website whenever you need to',
 	)
+	settings.push(QuickExitSettings)
 
 	const QuickExitMessageSettings = Setting(
 		'QuickExitMessage',
@@ -100,6 +105,7 @@ const Settings = () => {
 		'',
 	)
 	QuickExitSettings.addHandler(QuickExitMessageSettings.handler)
+	settings.push(QuickExitMessageSettings)
 
 	const PINLockSettings = Setting(
 		'PINLock',
@@ -108,6 +114,7 @@ const Settings = () => {
 		'Use Pin Lock for personal data',
 		'PIN Lock requires a valid PIN number to access personal data.',
 	)
+	settings.push(PINLockSettings)
 
 	const AnalyticsCookiesSettings = Setting(
 		'AnalyticsCookies',
@@ -116,6 +123,7 @@ const Settings = () => {
 		'Allow cookies',
 		'Accepts the use of anayltics cookies to improve your experience.',
 	)
+	settings.push(AnalyticsCookiesSettings)
 
 	const handleClearUserData = () => {
 		setShowDeleteDialog(true)
@@ -130,20 +138,11 @@ const Settings = () => {
 		AnalyticsCookiesSettings.set(true)
 	}
 	const handleClose = () => {
-		// console.log('YourToolsSettings.state ', YourToolsSettings.state)
 		if (!YourToolsSettings.state) {
 			setShowToolsOnly(false)
 		}
-		// Set all state here to avoid refpaint
-		YourToolboxSettings.update()
-		YourToolsSettings.update()
-		DaysCounterSettings.update()
-		QuickExitSettings.update()
-		QuickExitMessageSettings.update()
-		PINLockSettings.update()
-		AnalyticsCookiesSettings.update()
-
-		// iF the tools are disabled and currently filtered remove the filter
+		// Set all state here to avoid repaint when changin individual settings
+		settings.forEach((setting) => setting.update())
 
 		setOpen(false)
 		setActivity(-1)

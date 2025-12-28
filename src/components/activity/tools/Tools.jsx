@@ -38,7 +38,7 @@ const Tools = () => {
 		{
 			/* Optional options */
 			threshold: 0,
-			rootMargin: '-35% 0% -75% 0%',
+			rootMargin: '-15% 0% -30% 0%',
 		}, // Optional IntersectionObserver options
 	)
 
