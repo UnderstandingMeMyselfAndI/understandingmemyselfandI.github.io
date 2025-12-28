@@ -211,7 +211,19 @@ const PrivacyPolicy = () => {
 					<p>You can:</p>
 					<ul>
 						<li>
-							<strong>Locally:</strong> Clear IndexedDB and site data to delete favourites and Days Counter settings.
+							<strong>Locally:</strong>Use the{' '}
+							<b>
+								<u>
+									<span
+										onClick={() => {
+											setActivity(12)
+										}}
+									>
+										"Clear Your Data"
+									</span>
+								</u>
+							</b>{' '}
+							button in settings.
 						</li>
 						<li>
 							<strong>Remotely:</strong> Request deletion of your account, onboarding data, and other remote data by emailing{' '}

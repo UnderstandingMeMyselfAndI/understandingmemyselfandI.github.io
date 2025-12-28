@@ -156,7 +156,7 @@ const Settings = () => {
 			<Dialog
 				show={showDeleteDialog}
 				title='Confirm Clear All Data'
-				instruction='Do you want to clear all data?<br />This cannot be undone.'
+				instruction='Do you want to clear all data?<br /><br />This will reset all settings to their default values and cannot be undone.'
 				confirmLabel='Yes'
 				cancelLabel='Cancel'
 				classes={['delete-dialog']}
@@ -304,7 +304,7 @@ const Settings = () => {
 						<div className='setting-title'></div>
 						<div className='checkBox-row'>
 							<button className='btn btn-delete' onClick={handleClearUserData}>
-								Delete Your Data
+								Clear Your Data
 							</button>
 						</div>
 					</div>
