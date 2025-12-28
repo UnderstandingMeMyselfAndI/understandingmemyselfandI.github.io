@@ -4,7 +4,7 @@ import * as React from 'react';
 // import MenuItem from '@mui/material/MenuItem';
 import useAppStore from '@/store/useAppStore';
 import { getPWADisplayMode } from "@/utils/isAppInstalled";
-import driverObj from '@/js/tour.js'
+// import driverObj from '@/js/tour.js'
 // import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 // import Slide from '@mui/material/Slide';
 import './appMenuStyles.scss';
@@ -12,33 +12,25 @@ export const MenuOpenIcon = () => <svg xmlns="http://www.w3.org/2000/svg" height
 export const MenuCloseIcon = () => <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#ffffff"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>;
 
 export default function AppMenu() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+	const [anchorEl, setAnchorEl] = React.useState(null)
 	const [open, setOpen] = React.useState(false)
 
-	const showDaysCounter = useAppStore((state) => state.showDaysCounter)
+	const daysCounterEnabled = useAppStore((state) => state.daysCounterEnabled)
+	const setActivity = useAppStore((state) => state.setActivity)
+	const activity = useAppStore((state) => state.activity)
 
-  const setActivity = useAppStore(state => state.setActivity);
-  const activity = useAppStore(state => state.activity);
- 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-    setOpen(true);
-  };
-  const toggleOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-     setOpen(!open);
-  };
-  const handleClose = () => {
-		setAnchorEl(null)
+	const toggleOpen = (event) => {
+		// setAnchorEl(event.currentTarget)
+		setOpen(!open)
+	}
+	const handleClose = () => {
+		// setAnchorEl(null)
 		setOpen(false)
 	}
-	
 
-
-  return (
+	return (
 		<div className={'AppMenu' + (activity === -1 ? '' : ' hide')}>
 			<div className='burger-stack' id='burger-button'>
-				{/* {open ? <MenuCloseIcon /> : <MenuOpenIcon />} */}
 				<input type='checkbox' id='checkbox1' value={open} checked={open} className='checkbox1 visuallyHidden' onChange={toggleOpen} />
 				<label htmlFor='checkbox1'>
 					<div className='hamburger hamburger1'>
@@ -63,32 +55,33 @@ export default function AppMenu() {
 				</li>
 
 				<li
-					onClick={() => {
-						handleClose()
-						setActivity(-1)
-						// const el = document.getElementById('gratitude')
+					className='strikethrough'
+					// onClick={() => {
+					// 	handleClose()
+					// 	setActivity(-1)
+					// 	// position element ready for tour
+					// 	// const el = document.getElementById('gratitude')
 
-						// el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+					// 	// el.scrollIntoView({ behavior: 'smooth', block: 'start' })
 
-						window.scrollTo({
-							top: 0,
-							left: 0,
-							behavior: 'smooth',
-						})
+					// 	window.scrollTo({
+					// 		top: 0,
+					// 		left: 0,
+					// 		behavior: 'smooth',
+					// 	})
 
-						// driverObj.drive()
-					}}
+					// 	// driverObj.drive()
+					// }}
 				>
 					Tour
 				</li>
-				{showDaysCounter && (
+				{/** Only show if days counter is enabled	 */}
+
+				{daysCounterEnabled && (
 					<li
 						onClick={() => {
 							handleClose()
 							setActivity(2)
-							// const el = document.getElementById("daysCounter");
-
-							// el.scrollIntoView({ behavior: "smooth", block: "start" })
 						}}
 					>
 						Days Counter
@@ -124,12 +117,12 @@ export default function AppMenu() {
 					onClick={() => {
 						handleClose()
 						setActivity(-1)
-						const el = document.getElementById('feedback')
+						const el = document.getElementById('newsletter')
 
 						el.scrollIntoView({ behavior: 'smooth', block: 'start' })
 					}}
 				>
-					Feedback
+					Newsletter
 				</li>
 
 				<li
@@ -140,23 +133,23 @@ export default function AppMenu() {
 				>
 					Your privacy
 				</li>
-				<li>
+				<li className='strikethrough'>
 					<div className='loginRegister'>
 						<div
 							className='register'
-							onClick={() => {
-								handleClose()
-								setActivity(-1)
-							}}
+							// onClick={() => {
+							// 	handleClose()
+							// 	setActivity(-1)
+							// }}
 						>
 							Register
 						</div>
 						<div
 							className=''
-							onClick={() => {
-								handleClose()
-								setActivity(-1)
-							}}
+							// onClick={() => {
+							// 	handleClose()
+							// 	setActivity(-1)
+							// }}
 						>
 							Login
 						</div>

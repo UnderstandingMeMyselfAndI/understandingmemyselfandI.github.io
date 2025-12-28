@@ -6,8 +6,7 @@ import Backdrop from "ui/backdrop/Backdrop";
 
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
-// import {storeKeys, localStore} from "@/data/localStore.js";
-// import ButtonEmergencyToolbox from "../buttons/toolbox/ButtonEmergencyToolbox";
+import HandymanIcon from '@mui/icons-material/Handyman'
 import parse from "html-react-parser";
 import data from '@/data/tools.js'
 import videos from '@/data/videosNew.js'
@@ -27,11 +26,20 @@ const AcronymExplained = () => {
 	// TODO: Intergrate data from CMS
 	const [open, setOpen] = useState(false)
 	const [acronymData, setAcronymData] = useState(null)
-	// const [scenario, setScenario] = useState([])
+	const getActiveToolIDs = useAppStore((state) => state.getActiveToolIDs)
+	const userToolIDs = useAppStore((state) => state.userToolIDs)
+	const yourToolsEnabled = useAppStore((state) => state.yourToolsEnabled)
+	// const activeIDs = getActiveToolIDs()
 	const acronymnID = useAppStore((s) => s.acronymnID)
 	const showAccCard = useAppStore((s) => s.showAccCard)
 	const setShowAccCard = useAppStore((s) => s.setShowAccCard)
 	const setActivity = useAppStore((s) => s.setActivity)
+	const [isUserTool, setIsUserTool] = useState(userToolIDs.includes(acronymnID))
+
+	useEffect(() => {
+		// const ids = getActiveToolIDs()
+		setIsUserTool(userToolIDs.includes(acronymnID))
+	}, [getActiveToolIDs, setIsUserTool, acronymnID, userToolIDs])
 
 	const contentRef = useRef(null)
 	useEffect(() => {
@@ -84,6 +92,7 @@ const AcronymExplained = () => {
 							<Skeleton animation='wave' />
 						)}
 					</div>
+					{isUserTool && yourToolsEnabled && <HandymanIcon className='icon' />}
 				</div>
 				<section className='AccContent' id='AccContent' ref={contentRef}>
 					<div className='AccGroup'>
@@ -92,7 +101,6 @@ const AcronymExplained = () => {
 						{acronymData?.toolFieldGroup.letters.map((acronym, index) => (
 							<div key={'acronymn-' + index} className='AccDetails'>
 								<div className='Acc-letter-group' key={'t-' + index}>
-									
 									<div className='Acc-word' data-len={acronym.meaning.length} key={'m-' + index}>
 										{acronym.meaning}
 									</div>
@@ -120,7 +128,6 @@ const AcronymExplained = () => {
 					{acronymData?.toolFieldGroup?.videosField?.nodes.length > 0 && (
 						<div className='videos' id='videos' key='videos'>
 							{acronymData?.toolFieldGroup?.videosField?.nodes.map((linkedVideo, index) => {
-
 								const video = videos.data.videos.nodes.find((v) => v.id === linkedVideo.id)
 								return (
 									<div className='video' key={'video-' + index}>

@@ -106,8 +106,8 @@ div.AcronymExplained {
 		text-align: center;
 		transition: var(--transition);
 		width: 100%;
-		height: 120px;
-		min-height: 120px;
+		height: 100px;
+		min-height: 100px;
 		padding: 0;
 		margin: 0;
 		font-size: variables.$acc_title_size_min;
@@ -116,6 +116,17 @@ div.AcronymExplained {
 		position: relative;
 		border-bottom: 1px solid rgba(113, 44, 134, 0.5);
 		flex: 0 0;
+
+		.icon{
+			fill:var(--yellow);
+			
+			position:absolute;
+			right:0.75rem;
+			top:0.75rem;
+			width:20px;
+			height:20px;
+
+		}
 
 		div.toolboxes {
 			display: flex;

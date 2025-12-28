@@ -28,10 +28,10 @@ const Tools = () => {
 		(inView, entry) => {
 			if (inView) {
 				// Do something with the element that came into view
-				console.log('Element is in view', entry.target)
+				// console.log('Element is in view', entry.target)
 				setToolsInView(true)
 			} else {
-				console.log('Element left view', entry.target)
+				// console.log('Element left view', entry.target)
 				setToolsInView(false)
 			}
 		},
@@ -48,9 +48,6 @@ const Tools = () => {
 				<h2>
 					<u>{content?.title}</u>
 				</h2>
-				{/* {content?.content?.map((html, i) => {
-					return <p key={i}>{parse(html)}</p>
-				})} */}
 
 				<MenuCarousel />
 			</section>

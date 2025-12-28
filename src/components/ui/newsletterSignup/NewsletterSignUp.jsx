@@ -96,7 +96,7 @@ const NewsletterSignUp = () => {
 		setChecked(e.target.checked);
 	};	
 	return (
-		<div className='newsletter-signup-form'>
+		<div className='newsletter-signup-form' id="newsletter">
 			<div className='sib-form'>
 				<div id='sib-form-container' className='sib-form-container'>
 					<div id='sib-container' className='sib-container--large sib-container--vertical'>

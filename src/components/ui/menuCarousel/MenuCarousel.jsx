@@ -1,14 +1,11 @@
 import React from "react";
 import {useRef, useEffect, useCallback, useMemo, useState} from "react";
 import Skeleton from "@mui/material/Skeleton";
-import HandymanIcon from "@mui/icons-material/Handyman";
-import {storeKeys, localStore} from "@/data/localStore.js";
+import HandymanIcon from '@mui/icons-material/Handyman'
 import PropTypes from "prop-types";
-import useAppStore from "@/store/useAppStore";
-// import data from "../../../data/data.js";
+import useAppStore from '@/store/useAppStore'
 import toolsData from "../../../data/tools.js";
-const data = toolsData.tools.nodes;
-// import {getPWADisplayMode} from "@/utils/isAppInstalled";
+const data = toolsData.tools.nodes
 import "./MenuCarousel.scss";
 // Default configuration
 const DEFAULT_CONFIG = {
@@ -209,7 +206,7 @@ const MenuCarousel = () => {
 
 	const showToolsOnly = useAppStore((s) => s.showToolsOnly)
 	const getActiveToolIDs = useAppStore((state) => state.getActiveToolIDs)
-	const enableYourTools = useAppStore((s) => s.enableYourTools)
+	const yourToolsEnabled = useAppStore((s) => s.yourToolsEnabled)
 	const activeIDs = getActiveToolIDs()
 	const positiveIDsSet = useMemo(() => new Set(activeIDs), [activeIDs])
 
@@ -249,7 +246,7 @@ const MenuCarousel = () => {
 			<div key={`AccordionItem-cont-${item.id ?? index}`} className={'carousel-item'} onClick={handleClick(item.id)}>
 				<div className='AccordionItem inner item' key={`AccordionItem-${item.id ?? index}`} style={{ cursor: 'pointer' }}>
 					<div className='title' aria-controls={`Accronym-${index}-content`} id={`panel${item?.id}-header`}>
-						{enableYourTools && <HandymanIcon className={'icon' + (isSelected ? ' active' : '')} key={`AccordionItem-icon-${item.id ?? index}`} />}
+						{yourToolsEnabled && <HandymanIcon className={'icon' + (isSelected ? ' active' : '')} key={`AccordionItem-icon-${item.id ?? index}`} />}
 
 						<div className='letters-cont'>
 							{item.title.split('.').map(

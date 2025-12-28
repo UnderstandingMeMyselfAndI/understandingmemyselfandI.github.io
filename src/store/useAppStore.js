@@ -20,29 +20,33 @@ const useAppStore = create(
 			toolsInView: false,
 			needUpdate: false,
 			setNeedUpdate: (value) => set({ needUpdate: value }),
-			showDaysCounter: true,
-			setShowDaysCounter: (show) => {
-				set(() => ({ showDaysCounter: show }))
+			daysCounterEnabled: true,
+			enableDaysCounter: (show) => {
+				set(() => ({ daysCounterEnabled: show }))
 			},
-			toolsShowFilterButton: true,
-			setToolsShowFilterButton: (show) => {
-				set(() => ({ toolsShowFilterButton: show }))
+			toolboxFilterEnabled: true,
+			enableToolboxFilter: (show) => {
+				set(() => ({ toolboxFilterEnabled: show }))
 			},
-			enableYourTools: true,
-			setEnableYourTools: (show) => {
-				set(() => ({ enableYourTools: show }))
+			yourToolsEnabled: true,
+			enableYourTools: (show) => {
+				set(() => ({ yourToolsEnabled: show }))
 			},
-			usePINLock: true,
-			setUsePINLock: (use) => {
-				set(() => ({ usePINLock: use }))
+			PINLockEnabled: true,
+			enablePINLock: (use) => {
+				set(() => ({ PINLockEnabled: use }))
 			},
-			exitShowButton: true,
-			setExitShowButton: (show) => {
-				set(() => ({ exitShowButton: show }))
+			quickExitEnabled: true,
+			enableQuickExit: (show) => {
+				set(() => ({ quickExitEnabled: show }))
 			},
-			exitShowDialogue: true,
-			setExitShowDialogue: (show) => {
-				set(() => ({ exitShowDialogue: show }))
+			quickExitMessageEnabled: true,
+			enableQuickExitMessage: (show) => {
+				set(() => ({ quickExitMessageEnabled: show }))
+			},
+			quickExitURL: 'https://google.com',
+			setQuickExitURL: (url) => {
+				set(() => ({ quickExitURL: url }))
 			},
 			allowCookies: true,
 			setAllowCookies: (allow) => {
@@ -94,14 +98,15 @@ const useAppStore = create(
 			storage: createJSONStorage(() => localStorage),
 			// Keys to persist in localStorage
 			partialize: (state) => ({
-				exitShowDialogue: state.exitShowDialogue,
-				userToolIDs: state.userToolIDs,
-				toolsShowFilterButton: state.toolsShowFilterButton,
-				exitShowButton: state.exitShowButton,
-				showDaysCounter: state.showDaysCounter,
+				daysCounterEnabled: state.daysCounterEnabled,
+				toolboxFilterEnabled: state.toolboxFilterEnabled,
+				yourToolsEnabled: state.yourToolsEnabled,
+				PINLockEnabled: state.PINLockEnabled,
+				quickExitEnabled: state.quickExitEnabled,
+				quickExitMessageEnabled: state.quickExitMessageEnabled,
 				allowCookies: state.allowCookies,
+				allowThirdPartyCookies: state.allowThirdPartyCookies,
 				usePINLock: state.usePINLock,
-				enableYourTools: state.enableYourTools,
 			}),
 		},
 	),

@@ -15,8 +15,8 @@ html {
 }
 
 body {
-	
-	overscroll-behavior-y: contain;
+	scroll-behavior: smooth;
+	// overscroll-behavior-y: contain;
 	background: #000 !important;
     width: 100%;
 	height: 100%;

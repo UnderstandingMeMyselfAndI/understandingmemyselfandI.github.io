@@ -22,8 +22,9 @@ export default function BadgeToolbox() {
 	const activeIDs = useAppStore((state) => state.userToolIDs)
 	const showAccCard = useAppStore((s) => s.showAccCard)
 	const toolsInView = useAppStore((s) => s.toolsInView)
-
+	const activityID = useAppStore((s) => s.activityID)
 	// const activity = useAppStore((s) => s.activity)
+	const activity = useAppStore((s) => s.activity)
 	// const [openAlert, setOpenAlert] = React.useState(false);
 	const [show, setShow] = React.useState(false)
 	// const [numTools, setNumTools] = React.useState(positiveIDs.length)
@@ -42,9 +43,14 @@ export default function BadgeToolbox() {
 		setShow(!showAccCard)
 	}, [showAccCard, setShow])
 
-	const handleTouch = () => {
-		// set the message as the opposite here
+	const handleChange = () => {
+		console.log('handleChange activeIDs.length ', activeIDs.length)
+		if (activeIDs.length < 1) {
+			setMessage('No tools in your toolbox. Favourite a tool first.')
+			return
+		}
 		if (showToolsOnly) {
+			// set the message as the opposite here
 			setMessage(strings.tools.list.unfiltered)
 		} else {
 			setMessage(strings.tools.list.yourToolsFiltered)
@@ -65,7 +71,7 @@ export default function BadgeToolbox() {
 				<Badge
 					className={'badge toolbox' + (showToolsOnly ? ' active' : '')}
 					badgeContent={activeIDs.length}
-					onClick={handleTouch}
+					onClick={handleChange}
 					anchorOrigin={{
 						vertical: 'top',
 						horizontal: 'right',

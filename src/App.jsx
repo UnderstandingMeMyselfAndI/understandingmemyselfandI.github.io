@@ -56,11 +56,10 @@ import "./App.scss";
 // TODO: "Clear Local Data" functionality
 // import SpeedDialSettings from "./components/ui/settings/speedDial/SpeedDialSettings.jsx";
 function App() {
-
-	const toolsShowFilterButton = useAppStore((s) => s.toolsShowFilterButton)
-	const showDaysCounter = useAppStore((s) => s.showDaysCounter)
-	const enableYourTools = useAppStore((s) => s.enableYourTools)
-	const showExitButton = useAppStore((s) => s.exitShowButton)
+	const toolboxFilterEnabled = useAppStore((s) => s.toolboxFilterEnabled)
+	const daysCounterEnabled = useAppStore((s) => s.daysCounterEnabled)
+	// const enableYourTools = useAppStore((s) => s.enableYourTools)
+	const quickExitEnabled = useAppStore((s) => s.quickExitEnabled)
 	const setActivity = useAppStore((s) => s.setActivity)
 	setActivity(-1)
 	smoothScroll()
@@ -78,27 +77,29 @@ function App() {
 			<div className='app'>
 				<UmmiAgeGate />
 				<CookieConsent />
-				{showExitButton && enableYourTools && <Exit />}
-				<Settings />
-				{/* <EmergencyButton /> */}
 
 				<AppMenu />
+
+				{quickExitEnabled && <Exit />}
+
 				<div className='main'>
-					{toolsShowFilterButton && <BadgeToolbox />}
+					{toolboxFilterEnabled && <BadgeToolbox />}
 
 					<Header />
 					<Introduction />
+					<Tools />
 					<YourPrivacyCTA />
-					<Tools id='tools' />
-					{showDaysCounter && <DaysCounterCTA />}
-					<NewsletterSignUp />
-					<Footer />
+					{daysCounterEnabled && <DaysCounterCTA />}
+
 					<div className='activities' id='top'>
-						{showDaysCounter && <DaysCounter />}
+						{daysCounterEnabled && <DaysCounter />}
+						<Settings />
 						<AcronymExplained />
 						<PrivacyPolicy />
-						{/* <Podcasts /> */}
 					</div>
+
+					<NewsletterSignUp />
+					<Footer />
 				</div>
 				<Snackbars />
 				<ScrollPosition />

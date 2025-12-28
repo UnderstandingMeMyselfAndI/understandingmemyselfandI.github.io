@@ -24,6 +24,15 @@ div.activity:has(.settings){
     .close-btn{
         position:absolute;
     }
+    .head{
+        margin-bottom:1rem;
+        p{
+            font-size:0.85rem;
+            margin:0.5rem 0;
+            padding:0;
+            text-align:left;
+        }
+    }
     section.settings{
         width:88%;
         margin:0 auto;
@@ -33,9 +42,18 @@ div.activity:has(.settings){
         display:flex;
         flex-flow:column nowrap;
         row-gap:1rem;
+        .strikethrough{
+            text-decoration:line-through;
+            // text-decoration-color:var(--lightBlue);
+            pointer-events: none;
+             text-decoration:line-through;
+             color:var(--grey) !important;
+         }
+        
         div.section{
             display:flex;
             flex-flow:column nowrap;
+           
             row-gap:1rem;
             margin:0 0 2rem 0;
             .title{
@@ -52,12 +70,20 @@ div.activity:has(.settings){
                 margin:0 1rem 0rem 0;
                 color:var(--greyLight2);
             }
+            .help{
+                width:80%;
+                font-size:0.9rem;
+                color:var(--greyLight);
+            }
             .row{
                 display:flex;
+                 // justify-content: flex-end;
+                align-items: flex-end;
+                //align-content: flex-end;
                 flex-flow:column nowrap;
                 row-gap:1rem;
-                margin:0 0.5rem 0rem 0;
-                padding:0.25rem 0;
+                margin:0 0.5rem 0.25rem 0;
+                padding:0.25rem 0 0.75rem 0;
                  
                 .checkBox-row{
                     display:flex;
@@ -66,16 +92,25 @@ div.activity:has(.settings){
                     justify-content:flex-end;
                     align-items:center;
                     align-content:center;
-                    margin-bottom:0.5rem;
+                    padding:0;
+                    margin:0;
                 }
                 label{
-                    font-size:0.85rem;
+                    font-size:1rem;
                     color:var(--greyLight);
                     transition:all 0.3s ease-in-out;
                 }
                 label.checked{
                     color:var(--primary);
                     transition:all 0.3s ease-in-out;
+                }
+                input.quick-exit-url{
+                    padding:0.25rem 0.5rem;
+                    border:1px solid var(--greyLight2);
+                    border-radius:3px;
+                }
+                input.quick-exit-url::placeholder{
+                    color:var(--greyLight);
                 }
             }
             .row:has(label){
