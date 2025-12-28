@@ -7,11 +7,11 @@ import PropTypes from 'prop-types'
 import './styles.scss'
 const Exit = () => {
 	
-	const exitShowDialogue = useAppStore((state) => state.exitShowDialogue)
+	const quickExitMessageEnabled = useAppStore((state) => state.quickExitMessageEnabled)
 	const [showDialog, setShowDialog] = useState(false)
 	// const [checked, setChecked] = useState(false)
 	
-	const setExitShowDialogue = useAppStore((state) => state.setExitShowDialogue)
+	const enableQuickExitMessage = useAppStore((state) => state.enableQuickExitMessage)
 
 	const message =
 		'<p>Your privacy matters.</p><p>This button lets you leave the app immediately and open a neutral website if you need to.</p><p>Use it whenever that feels helpful.</p>'
@@ -19,11 +19,8 @@ const Exit = () => {
 	const checkBoxInstruction = '<p>Show this message again</p>'
 
 	const handleClick = () => {
-		console.log("exitShowDialogue", exitShowDialogue)
-		
-		if (exitShowDialogue || exitShowDialogue === undefined) {
-			//get value of checkbox
-
+	
+		if (quickExitMessageEnabled || quickExitMessageEnabled === undefined) {
 			setShowDialog(true)
 		} else {
 			doExit()
@@ -51,13 +48,12 @@ const Exit = () => {
 	}
 	const handleDialogueConfirm = () => {
 		setShowDialog(false)
-		setExitShowDialogue(!checked)
+		enableQuickExitMessage(false)
 		doExit();
 	}
 	const handleCheckboxChange = (e) => {
-		console.log("e.target.checked", e.target.checked)
 		setShowDialog(e.target.checked)
-		setExitShowDialogue(e.target.checked)
+		enableQuickExitMessage(e.target.checked)
 	}
 
 	return (

@@ -112,7 +112,7 @@ const Settings = () => {
 		(state) => state.PINLockEnabled,
 		(state) => state.enablePINLock,
 		'Use Pin Lock for personal data',
-		'PIN Lock requires a valid PIN number to access personal data.',
+		'*Coming Soon** PIN Lock enables a valid PIN number to access personal data.',
 	)
 	settings.push(PINLockSettings)
 
