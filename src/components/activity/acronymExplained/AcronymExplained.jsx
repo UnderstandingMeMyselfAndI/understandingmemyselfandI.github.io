@@ -111,13 +111,14 @@ const AcronymExplained = () => {
 							</div>
 						))}
 					</div>
-					{acronymData?.toolFieldGroup?.scenariosField?.nodes?.length > 0 && (
+					{acronymData?.toolFieldGroup?.scenariosField?.nodes?.length > 0 && acronymData?.toolFieldGroup?.scenariosField?.nodes[0].scenariosFieldGroup && (
 						<div className='scenarios'>
 							<div className='title'>Scenarios</div>
 							<div className='scenarios-inner'>
 								{acronymData?.toolFieldGroup?.scenariosField?.nodes?.map((scenario, index) => (
 									<div className='scenario' key={`scenario-${index}`}>
 										<div className='title'>{scenario.title}</div>
+										{console.log('scenario.scenariosFieldGroup', scenario.scenariosFieldGroup)}
 										{scenario.scenariosFieldGroup?.description && <div className='content'>{parse(scenario.scenariosFieldGroup?.description)}</div>}
 									</div>
 								))}
