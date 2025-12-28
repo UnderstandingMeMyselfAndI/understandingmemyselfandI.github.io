@@ -46,7 +46,7 @@ const Settings = () => {
 	const [showDeleteDialog, setShowDeleteDialog] = useState(false)
 	const [showConfirmDeleteDialog, setShowConfirmDeleteDialog] = useState(false)
 	const setActivity = useAppStore((s) => s.setActivity)
-	const showToolsOnly = useAppStore((s) => s.showToolsOnly)
+	// const showToolsOnly = useAppStore((s) => s.showToolsOnly)
 	const setShowToolsOnly = useAppStore((s) => s.setShowToolsOnly)
 	const activity = useAppStore((s) => s.activity)
 	const activityID = activities.find((activity) => (activity.url === name ? activity.id : null))
@@ -65,8 +65,8 @@ const Settings = () => {
 		'YourToolbox',
 		(state) => state.toolboxFilterEnabled,
 		(state) => state.enableToolboxFilter,
-		'Enable "Your Toolbox" filter button',
-		'Shows only the tools in your toolbox.',
+		'Enable "Your Toolbox" filter',
+		'Shows a button that filters "the tools" so you see only the tools you favourited.',
 	)
 	settings.push(YourToolboxSettings)
 	const YourToolsSettings = Setting(
@@ -191,12 +191,9 @@ const Settings = () => {
 							<u>Your privacy is very important to us.</u>
 						</b>
 					</p>
-					<p>For complete privacy you can disable all customisable features.</p>
-					<p>You can re-enable features whenever that feels helpful. </p>
-					<p>
-						Features that are disabled are hidden. <br />
-						You can re-enable features at any time when you need them.
-					</p>
+					<p>For complete privacy you can disable and hide all customisable features.</p>
+					<p>You can show and enable features whenever that feels helpful. </p>
+					<p>Features that are disabled are completely hidden.</p>
 					<p>
 						To remove all data use the "Clear Your Data" button
 						<br /> at the bottom.

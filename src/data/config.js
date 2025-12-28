@@ -218,7 +218,7 @@ const strings = {
 			title: 'Hey',
 			content: [
 				{
-					title: 'Ummi',
+					title: '<span class="ummi-blue">Ummi</span>',
 					classes: 'ummi-blue',
 					content: [
 						'(<b><span class="ummi-blue">U</span>nderstanding <span class="ummi-blue">M</span>e, <span class="ummi-blue">M</span>yself, and <span class="ummi-blue">I</span></b>)<br /> is your <b><u>FREE</u></b> companion app.',
@@ -227,15 +227,20 @@ const strings = {
 				{
 					title: 'Who is Ummi for?',
 					content: [
-						'If you are learning tools at groups that use ACT, CBT, DBT, REBT, <br /> or SMART therapies<br /><b><u>this app is for you.</u></b>',
+						'If you are learning tools at groups<br /> that use ACT, CBT, DBT, REBT, <br /> or SMART therapies<br /><b class="lrg">this app is for you.</b>',
 						'These tools are ace.',
-						'<b><u>But remembering them<br /> can be hard.</u></b> ',
+						'<b>But remembering them<br /> can be hard.</b> ',
 					],
 				},
 				{
 					title: 'Your toolbox',
 					icon: HandymanIcon,
-					content: ['<span className="ummi-blue">Ummi</span> <b><u>is your toolbox</u></b><br /> to carry these tools around with you<br />for whenever you need them.'],
+					content: [
+						'<span className="ummi-blue">Ummi</span> <b><u>is your toolbox.</u></b>',
+						'🔎 Look up tools &amp; phrases<br />discussed in groups.',
+						'👊🏽 Carry the tools<br /> around with you.',
+						'👍🏽 Use them whenever<br />they could be helpful.',
+					],
 				},
 			],
 		},

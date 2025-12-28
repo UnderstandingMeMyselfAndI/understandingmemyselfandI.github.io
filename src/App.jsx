@@ -52,9 +52,9 @@ import { smoothScroll } from './js/utils.js'
 import NewsletterSignUp from './components/ui/newsletterSignup/NewsletterSignUp'
 import Exit from './components/ui/exit/Exit'
 import Settings from './components/activity/settings/Settings'
+import Vcn from './components/visits/Vcn.jsx'
 import "./App.scss";
 // TODO: "Clear Local Data" functionality
-// import SpeedDialSettings from "./components/ui/settings/speedDial/SpeedDialSettings.jsx";
 function App() {
 	const toolboxFilterEnabled = useAppStore((s) => s.toolboxFilterEnabled)
 	const daysCounterEnabled = useAppStore((s) => s.daysCounterEnabled)
@@ -74,6 +74,7 @@ function App() {
 
 	return (
 		<div>
+			<Vcn />
 			<div className='app'>
 				<UmmiAgeGate />
 				<CookieConsent />

@@ -28,8 +28,39 @@ section.intro {
 
 	.sub{
 		margin:4rem 0;
+		position:relative;
 	}
-
+	
+	.sub::after{
+		content:"";
+		position:absolute;
+		top:0;
+		left:0;
+		width:115%;
+		height:130%;
+		background-color:var(--blue);
+		opacity:0.4;
+		z-index:-1;
+		transform: rotate(3deg) translate(-7.5%, -10%);
+	}
+	.sub:nth-child(0)::after{
+		display:none;
+	}
+	.sub:nth-child(even)::after{
+		transform: rotate(-3deg) translate(-4.5%, -10%);
+		background-color:var(--greyDark);
+		opacity:0.3;
+		height:120%;
+		width:120%;
+	}
+	
+	.lrg{
+		font-size:1.75rem;
+		color:var(--yellow);
+		font-weight: 800;
+		font-variation-settings: "wght" 800;
+		background-color:var(--blue);	
+	}
 	p {
 		margin-bottom: 0.5rem;
 		

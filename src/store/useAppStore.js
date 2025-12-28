@@ -20,6 +20,22 @@ const useAppStore = create(
 			toolsInView: false,
 			needUpdate: false,
 			setNeedUpdate: (value) => set({ needUpdate: value }),
+			vc: 0, //visit count
+			setVC: (v) => {
+				set(() => ({ vc: v }))
+			},
+			incVC: () => {
+				set((state) => ({ vc: state.vc + 1 }))
+			},
+			lvd: 0, //last visit date
+			setLVD: (v) => {
+				set(() => ({ lvd: v }))
+			},
+			fvd: 0, //first visit date
+			setFVD: (v) => {
+				set((state) => ({ fvd: state.vc === 1 ? v : state.fvd }))
+			},
+
 			daysCounterEnabled: true,
 			enableDaysCounter: (show) => {
 				set(() => ({ daysCounterEnabled: show }))
@@ -107,6 +123,9 @@ const useAppStore = create(
 				allowCookies: state.allowCookies,
 				allowThirdPartyCookies: state.allowThirdPartyCookies,
 				usePINLock: state.usePINLock,
+				vc: state.vc,
+				lvd: state.lvd,
+				fvd: state.fvd,
 			}),
 		},
 	),

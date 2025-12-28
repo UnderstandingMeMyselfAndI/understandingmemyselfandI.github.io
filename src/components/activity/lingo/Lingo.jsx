@@ -1,11 +1,10 @@
-import {useEffect, useState} from "react";
-import useAppStore from "@/store/useAppStore";
+import { useEffect, useState } from 'react'
+import useAppStore from '@/store/useAppStore'
 import { activities } from '@/data/config'
 import { strings } from '@/data/config'
-import PropTypes from 'prop-types'
-import "./styles.scss";
+import './styles.scss'
 
-const Template = () => {
+const Lingo = () => {
 	const name = 'lingo'
 	const [open, setOpen] = useState(false)
 	const activity = useAppStore((s) => s.activity)
@@ -22,7 +21,6 @@ const Template = () => {
 			<section className={name}></section>
 		</div>
 	)
-};
-Template.propTypes = {}
-
-export default Template;
+}
+Lingo.propTypes = {}
+export default Lingo

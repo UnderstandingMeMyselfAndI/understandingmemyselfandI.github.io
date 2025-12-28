@@ -1,13 +1,16 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import useAppStore from '@/store/useAppStore'
 import { activities } from '@/data/config'
 import MenuCarousel from '@/components/ui/menuCarousel/MenuCarousel'
+import toolsData from '../../../data/tools.js'
+
 import { useInView, useOnInView } from 'react-intersection-observer'
 import parse from 'html-react-parser'
 import { strings } from '@/data/config'
 import './styles.scss'
 import PropTypes from 'prop-types'
 const Tools = () => {
+	const data = toolsData.tools.nodes
 	const name = 'tools'
 
 	const setToolsInView = useAppStore((s) => s.setToolsInView)
@@ -18,6 +21,29 @@ const Tools = () => {
 	const content = strings.activity.find((activity) => activity.name === name) || null
 	if (content === null) {
 		console.warn(`No content found for activity "${name}"`)
+	}
+
+	const showToolsOnly = useAppStore((s) => s.showToolsOnly)
+	const getActiveToolIDs = useAppStore((state) => state.getActiveToolIDs)
+	const yourToolsEnabled = useAppStore((s) => s.yourToolsEnabled)
+	const activeIDs = getActiveToolIDs()
+	const positiveIDsSet = useMemo(() => new Set(activeIDs), [activeIDs])
+
+	// Memoize the final carouselData
+	const carouselData = useMemo(() => {
+		const filteredData = data.filter((obj) => activeIDs.includes(obj.id))
+		//setAccData(filteredData)
+		return showToolsOnly ? filteredData : data
+	}, [showToolsOnly, activeIDs, data])
+
+	const setActivity = useAppStore((s) => s.setActivity)
+	const setAcronymnID = useAppStore((s) => s.setAcronymnID)
+	const setShowAccCard = useAppStore((s) => s.setShowAccCard)
+
+	const handleClick = (id) => () => {
+		setAcronymnID(id)
+		setShowAccCard(true)
+		setActivity(1)
 	}
 
 	useEffect(() => {
@@ -49,7 +75,7 @@ const Tools = () => {
 					<u>{content?.title}</u>
 				</h2>
 
-				<MenuCarousel />
+				<MenuCarousel handleClick={handleClick} data={carouselData} filterIDs={positiveIDsSet} showFavourites={yourToolsEnabled} />
 			</section>
 		</div>
 	)

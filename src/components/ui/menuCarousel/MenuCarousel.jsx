@@ -3,9 +3,9 @@ import {useRef, useEffect, useCallback, useMemo, useState} from "react";
 import Skeleton from "@mui/material/Skeleton";
 import HandymanIcon from '@mui/icons-material/Handyman'
 import PropTypes from "prop-types";
-import useAppStore from '@/store/useAppStore'
-import toolsData from "../../../data/tools.js";
-const data = toolsData.tools.nodes
+// import useAppStore from '@/store/useAppStore'
+// import toolsData from "../../../data/tools.js";
+// const data = toolsData.tools.nodes
 import "./MenuCarousel.scss";
 // Default configuration
 const DEFAULT_CONFIG = {
@@ -193,39 +193,10 @@ VerticalList.propTypes = {
 	className: PropTypes.string,
 };
 
-// const userData = () => {
-// 	const ids = data.map((item) => item.id)
-// 	//const positiveIDs = localStore.getSelectedIDsByLabel(storeKeys.toolbox, ids)
-// 	const getActiveToolIDs = useAppStore((state) => state.getActiveToolIDs)
-// 	const activeIDs = getActiveToolIDs()
-// 	return data.filter((obj) => activeIDs.includes(obj.id))
-// }
 
-const MenuCarousel = () => {
+
+const MenuCarousel = ({ data, filterIDs, showFavourites, handleClick }) => {
 	const [open, setOpen] = useState(false)
-
-	const showToolsOnly = useAppStore((s) => s.showToolsOnly)
-	const getActiveToolIDs = useAppStore((state) => state.getActiveToolIDs)
-	const yourToolsEnabled = useAppStore((s) => s.yourToolsEnabled)
-	const activeIDs = getActiveToolIDs()
-	const positiveIDsSet = useMemo(() => new Set(activeIDs), [activeIDs])
-
-	// Memoize the final carouselData
-	const carouselData = useMemo(() => {
-		const filteredData = data.filter((obj) => activeIDs.includes(obj.id))
-		//setAccData(filteredData)
-		return showToolsOnly ? filteredData : data
-	}, [showToolsOnly, activeIDs])
-
-	const setActivity = useAppStore((s) => s.setActivity)
-	const setAcronymnID = useAppStore((s) => s.setAcronymnID)
-	const setShowAccCard = useAppStore((s) => s.setShowAccCard)
-
-	const handleClick = (id) => () => {
-		setAcronymnID(id)
-		setShowAccCard(true)
-		setActivity(1)
-	}
 
 	const customConfig = {
 		minOpacity: 0.35,
@@ -235,8 +206,8 @@ const MenuCarousel = () => {
 		transitionSpeed: '0.25s',
 	}
 
-	const items = carouselData.map((item, index) => {
-		const isSelected = positiveIDsSet.has(item.id) // O(1) lookup
+	const items = data.map((item, index) => {
+		const isSelected = filterIDs.has(item.id) // O(1) lookup
 
 		if (!item) {
 			return <Skeleton key={`skeleton-${index}`} variant='rounded' width='100%' height={200} animation='wave' />
@@ -246,7 +217,7 @@ const MenuCarousel = () => {
 			<div key={`AccordionItem-cont-${item.id ?? index}`} className={'carousel-item'} onClick={handleClick(item.id)}>
 				<div className='AccordionItem inner item' key={`AccordionItem-${item.id ?? index}`} style={{ cursor: 'pointer' }}>
 					<div className='title' aria-controls={`Accronym-${index}-content`} id={`panel${item?.id}-header`}>
-						{yourToolsEnabled && <HandymanIcon className={'icon' + (isSelected ? ' active' : '')} key={`AccordionItem-icon-${item.id ?? index}`} />}
+						{showFavourites && <HandymanIcon className={'icon' + (isSelected ? ' active' : '')} key={`AccordionItem-icon-${item.id ?? index}`} />}
 
 						<div className='letters-cont'>
 							{item.title.split('.').map(
@@ -271,6 +242,11 @@ const MenuCarousel = () => {
 			</VerticalList>
 		</div>
 	)
-};
-MenuCarousel.propTypes = {};
+}
+MenuCarousel.propTypes = {
+	data: PropTypes.array.isRequired,
+	filterIDs: PropTypes.array.isRequired,
+	showFavourites: PropTypes.bool,
+	handleClick: PropTypes.func,
+}
 export default MenuCarousel;

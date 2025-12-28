@@ -11,7 +11,6 @@ import Dialog from 'components/ui/dialog/Dialog';
 const DaysCounter = () => {
 	// const activity = useAppStore(state => state.activity);
 	const setActivity = useAppStore((state) => state.setActivity)
-	const showDaysCounter = useAppStore((state) => state.showDaysCounter)
 
 	const { activity } = useAppStore(useShallow((state) => ({ activity: state.activity })))
 
@@ -131,7 +130,7 @@ const DaysCounter = () => {
 			<div className={'days-counter-container' + (dates.length === 2 ? ' full' : '')}>
 				{dates.length === 0 && (
 					<div className='days-counter-empty-state'>
-						<div className='days-counter-empty-title'>Let&apos;s do this</div>
+						<div className='days-counter-empty-title'></div>
 						<div className='days-counter-add-first-icon' onClick={() => addDate()}>
 							<AddIcon />
 						</div>
@@ -219,7 +218,12 @@ const DaysCounter = () => {
 							</div>
 						</div>
 					))}
-					<span className='days-counter-note'>* All details are saved only on your device to ensure your privacy.</span>
+					<span className='days-counter-note'>
+						* All dates are saved only on your device to ensure your privacy.
+						<br />
+						<br />
+						You can hide &amp; unhide this feature in settings and keep the counter.
+					</span>
 				</div>
 
 				{dates.length > 0 && dates.length < 2 && (

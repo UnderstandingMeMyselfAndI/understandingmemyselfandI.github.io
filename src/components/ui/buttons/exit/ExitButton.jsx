@@ -6,7 +6,7 @@ const ExitButton = ({ handleClick }) => {
 	// const exitShowDialogue = useAppStore((state) => state.exitShowMessage)
 
 	const classes = []
-	const label = 'Exit'
+	const label = 'Q.Exit'
 	// const handleClick = () => {
 	// 	if (!exitShowDialogue) {
 	// 		window.open('https://google.com', '_blank')
@@ -15,9 +15,11 @@ const ExitButton = ({ handleClick }) => {
 	// }
 
 	return (
-		<div className={'exit-btn' + classes.map((c) => ' ' + c)} onClick={handleClick}>
-			<ExitToAppOutlinedIcon className='icon' />
-			{/* <div>{label}</div> */}
+		<div className='exit-wrap label'>
+			<div className={'exit-btn' + classes.map((c) => ' ' + c)} onClick={handleClick}>
+				<ExitToAppOutlinedIcon className='icon' />
+			</div>
+			<div className='label'>{label}</div>
 		</div>
 	)
 }

@@ -3,11 +3,11 @@ import {useEffect, useState} from "react";
 import useAppStore from "@/store/useAppStore";
 import parse from "html-react-parser";
 
-import InstallPWA from "ui/buttons/InstallPWA/InstallPWA";
-import {getPWADisplayMode} from "@/utils/isAppInstalled";
-import DaysCounterCTA from "components/activity/DaysCounter/DaysCounterCTA";
+// import InstallPWA from "ui/buttons/InstallPWA/InstallPWA";
+// import {getPWADisplayMode} from "@/utils/isAppInstalled";
+// import DaysCounterCTA from "components/activity/DaysCounter/DaysCounterCTA";
 import { activities ,strings} from "@/data/config";
-import YourPrivacy from "components/ui/sections/privacy/YourPrivacy";
+// import YourPrivacy from "components/ui/sections/privacy/YourPrivacy";
 
 import "@/utils/IsMobile.js";
 import "./styles.scss";
@@ -41,8 +41,8 @@ const Introduction = () => {
 					</h2>
 					{content?.content?.map((cnt, i) => {
 						return (
-							<div key={`intro-${i}`} className='sub'>
-								<div className={'title ' + cnt?.classes}>{parse(cnt?.title)}</div>
+							<div key={`intro-${i}`} className={'sub subsection'}>
+								<div className='title '>{parse(cnt?.title)}</div>
 								{cnt?.content?.map((para, k) => {
 									return <p key={k}>{parse(para)}</p>
 								})}
