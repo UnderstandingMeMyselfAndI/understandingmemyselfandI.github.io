@@ -151,27 +151,27 @@
             }
            
         } 
-        li.new{
+        // li.new{
            
-            position:relative;
-            .register::after{
-                opacity:0.2;
-            }
-            &::before{
-                content:"new";
-                position:absolute;
-                top:0;
-                left:0;
-                font-size:0.65rem;
-                color:var(--primary);
-                background-color:red;
-                padding:0.1rem 0.25rem;
-                font-weight:600;                
-		        font-variation-settings: "wght" 600;
-                // border-bottom-right-radius: 6px;
-            }
+        //     position:relative;
+        //     .register::after{
+        //         opacity:0.2;
+        //     }
+        //     &::before{
+        //         content:"new";
+        //         position:absolute;
+        //         top:0;
+        //         left:0;
+        //         font-size:0.65rem;
+        //         color:var(--primary);
+        //         background-color:red;
+        //         padding:0.1rem 0.25rem;
+        //         font-weight:600;                
+		//         font-variation-settings: "wght" 600;
+        //         // border-bottom-right-radius: 6px;
+        //     }
            
-        } 
+        // } 
         li{
             font-size:variables.$menu_size;
             font-family:variables.$font_family;

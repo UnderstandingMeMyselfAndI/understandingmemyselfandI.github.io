@@ -6,12 +6,17 @@ import CloseBtn from '@/components/ui/buttons/close/CloseBtn'
 import Dialog from '@/components/ui/dialog/Dialog'
 import './styles.scss'
 
-const Setting = (name, getStateSelector, setStateAction, instruction, help = '') => {
+const Setting = (name, getStateSelector, setStateAction, instruction, help = '', classNames) => {
 	const settingName = name
 	const appState = useAppStore(getStateSelector)
 	const setAppState = useAppStore(setStateAction)
 	const [localState, setLocalState] = useState(appState)
 	const handlers = [] // handlers of other settings
+	const classes = classNames
+
+	const getClasses = (classes) => {
+		return classes.toString()
+	}
 	const addHandler = (cb) => {
 		handlers.push(cb)
 	}
@@ -32,6 +37,8 @@ const Setting = (name, getStateSelector, setStateAction, instruction, help = '')
 		appState,
 		setState: setAppState,
 		state: localState,
+		classes,
+		getClasses,
 		addHandler,
 		set: setLocalState,
 		handler,
@@ -67,6 +74,7 @@ const Settings = () => {
 		(state) => state.enableToolboxFilter,
 		'Enable "Your Toolbox" filter',
 		'Shows a button that filters "the tools" so you see only the tools you favourited.',
+		'new',
 	)
 	settings.push(YourToolboxSettings)
 	const YourToolsSettings = Setting(
@@ -75,6 +83,7 @@ const Settings = () => {
 		(state) => state.enableYourTools,
 		'Enable "Your Tools"',
 		'Favourite tools you like, and add them to your "toolbox" for quick access.',
+		'new',
 	)
 	YourToolsSettings.addHandler(YourToolboxSettings.handler)
 	settings.push(YourToolsSettings)
@@ -85,6 +94,7 @@ const Settings = () => {
 		(state) => state.enableDaysCounter,
 		'Enable Days Counter',
 		'Set up to two dates and see how many days since the dates.',
+		'new',
 	)
 	settings.push(DaysCounterSettings)
 
@@ -94,6 +104,7 @@ const Settings = () => {
 		(state) => state.enableQuickExit,
 		'Enable Quick Exit',
 		'Lets you leave the app immediately and open a website whenever you need to',
+		'new',
 	)
 	settings.push(QuickExitSettings)
 
@@ -101,8 +112,9 @@ const Settings = () => {
 		'QuickExitMessage',
 		(state) => state.quickExitMessageEnabled,
 		(state) => state.enableQuickExitMessage,
-		'Show help message before Quick Exit',
+		'Show info before Quick Exit',
 		'',
+		'new',
 	)
 	QuickExitSettings.addHandler(QuickExitMessageSettings.handler)
 	settings.push(QuickExitMessageSettings)
@@ -113,6 +125,7 @@ const Settings = () => {
 		(state) => state.enablePINLock,
 		'Use Pin Lock for personal data',
 		'*Coming Soon** PIN Lock enables a valid PIN number to access personal data.',
+		'soon',
 	)
 	settings.push(PINLockSettings)
 
@@ -202,8 +215,8 @@ const Settings = () => {
 				<CloseBtn handleClick={handleClose} />
 				<div className='section'>
 					<div className='title'>Your Tools</div>
-					<div className='row'>
-						<div className='checkBox-row'>
+					<div className={'row ' + YourToolsSettings.classes}>
+						<div className={'checkBox-row '}>
 							<label htmlFor={YourToolsSettings.name} className={YourToolsSettings.state ? 'checked' : ''}>
 								{parse(YourToolsSettings.instruction)}
 							</label>
@@ -211,8 +224,8 @@ const Settings = () => {
 						</div>
 						{YourToolsSettings.help && <div className='help'>{parse(YourToolsSettings.help)}</div>}
 					</div>
-					<div className='row'>
-						<div className='checkBox-row'>
+					<div className={'row ' + YourToolboxSettings.classes}>
+						<div className={'checkBox-row '}>
 							<label htmlFor={YourToolboxSettings.name} className={YourToolboxSettings.state ? 'checked' : ''}>
 								{parse(YourToolboxSettings.instruction)}
 							</label>
@@ -223,8 +236,8 @@ const Settings = () => {
 				</div>
 				<div className='section'>
 					<div className='title'>Days Counter</div>
-					<div className='row'>
-						<div className='checkBox-row'>
+					<div className={'row ' + DaysCounterSettings.classes}>
+						<div className={'checkBox-row '}>
 							<label htmlFor={DaysCounterSettings.name} className={DaysCounterSettings.state ? 'checked' : ''}>
 								{parse(DaysCounterSettings.instruction)}
 							</label>
@@ -235,8 +248,8 @@ const Settings = () => {
 				</div>
 				<div className='section'>
 					<div className='title'>Quick Exit</div>
-					<div className='row'>
-						<div className='checkBox-row'>
+					<div className={'row ' + QuickExitSettings.classes}>
+						<div className={'checkBox-row '}>
 							<label htmlFor={QuickExitSettings.name} className={QuickExitSettings.state ? 'checked' : ''}>
 								{parse(QuickExitSettings.instruction)}
 							</label>
@@ -260,8 +273,8 @@ const Settings = () => {
 						</div>
 						{QuickExitURLSettings.help && <div className='help'>{parse(QuickExitURLSettings.help)}</div>}
 					</div> */}
-					<div className='row'>
-						<div className='checkBox-row'>
+					<div className={'row ' + QuickExitMessageSettings.classes}>
+						<div className={'checkBox-row '}>
 							<label htmlFor={QuickExitMessageSettings.name} className={QuickExitMessageSettings.state ? 'checked' : ''}>
 								{parse(QuickExitMessageSettings.instruction)}
 							</label>
@@ -280,8 +293,8 @@ const Settings = () => {
 				<div className='section'>
 					<div className='title'>Privacy &amp; Your Data</div>
 
-					<div className='row'>
-						<div className='checkBox-row strikethrough'>
+					<div className={'row ' + PINLockSettings.classes}>
+						<div className={'checkBox-row '}>
 							<label htmlFor={PINLockSettings.name} className={PINLockSettings.state ? 'strikethrough checked' : 'strikethrough'}>
 								{parse(PINLockSettings.instruction)}
 							</label>
@@ -290,8 +303,8 @@ const Settings = () => {
 						{PINLockSettings.help && <div className='help'>{parse(PINLockSettings.help)}</div>}
 					</div>
 
-					<div className='row'>
-						<div className='checkBox-row'>
+					<div className={'row ' + AnalyticsCookiesSettings.classes}>
+						<div className={'checkBox-row '}>
 							<label htmlFor={AnalyticsCookiesSettings.name} className={AnalyticsCookiesSettings.state ? 'checked' : ''}>
 								{parse(AnalyticsCookiesSettings.instruction)}
 							</label>
@@ -306,7 +319,7 @@ const Settings = () => {
 						{AnalyticsCookiesSettings.help && <div className='help'>{parse(AnalyticsCookiesSettings.help)}</div>}
 					</div>
 
-					<div className='row'>
+					<div className='row new'>
 						<div className='setting-title'></div>
 						<div className='checkBox-row'>
 							<button className='btn btn-delete' onClick={handleClearUserData}>

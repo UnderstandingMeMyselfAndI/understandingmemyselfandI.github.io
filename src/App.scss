@@ -40,7 +40,44 @@ body {
 	h2 {
 		margin: 0.75rem 0 1.5rem 0;
 	}
-
+	.new,
+	.soon{
+           
+		position:relative;
+		.register::after{
+			opacity:0.2;
+		}
+		&::before{
+			content:"";
+			position:absolute;
+			top:0;
+			left:0;
+			font-size:0.65rem;
+			color:var(--primary);
+			background-color:red;
+			padding:0.1rem 0.25rem;
+			font-weight:600;                
+			font-variation-settings: "wght" 600;
+		}		
+	} 
+	.new{
+	&::before{
+			content:"new";
+			color:var(--primary);
+			background-color:var(--orange);
+		}
+		
+	} 
+	.soon{
+		text-decoration:line-through;		
+		color:rgba(10,10,10,0.3);
+		&::before{
+			content:"soon";
+			color:var(--primary);
+			background-color:grey;
+		}
+		
+	} 
 	#root {
 		width: 100%;
 		min-height: 100%;
@@ -77,6 +114,7 @@ body {
 				position: relative;
 			}
 		}
+		
 	}
 
 	h1 {

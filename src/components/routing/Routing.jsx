@@ -7,22 +7,67 @@ import PropTypes from 'prop-types'
 function setBrowserHistory(slug, title) {
     history.pushState({ page: title }, '', slug)
 }
-
+function getAcronymID(slug) {
+    return toolsData.tools.nodes.find((tool) => {
+        if (tool.slug === slug) {
+            return tool.id
+        }
+    })    
+}
 
 
 const Routing = () => {
 
-    const activity = useAppStore((s) => s.activity)
-    const acronymID = useAppStore((s) => s.acronymID)
+    // const activity = useAppStore((s) => s.activity)
+    // const acronymID = useAppStore((s) => s.acronymID)
+    // const setActivity = useAppStore((s) => s.setActivity)
+    // const setAcronymID = useAppStore((s) => s.setAcronymID)
+    // const setShowAccCard = useAppStore((s) => s.setShowAccCard)
 
-    useEffect(() => {
-        const tool = toolsData.tools.nodes.find((tool) => {
+    // const showTool = (id) => {
+    //     if (!id) {
+    //         console.log("invalid tool slug id: ", id)
+    //         return
+    //     }
+    //     setAcronymID(id)
+	// 	setShowAccCard(true)
+	// 	setActivity(1)
+    // }
+    // useEffect(() => {
+    //     const tool = toolsData.tools.nodes.find((tool) => {
            
-           if(tool.id === acronymID) return tool
+    //        if(tool.id === acronymID) return tool
+    //     })
+	// 		 if(tool) setBrowserHistory('/recovery-tool/' + tool?.slug, 'Recovery tool - '+tool?.title)
+			
+    // }, [acronymID])
+
+    // const loadContentFromSlug = () => {
+    //     const path = window.location.pathname
+    //     const parts = path.split('/')
+    //     let data = null
+    //     if (path) {
+    //         const activity = parts[1]
+
+    //         switch (activity) {
+    //             case 'recovery-tool':
+                    
+    //                 data = getAcronymID(parts[2])
+                   
+    //                 showTool(data.id) 
+    //                 break;
+    //         }
+    //     }
+
+    // }
+    
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", () => {
+            // loadContentFromSlug();
         })
-			setBrowserHistory('/recovery-tool/' + tool?.slug, 'Recovery tool - '+tool?.title)
-			console.log('routing ', tool?.slug, tool?.title)
-		}, [ acronymID])
+    } else {
+        // loadContentFromSlug()
+    }
     
     //TODO: Do this for Activiites
 	// useEffect(() => {
