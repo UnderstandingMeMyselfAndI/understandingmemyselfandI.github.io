@@ -23,6 +23,12 @@ div.activity:has(.settings){
     }
     .close-btn{
         position:absolute;
+        right:2rem;
+        top:0.35rem;
+        svg{
+            width:70px;
+            height:70px;
+        }
     }
     .head{
         margin-bottom:1rem;

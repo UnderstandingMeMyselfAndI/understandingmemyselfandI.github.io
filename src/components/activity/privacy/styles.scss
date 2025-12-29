@@ -61,12 +61,12 @@ body .privacy{
     }
     .close-btn{
         position:absolute;
-        top:2rem;
         right:2rem;
-        svg{           
-            path{                
-                // fill:var(--greyDark);
-            }
+        top:0.35rem;
+        svg{
+            width:70px;
+            height:70px;
+            stroke:0;
         }
     }
     .backdrop{
