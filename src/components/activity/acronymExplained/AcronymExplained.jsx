@@ -18,6 +18,11 @@ import Skeleton from "@mui/material/Skeleton";
 import KeyboardReturnOutlinedIcon from '@mui/icons-material/KeyboardReturnOutlined'
 import {extractYouTubeId} from "@/js/utils.js";
 import "./styles.scss";
+
+// TODO [x]: Show hide favourites
+// TODO [x]: Add videos
+
+// TODO: Implement sharing
 function getAccData(id) {
 	return data.tools.nodes.find(acc => acc.id === id);
 }
@@ -30,22 +35,21 @@ const AcronymExplained = () => {
 	const userToolIDs = useAppStore((state) => state.userToolIDs)
 	const yourToolsEnabled = useAppStore((state) => state.yourToolsEnabled)
 	// const activeIDs = getActiveToolIDs()
-	const acronymnID = useAppStore((s) => s.acronymnID)
+	const acronymID = useAppStore((s) => s.acronymID)
 	const showAccCard = useAppStore((s) => s.showAccCard)
 	const setShowAccCard = useAppStore((s) => s.setShowAccCard)
 	const setActivity = useAppStore((s) => s.setActivity)
-	const [isUserTool, setIsUserTool] = useState(userToolIDs.includes(acronymnID))
+	const [isUserTool, setIsUserTool] = useState(userToolIDs.includes(acronymID))
 
 	useEffect(() => {
-		// const ids = getActiveToolIDs()
-		setIsUserTool(userToolIDs.includes(acronymnID))
-	}, [getActiveToolIDs, setIsUserTool, acronymnID, userToolIDs])
+		setIsUserTool(userToolIDs.includes(acronymID))
+	}, [getActiveToolIDs, setIsUserTool, acronymID, userToolIDs])
 
 	const contentRef = useRef(null)
 	useEffect(() => {
-		setAcronymData(getAccData(acronymnID))
+		setAcronymData(getAccData(acronymID))
 		contentRef.current.scrollTop = 0
-	}, [acronymnID])
+	}, [acronymID])
 
 	useEffect(() => {
 		setOpen(showAccCard)

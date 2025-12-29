@@ -37,11 +37,12 @@ const Tools = () => {
 	}, [showToolsOnly, activeIDs, data])
 
 	const setActivity = useAppStore((s) => s.setActivity)
-	const setAcronymnID = useAppStore((s) => s.setAcronymnID)
+	const setAcronymID = useAppStore((s) => s.setAcronymID)
 	const setShowAccCard = useAppStore((s) => s.setShowAccCard)
 
 	const handleClick = (id) => () => {
-		setAcronymnID(id)
+		
+		setAcronymID(id)
 		setShowAccCard(true)
 		setActivity(1)
 	}

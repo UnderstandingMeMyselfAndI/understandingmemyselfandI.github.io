@@ -5,6 +5,7 @@ const data = {
 				databaseId: 'cG9zdDo0Mg==',
 				id: 42,
 				title: 'A.B.C.D.E',
+				slug: 'a-b-c-d-e',
 				toolFieldGroup: {
 					description:
 						'<div>\n<div>A bad-ass tool for catching those sneaky negative thoughts and turning them around using proven therapy techniques. It&#8217;s also an easy-to-remember one &#8211; the first five letters of the alphabet. Get in.</div>\n</div>\n',
@@ -79,6 +80,7 @@ const data = {
 				databaseId: 'cG9zdDo5Ng==',
 				id: 96,
 				title: 'B.A.D.S',
+				slug: 'b-a-d-s',
 				toolFieldGroup: {
 					description:
 						'<p>B.A.D.S. is a super-quick check-in.</p>\n<p>When the urge to use/drink/gamble/scroll hits, pause and ask yourself: “Am I actually <strong>bored, anxious, depressed, or stressed</strong> right now?”</p>\n<p>99 % of the time it’s one of those four jerks in disguise.</p>\n<p>B.A.D.S. is the buddies with H.A.L.T. so check out that tool if B.A.D.S. isn&#8217;t cutting it.</p>\n',
@@ -136,6 +138,7 @@ const data = {
 				databaseId: 'cG9zdDo5Nw==',
 				id: 97,
 				title: 'C.B.A.',
+				slug: 'c-b-a',
 				toolFieldGroup: {
 					description:
 						'<p><b data-path-to-node="0" data-index-in-node="60">C.B.A.</b> is one of the most powerful tools you can have in your toolkit and it comes from the guys at <a href="https://smartrecovery.org.uk/" target="_blank" rel="noopener">SMART recovery</a> &#8211; so check them out.</p>\n<p>It&#8217;s your no-BS pro/con list that cuts straight through the excuses. When you&#8217;re in the heat of a craving, your brain lies to you—it tells you that getting on it is the only thing that matters. <span class="citation-5 citation-end-5">The CBA is the tool you use to pull the receipts and see if that &#8220;deal&#8221; is actually worth it.</span></p>\n<p>The CBA is a four-way grid. You don&#8217;t just look at why drugs/alcohol are bad; you look at why you were/are using them in the first place and what you’re actually trading away.</p>\n<p>Make a version of each list for you. Don&#8217;t cut anything and be real with yourself.</p>\n<p>If you&#8217;re kidding anyone it&#8217;s only yourself.</p>\n',
@@ -202,6 +205,7 @@ const data = {
 				databaseId: 'cG9zdDo5OA==',
 				id: 98,
 				title: 'D.E.A.D.S.',
+				slug: 'd-e-a-d-s',
 				toolFieldGroup: {
 					description:
 						'<p dir="auto">The DEADS tool from SMART Recovery is a solid, no-BS strategy for handling those sneaky urges and cravings that pop up when you&#8217;re kicking addictions or bad habits to the curb. It&#8217;s all about outsmarting them instead of letting them run the show — science-backed moves to ride out the storm without giving in.</p>\n<p dir="auto">Bottom line? DEADS is your secret weapon to turn urges from bosses into background noise. They get weaker and rarer the more you use this—practice when you&#8217;re calm so it&#8217;s automatic in the heat. If you&#8217;re pushing through recovery, tap into SMART meetings or a pro for extra backup.</p>\n<p dir="auto">Like door-to-door salesmen — if you stop answering, they eventually leave.</p>\n<p dir="auto">You&#8217;ve got the power; keep at it.</p>\n',
@@ -276,6 +280,7 @@ const data = {
 				databaseId: 'cG9zdDoxOTc=',
 				id: 197,
 				title: 'D.E.A.R. M.A.N.',
+				slug: 'dear-man',
 				toolFieldGroup: {
 					description:
 						'<p>Striaght from the D.B.T. toolbox. DEAR MAN is your script for getting what you need from someone without starting a war or folding like a lawn chair.</p>\n',
@@ -325,6 +330,7 @@ const data = {
 				databaseId: 'cG9zdDo5OQ==',
 				id: 99,
 				title: 'D.I.S.A.R.M.',
+				slug: 'd-i-s-a-r-m',
 				toolFieldGroup: {
 					description:
 						'<div>\n<div>D.I.S.A.R.M. is like your own personal security team. Like the ones in the movies, and that ex World leaders have.</div>\n<div></div>\n<div>It&#8217;s your mental bodyguard system &#8211; protecting you from the gremlins creating thoughts and images that try to sabotage your progress. Use the D.I.S.A.R.M. team as they&#8217;ve got your back.</div>\n</div>\n',
@@ -403,6 +409,7 @@ const data = {
 				databaseId: 'cG9zdDoxOTk=',
 				id: 199,
 				title: 'F.A.C.E',
+				slug: 'face',
 				toolFieldGroup: {
 					description:
 						'<p>This one&#8217;s a bit less of a rigid acronym of a tool and more of a handy, street-smart map for dealing with life&#8217;s crap without getting owned by it.</p>\n<p>It&#8217;s the escape plan. <strong>F.A.C.E </strong>is the antidote to F.E.A.R (so check out the F.E.A.R tool). It&#8217;s about unhooking from your mind, taking the feeling with you, and walking toward what you care about anyway.</p>\n<p>Think of <strong>F.A.C.E.</strong> as your playbook for handling emotional hijackings. It’s the opposite of freaking out or shutting down. First, you <strong>F</strong>eel the feeling instead of denying it. You <strong>A</strong>llow it to exist without a war. You <strong>C</strong>ome back to the solid ground of the present moment so you&#8217;re not lost in mental chaos. Finally, you <strong>E</strong>ngage with your life on your terms, taking the feeling <em>with you</em> instead of waiting for it to leave. It’s not about feeling better; it’s about getting better at feeling, so you can live your life full-on, even when it gets messy.</p>\n<p>It’s a core process in ACT (Acceptance Commitment Therapy) for building psychological flexibility.</p>\n',
@@ -441,6 +448,7 @@ const data = {
 				databaseId: 'cG9zdDoxOTg=',
 				id: 198,
 				title: 'F.E.A.R',
+				slug: 'fear',
 				toolFieldGroup: {
 					description:
 						'<p>A diagnosis of why you&#8217;re stuck. It names the four moves that keep you in a cage.</p>\n<p>The F.E.A.R tool is used to describe the problem and it&#8217;s always hanging with F.A.C.E. tool &#8211; The escape plan which helps identify the solution.</p>\n',
@@ -475,6 +483,7 @@ const data = {
 				databaseId: 'cG9zdDoxMDk=',
 				id: 109,
 				title: 'H.A.L.T.',
+				slug: 'h-a-l-t',
 				toolFieldGroup: {
 					description:
 						'<div>\n<div>H.A.L.T is a must have self-check tool. When these four basic needs are out of whack, your judgment isn&#8217;t on-point, and you&#8217;re an easy target for old habits. 90% of daft decisions start with one of these four gremlins.</div>\n<div></div>\n<div>Run a self-check with them and fix the basic stuff first — then see if the craving is still there. 9 times out of 10 it will have done one. If not you can often find H.A.L.T. hanging with the jerks of B.A.D.S so check that tool too.</div>\n</div>\n',
@@ -536,6 +545,7 @@ const data = {
 				databaseId: 'cG9zdDoxMTA=',
 				id: 110,
 				title: 'H.O.P.E.',
+				slug: 'h-o-p-e',
 				toolFieldGroup: {
 					description: '<div>\n<div>Hope isn’t something you wait for—it’s something you build, one tiny helpful action at a time.</div>\n</div>\n',
 					letters: [
@@ -593,6 +603,7 @@ const data = {
 				databaseId: 'cG9zdDoxMTE=',
 				id: 111,
 				title: 'H.O.V.',
+				slug: 'h-o-v',
 				toolFieldGroup: {
 					description:
 						'<div>\n<div>The Hierarchy of Values (H.O.V.) tool is a straight-up game-changer for getting your priorities locked in and staying motivated, especially when you&#8217;re trying to ditch the bad habits, beat addictions, or just level up your life decisions.</div>\n<div></div>\n<div>It&#8217;s a key move from SMART Recovery — a no-nonsense, science-based program for handling urges and making smarter choices, keeping it all about real talk and zero mystical vibes.</div>\n<div></div>\n<div>H.O.V &#8211; Think of it as building your personal roadmap. When life&#8217;s pulling you in daft directions, H.O.V. reminds you what&#8217;s really worth working for, so you don&#8217;t waste time on BS that doesn&#8217;t align with your core. No religious angle here — just practical steps to boss up.</div>\n</div>\n',
@@ -655,6 +666,7 @@ const data = {
 				databaseId: 'cG9zdDoxMTI=',
 				id: 112,
 				title: 'I.C.E.',
+				slug: 'i-c-e',
 				toolFieldGroup: {
 					description:
 						'<div>\n<div>Three simple steps to break free from patterns that aren&#8217;t serving you anymore.</div>\n<div></div>\n<div><span style="text-decoration: underline;">Challenge your thoughts an</span>d <strong>take your thoughts to court.</strong></div>\n</div>\n',
@@ -707,6 +719,7 @@ const data = {
 				databaseId: 'cG9zdDoxOTU=',
 				id: 195,
 				title: 'I.M.P.R.O.V.E.',
+				slug: 'i-m-p-r-o-v-e',
 				toolFieldGroup: {
 					description:
 						'<p>IMPROVE is a straight-up boss move from DBT (that&#8217;s Dialectical Behavior Therapy, basically a toolkit for dealing with heavy emotions without flipping out).</p>\n<p>It&#8217;s all about upgrading the moment when life&#8217;s throwing curveballs at you — keeping your head straight and riding out the storm. Think of it like hacking your brain to chill when stuff&#8217;s getting intense.</p>\n<p>The whole point? When life&#8217;s comin&#8217; at you hard, IMPROVE helps you survive the storm without crashing and burning. Practice it when you&#8217;re calm so it&#8217;s second nature when the heat&#8217;s on. If you&#8217;re dealing with heavy stuff, link up with a pro therapist to level it up. Stay strong out there.</p>\n',
@@ -763,6 +776,7 @@ const data = {
 				databaseId: 'cG9zdDoxMTM=',
 				id: 113,
 				title: 'L.F.T.',
+				slug: 'l-f-t',
 				toolFieldGroup: {
 					description:
 						'<div>\n<div>Levelling up your toolbox for dealing with life&#8217;s annoying moments without needing to style it out, losing your cool or your progress.</div>\n</div>\n',
@@ -818,6 +832,7 @@ const data = {
 				databaseId: 'cG9zdDoxMTQ=',
 				id: 114,
 				title: 'P.I.E.',
+				slug: 'p-i-e',
 				toolFieldGroup: {
 					description: '<div>\n<div>Your personal growth tracker &#8211; because recovery is about so much more than just not using.</div>\n</div>\n',
 					letters: [
@@ -869,6 +884,7 @@ const data = {
 				databaseId: 'cG9zdDoxMTU=',
 				id: 115,
 				title: 'P.P.P.',
+				slug: 'p-p-p',
 				toolFieldGroup: {
 					description: '<div>\n<div>The three P&#8217;s that make the difference between trying recovery and actually succeeding at it.</div>\n</div>\n',
 					letters: [
@@ -905,6 +921,7 @@ const data = {
 				databaseId: 'cG9zdDoxMTY=',
 				id: 116,
 				title: 'R.A.I.N.',
+				slug: 'r-a-i-n',
 				toolFieldGroup: {
 					description:
 						'<div>The R.A.I.N. mindfulness tool is a chilled superpower, a no-frills way to handle tough emotions, urges, or stress bombs without letting them take over—especially in recovery when cravings or old patterns try to creep back in.</div>\n<div>\n<p dir="auto">It&#8217;s like a mental reset button, drawn from mindfulness and created by Tara Brach. It turns &#8220;I can’t handle this feeling&#8221; into &#8220;I can be with this feeling until it passes.. &#8220;</p>\n<p dir="auto">Use it to pause, process, and move through the mess so you don&#8217;t react on autopilot or slip up. Think of it as your inner coach helping you ride the wave instead of getting drowned by it.</p>\n</div>\n',
@@ -993,6 +1010,7 @@ const data = {
 				databaseId: 'cG9zdDoxMTc=',
 				id: 117,
 				title: 'R.A.V.E.',
+				slug: 'r-a-v-e',
 				toolFieldGroup: {
 					description: '<div>\n<div>Your long-term success strategy &#8211; staying strong and aware without making recovery feel like a prison.</div>\n</div>\n',
 					letters: [
@@ -1049,6 +1067,7 @@ const data = {
 				databaseId: 'cG9zdDoxMTk=',
 				id: 119,
 				title: 'S.M.A.R.T.',
+				slug: 's-m-a-r-t',
 				toolFieldGroup: {
 					description:
 						'<div>The SMART tool in recovery is the gold standard for setting goals that you&#8217;ll actually achieve —none of that vague &#8220;I&#8217;ll do better&#8221; BS. It&#8217;s a no-nonsense way to map out your wins, whether you&#8217;re kicking addictions, refocusing your relationships with substances, or just getting through daily life in sobriety.</div>\n<div>\n<p dir="auto">Pulled from SMART Recovery, it&#8217;s science-backed to keep you focused and motivated. Think of it as your GPS for progress: Specific, Measurable, Achievable, Relevant, Time-bound.</p>\n</div>\n<p dir="auto">SMART turns wishy-washy ideas into actionable plans that boost your confidence and keeps relapse at bay. Write them down, review weekly, and tweak as needed—pair it with tools like DEADS for urges or H.O.V. for motivation. Break down the fluff so you can track real moves and celebrate them.</p>\n<p dir="auto">If goals feel overwhelming, chat with a therapist or hit a SMART meeting for extra edge. Stay at it; small steps stack up big.</p>\n',
@@ -1131,6 +1150,7 @@ const data = {
 				databaseId: 'cG9zdDoxMjA=',
 				id: 120,
 				title: 'S.T.O.P.',
+				slug: 's-t-o-p',
 				toolFieldGroup: {
 					description:
 						'<div>\n<div>The ultimate 10-second emergency brake.</div>\n</div>\n<div>\n<p dir="auto">The STOP skill is a clutch move pulled from recovery toolkits like SMART (it vibes heavy with DBT too)—it&#8217;s all about hitting pause when emotions or urges are cranking up and you&#8217;re about to make a move that you&#8217;ll regret later.</p>\n<p dir="auto">Think of it as your mental stop sign to avoid crashing into bad decisions. Use it when stress, cravings, or anger&#8217;s got you heated, or you&#8217;re “about to text your ex.”. It gives you space to respond like a boss instead of reacting on impulse.</p>\n<p dir="auto">It keeps small slips from turning into big falls by buying you time to level up. Practice it daily on low-stakes stuff so it&#8217;s locked in when the real heat comes. If cravings or feels are nonstop, tap into SMART meetings, a therapist, or your support crew. Keep it locked, you got this.</p>\n</div>\n',
@@ -1202,6 +1222,7 @@ const data = {
 				databaseId: 'cG9zdDoxMjI=',
 				id: 122,
 				title: 'T.I.P.P.',
+				slug: 't-i-p',
 				toolFieldGroup: {
 					description:
 						'<p dir="auto">The TIPP skill from DBT (Dialectical Behavior Therapy) is a quick-hit tactic for when your emotions are spiking hard and you need to dial them down fast—think panic, rage, or that overwhelming emotion that&#8217;s got you ready to snap.</p>\n<p dir="auto">It&#8217;s all about hacking your body&#8217;s stress response with simple moves to chill the nervous system and get back in control. No mystical or higher power vibes here—just science-backed ways to reset your vibe when distress is hitting peak levels.</p>\n<p dir="auto">Use it in the moment, like an emergency brake, to avoid making rash moves.</p>\n',
@@ -1253,6 +1274,7 @@ const data = {
 				databaseId: 'cG9zdDoxMjM=',
 				id: 123,
 				title: 'The Six Ps',
+				slug: 'the-six-ps',
 				toolFieldGroup: {
 					description:
 						'<p dir="auto">These Six P&#8217;s are your reminder that winning in recovery starts with being intentional AF. Don&#8217;t wait for life to hit you—hit it first.</p>\n<p dir="auto">Jot this down, review it weekly, and pair it with other tools like DEADS or H.O.V. for max impact. If things feel shaky, link up with a pro or support group. You&#8217;re built for this; keep pushing to hit your goals.</p>\n',

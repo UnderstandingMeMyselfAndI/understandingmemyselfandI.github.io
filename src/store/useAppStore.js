@@ -7,7 +7,7 @@ const useAppStore = create(
 			toolAdded: false,
 			activity: 0,
 			scrollStage: 0,
-			acronymnID: 0,
+			acronymID: 0,
 			active: false,
 			showAccCard: false,
 			isMobile: false,
@@ -102,7 +102,7 @@ const useAppStore = create(
 			setShowToolsOnly: (show) => set(() => ({ showToolsOnly: show })),
 			toggleShowToolsOnly: () => set((state) => ({ showToolsOnly: !state.showToolsOnly })),
 
-			setAcronymnID: (id) => set(() => ({ acronymnID: id })),
+			setAcronymID: (id) => set(() => ({ acronymID: id })),
 			setScrollStage: (stage) => set(() => ({ scrollStage: stage })),
 			setShowAccCard: (show) => {
 				// console.trace(`setShowAccCard called with value: ${show}`);

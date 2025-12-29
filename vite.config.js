@@ -1,11 +1,17 @@
 import path from "path";
 import fs from "fs";
+
 import {defineConfig} from "vite";
 import react from "@vitejs/plugin-react";
 import commonjs from 'vite-plugin-commonjs'
 import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 import { analyzer } from 'vite-bundle-analyzer'
+import Sitemap from 'vite-plugin-sitemap'
+import getDynamicRoutes from './getDynamicRoutes.js'
+const routes = getDynamicRoutes()
+console.log('routes', routes)
 const __dirname = path.dirname("./src");
+
 //version meta data
 const metadata = JSON.parse(fs.readFileSync("./src/metadata.json", "utf-8"));
 
@@ -59,7 +65,23 @@ export default defineConfig({
 			skipWrite: false,
 		},
 	},
-	plugins: [react(), commonjs(), cssInjectedByJsPlugin(), analyzer() /*, analyzer() uncomment for bundle analyzer*/],
+	plugins: [
+		react(),
+		commonjs(),
+		cssInjectedByJsPlugin(),
+		analyzer() /*, analyzer() uncomment for bundle analyzer*/,
+		Sitemap({
+			outDir: 'docs',
+			hostname: 'https://ummi.now', // Required: your site's base URL
+			// Optional: Add dynamic or extra routes if needed
+			dynamicRoutes: getDynamicRoutes(),
+			// Optional: Customize defaults
+			changefreq: 'weekly',
+			priority: 0.8,
+			// Generates robots.txt too if you want
+			robots: [{ userAgent: '*', allow: '/' }],
+		}),
+	],
 	resolve: {
 		alias: {
 			'@': path.resolve(__dirname, './src/'),

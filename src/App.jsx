@@ -2,33 +2,16 @@
 // import React from "react";
 
 // import "components/utils/activities.js";
-
-// import { HashRouter } from 'react-router-dom';
-// // Example:
-// import { HashRouter } from 'react-router-dom';
-
-// function App() {
-//   return (
-//     <HashRouter>
-//       <Routes>
-//         <Route path="/" element={<Home />} />
-//         <Route path="/gallery" element={<Gallery />} />
-//       </Routes>
-//     </HashRouter>
-//   );
-// }
-
-// import CssBaseline from "@mui/material/CssBaseline";
-
+import Routing from './components/routing/Routing'
 import {useThemeStore} from "@/store/useThemeStore";
 import useAppStore from "./store/useAppStore";
 // import DaysCounter from "./components/ui/DaysCounter/DaysCounter";
 import applyTheme from 'components/theme/applyTheme'
 import ScrollPosition from 'components/utils/ScrollPosition'
-import LogoFloating from "ui/logo/LogoFloating";
+// import LogoFloating from "ui/logo/LogoFloating";
 import Header from 'ui/header/Header.jsx'
 import Footer from "ui/footer/Footer";
-import Podcasts from "./components/activity/podcasts/Podcasts";
+// import Podcasts from "./components/activity/podcasts/Podcasts";
 import PrivacyPolicy from './components/activity/privacy/PrivacyPolicy'
 import Introduction from 'components/activity/introduction/Introduction'
 import YourPrivacyCTA from "./components/ui/sections/privacy/YourPrivacyCTA";
@@ -74,7 +57,6 @@ function App() {
 
 	return (
 		<div>
-			<Vcn />
 			<div className='app'>
 				<UmmiAgeGate />
 				<CookieConsent />
@@ -106,6 +88,8 @@ function App() {
 				<ScrollPosition />
 			</div>
 			<BackdropParallax initialImageId={2} initialDelay={3000} interval={6000} parallaxStrength={0} />
+			<Routing />
+			<Vcn />
 		</div>
 	)
 }

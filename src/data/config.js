@@ -215,6 +215,7 @@ const strings = {
 	activity: [
 		{
 			name: 'introduction',
+			slug: '#introduction',
 			title: 'Hey',
 			content: [
 				{
@@ -246,6 +247,7 @@ const strings = {
 		},
 		{
 			name: 'tools',
+			slug: '#recovery-tools',
 			title: 'The Tools',
 			content: [
 				'Tap a heading for an explanation of the tool, how to use it, scenarios where it might be useful, and more.',
@@ -266,6 +268,7 @@ const strings = {
 		{
 			name: 'daysCounter',
 			title: 'Days Counter',
+			slug: 'days-counter',
 			btnLabel: 'Days Counter',
 			content: [],
 			cta: {
@@ -276,6 +279,7 @@ const strings = {
 		{
 			name: 'install',
 			title: 'Install',
+			slug: '#install',
 			htmlContent: [],
 			btnLabel: 'Install Ummi',
 			cta: {
@@ -285,6 +289,7 @@ const strings = {
 		},
 		{
 			name: 'privacy',
+			slug: 'privacy',
 			title: 'We respect you<br />and your privacy',
 			content: [
 				'Any personal data you provide to us is stored <b><u>only on your device.</u></b>',
@@ -314,6 +319,7 @@ const strings = {
 		{
 			name: 'settings',
 			title: 'Settings',
+			slug: 'settings',
 			id: 14,
 			content: [],
 			btnLabel: 'Settings',
