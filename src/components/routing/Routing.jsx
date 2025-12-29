@@ -8,7 +8,7 @@ const appURL = window.location.protocol + '//' + window.location.hostname + (loc
 
 
 function setBrowserHistory(slug, title) {
-    history.pushState({ page: title }, '', slug)
+    // history.pushState({ page: title }, '', slug)
 }
 function getAcronymID(slug) {
     return toolsData.tools.nodes.find((tool) => {

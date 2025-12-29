@@ -231,6 +231,13 @@ const baseActivities = [
 		menu: false,
 		speedDial: true,
 	},
+	{
+		id: 16,
+		url: 'install',
+		title: 'Install Ummi',
+		menu: false,
+		speedDial: true,
+	},
 ]
 const activities = baseActivities.map((item) => ({
 	...item,
