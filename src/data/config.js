@@ -46,70 +46,75 @@ const cnf = {
 const icons = [
 	{
 		id: 0,
-		title: "ummi",
+		title: 'ummi',
 		icon: UmmiIcon,
 	},
 	{
 		id: 1,
-		title: "welcome",
+		title: 'welcome',
 		icon: HandymanIcon,
 	},
 	{
 		id: 2,
-		title: "tools",
+		title: 'tools',
 		icon: HandymanIcon,
 	},
 	{
 		id: 3,
-		title: "techniques",
+		title: 'techniques',
 		icon: AutoAwesomeOutlinedIcon,
 	},
 	{
 		id: 4,
-		title: "motivation",
+		title: 'motivation',
 		icon: AutoGraphOutlinedIcon,
 	},
 	{
 		id: 5,
-		title: "inspiration",
+		title: 'inspiration',
 		icon: LightbulbOutlinedIcon,
 	},
 	{
 		id: 6,
-		title: "meditation",
+		title: 'meditation',
 		icon: SpaOutlinedIcon,
 	},
 	{
 		id: 7,
-		title: "videos",
+		title: 'videos',
 		icon: PlayCircleOutlineOutlinedIcon,
 	},
 	{
 		id: 8,
-		title: "about",
+		title: 'about',
 		icon: InfoOutlinedIcon,
 	},
 	{
 		id: 9,
-		title: "tour",
+		title: 'tour',
 		icon: TourOutlinedIcon,
 	},
 	{
 		id: 10,
-		title: "search",
+		title: 'search',
 		icon: SavedSearchIcon,
 	},
 	{
 		id: 11,
-		title: "account",
+		title: 'account',
 		icon: BlurOnOutlinedIcon,
 	},
 	{
 		id: 12,
-		title: "back",
+		title: 'back',
 		icon: ArrowBackOutlinedIcon,
 	},
-];
+	{
+		id: 13,
+		title: 'back',
+		icon: ArrowBackOutlinedIcon,
+	},
+]
 
 const baseActivities = [
 	{
@@ -117,7 +122,7 @@ const baseActivities = [
 		url: 'introduction',
 		title: 'Introduction',
 
-		menu: true,
+		menu: false,
 		speedDial: true,
 	},
 	{
@@ -130,8 +135,8 @@ const baseActivities = [
 	},
 	{
 		id: 2,
-		url: 'skills',
-		title: 'Techniques',
+		url: 'days-counter',
+		title: 'Days Counter',
 		menu: true,
 		speedDial: true,
 	},
@@ -139,55 +144,55 @@ const baseActivities = [
 		id: 3,
 		url: 'motivation',
 		title: 'Motivation',
-		menu: true,
+		menu: false,
 		speedDial: true,
 	},
 	{
 		id: 4,
 		url: 'inspiration',
 		title: 'Inspiration',
-		menu: true,
+		menu: false,
 		speedDial: true,
 	},
 	{
 		id: 5,
 		url: 'meditiation',
 		title: 'Meditation',
-		menu: true,
+		menu: false,
 		speedDial: true,
 	},
 	{
 		id: 6,
 		url: 'videos',
 		title: 'Videos',
-		menu: true,
+		menu: false,
 		speedDial: true,
 	},
 	{
 		id: 7,
 		url: 'about',
 		title: 'About',
-		menu: true,
+		menu: false,
 		speedDial: true,
 	},
 	{
 		id: 8,
 		url: 'tour',
 		title: 'Tour',
-		menu: true,
+		menu: false,
 		speedDial: true,
 	},
 	{
 		id: 9,
 		url: 'search',
 		title: 'Search',
-		menu: true,
+		menu: false,
 		speedDial: true,
 	},
 	{
 		id: 10,
 		url: 'privacy',
-		title: 'Privacy Policy',
+		title: 'Your Privacy & Privacy Policy',
 		menu: true,
 		speedDial: true,
 	},
@@ -205,17 +210,38 @@ const baseActivities = [
 		menu: true,
 		speedDial: true,
 	},
+	{
+		id: 13,
+		url: 'lingo-and-phrases',
+		title: 'Lingo & Phrases',
+		menu: false,
+		speedDial: true,
+	},
+	{
+		id: 14,
+		url: 'share',
+		title: 'Share',
+		menu: false,
+		speedDial: true,
+	},
+	{
+		id: 15,
+		url: 'newsletter',
+		title: 'Newsletter',
+		menu: false,
+		speedDial: true,
+	},
 ]
-const activities = baseActivities.map(item => ({
+const activities = baseActivities.map((item) => ({
 	...item,
-	icon: icons[item.id].icon, // add the sequential icon
-}));
+	icon: null, // add the sequential icon
+}))
 
 const strings = {
 	activity: [
 		{
 			name: 'introduction',
-			slug: '#introduction',
+
 			title: 'Hey',
 			content: [
 				{

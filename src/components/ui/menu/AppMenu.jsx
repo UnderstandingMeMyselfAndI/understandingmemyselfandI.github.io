@@ -1,35 +1,52 @@
-import * as React from 'react';
+import { useEffect, useState } from 'react'
 // import Button from '@mui/material/Button';
 // import Menu from '@mui/material/Menu';
 // import MenuItem from '@mui/material/MenuItem';
-import useAppStore from '@/store/useAppStore';
-import { getPWADisplayMode } from "@/utils/isAppInstalled";
+import useAppStore from '@/store/useAppStore'
+import { getPWADisplayMode } from '@/utils/isAppInstalled'
+import { activities } from '@/data/config'
 // import driverObj from '@/js/tour.js'
 // import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 // import Slide from '@mui/material/Slide';
-import './appMenuStyles.scss';
-export const MenuOpenIcon = () => <svg xmlns="http://www.w3.org/2000/svg" height="40px" width="40px"  viewBox="0 -960 960 960"  fill="#ffffff"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>;
-export const MenuCloseIcon = () => <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#ffffff"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>;
+import './appMenuStyles.scss'
+export const MenuOpenIcon = () => (
+	<svg xmlns='http://www.w3.org/2000/svg' height='40px' width='40px' viewBox='0 -960 960 960' fill='#ffffff'>
+		<path d='M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z' />
+	</svg>
+)
+export const MenuCloseIcon = () => (
+	<svg xmlns='http://www.w3.org/2000/svg' height='40px' viewBox='0 -960 960 960' width='40px' fill='#ffffff'>
+		<path d='m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z' />
+	</svg>
+)
 // TODO: Implement URLS
 export default function AppMenu() {
-	const [anchorEl, setAnchorEl] = React.useState(null)
-	const [open, setOpen] = React.useState(false)
+	const [anchorEl, setAnchorEl] = useState(null)
+	const [open, setOpen] = useState(false)
+	const [show, setShow] = useState(true)
 
 	const daysCounterEnabled = useAppStore((state) => state.daysCounterEnabled)
 	const setActivity = useAppStore((state) => state.setActivity)
 	const activity = useAppStore((state) => state.activity)
 
-	const toggleOpen = (event) => {
-		// setAnchorEl(event.currentTarget)
+	const toggleOpen = () => {
 		setOpen(!open)
 	}
 	const handleClose = () => {
-		// setAnchorEl(null)
 		setOpen(false)
 	}
 
+	useEffect(() => {
+		const obj = activities.find((a) => (parseInt(a.id) === parseInt(activity) ? activity : null))
+
+		if (obj) {
+			console.log('obj', obj)
+			setShow(obj.menu)
+		}
+	}, [activity])
+
 	return (
-		<div className={'AppMenu' + (activity === -1 ? '' : ' hide')}>
+		<div className={'AppMenu' + (show ? '' : ' hide')}>
 			<div className='burger-stack' id='burger-button'>
 				<input type='checkbox' id='checkbox1' value={open} checked={open} className='checkbox1 visuallyHidden' onChange={toggleOpen} />
 				<label htmlFor='checkbox1'>
@@ -44,11 +61,11 @@ export default function AppMenu() {
 			<ul className={open ? ' open' : ' '} id='app-menu'>
 				<li
 					onClick={() => {
-						handleClose()
-						setActivity(-1)
+						setActivity(1)
 						const el = document.getElementById('tools')
 
 						el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+						handleClose()
 					}}
 				>
 					Tools
@@ -57,10 +74,10 @@ export default function AppMenu() {
 					className='strikethrough'
 					onClick={() => {
 						handleClose()
-						setActivity(-1)
-						const el = document.getElementById('lingo')
+						// setActivity(13)
+						// const el = document.getElementById('lingo')
 
-						el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+						// el.scrollIntoView({ behavior: 'smooth', block: 'start' })
 					}}
 				>
 					Lingo &amp; Phrases
@@ -117,7 +134,7 @@ export default function AppMenu() {
 				<li
 					onClick={() => {
 						handleClose()
-						setActivity(-1)
+						setActivity(14)
 						const el = document.getElementById('share')
 
 						el.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -129,7 +146,7 @@ export default function AppMenu() {
 				<li
 					onClick={() => {
 						handleClose()
-						setActivity(-1)
+						setActivity(15)
 						const el = document.getElementById('newsletter')
 
 						el.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -183,6 +200,3 @@ export default function AppMenu() {
 		</div>
 	)
 }
-
-
-

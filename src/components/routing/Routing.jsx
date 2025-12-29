@@ -4,6 +4,9 @@ import { activities } from '@/data/config'
 import toolsData from '@/data/tools.js'
 import PropTypes from 'prop-types'
 
+const appURL = window.location.protocol + '//' + window.location.hostname + (location.port  ? ':' +location.port : '')  //'https://ummi.now/'
+
+
 function setBrowserHistory(slug, title) {
     history.pushState({ page: title }, '', slug)
 }
@@ -18,48 +21,68 @@ function getAcronymID(slug) {
 
 const Routing = () => {
 
-    // const activity = useAppStore((s) => s.activity)
-    // const acronymID = useAppStore((s) => s.acronymID)
-    // const setActivity = useAppStore((s) => s.setActivity)
-    // const setAcronymID = useAppStore((s) => s.setAcronymID)
-    // const setShowAccCard = useAppStore((s) => s.setShowAccCard)
+    const activity = useAppStore((s) => s.activity)
+    const acronymID = useAppStore((s) => s.acronymID)
+    const setActivity = useAppStore((s) => s.setActivity)
+    const setAcronymID = useAppStore((s) => s.setAcronymID)
+    const setShowAccCard = useAppStore((s) => s.setShowAccCard)
 
-    // const showTool = (id) => {
-    //     if (!id) {
-    //         console.log("invalid tool slug id: ", id)
-    //         return
-    //     }
-    //     setAcronymID(id)
-	// 	setShowAccCard(true)
-	// 	setActivity(1)
-    // }
-    // useEffect(() => {
-    //     const tool = toolsData.tools.nodes.find((tool) => {
+    const showTool = (id) => {
+        if (!id) {
+            console.log("invalid tool slug id: ", id)
+            return
+        }
+        setAcronymID(id)
+		setShowAccCard(true)
+		setActivity(1)
+    }
+    useEffect(() => {
+        const tool = toolsData.tools.nodes.find((tool) => {
            
-    //        if(tool.id === acronymID) return tool
-    //     })
-	// 		 if(tool) setBrowserHistory('/recovery-tool/' + tool?.slug, 'Recovery tool - '+tool?.title)
+           if(tool.id === acronymID) return tool
+        })
+       
+        if (tool) {
+            setTimeout(() => {
+                setBrowserHistory(appURL + '/recovery-tool/' + tool?.slug, 'Recovery tool - ' + tool?.title)
+            }, 100);
+           
+        }
+        // if (!tool) {
+        //     console.log('tool base: ', tool)
+        //     setBrowserHistory(appURL, 'Ummi')
+        // }
 			
-    // }, [acronymID])
+    }, [acronymID])
 
-    // const loadContentFromSlug = () => {
-    //     const path = window.location.pathname
-    //     const parts = path.split('/')
-    //     let data = null
-    //     if (path) {
-    //         const activity = parts[1]
+    useEffect(() => {
+        const activityObj = activities.find((a) => (parseInt(a.id) === parseInt(activity) ? activity : null))
+      
+        if (activityObj) setBrowserHistory(appURL + '/' + activityObj?.url, 'Ummi - ' + activityObj?.title)
+         if (activity === -1) {
+						
+						setBrowserHistory(appURL, 'Ummi')
+					}
+		}, [activity])
 
-    //         switch (activity) {
-    //             case 'recovery-tool':
+    const loadContentFromSlug = () => {
+        const path = window.location.pathname
+        const parts = path.split('/')
+        let data = null
+        if (path) {
+            const activity = parts[1]
+
+            switch (activity) {
+                case 'recovery-tool':
                     
-    //                 data = getAcronymID(parts[2])
+                    data = getAcronymID(parts[2])
                    
-    //                 showTool(data.id) 
-    //                 break;
-    //         }
-    //     }
+                    showTool(data.id) 
+                    break;
+            }
+        }
 
-    // }
+    }
     
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", () => {
