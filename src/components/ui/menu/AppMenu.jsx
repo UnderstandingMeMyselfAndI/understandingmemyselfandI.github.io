@@ -40,7 +40,6 @@ export default function AppMenu() {
 		const obj = activities.find((a) => (parseInt(a.id) === parseInt(activity) ? activity : null))
 
 		if (obj) {
-			console.log('obj', obj)
 			setShow(obj.menu)
 		}
 	}, [activity])
