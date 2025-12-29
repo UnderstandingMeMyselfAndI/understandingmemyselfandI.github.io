@@ -9,7 +9,7 @@ import { analyzer } from 'vite-bundle-analyzer'
 import Sitemap from 'vite-plugin-sitemap'
 import getDynamicRoutes from './getDynamicRoutes.js'
 const routes = getDynamicRoutes()
-console.log('routes', routes)
+
 const __dirname = path.dirname("./src");
 
 //version meta data

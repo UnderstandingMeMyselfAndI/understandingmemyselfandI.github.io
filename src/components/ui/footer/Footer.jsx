@@ -13,7 +13,7 @@ function Footer() {
 	// const setNeedUpdate = useAppStore((state) => state.setNeedUpdate)
 	const needUpdate = useAppStore((state) => state.needUpdate)
 	const [needsUpdate, setNeedsUpdate] = useState(false)
-	const [updateMessage, setUpdateMessage] = useState('New version available.')
+	const [updateMessage, setUpdateMessage] = useState('Check for updates.')
 
 	useEffect(() => {
 		if ('serviceWorker' in navigator) {
@@ -193,12 +193,12 @@ function Footer() {
 					<span>&hearts; &#x2661; We would really appreciate it.&#x2661; &hearts; </span>
 				</p>
 			</section>
-			{needsUpdate && (
-				<div className='update-available'>
-					<div>{updateMessage}</div>
-					<ButtonUpdate />
-				</div>
-			)}
+			{/* {needsUpdate && ( */}
+			<div className='update-available'>
+				<div>{updateMessage}</div>
+				<ButtonUpdate />
+			</div>
+			{/* )} */}
 			<FooterMetadata />
 		</div>
 	)

@@ -4,7 +4,7 @@ import useAppStore from '@/store/useAppStore'
 import CloseBtn from 'buttons/close/CloseBtn'
 import Backdrop from 'components/ui/backdrop/Backdrop'
 import './styles.scss'
-
+// TODO: Add in newsletter supplier privacy
 const PrivacyPolicy = () => {
 	const name = 'privacy'
 

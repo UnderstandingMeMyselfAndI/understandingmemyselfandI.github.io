@@ -15,6 +15,7 @@ const ButtonUpdate = () => {
 			registration.waiting.postMessage({ type: 'SKIP_WAITING' })
 			// setNeedUpdate(false)
 		}
+		window.location.reload()
 	}
 
 	// const handleUpdate = () => {}
