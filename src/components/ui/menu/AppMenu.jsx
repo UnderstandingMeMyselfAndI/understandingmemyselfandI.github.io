@@ -54,6 +54,7 @@ export default function AppMenu() {
 					Tools
 				</li>
 				<li
+					className='strikethrough'
 					onClick={() => {
 						handleClose()
 						setActivity(-1)
@@ -64,7 +65,7 @@ export default function AppMenu() {
 				>
 					Lingo &amp; Phrases
 				</li>
-				<li
+				{/* <li
 					className='strikethrough'
 					// onClick={() => {
 					// 	handleClose()
@@ -84,11 +85,12 @@ export default function AppMenu() {
 					// }}
 				>
 					Tour
-				</li>
+				</li> */}
 				{/** Only show if days counter is enabled	 */}
 
 				{daysCounterEnabled && (
 					<li
+						className='new'
 						onClick={() => {
 							handleClose()
 							setActivity(2)
@@ -100,6 +102,7 @@ export default function AppMenu() {
 
 				{getPWADisplayMode() !== 'fullscreen' && (
 					<li
+						className='new'
 						onClick={() => {
 							handleClose()
 							setActivity(-1)
@@ -143,7 +146,7 @@ export default function AppMenu() {
 				>
 					Your privacy
 				</li>
-				<li className='strikethrough'>
+				{/* <li className='strikethrough'>
 					<div className='loginRegister'>
 						<div
 							className='register'
@@ -163,9 +166,10 @@ export default function AppMenu() {
 						>
 							Login
 						</div>
-					</div>
-				</li>
+					</div> 
+				</li>*/}
 				<li
+					className='new'
 					onClick={() => {
 						setActivity(12)
 						handleClose()

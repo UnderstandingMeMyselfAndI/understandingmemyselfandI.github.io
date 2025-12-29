@@ -132,6 +132,18 @@ const AcronymExplained = () => {
 								return (
 									<div className='video' key={'video-' + index}>
 										<div className='title'>{parse(video.title)}</div>
+										{video.videosFieldGroup?.duration && (
+											<div className='duration'>
+												{video.videosFieldGroup?.duration?.hours && <div className='hours'>{video.videosFieldGroup?.duration?.hours}</div>}
+												{video.videosFieldGroup?.duration?.minutes && <div className='mins'>{video.videosFieldGroup?.duration?.minutes}</div>}
+												{video.videosFieldGroup?.duration?.seconds && (
+													<div className='secs'>
+														{video.videosFieldGroup?.duration?.seconds < 10 ? '0' + video.videosFieldGroup?.duration?.seconds : video.videosFieldGroup?.duration?.seconds}
+													</div>
+												)}
+											</div>
+										)}
+
 										<div className='player'>
 											{video ? (
 												<LiteYouTubeEmbed id={extractYouTubeId(video.videosFieldGroup.url)} title={video.title} key={'video-' + index} poster='hqdefault' />
@@ -139,6 +151,7 @@ const AcronymExplained = () => {
 												<Skeleton animation='wave' className='video-skeleton' />
 											)}
 										</div>
+										{video.videosFieldGroup?.description && <div className='description'>{parse(video.videosFieldGroup?.description)}</div>}
 									</div>
 								)
 							})}
