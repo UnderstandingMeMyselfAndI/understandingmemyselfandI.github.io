@@ -1,0 +1,35 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://ummi.now/');
+  await page.getByRole('button', { name: 'Yes, I am of legal age' }).click();
+  await page.getByRole('button', { name: 'Accept All' }).click();
+  await expect(page.getByText('ABCDE')).toBeVisible();
+  await page.getByText('ABCDE').click();
+  await expect(page.locator('.AccGroup')).toBeVisible();
+  await page.locator('div').filter({ hasText: /^ABCDE$/ }).nth(5).click();
+  await expect(page.locator('div').filter({ hasText: /^ABCDE$/ }).nth(5)).toBeVisible();
+  await page.getByLabel('Toggle toolbox').click();
+  await expect(page.getByRole('alert')).toBeVisible();
+  await page.getByRole('button', { name: 'Close' }).click();
+  await page.getByRole('button').nth(4).click();
+  await expect(page.getByText('A bad-ass tool for catching')).toBeVisible();
+  await page.getByRole('button').nth(3).click();
+  await expect(page.getByText('The ABCDEs of Coping with')).toBeVisible();
+  await page.locator('.btn.close').click();
+  await page.locator('span').nth(2).click();
+  await expect(page.getByText('ToolsLingo & PhrasesDays')).toBeVisible();
+  await page.getByText('ToolsLingo & PhrasesDays').click();
+  await page.locator('#app-menu').getByText('Settings').click();
+  await expect(page.getByRole('heading', { name: 'Settings' })).toBeVisible();
+  await page.getByRole('button').filter({ hasText: /^$/ }).click();
+  await page.locator('#burger-button div').click();
+  await page.getByText('Newsletter').click();
+  await expect(page.locator('#sib-container')).toBeVisible();
+  await page.locator('#burger-button div').click();
+  await page.getByText('Install').click();
+  await page.locator('#burger-button div').click();
+  await page.getByText('Install').click();
+  await page.locator('#burger-button div').click();
+  await page.getByText('Share', { exact: true }).click();
+});

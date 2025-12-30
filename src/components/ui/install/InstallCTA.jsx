@@ -5,9 +5,9 @@ import appleAddToHomescreen from '/icons/apple-add-to-homescreen-white-40x40.png
 import parse from 'html-react-parser'
 import useAppStore from '@/store/useAppStore'
 import { strings } from '@/data/config'
-import PWAInstall from '@khmyznikov/pwa-install/react-legacy'
-import { PWAInstallElement } from '@khmyznikov/pwa-install'
-import UmmiIcon from 'components/icons/UmmiIcon2.svg'
+// import PWAInstall from '@khmyznikov/pwa-install/react-legacy'
+// import { PWAInstallElement } from '@khmyznikov/pwa-install'
+// import UmmiIcon from 'components/icons/UmmiIcon2.svg'
 
 import './styles.scss'
 
@@ -26,11 +26,11 @@ const InstallCTA = () => {
 	const isInstalled = useAppStore((state) => state.isInstalled)
 	const isInstallable = useAppStore((state) => state.isInstallable)
 	const [deferredPrompt, setDeferredPrompt] = useState(null)
-	const [showInstallBtn, setShowInstallBtn] = useState(false)
+	const [showInstallBtn, setShowInstallBtn] = useState(true)
 	const [showInstallCTA, setShowInstalCTA] = useState(false)
 
-	const [promptEvent, setPromptEvent] = useState(null)
-	const pwaInstallRef = (useRef < PWAInstallElement) | (null > null)
+	// const [promptEvent, setPromptEvent] = useState(null)
+	// const pwaInstallRef = (useRef < PWAInstallElement) | (null > null)
 
 	function handleBeforeInstallPrompt(event) {
 		event.preventDefault() // Prevent automatic prompt
