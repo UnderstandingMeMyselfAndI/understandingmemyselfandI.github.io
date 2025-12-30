@@ -97,7 +97,7 @@
 			"type": "image/png"
 		}
 	],
-	"categories": ["health","lifestyle","health & fitness","education","reference"],
+	"categories": ["health", "lifestyle", "health & fitness", "education", "reference"],
 	"screenshots": [
 		{
 			"src": "/screenshots/360x740.png",
@@ -139,7 +139,7 @@
 			"sizes": "430x932",
 			"type": "image/png"
 		},
-		
+
 		{
 			"src": "/screenshots/412x915.png",
 			"sizes": "412x915",
@@ -154,6 +154,6 @@
 			"src": "/screenshots/412x914-3.png",
 			"sizes": "412x914",
 			"type": "image/png"
-		},
-	}
+		}
+	]
 }
