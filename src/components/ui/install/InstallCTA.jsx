@@ -31,38 +31,13 @@ const InstallCTA = () => {
 
 	const [promptEvent, setPromptEvent] = useState(null)
 	const pwaInstallRef = (useRef < PWAInstallElement) | (null > null)
-	// 	useEffect(() => {
-	//     let lastPromptEvent = window.promptEvent;
 
-	//     const intervalId = setInterval(() => {
-	//       if (window.promptEvent !== lastPromptEvent) {
-	//         lastPromptEvent = window.promptEvent;
-	//         setPromptEvent(window.promptEvent);
-	//       }
-	//     }, 100);
-	//     return () => {
-	//       clearInterval(intervalId);
-	//     };
-	//   }, []);
-	useEffect(() => {
-		let lastPromptEvent = window.promptEvent
-
-		const intervalId = setInterval(() => {
-			if (window.promptEvent !== lastPromptEvent) {
-				lastPromptEvent = window.promptEvent
-				setPromptEvent(window.promptEvent)
-			}
-		}, 100)
-		return () => {
-			clearInterval(intervalId)
-		}
-	}, [])
 	function handleBeforeInstallPrompt(event) {
 		event.preventDefault() // Prevent automatic prompt
 		// app is installable
 		console.log('handleBeforeInstallPrompt')
 		setDeferredPrompt(event) // Store the event
-		// setPromptEvent(window.promptEvent)
+
 		//  Show the install button
 		setShowInstallBtn(true)
 		setShowInstalCTA(true)
@@ -90,18 +65,18 @@ const InstallCTA = () => {
 	const handleClick = async () => {
 		if (!deferredPrompt) return
 
-		pwaInstallRef.current?.showDialog(true)
+		// pwaInstallRef.current?.showDialog(true)
 
 		// deferredPrompt.prompt() // Show the prompt
 
-		// const { choiceResult } = await deferredPrompt.userChoice
-		// if (choiceResult.outcome === 'accepted') {
-		// 	// User accepted the PWA installation
-		// 	setShowInstallBtn(false)
-		// } else {
-		// 	// User dismissed the PWA installation
-		// 	setShowInstallBtn(true)``
-		// }
+		const { choiceResult } = await deferredPrompt.userChoice
+		if (choiceResult.outcome === 'accepted') {
+			// User accepted the PWA installation
+			setShowInstallBtn(false)
+		} else {
+			// User dismissed the PWA installation
+			setShowInstallBtn(true)``
+		}
 
 		// Clear the deferredPrompt so it can be garbage collected
 		setDeferredPrompt(null)
@@ -113,9 +88,9 @@ const InstallCTA = () => {
 	console.log('isInstallable', isInstallable)
 	console.log('showInstallBtn', showInstallBtn)
 
-	const handleOnPwaInstallAvailableEvent = (e) => {
-		console.log('handleOnPwaInstallAvailableEvent', e)
-	}
+	// const handleOnPwaInstallAvailableEvent = (e) => {
+	// 	console.log('handleOnPwaInstallAvailableEvent', e)
+	// }
 
 	return (
 		<div>
