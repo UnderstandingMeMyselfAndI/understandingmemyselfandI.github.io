@@ -19,7 +19,7 @@ const InstallCTA = () => {
 	}
 
 	const appleUsersContent = 'Tap the <b><u>Share icon</u></b></b>'
-	const appleUsersContent2 = '<br />on your device and then select <b><u>Add to Home Screen</u></b>'
+	const appleUsersContent2 = '<br />on your device and then select <br /><b><u>Add to Home Screen</u></b>'
 
 	const setIsInstalled = useAppStore((state) => state.setIsInstalled)
 	const setIsInstallable = useAppStore((state) => state.setIsInstallable)
