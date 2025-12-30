@@ -8,7 +8,7 @@ import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 import { analyzer } from 'vite-bundle-analyzer'
 import Sitemap from 'vite-plugin-sitemap'
 import getDynamicRoutes from './getDynamicRoutes.js'
-const routes = getDynamicRoutes()
+
 
 const __dirname = path.dirname("./src");
 
@@ -39,7 +39,7 @@ export default defineConfig({
 		sourcemap: true,
 		rollupOptions: {
 			treeshake: 'smallest',
-			external: ['lit', 'lit/decorators.js', 'lit/directives/class-map.js', 'lit/directives/style-map.js'],
+			// external: ['lit', 'lit/decorators.js', 'lit/directives/class-map.js', 'lit/directives/style-map.js'],
 			output: {
 				manualChunks: {
 					'react-dom': ['react-dom'],

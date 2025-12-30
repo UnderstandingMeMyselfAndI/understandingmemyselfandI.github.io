@@ -1,62 +1,68 @@
 import useAppStore from '@/store/useAppStore'
 import { useState } from 'react'
+import useLoadScript from '@/hooks/useLoadScript'
 import './styles.scss'
 
 
 const NewsletterSignUp = () => {
-
 	const setActivity = useAppStore((state) => state.setActivity)
 	const [checked, setChecked] = useState(false)
 
+	// useLoadScript('https://sibforms.com/forms/end-form/build/main.js', {
+	// 	onLoad: () => console.log('Script loaded'),
+	// 	onError: () => console.error('Script failed to load'),
+	// 	async: true,
+	// 	defer: true,
+	// })
+
 	const onSuccess = (e) => {
-			console.log('onSuccess')
-			console.log(e)
-		}
-		const onError = (e) => {
-			console.log('onError')
-			console.log(e)
-		}
+		console.log('onSuccess')
+		console.log(e)
+	}
+	const onError = (e) => {
+		console.log('onError')
+		console.log(e)
+	}
 	const [formData, setFormData] = useState({
 		email: '',
-		
 	})
 	const [status, setStatus] = useState({
 		loading: false,
 		success: false,
 		error: null,
 	})
-	
+
 	// Your form ID from the embed code
 	const formId =
 		'MUIFALc6BdLxDTN5bUt_Nxxf8w9uI6rUsNhO6T04esvA31bm_6DpC7pGj934CpQpqqUWO48PcndNrWhtNl1tThdGiLUq_9ug9YeW73EJRJEUyt2pBT0QszFGXW6MlGDojXDwwPATPsUn1QHNh6MVO7kXp4J5AEWQSWarZtSIMx68uxLTeUn7Ho56eeY-v6dp4jtFSkGL8E3dBf6wQQ=='
-	
+
 	const handleChange = (e) => {
 		setFormData({
 			...formData,
 			[e.target.name]: e.target.value,
 		})
 	}
-	
+
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		setStatus({ loading: true, success: false, error: null })
-	
+
 		try {
 			// Create form data for submission
 			const submitData = new FormData()
 			submitData.append('EMAIL', formData.email)
 			submitData.append('email_address_check', '') // Honeypot field
 			submitData.append('locale', 'en')
-	
+
 			const response = await fetch(`https://d44b221a.sibforms.com/serve/${formId}`, {
 				method: 'POST',
 				body: submitData,
 				mode: 'no-cors', // Required for cross-origin requests
-				})
-				
-				console.log("response")
-				console.log(response)
-	
+			})
+
+			console.log('response')
+			console.log(response)
+
 			// Since we're using no-cors, we can't read the response
 			// We'll assume success if no error is thrown
 			setStatus({ loading: false, success: true, error: null })
@@ -87,14 +93,13 @@ const NewsletterSignUp = () => {
 	}
 
 	const handlePrivacyClick = (e) => {
-		e.preventDefault();
-		setActivity(10);
-		
+		e.preventDefault()
+		setActivity(10)
 	}
-	
+
 	const handleCheckboxChange = (e) => {
-		setChecked(e.target.checked);
-	};	
+		setChecked(e.target.checked)
+	}
 	return (
 		<div className='newsletter-signup-form' id='newsletter'>
 			<div className='sib-form'>
@@ -155,7 +160,7 @@ const NewsletterSignUp = () => {
 										We use Brevo as our marketing platform. By submitting this form you agree that the personal data you provided will be transferred to Brevo for processing in
 										accordance with{' '}
 										<a href='https://www.brevo.com/en/legal/privacypolicy/' target='_blank' rel='noreferrer'>
-											Brevo's Privacy Policy.
+											Brevo&apos;s Privacy Policy.
 										</a>
 									</p>
 								</div>
