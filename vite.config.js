@@ -39,6 +39,7 @@ export default defineConfig({
 		sourcemap: true,
 		rollupOptions: {
 			treeshake: 'smallest',
+			external: ['lit', 'lit/decorators.js', 'lit/directives/class-map.js', 'lit/directives/style-map.js'],
 			output: {
 				manualChunks: {
 					'react-dom': ['react-dom'],
@@ -47,6 +48,7 @@ export default defineConfig({
 					'@gsap/react': ['@gsap/react'],
 					'@jmeirinkmarimed/age-gate': ['@jmeirinkmarimed/age-gate'],
 					'react-lite-youtube-embed': ['react-lite-youtube-embed'],
+
 					// 'firebase': ['firebase'],
 					// 'firebaseui': ['firebaseui'],
 					// 'driver.js': ['driver.js'],

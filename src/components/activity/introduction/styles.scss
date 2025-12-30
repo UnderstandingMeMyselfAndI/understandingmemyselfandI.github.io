@@ -29,6 +29,11 @@ section.intro {
 	.sub{
 		margin:4rem 0;
 		position:relative;
+		.emoji{
+			font-size:30px;
+			display:inline-block;
+			margin-bottom:-10px;
+		}
 	}
 	
 	.sub::after{
@@ -46,6 +51,14 @@ section.intro {
 	.sub:nth-child(0)::after{
 		display:none;
 	}
+	.sub.sec-0{ 
+		width:80%;
+		margin:0 auto;
+		p{
+			font-size:variables.$h3_size;
+		}
+	}
+	
 	.sub:nth-child(even)::after{
 		transform: rotate(-3deg) translate(-4.5%, -10%);
 		background-color:var(--greyDark);

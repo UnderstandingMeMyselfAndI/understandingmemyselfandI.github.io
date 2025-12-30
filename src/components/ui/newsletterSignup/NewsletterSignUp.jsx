@@ -96,11 +96,11 @@ const NewsletterSignUp = () => {
 		setChecked(e.target.checked);
 	};	
 	return (
-		<div className='newsletter-signup-form' id="newsletter">
+		<div className='newsletter-signup-form' id='newsletter'>
 			<div className='sib-form'>
 				<div id='sib-form-container' className='sib-form-container'>
 					<div id='sib-container' className='sib-container--large sib-container--vertical'>
-						<form onSubmit={handleSubmit} className='signup-form'>
+						<form onSubmit={handleSubmit} className='signup-form' id='sib-form' method='POST' data-type='subscription' noValidate={true}>
 							<div className='form-row'>
 								<div className='title'>
 									Big things are coming.
@@ -136,9 +136,9 @@ const NewsletterSignUp = () => {
 							<div className='form-row '>
 								<div>
 									<div className='form__label-row entry__choice '>
-										<label className="privacy-label">
-											<input type='checkbox' className='' checked={checked} id='OPT_IN' name='OPT_IN' required onChange={handleCheckboxChange} />
-											{/* <span className='checkbox checkbox_tick_positive'></span> */}I agree to receive emails from Ummi and accept the{' '}
+										<label className='privacy-label'>
+											<input type='checkbox' className='' checked={checked} id='OPT_IN' name='OPT_IN' required onChange={handleCheckboxChange} />I agree to receive emails from Ummi
+											and accept the{' '}
 											<a href='#' onClick={handlePrivacyClick}>
 												data privacy statement
 											</a>
@@ -178,7 +178,7 @@ const NewsletterSignUp = () => {
 								<a href='https://policies.google.com/privacy'>Privacy Policy</a> and
 								<a href='https://policies.google.com/terms'>Terms of Service</a> apply.
 							</div>
-							<input type='text' name='email_address_check' defaultValue=''  className='input--hidden' />
+							<input type='text' name='email_address_check' defaultValue='' className='input--hidden' />
 							<input type='hidden' name='locale' value='en' />
 						</form>
 					</div>

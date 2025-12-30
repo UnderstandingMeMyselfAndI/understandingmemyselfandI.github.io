@@ -252,10 +252,10 @@ const strings = {
 			title: 'Hey',
 			content: [
 				{
-					title: '<span class="ummi-blue">Ummi</span>',
+					title: '',
 					classes: 'ummi-blue',
 					content: [
-						'(<b><span class="ummi-blue">U</span>nderstanding <span class="ummi-blue">M</span>e, <span class="ummi-blue">M</span>yself, and <span class="ummi-blue">I</span></b>)<br /> is your <b><u>FREE</u></b> companion app.',
+						'<b><span class="ummi-blue">U</span>nderstanding <span class="ummi-blue">M</span>e, <span class="ummi-blue">M</span>yself, and <span class="ummi-blue">I</span></b><br /> <span class="ummi-blue">(U.M.M.I)</span><br /> is your <b><u>FREE</u></b> companion app.',
 					],
 				},
 				{
@@ -271,9 +271,17 @@ const strings = {
 					icon: HandymanIcon,
 					content: [
 						'<span className="ummi-blue">Ummi</span> <b><u>is your toolbox.</u></b>',
-						'🔎 Look up tools &amp; phrases<br />discussed in groups.',
-						'👊🏽 Carry the tools<br /> around with you.',
-						'👍🏽 Use them whenever<br />they could be helpful.',
+						'<span class="emoji">🔎</span> Find tools that work for you.',
+						'<span class="emoji">🛠️</span> Create your own <br />personal toolbox.',
+						'<span class="emoji">📺</span> Text & video descriptions.',
+						'<span class="emoji">📅</span> Private Days Counter X2.',
+						'<span class="emoji">🕵🏻‍♂️</span> Complete privacy you control.',
+						'<span class="emoji">💭🎞️</span> Scenarios <br />describing each tool.',
+						// '<span class="emoji">📖</span> Look up lingo & phrases.',
+						'<span class="emoji">ᯤ</span> Available online or offline.',
+						'<span class="emoji">🏃🏻‍➡️➜] </span> Quick exit to Google<br />whenever they could be helpful.',
+						'<span class="emoji">🩹</span> Erase All Data at anytime.',
+						// '<span class="emoji">📱</span> Quick access for <br />whenever they could be helpful.',
 					],
 				},
 			],
@@ -314,10 +322,17 @@ const strings = {
 			title: 'Install',
 			slug: '#install',
 			htmlContent: [],
-			btnLabel: 'Install Ummi',
+
 			cta: {
-				title: 'Add the Ummi App?',
+				title: 'Install Ummi',
 				content: ['Install Ummi for quick access'],
+				btn: {
+					label: 'Install',
+				},
+				postInstall: {
+					title: 'Thanks!',
+					content: ["Thanks for installing Ummi. It's now accessible on your device."],
+				},
 			},
 		},
 		{

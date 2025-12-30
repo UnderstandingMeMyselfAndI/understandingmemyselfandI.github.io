@@ -16,7 +16,10 @@ const useAppStore = create(
 			accData: [],
 			message: '',
 			showSnackbar: false,
+			isInstallable: true,
+			setIsInstallable: (value) => set(() => ({ isInstallable: value })),
 			isInstalled: false,
+			setIsInstalled: (isInstalled) => set(() => ({ isInstalled: isInstalled })),
 			toolsInView: false,
 			needUpdate: false,
 			setNeedUpdate: (value) => set({ needUpdate: value }),
@@ -89,7 +92,7 @@ const useAppStore = create(
 			},
 
 			setToolsInView: (inView) => set(() => ({ toolsInView: inView })),
-			setIsInstalled: (isInstalled) => set(() => ({ isInstalled: isInstalled })),
+
 			setIsMobile: (isMobile) => set(() => ({ isMobile: isMobile })),
 			setMessage: (msg) => set(() => ({ message: msg })),
 			setShowSnackbar: (show) => set(() => ({ showSnackbar: show })),
@@ -123,6 +126,8 @@ const useAppStore = create(
 				allowCookies: state.allowCookies,
 				allowThirdPartyCookies: state.allowThirdPartyCookies,
 				usePINLock: state.usePINLock,
+				isInstallable: state.isInstallable,
+				isInstalled: state.isInstalled,
 				vc: state.vc,
 				lvd: state.lvd,
 				fvd: state.fvd,

@@ -41,7 +41,7 @@ const Introduction = () => {
 					</h2>
 					{content?.content?.map((cnt, i) => {
 						return (
-							<div key={`intro-${i}`} className={'sub subsection'}>
+							<div key={`intro-${i}`} className={'sub subsection sec-' + i}>
 								<div className='title '>{parse(cnt?.title)}</div>
 								{cnt?.content?.map((para, k) => {
 									return <p key={k}>{parse(para)}</p>
