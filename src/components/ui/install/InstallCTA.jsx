@@ -95,37 +95,39 @@ const InstallCTA = () => {
 	return (
 		<div>
 			{!isInstalled && isInstallable && showInstallCTA && (
-				<div className='installCTA cta' id='install'>
-					<h3>
-						<u>
-							<span>{!showInstallBtn ? content?.cta?.postInstall?.title : content?.cta?.title}</span>
-						</u>
-					</h3>
+				<section>
+					<div className='installCTA cta' id='install'>
+						<h3>
+							<u>
+								<span>{!showInstallBtn ? content?.cta?.postInstall?.title : content?.cta?.title}</span>
+							</u>
+						</h3>
 
-					{showInstallBtn && (
-						<div>
-							{content?.cta?.content?.map((html, i) => {
-								return <p key={i}>{parse(html)}</p>
-							})}
+						{showInstallBtn && (
+							<div>
+								{content?.cta?.content?.map((html, i) => {
+									return <p key={i}>{parse(html)}</p>
+								})}
 
-							<InstallPWA handleClick={handleClick} label={content?.cta?.btn?.label} />
-							<div className='title'>Apple users:</div>
-							<p>
-								<span>{parse(appleUsersContent)}</span>
-								<img src={appleShareIcon} className='shareIcon' alt='apple share icon' />
-								<span>{parse(appleUsersContent2)}</span>
-								<img src={appleAddToHomescreen} className='homescreenIcon' alt='apple add to homescreen icon' />
-							</p>
-						</div>
-					)}
-					{!showInstallBtn && (
-						<div>
-							{content?.cta?.postInstall?.content?.map((html, i) => {
-								return <p key={i}>{parse(html)}</p>
-							})}
-						</div>
-					)}
-				</div>
+								<InstallPWA handleClick={handleClick} label={content?.cta?.btn?.label} />
+								<div className='title'>Apple users:</div>
+								<p>
+									<span>{parse(appleUsersContent)}</span>
+									<img src={appleShareIcon} className='shareIcon' alt='apple share icon' />
+									<span>{parse(appleUsersContent2)}</span>
+									<img src={appleAddToHomescreen} className='homescreenIcon' alt='apple add to homescreen icon' />
+								</p>
+							</div>
+						)}
+						{!showInstallBtn && (
+							<div>
+								{content?.cta?.postInstall?.content?.map((html, i) => {
+									return <p key={i}>{parse(html)}</p>
+								})}
+							</div>
+						)}
+					</div>
+				</section>
 			)}
 			{/* https://github.com/khmyznikov/pwa-install */}
 			{/* <PWAInstall ref={pwaInstallRef} name='ummi' icon={UmmiIcon} externalPromptEvent={deferredPrompt} onPwaInstallAvailableEvent={handleOnPwaInstallAvailableEvent}></PWAInstall> */}

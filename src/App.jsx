@@ -20,8 +20,8 @@ import Tools from "components/activity/tools/Tools.jsx";
 // import Backdrop from "ui/backdrop/Backdrop";
 import BackdropParallax from "ui/backdrop/BackdropParallax";
 
-import Snackbars from "ui/snackbars/Snackbars.jsx";
-
+import SnackBars from 'ui/snackbars/SnackBars.jsx'
+import InstallCTA from 'ui/install/InstallCTA'
 // import AcronymCard from "ui/cards/AcronymCard.jsx";
 import AcronymExplained from "./components/activity/acronymExplained/AcronymExplained";
 import BadgeToolbox from "ui/badges/BadgeToolbox";
@@ -83,9 +83,10 @@ function App() {
 					</div>
 
 					<NewsletterSignUp />
+					<InstallCTA />
 					<Footer />
 				</div>
-				<Snackbars />
+				<SnackBars />
 				<ScrollPosition />
 			</div>
 			<BackdropParallax initialImageId={2} initialDelay={3000} interval={6000} parallaxStrength={0} />

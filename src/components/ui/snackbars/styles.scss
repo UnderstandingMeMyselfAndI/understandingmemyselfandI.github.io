@@ -7,13 +7,9 @@
 	width: fit-content;
 	padding: 0;
 }
-.MuiSnackbar-anchorOriginTopCenter {
-	// outline: 1px solid #f00;
-}
 .MuiSnackbar-anchorOriginTopCenter,
 .MuiSnackbar-anchorOriginBottomLeft {
 	> div {
-		// outline: 1px solid #0f0;
 		background: var(--mainBackground) !important;
 		.MuiSnackbarContent-message {
 			color: var(--primary);
@@ -27,26 +23,3 @@
 .snackbars {
 	z-index: 15500;
 }
-// .MuiSnackbar-root,
-// .snackbars {
-// 	.snackbar.alert {
-// 		background: var(--mainBackground) !important;
-// 	}
-// 	.MuiSnackbarContent-root {
-// 		.MuiSnackbarContent-message {
-// 			color: var(--primary);
-// 			font-weight: variables.$p_weight;
-// 			font-size: variables.$p_size;
-// 			padding: 0.74rem 1rem;
-// 		}
-// 		&::after {
-// 			content: "";
-// 			position: absolute;
-// 			top: 0;
-// 			left: 0;
-// 			width: 100%;
-// 			height: 100%;
-// 			z-index: 9999;
-// 		}
-// 	}
-// }

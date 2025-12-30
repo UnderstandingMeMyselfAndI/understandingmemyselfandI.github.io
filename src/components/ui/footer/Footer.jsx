@@ -47,20 +47,6 @@ function Footer() {
 
 	return (
 		<div className='activity footer'>
-			<section>
-				{getPWADisplayMode() !== 'fullscreen' && (
-					// <>
-					// 	<h3>
-					// 		<u>Add the <span className="ummi-blue">Ummi</span> app?</u>
-					// 	</h3>
-					// 	<p>You can install Ummi to your {isMobile ? "device" : "desktop"}<br /> just like any other app.</p>
-
-					// 	<InstallPWA />
-					// </>
-					<InstallCTA />
-				)}
-			</section>
-
 			<section className='qr' id='share'>
 				<h3>
 					<u>Spread the love</u>
