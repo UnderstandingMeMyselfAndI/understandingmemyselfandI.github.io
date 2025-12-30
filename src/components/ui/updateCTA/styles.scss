@@ -1,0 +1,25 @@
+@use "@/scss/_variables.scss";
+@import "@/globals.css";
+.update-cta{
+    display:flex;
+    flex-flow:column nowrap;
+    row-gap:1rem;
+    justify-content: center;
+    align-items: center;
+    font-size:0.75rem;
+    color:var(--primary);
+    p{
+        font-size:variables.$h4_size;
+    }
+    button.btn{
+        margin:0 auto;
+        background:none;
+        &::after{
+            opacity:0.5;
+        }
+    }
+    .disabled{
+        user-select:none;
+        opacity:0.5;
+    }
+}
