@@ -16,15 +16,16 @@ const Introduction = () => {
 	
 	const name = 'introduction'
 	const [open, setOpen] = useState(false);
-	const activity = useAppStore(s => s.activity);
-	// const isMobile =  useAppStore(s => s.isMobile);
-
+	const activity = useAppStore((s) => s.activity)
 	const activityID = activities.find(activity => (activity.url === name ? activity.id : null));
 
 	const content = strings.activity.find(activity => activity.name === name) || null;
 	if (content === null) {
 		console.warn(`No content found for activity "${name}"`);
 	}
+
+	const isInstalled = useAppStore((state) => state.isInstalled)
+	const isInstallable = useAppStore((state) => state.isInstallable)
 
 	useEffect(() => {
 		setOpen(activityID === activity);
@@ -40,6 +41,7 @@ const Introduction = () => {
 						<u>{content.title}</u>
 					</h2>
 					{content?.content?.map((cnt, i) => {
+						if (isInstalled && i >= 1) return
 						return (
 							<div key={`intro-${i}`} className={'sub subsection sec-' + i}>
 								<div className='title '>{parse(cnt?.title)}</div>

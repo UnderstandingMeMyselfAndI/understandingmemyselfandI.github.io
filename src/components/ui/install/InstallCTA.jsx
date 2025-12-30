@@ -84,9 +84,9 @@ const InstallCTA = () => {
 	}
 
 	//TODO: Install process not working
-	console.log('isInstalled', isInstalled)
-	console.log('isInstallable', isInstallable)
-	console.log('showInstallBtn', showInstallBtn)
+	// console.log('isInstalled', isInstalled)
+	// console.log('isInstallable', isInstallable)
+	// console.log('showInstallBtn', showInstallBtn)
 
 	// const handleOnPwaInstallAvailableEvent = (e) => {
 	// 	console.log('handleOnPwaInstallAvailableEvent', e)

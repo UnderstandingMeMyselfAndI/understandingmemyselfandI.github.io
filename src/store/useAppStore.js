@@ -16,6 +16,8 @@ const useAppStore = create(
 			accData: [],
 			message: '',
 			showSnackbar: false,
+			nss: false, // subscribed to newsletter
+			setNSS: (value) => set(() => ({ nss: value })),
 			isInstallable: true,
 			setIsInstallable: (value) => set(() => ({ isInstallable: value })),
 			isInstalled: false,
@@ -131,6 +133,7 @@ const useAppStore = create(
 				vc: state.vc,
 				lvd: state.lvd,
 				fvd: state.fvd,
+				nss: state.nss,
 			}),
 		},
 	),

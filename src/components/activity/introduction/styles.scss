@@ -58,6 +58,33 @@ section.intro {
 			font-size:variables.$h3_size;
 		}
 	}
+	.sub.sec-1{ 
+		
+		p{
+			padding:1rem 1rem;
+			// width:80%;
+			// margin:2rem auto;
+			font-size:variables.$h3_size;
+			font-weight: 800;
+			font-variation-settings: "wght" 800;
+			display:flex;
+			column-gap:0.75rem;
+			
+			
+		}
+	}
+	p .emoji{
+				width:52px;
+				margin-top:8px;
+				display:block;
+				// outline:1px solid #ccc;
+			}
+	.sub.sec-1 p{
+		text-align:left;
+	}
+	.sub.sec-1 p:has(b){
+		text-align:center;
+	}
 	
 	.sub:nth-child(even)::after{
 		transform: rotate(-3deg) translate(-4.5%, -10%);
