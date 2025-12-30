@@ -29,6 +29,9 @@ export default function AppMenu() {
 	const setActivity = useAppStore((state) => state.setActivity)
 	const activity = useAppStore((state) => state.activity)
 
+	const isInstalled = useAppStore((state) => state.isInstalled)
+	const isInstallable = useAppStore((state) => state.isInstallable)
+
 	const toggleOpen = () => {
 		setOpen(!open)
 	}
@@ -116,7 +119,7 @@ export default function AppMenu() {
 					</li>
 				)}
 
-				{getPWADisplayMode() !== 'fullscreen' && (
+				{!isInstalled && isInstallable && (
 					<li
 						className='new'
 						onClick={() => {

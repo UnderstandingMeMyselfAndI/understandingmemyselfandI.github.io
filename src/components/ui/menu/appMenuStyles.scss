@@ -131,8 +131,7 @@
          z-index:5600;  
          li.strikethrough{
             user-select: none;
-            text-decoration:line-through;
-            // text-decoration-color:var(--lightBlue);
+
             color:rgba(10,10,10,0.3);
             position:relative;
             .register::after{

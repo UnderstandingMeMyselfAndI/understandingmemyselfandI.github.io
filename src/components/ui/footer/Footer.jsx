@@ -1,49 +1,12 @@
-import { useEffect, useState } from 'react'
-import useAppStore from '@/store/useAppStore'
-import ButtonUpdate from 'buttons/update/ButtonUpdate'
+// import { useEffect, useState } from 'react'
+
 import QRCode from 'ui/QRCode/QRCode.jsx'
 import FooterMetadata from 'ui/footer/FooterMetadata.jsx'
-// import InstallPWA from 'ui/buttons/InstallPWA/InstallPWA'
-import InstallCTA from '../install/InstallCTA'
-import { getPWADisplayMode } from '@/utils/isAppInstalled'
-// import Podcasts from 'components/activity/podcasts/Podcasts'
+import UpdateCTA from '../updateCTA/updateCTA'
 
 import './styles.scss'
 function Footer() {
 	// const setNeedUpdate = useAppStore((state) => state.setNeedUpdate)
-	const needUpdate = useAppStore((state) => state.needUpdate)
-	const [needsUpdate, setNeedsUpdate] = useState(false)
-	const [updateMessage, setUpdateMessage] = useState('Check for updates.')
-
-	useEffect(() => {
-		if ('serviceWorker' in navigator) {
-			// 1. Register Service Worker
-			navigator.serviceWorker.register('/service-worker.js').then((reg) => {
-				// Check for updates
-				reg.addEventListener('updatefound', () => {
-					const newWorker = reg.installing
-
-					newWorker.addEventListener('statechange', () => {
-						// Only notify user when worker is fully installed
-						if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-							setUpdateMessage('New version available!')
-							setNeedsUpdate(true)
-							// Note: You can store the 'reg' in state to call .waiting later
-						}
-					})
-				})
-			})
-
-			// 2. Listen for the 'controllerchange' to reload the page
-			let refreshing = false
-			navigator.serviceWorker.addEventListener('controllerchange', () => {
-				if (!refreshing) {
-					window.location.reload()
-					refreshing = true
-				}
-			})
-		}
-	}, [])
 
 	return (
 		<div className='activity footer'>
@@ -63,32 +26,6 @@ function Footer() {
 				</p>
 			</section>
 
-			{/* <section className="days-counter" id="daysCounter">
-				<h3><u>Monitor your progress</u></h3>
-
-				{dates.length > 0 ? (					
-					<>
-						<p>View your dates:</p>	
-						<DaysCounterBtn label="View your dates" />
-					</>
-				) : (
-					<>
-						<p>It can be useful to remind ourselves how far we have come.</p>
-						<p>Set dates that are significant to you.</p>
-						<DaysCounterBtn />
-					</>
-				)}
-
-				<h4><b><u>We respect you</u></b></h4>
-				<p>Any data you provide is stored only on your device and not shared anywhere.<br />You can remove the data at anytime.</p>
-						
-				
-			</section> */}
-
-			{/* <div>
-				<p>The tools we learn to cope with our emotions, thoughts, feelings and mental health are ace, but remembering them can be hard.</p>
-				<p>This app is your toolbox so you can carry those tools around with you for whenever you need them.</p>
-			</div> */}
 			<section id='gratitude'>
 				<div className='big2'>
 					<b>
@@ -179,12 +116,9 @@ function Footer() {
 					<span>&hearts; &#x2661; We would really appreciate it.&#x2661; &hearts; </span>
 				</p>
 			</section>
-			{/* {needsUpdate && ( */}
-			<div className='update-available'>
-				<div>{updateMessage}</div>
-				<ButtonUpdate />
-			</div>
-			{/* )} */}
+
+			<UpdateCTA />
+
 			<FooterMetadata />
 		</div>
 	)

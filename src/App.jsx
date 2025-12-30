@@ -84,6 +84,7 @@ function App() {
 
 					<NewsletterSignUp />
 					<InstallCTA />
+
 					<Footer />
 				</div>
 				<SnackBars />
