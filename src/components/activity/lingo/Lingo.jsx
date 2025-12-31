@@ -8,6 +8,7 @@ const Lingo = () => {
 	const [showDialog, setShowDialog] = useState(false)
 	const [content, setContent] = useState([])
 	const gae = useAppStore((s) => s.gae)
+	console.log('gae', gae)
 	const setPhrase = useAppStore((state) => state.setPhrase)
 	function getContent(id) {
 		if (!id) return
@@ -33,6 +34,8 @@ const Lingo = () => {
 					phrase_name: content?.title,
 					phrase_id: content.id,
 				})
+			} else {
+				console.log('GA not enabled')
 			}
 		}
 	}, [content, setPhrase, gae])

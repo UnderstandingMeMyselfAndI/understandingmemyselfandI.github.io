@@ -3,6 +3,15 @@ import Backdrop from '../backdrop/Backdrop'
 import './styles.scss'
 
 const UmmiAgeGate = () => {
+	const checkAgeInStorage = () => {
+		const ageVerified = localStorage.getItem('ageVerified')
+		if (ageVerified && ageVerified !== true) {
+			localStorage.clear()
+			window.location = 'https://google.com'
+		}
+	}
+	checkAgeInStorage()
+	setTimeout(checkAgeInStorage, 300000) // five minutes
 	return (
 		<AgeGate
 			minAge={18}

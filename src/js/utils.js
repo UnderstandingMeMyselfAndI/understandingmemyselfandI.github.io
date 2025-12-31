@@ -94,7 +94,8 @@ export function smoothScroll(){
 
 export function sanitizeStringForUrl(input) {
 	// Remove non-alphanumeric characters and replace with hyphen
-	const sanitized = input.replace(/[^\w]/g, '-')
+	if (!input) return
+	const sanitized = input?.replace(/[^\w]/g, '-')
 
 	// Replace consecutive hyphens with a single hyphen
 	const singleHyphen = sanitized.replace(/-{2,}/g, '-')

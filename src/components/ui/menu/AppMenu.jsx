@@ -160,13 +160,14 @@ export default function AppMenu() {
 				<li
 					onClick={() => {
 						handleClose()
+
 						if (gae && window.gtag) {
 							window.gtag('event', 'screen_viewed', {
 								app_name: 'Ummi',
 								screen_name: 'Share',
 							})
 						}
-						setActivity(14)
+						setActivity(-1)
 						const el = document.getElementById('share')
 
 						el.scrollIntoView({ behavior: 'smooth', block: 'start' })
