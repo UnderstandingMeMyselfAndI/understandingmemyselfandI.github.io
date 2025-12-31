@@ -8,16 +8,11 @@ const SearchItem = ({ label, id, handleClick }) => {
 	const [clicked, setClicked] = useState(false)
 
 	const spv = useAppStore((state) => state.spv)
-	const gae = useAppStore((s) => s.gae) // Google analytics enabled
+	// const gae = useAppStore((s) => s.gae) // Google analytics enabled
 	
 
 	const clickHandler = () => {
-		if (gae && window.gtag) {
-			window.gtag('event', 'phrase_viewed', {
-				app_name: 'Ummi',
-				phrase: label,
-			})
-		}
+		
 		setClicked(true)
 		handleClick(id)
 	}

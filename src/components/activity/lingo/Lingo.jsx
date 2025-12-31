@@ -7,7 +7,7 @@ import useAppStore from '@/store/useAppStore'
 const Lingo = () => {
 	const [showDialog, setShowDialog] = useState(false)
 	const [content, setContent] = useState([])
-
+	const gae = useAppStore((s) => s.gae)
 	const setPhrase = useAppStore((state) => state.setPhrase)
 	function getContent(id) {
 		if (!id) return
@@ -27,8 +27,15 @@ const Lingo = () => {
 	useEffect(() => {
 		if (content?.title && content.id) {
 			setPhrase([content.id, content?.title])
+
+			if (gae && window.gtag) {
+				window.gtag('event', 'phrase_viewed', {
+					phrase_name: content?.title,
+					phrase_id: content.id,
+				})
+			}
 		}
-	}, [content, setPhrase])
+	}, [content, setPhrase, gae])
 	return (
 		<section className='search-lingo activity' id='lingo'>
 			<Dialog

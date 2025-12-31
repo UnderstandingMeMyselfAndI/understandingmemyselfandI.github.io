@@ -762,7 +762,8 @@ const lingo = [
 		databaseId: 'cG9zdDoyMzc=',
 		id: 237,
 		lingoFieldGroup: {
-			description: null,
+			description:
+				"<p>A Trigger is anything—person, place, thing, feeling, smell, sound, or situation—that sparks a sudden craving, urge, or negative thought pattern tied straight to someone's old negative behaviour.</p>\n<p>When someone hits a trigger, it can be external like driving past the old dealer's place, seeing drug paraphernalia, running into old using buddies, hearing a certain song, or even smells or sounds. Or it can be internal: stress building up, feeling lonely, angry, bored, celebrating too hard, or just that random brain flash of \"good times\" that weren't really good. </p>\n",
 		},
 	},
 	{
