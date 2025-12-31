@@ -119,6 +119,8 @@ const useAppStore = create(
 				// console.trace(`setShowAccCard called with value: ${show}`);
 				set(() => ({ showAccCard: show }))
 			},
+			gae: false,
+			setGAE: (value) => set(() => ({ gae: value })),
 		}),
 		{
 			name: 'ummi',
@@ -143,6 +145,7 @@ const useAppStore = create(
 				version: state.version,
 				lastVersionCheck: state.lastVersionCheck,
 				spv: state.spv,
+				gae: state.gae,
 			}),
 		},
 	),

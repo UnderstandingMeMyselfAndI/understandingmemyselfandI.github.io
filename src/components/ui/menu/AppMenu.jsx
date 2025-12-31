@@ -31,6 +31,7 @@ export default function AppMenu() {
 
 	const isInstalled = useAppStore((state) => state.isInstalled)
 	const isInstallable = useAppStore((state) => state.isInstallable)
+	const gae = useAppStore((s) => s.gae) // Google analytics enabled
 
 	const toggleOpen = () => {
 		setOpen(!open)
@@ -65,7 +66,12 @@ export default function AppMenu() {
 					onClick={() => {
 						setActivity(1)
 						const el = document.getElementById('tools')
-
+						if (gae) {
+							window.gtag('event', 'screen_viewed', {
+								app_name: 'Ummi',
+								screen_name: 'Tools',
+							})
+						}
 						el.scrollIntoView({ behavior: 'smooth', block: 'start' })
 						handleClose()
 					}}
@@ -78,6 +84,12 @@ export default function AppMenu() {
 						handleClose()
 						setActivity(13)
 						const el = document.getElementById('lingo')
+						if (gae) {
+							window.gtag('event', 'screen_viewed', {
+								app_name: 'Ummi',
+								screen_name: 'Lingo & Phrases',
+							})
+						}
 
 						el.scrollIntoView({ behavior: 'smooth', block: 'start' })
 					}}
@@ -112,6 +124,12 @@ export default function AppMenu() {
 						className='new'
 						onClick={() => {
 							handleClose()
+							if (gae) {
+								window.gtag('event', 'screen_viewed', {
+									app_name: 'Ummi',
+									screen_name: 'Days Counter',
+								})
+							}
 							setActivity(2)
 						}}
 					>
@@ -124,6 +142,12 @@ export default function AppMenu() {
 						className=''
 						onClick={() => {
 							handleClose()
+							if (gae) {
+								window.gtag('event', 'screen_viewed', {
+									app_name: 'Ummi',
+									screen_name: 'Install',
+								})
+							}
 							setActivity(-1)
 							const el = document.getElementById('install')
 
@@ -136,6 +160,12 @@ export default function AppMenu() {
 				<li
 					onClick={() => {
 						handleClose()
+						if (gae) {
+							window.gtag('event', 'screen_viewed', {
+								app_name: 'Ummi',
+								screen_name: 'Share',
+							})
+						}
 						setActivity(14)
 						const el = document.getElementById('share')
 
@@ -148,6 +178,12 @@ export default function AppMenu() {
 				<li
 					onClick={() => {
 						handleClose()
+						if (gae) {
+							window.gtag('event', 'screen_viewed', {
+								app_name: 'Ummi',
+								screen_name: 'Newsletter',
+							})
+						}
 						setActivity(15)
 						const el = document.getElementById('newsletter')
 
@@ -160,6 +196,12 @@ export default function AppMenu() {
 				<li
 					onClick={() => {
 						handleClose()
+						if (gae) {
+							window.gtag('event', 'screen_viewed', {
+								app_name: 'Ummi',
+								screen_name: 'Privacy Policy',
+							})
+						}
 						setActivity(10)
 					}}
 				>
@@ -190,6 +232,12 @@ export default function AppMenu() {
 				<li
 					className='new'
 					onClick={() => {
+						if (gae) {
+							window.gtag('event', 'screen_viewed', {
+								app_name: 'Ummi',
+								screen_name: 'Settings',
+							})
+						}
 						setActivity(12)
 						handleClose()
 					}}

@@ -41,15 +41,26 @@ const AcronymExplained = () => {
 	const setActivity = useAppStore((s) => s.setActivity)
 	const [isUserTool, setIsUserTool] = useState(userToolIDs.includes(acronymID))
 
+	const gae = useAppStore((s) => s.gae) // Google analytics enabled
+
 	useEffect(() => {
 		setIsUserTool(userToolIDs.includes(acronymID))
 	}, [getActiveToolIDs, setIsUserTool, acronymID, userToolIDs])
 
 	const contentRef = useRef(null)
 	useEffect(() => {
-		setAcronymData(getAccData(acronymID))
+		const acronymData = getAccData(acronymID)
+		setAcronymData(acronymData)
+
 		contentRef.current.scrollTop = 0
-	}, [acronymID])
+
+		if (gae && acronymData) {
+			window.gtag('event', 'acronym_viewed', {
+				app_name: 'Ummi',
+				screen_name: acronymData.title,
+			})
+		}
+	}, [acronymID, gae])
 
 	useEffect(() => {
 		setOpen(showAccCard)
