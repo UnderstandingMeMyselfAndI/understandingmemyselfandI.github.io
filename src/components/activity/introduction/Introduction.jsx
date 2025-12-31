@@ -2,7 +2,7 @@
 import {useEffect, useState} from "react";
 import useAppStore from "@/store/useAppStore";
 import parse from "html-react-parser";
-
+import DoneOutlineIcon from '@mui/icons-material/DoneOutline'
 // import InstallPWA from "ui/buttons/InstallPWA/InstallPWA";
 // import {getPWADisplayMode} from "@/utils/isAppInstalled";
 // import DaysCounterCTA from "components/activity/DaysCounter/DaysCounterCTA";
@@ -46,7 +46,12 @@ const Introduction = () => {
 							<div key={`intro-${i}`} className={'sub subsection sec-' + i}>
 								<div className='title '>{parse(cnt?.title)}</div>
 								{cnt?.content?.map((para, k) => {
-									return <p key={k}>{parse(para)}</p>
+									return (
+										<div className='point' key={'p-' + k}>
+											{i === 1 && <DoneOutlineIcon className='icon' />}
+											<p key={k}>{parse(para)}</p>
+										</div>
+									)
 								})}
 							</div>
 						)

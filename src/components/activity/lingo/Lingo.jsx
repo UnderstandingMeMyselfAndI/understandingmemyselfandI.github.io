@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import SearchField from '@/components/ui/search/SearchField'
 import Dialog from '@/components/ui/dialog/Dialog'
-import lingo from '@/data/lingo.js'
+// import lingo from '@/data/lingo.js'
+const lingo = lazy(() => import('@/data/lingo.js'))
 import './styles.scss'
 import useAppStore from '@/store/useAppStore'
 const Lingo = () => {
@@ -41,17 +42,19 @@ const Lingo = () => {
 	}, [content, setPhrase, gae])
 	return (
 		<section className='search-lingo activity' id='lingo'>
-			<Dialog
-				show={showDialog}
-				title={content?.title}
-				instruction={content?.lingoFieldGroup?.description}
-				confirmLabel='Close'
-				onConfirm={() => setShowDialog(false)}
-				showCancel={false}
-				onClick={() => setShowDialog(false)}
-			/>
-			<h3>Lingo &amp; Phrases</h3>
-			<SearchField handleClick={handleClick} />
+			<Suspense fallback={<div>Getting Lingo &amp; Phrases...</div>}>
+				<Dialog
+					show={showDialog}
+					title={content?.title}
+					instruction={content?.lingoFieldGroup?.description}
+					confirmLabel='Close'
+					onConfirm={() => setShowDialog(false)}
+					showCancel={false}
+					onClick={() => setShowDialog(false)}
+				/>
+				<h3>Lingo &amp; Phrases</h3>
+				<SearchField handleClick={handleClick} />
+			</Suspense>
 		</section>
 	)
 }
