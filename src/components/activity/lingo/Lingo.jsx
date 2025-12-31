@@ -1,11 +1,14 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import SearchField from '@/components/ui/search/SearchField'
 import Dialog from '@/components/ui/dialog/Dialog'
 import lingo from '@/data/lingo.js'
 import './styles.scss'
+import useAppStore from '@/store/useAppStore'
 const Lingo = () => {
 	const [showDialog, setShowDialog] = useState(false)
 	const [content, setContent] = useState([])
+
+	const setPhrase = useAppStore((state) => state.setPhrase)
 	function getContent(id) {
 		if (!id) return
 
@@ -21,6 +24,11 @@ const Lingo = () => {
 			setShowDialog(true)
 		}
 	}
+	useEffect(() => {
+		if (content?.title && content.id) {
+			setPhrase([content.id, content?.title])
+		}
+	}, [content, setPhrase])
 	return (
 		<section className='search-lingo activity' id='lingo'>
 			<Dialog

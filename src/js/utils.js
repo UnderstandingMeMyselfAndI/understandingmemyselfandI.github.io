@@ -92,5 +92,33 @@ export function smoothScroll(){
 	}
 }
 
+export function sanitizeStringForUrl(input) {
+	// Remove non-alphanumeric characters and replace with hyphen
+	const sanitized = input.replace(/[^\w]/g, '-')
 
-export default {smoothScroll, clamp, isSet, isUndefined, isNull, hashCode, inRange, isNumeric, arrowSVG, debounce, isColorLight, getElementPageOffsetTop,extractYouTubeId,isYouTubeUrl};
+	// Replace consecutive hyphens with a single hyphen
+	const singleHyphen = sanitized.replace(/-{2,}/g, '-')
+
+	// Remove leading and trailing hyphens
+	const trimmed = singleHyphen.trim()
+
+	return trimmed.toLowerCase()
+}
+
+export default {
+	sanitizeStringForUrl,
+	smoothScroll,
+	clamp,
+	isSet,
+	isUndefined,
+	isNull,
+	hashCode,
+	inRange,
+	isNumeric,
+	arrowSVG,
+	debounce,
+	isColorLight,
+	getElementPageOffsetTop,
+	extractYouTubeId,
+	isYouTubeUrl,
+}

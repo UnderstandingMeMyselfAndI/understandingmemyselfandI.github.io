@@ -47,6 +47,10 @@ const useAppStore = create(
 				set((state) => ({ fvd: state.vc === 1 ? v : state.fvd }))
 			},
 
+			phrase: [],
+			setPhrase: (phrase) => {
+				set(() => ({ phrase: phrase }))
+			},
 			daysCounterEnabled: true,
 			enableDaysCounter: (show) => {
 				set(() => ({ daysCounterEnabled: show }))
