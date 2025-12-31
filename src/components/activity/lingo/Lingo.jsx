@@ -8,7 +8,7 @@ const Lingo = () => {
 	const [showDialog, setShowDialog] = useState(false)
 	const [content, setContent] = useState([])
 	const gae = useAppStore((s) => s.gae)
-	console.log('gae', gae)
+
 	const setPhrase = useAppStore((state) => state.setPhrase)
 	function getContent(id) {
 		if (!id) return

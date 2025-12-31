@@ -11,20 +11,18 @@ const NewsletterSignUp = () => {
 	const setNss = useAppStore((s) => s.setNSS)
 
 	useLoadScript('https://sibforms.com/forms/end-form/build/main.js', {
-		onLoad: () => console.log('Script loaded'),
-		onError: () => console.error('Script failed to load'),
+		// onLoad: () => console.log('Script loaded'),
+		// onError: () => console.error('Script failed to load'),
 		async: true,
 		defer: true,
 	})
 
 	const onSuccess = (e) => {
-		console.log('onSuccess')
-		console.log(e)
+
 		setNss(true)
 	}
 	const onError = (e) => {
-		console.log('onError')
-		console.log(e)
+
 	}
 	const [formData, setFormData] = useState({
 		email: '',
@@ -62,9 +60,6 @@ const NewsletterSignUp = () => {
 				body: submitData,
 				mode: 'no-cors', // Required for cross-origin requests
 			})
-
-			// console.log('response')
-			// console.log(response)
 
 			// Since we're using no-cors, we can't read the response
 			// We'll assume success if no error is thrown

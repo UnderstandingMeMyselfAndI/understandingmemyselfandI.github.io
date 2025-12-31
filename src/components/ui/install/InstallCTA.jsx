@@ -35,7 +35,7 @@ const InstallCTA = () => {
 	function handleBeforeInstallPrompt(event) {
 		event.preventDefault() // Prevent automatic prompt
 		// app is installable
-		console.log('handleBeforeInstallPrompt')
+		console.log('isInstallable')
 		setDeferredPrompt(event) // Store the event
 
 		//  Show the install button
@@ -63,13 +63,16 @@ const InstallCTA = () => {
 	})
 
 	const handleClick = async () => {
+		console.log('handleClick')
+		console.log('deferredPrompt', deferredPrompt)
 		if (!deferredPrompt) return
 
 		// pwaInstallRef.current?.showDialog(true)
 
-		// deferredPrompt.prompt() // Show the prompt
+		deferredPrompt.prompt() // Show the prompt
 
 		const { choiceResult } = await deferredPrompt.userChoice
+
 		if (choiceResult.outcome === 'accepted') {
 			// User accepted the PWA installation
 			setShowInstallBtn(false)

@@ -99,59 +99,24 @@
 	],
 	"categories": ["health", "lifestyle", "health & fitness", "education", "reference"],
 	"screenshots": [
-		{
-			"src": "/screenshots/360x740.png",
-			"sizes": "360x740",
-			"type": "image/png"
-		},
-		{
-			"src": "/screenshots/540x720.png",
-			"sizes": "540x720",
-			"type": "image/png"
-		},
-		{
-			"src": "/screenshots/430x932.png",
-			"sizes": "430x932",
-			"type": "image/png"
-		},
-		{
-			"src": "/screenshots/430x932-1.png",
-			"sizes": "430x932",
-			"type": "image/png"
-		},
-		{
-			"src": "/screenshots/430x932-2.png",
-			"sizes": "430x932",
-			"type": "image/png"
-		},
-		{
-			"src": "/screenshots/430x932-3.png",
-			"sizes": "430x932",
-			"type": "image/png"
-		},
-		{
-			"src": "/screenshots/430x932-4.png",
-			"sizes": "430x932",
-			"type": "image/png"
-		},
-		{
-			"src": "/screenshots/430x932-5.png",
-			"sizes": "430x932",
-			"type": "image/png"
-		},
 
 		{
-			"src": "/screenshots/412x915.png",
-			"sizes": "412x915",
+			"src": "/screenshots/412x914-1.png",
+			"sizes": "412x914",
 			"type": "image/png"
 		},
 		{
-			"src": "/screenshots/375x667.png",
-			"sizes": "375x667",
+			"src": "/screenshots/412x914-2.png",
+			"sizes": "412x914",
 			"type": "image/png"
 		},
 		{
 			"src": "/screenshots/412x914-3.png",
+			"sizes": "412x914",
+			"type": "image/png"
+		},
+		{
+			"src": "/screenshots/412x914-4.png",
 			"sizes": "412x914",
 			"type": "image/png"
 		}
