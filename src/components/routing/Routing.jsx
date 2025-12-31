@@ -9,7 +9,7 @@ const appURL = window.location.protocol + '//' + window.location.hostname + (loc
 
 
 function setBrowserHistory(slug, title) {
-     history.pushState({ page: title }, '', slug)
+    if (slug) history.pushState({ page: title }, '', slug)
 }
 function getAcronymID(slug) {
     return toolsData.tools.nodes.find((tool) => {
@@ -39,7 +39,7 @@ const Routing = () => {
 	}
 	useEffect(() => {
 		setTimeout(() => {
-			setBrowserHistory(appURL + '/phrase/' + sanitizeStringForUrl(phrase[1]) + '/' + phrase[0], 'Ummi Phrase - ' + phrase[1])
+			phrase[0] && phrase[1] && setBrowserHistory(appURL + '/phrase/' + sanitizeStringForUrl(phrase[1]) + '/' + phrase[0], 'Ummi Phrase - ' + phrase[1])
 		}, 100)
 	}, [phrase])
 
