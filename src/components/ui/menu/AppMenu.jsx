@@ -66,7 +66,7 @@ export default function AppMenu() {
 					onClick={() => {
 						setActivity(1)
 						const el = document.getElementById('tools')
-						if (gae) {
+						if (gae && window.gtag) {
 							window.gtag('event', 'screen_viewed', {
 								app_name: 'Ummi',
 								screen_name: 'Tools',
@@ -84,7 +84,7 @@ export default function AppMenu() {
 						handleClose()
 						setActivity(13)
 						const el = document.getElementById('lingo')
-						if (gae) {
+						if (gae && window.gtag) {
 							window.gtag('event', 'screen_viewed', {
 								app_name: 'Ummi',
 								screen_name: 'Lingo & Phrases',
@@ -124,7 +124,7 @@ export default function AppMenu() {
 						className='new'
 						onClick={() => {
 							handleClose()
-							if (gae) {
+							if (gae && window.gtag) {
 								window.gtag('event', 'screen_viewed', {
 									app_name: 'Ummi',
 									screen_name: 'Days Counter',
@@ -142,7 +142,7 @@ export default function AppMenu() {
 						className=''
 						onClick={() => {
 							handleClose()
-							if (gae) {
+							if (gae && window.gtag) {
 								window.gtag('event', 'screen_viewed', {
 									app_name: 'Ummi',
 									screen_name: 'Install',
@@ -160,7 +160,7 @@ export default function AppMenu() {
 				<li
 					onClick={() => {
 						handleClose()
-						if (gae) {
+						if (gae && window.gtag) {
 							window.gtag('event', 'screen_viewed', {
 								app_name: 'Ummi',
 								screen_name: 'Share',
@@ -178,7 +178,7 @@ export default function AppMenu() {
 				<li
 					onClick={() => {
 						handleClose()
-						if (gae) {
+						if (gae && window.gtag) {
 							window.gtag('event', 'screen_viewed', {
 								app_name: 'Ummi',
 								screen_name: 'Newsletter',
@@ -196,7 +196,7 @@ export default function AppMenu() {
 				<li
 					onClick={() => {
 						handleClose()
-						if (gae) {
+						if (gae && window.gtag) {
 							window.gtag('event', 'screen_viewed', {
 								app_name: 'Ummi',
 								screen_name: 'Privacy Policy',
@@ -232,7 +232,7 @@ export default function AppMenu() {
 				<li
 					className='new'
 					onClick={() => {
-						if (gae) {
+						if (gae && window.gtag) {
 							window.gtag('event', 'screen_viewed', {
 								app_name: 'Ummi',
 								screen_name: 'Settings',

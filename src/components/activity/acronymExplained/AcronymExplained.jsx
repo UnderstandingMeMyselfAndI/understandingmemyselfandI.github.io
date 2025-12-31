@@ -54,7 +54,7 @@ const AcronymExplained = () => {
 
 		contentRef.current.scrollTop = 0
 
-		if (gae) {
+		if (gae && window.gtag) {
 			window.gtag('event', 'acronym_viewed', {
 				screen_name: acronymData?.title,
 				app_name: 'Ummi',

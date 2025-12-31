@@ -12,7 +12,7 @@ const SearchItem = ({ label, id, handleClick }) => {
 	
 
 	const clickHandler = () => {
-		if (gae) {
+		if (gae && window.gtag) {
 			window.gtag('event', 'phrase_viewed', {
 				app_name: 'Ummi',
 				phrase: label,
