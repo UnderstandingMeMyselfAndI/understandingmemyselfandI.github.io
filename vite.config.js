@@ -31,7 +31,7 @@ export default defineConfig({
 	},
 	build: {
 		minify: 'terser',
-		cssMinify: false,
+		cssMinify: true,
 		outDir: './docs',
 		emptyOutDir: true, // also necessary,
 		commonjsOptions: { transformMixedEsModules: true }, // Change
