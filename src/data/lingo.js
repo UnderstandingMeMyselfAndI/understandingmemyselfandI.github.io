@@ -1,5 +1,4 @@
 const lingo = [
-
 	{
 		title: 'AA',
 		databaseId: 'cG9zdDoyODc=',
@@ -24,7 +23,7 @@ const lingo = [
 		id: 274,
 		lingoFieldGroup: {
 			description:
-				'<p>accountability means taking honest ownership of your actions, choices, and their consequences, both past and present, and being answerable to yourself and a support system (like sponsors, therapists, or groups) for your recovery plan and sobriety goals, which empowers you to make positive changes, admit mistakes, and build trust. </p>\n',
+				'<p>Accountability means taking honest ownership of your actions, choices, and their consequences, both past and present, and being answerable to yourself and a support system (like sponsors, therapists, or groups) for your recovery plan and sobriety goals, which empowers you to make positive changes, admit mistakes, and build trust. </p>\n',
 		},
 	},
 	{

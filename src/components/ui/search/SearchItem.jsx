@@ -9,10 +9,7 @@ const SearchItem = ({ label, id, handleClick }) => {
 
 	const spv = useAppStore((state) => state.spv)
 	const gae = useAppStore((s) => s.gae) // Google analytics enabled
-	useEffect(() => {
-		console.log('SearchItem spc', spv)
-		// setClicked(false)
-	}, [spv])
+	
 
 	const clickHandler = () => {
 		if (gae) {
