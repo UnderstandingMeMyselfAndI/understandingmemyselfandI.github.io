@@ -56,7 +56,7 @@ const AcronymExplained = () => {
 
 		if (gae && window.gtag) {
 			window.gtag('event', 'acronym_viewed', {
-				screen_name: acronymData?.title,
+				acronym_name: acronymData?.title,
 				app_name: 'Ummi',
 			})
 		}
