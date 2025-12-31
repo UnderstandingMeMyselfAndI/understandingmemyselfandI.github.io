@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import lingo from '@/data/lingo.js'
-import { useInView, useOnInView } from 'react-intersection-observer'
+import { useOnInView } from 'react-intersection-observer'
+import SearchItem from './searchItem'
 import PropTypes from 'prop-types'
 import './styles.scss'
 function searchLingo(query) {
@@ -66,9 +67,7 @@ const SearchField = ({ handleClick }) => {
 			<input className='' type='text' placeholder='Search Lingo & Phrases...' value={searchTerm} onChange={handleChange} />
 			<div className='lingo-list'>
 				{filteredLingo.map((item) => (
-					<div key={item.id} onClick={() => handleClick(item.id)}>
-						{item.title}
-					</div>
+					<SearchItem key={item.id} label={item.title} id={item.id} handleClick={handleClick} />
 				))}
 				{filteredLingo.length === 0 && <div className='no-results'>No results found</div>}
 			</div>

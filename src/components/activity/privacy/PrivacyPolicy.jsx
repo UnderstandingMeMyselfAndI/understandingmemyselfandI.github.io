@@ -13,15 +13,17 @@ const PrivacyPolicy = () => {
 	const setActivity = useAppStore((s) => s.setActivity)
 
 	const activityObj = activities.find((activity) => (activity.url === name ? activity.id : null))
+	const el = document.getElementById('privacy')
 
 	useEffect(() => {
 		setOpen(activityObj.id === activity)
-	}, [activity, activityObj])
+	}, [activity, activityObj, el])
 
 	const handleCCPAClick = () => {
 		setActivity(12)
 	}
 	const handleClose = () => {
+		handleScrollTop()
 		setOpen(false)
 		setActivity(-1)
 	}
@@ -289,9 +291,12 @@ const PrivacyPolicy = () => {
 						<li>For EEA/UK Residents: You can complain to your supervisory authority.</li>
 					</ul> */}
 				</section>
-				<div className='scrollTop'>
-					<button className='btn' onClick={() => handleScrollTop()}>
+				<div className='scrollTop btns'>
+					<button className='btn' onClick={() => handleScrollTop('smooth')}>
 						Back to top
+					</button>
+					<button className='btn' onClick={() => handleClose()}>
+						Close
 					</button>
 				</div>
 			</div>

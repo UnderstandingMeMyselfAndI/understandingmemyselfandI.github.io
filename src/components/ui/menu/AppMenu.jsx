@@ -121,7 +121,7 @@ export default function AppMenu() {
 
 				{!isInstalled && isInstallable && (
 					<li
-						className='new'
+						className=''
 						onClick={() => {
 							handleClose()
 							setActivity(-1)

@@ -1,687 +1,823 @@
 const lingo = [
 
-					{
-						title: 'AA',
-						databaseId: 'cG9zdDoyODc=',
-						id: 287,
-						lingoFieldGroup: {
-							description:
-								'AA (Alcoholics Anonymous) is a free, global support group where people with alcohol problems help each other stay sober by sharing experiences, using a structured 12-Step program, and focusing on living one day at a time, emphasizing community, honesty, and spiritual growth (which can mean any "higher power"). It\'s a fellowship for mutual support, not a religious organization, providing a safe space to find hope and practical tools for recovery. ',
-							fullDescription:
-								'<p>Core Concepts of AA<br />\nFellowship: People with drinking problems support each other, recognizing they can&#8217;t control alcohol alone.<br />\nThe 12 Steps: A set of guiding principles for personal recovery, involving admitting powerlessness, making amends, and seeking spiritual guidance.<br />\n&#8220;Higher Power&#8221;: A personal spiritual concept, not necessarily God, that helps members find strength beyond themselves.<br />\nOne Day at a Time: Focusing on staying sober just for today, as a way to manage a long-term challenge.<br />\nAnonymity: A core principle to protect members, allowing them to share freely without fear of public exposure.<br />\nSponsorship: More experienced members (sponsors) guide newcomers through the steps and program.<br />\nWhat it looks like in action<br />\nMeetings: Regular gatherings (in-person or online) where members share stories, listen, and offer encouragement.<br />\nSupport: A network of people who &#8220;get it,&#8221; reducing isolation and shame.<br />\nGrowth: A path to self-awareness, honesty, and developing healthier coping mechanisms.<br />\nEssentially, AA provides a supportive community and a proven path (the 12 Steps) for alcoholics to find freedom from drinking and live happier, more fulfilling lives. </p>\n',
-						},
-					},
-					{
-						title: 'Accountability',
-						databaseId: 'cG9zdDoyNzQ=',
-						id: 274,
-						lingoFieldGroup: {
-							description:
-								'accountability means taking honest ownership of your actions, choices, and their consequences, both past and present, and being answerable to yourself and a support system (like sponsors, therapists, or groups) for your recovery plan and sobriety goals, which empowers you to make positive changes, admit mistakes, and build trust. ',
-							fullDescription:
-								'<p>For people in recovery, accountability is about being transparent with themselves and others, following through on commitments, and accepting responsibility to prevent relapse and foster growth.</p>\n<h4>\nKey aspects of accountability in recovery:</h4>\n<p><strong>Honesty with Self &amp; Others:</strong> Admitting the full extent of people&#8217;s addiction and behaviors to themselves and being truthful in their relationships.<br />\n<strong>Ownership of Actions:</strong> Accepting responsibility for their choices, acknowledging mistakes, and understanding their impact.<br />\n<strong>Commitment to a Plan:</strong> Developing and sticking to a recovery plan, including attending meetings, therapy, and self-care activities.<br />\n<strong>Making Amends:</strong> Repairing harm to others through apologies and restitution where possible.<br />\n<strong>Support System:</strong> Relying on sponsors, groups (like AA/NA), and professionals to check in and provide guidance.<br />\n<strong>Identifying Triggers:</strong> Honestly assessing high-risk situations, people, or emotions (like HALT: Hungry, Angry, Lonely, Tired) and having plans to manage them.</p>\n<h4>\nHow it helps:</h4>\n<p><strong>Prevents Relapse:</strong> Helps people recognize warning signs and address them proactively.<br />\n<strong>Builds Self-Respect:</strong> Reclaims power by moving from a victim mentality to an active participant in your healing.<br />\n<strong>Heals Relationships:</strong> Rebuilds trust through honesty and consistent positive action.<br />\n<strong>Empowers Growth: F</strong>osters discipline and dedication needed for lasting change, not guilt or shame.</p>\n',
-						},
-					},
-					{
-						title: 'ACT',
-						databaseId: 'cG9zdDoyNDE=',
-						id: 241,
-						lingoFieldGroup: {
-							description:
-								'ACT stands for Acceptance and Commitment Therapy. It is a behavioral therapy that helps individuals live a rich and meaningful life by accepting difficult thoughts and feelings, rather than trying to avoid or eliminate them. ',
-							fullDescription:
-								'<p>The core idea is that struggling against pain and cravings often makes them worse (known as &#8220;experiential avoidance&#8221;), leading people back to substance use as a way to cope in the short term, despite long-term negative consequences.</p>\n<p>ACT encourages a shift in perspective through its two main components:<br />\n<strong>Acceptance:</strong> This means making room for unpleasant feelings (like cravings, guilt, or anxiety) and acknowledging them without judgment or trying to suppress them. It is about allowing yourself to feel discomfort without letting it control your actions.<br />\n<strong>Commitment (to action):</strong> Once a person accepts their internal experiences, they identify their deepest personal values (e.g., family, health, personal growth) and commit to taking concrete actions and setting goals that align with those values, even when it&#8217;s difficult.</p>\n<p>The ultimate goal of ACT is to develop psychological flexibility &#8211; the ability to adapt your behavior to the demands of the situation in a way that is consistent with your values and long-term goals for recovery. It helps individuals change their relationship with their thoughts (a process called cognitive defusion), seeing them as just thoughts rather than absolute truths that must be obeyed.</p>\n',
-						},
-					},
-					{
-						title: 'Autopilot',
-						databaseId: 'cG9zdDoyNTk=',
-						id: 259,
-						lingoFieldGroup: {
-							description:
-								'"Autopilot" refers to the automatic, habitual way the brain drives someone to behaving without fully thinking about it or choosing it consciously.\r\n\r\nIt\'s like driving a familiar route home where you arrive without remembering the trip - your mind is on "automatic mode." \r\n\r\nIn addiction, triggers (like stress, certain places, people, or even a time of day) can switch on this autopilot, leading people to crave or use before they even realize what\'s happening. These habits are wired deep in the brain from repeated past use, making them feel effortless and hard to interrupt.',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Box Breathing',
-						databaseId: 'cG9zdDoyODY=',
-						id: 286,
-						lingoFieldGroup: {
-							description: null,
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Breathing Meditation',
-						databaseId: 'cG9zdDoyODU=',
-						id: 285,
-						lingoFieldGroup: {
-							description: null,
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'CA',
-						databaseId: 'cG9zdDoyODk=',
-						id: 289,
-						lingoFieldGroup: {
-							description:
-								'CA is the common abbreviation for Cocaine Anonymous. It is a global, community-based, 12-Step program that provides peer support for individuals seeking to recover from addiction to cocaine and all other mind-altering substances. ',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Catastrophising',
-						databaseId: 'cG9zdDoyNDc=',
-						id: 247,
-						lingoFieldGroup: {
-							description:
-								'Is when the worst possible outcome from a situation is thought to happen, blowing small worries out of proportion into major disasters, like a snowball rolling downhill.',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'CBT',
-						databaseId: 'cG9zdDoyNDI=',
-						id: 242,
-						lingoFieldGroup: {
-							description:
-								"CBT (Cognitive Behavioral Therapy) is a popular talking therapy that helps people identify and change the negative thought patterns and behaviors that fuel addiction, teaching healthier coping skills to manage triggers and prevent relapse by linking thoughts, feelings, and actions to develop lasting change. It's an evidence-based approach focusing on practical strategies for real-life situations, often used alongside other treatments. ",
-							fullDescription:
-								'<h4>How CBT works in addiction recovery</h4>\n<p><strong>Identifies connections:</strong> Teaches you how your thoughts, emotions, and behaviors are interconnected and influence your substance use.<br />\n<strong>Challenges negative thoughts:</strong> Helps you recognize distorted or unrealistic thinking that leads to cravings and relapse.<br />\n<strong>Develops coping skills:</strong> Provides practical strategies to manage triggers, stress, and difficult emotions without resorting to substances.<br />\n<strong>Goal-oriented:</strong> A short-term therapy focused on current problems, helping you find healthier ways to think, feel, and behave.</p>\n<h4>\nKey components</h4>\n<p><strong>Trigger identification:</strong> Recognizing people, places, or feelings that prompt substance use.<br />\n<strong>Cognitive restructuring:</strong> Changing unhelpful thought patterns.<br />\n<strong>Behavioral skills:</strong> Learning new ways to respond to triggers (e.g., relapse prevention, social skills).<br />\nBenefits<br />\n<strong>Reduces relapse:</strong> Improves abstinence rates and prevents relapse by building resilience.<br />\n<strong>Treats co-occurring disorders:</strong> Also effective for anxiety, depression, and other issues often seen with addiction.<br />\n<strong>Empowering:</strong> Gives you a sense of control by making you more aware of your choices.</p>\n',
-						},
-					},
-					{
-						title: 'Cognitive',
-						databaseId: 'cG9zdDoyNTc=',
-						id: 257,
-						lingoFieldGroup: {
-							description:
-								'"Cognitive" is a word that relates to the mental processes in your brain - like thinking, learning, remembering, understanding, problem-solving, and paying attention.\r\nIn simple terms, it\'s all about how your mind works to take in information, make sense of it, and use it to guide what you do.',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Cognitive bias',
-						databaseId: 'cG9zdDoyNTg=',
-						id: 258,
-						lingoFieldGroup: {
-							description:
-								'A cognitive bias is a common mistake or shortcut in the way our brains think and make decisions.\r\nIt\'s like a "thinking trap" that happens because our minds try to process information quickly, as a result seeing things inaccurately, ignoring important details, or jumping to wrong conclusions.',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Cognitive Restructuring',
-						databaseId: 'cG9zdDoyNzE=',
-						id: 271,
-						lingoFieldGroup: {
-							description:
-								'Cognitive restructuring is a process of learning to identify, challenge, and change harmful or irrational thought patterns that contribute to substance use. It means training your brain to think differently about triggers and stressors, breaking the link between negative thoughts and the urge to use substances. ',
-							fullDescription:
-								'<h4>The Process of Cognitive Restructuring</h4>\n<p>The process of cognitive restructuring typically involves a few key steps (often summarized as &#8220;Catch it, Check it, Change it&#8221;):</p>\n<p><strong>Identify Negative Thoughts:</strong> The first step is becoming aware of &#8220;automatic thoughts&#8221; or cognitive distortions that pop up, especially in situations that trigger stress or cravings. Examples include &#8220;I can&#8217;t handle stress without using&#8221; or &#8220;One slip means I&#8217;m a total failure&#8221;.<br />\n<strong>Challenge Distorted Thoughts:</strong> Once identified, these thoughts are questioned for their accuracy and logic. A therapist might use Socratic questioning to help you examine the evidence for and against your beliefs. Is the thought based on facts or just feelings?<br />\n<strong>Replace with Balanced Thoughts:</strong> The final step involves developing alternative, more balanced, and realistic thoughts to replace the unhelpful ones. For example, the thought &#8220;One slip means I&#8217;m a total failure&#8221; could be replaced with &#8220;I had a setback, but I learned about a new trigger and can plan better next time&#8221;.<br />\n<strong>Practice and Reinforce:</strong> Through consistent practice, these new thinking patterns become more automatic, helping you build emotional resilience and effective coping skills to manage challenges without resorting to substance abuse.</p>\n<h4>\nBenefits in Addiction Recovery</h4>\n<p><strong>Reduces Cravings:</strong> By addressing the thoughts that lead to cravings, cognitive restructuring helps diminish their intensity and control.<br />\n<strong>Builds Coping Skills:</strong> It equips individuals with practical, lifelong skills for managing stress, emotions, and problems in a healthy way.<br />\n<strong>Prevents Relapse:</strong> By changing the core thought processes linked to addiction, it significantly lowers the risk of relapse.<br />\n<strong>Improves Self-Esteem:</strong> Replacing negative self-talk with a more balanced view helps rebuild confidence and a sense of self-worth.</p>\n',
-						},
-					},
-					{
-						title: 'Confidential',
-						databaseId: 'cG9zdDoyOTQ=',
-						id: 294,
-						lingoFieldGroup: {
-							description:
-								'Confidentiality means that your personal information, medical history, and everything you discuss in therapy or support groups will be kept private and not shared with others without your explicit permission. This creates a safe, judgment-free space that is essential for building the trust needed for open and honest communication in treatment. ',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'D.O.C',
-						databaseId: 'cG9zdDoyMzQ=',
-						id: 234,
-						lingoFieldGroup: {
-							description:
-								'<p dir="auto">D.O.C. stands for "Drug of Choice"-  the specific substance or behaviour that has led someone to seek help from the recovery services. D.O.C.s can range from illegal drugs, alcohol to gambling and shopping  - anything that provided a reward that has now become a problem.</p>',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'DBT',
-						databaseId: 'cG9zdDoyNDM=',
-						id: 243,
-						lingoFieldGroup: {
-							description:
-								"DBT stands for Dialectical Behavior Therapy, a type of therapy that teaches skills to manage intense emotions, tolerate distress, and improve relationships, helping people break the cycle of addiction by addressing underlying emotional triggers and developing healthier coping mechanisms instead of using substances. It's a supportive, cognitive-behavioral approach focused on balancing acceptance (of current feelings) with change (learning new skills). ",
-							fullDescription:
-								'<h4>How DBT helps with addiction:</h4>\n<p><strong>Emotional Regulation:</strong> Teaches you to understand and manage overwhelming feelings that often lead to relapse.<br />\n<strong>Distress Tolerance:</strong> Provides strategies to get through painful moments and crises without resorting to drugs or alcohol.<br />\n<strong>Mindfulness:</strong> Focuses on present-moment awareness, helping you notice triggers and urges without acting on them.<br />\n<strong>Interpersonal Effectiveness:</strong> Builds skills for healthier communication and relationships, reducing the need for substances to cope with social difficulties.<br />\n<strong>Urge Surfing:</strong> Helps you &#8220;ride the wave&#8221; of cravings until they pass, rather than giving in.</p>\n<h4>Key components of DBT for addiction:</h4>\n<p><strong>Individual Therapy:</strong> One-on-one sessions with a therapist.<br />\n<strong>Group Skills Training:</strong> Learning and practicing the four core modules (Mindfulness, Distress Tolerance, Emotion Regulation, Interpersonal Effectiveness) in a group setting.<br />\n<strong>Phone Coaching:</strong> Brief calls with therapists between sessions for immediate support.<br />\n<strong>Commitment:</strong> Involves practice and honesty, treating addiction as a complex issue requiring new skills.</p>\n<p>DBT is effective because it addresses the core emotional dysregulation that fuels addictive behaviors, making it a powerful tool for sustained recovery.</p>\n',
-						},
-					},
-					{
-						title: 'Detox',
-						databaseId: 'cG9zdDoyODA=',
-						id: 280,
-						lingoFieldGroup: {
-							description: null,
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Dialectic',
-						databaseId: 'cG9zdDoyNzY=',
-						id: 276,
-						lingoFieldGroup: {
-							description: null,
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Dialectical',
-						databaseId: 'cG9zdDoyNzc=',
-						id: 277,
-						lingoFieldGroup: {
-							description: null,
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Dissociation',
-						databaseId: 'cG9zdDoyNjI=',
-						id: 262,
-						lingoFieldGroup: {
-							description:
-								'Dissociation is a mental process where you feel disconnected from your thoughts, feelings, memories, or sense of self, often as a way for the mind to cope with overwhelming stress or trauma.',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Emotional discomfort',
-						databaseId: 'cG9zdDoyNjU=',
-						id: 265,
-						lingoFieldGroup: {
-							description:
-								'Emotional discomfort means experiencing unpleasant feelings like unease, stress, anxiety, or sadness that signal something is "off" internally, disrupting your well-being and signaling a need to address underlying issues like stress, loss, trauma, or relationship problems, rather than just a physical ache.',
-							fullDescription:
-								'<p>It&#8217;s your brain&#8217;s way of alerting you to a psychological imbalance, prompting you to seek resolution or adaptation, and can range from mild irritation to intense agony, affecting daily functioning.</p>\n<p>Key Aspects of Emotional Discomfort:<br />\nInternal Warning: It&#8217;s like emotional pain that warns you something needs attention, similar to how physical pain signals injury.<br />\nRange of Feelings: Includes unease, distress, anxiety, frustration, guilt, shame, hopelessness, or deep suffering.<br />\nCauses: Can stem from major life changes (job loss, grief), chronic stress (financial, work), past trauma, relationship conflicts, or feelings of inadequacy.<br />\nImpact: Disrupts your ability to cope, leading to behavioral changes (withdrawal, irritability), physical symptoms (fatigue, headaches, sleep issues), or difficulty concentrating.<br />\nPurpose: Signals a deviation from your normal state of equilibrium, prompting you to find ways to cope or solve the problem.</p>\n<p>Examples of Triggers:<br />\nFeeling overwhelmed by work or finances.<br />\nDealing with a loss or major life transition.<br />\nExperiencing rejection or failure.<br />\nLingering effects of past traumatic events.</p>\n<p>How it Differs from Physical Pain:<br />\nWhile it can have physical manifestations (e.g., stomach pain, tension), its root cause is psychological or situational, not an injury.<br />\nIt can linger or replay in your mind, unlike a temporary physical ache.</p>\n',
-						},
-					},
-					{
-						title: 'Emotional regulation',
-						databaseId: 'cG9zdDoyNjM=',
-						id: 263,
-						lingoFieldGroup: {
-							description:
-								'Emotional regulation is the ability to manage and influence your own emotional experiences—how you feel, how intensely you feel, and how you express those feelings—to align with your goals and adapt to situations.',
-							fullDescription:
-								'<p>Emotional regulation is the ability to manage and influence your own emotional experiences—how you feel, how intensely you feel, and how you express those feelings—to align with your goals and adapt to situations. It involves processes like changing your thoughts (rethinking a situation), modifying behaviors (taking a break), or adjusting physiological responses, using both conscious and unconscious strategies for better mental health and functioning.</p>\n<h4>Key aspects of emotional regulation:</h4>\n<p><strong>Monitoring &amp; Modifying:</strong> It&#8217;s about monitoring your emotional state and then initiating, inhibiting, or modulating your internal feelings, thoughts, and behaviors.</p>\n<p><strong>Flexibility:</strong> It allows you to respond to demands flexibly, rather than having an overwhelming or inappropriate reaction, enabling you to be spontaneous when needed and delay reactions when necessary.</p>\n<p><strong>Strategies:</strong> Techniques range from healthy coping (mindfulness, exercise) to less healthy ones (avoidance, suppressing feelings).<br />\nImpact: Effective regulation is crucial for mental health, relationships, and overall adjustment, while deficits are linked to various psychological issues.</p>\n<h4>Examples of strategies:</h4>\n<p><strong>Cognitive Reappraisal:</strong> Changing how you think about a situation to alter its emotional impact (e.g., finding a silver lining).<br />\n<strong>Behavioral Changes:</strong> Removing yourself from a stressful situation or engaging in calming activities like walking.<br />\n<strong>Mindfulness:</strong> Focusing on the present moment without judgment.</p>\n',
-						},
-					},
-					{
-						title: 'Emotional resilience',
-						databaseId: 'cG9zdDoyNjY=',
-						id: 266,
-						lingoFieldGroup: {
-							description:
-								'Emotional resilience is the ability to adapt, cope, and bounce back from stress, adversity, and challenging life events, not by avoiding difficulty, but by managing intense emotions and returning to a stable state, a skill that can be learned and strengthened through practices like mindfulness, social connection, and positive thinking.',
-							fullDescription:
-								'<div>It&#8217;s about staying mentally strong and flexible when things get tough, allowing you to move forward rather than getting stuck in negative feelings.</div>\n<div>Key aspects of emotional resilience:</div>\n<ul>\n<li><strong>Adaptability:</strong>You can adjust your responses to unexpected or demanding situations.</li>\n<li><strong>Recovery:</strong>You can process difficult emotions (like sadness or frustration) and return to your baseline emotional state after a crisis.</li>\n<li><strong>Not about avoiding stress:</strong> It&#8217;s about how you handle stress and adversity, not about being immune to it.</li>\n<li><strong>A learned skill:</strong>It&#8217;s not a fixed trait; anyone can develop it through practice.</li>\n</ul>\n<div>What it looks like in action:</div>\n<ul>\n<li><strong>Viewing challenges as temporary:</strong>Believing problems are manageable, not overwhelming.</li>\n<li><strong>Emotional awareness:</strong> Understanding your feelings and their causes.</li>\n<li><strong>Positive coping:</strong> Using strategies like mindfulness, exercise, and strong relationships.</li>\n<li><strong>Maintaining perspective:</strong>Finding ways to recharge and maintain well-being even during chaos.</li>\n</ul>\n',
-						},
-					},
-					{
-						title: 'Empathetic',
-						databaseId: 'cG9zdDoyOTM=',
-						id: 293,
-						lingoFieldGroup: {
-							description:
-								'Empathy is simply the ability to understand and share the feelings of another person (or yourself) without judgment, essentially "walking in their shoes". It helps foster connections and trust, which are vital for healing and maintaining long-term sobriety. ',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Euphoric recall',
-						databaseId: 'cG9zdDoyNTY=',
-						id: 256,
-						lingoFieldGroup: {
-							description:
-								"Euphoric recall is a common thinking habit where people tend to remember past experiences - especially enjoyable ones - in an overly positive way. They focus on the good parts and forget or downplay the bad parts.\r\n\r\nThis is especially common when thinking about past substance use (like drugs or alcohol), and it's one reason why people in recovery might struggle with cravings or relapse.",
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Gratitude',
-						databaseId: 'cG9zdDoyNDQ=',
-						id: 244,
-						lingoFieldGroup: {
-							description: 'Is when someone is thankful for something. Gratitude is also one of the twelve steps.',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Grounding',
-						databaseId: 'cG9zdDoyNTI=',
-						id: 252,
-						lingoFieldGroup: {
-							description:
-								'Grounding is a way of someone helping themselves to gain some distance from their thoughts, feelings, and memories by bringing them back to the present moment. It helps them to get back in touch with what is happening around them right now, and to train their mind and brain to stay in the present.',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Groups',
-						databaseId: 'cG9zdDoyNDA=',
-						id: 240,
-						lingoFieldGroup: {
-							description: null,
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Guided Meditation',
-						databaseId: 'cG9zdDoyODM=',
-						id: 283,
-						lingoFieldGroup: {
-							description: null,
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Impulsive',
-						databaseId: 'cG9zdDozMDI=',
-						id: 302,
-						lingoFieldGroup: {
-							description:
-								'Being impulsive is the tendency to act quickly on sudden urges or desires without fully considering the potential negative consequences. It means acting "without thinking" or giving little to no forethought to the outcome of an action. ',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Inclusive',
-						databaseId: 'cG9zdDoyOTk=',
-						id: 299,
-						lingoFieldGroup: {
-							description: 'Including everyone. especially including and accommodating people who have previously been excluded.',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Integrity',
-						databaseId: 'cG9zdDoyOTU=',
-						id: 295,
-						lingoFieldGroup: {
-							description:
-								"Integrity is simply about being an honest, whole person whose actions match their words, especially when no one is looking. It's about rebuilding trust with yourself and others by consistently doing the right thing and taking full responsibility for your actions. ",
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Judgemental',
-						databaseId: 'cG9zdDoyOTI=',
-						id: 292,
-						lingoFieldGroup: {
-							description:
-								'Being judgmental means having a highly critical, inflexible, and often negative attitude toward yourself or others, which is a major barrier to healing and seeking help. ',
-							fullDescription:
-								'<p>Here is a simple breakdown of the meaning:<br />\nHarsh Criticism: It involves forming quick, often unfair, opinions or labels (e.g., &#8220;addict,&#8221; &#8220;weak,&#8221; &#8220;hopeless&#8221;) about a person&#8217;s character rather than understanding their complex medical condition.<br />\nLack of Empathy: A judgmental attitude ignores the complexities of a person&#8217;s life, background, and circumstances that contributed to their addiction.<br />\nStigma and Shame: Judgment is a core component of addiction stigma, which can lead to intense feelings of shame and worthlessness for the person with the substance use disorder (SUD). This often prevents them from seeking or staying in treatment because they fear being looked down upon.<br />\nBinary Thinking: It typically involves seeing things in black-and-white terms (good or bad, right or wrong) rather than acknowledging the nuances and challenges of the recovery journey.<br />\nBarrier to Support: A judgmental environment, whether from family, friends, or even healthcare professionals, makes it difficult for individuals to be vulnerable, honest, and supported in their recovery efforts.<br />\nUltimately, a non-judgmental approach in addiction recovery focuses on compassion, understanding, and support to create an environment where individuals feel safe to heal and grow, without the added burden of shame and criticism. </p>\n',
-						},
-					},
-					{
-						title: 'Lapse',
-						databaseId: 'cG9zdDoyNDU=',
-						id: 245,
-						lingoFieldGroup: {
-							description:
-								'A Blip is the same as a Lapse  - when someone returns to old negative behaviours for a short period of time (around 2-3 days) then returns to recovery.',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Lapse',
-						databaseId: 'cG9zdDoyMzY=',
-						id: 236,
-						lingoFieldGroup: {
-							description: 'A Lapse which is when someone returns to their old negative behaviours for a short period of time (around 2-3 days) but returns to recovery.',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Meditation',
-						databaseId: 'cG9zdDoyODI=',
-						id: 282,
-						lingoFieldGroup: {
-							description: null,
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Mentor',
-						databaseId: 'cG9zdDoyNTQ=',
-						id: 254,
-						lingoFieldGroup: {
-							description:
-								'In addiction recovery, a mentor is a guide, often someone with lived experience in sobriety, who provides support, accountability, and practical advice, helping a less experienced person navigate challenges, build coping skills, prevent relapse, and stay motivated by sharing their own recovery journey and insights. Mentors act as trusted advisors, offering non-judgmental support and helping mentees find hope and build a new life, distinct from but complementary to formal therapy or 12-Step sponsors. ',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Mindfulness',
-						databaseId: 'cG9zdDoyNjg=',
-						id: 268,
-						lingoFieldGroup: {
-							description:
-								'Is the practice of paying full attention to the present moment, noticing your thoughts, feelings, body, and surroundings without judgment, and accepting them as they are, rather than getting lost in worries about the past or future. It\'s about being aware and engaged in "what\'s happening right now," helping you feel calmer and less reactive. ',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'NA',
-						databaseId: 'cG9zdDoyODg=',
-						id: 288,
-						lingoFieldGroup: {
-							description:
-								'NA is an abbreviation for Narcotics Anonymous. It is a global, community-based, non-profit fellowship of men and women for whom drugs have become a major problem, who meet regularly to help each other stay clean. ',
-							fullDescription:
-								'<p>Key Concepts in Simple Terms<br />\nFellowship and Mutual Support: NA is a place where people with lived experience of addiction come together to support each other in a welcoming, non-judgmental space. Members share their struggles and successes, providing peer support and a sense of belonging.<br />\nAbstinence-Based Program: The program encourages complete abstinence from all drugs, including alcohol, as the foundation for recovery. The only requirement for membership is a desire to stop using drugs.<br />\nThe 12 Steps: NA is based on a 12-step program, adapted from Alcoholics Anonymous, which provides a structured approach to recovery. These steps involve principles such as honesty, self-reflection, making amends for past wrongs, and spiritual development.<br />\nSpirituality, Not Religion: The program mentions a &#8220;Higher Power&#8221; that can restore sanity and offer strength, but this is not tied to any specific religion. Members are free to define this power in their own way (e.g., God, the group itself, nature).<br />\nAnonymity: A core principle of NA is anonymity, which helps create a safe and confidential environment where members can feel comfortable opening up and sharing their experiences without fear of judgment.<br />\nService and Sponsorship: Experienced members, known as sponsors, guide newcomers through the 12 steps. Helping others (service work) is considered an essential part of a member&#8217;s own recovery journey.<br />\nNA is a free program, entirely self-supporting through voluntary contributions from members, and is not affiliated with any political, religious, or law enforcement groups. </p>\n',
-						},
-					},
-					{
-						title: 'Non-judgemental',
-						databaseId: 'cG9zdDoyOTE=',
-						id: 291,
-						lingoFieldGroup: {
-							description:
-								'Being non-judgmental means offering support and empathy without blame, shame, or condemnation. It involves seeing the person as an individual with a treatable health condition, rather than someone with a moral failing or character flaw. ',
-							fullDescription:
-								'<p>Key Concepts in Simple Terms<br />\nAcceptance, Not Agreement: It means accepting the person as they are and validating their feelings and experiences, even if you don&#8217;t agree with their past actions or choices.<br />\nFocus on Facts and Solutions: Instead of judging past behaviors as &#8220;good&#8221; or &#8220;bad,&#8221; the focus is on the consequences of those behaviors and working together on practical solutions for the future.<br />\nEmpathy and Understanding: It involves putting yourself in the other person&#8217;s shoes to understand their struggles, fears, and beliefs, which helps build trust and encourages open communication.<br />\nPerson-First Language: Using words that respect the individual&#8217;s dignity and humanity, such as &#8220;a person experiencing addiction&#8221; or &#8220;a person with a substance use disorder,&#8221; rather than stigmatizing labels like &#8220;addict&#8221; or &#8220;junkie&#8221;.<br />\nSafety and Trust: The goal is to create a safe space where the person feels secure enough to be vulnerable, discuss difficult subjects like trauma or guilt, ask for help, and try new coping strategies without fear of criticism or rejection.<br />\nUltimately, a non-judgmental approach in addiction recovery helps replace shame with self-worth, which is a powerful motivator for lasting change and healing. </p>\n',
-						},
-					},
-					{
-						title: 'Peer Support',
-						databaseId: 'cG9zdDoyNTM=',
-						id: 253,
-						lingoFieldGroup: {
-							description:
-								'Peer support is when people with shared life experiences (like long-term health conditions or mental health challenges) help each other through one-on-one connections or groups, using their own experiences to build understanding, confidence, and self-management skills in a safe, non-judgmental space, focusing on empowerment and recovery rather than just clinical treatment.',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Playing The Tape Forward',
-						databaseId: 'cG9zdDoyNTA=',
-						id: 250,
-						lingoFieldGroup: {
-							description:
-								'"Playing the tape forward" is a visualization technique, especially in addiction recovery, where you mentally walk through the entire, realistic consequences of a specific action (like having "just one" drink or drug), not just the immediate pleasure, to see the negative end result (hangover, guilt, relapse, money & relationship problems) and strengthen yourself to avoid it. It\'s about honest when thinking about what will happen and the chain reaction, including all the bad parts, to break cycles of temptation and make better choices for long-term well-being. ',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Positive Self-Talk',
-						databaseId: 'cG9zdDoyNjk=',
-						id: 269,
-						lingoFieldGroup: {
-							description:
-								'Positive self-talk is like having a kind, encouraging friend in your head, replacing negative thoughts with optimistic and supportive ones to boost confidence, motivation, and resilience when facing challenges, essentially telling yourself "I can do this" instead of "I\'ll fail". ',
-							fullDescription:
-								'<p>What it is:<br />\nYour Inner Voice: It&#8217;s the constant stream of thoughts and internal dialogue you have with yourself throughout the day, often without realizing it.<br />\nConstructive &amp; Affirming: It involves intentionally using encouraging words (like &#8220;I&#8217;m learning from this&#8221; or &#8220;I&#8217;ve got this&#8221;) to build yourself up, rather than tearing yourself down.</p>\n<p>How it helps:</p>\n<ul>\n<li><strong>Boosts Confidence:</strong> Helps you believe in your abilities.</li>\n<li><strong>Manages Stress:</strong> Allows you to reframe difficult situations with a healthier mindset.</li>\n<li><strong>Increases Motivation:</strong> Keeps you going when things get tough.</li>\n<li><strong>Builds Resilience:</strong> Helps you see setbacks as temporary and opportunities to grow.</li>\n</ul>\n<p><strong>Examples:</strong></p>\n<p><strong>Instead of:</strong> &#8220;I&#8217;m going to mess this up.&#8221;<br />\n<strong>Try:</strong> &#8220;This is hard, but I can handle it one step at a time&#8221;.</p>\n<p><strong>Instead of:</strong> &#8220;I can&#8217;t do this.&#8221;<br />\n<strong>Try:</strong> &#8220;I&#8217;ve succeeded with similar things before, and I&#8217;ll figure this out&#8221;.</p>\n',
-						},
-					},
-					{
-						title: 'Psychological Flexibility',
-						databaseId: 'cG9zdDoyNzM=',
-						id: 273,
-						lingoFieldGroup: {
-							description:
-								"Psychological Flexibility is the ability to adapt a person's'  behavior to the demands of the situation in a way that is consistent with a person's' values and long-term goals for recovery.",
-							fullDescription:
-								'<h4>Key Concepts in Simple Terms</h4>\n<p><strong>Acceptance:</strong> Being willing to experience the full range of human emotions, including the difficult ones, without judgment or trying to make them go away. This is the opposite of the experiential avoidance that often drives addiction.<br />\n<strong>Being Present (Mindfulness):</strong> Paying attention to the here-and-now, rather than dwelling on past mistakes or worrying about the future. This allows a person to respond to the current situation effectively.<br />\n<strong>Cognitive Defusion:</strong> Stepping back from unhelpful thoughts and seeing them as just thoughts (words in the head), not absolute truths or commands to act. For example, instead of &#8220;I am a failure,&#8221; the thought becomes, &#8220;I&#8217;m having the thought that I&#8217;m a failure&#8221;.<br />\n<strong>Values Clarification:</strong> Identifying what truly matters most in life (e.g., family, health, personal growth, career goals) to provide a clear direction and <strong>purpose for recovery.</strong><br />\n<strong>Committed Action:</strong> Taking purposeful steps and engaging in healthy behaviors that are consistent with one&#8217;s values, even when it is difficult or uncomfortable. This means continuing toward goals despite setbacks or cravings.</p>\n<h4>Why It Matters in Recovery</h4>\n<p>Psychological flexibility helps individuals in recovery:</p>\n<p><strong>Navigate Cravings:</strong> Acknowledge cravings and urges without automatically acting on them.<br />\n<strong>Cope with Stress:</strong> Manage stress and setbacks in healthier ways, reducing the likelihood of relapse.<br />\n<strong>Build Resilience:</strong> Develop the emotional strength to bounce back from challenges.<br />\n<strong>Reduce Shame:</strong> Accept that difficult thoughts and feelings are a normal part of the human experience, reducing self-blame.</p>\n<p>In essence, psychological flexibility is about being adaptable and responding to life&#8217;s demands in a way that helps a person build a rich and meaningful life, rather than being controlled by the struggle to avoid discomfort. This skill is often a core focus of Acceptance and Commitment Therapy (ACT) in addiction treatment.</p>\n',
-						},
-					},
-					{
-						title: 'Reasonable Mind',
-						databaseId: 'cG9zdDoyNzI=',
-						id: 272,
-						lingoFieldGroup: {
-							description:
-								'The "reasonable mind" refers to the part of the mind that uses logic, facts, and objective analysis to make decisions, without being controlled by intense emotions or immediate urges. ',
-							fullDescription:
-								'<p>The reasonable mind helps to:</p>\n<p><strong>Look at the facts</strong> of a situation rather than just how you feel about it.<br />\n<strong>Think logically</strong> about the consequences of your actions, especially how giving in to an urge might affect your long-term recovery goals.<br />\n<strong>Plan and problem-solve</strong> in a structured, step-by-step way.</p>\n<p>This concept is often used in Dialectical Behavior Therapy (DBT), which views human thinking in three states:</p>\n<p><strong>Emotional Mind:</strong> Decisions are driven purely by intense feelings, which can lead to impulsive actions (like using a substance when overwhelmed).<br />\n<strong>Reasonable Mind:</strong> Decisions are based only on facts and logic, potentially ignoring important values or emotional needs, leading to a detached or &#8220;numb&#8221; feeling.<br />\n<strong>Wise Mind:</strong> The goal is to integrate both the emotional and reasonable minds to make balanced, effective decisions that honor both your feelings and your goals.</p>\n<p>Ultimately, fostering the reasonable mind helps you balance the strong emotions and impulses associated with addiction, working towards the Wise Mind state where you can make thoughtful choices that support lasting recovery.</p>\n',
-						},
-					},
-					{
-						title: 'Rehab',
-						databaseId: 'cG9zdDoyODE=',
-						id: 281,
-						lingoFieldGroup: {
-							description: null,
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Relapse',
-						databaseId: 'cG9zdDoyMzU=',
-						id: 235,
-						lingoFieldGroup: {
-							description:
-								'<p dir="auto">Relapse is when a person in recovery returns to old negative behaviours over a period of days (usually 10 or more).</p>\r\n<p dir="auto">Not to be confused with "Lapse" which is when someone returns to their old negative behaviours for a short period of time (around 2-3 days) but returns to recovery.</p>',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Resilience',
-						databaseId: 'cG9zdDoyNzU=',
-						id: 275,
-						lingoFieldGroup: {
-							description: null,
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Respectful',
-						databaseId: 'cG9zdDoyOTc=',
-						id: 297,
-						lingoFieldGroup: {
-							description:
-								'Respectful in addiction recovery means treating all people as valued individuals with the right to lead their own healing journey, free from judgment, shame, or stigma. It involves using supportive words and actions that honor their identity, choices, and experiences. ',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Ruminating',
-						databaseId: 'cG9zdDoyNDY=',
-						id: 246,
-						lingoFieldGroup: {
-							description:
-								'Getting stuck in repetitive, negative thought loops about past mistakes, current problems, or future worries, dwelling on them without finding solutions, which worsens distress, anxiety, and depression.',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Self-regulation',
-						databaseId: 'cG9zdDoyNDk=',
-						id: 249,
-						lingoFieldGroup: {
-							description:
-								'Self-regulation is the process by which a person monitors and controls their attention, thoughts, emotions, and behaviors to achieve goals and adapt to changing circumstances.',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'SMART',
-						databaseId: 'cG9zdDoyMzk=',
-						id: 239,
-						lingoFieldGroup: {
-							description:
-								'SMART stands for Self-Management And Recovery Training. It is a secular, science-based support program for addiction recovery that empowers individuals to manage their own behaviors and recovery journey using evidence-based psychological tools. ',
-							fullDescription:
-								'<p>SMART therapy helps people overcome addiction by focusing on practical skills and personal responsibility, rather than relying on the concept of a &#8220;higher power&#8221; or the idea that one is powerless over their addiction, which are common in 12-step programs like AA or NA.</p>\n<p>Key Principles (The 4-Point Program)<br />\nThe program is built around a four-point plan, and participants can work on these in any order that suits their personal needs:</p>\n<p>Building and Maintaining Motivation Strategies to identify and strengthen personal reasons for change and commit to sobriety.<br />\nCoping with Urges Techniques to identify triggers and manage cravings and impulses effectively, using methods like distraction.<br />\nManaging Thoughts, Feelings, and Behaviors Learning to recognize and change self-defeating thought patterns and emotional responses that lead to substance use, often using tools from Cognitive Behavioral Therapy (CBT).<br />\nLiving a Balanced Life Focusing on developing a healthy and fulfilling lifestyle that supports long-term recovery, including physical health, positive outlook, and personal responsibilities.</p>\n<p>Key Differences from 12-Step Programs</p>\n<p>Feature SMART Recovery Programs  vs 12-Step Programs (AA/NA)</p>\n<p><strong>SMART:</strong> Foundation Science-based (CBT, REBT, MI) and secular.</p>\n<p><strong>12-Step Programs:</strong> Spiritually grounded, often referencing a &#8220;higher power&#8221;.</p>\n<p>&nbsp;</p>\n<p><strong>SMART:</strong> View of Addiction A behavioral problem or dysfunctional habit that can be overcome.</p>\n<p><strong>12-Step Programs:</strong> A chronic disease that is treatable but never cured (lifelong process).</p>\n<p>&nbsp;</p>\n<p><strong>SMART:</strong> Personal Power Emphasizes self-empowerment and personal control over choices.</p>\n<p><strong>12-Step Programs:</strong> Begins with admitting powerlessness over addiction and surrendering control.</p>\n<p>&nbsp;</p>\n<p><strong>SMART:</strong> Structure Flexible 4-Point program; participants can &#8220;graduate&#8221;.</p>\n<p><strong>12-Step Programs:</strong> Sequential 12 steps that are worked in order; ongoing attendance is encouraged indefinitely.</p>\n<p>&nbsp;</p>\n<p><strong>SMART:</strong> Labels Avoids labels like &#8220;addict&#8221; or &#8220;alcoholic&#8221; to reduce stigma.</p>\n<p><strong>12-Step Programs:</strong> Uses specific language and labels within the program.</p>\n<p>SMART Recovery can be used for any type of addictive behavior (drugs, alcohol, gambling, overeating, etc.) and is often integrated into professional treatment programs. For more information or to find meetings, you can visit the <a href="https://smartrecovery.org/what-is-smart-recovery">SMART Recovery website</a>.</p>\n',
-						},
-					},
-					{
-						title: 'Sponsor',
-						databaseId: 'cG9zdDoyNTU=',
-						id: 255,
-						lingoFieldGroup: {
-							description:
-								'In 12-step addiction recovery, a sponsor is a trusted, experienced member who mentors a newcomer, guiding them through the steps, offering support, accountability, and a safe space to share, acting as a role model for sobriety by "walking the talk" and helping prevent relapse through personal, non-professional guidance. They share firsthand knowledge, provide encouragement, and help apply program principles to build a new life, not as a therapist, but as a peer who understands the journey. ',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Staying in the moment',
-						databaseId: 'cG9zdDoyNjE=',
-						id: 261,
-						lingoFieldGroup: {
-							description:
-								'Staying in the moment means focusing your full attention on the "here and now," fully experiencing your current activity and surroundings, rather than dwelling on past regrets or worrying about the future, a practice often called mindfulness. It\'s about being fully present, engaged, and aware of your thoughts, feelings, and sensations as they happen, leading to less stress and more enjoyment.',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Supportive',
-						databaseId: 'cG9zdDoyOTg=',
-						id: 298,
-						lingoFieldGroup: {
-							description:
-								'Supportive means consistently offering encouragement, guidance, and practical help while setting healthy boundaries to promote accountability and personal growth. ',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Sympathetic',
-						databaseId: 'cG9zdDozMDE=',
-						id: 301,
-						lingoFieldGroup: {
-							description:
-								'Being sympathetic means showing you understand and care about someone\'s problems or feelings, often by being kind and supportive, like a "sympathetic ear". It also means you might agree with or support a cause or idea, such as being "sympathetic to a proposal". ',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Take your thoughts to court',
-						databaseId: 'cG9zdDoyMzM=',
-						id: 233,
-						lingoFieldGroup: {
-							description:
-								'"Take Your Thoughts to Court" is a sharp recovery move anyone can use when their brain starts telling addictive lies, cravings, or negative self-talk that\'s pushing them towards a slip. Instead of buying the thought hook, line, and sinker, the person drags it into an imaginary courtroom and puts it on trial like a shady witness.',
-							fullDescription:
-								'<p dir="auto">Instead of buying the thought hook, line, and sinker, the person drags it into an imaginary courtroom and puts it on trial like a shady witness.</p>\n<p dir="auto">This tool turns the person using it into the judge, prosecutor, and defense all at once: They gather evidence for and against the thought—&#8221;Is this really true? What&#8217;s the proof? What happens if I believe it? What&#8217;s the cost if I act on it?&#8221;—then cross-examine it hard until any flaws show up.</p>\n<p dir="auto">If the thought screams &#8220;One drink won&#8217;t hurt,&#8221; they hit back with the facts: past relapses, lost trust, health hits, all the real fallout and drama.</p>\n<p dir="auto">It&#8217;s a powerful tool because it flips automatic believing into critical thinking, exposing the addiction voice as the liar it is. The more someone runs this courtroom drill, the quicker they spot BS thoughts and shut them down before they gain traction.</p>\n<p dir="auto">Anyone in recovery can build this habit &#8211; if they practice it on small thoughts first, it&#8217;s in their toolbox for when big urges hit.</p>\n',
-						},
-					},
-					{
-						title: 'The 12 Steps',
-						databaseId: 'cG9zdDoyMzg=',
-						id: 238,
-						lingoFieldGroup: {
-							description:
-								'The 12 Steps are a set of guiding principles for addiction recovery, emphasizing admitting powerlessness over addiction, seeking help from a Higher Power (defined personally), taking honest self-inventory, making amends for past wrongs, and helping others in recovery to create lasting change and a spiritual awakening.',
-							fullDescription:
-								'<p>It&#8217;s a path from acknowledging the problem and needing help, to self-reflection, repairing relationships, and ultimately finding purpose by assisting others.</p>\n<p>The 12 Steps in Simple Terms:</p>\n<p><strong>Admit Powerlessness:</strong> Admit you can&#8217;t control your addiction; life&#8217;s unmanageable.<br />\n<strong>Believe in a Higher Power:</strong> Believe something greater than yourself can help restore you (God, nature, a spiritual force).<br />\n<strong>Turn Control Over:</strong> Decide to let this Higher Power guide your life.<br />\n<strong>Take a Moral Inventory:</strong> Honestly look at your past actions, weaknesses, and resentments.<br />\n<strong>Admit Wrongs:</strong> Confess your inventory to yourself, a Higher Power, and another person.<br />\n<strong>Get Ready to Change:</strong> Become willing to let go of your character defects.<br />\n<strong>Ask for Help:</strong> Humbly ask your Higher Power to remove your shortcomings.<br />\n<strong>List People Harmed:</strong> Make a list of everyone you&#8217;ve hurt.<br />\n<strong>Make Amends:</strong> Repair relationships where possible (unless it harms someone).<br />\n<strong>Keep Inventory:</strong> Continue self-reflection and admit wrongs promptly.<br />\n<strong>Seek Spiritual Growth:</strong> Use prayer/meditation to improve your connection with your Higher Power.<br />\n<strong>Help Others:</strong> Carry the message and practice these principles in all areas of life.</p>\n<p>Key Ideas:</p>\n<p><strong>Peer Support:</strong> It&#8217;s not meant to be done alone; it relies on group support and sponsors (mentors).<br />\n<strong>Spirituality, Not Religion:</strong> The &#8220;Higher Power&#8221; is personal and doesn&#8217;t require specific religious belief.<br />\n<strong>Action-Oriented:</strong> It&#8217;s a practical guide for changing behavior, not just thinking.<br />\n<strong>Living a New Way:</strong> The goal is a &#8220;spiritual awakening&#8221; leading to a healthier, purpose-driven life.</p>\n<p>Why It Works For Some People<br />\n<strong>Structured Path:</strong> Provides clear guidance for recovery.<br />\n<strong>Reduces Isolation:</strong> Fosters a sense of belonging through shared experience.<br />\n<strong>Changes Thinking:</strong> Helps transform negative thought patterns and behaviors.<br />\n<strong>Promotes Accountability:</strong> Encourages honesty, integrity, and taking responsibility.<br />\n<strong>Spiritual Foundation:</strong> Offers a new purpose and connection beyond the addiction.</p>\n',
-						},
-					},
-					{
-						title: 'The F*ck It Button',
-						databaseId: 'cG9zdDoyMzA=',
-						id: 230,
-						lingoFieldGroup: {
-							description:
-								'<p dir="auto">The F*ck It Button is the bad twin of the Pause Button. - It\'s the imaginary switch anyone can mentally press when frustration, cravings, or dark thoughts crank up to max.</p>\r\n<p dir="auto">When someone hits it, logic gets tossed, consequences go ignored, and they dive straight into whatever impulse feels good or destructive in the moment,  no looking back.</p>\r\n<p dir="auto">This dangerous move flips everything from control to old behaviours: Instead of taking a breath to weigh goals, long-term wins, or the real cost, it blasts out a loud "Screw it all—I\'m doing this" and green-lights caving in to the urges, snapping at people, relapsing, or self-sabotaging all the progress they\'ve been working to build.</p>\r\n<p dir="auto">It\'s straight-up toxic even though it feels tempting when the pressure\'s on—the F*ck It Button hands the keys to raw impulses and lets small triggers explode into huge regrets. The more someone presses it, the deeper the bad habits dig in. If they spot it rising and they can shut it down fast with the Pause Button or other tools so they stay running the show.</p>',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'The middle path',
-						databaseId: 'cG9zdDoyNjA=',
-						id: 260,
-						lingoFieldGroup: {
-							description:
-								'The Middle Path (also called the Middle Way) is a simple idea: live with balance by avoiding extremes on either side.\r\n\r\nIt’s about moderation in everyday life: not swinging too far into any rigid belief, habit, or reaction. It encourages staying open-minded, using common sense and wisdom, and finding flexible, realistic ways to handle challenges right here and now - without getting stuck in "all or nothing" thinking.\r\nThis balanced approach helps reduce suffering, make better decisions, and live more calmly and effectively.\r\n\r\nIt has its origins in  Buddhism, where it originally meant steering clear of two opposites - one extreme of chasing constant pleasure and indulgence, and the other of punishing yourself with strict self-denial (like extreme fasting or hardship). Instead, you choose a practical, moderate path that leads to clear understanding and inner peace.\r\n',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'The Pause Button',
-						databaseId: 'cG9zdDoyMzE=',
-						id: 231,
-						lingoFieldGroup: {
-							description:
-								'<p dir="auto">The Pause Button is an imaginary tool anyone can pull out when life’s getting chaotic and old urges, cravings, or negative thoughts are pushing hard to take the wheel. When someone mentally hits that button, the whole scene freezes - giving them a chance to breathe deep, ground themselves, and pull back from the edge instead of diving headfirst into a bad call and making moves they later regret.</p>\r\n<p dir="auto">This tool buys the person some real time to get their thoughts straight: What are their big goals and targets? Where are they really trying to end up down the road? And what kind of damage happens in if they cave to the craving, spiral into dark thoughts, or act on that urge right now? It\'s like stepping out of the storm for a second, planting feet on solid ground, scoping out smarter options, and picking the move that protects the progress they\'ve been building.</p>\r\n<p dir="auto">Straight-up powerful even though it\'s simple—the Pause Button lets anyone flip impulsive reactions into intentional plays that keep them on track. The more someone practices using it in times it could have saved them from times they regret, the faster it kicks in when the pressure\'s real. They hold all the power; using the Pause Button turns little temptations into nothing more than background noise.</p>\r\n<p dir="auto">Keep choosing wise, that button\'s always there when they need it.</p>',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Therapies',
-						databaseId: 'cG9zdDoyNzk=',
-						id: 279,
-						lingoFieldGroup: {
-							description: null,
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Therapy',
-						databaseId: 'cG9zdDoyNzg=',
-						id: 278,
-						lingoFieldGroup: {
-							description: null,
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Thoughtfulness',
-						databaseId: 'cG9zdDoyOTY=',
-						id: 296,
-						lingoFieldGroup: {
-							description:
-								'Thoughtfulness means being mindful, deliberate, and considerate in your actions and interactions, both toward yourself and others. It is the opposite of the impulsive, self-centered, and reactive behaviors often associated with active addiction. ',
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Trigger',
-						databaseId: 'cG9zdDoyMzc=',
-						id: 237,
-						lingoFieldGroup: {
-							description: null,
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Urge Surfing',
-						databaseId: 'cG9zdDoyNDg=',
-						id: 248,
-						lingoFieldGroup: {
-							description:
-								"Urge surfing is a technique for managing cravings or impulses by observing them non-judgmentally, like a surfer riding a wave that rises, peaks, and then subsides, without acting on the urge. \r\n\r\nInstead of fighting or suppressing the urge (which can make it stronger), you notice its physical sensations, allow it to intensify, and then watch it naturally fade away, typically within 30 minutes. It's used for addictions, overeating, emotional outbursts, and other unwanted behaviors to build self-regulation.",
-							fullDescription:
-								'<p>In Simple Terms:</p>\n<p><strong>Notice the Urge:</strong> A feeling or craving starts to build (the wave starts to form).<br />\n<strong>Don&#8217;t Fight or Feed It:</strong> Avoid trying to suppress it or distract yourself completely; instead, gently focus on it without judgment.<br />\n<strong>Ride the Wave:</strong> Observe the sensations in your body as the urge grows stronger, reaches its peak, and then begins to diminish, just like a real wave.<br />\n<strong>Let It Pass:</strong> The urge will naturally decrease in intensity and eventually disappear if you don&#8217;t give in.</p>\n<p>Why it Works:</p>\n<p><strong>Breaks the Cycle:</strong> It stops the automatic reaction of acting on the urge.<br />\n<strong>Builds Resilience:</strong> Each time you &#8220;surf&#8221; successfully, you strengthen your ability to handle urges in the future.<br />\n<strong>Reduces Power:</strong> Recognizing urges as temporary reduces their control over you.</p>\n<p>This technique is useful for addictive behaviors, emotional outbursts, and any unwanted compulsive actions, helping you choose healthier responses.</p>\n',
-						},
-					},
-					{
-						title: 'Walking Meditation',
-						databaseId: 'cG9zdDoyODQ=',
-						id: 284,
-						lingoFieldGroup: {
-							description: null,
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'Wise Mind',
-						databaseId: 'cG9zdDoyNjc=',
-						id: 267,
-						lingoFieldGroup: {
-							description:
-								"Wise Mind involves identifying the current state of mind, and using both emotions and rationality to respond effectively to situations. It's a DBT skill. DBT offers practical skills, such as urge surfing, or ride the wave, to manage cravings and urges.",
-							fullDescription: null,
-						},
-					},
-					{
-						title: 'XA',
-						databaseId: 'cG9zdDoyOTA=',
-						id: 290,
-						lingoFieldGroup: {
-							description:
-								'XA is simple shorthand used to represent "Everything Anonymous". It is a general term for any and all of the various 12-step mutual aid fellowships, such as Alcoholics Anonymous (AA), Narcotics Anonymous (NA), Cocaine Anonymous (CA), Gamblers Anonymous, and others. ',
-							fullDescription: null,
-						},
-					},
+	{
+		title: 'AA',
+		databaseId: 'cG9zdDoyODc=',
+		id: 287,
+		lingoFieldGroup: {
+			description:
+				'<p>AA (Alcoholics Anonymous) is a free, global support group where people with alcohol problems help each other stay sober by sharing experiences, using a structured 12-Step program, and focusing on living one day at a time, emphasizing community, honesty, and spiritual growth (which can mean any "higher power"). It\'s a fellowship for mutual support, not a religious organization, providing a safe space to find hope and practical tools for recovery. </p>\n',
+		},
+	},
+	{
+		title: 'Acceptance',
+		databaseId: 'cG9zdDozMDY=',
+		id: 306,
+		lingoFieldGroup: {
+			description:
+				"<p>Acceptance is where someone learns to pick and choose what they fully accept versus what they push hard to change - knowing some things are out of their control and fighting them just wastes energy, while others are worth the work to change.</p>\n<p>When someone practices acceptance, they get real about what's changeable - like their daily choices, reactions to triggers, building new habits, or reaching out for support - and what isn't, like past mistakes, other people's opinions, old trauma facts, or the fact that cravings might pop up sometimes. </p>\n<p>They accept the unchangeable without bitterness (dropping the \"why me\" rage), so they free up power to focus on the stuff they can actually move like staying on track today or handling rough feelings without using.</p>\n",
+		},
+	},
+	{
+		title: 'Accountability',
+		databaseId: 'cG9zdDoyNzQ=',
+		id: 274,
+		lingoFieldGroup: {
+			description:
+				'<p>accountability means taking honest ownership of your actions, choices, and their consequences, both past and present, and being answerable to yourself and a support system (like sponsors, therapists, or groups) for your recovery plan and sobriety goals, which empowers you to make positive changes, admit mistakes, and build trust. </p>\n',
+		},
+	},
+	{
+		title: 'ACT',
+		databaseId: 'cG9zdDoyNDE=',
+		id: 241,
+		lingoFieldGroup: {
+			description:
+				'<p>ACT stands for Acceptance and Commitment Therapy. It is a behavioral therapy that helps individuals live a rich and meaningful life by accepting difficult thoughts and feelings, rather than trying to avoid or eliminate them. </p>\n',
+		},
+	},
+	{
+		title: 'Autopilot',
+		databaseId: 'cG9zdDoyNTk=',
+		id: 259,
+		lingoFieldGroup: {
+			description:
+				'<p>"Autopilot" refers to the automatic, habitual way the brain drives someone to behaving without fully thinking about it or choosing it consciously.</p>\n<p>It\'s like driving a familiar route home where you arrive without remembering the trip - your mind is on "automatic mode." </p>\n<p>In addiction, triggers (like stress, certain places, people, or even a time of day) can switch on this autopilot, leading people to crave or use before they even realize what\'s happening. These habits are wired deep in the brain from repeated past use, making them feel effortless and hard to interrupt.</p>\n',
+		},
+	},
+	{
+		title: 'Blip',
+		databaseId: 'cG9zdDoyNDU=',
+		id: 245,
+		lingoFieldGroup: {
+			description:
+				'<p>A Blip is the same as a Lapse  - when someone returns to old negative behaviours for a short period of time (around 2-3 days) then returns to recovery.</p>\n',
+		},
+	},
+	{
+		title: 'Box Breathing',
+		databaseId: 'cG9zdDoyODY=',
+		id: 286,
+		lingoFieldGroup: {
+			description:
+				'<p>Box breathing is a simple, anywhere-you-go technique someone uses to calm the nervous system fast when cravings, anxiety, panic, or negative emotions start cranking up and threatening to derail their plans.</p>\n<p>When someone does box breathing, they breathe in a perfect "box" pattern - four equal sides: </p>\n<p>Inhale deep through the nose for a count of 4,<br />\nHold that breath for 4,<br />\nExhale slow through the mouth for 4,<br />\nThen hold empty for 4. </p>\n<p>Repeat the cycle a few times (like 4-6 rounds), focusing just on the counts and the air moving in and out. It\'s like hitting a reset button on the body\'s stress mode, dropping heart rate, quieting racing thoughts, and pulling them back from the edge.</p>\n',
+		},
+	},
+	{
+		title: 'Breathing Meditation',
+		databaseId: 'cG9zdDoyODU=',
+		id: 285,
+		lingoFieldGroup: {
+			description:
+				'<p>Breathing meditation is a practice where someone sits quietly, locks their focus on their breath - feeling the air come in through the nose, filling the lungs, and rolling out slow - and uses it as an anchor to steady the mind .</p>\n<p>When someone does breathing meditation, they just notice the natural rhythm: inhale deep into the belly, pause for a beat, exhale long and slow, maybe counting (like 4 in, 4 hold, 6 out) or silently saying "rise" on the in-breath and "fall" on the out. </p>\n<p>If the mind wanders to cravings, shame, or drama, they gently spot it without judging and bring attention back to the breath - no fighting, just returning.</p>\n',
+		},
+	},
+	{
+		title: 'CA',
+		databaseId: 'cG9zdDoyODk=',
+		id: 289,
+		lingoFieldGroup: {
+			description:
+				'<p>CA is the common abbreviation for Cocaine Anonymous. It is a global, community-based, 12-Step program that provides peer support for individuals seeking to recover from addiction to cocaine and all other mind-altering substances. </p>\n',
+		},
+	},
+	{
+		title: 'Catastrophising',
+		databaseId: 'cG9zdDoyNDc=',
+		id: 247,
+		lingoFieldGroup: {
+			description:
+				'<p>Is when the worst possible outcome from a situation is thought to happen, blowing small worries out of proportion into major disasters, like a snowball rolling downhill.</p>\n',
+		},
+	},
+	{
+		title: 'CBT',
+		databaseId: 'cG9zdDoyNDI=',
+		id: 242,
+		lingoFieldGroup: {
+			description:
+				"<p>CBT (Cognitive Behavioral Therapy) is a popular talking therapy that helps people identify and change the negative thought patterns and behaviors that fuel addiction, teaching healthier coping skills to manage triggers and prevent relapse by linking thoughts, feelings, and actions to develop lasting change. It's an evidence-based approach focusing on practical strategies for real-life situations, often used alongside other treatments. </p>\n",
+		},
+	},
+	{
+		title: 'Cognitive',
+		databaseId: 'cG9zdDoyNTc=',
+		id: 257,
+		lingoFieldGroup: {
+			description:
+				'<p>"Cognitive" is a word that relates to the mental processes in your brain - like thinking, learning, remembering, understanding, problem-solving, and paying attention.<br />\nIn simple terms, it\'s all about how your mind works to take in information, make sense of it, and use it to guide what you do.</p>\n',
+		},
+	},
+	{
+		title: 'Cognitive Bias',
+		databaseId: 'cG9zdDoyNTg=',
+		id: 258,
+		lingoFieldGroup: {
+			description:
+				'<p>Cognitive Bias is a common mistake or shortcut in the way our brains think and make decisions.<br />\nIt\'s like a "thinking trap" that happens because our minds try to process information quickly, as a result seeing things inaccurately, ignoring important details, or jumping to wrong conclusions.</p>\n',
+		},
+	},
+	{
+		title: 'Cognitive Restructuring',
+		databaseId: 'cG9zdDoyNzE=',
+		id: 271,
+		lingoFieldGroup: {
+			description:
+				'<p>Cognitive restructuring is a process of learning to identify, challenge, and change harmful or irrational thought patterns that contribute to substance use. It means training your brain to think differently about triggers and stressors, breaking the link between negative thoughts and the urge to use substances. </p>\n',
+		},
+	},
+	{
+		title: 'Confidential',
+		databaseId: 'cG9zdDoyOTQ=',
+		id: 294,
+		lingoFieldGroup: {
+			description:
+				'<p>Confidentiality means that your personal information, medical history, and everything you discuss in therapy or support groups will be kept private and not shared with others without your explicit permission. This creates a safe, judgment-free space that is essential for building the trust needed for open and honest communication in treatment. </p>\n',
+		},
+	},
+	{
+		title: 'Connection is the opposite of addiction',
+		databaseId: 'cG9zdDozMTg=',
+		id: 318,
+		lingoFieldGroup: {
+			description:
+				'<p>"Connection is the opposite of addiction" is the profound truth highlighting how the core of addiction isn\'t just the using - it\'s the deep isolation, disconnection, and loneliness that can make someone feel cut off from people, purpose, and even themselves.</p>\n<p>When someone hears or lives this phrase, it clicks that addiction thrives in the dark while recovery blooms through genuine connection: opening up in meetings, building trust with a sponsor or friends, reconnecting with family, feeling part of a community, or even linking to something bigger like nature, creativity, or spirituality. </p>\n<p>The more someone reaches out instead of isolating, the less power the addiction has, because human bonds give the belonging and support the substance was falsely promising.</p>\n',
+		},
+	},
+	{
+		title: 'Cross-addiction',
+		databaseId: 'cG9zdDozMjU=',
+		id: 325,
+		lingoFieldGroup: {
+			description:
+				'<p>Cross-addiction (Substitute addiction): The tendency to replace one addictive behavior (e.g., alcohol) with another (e.g., gambling, excessive caffeine, or compulsive exercise). </p>\n',
+		},
+	},
+	{
+		title: 'D.O.C',
+		databaseId: 'cG9zdDoyMzQ=',
+		id: 234,
+		lingoFieldGroup: {
+			description:
+				'<p dir="auto">D.O.C. stands for "Drug of Choice"-  the specific substance or behaviour that has led someone to seek help from the recovery services. D.O.C.s can range from illegal drugs, alcohol to gambling and shopping  - anything that provided a reward that has now become a problem.</p>\n',
+		},
+	},
+	{
+		title: 'DBT',
+		databaseId: 'cG9zdDoyNDM=',
+		id: 243,
+		lingoFieldGroup: {
+			description:
+				"<p>DBT stands for Dialectical Behavior Therapy, a type of therapy that teaches skills to manage intense emotions, tolerate distress, and improve relationships, helping people break the cycle of addiction by addressing underlying emotional triggers and developing healthier coping mechanisms instead of using substances. It's a supportive, cognitive-behavioral approach focused on balancing acceptance (of current feelings) with change (learning new skills). </p>\n",
+		},
+	},
+	{
+		title: 'Defusion',
+		databaseId: 'cG9zdDozMjY=',
+		id: 326,
+		lingoFieldGroup: {
+			description:
+				'<p>Defusion is where someone learns to unhook from their sticky, toxic thoughts instead of letting their thoughts take control.</p>\n<p>Defusion teaches the person to create some distance - seeing those thoughts as just mental noise, passing clouds, or random radio chatter, not orders they\'ve got to follow. Tricks like repeating the thought in a goofy voice, labeling it "There\'s my brain lying again" or imagining it written on a leaf floating away help break the spell.</p>\n',
+		},
+	},
+	{
+		title: 'Detox',
+		databaseId: 'cG9zdDoyODA=',
+		id: 280,
+		lingoFieldGroup: {
+			description:
+				'<p>Detox is the first critical phase where someone clears the D.O.C. - drugs, alcohol, etc, from their body, getting physically stable after stopping using.</p>\n<p>When someone goes through detox, their body starts flushing out the substance, which can hit hard with withdrawal symptoms. It usually lasts a few days to a week or two.<br />\nWhen done medically it is supervised in a detox center or hospital for safety.</p>\n',
+		},
+	},
+	{
+		title: 'Dialectic',
+		databaseId: 'cG9zdDoyNzY=',
+		id: 276,
+		lingoFieldGroup: {
+			description:
+				'<p>In addiction recovery (especially when talking about DBT), Dialectic is a single pair of ideas, feelings, or truths that seem to contradict each other but are both real and need to be held together at the same time.</p>\n<p>When someone has a dialectic view, they’re looking at opposites like:</p>\n<p>“I hate how my addiction hurt the people I love” and “I can still forgive myself and move forward.”<br />\n“This craving is intense and overwhelming right now” and “It will pass whether I act on it or not.”<br />\n“I’m doing the best I can with what I’ve got” and “I want to keep learning and get stronger.”</p>\n<p>It’s not about picking one side as “correct” or squashing the other - it’s recognising both exist and finding a way to live with that tension instead of fighting it.</p>\n',
+		},
+	},
+	{
+		title: 'Dialectical',
+		databaseId: 'cG9zdDoyNzc=',
+		id: 277,
+		lingoFieldGroup: {
+			description:
+				'<p>Dialectical means holding two seemingly opposite truths at the same damn time - both are real, both are valid, and you don\'t have to pick one side or the other to move forward.</p>\n<p>When someone thinks dialectically, they embrace beliefs like: "I totally accept myself and my past exactly as it is and I\'m working hard to change my behaviors and build a better life." Or "This craving feels unbearable right now and I know it\'s temporary and I can ride it out without using." It\'s "I\'m doing my absolute best and I\'ve got room to grow and do better next time." No all-or-nothing black-and-white thinking that traps people in shame or hopelessness.</p>\n',
+		},
+	},
+	{
+		title: 'Dissociation',
+		databaseId: 'cG9zdDoyNjI=',
+		id: 262,
+		lingoFieldGroup: {
+			description:
+				'<p>Dissociation is a mental process where you feel disconnected from your thoughts, feelings, memories, or sense of self, often as a way for the mind to cope with overwhelming stress or trauma.</p>\n',
+		},
+	},
+	{
+		title: 'Dry Drunk',
+		databaseId: 'cG9zdDozMjM=',
+		id: 323,
+		lingoFieldGroup: {
+			description: '<p>Dry Drunk describes someone who has stopped using substances but has not addressed the underlying behaviors or emotional issues.</p>\n',
+		},
+	},
+	{
+		title: 'Emotional Discomfort',
+		databaseId: 'cG9zdDoyNjU=',
+		id: 265,
+		lingoFieldGroup: {
+			description:
+				'<p>Emotional Discomfort means experiencing unpleasant feelings like unease, stress, anxiety, or sadness that signal something is "off" internally, disrupting your well-being and signaling a need to address underlying issues like stress, loss, trauma, or relationship problems, rather than just a physical ache.</p>\n',
+		},
+	},
+	{
+		title: 'Emotional Regulation',
+		databaseId: 'cG9zdDoyNjM=',
+		id: 263,
+		lingoFieldGroup: {
+			description:
+				'<p>Emotional Regulation is the ability to manage and influence your own emotional experiences—how you feel, how intensely you feel, and how you express those feelings—to align with your goals and adapt to situations.</p>\n',
+		},
+	},
+	{
+		title: 'Emotional Resilience',
+		databaseId: 'cG9zdDoyNjY=',
+		id: 266,
+		lingoFieldGroup: {
+			description:
+				'<p>Emotional Resilience is the ability to adapt, cope, and bounce back from stress, adversity, and challenging life events, not by avoiding difficulty, but by managing intense emotions and returning to a stable state, a skill that can be learned and strengthened through practices like mindfulness, social connection, and positive thinking.</p>\n',
+		},
+	},
+	{
+		title: 'Empathetic',
+		databaseId: 'cG9zdDoyOTM=',
+		id: 293,
+		lingoFieldGroup: {
+			description:
+				'<p>Empathy is simply the ability to understand and share the feelings of another person (or yourself) without judgment, essentially "walking in their shoes". It helps foster connections and trust, which are vital for healing and maintaining long-term sobriety. </p>\n',
+		},
+	},
+	{
+		title: 'Empowerment',
+		databaseId: 'cG9zdDozMTc=',
+		id: 317,
+		lingoFieldGroup: {
+			description:
+				"<p>Empowerment is that feeling when someone flips from being controlled by their D.O.C., cravings, or old chaos to straight-up running their own life again. It's realising they've got real power inside - choices, tools, strength -to say no to the urge, handle triggers without crashing and build the kind of life they actually want.</p>\n",
+		},
+	},
+	{
+		title: 'Euphoric Recall',
+		databaseId: 'cG9zdDoyNTY=',
+		id: 256,
+		lingoFieldGroup: {
+			description:
+				"<p>Euphoric Recall is a common thinking habit where people tend to remember past experiences - especially enjoyable ones - in an overly positive way. They focus on the good parts and forget or downplay the bad parts.</p>\n<p>This is especially common when thinking about past substance use (like drugs or alcohol), and it's one reason why people in recovery might struggle with cravings or relapse.</p>\n",
+		},
+	},
+	{
+		title: 'Gratitude',
+		databaseId: 'cG9zdDoyNDQ=',
+		id: 244,
+		lingoFieldGroup: {
+			description:
+				'<p>Gratitude is that deliberate shift where someone starts noticing and appreciating the good stuff in their life no matter how small instead of staying locked on what\'s missing, what hurts, or what the D.O.C. used to "fix."</p>\n<p>When someone practices gratitude, they make it a habit to call out things they\'re thankful for: another day clean, a hot shower, real talk with a sponsor, a laugh with a friend, sun rising, good coffee, or even just breathing without the chaos. It can be a quick mental list in the morning, writing three things in a journal at night, sharing in a meeting, or pausing mid-day to name one win when negative thoughts try to run the show.</p>\n<p>Gratitude is also a step in 12 step programmes.</p>\n',
+		},
+	},
+	{
+		title: 'Grounding',
+		databaseId: 'cG9zdDoyNTI=',
+		id: 252,
+		lingoFieldGroup: {
+			description:
+				'<p>Grounding is a way of someone helping themselves to gain some distance from their thoughts, feelings, and memories by bringing them back to the present moment. It helps them to get back in touch with what is happening around them right now, and to train their mind and brain to stay in the present.</p>\n',
+		},
+	},
+	{
+		title: 'Groups',
+		databaseId: 'cG9zdDoyNDA=',
+		id: 240,
+		lingoFieldGroup: {
+			description:
+				'<p>Groups are those regular meetings - whether 12-step (AA, NA, CMA), SMART Recovery, etc - where people gather in person or online to share their stories, struggles, wins, and support without judgment.</p>\n<p>When someone goes to groups, they sit in a circle (or Zoom grid) with people who re all there for the same reason - no explanations needed about rock bottoms, cravings, or the daily grind. </p>\n<p>They listen to others share experience, strength, and hope, then speak their own truth when ready: admitting a tough day, celebrating clean time, or just saying “I’m here and I’m trying.” The vibe is honesty, respect for all, zero crosstalk , open discussion, all built on “we” instead of “me alone.”</p>\n',
+		},
+	},
+	{
+		title: 'Guided Meditation',
+		databaseId: 'cG9zdDoyODM=',
+		id: 283,
+		lingoFieldGroup: {
+			description:
+				'<p>Guided Meditation is the where someone follows along with a recorded voice, app, or live guide who walks them through a meditation step by step - making it easier to stay focused when the mind’s racing or cravings are knocking.</p>\n<p>When someone does guided meditation, they find a quiet spot (or just pop in earbuds anywhere), hit play on a track, and let the voice lead: usually starting with setting an intention, then slowing the breath, body scan to relax tension, or focusing on a theme like gratitude, self-compassion, or riding out urges without acting on them. </p>\n<p>The guide might say things like “Notice the thought… let it pass like a cloud,” or “Feel your feet on the ground,” keeping the person anchored so the brain doesn’t spiral off into drama.</p>\n<p>The voice acts like a gentle coach, pulling attention back when it wanders off and helps build that mindfulness muscle without feeling overwhelming. It lowers stress, quiets the addiction chatter, and gives real practice in accepting tough feelings.</p>\n',
+		},
+	},
+	{
+		title: 'Holistic',
+		databaseId: 'cG9zdDozMDc=',
+		id: 307,
+		lingoFieldGroup: {
+			description:
+				"<p>Holistic means viewing something as a complete, interconnected system rather than just its separate parts, focusing on the whole being and its underlying relationships, often used in health to mean treating mind, body, spirit, and emotions together, not just physical symptoms.</p>\n<p>In recovery, it means treating the whole person - not just kicking the D.O.C. or stopping the use, but leveling up every part of someone's life: body, mind, emotions, and spirit (whatever that looks like for them).</p>\n",
+		},
+	},
+	{
+		title: 'Humility',
+		databaseId: 'cG9zdDozMDQ=',
+		id: 304,
+		lingoFieldGroup: {
+			description:
+				'<p>Humility is that grounded mindset where someone drops the ego, admits they don\'t have all the answers, and stays open to learning from others, from mistakes, and from the process itself  no more thinking they\'re above the rules or can outsmart the addiction solo.</p>\n<p>When someone builds humility, they own their powerlessness over the D.O.C. in the past, accept they need support (meetings, sponsors, therapy, peer support), and stay teachable instead of acting like they\'ve got recovery all figured out. </p>\n<p>It\'s saying "I don\'t know everything," "I was wrong," or "Help me out here" without feeling small - it\'s actually strength disguised as low-key.</p>\n',
+		},
+	},
+	{
+		title: 'Impulsive',
+		databaseId: 'cG9zdDozMDI=',
+		id: 302,
+		lingoFieldGroup: {
+			description:
+				'<p>Being impulsive is the tendency to act quickly on sudden urges or desires without fully considering the potential negative consequences. It means acting "without thinking" or giving little to no forethought to the outcome of an action. </p>\n',
+		},
+	},
+	{
+		title: 'In Active Use',
+		databaseId: 'cG9zdDozMjE=',
+		id: 321,
+		lingoFieldGroup: {
+			description: '<p>Describes someone currently using substances without the moral judgment of terms like "dirty".</p>\n',
+		},
+	},
+	{
+		title: 'Inclusive',
+		databaseId: 'cG9zdDoyOTk=',
+		id: 299,
+		lingoFieldGroup: {
+			description: '<p>Including everyone. especially including and accommodating people who have previously been excluded.</p>\n',
+		},
+	},
+	{
+		title: 'Integrity',
+		databaseId: 'cG9zdDoyOTU=',
+		id: 295,
+		lingoFieldGroup: {
+			description:
+				"<p>Integrity is simply about being an honest, whole person whose actions match their words, especially when no one is looking. It's about rebuilding trust with yourself and others by consistently doing the right thing and taking full responsibility for your actions. </p>\n",
+		},
+	},
+	{
+		title: 'Inventory',
+		databaseId: 'cG9zdDozMDU=',
+		id: 305,
+		lingoFieldGroup: {
+			description:
+				"<p>Inventory is that raw, honest deep dive where someone sits down and maps out their patterns, flaws, resentments, fears, and the exact ways they've hurt themselves or others - past and present.</p>\n<p>It's used in 12-step programs and when someone takes inventory (usually a Step 4 thing), they write it all out without sugarcoating: listing resentments (who they’re angry at, why, and how it affected them), fears (what they're scared of and why), their own wrongs (lies, theft, manipulation, neglect, sexual harm, etc), and the character defects or patterns that keep popping up (pride, selfishness, dishonesty, anger, etc.). </p>\n<p>It isn't about beating themselves up - it's about getting really honest to see the full picture.</p>\n",
+		},
+	},
+	{
+		title: 'Journalling',
+		databaseId: 'cG9zdDozMDM=',
+		id: 303,
+		lingoFieldGroup: {
+			description:
+				'<p>Journalling is that simple but powerful habit where someone grabs a notebook, app, or whatever and regularly dumps their thoughts, feelings, cravings, wins, and struggles onto the page.</p>\n<p>When someone journals, they can decide to track what’s going on inside: writing out triggers that popped up, how negative emotions or thoughts tried to run the show, what tools worked (or didn’t), gratitude for clean time, or even planning the day ahead. </p>\n<p>It can be free-flow ranting, structured prompts (like daily inventory questions), or just noting H.A.L.T. moments and how they handled them.</p>\n',
+		},
+	},
+	{
+		title: 'Judgemental',
+		databaseId: 'cG9zdDoyOTI=',
+		id: 292,
+		lingoFieldGroup: {
+			description:
+				'<p>Being judgmental means having a highly critical, inflexible, and often negative attitude toward yourself or others, which is a major barrier to healing and seeking help. </p>\n',
+		},
+	},
+	{
+		title: 'Keep it simple',
+		databaseId: 'cG9zdDozMjA=',
+		id: 320,
+		lingoFieldGroup: {
+			description: '<p>Encourages avoiding over-analysis and sticking to basic recovery principles.</p>\n',
+		},
+	},
+	{
+		title: 'Lapse',
+		databaseId: 'cG9zdDoyMzY=',
+		id: 236,
+		lingoFieldGroup: {
+			description: '<p>A Lapse which is when someone returns to their old negative behaviours for a short period of time (around 2-3 days) but returns to recovery.</p>\n',
+		},
+	},
+	{
+		title: 'Lived Experience',
+		databaseId: 'cG9zdDozMjg=',
+		id: 328,
+		lingoFieldGroup: {
+			description:
+				"<p>Lived Experience is the real-deal wisdom and insight someone gains from actually going through addiction and coming out the other side instead of just studying it or hearing it from professionals.</p>\n<p>When someone brings lived experience to the table, they're sharing straight from their own story: the rock bottoms, the cravings, the relapses, the small wins, the tools that actually worked, and the daily work needed in staying clean and sober. </p>\n<p>It's the raw, no-filter truth - \"I been there, I felt that, here's what I learned\"- that hits different because it comes from someone who's walked the exact same muddy path.</p>\n",
+		},
+	},
+	{
+		title: 'Making Amends',
+		databaseId: 'cG9zdDozMDg=',
+		id: 308,
+		lingoFieldGroup: {
+			description:
+				"<p>Making amends is that crucial step where someone owns up to the harm they've caused others while deep in their addiction - family, friends, partners, coworkers, even strangers and takes real action to set things right as much as possible. </p>\n<p>Making amends is one of the 12 steps in programmes like AA, CA, NA, and GA.</p>\n<p>This isn't just a quick \"sorry\" text or empty words; when someone makes amends, they get honest about specific wrongs (lies, theft, neglect, blow-ups, broken trust), express genuine remorse without excuses, and ask what they can do to make it better—like repaying money, changing behavior, or giving back in meaningful ways. It's done face-to-face when safe and appropriate, or through a letter if direct contact could cause more damage.</p>\n<p>It cleans up the wreckage from the past, lifts mountains of guilt and shame off their shoulders, rebuilds trust where possible, and frees them to move forward without old baggage dragging them back. It also shows the people they hurt that recovery is real - not just talk.</p>\n",
+		},
+	},
+	{
+		title: 'Meditation',
+		databaseId: 'cG9zdDoyODI=',
+		id: 282,
+		lingoFieldGroup: {
+			description:
+				'<p>Meditation is the intentional practice where someone trains their mind to stay present, observe thoughts and feelings without getting distracted, and build inner calm - even when cravings, negative emotions, or old chaos try to pull them off track.</p>\n<p>When someone meditates, they carve out a few minutes (or more) to sit quiet, focus on something steady - like the breath, a word, body sensations, or just open awareness - and gently bring the mind back every time it wanders. Styles vary: breath-focused, body scans, loving-kindness (sending good vibes to self and others), or walking meditation. </p>\n<p>No need for perfect silence in the head; the win are noticing the drift and returning without judgment.</p>\n',
+		},
+	},
+	{
+		title: 'Mentor',
+		databaseId: 'cG9zdDoyNTQ=',
+		id: 254,
+		lingoFieldGroup: {
+			description:
+				'<p>In addiction recovery, a mentor is a guide, often someone with lived experience in sobriety, who provides support, accountability, and practical advice, helping a less experienced person navigate challenges, build coping skills, prevent relapse, and stay motivated by sharing their own recovery journey and insights. Mentors act as trusted advisors, offering non-judgmental support and helping mentees find hope and build a new life, distinct from but complementary to formal therapy or 12-Step sponsors. </p>\n',
+		},
+	},
+	{
+		title: 'Mindfulness',
+		databaseId: 'cG9zdDoyNjg=',
+		id: 268,
+		lingoFieldGroup: {
+			description:
+				'<p>Is the practice of paying full attention to the present moment, noticing your thoughts, feelings, body, and surroundings without judgment, and accepting them as they are, rather than getting lost in worries about the past or future. It\'s about being aware and engaged in "what\'s happening right now," helping you feel calmer and less reactive. </p>\n',
+		},
+	},
+	{
+		title: 'NA',
+		databaseId: 'cG9zdDoyODg=',
+		id: 288,
+		lingoFieldGroup: {
+			description:
+				'<p>NA is an abbreviation for Narcotics Anonymous. It is a global, community-based, non-profit fellowship of men and women for whom drugs have become a major problem, who meet regularly to help each other stay clean. </p>\n',
+		},
+	},
+	{
+		title: 'Negative Emotions',
+		databaseId: 'cG9zdDozMTM=',
+		id: 313,
+		lingoFieldGroup: {
+			description:
+				'<p>Negative emotions are those heavy, uncomfortable feelings like anger, shame, guilt, loneliness, boredom, anxiety, or sadness that hit hard and often push someone toward their D.O.C. to numb them out or escape the pain quick.</p>\n',
+		},
+	},
+	{
+		title: 'Negative Thoughts',
+		databaseId: 'cG9zdDozMTI=',
+		id: 312,
+		lingoFieldGroup: {
+			description:
+				'<p>Negative thoughts are those toxic loops in someone\'s head - like "I\'m worthless," "I\'ll never stay clean," "Nobody cares," "One slip means I\'m a total failure," or "Life sober isn\'t worth it"- that beat that gets them down and makes the work feel impossible.</p>\n',
+		},
+	},
+	{
+		title: 'Non-judgemental',
+		databaseId: 'cG9zdDoyOTE=',
+		id: 291,
+		lingoFieldGroup: {
+			description:
+				'<p>Being non-judgmental means offering support and empathy without blame, shame, or condemnation. It involves seeing the person as an individual with a treatable health condition, rather than someone with a moral failing or character flaw. </p>\n',
+		},
+	},
+	{
+		title: 'One day at a time',
+		databaseId: 'cG9zdDozMTY=',
+		id: 316,
+		lingoFieldGroup: {
+			description:
+				'<p>A phrase for focusing on the present moment, not the overwhelming future. Focus on staying sober for the current 24 hours rather than worrying about the future.</p>\n',
+		},
+	},
+	{
+		title: 'Peer Support',
+		databaseId: 'cG9zdDoyNTM=',
+		id: 253,
+		lingoFieldGroup: {
+			description:
+				'<p>Peer Support is when people with shared life experiences (like long-term health conditions or mental health challenges) help each other through one-on-one connections or groups, using their own experiences to build understanding, confidence, and self-management skills in a safe, non-judgmental space, focusing on empowerment and recovery rather than just clinical treatment.</p>\n',
+		},
+	},
+	{
+		title: 'Pink Cloud',
+		databaseId: 'cG9zdDozMjI=',
+		id: 322,
+		lingoFieldGroup: {
+			description: '<p>A period of early sobriety marked by extreme euphoria and overconfidence.</p>\n',
+		},
+	},
+	{
+		title: 'Playing The Tape Forward',
+		databaseId: 'cG9zdDoyNTA=',
+		id: 250,
+		lingoFieldGroup: {
+			description:
+				'<p>"Playing the tape forward" is a visualization technique, especially in addiction recovery, where you mentally walk through the entire, realistic consequences of a specific action (like having "just one" drink or drug), not just the immediate pleasure, to see the negative end result (hangover, guilt, relapse, money & relationship problems) and strengthen yourself to avoid it. It\'s about honest when thinking about what will happen and the chain reaction, including all the bad parts, to break cycles of temptation and make better choices for long-term well-being. </p>\n',
+		},
+	},
+	{
+		title: 'Positive Self-Talk',
+		databaseId: 'cG9zdDoyNjk=',
+		id: 269,
+		lingoFieldGroup: {
+			description:
+				'<p>Positive self-talk is like having a kind, encouraging friend in your head, replacing negative thoughts with optimistic and supportive ones to boost confidence, motivation, and resilience when facing challenges, essentially telling yourself "I can do this" instead of "I\'ll fail". </p>\n',
+		},
+	},
+	{
+		title: 'Progress not Perfection',
+		databaseId: 'cG9zdDozMTQ=',
+		id: 314,
+		lingoFieldGroup: {
+			description: '<p>Focuses on continuous improvement over flawed attempts at being perfect. </p>\n',
+		},
+	},
+	{
+		title: 'Psychological Flexibility',
+		databaseId: 'cG9zdDoyNzM=',
+		id: 273,
+		lingoFieldGroup: {
+			description:
+				"<p>Psychological Flexibility is the ability to adapt a person's'  behavior to the demands of the situation in a way that is consistent with a person's' values and long-term goals for recovery.</p>\n",
+		},
+	},
+	{
+		title: 'Reasonable Mind',
+		databaseId: 'cG9zdDoyNzI=',
+		id: 272,
+		lingoFieldGroup: {
+			description:
+				'<p>The "reasonable mind" refers to the part of the mind that uses logic, facts, and objective analysis to make decisions, without being controlled by intense emotions or immediate urges. </p>\n',
+		},
+	},
+	{
+		title: 'Rehab',
+		databaseId: 'cG9zdDoyODE=',
+		id: 281,
+		lingoFieldGroup: {
+			description:
+				'<p>Rehab (short for rehabilitation) is a structured program - usually residential or outpatient - where someone goes to get intensive help breaking free from their D.O.C. and starting the real rebuild of their life.</p>\n<p>When someone enters rehab, they step into a safe spot away from triggers, with 24/7 support (in residential) or scheduled sessions (outpatient). The days fill up with therapy groups, individual counseling, education on addiction, skill-building workshops (like coping tools, relapse prevention, emotion regulation), medical detox if needed, and often holistic stuff - exercise, nutrition, meditation, or art therapy. </p>\n<p>The goal? Clean the body, rewire the mind, process the underlying pain or trauma, and lay a solid foundation for long-term sobriety.</p>\n',
+		},
+	},
+	{
+		title: 'Relapse',
+		databaseId: 'cG9zdDoyMzU=',
+		id: 235,
+		lingoFieldGroup: {
+			description:
+				'<p dir="auto">Relapse is when a person in recovery returns to old negative behaviours over a period of days (usually 10 or more).</p>\n<p dir="auto">Not to be confused with "Lapse" which is when someone returns to their old negative behaviours for a short period of time (around 2-3 days) but returns to recovery.</p>\n',
+		},
+	},
+	{
+		title: 'Resilience',
+		databaseId: 'cG9zdDoyNzU=',
+		id: 275,
+		lingoFieldGroup: {
+			description:
+				'<p>Resilience is that inner bounce-back power someone builds - the ability to get knocked down by cravings, setbacks, negative emotions, or life’s straight-up punches and still get back up, dust off, and keep moving forward.</p>\n<p>When someone grows resilience, they learn to handle triggers without crumbling, ride out tough days clean, bounce back from a slip (if it happens) without spiralling into full relapse, and keep showing up for their recovery even when motivation feels low or old shame tries to whisper “you can’t do this.” </p>\n<p>It shows up as staying sober through stress, loss, boredom, or celebration knowing feelings will pass, tools work, and they’re tougher than the moment.</p>\n',
+		},
+	},
+	{
+		title: 'Respectful',
+		databaseId: 'cG9zdDoyOTc=',
+		id: 297,
+		lingoFieldGroup: {
+			description:
+				'<p>Respectful in addiction recovery means treating all people as valued individuals with the right to lead their own healing journey, free from judgment, shame, or stigma. It involves using supportive words and actions that honor their identity, choices, and experiences. </p>\n',
+		},
+	},
+	{
+		title: 'Rock Bottom',
+		databaseId: 'cG9zdDozMjQ=',
+		id: 324,
+		lingoFieldGroup: {
+			description:
+				"<p>Rock Bottom is that deeply personal low point where someone finally hits a place so painful, chaotic, or empty that they can't deny the destruction anymore - and it flips a switch to make them ready to get real help and change.</p>\n<p>When someone reaches rock bottom, it's different for everybody: could be losing a job, family walking out,  waking up in the hospital, trouble with the police, sleeping on the streets, or just staring in the mirror feelin' straight-up dead inside while still breathing. It isn't always dramatic - sometimes it's a quiet moment of total despair where the lies stop working and using doesn't numb any longer.</p>\n",
+		},
+	},
+	{
+		title: 'Ruminating',
+		databaseId: 'cG9zdDoyNDY=',
+		id: 246,
+		lingoFieldGroup: {
+			description:
+				'<p>Getting stuck in repetitive, negative thought loops about past mistakes, current problems, or future worries, dwelling on them without finding solutions, which worsens distress, anxiety, and depression.</p>\n',
+		},
+	},
+	{
+		title: 'Self-regulation',
+		databaseId: 'cG9zdDoyNDk=',
+		id: 249,
+		lingoFieldGroup: {
+			description:
+				'<p>Self-regulation is the process by which a person monitors and controls their attention, thoughts, emotions, and behaviors to achieve goals and adapt to changing circumstances.</p>\n',
+		},
+	},
+	{
+		title: 'SMART',
+		databaseId: 'cG9zdDoyMzk=',
+		id: 239,
+		lingoFieldGroup: {
+			description:
+				'<p>SMART stands for Self-Management And Recovery Training. It is a secular, science-based support program for addiction recovery that empowers individuals to manage their own behaviors and recovery journey using evidence-based psychological tools. </p>\n',
+		},
+	},
+	{
+		title: 'Spiritual',
+		databaseId: 'cG9zdDozMDk=',
+		id: 309,
+		lingoFieldGroup: {
+			description:
+				'<p>Spiritual means connecting to something bigger than yourself and finding deeper meaning in the the work you put in to bettering yourself. </p>\n<p>For someone in recovery, spiritual can be that sense of purpose, inner peace, or feeling part of a larger whole whether that\'s nature, the universe, humanity, a higher power of their own understanding, or just the raw connection in a meeting room full of people sharing real stories.</p>\n<p>Being spiritual helps people shift from the selfish, isolated chaos of active addiction to a life where they feel supported, guided, and less alone in the struggle. It shows up as gratitude for another day clean, awe at a sunset, trust in the process, or that quiet strength from surrendering what they can\'t control. Many tap into it through step work, meditation, service to others, or just sitting still and feeling connected to life again.</p>\n<p>It can help fill the hole that the D.O.C. used to fake-fill, giving real hope and resilience when cravings or negative emotions hit hard. Not everyone vibes with the word "spiritual," some call it purpose, connection, or higher consciousness instead.</p>\n',
+		},
+	},
+	{
+		title: 'Sponsor',
+		databaseId: 'cG9zdDoyNTU=',
+		id: 255,
+		lingoFieldGroup: {
+			description:
+				'<p>In 12-step addiction recovery, a sponsor is a trusted, experienced member who mentors a newcomer, guiding them through the steps, offering support, accountability, and a safe space to share, acting as a role model for sobriety by "walking the talk" and helping prevent relapse through personal, non-professional guidance. They share firsthand knowledge, provide encouragement, and help apply program principles to build a new life, not as a therapist, but as a peer who understands the journey. </p>\n',
+		},
+	},
+	{
+		title: 'Staying In The Moment',
+		databaseId: 'cG9zdDoyNjE=',
+		id: 261,
+		lingoFieldGroup: {
+			description:
+				'<p>Staying In The Moment means focusing your full attention on the "here and now," fully experiencing your current activity and surroundings, rather than dwelling on past regrets or worrying about the future, a practice often called mindfulness. It\'s about being fully present, engaged, and aware of your thoughts, feelings, and sensations as they happen, leading to less stress and more enjoyment.</p>\n',
+		},
+	},
+	{
+		title: 'Suffering',
+		databaseId: 'cG9zdDozMTA=',
+		id: 310,
+		lingoFieldGroup: {
+			description:
+				'<p>Suffering refers to the severe physical, mental, emotional, and spiritual distress that results from addiction and its consequences. This suffering often acts as a powerful "push factor" or motivation for an individual to seek and commit to treatment and self-change. </p>\n',
+		},
+	},
+	{
+		title: 'Supportive',
+		databaseId: 'cG9zdDoyOTg=',
+		id: 298,
+		lingoFieldGroup: {
+			description:
+				'<p>Supportive means consistently offering encouragement, guidance, and practical help while setting healthy boundaries to promote accountability and personal growth. </p>\n',
+		},
+	},
+	{
+		title: 'Sympathetic',
+		databaseId: 'cG9zdDozMDE=',
+		id: 301,
+		lingoFieldGroup: {
+			description:
+				'<p>Being sympathetic means showing you understand and care about someone\'s problems or feelings, often by being kind and supportive, like a "sympathetic ear". It also means you might agree with or support a cause or idea, such as being "sympathetic to a proposal". </p>\n',
+		},
+	},
+	{
+		title: 'Take Your Thoughts To Court',
+		databaseId: 'cG9zdDoyMzM=',
+		id: 233,
+		lingoFieldGroup: {
+			description:
+				'<p>"Take Your Thoughts to Court" is a sharp recovery move anyone can use when their brain starts telling addictive lies, cravings, or negative self-talk that\'s pushing them towards a slip. Instead of buying the thought hook, line, and sinker, the person drags it into an imaginary courtroom and puts it on trial like a shady witness.</p>\n',
+		},
+	},
+	{
+		title: 'The 12 Steps',
+		databaseId: 'cG9zdDoyMzg=',
+		id: 238,
+		lingoFieldGroup: {
+			description:
+				'<p>The 12 Steps are a set of guiding principles for addiction recovery, emphasizing admitting powerlessness over addiction, seeking help from a Higher Power (defined personally), taking honest self-inventory, making amends for past wrongs, and helping others in recovery to create lasting change and a spiritual awakening.</p>\n',
+		},
+	},
+	{
+		title: 'The F*ck It Button',
+		databaseId: 'cG9zdDoyMzA=',
+		id: 230,
+		lingoFieldGroup: {
+			description:
+				'<p dir="auto">The F*ck It Button is the bad twin of the Pause Button. - It\'s the imaginary switch anyone can mentally press when frustration, cravings, or dark thoughts crank up to max.</p>\n<p dir="auto">When someone hits it, logic gets tossed, consequences go ignored, and they dive straight into whatever impulse feels good or destructive in the moment,  no looking back.</p>\n<p dir="auto">This dangerous move flips everything from control to old behaviours: Instead of taking a breath to weigh goals, long-term wins, or the real cost, it blasts out a loud "Screw it all—I\'m doing this" and green-lights caving in to the urges, snapping at people, relapsing, or self-sabotaging all the progress they\'ve been working to build.</p>\n<p dir="auto">It\'s straight-up toxic even though it feels tempting when the pressure\'s on—the F*ck It Button hands the keys to raw impulses and lets small triggers explode into huge regrets. The more someone presses it, the deeper the bad habits dig in. If they spot it rising and they can shut it down fast with the Pause Button or other tools so they stay running the show.</p>\n',
+		},
+	},
+	{
+		title: 'The Middle Path',
+		databaseId: 'cG9zdDoyNjA=',
+		id: 260,
+		lingoFieldGroup: {
+			description:
+				'<p>The Middle Path (also called the Middle Way) is a simple idea: live with balance by avoiding extremes on either side.</p>\n<p>It’s about moderation in everyday life: not swinging too far into any rigid belief, habit, or reaction. It encourages staying open-minded, using common sense and wisdom, and finding flexible, realistic ways to handle challenges right here and now - without getting stuck in "all or nothing" thinking.<br />\nThis balanced approach helps reduce suffering, make better decisions, and live more calmly and effectively.</p>\n<p>It has its origins in  Buddhism, where it originally meant steering clear of two opposites - one extreme of chasing constant pleasure and indulgence, and the other of punishing yourself with strict self-denial (like extreme fasting or hardship). Instead, you choose a practical, moderate path that leads to clear understanding and inner peace.</p>\n',
+		},
+	},
+	{
+		title: 'The Pause Button',
+		databaseId: 'cG9zdDoyMzE=',
+		id: 231,
+		lingoFieldGroup: {
+			description:
+				'<p dir="auto">The Pause Button is an imaginary tool anyone can pull out when life’s getting chaotic and old urges, cravings, or negative thoughts are pushing hard to take the wheel. When someone mentally hits that button, the whole scene freezes - giving them a chance to breathe deep, ground themselves, and pull back from the edge instead of diving headfirst into a bad call and making moves they later regret.</p>\n<p dir="auto">This tool buys the person some real time to get their thoughts straight: What are their big goals and targets? Where are they really trying to end up down the road? And what kind of damage happens in if they cave to the craving, spiral into dark thoughts, or act on that urge right now? It\'s like stepping out of the storm for a second, planting feet on solid ground, scoping out smarter options, and picking the move that protects the progress they\'ve been building.</p>\n<p dir="auto">Straight-up powerful even though it\'s simple—the Pause Button lets anyone flip impulsive reactions into intentional plays that keep them on track. The more someone practices using it in times it could have saved them from times they regret, the faster it kicks in when the pressure\'s real. They hold all the power; using the Pause Button turns little temptations into nothing more than background noise.</p>\n<p dir="auto">Keep choosing wise, that button\'s always there when they need it.</p>\n',
+		},
+	},
+	{
+		title: 'Therapies',
+		databaseId: 'cG9zdDoyNzk=',
+		id: 279,
+		lingoFieldGroup: {
+			description:
+				'<p>Therapies are the professional tools and sessions someone uses to dig deep into the roots of their addiction, rewire toxic patterns, heal trauma, and build solid skills to stay clean long-term - way beyond just stopping the D.O.C.</p>\n<p>When someone engages in therapies, they work one-on-one or in groups with trained pros (practitioners, therapists, counselors, psychologists) using evidence-based approaches like CBT to challenge distorted thinking, DBT for handling intense emotions and urges, ACT to accept tough feelings while moving toward values, REBT to dispute irrational beliefs, trauma-focused work to process past pain, motivational interviewing to boost their own drive, or family therapy to fix broken relationships. Sessions might be weekly, intensive in rehab, or ongoing in aftercare.</p>\n',
+		},
+	},
+	{
+		title: 'Therapy',
+		databaseId: 'cG9zdDoyNzg=',
+		id: 278,
+		lingoFieldGroup: {
+			description:
+				"<p>Therapy is that dedicated one-on-one or group work with a trained professional where someone digs into the roots of their addiction, heals old wounds, rewires twisted thinking, and builds real tools to handle life without leanin' on the D.O.C.</p>\n<p>When someone’s in therapy, they sit with a  specialist - talking honestly about trauma, shame, family mess, mental health struggles, negative patterns, or whatever fueled the use. Sessions might use approaches like CBT to challenge lies the brain tells, DBT for regulating wild emotions and urges, ACT to accept tough feelings while working towards values, trauma work to process pain that’s been buried, or just straight talk therapy to unpack the story and rebuild self-worth.</p>\n",
+		},
+	},
+	{
+		title: 'Thoughtfulness',
+		databaseId: 'cG9zdDoyOTY=',
+		id: 296,
+		lingoFieldGroup: {
+			description:
+				'<p>Thoughtfulness means being mindful, deliberate, and considerate in your actions and interactions, both toward yourself and others. It is the opposite of the impulsive, self-centered, and reactive behaviors often associated with active addiction. </p>\n',
+		},
+	},
+	{
+		title: 'Trigger',
+		databaseId: 'cG9zdDoyMzc=',
+		id: 237,
+		lingoFieldGroup: {
+			description: null,
+		},
+	},
+	{
+		title: 'Urge Surfing',
+		databaseId: 'cG9zdDoyNDg=',
+		id: 248,
+		lingoFieldGroup: {
+			description:
+				"<p>Urge surfing is a technique for managing cravings or impulses by observing them non-judgmentally, like a surfer riding a wave that rises, peaks, and then subsides, without acting on the urge. </p>\n<p>Instead of fighting or suppressing the urge (which can make it stronger), you notice its physical sensations, allow it to intensify, and then watch it naturally fade away, typically within 30 minutes. It's used for addictions, overeating, emotional outbursts, and other unwanted behaviors to build self-regulation.</p>\n",
+		},
+	},
+	{
+		title: 'Walking Meditation',
+		databaseId: 'cG9zdDoyODQ=',
+		id: 284,
+		lingoFieldGroup: {
+			description:
+				'<p>Walking meditation is a moving mindfulness practice where someone turns a simple walk into a way to stay grounded, clear the head, and handle cravings or negative emotions without getting swept away.</p>\n<p>When someone does walking meditation, they slow it down on purpose - feeling each step hit the ground, noticing the lift of the foot, the swing, the plant. They sync breath with steps (like inhale for three steps, exhale for four), or just focus on sensations: the breeze, sounds around them, the rhythm of their body moving. </p>\n',
+		},
+	},
+	{
+		title: 'When your past calls, don’t answer.',
+		databaseId: 'cG9zdDozMTk=',
+		id: 319,
+		lingoFieldGroup: {
+			description: '<p>Acknowledges the pull of old habits and encourages ignoring them in order to move forward. </p>\n',
+		},
+	},
+	{
+		title: 'Wise Mind',
+		databaseId: 'cG9zdDoyNjc=',
+		id: 267,
+		lingoFieldGroup: {
+			description:
+				"<p>Wise Mind involves identifying the current state of mind, and using both emotions and rationality to respond effectively to situations. It's a DBT skill. DBT offers practical skills, such as urge surfing, or ride the wave, to manage cravings and urges.</p>\n",
+		},
+	},
+	{
+		title: 'XA',
+		databaseId: 'cG9zdDoyOTA=',
+		id: 290,
+		lingoFieldGroup: {
+			description:
+				'<p>XA is simple shorthand used to represent "Everything Anonymous". It is a general term for any and all of the various 12-step mutual aid fellowships, such as Alcoholics Anonymous (AA), Narcotics Anonymous (NA), Cocaine Anonymous (CA), Gamblers Anonymous, and others. </p>\n',
+		},
+	},
+	{
+		title: 'You didn’t come this far just to come this far',
+		databaseId: 'cG9zdDozMTU=',
+		id: 315,
+		lingoFieldGroup: {
+			description: '<p>A reminder to keep going when motivation drops.</p>\n',
+		},
+	},
 ]
     
 export default lingo;

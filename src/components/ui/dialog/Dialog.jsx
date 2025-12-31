@@ -6,15 +6,24 @@ import "./styles.scss";
 
 const Dialog = ({ children, show, title = '', instruction = '', confirmLabel = 'Okay', onConfirm, cancelLabel = 'Cancel', onCancel, classes = [], showCancel = true }) => {
 	const [open, setOpen] = useState(show)
-
+	const contentEl = document.getElementById('dialog-instruction')
 	const handleCancel = () => {
 		setOpen(!open)
 		onCancel()
 	}
 	useEffect(() => {
 		setOpen(show)
-	}, [show])
-	
+		const elScrollTop = () => {
+			console.log('scrollTop', contentEl)
+			contentEl.scrollTo(0, 0)
+		}
+
+		if (show) {
+			setTimeout(elScrollTop, 50)
+			// elScrollTop()
+		}
+	}, [show, contentEl])
+
 	const handleConfirm = () => {
 		onConfirm()
 		setOpen(false)
@@ -25,7 +34,9 @@ const Dialog = ({ children, show, title = '', instruction = '', confirmLabel = '
 			<div className='dialog'>
 				<div className='dialog-inner'>
 					<div className='dialog-title'>{title}</div>
-					<div className='dialog-instruction'>{parse(instruction)}</div>
+					<div className='dialog-instruction' id='dialog-instruction'>
+						{parse(instruction)}
+					</div>
 					<div className='dialog-content'>{children}</div>
 					<div className='dialog-actions'>
 						<ButtonSimple label={confirmLabel} handleClick={handleConfirm} classes={['confirm']} />

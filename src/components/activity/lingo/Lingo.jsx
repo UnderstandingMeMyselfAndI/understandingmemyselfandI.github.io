@@ -1,26 +1,41 @@
-import { useEffect, useState } from 'react'
-import useAppStore from '@/store/useAppStore'
-import { activities } from '@/data/config'
-import { strings } from '@/data/config'
+import { useState } from 'react'
+import SearchField from '@/components/ui/search/SearchField'
+import Dialog from '@/components/ui/dialog/Dialog'
+import lingo from '@/data/lingo.js'
 import './styles.scss'
-
 const Lingo = () => {
-	const name = 'lingo'
-	const [open, setOpen] = useState(false)
-	const activity = useAppStore((s) => s.activity)
-	const activityID = activities.find((activity) => (activity.url === name ? activity.id : null))
+	const [showDialog, setShowDialog] = useState(false)
+	const [content, setContent] = useState([])
+	function getContent(id) {
+		if (!id) return
 
-	useEffect(() => {
-		setOpen(activityID === activity)
-	}, [activity, activityID])
+		return lingo.find((item) => {
+			if (item.id === id) return item.lingoFieldGroup
+		})
+	}
 
-	// const handleClose = () => setOpen(false);
-
+	const handleClick = (id) => {
+		const search = getContent(id)
+		if (search?.lingoFieldGroup?.description) {
+			setContent(search)
+			setShowDialog(true)
+		}
+	}
 	return (
-		<div className={'activity' + (open ? ' show' : ' hide')}>
-			<section className={name}></section>
-		</div>
+		<section className='search-lingo activity' id='lingo'>
+			<Dialog
+				show={showDialog}
+				title={content?.title}
+				instruction={content?.lingoFieldGroup?.description}
+				confirmLabel='Close'
+				onConfirm={() => setShowDialog(false)}
+				showCancel={false}
+				onClick={() => setShowDialog(false)}
+			/>
+			<h3>Lingo &amp; Phrases</h3>
+			<SearchField handleClick={handleClick} />
+		</section>
 	)
 }
-Lingo.propTypes = {}
+
 export default Lingo

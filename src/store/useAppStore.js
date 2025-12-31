@@ -29,6 +29,8 @@ const useAppStore = create(
 			toolsInView: false,
 			needUpdate: false,
 			setNeedUpdate: (value) => set({ needUpdate: value }),
+			spv: false,
+			setSpv: (value) => set({ spv: value }), //showPhraseViews
 			vc: 0, //visit count
 			setVC: (v) => {
 				set(() => ({ vc: v }))
@@ -140,6 +142,7 @@ const useAppStore = create(
 				nss: state.nss,
 				version: state.version,
 				lastVersionCheck: state.lastVersionCheck,
+				spv: state.spv,
 			}),
 		},
 	),

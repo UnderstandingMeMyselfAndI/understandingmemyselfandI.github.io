@@ -120,6 +120,15 @@ const Settings = () => {
 	QuickExitSettings.addHandler(QuickExitMessageSettings.handler)
 	settings.push(QuickExitMessageSettings)
 
+	const ShowPhraseViewsSettings = Setting(
+		'PhraseViews',
+		(state) => state.spv,
+		(state) => state.setSpv,
+		'Show Lingo & Phrase Views',
+		'Shows when Lingo & Phrases are viewed.',
+		'',
+	)
+	settings.push(ShowPhraseViewsSettings)
 	const PINLockSettings = Setting(
 		'PINLock',
 		(state) => state.PINLockEnabled,
@@ -169,6 +178,10 @@ const Settings = () => {
 		resetAll()
 		setShowConfirmDeleteDialog(true)
 		setShowDeleteDialog(false)
+		// force reload url
+		setTimeout(() => {
+			window.location = window.location.href + '?cb=' + Date.now()
+		}, 200)
 	}
 	const handleCloseDeleteData = () => {
 		setShowDeleteDialog(false)
@@ -320,12 +333,31 @@ const Settings = () => {
 						{AnalyticsCookiesSettings.help && <div className='help'>{parse(AnalyticsCookiesSettings.help)}</div>}
 					</div>
 
+					<div className={'row ' + ShowPhraseViewsSettings.classes}>
+						<div className={'checkBox-row '}>
+							<label htmlFor={ShowPhraseViewsSettings.name} className={ShowPhraseViewsSettings.state ? 'checked' : ''}>
+								{parse(ShowPhraseViewsSettings.instruction)}
+							</label>
+							<input
+								type='checkbox'
+								id={ShowPhraseViewsSettings.name}
+								value={ShowPhraseViewsSettings.name}
+								checked={ShowPhraseViewsSettings.state}
+								onChange={ShowPhraseViewsSettings.handler}
+							/>
+						</div>
+						{ShowPhraseViewsSettings.help && <div className='help'>{parse(ShowPhraseViewsSettings.help)}</div>}
+					</div>
+
 					<div className='row new'>
 						<div className='setting-title'></div>
 						<div className='checkBox-row'>
 							<button className='btn btn-delete' onClick={handleClearUserData}>
 								Clear Your Data
 							</button>
+						</div>
+						<div className='checkBox-row'>
+							<div className='help'>The app will reload shortly after data is cleared.</div>
 						</div>
 					</div>
 				</div>
