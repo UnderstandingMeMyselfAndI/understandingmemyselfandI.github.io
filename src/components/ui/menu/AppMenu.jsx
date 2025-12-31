@@ -73,13 +73,13 @@ export default function AppMenu() {
 					Tools
 				</li>
 				<li
-					className='strikethrough'
+					className='new'
 					onClick={() => {
 						handleClose()
-						// setActivity(13)
-						// const el = document.getElementById('lingo')
+						setActivity(13)
+						const el = document.getElementById('lingo')
 
-						// el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+						el.scrollIntoView({ behavior: 'smooth', block: 'start' })
 					}}
 				>
 					Lingo &amp; Phrases
