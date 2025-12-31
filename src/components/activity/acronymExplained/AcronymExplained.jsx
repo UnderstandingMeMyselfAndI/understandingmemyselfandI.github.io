@@ -54,10 +54,10 @@ const AcronymExplained = () => {
 
 		contentRef.current.scrollTop = 0
 
-		if (gae && acronymData) {
+		if (gae) {
 			window.gtag('event', 'acronym_viewed', {
+				screen_name: acronymData?.title,
 				app_name: 'Ummi',
-				screen_name: acronymData.title,
 			})
 		}
 	}, [acronymID, gae])
