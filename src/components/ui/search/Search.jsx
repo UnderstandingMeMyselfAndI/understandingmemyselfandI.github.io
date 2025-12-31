@@ -31,6 +31,7 @@ const Search = () => {
 				confirmLabel='Close'
 				onConfirm={() => setShowDialog(false)}
 				showCancel={false}
+				onClick={() => setShowDialog(false)}
 			/>
 			<h3>Lingo &amp; Phrases</h3>
 			<SearchField handleClick={handleClick} />
