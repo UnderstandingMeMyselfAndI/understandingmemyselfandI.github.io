@@ -4,6 +4,7 @@ import { activities } from '@/data/config'
 import parse from 'html-react-parser'
 import CloseBtn from '@/components/ui/buttons/close/CloseBtn'
 import Dialog from '@/components/ui/dialog/Dialog'
+import Switch from '@mui/material/Switch'
 import './styles.scss'
 
 const Setting = (name, getStateSelector, setStateAction, instruction, help = '', classNames) => {

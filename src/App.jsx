@@ -36,6 +36,7 @@ import NewsletterSignUp from './components/ui/newsletterSignup/NewsletterSignUp'
 import Exit from './components/ui/exit/Exit'
 import Settings from './components/activity/settings/Settings'
 import Vcn from './components/visits/Vcn.jsx'
+import Search from './components/ui/search/Search'
 
 import "./App.scss";
 // TODO: "Clear Local Data" functionality
@@ -74,6 +75,7 @@ function App() {
 					<Tools />
 					<YourPrivacyCTA />
 					{daysCounterEnabled && <DaysCounterCTA />}
+					<Search />
 
 					<div className='activities' id='top'>
 						{daysCounterEnabled && <DaysCounter />}

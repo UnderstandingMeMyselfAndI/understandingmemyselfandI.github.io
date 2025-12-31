@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import InstallPWA from 'ui/buttons/InstallPWA/InstallPWA'
 import appleShareIcon from '/icons/apple-share-white-40x40.png'
 import appleAddToHomescreen from '/icons/apple-add-to-homescreen-white-40x40.png'
