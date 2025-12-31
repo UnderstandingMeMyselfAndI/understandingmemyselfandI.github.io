@@ -3,15 +3,22 @@ import Backdrop from '../backdrop/Backdrop'
 import './styles.scss'
 
 const UmmiAgeGate = () => {
-	const checkAgeInStorage = () => {
-		const ageVerified = localStorage.getItem('ageVerified')
-		if (ageVerified && ageVerified !== true) {
-			localStorage.clear()
-			window.location = 'https://google.com'
-		}
+	const clearAndRedirect = () => {
+		localStorage.clear()
+		window.location = 'https://google.com'
 	}
+	const checkAgeInStorage = () => {}
 	checkAgeInStorage()
-	setTimeout(checkAgeInStorage, 300000) // five minutes
+	// setTimeout(checkAgeInStorage, 300000) // five minutes
+	window.addEventListener('storage', function (e) {
+		if (e.key === 'ageVerified') {
+			const ageVerified = localStorage.getItem('ageVerified')
+			if (ageVerified && ageVerified !== true) {
+				clearAndRedirect()
+			}
+			// if (!ageVerified) clearAndRedirect()
+		}
+	})
 	return (
 		<AgeGate
 			minAge={18}
