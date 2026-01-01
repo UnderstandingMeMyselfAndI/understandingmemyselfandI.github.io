@@ -18,6 +18,10 @@ const Lingo = () => {
 		})
 	}
 
+	useEffect(() => {
+		if (!showDialog) window.history.pushState({ page: '' }, '', '')
+	}, [showDialog])
+
 	const handleClick = (id) => {
 		const search = getContent(id)
 		if (search?.lingoFieldGroup?.description) {

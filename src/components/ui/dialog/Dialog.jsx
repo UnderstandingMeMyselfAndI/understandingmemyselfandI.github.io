@@ -14,7 +14,6 @@ const Dialog = ({ children, show, title = '', instruction = '', confirmLabel = '
 	useEffect(() => {
 		setOpen(show)
 		const elScrollTop = () => {
-			console.log('scrollTop', contentEl)
 			contentEl.scrollTo(0, 0)
 		}
 

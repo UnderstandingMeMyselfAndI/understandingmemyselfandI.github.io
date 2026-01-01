@@ -303,10 +303,11 @@ const strings = {
 			returning: {
 				content: {
 					title: 'Welcome back!',
-					titles: ['Welcome back', 'Hi there', "You're back!", 'Ace to see you', 'Hello', 'Welcome', 'Hey', 'Hello', 'Hi, you good?', 'Good to see you', 'Great to see you'],
+					titles: ['Welcome back', 'Hey there', "You're back!", 'Ace to see you', 'Hello', 'Welcome', 'Hey', 'Hello', 'Hi, you good?', 'Good to see you', 'Great to see you'],
 					classes: 'ummi-blue',
 					content: [],
 					contents: [
+						"🔎Looking for Recovery tools?👀 <br/><br />👍 You're in the right place.✔<br /><br /> 👊🏾👇Check them out below👇👊",
 						"👋It's great to see you again😎🫵",
 						"👋You\'re back, that\'s ace👋 <br />All the solid ones do👊",
 						"🫵Hope you're doing🫵<br /> well today<br /> 🏆champ.🏆 <br /><br /> 👇 Check out some 👇<br />🛠️ tools 🛠️<br />and keep up your game💪",
@@ -319,7 +320,7 @@ const strings = {
 						"⛐Keeping it steady⛐<br /> 🚘in recovery?🚘<br /><br /><u>You're back again<br /></u>👊<u> so keep bossing it</u>👊🏾",
 						'🫵Working on the better you?🫵<br /><br /> Keep owning it like<br /> the 🏆champ🏆 you are 👌',
 						'🏋️‍♂️Working at being<br /> a better you?🫵<br /><br />Keep smashing it<br /> like a ✨ star⭐',
-						"🏋️‍♂️Grafting to keep <br />the gremlins at bay?💪<br /><br />🢁Keep going🢁.<br /><br />👊🏼 You've got this👌",
+						"🏋️‍♂️Grafting to keep💪 <br />👿the gremlins at bay?☹<br /><br />🢁Keep going🢁.<br /><br />👊🏼 You've got this👌",
 					],
 				},
 			},
