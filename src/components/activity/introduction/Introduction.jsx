@@ -50,7 +50,7 @@ const Introduction = () => {
 						toggleActions: 'play pause reverse reverse',
 						snap: {
 							snapTo: 'labels', // snap to the closest label in the timeline
-							duration: { min: 0.5, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+							duration: { min: 2.5, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
 							delay: 0.5, // wait 0.2 seconds from the last scroll event before doing the snapping
 							ease: 'power4.inOut', // the ease of the snap animation ("power3" by default)
 						},
@@ -80,7 +80,7 @@ const Introduction = () => {
 						toggleActions: 'play pause reverse reverse',
 						snap: {
 							snapTo: 'labels', // snap to the closest label in the timeline
-							duration: { min: 0.5, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+							duration: { min: 2.5, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
 							delay: 0.5, // wait 0.2 seconds from the last scroll event before doing the snapping
 							ease: 'power2.inOut', // the ease of the snap animation ("power3" by default)
 						},
@@ -88,11 +88,11 @@ const Introduction = () => {
 				})
 				tl.addLabel('start')
 
-					.from(icon, { duration: 1, scale: 2, y: 150, webkitFilter: 'blur(200px)', filter: 'blur(200px)' })
+					.from(icon, { duration: 1, scale: 0.5, y: -100, webkitFilter: 'blur(150px)', filter: 'blur(200px)' })
 					.addLabel('show')
-					.to(icon, { scale: 1, webkitFilter: 'blur(0px)', filter: 'blur(0px)' })
+					.to(icon, { scale: 1, y: 0, webkitFilter: 'blur(0px)', filter: 'blur(0px)' })
 					.addLabel('leave')
-					.to(icon, { duration: 1, scale: 2, y: -250, webkitFilter: 'blur(200px)', filter: 'blur(200px)' })
+					.to(icon, { duration: 1, scale: 1.25, y: -150, webkitFilter: 'blur(150px)', filter: 'blur(200px)' })
 					.addLabel('end')
 			})
 		},
