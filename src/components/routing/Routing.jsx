@@ -1,42 +1,40 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import useAppStore from '@/store/useAppStore'
 import { activities } from '@/data/config'
 import toolsData from '@/data/tools.js'
 import { sanitizeStringForUrl } from '@/js/utils.js'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
-const appURL = window.location.protocol + '//' + window.location.hostname + (location.port  ? ':' +location.port : '')  //'https://ummi.now/'
-
+const appURL = window.location.protocol + '//' + window.location.hostname + (location.port ? ':' + location.port : '') //'https://ummi.now/'
 
 function setBrowserHistory(slug, title) {
-    if (slug) history.pushState({ page: title }, '', slug)
+	if (slug) history.pushState({ page: title }, '', slug)
 }
-function getAcronymID(slug) {
-    return toolsData.tools.nodes.find((tool) => {
-        if (tool.slug === slug) {
-            return tool.id
-        }
-    })    
-}
-
+// function getAcronymID(slug) {
+// 	return toolsData.tools.nodes.find((tool) => {
+// 		if (tool.slug === slug) {
+// 			return tool.id
+// 		}
+// 	})
+// }
 
 const Routing = () => {
 	const activity = useAppStore((s) => s.activity)
 	const acronymID = useAppStore((s) => s.acronymID)
-	const setActivity = useAppStore((s) => s.setActivity)
-	const setAcronymID = useAppStore((s) => s.setAcronymID)
-	const setShowAccCard = useAppStore((s) => s.setShowAccCard)
+	// const setActivity = useAppStore((s) => s.setActivity)
+	// const setAcronymID = useAppStore((s) => s.setAcronymID)
+	// const setShowAccCard = useAppStore((s) => s.setShowAccCard)
 	const phrase = useAppStore((s) => s.phrase)
 
-	const showTool = (id) => {
-		if (!id) {
-			console.log('invalid tool slug id: ', id)
-			return
-		}
-		setAcronymID(id)
-		setShowAccCard(true)
-		setActivity(1)
-	}
+	// const showTool = (id) => {
+	// 	if (!id) {
+	// 		console.log('invalid tool slug id: ', id)
+	// 		return
+	// 	}
+	// 	setAcronymID(id)
+	// 	setShowAccCard(true)
+	// 	setActivity(1)
+	// }
 	useEffect(() => {
 		setTimeout(() => {
 			phrase[0] && phrase[1] && setBrowserHistory(appURL + '/phrase/' + sanitizeStringForUrl(phrase[1]) + '/' + phrase[0], 'Ummi Phrase - ' + phrase[1])
@@ -68,22 +66,22 @@ const Routing = () => {
 		}
 	}, [activity])
 
-	const loadContentFromSlug = () => {
-		const path = window.location.pathname
-		const parts = path.split('/')
-		let data = null
-		if (path) {
-			const activity = parts[1]
+	// const loadContentFromSlug = () => {
+	// 	const path = window.location.pathname
+	// 	const parts = path.split('/')
+	// 	let data = null
+	// 	if (path) {
+	// 		const activity = parts[1]
 
-			switch (activity) {
-				case 'recovery-tool':
-					data = getAcronymID(parts[2])
+	// 		switch (activity) {
+	// 			case 'recovery-tool':
+	// 				data = getAcronymID(parts[2])
 
-					showTool(data.id)
-					break
-			}
-		}
-	}
+	// 				showTool(data.id)
+	// 				break
+	// 		}
+	// 	}
+	// }
 
 	if (document.readyState === 'loading') {
 		document.addEventListener('DOMContentLoaded', () => {

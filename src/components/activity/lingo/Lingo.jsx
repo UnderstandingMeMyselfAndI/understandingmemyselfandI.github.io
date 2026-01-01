@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy } from 'react'
+import { useState, useEffect } from 'react'
 import SearchField from '@/components/ui/search/SearchField'
 import Dialog from '@/components/ui/dialog/Dialog'
 import lingo from '@/data/lingo.js'

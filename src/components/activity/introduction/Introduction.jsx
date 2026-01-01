@@ -40,7 +40,7 @@ const Introduction = () => {
 				<div className='i1'>
 					<h2>
 						{!isInstalled && <u>{content.title}</u>}
-						{console.log('co', content?.returning.content)}
+
 						{isInstalled && vc >= 3 && <u>{parse(content?.returning?.content?.titles[getRand(content?.returning?.content?.titles?.length - 1)])}</u>}
 					</h2>
 					{isInstalled &&
