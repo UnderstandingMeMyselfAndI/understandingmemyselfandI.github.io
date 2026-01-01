@@ -309,6 +309,7 @@ const strings = {
 					contents: [
 						"🔎Looking for Recovery tools?👀 <br/><br />👍 You're in the right place.✔<br /><br /> 👊🏾👇Check them out below👇👊",
 						"👋It's great to see you again😎🫵",
+						"👋You're in good Company😎🫵",
 						"👋You\'re back, that\'s ace👋 <br />All the solid ones do👊",
 						"🫵Hope you're doing🫵<br /> well today<br /> 🏆champ.🏆 <br /><br /> 👇 Check out some 👇<br />🛠️ tools 🛠️<br />and keep up your game💪",
 						'🥾Working hard on 🥾<br /> your recovery?🫶🏻<br /><br />🏋️‍♂️Stay strong🏋🏿‍♂️<br /><br /><u>🫵You are worth it💪🏼</u>',
