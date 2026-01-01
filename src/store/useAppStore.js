@@ -46,7 +46,10 @@ const useAppStore = create(
 			setFVD: (v) => {
 				set((state) => ({ fvd: state.vc === 1 ? v : state.fvd }))
 			},
-
+			vsts: 0,
+			incVSTS: () => {
+				set((state) => ({ vsts: state.vsts + 1 }))
+			},
 			phrase: [],
 			setPhrase: (phrase) => {
 				set(() => ({ phrase: phrase }))

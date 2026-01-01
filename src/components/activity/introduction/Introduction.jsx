@@ -13,53 +13,81 @@ import "@/utils/IsMobile.js";
 import "./styles.scss";
 
 const Introduction = () => {
-	
 	const name = 'introduction'
-	const [open, setOpen] = useState(false);
+	const [open, setOpen] = useState(false)
 	const activity = useAppStore((s) => s.activity)
-	const activityID = activities.find(activity => (activity.url === name ? activity.id : null));
+	const activityID = activities.find((activity) => (activity.url === name ? activity.id : null))
 
-	const content = strings.activity.find(activity => activity.name === name) || null;
+	const content = strings.activity.find((activity) => activity.name === name) || null
 	if (content === null) {
-		console.warn(`No content found for activity "${name}"`);
+		console.warn(`No content found for activity "${name}"`)
 	}
 
 	const isInstalled = useAppStore((state) => state.isInstalled)
-	const isInstallable = useAppStore((state) => state.isInstallable)
+	const vc = useAppStore((state) => state.vc) // visit count
 
 	useEffect(() => {
-		setOpen(activityID === activity);
-	}, [activity, activityID]);
+		setOpen(activityID === activity)
+	}, [activity, activityID])
 
-	
+	function getRand(max) {
+		return Math.floor(Math.random() * (max - 1 + 1)) + 1
+	}
 
 	return (
 		<div className={'activity' + (open ? ' show' : ' hide')}>
 			<section className='intro' id='intro'>
 				<div className='i1'>
 					<h2>
-						<u>{content.title}</u>
+						{!isInstalled && <u>{content.title}</u>}
+						{console.log('co', content?.returning.content)}
+						{isInstalled && vc >= 3 && <u>{parse(content?.returning?.content?.titles[getRand(content?.returning?.content?.titles?.length - 1)])}</u>}
 					</h2>
-					{content?.content?.map((cnt, i) => {
-						if (isInstalled && i >= 1) return
-						return (
-							<div key={`intro-${i}`} className={'sub subsection sec-' + i}>
-								<div className='title '>{parse(cnt?.title)}</div>
-								{cnt?.content?.map((para, k) => {
-									return (
-										<div className='point' key={'p-' + k}>
-											{i === 1 && <DoneOutlineIcon className='icon' />}
-											<p key={k}>{parse(para)}</p>
-										</div>
-									)
-								})}
-							</div>
-						)
-					})}
+					{isInstalled &&
+						vc > 0 &&
+						vc < 3 && // if app is installed show different content
+						content?.installed.content?.map((cnt, i) => {
+							return (
+								<div key={`intro-${i}`} className={'sub subsection installed sec-' + i}>
+									<div className='title '>{parse(cnt?.title)}</div>
+									{cnt?.content?.map((para, k) => {
+										return (
+											<div className='' key={'p-' + k}>
+												{i === 1 && <DoneOutlineIcon className='icon' />}
+												<p key={k}>{parse(para)}</p>
+											</div>
+										)
+									})}
+								</div>
+							)
+						})}
+
+					{isInstalled && vc >= 3 && (
+						<div key={`intro`} className={'sub subsection sec-'}>
+							<div className=' returning'>{parse(content?.returning?.content?.contents[getRand(content?.returning?.content?.contents?.length - 1)])}</div>
+						</div>
+					)}
+
+					{!isInstalled &&
+						content?.content?.map((cnt, i) => {
+							return (
+								<div key={`intro-${i}`} className={'sub subsection sec-' + i}>
+									<div className='title '>{parse(cnt?.title)}</div>
+									{cnt?.content?.map((para, k) => {
+										return (
+											<div className='point' key={'p-' + k}>
+												{i === 1 && <DoneOutlineIcon className='icon' />}
+												<p key={k}>{parse(para)}</p>
+											</div>
+										)
+									})}
+								</div>
+							)
+						})}
 				</div>
 			</section>
 		</div>
 	)
-};
+}
 
 export default Introduction;

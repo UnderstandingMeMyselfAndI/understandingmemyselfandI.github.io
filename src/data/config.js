@@ -10,6 +10,7 @@ import AutoGraphOutlinedIcon from "@mui/icons-material/AutoGraphOutlined";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import UmmiIcon from "@/components/ui/icons/UmmiIcon";
 import BlurOnOutlinedIcon from "@mui/icons-material/BlurOnOutlined";
+import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined'
 // import { title } from "process";
 const cnf = {
 	appName: "Ummi",
@@ -250,6 +251,7 @@ const strings = {
 			name: 'introduction',
 
 			title: 'Hey',
+
 			content: [
 				{
 					title: '',
@@ -283,6 +285,44 @@ const strings = {
 					],
 				},
 			],
+			installed: {
+				content: [
+					{
+						title: 'Welcome back!',
+						classes: 'ummi-blue',
+						content: [
+							"How's it going?",
+							"Recovery is tough work so if you're in recovery we hope your holding it down and stacking the wins.",
+							'Struggling?<br /><b>"Play the tape forward"</b><br /> helps some people to get out of a rut. ',
+							"It's in <b>Lingo & Phrases</b><br /> below tools 🡻🡻.",
+							'Stay strong and<br /> hang on in there.👊🏼',
+						],
+					},
+				],
+			},
+			returning: {
+				content: {
+					title: 'Welcome back!',
+					titles: ['Welcome back', 'Hi there', "You're back!", 'Ace to see you', 'Hello', 'Welcome', 'Hey', 'Hello', 'Hi, you good?', 'Good to see you', 'Great to see you'],
+					classes: 'ummi-blue',
+					content: [],
+					contents: [
+						"👋It's great to see you again😎🫵",
+						"👋You\'re back, that\'s ace👋 <br />All the solid ones do👊",
+						"🫵Hope you're doing🫵<br /> well today<br /> 🏆champ.🏆 <br /><br /> 👇 Check out some 👇<br />🛠️ tools 🛠️<br />and keep up your game💪",
+						'🥾Working hard on 🥾<br /> your recovery?🫶🏻<br /><br />🏋️‍♂️Stay strong🏋🏿‍♂️<br /><br /><u>🫵You are worth it💪🏼</u>',
+						'👉Pushing through Recovery?<br /><br /> 🤜Keep crushing those🤛 <br />gremlins like a boss.😎',
+						'⛐Struggling with<br /> your Recovery?🚘<br /><br />🫸🏻 Keep pushing 🏋️,<br /> the future you🫵<br /> 🤝🏻 will thank you for it.👊',
+						"⛐Grafting at your Recovery?🚘<br /><br /> <b>🏋️‍♂️Stay strong🏋🏿‍♂️.<br />👊You've got this.</b> 👊🏿",
+						'🏋🏿‍♂️Working your recovery?🏋🏿‍♂️<br /><br />💪 Keep bossing it like<br /> 🏆the champ you are 🏆',
+						'😎Bossing your Recovery?🏋🏿‍♂️<br /><br />🏋🏿‍♂️ Stay strong🏋️‍♂️<br /> and<br />🏋🏿‍♂️ keep crushing it👌 ',
+						"⛐Keeping it steady⛐<br /> 🚘in recovery?🚘<br /><br /><u>You're back again<br /></u>👊<u> so keep bossing it</u>👊🏾",
+						'🫵Working on the better you?🫵<br /><br /> Keep owning it like<br /> the 🏆champ🏆 you are 👌',
+						'🏋️‍♂️Working at being<br /> a better you?🫵<br /><br />Keep smashing it<br /> like a ✨ star⭐',
+						"🏋️‍♂️Grafting to keep <br />the gremlins at bay?💪<br /><br />🢁Keep going🢁.<br /><br />👊🏼 You've got this👌",
+					],
+				},
+			},
 		},
 		{
 			name: 'tools',

@@ -80,6 +80,34 @@ section.intro {
 	.sub:nth-child(0)::after{
 		display:none;
 	}
+	div.returning{
+		font-size:variables.$h4_size;
+		line-height:1.3;
+		font-weight: 600;
+			font-variation-settings: "wght" 600;
+	}
+	div.sub.installed{
+		
+		p{
+			font-size:variables.$h4_size;
+			position:relative;
+			width:fit-content;
+			margin:2rem auto;
+			&::after{
+			content:"";
+				position:absolute;
+				top:0;
+				left:0;
+				width:115%;
+				height:130%;
+				background-color:var(--blue);
+				opacity:0.4;
+				z-index:-1;
+				transform: rotate(2deg) translate(-7.5%, -10%);
+			}
+		}
+		
+	}
 	.sub.sec-0{ 
 		.point{
 			width:100%;
