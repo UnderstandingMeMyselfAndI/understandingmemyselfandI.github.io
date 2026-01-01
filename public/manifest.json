@@ -3,6 +3,24 @@
 	"short_name": "Ummi",
 	"description": "Understanding Me Myself & I (Ummi) is a companion app for mental health, wellbeing, and recovery providing quick access to therapy tools learnt in SMART, Cognitive Behavioural Therapy (CBT), Acceptance Commitment Therapy (ACT), Dialectical Behaviour Therapy (DBT) and other therapies.",
 	"start_url": "/index.html?fullscreen=true",
+	"scope": "https://www.ummi.now",
+	"launch_handler": {
+		"client_mode": ["navigate-existing", "focus-existing", "auto"]
+	},
+	"scope_extensions": [
+		{ "type": "origin", "origin": "https://ummi.now" },
+		{ "type": "origin", "origin": "https://www.ummi.now" }
+	],
+	"capture_links": "existing_client_event",
+	"url_handlers": [
+		{
+			"origin": "https://ummi.now"
+		},
+		{
+			"origin": "https://www.ummi.now"
+		}
+	],
+	"handle_links": ["preferred", "auto"],
 	"background_color": "#000000",
 	"theme_color": "#000000",
 	"orientation": "portrait",
@@ -97,28 +115,73 @@
 			"type": "image/png"
 		}
 	],
-	"categories": ["health", "lifestyle", "health & fitness", "education", "reference"],
+	"categories": ["reference", "health", "lifestyle", "health & fitness", "education"],
 	"screenshots": [
-
 		{
-			"src": "/screenshots/412x914-1.png",
-			"sizes": "412x914",
-			"type": "image/png"
+			"src": "/screenshots/screenshot-1.webp",
+			"sizes": "412x915",
+			"type": "image/webp",
+			"label": "Welcome screen with Quick exit button and menu stack."
 		},
 		{
-			"src": "/screenshots/412x914-2.png",
-			"sizes": "412x914",
-			"type": "image/png"
+			"src": "/screenshots/screenshot-2.webp",
+			"sizes": "412x915",
+			"type": "image/webp",
+			"label": "Recovery tools listings."
 		},
 		{
-			"src": "/screenshots/412x914-3.png",
-			"sizes": "412x914",
-			"type": "image/png"
+			"src": "/screenshots/screenshot-2-1.webp",
+			"sizes": "412x915",
+			"type": "image/webp",
+			"label": "Create personal recovery toolbox."
 		},
 		{
-			"src": "/screenshots/412x914-4.png",
-			"sizes": "412x914",
-			"type": "image/png"
+			"src": "/screenshots/screenshot-3.webp",
+			"sizes": "412x915",
+			"type": "image/webp",
+			"label": "Recovery tools explained with test content and videos."
+		},
+		{
+			"src": "/screenshots/screenshot-4.webp",
+			"sizes": "412x915",
+			"type": "image/webp",
+			"label": "2x Private Days Counter with custom titles."
+		},
+		{
+			"src": "/screenshots/screenshot-5.webp",
+			"sizes": "412x915",
+			"type": "image/webp",
+			"label": "Complete library of recovery lingo & phrases."
+		},
+		{
+			"src": "/screenshots/screenshot-6.webp",
+			"sizes": "412x915",
+			"type": "image/webp",
+			"label": "Lingo & phrases explained in understandable language."
+		},
+		{
+			"src": "/screenshots/screenshot-7.webp",
+			"sizes": "412x915",
+			"type": "image/webp",
+			"label": "App wide controls for privacy and data of all features."
+		},
+		{
+			"src": "/screenshots/screenshot-8.webp",
+			"sizes": "412x915",
+			"type": "image/webp",
+			"label": "Permanetly delete data at any time via settings."
+		},
+		{
+			"src": "/screenshots/screenshot-8-1.webp",
+			"sizes": "412x915",
+			"type": "image/webp",
+			"label": "Quick exit button loading google.com instantly."
+		},
+		{
+			"src": "/screenshots/screenshot-9.webp",
+			"sizes": "412x915",
+			"type": "image/webp",
+			"label": "Quick access menu layout."
 		}
 	]
 }
