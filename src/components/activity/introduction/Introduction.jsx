@@ -1,23 +1,22 @@
-// import * as React from "react";
-import {useEffect, useState} from "react";
-import useAppStore from "@/store/useAppStore";
-import parse from "html-react-parser";
+import { useEffect, useState, useRef } from 'react'
+import useAppStore from '@/store/useAppStore'
+import parse from 'html-react-parser'
 import DoneOutlineIcon from '@mui/icons-material/DoneOutline'
-// import InstallPWA from "ui/buttons/InstallPWA/InstallPWA";
-// import {getPWADisplayMode} from "@/utils/isAppInstalled";
-// import DaysCounterCTA from "components/activity/DaysCounter/DaysCounterCTA";
-import { activities ,strings} from "@/data/config";
-// import YourPrivacy from "components/ui/sections/privacy/YourPrivacy";
-
-import "@/utils/IsMobile.js";
-import "./styles.scss";
+import { activities, strings } from '@/data/config'
+import gsap from 'gsap' // <-- import GSAP
+import { useGSAP } from '@gsap/react' // <-- import the hook from our React package
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(useGSAP) // register the hook to avoid React version discrepancies
+gsap.registerPlugin(ScrollTrigger)
+import '@/utils/IsMobile.js'
+import './styles.scss'
 
 const Introduction = () => {
 	const name = 'introduction'
 	const [open, setOpen] = useState(false)
 	const activity = useAppStore((s) => s.activity)
 	const activityID = activities.find((activity) => (activity.url === name ? activity.id : null))
-
+	const ref = useRef()
 	const content = strings.activity.find((activity) => activity.name === name) || null
 	if (content === null) {
 		console.warn(`No content found for activity "${name}"`)
@@ -34,6 +33,72 @@ const Introduction = () => {
 		return Math.floor(Math.random() * (max - 1 + 1)) + 1
 	}
 
+	useGSAP(
+		() => {
+			const sections = gsap.utils.toArray('.point')
+			sections.forEach((section, i) => {
+				let tl = gsap.timeline({
+					// yes, we can add it to an entire timeline!
+					scrollTrigger: {
+						trigger: section, // '.point',
+						markers: false,
+						id: 'section' + i,
+						pin: false, // pin the trigger element while active
+						start: 'top+=15% bottom-=20%', // when the top of the trigger hits the top of the viewport
+						end: 'top top+=25%', // end after scrolling 500px beyond the start
+						scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
+						toggleActions: 'play pause reverse reverse',
+						snap: {
+							snapTo: 'labels', // snap to the closest label in the timeline
+							duration: { min: 0.5, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+							delay: 0.5, // wait 0.2 seconds from the last scroll event before doing the snapping
+							ease: 'power4.inOut', // the ease of the snap animation ("power3" by default)
+						},
+					},
+				})
+				tl.addLabel('start')
+
+					.from(section, { autoAlpha: 0, y: 150 })
+					.addLabel('show')
+					.to(section, { autoAlpha: 1, y: 0 })
+					.addLabel('leave')
+					.to(section, { autoAlpha: 0, y: -150 })
+					.addLabel('end')
+			})
+			sections.forEach((section, i) => {
+				const icon = section.querySelector('.icon')
+				let tl = gsap.timeline({
+					// yes, we can add it to an entire timeline!
+					scrollTrigger: {
+						trigger: section, // '.point',
+						markers: false,
+						id: 'section' + i,
+						pin: false, // pin the trigger element while active
+						start: 'top+=15% bottom-=20%', // when the top of the trigger hits the top of the viewport
+						end: 'top top+=15%', // end after scrolling 500px beyond the start
+						scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
+						toggleActions: 'play pause reverse reverse',
+						snap: {
+							snapTo: 'labels', // snap to the closest label in the timeline
+							duration: { min: 0.5, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+							delay: 0.5, // wait 0.2 seconds from the last scroll event before doing the snapping
+							ease: 'power2.inOut', // the ease of the snap animation ("power3" by default)
+						},
+					},
+				})
+				tl.addLabel('start')
+
+					.from(icon, { duration: 1, scale: 2, y: 150, webkitFilter: 'blur(200px)', filter: 'blur(200px)' })
+					.addLabel('show')
+					.to(icon, { scale: 1, webkitFilter: 'blur(0px)', filter: 'blur(0px)' })
+					.addLabel('leave')
+					.to(icon, { duration: 1, scale: 2, y: -250, webkitFilter: 'blur(200px)', filter: 'blur(200px)' })
+					.addLabel('end')
+			})
+		},
+		{ scope: ref, revertOnUpdate: true },
+	)
+
 	return (
 		<div className={'activity' + (open ? ' show' : ' hide')}>
 			<section className='intro' id='intro'>
@@ -49,7 +114,9 @@ const Introduction = () => {
 						content?.installed.content?.map((cnt, i) => {
 							return (
 								<div key={`intro-${i}`} className={'sub subsection installed sec-' + i}>
-									<div className='title '>{parse(cnt?.title)}</div>
+									<div className='title '>
+										<h2>{parse(cnt?.title)}</h2>
+									</div>
 									{cnt?.content?.map((para, k) => {
 										return (
 											<div className='' key={'p-' + k}>
@@ -71,11 +138,13 @@ const Introduction = () => {
 					{!isInstalled &&
 						content?.content?.map((cnt, i) => {
 							return (
-								<div key={`intro-${i}`} className={'sub subsection sec-' + i}>
-									<div className='title '>{parse(cnt?.title)}</div>
+								<div key={`intro-${i}`} className={'sub notinstalled subsection sec-' + i} ref={i === 1 ? ref : null}>
+									<div className='title '>
+										<h2>{parse(cnt?.title)}</h2>
+									</div>
 									{cnt?.content?.map((para, k) => {
 										return (
-											<div className='point' key={'p-' + k}>
+											<div className={'point' + ' ' + k} key={'p-' + k}>
 												{i === 1 && <DoneOutlineIcon className='icon' />}
 												<p key={k}>{parse(para)}</p>
 											</div>
@@ -89,5 +158,39 @@ const Introduction = () => {
 		</div>
 	)
 }
+;(function () {
+	const blurProperty = gsap.utils.checkPrefix('filter'),
+		blurExp = /blur\((.+)?px\)/,
+		getBlurMatch = (target) => (gsap.getProperty(target, blurProperty) || '').match(blurExp) || []
 
-export default Introduction;
+	gsap.registerPlugin({
+		name: 'blur',
+		get(target) {
+			return +getBlurMatch(target)[1] || 0
+		},
+		init(target, endValue) {
+			let data = this,
+				filter = gsap.getProperty(target, blurProperty),
+				endBlur = 'blur(' + endValue + 'px)',
+				match = getBlurMatch(target)[0],
+				index
+			if (filter === 'none') {
+				filter = ''
+			}
+			if (match) {
+				index = filter.indexOf(match)
+				endValue = filter.substr(0, index) + endBlur + filter.substr(index + match.length)
+			} else {
+				endValue = filter + endBlur
+				filter += filter ? ' blur(0px)' : 'blur(0px)'
+			}
+			data.target = target
+			data.interp = gsap.utils.interpolate(filter, endValue)
+		},
+		render(progress, data) {
+			data.target.style[blurProperty] = data.interp(progress)
+		},
+	})
+})()
+
+export default Introduction

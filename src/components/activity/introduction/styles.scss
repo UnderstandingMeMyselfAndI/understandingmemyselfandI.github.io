@@ -25,7 +25,7 @@ section.intro {
 	// h1,h2,h3,h4,h5, p,section{
 	// 	  text-shadow: 0 4px 6px rgba(0, 0, 0, 1);
 	// }
-	.sub{
+	.notinstalled{
 	.point{
 		display:flex;
 		width:90%;
@@ -44,18 +44,18 @@ section.intro {
 		P{
 			width:fit-content;
 			position:relative;
-			&::after{
-				content:"";
-				position:absolute;
-				top:0;
-				left:0;
-				width:130%;
-				height:130%;
-				background-color:var(--blue);
-				opacity:0.4;
-				z-index:-1;
-				transform: rotate(1deg) translate(-15%, -10%);
-			}
+			// &::after{
+			// 	content:"";
+			// 	position:absolute;
+			// 	top:0;
+			// 	left:0;
+			// 	width:130%;
+			// 	height:130%;
+			// 	background-color:var(--blue);
+			// 	opacity:0.4;
+			// 	z-index:-1;
+			// 	transform: rotate(1deg) translate(-15%, -10%);
+			// }
 		}
 	}
 }
@@ -108,16 +108,49 @@ section.intro {
 		}
 		
 	}
-	.sub.sec-0{ 
-		.point{
-			width:100%;
-		}
+	.sub.notinstalled.sec-0{ 
+		
 		width:80%;
 		margin:0 auto;
 		p{
 			font-size:variables.$h3_size;
 		}
 	}
+	.sub.notinstalled{
+		&.sec-1{
+			margin-bottom:10vh;
+
+			.title{
+				margin-bottom:4rem;
+			}
+		
+		.point{
+			width:100%;
+			position:relative;
+			text-align:center;
+			padding:3rem 0;
+			text-shadow:0px 0px 6px rgba(10,10,0,0.8);
+			.icon{
+				position:absolute;
+				left:50%;
+				top:50%;
+				width:140%;
+				height:140%;
+				max-width:80vw;
+				z-index:-1;
+				opacity:0.35;
+				fill:var(--yellow);
+				// color:var(--lighBlue);
+				
+				transform:translate(-50%, -50%);
+			}
+			// opacity:0;
+			// filter:blur(20px);
+			// transition:all 0.5s ease-in-out;
+		}
+	}
+	}
+	
 	.sub.sec-1{ 
 		
 		p{
@@ -134,25 +167,23 @@ section.intro {
 		}
 	}
 	p .emoji{
-				width:52px;
-				margin-top:8px;
-				display:block;
-				// outline:1px solid #ccc;
-			}
-	.sub.sec-1 p{
-		text-align:left;
+		width:52px;
+		margin-top:8px;
+		display:block;
+		// outline:1px solid #ccc;
 	}
+
 	.sub.sec-1 p:has(b){
 		text-align:center;
 	}
 	
-	.sub:nth-child(even)::after{
-		transform: rotate(-3deg) translate(-4.5%, -10%);
-		background-color:var(--greyDark);
-		opacity:0.3;
-		height:120%;
-		width:120%;
-	}
+	// .sub.new:nth-child(even)::after{
+	// 	transform: rotate(-3deg) translate(-4.5%, -10%);
+	// 	background-color:var(--greyDark);
+	// 	opacity:0.3;
+	// 	height:120%;
+	// 	width:120%;
+	// }
 	
 	.lrg{
 		font-size:1.75rem;

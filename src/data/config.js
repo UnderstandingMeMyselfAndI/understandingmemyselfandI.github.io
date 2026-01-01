@@ -262,7 +262,7 @@ const strings = {
 				},
 
 				{
-					title: 'Your toolbox',
+					title: 'Your Recovery Toolbox',
 					icon: HandymanIcon,
 					content: [
 						'<span>Find tools that work for you.</span>',
@@ -294,7 +294,7 @@ const strings = {
 							"How's it going?",
 							"Recovery is tough work so if you're in recovery we hope your holding it down and stacking the wins.",
 							'Struggling?<br /><b>"Play the tape forward"</b><br /> helps some people to get out of a rut. ',
-							"It's in <b>Lingo & Phrases</b><br /> below tools 🡻🡻.",
+							'It\'s in <a href="tools"><b>Lingo & Phrases</b></a><br /> below tools below.',
 							'Stay strong and<br /> hang on in there.👊🏼',
 						],
 					},
