@@ -2,6 +2,10 @@ import { useEffect } from 'react'
 import useAppStore from '@/store/useAppStore'
 
 const Vcn = () => {
+
+	window.addEventListener('vite:preloadError', (event) => {
+		window.reload() // for example, refresh the page
+	})
 	// increment visit count
 
 	// // increment visit count
