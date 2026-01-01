@@ -16,8 +16,8 @@ const __dirname = path.dirname('./src')
 const metadata = JSON.parse(fs.readFileSync('./src/metadata.json', 'utf-8'))
 
 export default defineConfig({
-	root: './',
-	base: './',
+	// root: './',
+	// base: './',
 	publicDir: 'public',
 	define: {
 		__BUILD_METADATA__: JSON.stringify(metadata),
