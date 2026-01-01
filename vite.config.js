@@ -15,12 +15,6 @@ const __dirname = path.dirname('./src')
 //version meta data
 const metadata = JSON.parse(fs.readFileSync('./src/metadata.json', 'utf-8'))
 
-// Generate list of all built font files
-// const fontFiles = fs
-// 	.readdirSync(path.resolve(__dirname, "docs/assets")) // ← after first build
-// 	.filter(file => file.endsWith(".woff2") || file.endsWith(".woff"))
-// 	.map(file => `/assets/${file}`);
-// https://vitejs.dev/config/
 export default defineConfig({
 	root: './',
 	base: './',
@@ -74,7 +68,7 @@ export default defineConfig({
 		analyzer() /*, analyzer() uncomment for bundle analyzer*/,
 		Sitemap({
 			outDir: 'docs',
-			hostname: 'https://ummi.now', // Required: your site's base URL
+			hostname: 'https://www.ummi.now', // Required: your site's base URL
 			// Optional: Add dynamic or extra routes if needed
 			dynamicRoutes: getDynamicRoutes(),
 			// Optional: Customize defaults
