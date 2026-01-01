@@ -48,16 +48,21 @@ body .app {
     }
 
     h2.cookie-banner-title {
-      font-size: 1.75rem;
-      // font-weight: 700;
+      font-size: variables.$h4_size;
+      font-weight: 800;
+      font-variation-settings: "wght" 800;
       color:  var(--blue);
       margin-bottom: 0.5rem;
     }
+    h4{
+      font-size: variables.$p_size;
+      color:  var(--blue);
+    }
 
     .cookie-banner-description {
-      color: #4b5563;
+      color:  var(--greyDark);
       font-size: 0.875rem;
-      margin-bottom: 1rem;
+      margin: 0.25rem 0 1rem 0 ;
     }
 
     .cookie-banner-actions {
@@ -81,12 +86,12 @@ body .app {
     }
 
     .btn-primary {
-          background: #1d4ed8;
+          background: var(--blue);
       color: white;
     }
 
     .btn-primary:hover {
-      background: #1d4ed8;
+      background: var(--blue);
     }
 
     .btn-secondary {
