@@ -7,6 +7,7 @@ import { sanitizeStringForUrl } from '@/js/utils.js'
 
 const appURL = window.location.protocol + '//' + window.location.hostname + (location.port ? ':' + location.port : '') //'https://ummi.now/'
 
+// TODO: Look at URLPattern API https://developer.mozilla.org/docs/Web/API/URL_Pattern_API
 function setBrowserHistory(slug, title) {
 	if (slug) history.pushState({ page: title }, '', slug)
 }
