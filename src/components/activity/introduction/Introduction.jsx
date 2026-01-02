@@ -90,11 +90,11 @@ const Introduction = () => {
 				tl2
 					.addLabel('start')
 
-					.from(icon, { duration: 1, scale: 0.25, y: '-75%', webkitFilter: `blur(${blur}px)`, filter: `blur(${blur}px)` })
+					.from(icon, { duration: 1, scale: 0.25, webkitFilter: `blur(${blur}px)`, filter: `blur(${blur}px)` })
 					.addLabel('show')
 					.to(icon, { scale: 1, webkitFilter: 'blur(0px)', filter: 'blur(0px)' })
 					.addLabel('leave')
-					.to(icon, { duration: 1, scale: 0.25, y: '0%', webkitFilter: `blur(${blur}px)`, filter: `blur(${blur}px)` })
+					.to(icon, { duration: 1, scale: 0.25, webkitFilter: `blur(${blur}px)`, filter: `blur(${blur}px)` })
 					.addLabel('end')
 			})
 		},
