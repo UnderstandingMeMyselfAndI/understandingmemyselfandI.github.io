@@ -268,10 +268,10 @@ const strings = {
 					content: [
 						'<span>Addiction Recovery tools explained.</span>',
 						'<span>Create your own toolbox to help you recover.</span>',
-						'<span>Tools explained with text & videos.</span>',
-						'<span>Scenarios describing each tool.</span>',
+						'<span>Text & video eplanations.</span>',
+						'<span>Scenarios describing when tools can be used.</span>',
 						'<span>Private Days Counter to track recovery.</span>',
-						'<span>Quick exit to Google for whenever that could be helpful.</span>',
+						'<span>Quick exit button to open Google for whenever that could be helpful.</span>',
 						'<span>Available online or offline.</span>',
 						'<span>Complete privacy you control.</span>',
 						'<span>Erase all data at anytime.</span>',
