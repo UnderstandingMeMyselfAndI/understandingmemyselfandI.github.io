@@ -231,7 +231,7 @@ export default function AppMenu() {
 					</div> 
 				</li>*/}
 				<li
-					className='new'
+					className=''
 					onClick={() => {
 						if (gae && window.gtag) {
 							window.gtag('event', 'screen_viewed', {

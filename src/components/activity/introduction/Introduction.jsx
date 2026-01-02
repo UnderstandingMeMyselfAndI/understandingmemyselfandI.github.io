@@ -106,13 +106,13 @@ const Introduction = () => {
 			<section className='intro' id='intro'>
 				<div className='i1'>
 					<h2>
-						{!isInstalled && <u>{content.title}</u>}
+						{(!isInstalled || (isInstalled && vc < 3)) && <u>{content.title}</u>}
 
 						{isInstalled && vc >= 3 && <u>{parse(content?.returning?.content?.titles[getRand(content?.returning?.content?.titles?.length - 1)])}</u>}
 					</h2>
 					{isInstalled &&
-						vc > 0 &&
-						vc < 3 && // if app is installed show different content
+						vc > 20 &&
+						vc < 33 && // if app is installed show different content
 						content?.installed.content?.map((cnt, i) => {
 							return (
 								<div key={`intro-${i}`} className={'sub subsection installed sec-' + i}>
@@ -131,13 +131,13 @@ const Introduction = () => {
 							)
 						})}
 
-					{isInstalled && vc >= 3 && (
+					{isInstalled && vc >= 20 && (
 						<div key={`intro`} className={'sub subsection sec-'}>
 							<div className=' returning'>{parse(content?.returning?.content?.contents[getRand(content?.returning?.content?.contents?.length - 1)])}</div>
 						</div>
 					)}
 
-					{!isInstalled &&
+					{(!isInstalled || (isInstalled && vc < 20)) &&
 						content?.content?.map((cnt, i) => {
 							return (
 								<div key={`intro-${i}`} className={'sub notinstalled subsection sec-' + i} ref={i === 1 ? ref : null}>
