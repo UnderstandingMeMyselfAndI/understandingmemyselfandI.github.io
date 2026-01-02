@@ -8,60 +8,46 @@ const data = {
 				slug: 'a-b-c-d-e',
 				toolFieldGroup: {
 					description:
-						'<div>\n<div>A bad-ass tool for catching those sneaky negative thoughts and turning them around using proven therapy techniques. It&#8217;s also an easy-to-remember one &#8211; the first five letters of the alphabet. Get in.</div>\n</div>\n',
+						'<div>\n<div>A bad-ass tool for catching those sneaky negative thoughts and turning them around using proven therapy techniques.</div>\n<div>It&#8217;s also easy-to-remember &#8211; the first five letters of the alphabet. Get in.</div>\n</div>\n',
+					isAcronym: true,
 					letters: [
 						{
 							letter: 'A',
 							meaning: 'Activating event or trigger',
 							definition:
-								'<div>\n<div>What actually happened? This is the specific situation or event that got your motor started, revved up and the wheels spinning. Think back to even before the key was in the ignition.</div>\n</div>\n',
+								'<div>\n<div>What actually happened?</div>\n<div></div>\n<div>This is the specific situation or event that got your motor started, revved up and the wheels spinning. Think back to even before the key was in the ignition.</div>\n</div>\n',
 						},
 						{
 							letter: 'B',
 							meaning: 'Belief',
 							definition:
-								'<div>\n<div>What story are you telling yourself about what happened? These are your thoughts and interpretations your mind is creating for you. But be sharp enough to spot when your mind is bending the truth. You&#8217;re no fool.</div>\n</div>\n',
+								'<div>\n<div>What story are you telling yourself about what happened?</div>\n<div></div>\n<div>These are your thoughts and interpretations your mind is creating for you. But be sharp enough to spot when your mind is bending the truth. You&#8217;re no fool.</div>\n</div>\n',
 						},
 						{
 							letter: 'C',
 							meaning: 'Consequence',
 							definition:
-								'<div>\n<div>How did those thoughts make you feel and act? This is where your emotions and behaviors show up and kick into play. Sometimes it&#8217;s not pretty so prep yourself, think about it and stay cool.</div>\n</div>\n',
+								'<div>\n<div>How did those thoughts make you feel and act?</div>\n<div></div>\n<div>This is where your emotions and behaviors show up and kick into play. Sometimes it&#8217;s not pretty, so prep yourself, think about it and stay cool.</div>\n</div>\n',
 						},
 						{
 							letter: 'D',
 							meaning: 'Dispute',
 							definition:
-								'<div>\n<div>It&#8217;s time to get full-on detective with your own thoughts &#8211; are they really true and helpful or pulling a swerve and working against you? You can spot the blags so don&#8217;t let them fool you. Take your thoughts to court and give them a grilling.</div>\n</div>\n',
+								'<div>\n<div>It&#8217;s time to get full-on detective with your own thoughts &#8211; are they really true and helpful or pulling a swerve and working against you?</div>\n<div></div>\n<div>You can spot the blags so don&#8217;t let them fool you.</div>\n<div></div>\n<div>Take your thoughts to court and give them a grilling.</div>\n</div>\n',
 						},
 						{
 							letter: 'E',
 							meaning: 'Effective new belief',
 							definition:
-								'<div>\n<div>Push the crap to one side and focus on the true stuff. With that you can create a healthier, more realistic way of thinking about the situation and not get blind sided by the BS.</div>\n</div>\n',
+								'<div>\n<div>Push the crap to one side and focus on the true stuff.</div>\n<div></div>\n<div>With that you can create a healthier, more realistic way of thinking about the situation and not get blind sided by the BS.</div>\n</div>\n',
 						},
 					],
 					scenariosField: {
 						nodes: [
 							{
-								databaseId: 'cG9zdDo0Mw==',
-								id: 43,
-								__typename: 'Scenario',
-								title: 'Job Interview Rejection',
-								scenariosFieldGroup: {
-									description:
-										'<p>You didn&#8217;t get a job you really wanted.</p>\n<p>Instead of thinking &#8216;I&#8217;m not good enough&#8217; <b>(old belief)</b>, you recognize that one rejection doesn&#8217;t define your worth and there could be many factors involved <b>(new belief)</b>.</p>\n',
-								},
-							},
-							{
-								databaseId: 'cG9zdDo0NA==',
-								id: 44,
-								__typename: 'Scenario',
-								title: 'Friend Didn’t Text Back',
-								scenariosFieldGroup: {
-									description:
-										'<p>Your friend hasn&#8217;t responded to your message</p>\n<p>Rather than assuming they&#8217;re mad at you <b>(old belief)</b>, you consider they might be busy or dealing with their own stuff <b>(new belief)</b>.</p>\n',
-								},
+								databaseId: 'cG9zdDox',
+								id: 1,
+								__typename: 'Post',
 							},
 						],
 					},
@@ -83,56 +69,53 @@ const data = {
 				slug: 'b-a-d-s',
 				toolFieldGroup: {
 					description:
-						'<p>B.A.D.S. is a super-quick check-in.</p>\n<p>When the urge to use/drink/gamble/scroll hits, pause and ask yourself: “Am I actually <strong>bored, anxious, depressed, or stressed</strong> right now?”</p>\n<p>99 % of the time it’s one of those four jerks in disguise.</p>\n<p>B.A.D.S. is the buddies with H.A.L.T. so check out that tool if B.A.D.S. isn&#8217;t cutting it.</p>\n',
+						'<p>B.A.D.S. is a super-quick check-in.</p>\n<p>When the urge to use/drink/gamble/scroll hits, pause and ask yourself: “Am I actually <strong>bored</strong>, <strong>anxious</strong>, <strong>depressed</strong>, or <strong>stressed</strong> right now?”</p>\n<p>99 % of the time it’s one of those four jerks in disguise.</p>\n<p>B.A.D.S. is the buddies with H.A.L.T. so check out that tool if B.A.D.S. isn&#8217;t cutting it.</p>\n',
+					isAcronym: true,
 					letters: [
 						{
 							letter: 'B',
 							meaning: 'Bored',
-							definition: '<p>Feeling restless, unstimulated, or “at a loose end.”</p>\n',
+							definition:
+								'<p>Feeling restless, unstimulated, or “at a loose end.”.</p>\n<p>Boredom can be a time when red flags should start to fly &#8211; it&#8217;s prime time for the gremlins to start running through thoughts and trying to control the show.</p>\n<p>Change up the situation and get stuck into something else; a book, a movie, some tunes, batch cook for the week. If that&#8217;s not cutting it going for a walk can help. Changing environment can be a power-move.</p>\n',
 						},
 						{
 							letter: 'A',
 							meaning: 'Anxious',
-							definition: '<p>Experiencing worry, nervousness, or fear about the future or current situations.</p>\n',
+							definition:
+								'<p>Experiencing worry, nervousness, or fear about the future or current situations.</p>\n<p>When people are anxious it&#8217;s prime time for gremlin thoughts to take control of the wheel and change the course away from the one they&#8217;ve set.</p>\n<p>Grounding is a boss move using tools like box breathing, the 54321 tool, or the Shapes tool to get in &#8220;<strong>the here and now</strong>&#8221; &#8211; it buys some space to think rather than letting the mind be consumed.</p>\n<p>In the here and now, thinking becomes clearer, the good and bad thoughts identified and separated and it&#8217;s less likely wonky decisions are made which cause future drama.</p>\n',
 						},
 						{
 							letter: 'D',
 							meaning: 'Depressed',
-							definition: '<p>Feeling low, hopeless, unmotivated, or emotionally drained.</p>\n',
+							definition:
+								'<p>Feeling low, hopeless, unmotivated, or emotionally drained.</p>\n<p>Everyone gets down at times, it&#8217;s natural. When people are low they can also have their guard down when bad thoughts start knocking.</p>\n<p>Calling a friend, doing an online group or in person or get some good vibes from exercise can level up the situation and make a pivot that&#8217;s needed.</p>\n<p>If the dark thoughts persist hit up a professional to level up.</p>\n',
 						},
 						{
 							letter: 'S',
 							meaning: 'Stressed',
-							definition: '<p>Feeling overwhelmed by demands, responsibilities, or external pressures.</p>\n',
+							definition:
+								'<p>Feeling overwhelmed by demands, responsibilities, or external pressures.</p>\n<p>When people are stressed their mind can step into the gremlins neighbourhood as it&#8217;s overwhelmed by the things making them stressed.</p>\n<p>To avoid the drama and confronting the bad thoughts that hang out here, it&#8217;s time to make a boss move and regain control by using meditation, breathing exercises , the TIPP tool,  or the DEADS tool.</p>\n<p>These help to regain control and put the thoughts the stressed mind is spinning, into perspective and apply a bit of chill to the situation.</p>\n<p>&nbsp;</p>\n',
 						},
 					],
 					scenariosField: {
 						nodes: [
 							{
-								databaseId: 'cG9zdDo0Nw==',
-								id: 47,
-								__typename: 'Scenario',
-								title: 'Evening Cravings from Boredom',
-								scenariosFieldGroup: {
-									description:
-										'<p>John is early in recovery from alcohol use. He notices strong cravings most evenings when he has nothing to do.</p>\n<p><b>Using B.A.D.S.:</b></p>\n<p>He identifies he&#8217;s not actually thirsty for alcohol — he’s <u>bored.</u></p>\n<p><u>Instead of drinking</u>, he chooses to <u>go for a walk and listen to a podcast, which keeps him engaged</u> until bedtime.</p>\n',
-								},
-							},
-							{
-								databaseId: 'cG9zdDo0OA==',
-								id: 48,
-								__typename: 'Scenario',
-								title: 'Work Stress Triggering a Relapse Urge',
-								scenariosFieldGroup: {
-									description:
-										'<p>Emma, recovering from gambling, feels the urge to gamble after a very stressful day at work.</p>\n<p><b>Using B.A.D.S.:</b></p>\n<p>She recognises <u>her urge is linked to being stressed, not a genuine desire to gamble.</u></p>\n<p>She <u>calls a friend and practices some breathing exercises</u> instead.</p>\n',
-								},
+								databaseId: 'cG9zdDox',
+								id: 1,
+								__typename: 'Post',
 							},
 						],
 					},
 					videosField: null,
 					podcastsField: null,
 				},
+			},
+			{
+				databaseId: 'cG9zdDozMzA=',
+				id: 330,
+				title: 'Box Breathing',
+				slug: 'box-breathing',
+				toolFieldGroup: null,
 			},
 			{
 				databaseId: 'cG9zdDo5Nw==',
@@ -142,6 +125,7 @@ const data = {
 				toolFieldGroup: {
 					description:
 						'<p><b data-path-to-node="0" data-index-in-node="60">C.B.A.</b> is one of the most powerful tools you can have in your toolkit and it comes from the guys at <a href="https://smartrecovery.org.uk/" target="_blank" rel="noopener">SMART recovery</a> &#8211; so check them out.</p>\n<p>It&#8217;s your no-BS pro/con list that cuts straight through the excuses. When you&#8217;re in the heat of a craving, your brain lies to you—it tells you that getting on it is the only thing that matters. <span class="citation-5 citation-end-5">The CBA is the tool you use to pull the receipts and see if that &#8220;deal&#8221; is actually worth it.</span></p>\n<p>The CBA is a four-way grid. You don&#8217;t just look at why drugs/alcohol are bad; you look at why you were/are using them in the first place and what you’re actually trading away.</p>\n<p>Make a version of each list for you. Don&#8217;t cut anything and be real with yourself.</p>\n<p>If you&#8217;re kidding anyone it&#8217;s only yourself.</p>\n',
+					isAcronym: true,
 					letters: [
 						{
 							letter: 'C',
@@ -165,24 +149,9 @@ const data = {
 					scenariosField: {
 						nodes: [
 							{
-								databaseId: 'cG9zdDo0OQ==',
-								id: 49,
-								__typename: 'Scenario',
-								title: 'Binge Watching vs. Sleep',
-								scenariosFieldGroup: {
-									description:
-										'<p><b>Cost:</b><br />Exhaustion, poor work performance, health issues.</p>\n<p><b>Benefit:</b><br />Temporary escape, entertainment.</p>\n<p><b>Analysis:</b><br />The short-term comfort isn&#8217;t worth the long-term consequences to your wellbeing.</p>\n',
-								},
-							},
-							{
-								databaseId: 'cG9zdDo1MA==',
-								id: 50,
-								__typename: 'Scenario',
-								title: 'Avoiding Difficult Conversations',
-								scenariosFieldGroup: {
-									description:
-										'<p><b>Cost:</b><br />Unresolved conflicts, built-up resentment, damaged relationships.</p>\n<p><b>Benefit:</b><br />Temporary peace, avoiding confrontation.</p>\n<p><b>Analysis:</b><br />The temporary comfort is creating bigger problems that will be harder to solve later.</p>\n',
-								},
+								databaseId: 'cG9zdDox',
+								id: 1,
+								__typename: 'Post',
 							},
 						],
 					},
@@ -202,13 +171,14 @@ const data = {
 				},
 			},
 			{
-				databaseId: 'cG9zdDo5OA==',
-				id: 98,
+				databaseId: 'cG9zdDozMzQ=',
+				id: 334,
 				title: 'D.E.A.D.S.',
-				slug: 'd-e-a-d-s',
+				slug: 'd-e-a-d-s-2',
 				toolFieldGroup: {
 					description:
 						'<p dir="auto">The DEADS tool from SMART Recovery is a solid, no-BS strategy for handling those sneaky urges and cravings that pop up when you&#8217;re kicking addictions or bad habits to the curb. It&#8217;s all about outsmarting them instead of letting them run the show — science-backed moves to ride out the storm without giving in.</p>\n<p dir="auto">Bottom line? DEADS is your secret weapon to turn urges from bosses into background noise. They get weaker and rarer the more you use this—practice when you&#8217;re calm so it&#8217;s automatic in the heat. If you&#8217;re pushing through recovery, tap into SMART meetings or a pro for extra backup.</p>\n<p dir="auto">Like door-to-door salesmen — if you stop answering, they eventually leave.</p>\n<p dir="auto">You&#8217;ve got the power; keep at it.</p>\n',
+					isAcronym: true,
 					letters: [
 						{
 							letter: 'D',
@@ -244,24 +214,70 @@ const data = {
 					scenariosField: {
 						nodes: [
 							{
-								databaseId: 'cG9zdDo1MQ==',
-								id: 51,
-								__typename: 'Scenario',
-								title: 'Craving Alcohol at a Party',
-								scenariosFieldGroup: {
-									description:
-										'<p><b>Delay:</b><br />\n&#8216;I&#8217;ll wait 15 minutes first.&#8217;</p>\n<p><b>Escape:</b><br />\nStep outside or go to the bathroom.</p>\n<p><b>Accept:</b><br />\n&#8216;This urge will pass.&#8217;</p>\n<p><b>Distract:</b><br />\nStart a conversation with someone new.</p>\n<p><b>Substitute:</b><br />\nGrab a mocktail or soda instead.</p>\n',
-								},
+								databaseId: 'cG9zdDox',
+								id: 1,
+								__typename: 'Post',
 							},
+						],
+					},
+					videosField: {
+						nodes: [
 							{
-								databaseId: 'cG9zdDo1Mg==',
-								id: 52,
-								__typename: 'Scenario',
-								title: 'Wanting to Text an Ex',
-								scenariosFieldGroup: {
-									description:
-										'<p><b>Delay:</b><br />\n&#8216;I&#8217;ll wait until tomorrow.&#8217;</p>\n<p><b>Escape:</b><br />\nLeave your phone in another room.</p>\n<p><b>Avoid:</b><br />\nDelete their number (again).</p>\n<p><b>Distract:</b><br />\nCall a friend or watch funny videos.</p>\n<p><b>Substitute:</b><br />\nWrite in a journal instead.</p>\n',
-								},
+								databaseId: 'cG9zdDoxNDY=',
+								id: 146,
+							},
+						],
+					},
+					podcastsField: null,
+				},
+			},
+			{
+				databaseId: 'cG9zdDo5OA==',
+				id: 98,
+				title: 'D.E.A.D.S.',
+				slug: 'd-e-a-d-s',
+				toolFieldGroup: {
+					description:
+						'<p dir="auto">The DEADS tool from SMART Recovery is a solid, no-BS strategy for handling those sneaky urges and cravings that pop up when you&#8217;re kicking addictions or bad habits to the curb. It&#8217;s all about outsmarting them instead of letting them run the show — science-backed moves to ride out the storm without giving in.</p>\n<p dir="auto">Bottom line? DEADS is your secret weapon to turn urges from bosses into background noise. They get weaker and rarer the more you use this—practice when you&#8217;re calm so it&#8217;s automatic in the heat. If you&#8217;re pushing through recovery, tap into SMART meetings or a pro for extra backup.</p>\n<p dir="auto">Like door-to-door salesmen — if you stop answering, they eventually leave.</p>\n<p dir="auto">You&#8217;ve got the power; keep at it.</p>\n',
+					isAcronym: true,
+					letters: [
+						{
+							letter: 'D',
+							meaning: 'Deny or Delay',
+							definition:
+								'<p dir="auto">Hit the brakes and create a road block. Urges ain&#8217;t forever—they peak and fade if you don&#8217;t feed them attention. Tell yourself, &#8220;Chill for 10-15 minutes,&#8221; and watch them weaken. The more you deny them, the less they bug you over time. It&#8217;s like starving out a pest; eventually, they bounce.</p>\n',
+						},
+						{
+							letter: 'E',
+							meaning: 'Escape',
+							definition:
+								'<p dir="auto">Bounce your scenery quick smart. If you&#8217;re in a spot that&#8217;s triggering you—like a bar, a shop with your vice, or even scrolling past ads — dip and pivot. Change the channel, leave the room, or straight-up walk away. Shifting your scene flips the script and kills the vibe of the urge fast.</p>\n',
+						},
+						{
+							letter: 'A',
+							meaning: 'Avoid / Accept / Attack',
+							definition:
+								'<p dir="auto">Own it without fighting it.</p>\n<p dir="auto">Yeah, it&#8217;s annoying and pretty crap right now, but it&#8217;s normal and it won&#8217;t wreck you. Remind yourself, &#8220;This discomfort is temporary—I&#8217;ve got this.&#8221; Accepting it puts it in perspective, turns it into a win, and helps it pass quicker without the drama.</p>\n',
+						},
+						{
+							letter: 'D',
+							meaning: 'Dispute / Distract',
+							definition:
+								'<p dir="auto">Who&#8217;s Boss here? You are. S0 put your brain in it&#8217;s place for all this BS it&#8217;s pushing your way.  Use logic to roast those irrational thoughts, like &#8220;Nope, that &#8216;one won&#8217;t hurt&#8217; it&#8217;s a lie—it&#8217;s always led to places you don&#8217;t want to go back to.&#8221;</p>\n<p dir="auto">Pull a combo with tools like ABCDEs or DISARM to build counter-punches that shut down the craving before it builds steam.</p>\n',
+						},
+						{
+							letter: 'S',
+							meaning: 'Substitute',
+							definition:
+								'<p dir="auto">Swap it out with something better. When the urge hits, jump into a distraction that&#8217;s fun or productive — hit the pavement for a walk, blast some music, grab a book, or crush a workout. Make a list of go-tos ahead of time so you&#8217;re ready to pivot quick and make that craving ghost.</p>\n',
+						},
+					],
+					scenariosField: {
+						nodes: [
+							{
+								databaseId: 'cG9zdDox',
+								id: 1,
+								__typename: 'Post',
 							},
 						],
 					},
@@ -284,6 +300,7 @@ const data = {
 				toolFieldGroup: {
 					description:
 						'<p>Striaght from the D.B.T. toolbox. DEAR MAN is your script for getting what you need from someone without starting a war or folding like a lawn chair.</p>\n',
+					isAcronym: true,
 					letters: [
 						{
 							letter: 'D',
@@ -334,6 +351,7 @@ const data = {
 				toolFieldGroup: {
 					description:
 						'<div>\n<div>D.I.S.A.R.M. is like your own personal security team. Like the ones in the movies, and that ex World leaders have.</div>\n<div></div>\n<div>It&#8217;s your mental bodyguard system &#8211; protecting you from the gremlins creating thoughts and images that try to sabotage your progress. Use the D.I.S.A.R.M. team as they&#8217;ve got your back.</div>\n</div>\n',
+					isAcronym: true,
 					letters: [
 						{
 							letter: 'D',
@@ -373,24 +391,9 @@ const data = {
 					scenariosField: {
 						nodes: [
 							{
-								databaseId: 'cG9zdDo1NA==',
-								id: 54,
-								__typename: 'Scenario',
-								title: 'Negative Self-Talk Spiral',
-								scenariosFieldGroup: {
-									description:
-										'<p>Inner voice says <u>&#8216;You&#8217;ll never change, why even try?&#8217;</u></p>\n<p>Catch this destructive self-talk, recognize the familiar pattern, refuse to argue with it, and replace it with <u>&#8216;I&#8217;m learning and growing every day.&#8217;</u></p>\n',
-								},
-							},
-							{
-								databaseId: 'cG9zdDo1Mw==',
-								id: 53,
-								__typename: 'Scenario',
-								title: 'Gambling Urge Imagery',
-								scenariosFieldGroup: {
-									description:
-										'<p><b>You start visualizing winning big at the casino.</b></p>\n<p><b>Recognize this as destructive imagery</b>, <u>become aware of the pattern</u>, <b>refuse to engage with the fantasy</b>, and <u>replace it with images of financial stability and peace of mind.</u></p>\n',
-								},
+								databaseId: 'cG9zdDox',
+								id: 1,
+								__typename: 'Post',
 							},
 						],
 					},
@@ -413,6 +416,7 @@ const data = {
 				toolFieldGroup: {
 					description:
 						'<p>This one&#8217;s a bit less of a rigid acronym of a tool and more of a handy, street-smart map for dealing with life&#8217;s crap without getting owned by it.</p>\n<p>It&#8217;s the escape plan. <strong>F.A.C.E </strong>is the antidote to F.E.A.R (so check out the F.E.A.R tool). It&#8217;s about unhooking from your mind, taking the feeling with you, and walking toward what you care about anyway.</p>\n<p>Think of <strong>F.A.C.E.</strong> as your playbook for handling emotional hijackings. It’s the opposite of freaking out or shutting down. First, you <strong>F</strong>eel the feeling instead of denying it. You <strong>A</strong>llow it to exist without a war. You <strong>C</strong>ome back to the solid ground of the present moment so you&#8217;re not lost in mental chaos. Finally, you <strong>E</strong>ngage with your life on your terms, taking the feeling <em>with you</em> instead of waiting for it to leave. It’s not about feeling better; it’s about getting better at feeling, so you can live your life full-on, even when it gets messy.</p>\n<p>It’s a core process in ACT (Acceptance Commitment Therapy) for building psychological flexibility.</p>\n',
+					isAcronym: true,
 					letters: [
 						{
 							letter: 'F',
@@ -452,6 +456,7 @@ const data = {
 				toolFieldGroup: {
 					description:
 						'<p>A diagnosis of why you&#8217;re stuck. It names the four moves that keep you in a cage.</p>\n<p>The F.E.A.R tool is used to describe the problem and it&#8217;s always hanging with F.A.C.E. tool &#8211; The escape plan which helps identify the solution.</p>\n',
+					isAcronym: true,
 					letters: [
 						{
 							letter: 'F',
@@ -487,6 +492,7 @@ const data = {
 				toolFieldGroup: {
 					description:
 						'<div>\n<div>H.A.L.T is a must have self-check tool. When these four basic needs are out of whack, your judgment isn&#8217;t on-point, and you&#8217;re an easy target for old habits. 90% of daft decisions start with one of these four gremlins.</div>\n<div></div>\n<div>Run a self-check with them and fix the basic stuff first — then see if the craving is still there. 9 times out of 10 it will have done one. If not you can often find H.A.L.T. hanging with the jerks of B.A.D.S so check that tool too.</div>\n</div>\n',
+					isAcronym: true,
 					letters: [
 						{
 							letter: 'H',
@@ -516,24 +522,9 @@ const data = {
 					scenariosField: {
 						nodes: [
 							{
-								databaseId: 'cG9zdDo1Nw==',
-								id: 57,
-								__typename: 'Scenario',
-								title: 'Afternoon Craving Attack',
-								scenariosFieldGroup: {
-									description:
-										'<p>You&#8217;re suddenly craving your old habit at 3 PM.</p>\n<p><b>Check:</b></p>\n<p>Haven&#8217;t eaten since breakfast <u>(Hungry)</u>,<br />\nfrustrated with work project <u>(Angry)</u>,<br />\nbeen alone all day <u>(Lonely)</u>,<br />\nonly got 4 hours sleep <u>(Tired)</u>.</p>\n<p><b>Solution:</b></p>\n<p>Eat a healthy snack, take a walk, call a friend, plan an early bedtime.</p>\n',
-								},
-							},
-							{
-								databaseId: 'cG9zdDo1OA==',
-								id: 58,
-								__typename: 'Scenario',
-								title: 'Weekend Relapse Risk',
-								scenariosFieldGroup: {
-									description:
-										'<p>Saturday evening and you&#8217;re thinking about using.</p>\n<p><b>Check:</b></p>\n<p>Skipped meals while running errands <u>(Hungry)</u>,<br />\nargument with family <u>(Angry)</u>,<br />\nfriends are all busy <u>(Lonely)</u>,<br />\nstayed up too late binge-watching <u>(Tired)</u>.</p>\n<p>Address each need before the craving gets stronger.</p>\n',
-								},
+								databaseId: 'cG9zdDox',
+								id: 1,
+								__typename: 'Post',
 							},
 						],
 					},
@@ -548,6 +539,7 @@ const data = {
 				slug: 'h-o-p-e',
 				toolFieldGroup: {
 					description: '<div>\n<div>Hope isn’t something you wait for—it’s something you build, one tiny helpful action at a time.</div>\n</div>\n',
+					isAcronym: true,
 					letters: [
 						{
 							letter: 'H',
@@ -574,24 +566,9 @@ const data = {
 					scenariosField: {
 						nodes: [
 							{
-								databaseId: 'cG9zdDo1OQ==',
-								id: 59,
-								__typename: 'Scenario',
-								title: 'Feeling Hopeless and Isolated',
-								scenariosFieldGroup: {
-									description:
-										'<p>Volunteer at a local food bank <u>(Helping)</u>,<br />join a recovery support group <u>(Others)</u>,<br />remember your goal of being present for your kids <u>(Purpose)</u>,<br />celebrate 30 days clean <u>(Esteem)</u>.</p>\n<p>Each action builds on the others <b>to create genuine hope.</b></p>\n',
-								},
-							},
-							{
-								databaseId: 'cG9zdDo2Mg==',
-								id: 62,
-								__typename: 'Scenario',
-								title: 'Lost Sense of Direction',
-								scenariosFieldGroup: {
-									description:
-										'<p>Help a neighbor with groceries <u>(Helping)</u>,<br />reach out to old friends you trust <u>(Others)</u>,<br />explore going back to school <u>(Purpose)</u>,<br />acknowledge you&#8217;ve been handling stress better lately <u>(Esteem)</u>.</p>\n<p><b>Small steps toward a meaningful life.</b></p>\n',
-								},
+								databaseId: 'cG9zdDox',
+								id: 1,
+								__typename: 'Post',
 							},
 						],
 					},
@@ -607,6 +584,7 @@ const data = {
 				toolFieldGroup: {
 					description:
 						'<div>\n<div>The Hierarchy of Values (H.O.V.) tool is a straight-up game-changer for getting your priorities locked in and staying motivated, especially when you&#8217;re trying to ditch the bad habits, beat addictions, or just level up your life decisions.</div>\n<div></div>\n<div>It&#8217;s a key move from SMART Recovery — a no-nonsense, science-based program for handling urges and making smarter choices, keeping it all about real talk and zero mystical vibes.</div>\n<div></div>\n<div>H.O.V &#8211; Think of it as building your personal roadmap. When life&#8217;s pulling you in daft directions, H.O.V. reminds you what&#8217;s really worth working for, so you don&#8217;t waste time on BS that doesn&#8217;t align with your core. No religious angle here — just practical steps to boss up.</div>\n</div>\n',
+					isAcronym: true,
 					letters: [
 						{
 							letter: 'H',
@@ -630,24 +608,9 @@ const data = {
 					scenariosField: {
 						nodes: [
 							{
-								databaseId: 'cG9zdDo2Mw==',
-								id: 63,
-								__typename: 'Scenario',
-								title: 'Career vs. Family Time Decision',
-								scenariosFieldGroup: {
-									description:
-										'<p>Your job offers overtime but the kids have a recital.</p>\n<p><b>Your hierarchy:</b></p>\n<p><u>Family relationships</u>,<br /><u>personal health</u>,<br /><u>financial stability</u>,<br /><u>career advancement</u>.</p>\n<p><u>Since family tops your list</u>, the choice becomes clear &#8211; <u>attend the recital.</u></p>\n',
-								},
-							},
-							{
-								databaseId: 'cG9zdDo2NA==',
-								id: 64,
-								__typename: 'Scenario',
-								title: 'Friend Wants You to Skip Therapy',
-								scenariosFieldGroup: {
-									description:
-										'<p>Friend wants to hang out during your therapy session.</p>\n<p><b>Your values hierarchy:</b></p>\n<p><u>Mental health</u>,<br /><u>Authentic relationships</u>,<br /><u>Fun/socializing</u>.</p>\n<p>Explain that <b>therapy is non-negotiable</b> and suggest meeting afterward.</p>\n',
-								},
+								databaseId: 'cG9zdDox',
+								id: 1,
+								__typename: 'Post',
 							},
 						],
 					},
@@ -670,6 +633,7 @@ const data = {
 				toolFieldGroup: {
 					description:
 						'<div>\n<div>Three simple steps to break free from patterns that aren&#8217;t serving you anymore.</div>\n<div></div>\n<div><span style="text-decoration: underline;">Challenge your thoughts an</span>d <strong>take your thoughts to court.</strong></div>\n</div>\n',
+					isAcronym: true,
 					letters: [
 						{
 							letter: 'I',
@@ -690,24 +654,9 @@ const data = {
 					scenariosField: {
 						nodes: [
 							{
-								databaseId: 'cG9zdDo2NQ==',
-								id: 65,
-								__typename: 'Scenario',
-								title: 'People-Pleasing Pattern',
-								scenariosFieldGroup: {
-									description:
-										'<p><b>Identify:</b><br />You always say yes even when overwhelmed.</p>\n<p><b>Challenge:</b><br />Is saying yes really helping anyone if you&#8217;re burnt out and resentful?</p>\n<p><b>Eliminate:</b><br />Replace automatic &#8216;yes&#8217; with &#8216;Let me check my schedule and get back to you.&#8217;</p>\n',
-								},
-							},
-							{
-								databaseId: 'cG9zdDo2Ng==',
-								id: 66,
-								__typename: 'Scenario',
-								title: 'Social Media Comparison',
-								scenariosFieldGroup: {
-									description:
-										'<p><b>Identify:</b><br />Scrolling Instagram makes you feel inadequate.</p>\n<p><b>Challenge:</b><br />Are these highlight reels an accurate picture of reality?</p>\n<p><b>Eliminate:</b><br />Replace mindless scrolling with calling a real friend or going for a walk.</p>\n',
-								},
+								databaseId: 'cG9zdDox',
+								id: 1,
+								__typename: 'Post',
 							},
 						],
 					},
@@ -723,6 +672,7 @@ const data = {
 				toolFieldGroup: {
 					description:
 						'<p>IMPROVE is a straight-up boss move from DBT (that&#8217;s Dialectical Behavior Therapy, basically a toolkit for dealing with heavy emotions without flipping out).</p>\n<p>It&#8217;s all about upgrading the moment when life&#8217;s throwing curveballs at you — keeping your head straight and riding out the storm. Think of it like hacking your brain to chill when stuff&#8217;s getting intense.</p>\n<p>The whole point? When life&#8217;s comin&#8217; at you hard, IMPROVE helps you survive the storm without crashing and burning. Practice it when you&#8217;re calm so it&#8217;s second nature when the heat&#8217;s on. If you&#8217;re dealing with heavy stuff, link up with a pro therapist to level it up. Stay strong out there.</p>\n',
+					isAcronym: true,
 					letters: [
 						{
 							letter: 'I',
@@ -780,6 +730,7 @@ const data = {
 				toolFieldGroup: {
 					description:
 						'<div>\n<div>Levelling up your toolbox for dealing with life&#8217;s annoying moments without needing to style it out, losing your cool or your progress.</div>\n</div>\n',
+					isAcronym: true,
 					letters: [
 						{
 							letter: 'L',
@@ -803,24 +754,9 @@ const data = {
 					scenariosField: {
 						nodes: [
 							{
-								databaseId: 'cG9zdDo2Nw==',
-								id: 67,
-								__typename: 'Scenario',
-								title: 'Traffic Jam Meltdown',
-								scenariosFieldGroup: {
-									description:
-										'<p>Stuck in traffic,<br />running late,<br />patience is gone.</p>\n<p>Recognize your <u>low frustration tolerance</u>,<br /><u>accept that this sucks but isn&#8217;t dangerous</u>,<br /><u>practice breathing instead of road rage.</u></p>\n<p>Build tolerance for things outside your control.</p>\n',
-								},
-							},
-							{
-								databaseId: 'cG9zdDo2OA==',
-								id: 68,
-								__typename: 'Scenario',
-								title: 'Technology Not Working',
-								scenariosFieldGroup: {
-									description:
-										'<p>Computer keeps crashing while you&#8217;re trying to work.</p>\n<p><b>Notice you&#8217;re at your limit</b>,<br /><b>acknowledge the frustration is valid</b>,<br /><b>take breaks between attempts instead of getting more angry.</b></p>\n<p>Learning to tolerate technical difficulties.</p \n\n\n</p>\n',
-								},
+								databaseId: 'cG9zdDox',
+								id: 1,
+								__typename: 'Post',
 							},
 						],
 					},
@@ -835,6 +771,7 @@ const data = {
 				slug: 'p-i-e',
 				toolFieldGroup: {
 					description: '<div>\n<div>Your personal growth tracker &#8211; because recovery is about so much more than just not using.</div>\n</div>\n',
+					isAcronym: true,
 					letters: [
 						{
 							letter: 'P',
@@ -855,24 +792,9 @@ const data = {
 					scenariosField: {
 						nodes: [
 							{
-								databaseId: 'cG9zdDo2OQ==',
-								id: 69,
-								__typename: 'Scenario',
-								title: 'Three Months Clean',
-								scenariosFieldGroup: {
-									description:
-										'<p><b>Progress:</b><br />Ninety days without using, better sleep, improved relationships.</p>\n<p><b>Insight:</b><br />Realizing you used to cope with boredom and loneliness.</p>\n<p><b>Empowerment:</b><br />Choosing healthy activities and reaching out to friends instead of isolating.</p>\n',
-								},
-							},
-							{
-								databaseId: 'cG9zdDo3MA==',
-								id: 70,
-								__typename: 'Scenario',
-								title: 'Handled Stress Without Old Habits',
-								scenariosFieldGroup: {
-									description:
-										'<p><b>Progress:</b><br />Used coping skills during a tough week at work.</p>\n<p><b>Insight:</b><br />Understanding that your anxiety spikes on Sundays because of work dread.</p>\n<p><b>Empowerment:</b><br />Planning Sunday self-care routines to manage the anxiety proactively.</p>\n',
-								},
+								databaseId: 'cG9zdDox',
+								id: 1,
+								__typename: 'Post',
 							},
 						],
 					},
@@ -887,6 +809,7 @@ const data = {
 				slug: 'p-p-p',
 				toolFieldGroup: {
 					description: '<div>\n<div>The three P&#8217;s that make the difference between trying recovery and actually succeeding at it.</div>\n</div>\n',
+					isAcronym: true,
 					letters: [
 						{
 							letter: 'P',
@@ -925,6 +848,7 @@ const data = {
 				toolFieldGroup: {
 					description:
 						'<div>The R.A.I.N. mindfulness tool is a chilled superpower, a no-frills way to handle tough emotions, urges, or stress bombs without letting them take over—especially in recovery when cravings or old patterns try to creep back in.</div>\n<div>\n<p dir="auto">It&#8217;s like a mental reset button, drawn from mindfulness and created by Tara Brach. It turns &#8220;I can’t handle this feeling&#8221; into &#8220;I can be with this feeling until it passes.. &#8220;</p>\n<p dir="auto">Use it to pause, process, and move through the mess so you don&#8217;t react on autopilot or slip up. Think of it as your inner coach helping you ride the wave instead of getting drowned by it.</p>\n</div>\n',
+					isAcronym: true,
 					letters: [
 						{
 							letter: 'R',
@@ -954,24 +878,9 @@ const data = {
 					scenariosField: {
 						nodes: [
 							{
-								databaseId: 'cG9zdDo3Mw==',
-								id: 73,
-								__typename: 'Scenario',
-								title: 'Shame After a Slip',
-								scenariosFieldGroup: {
-									description:
-										'<p><b>Recognize:</b> Shame wave.<br /><b>Allow:</b> Okay, it’s here.<br /><b>Investigate:</b> Tight chest, hot face.<br /><b>Nurture:</b> Hand on heart, “It’s okay, you’re human, we’re getting back up.”</p>\n',
-								},
-							},
-							{
-								databaseId: 'cG9zdDo3NA==',
-								id: 74,
-								__typename: 'Scenario',
-								title: 'Intense Craving',
-								scenariosFieldGroup: {
-									description:
-										'<p><b>R:</b> Craving for [substance].<br /><b>A:</b> Let it be here.<br /><b>I:</b> Feel it in stomach and hands.<br /><b>N:</b> “This is hard, and I’m doing hard things. I’ve got you.”</p>\n',
-								},
+								databaseId: 'cG9zdDox',
+								id: 1,
+								__typename: 'Post',
 							},
 						],
 					},
@@ -1013,6 +922,7 @@ const data = {
 				slug: 'r-a-v-e',
 				toolFieldGroup: {
 					description: '<div>\n<div>Your long-term success strategy &#8211; staying strong and aware without making recovery feel like a prison.</div>\n</div>\n',
+					isAcronym: true,
 					letters: [
 						{
 							letter: 'R',
@@ -1038,24 +948,9 @@ const data = {
 					scenariosField: {
 						nodes: [
 							{
-								databaseId: 'cG9zdDo3NQ==',
-								id: 75,
-								__typename: 'Scenario',
-								title: 'Two Years Into Recovery',
-								scenariosFieldGroup: {
-									description:
-										'<p><b>Recovery:</b><br />Still attend weekly support meetings even though life is stable.</p>\n<p><b>Awareness:</b><br />Notice when work stress builds up before it becomes overwhelming.</p>\n<p><b>Vigilance:</b><br />Recognize old thinking patterns creeping back.</p>\n<p><b>Empowerment:</b><br />Trust your ability to handle challenges without using.</p>\n',
-								},
-							},
-							{
-								databaseId: 'cG9zdDo3Ng==',
-								id: 76,
-								__typename: 'Scenario',
-								title: 'Facing a Major Life Change',
-								scenariosFieldGroup: {
-									description:
-										'<p><b>Recovery:</b><br />Remember that major transitions are high-risk times.</p>\n<p><b>Awareness:</b><br />Monitor your stress levels during the move/job change/breakup.</p>\n<p><b>Vigilance:</b><br />Watch for isolation, sleep problems, or negative thinking.</p>\n<p><b>Empowerment:</b><br />Use your support system and coping tools confidently.</p>\n',
-								},
+								databaseId: 'cG9zdDox',
+								id: 1,
+								__typename: 'Post',
 							},
 						],
 					},
@@ -1071,6 +966,7 @@ const data = {
 				toolFieldGroup: {
 					description:
 						'<div>The SMART tool in recovery is the gold standard for setting goals that you&#8217;ll actually achieve —none of that vague &#8220;I&#8217;ll do better&#8221; BS. It&#8217;s a no-nonsense way to map out your wins, whether you&#8217;re kicking addictions, refocusing your relationships with substances, or just getting through daily life in sobriety.</div>\n<div>\n<p dir="auto">Pulled from SMART Recovery, it&#8217;s science-backed to keep you focused and motivated. Think of it as your GPS for progress: Specific, Measurable, Achievable, Relevant, Time-bound.</p>\n</div>\n<p dir="auto">SMART turns wishy-washy ideas into actionable plans that boost your confidence and keeps relapse at bay. Write them down, review weekly, and tweak as needed—pair it with tools like DEADS for urges or H.O.V. for motivation. Break down the fluff so you can track real moves and celebrate them.</p>\n<p dir="auto">If goals feel overwhelming, chat with a therapist or hit a SMART meeting for extra edge. Stay at it; small steps stack up big.</p>\n',
+					isAcronym: true,
 					letters: [
 						{
 							letter: 'S',
@@ -1106,24 +1002,9 @@ const data = {
 					scenariosField: {
 						nodes: [
 							{
-								databaseId: 'cG9zdDo3OQ==',
-								id: 79,
-								__typename: 'Scenario',
-								title: 'Getting Back Into Exercise',
-								scenariosFieldGroup: {
-									description:
-										'<p><b>Specific:</b><br />Walk for 30 minutes.</p>\n<p><b>Measurable:</b><br />Track walks on phone app.</p>\n<p><b>Achievable:</b><br />Start with 3 times per week, not daily.</p>\n<p><b>Relevant:</b><br />Exercise helps with mood and energy in recovery.</p>\n<p><b>Time-bound:</b><br />Build this habit over the next 4 weeks.</p>\n',
-								},
-							},
-							{
-								databaseId: 'cG9zdDo4MA==',
-								id: 80,
-								__typename: 'Scenario',
-								title: 'Improving Sleep Habits',
-								scenariosFieldGroup: {
-									description:
-										'<p><b>Specific:</b><br />Be in bed by 10:30 PM with no screens.</p>\n<p><b>Measurable:</b><br />Track bedtime and sleep quality.</p>\n<p><b>Achievable:</b><br />Start with weeknights first.</p>\n<p><b>Relevant:</b><br />Better sleep improves mood and decision-making.</p>\n<p><b>Time-bound:</b><br />Establish routine within 2 weeks.</p>\n',
-								},
+								databaseId: 'cG9zdDox',
+								id: 1,
+								__typename: 'Post',
 							},
 						],
 					},
@@ -1154,6 +1035,7 @@ const data = {
 				toolFieldGroup: {
 					description:
 						'<div>\n<div>The ultimate 10-second emergency brake.</div>\n</div>\n<div>\n<p dir="auto">The STOP skill is a clutch move pulled from recovery toolkits like SMART (it vibes heavy with DBT too)—it&#8217;s all about hitting pause when emotions or urges are cranking up and you&#8217;re about to make a move that you&#8217;ll regret later.</p>\n<p dir="auto">Think of it as your mental stop sign to avoid crashing into bad decisions. Use it when stress, cravings, or anger&#8217;s got you heated, or you&#8217;re “about to text your ex.”. It gives you space to respond like a boss instead of reacting on impulse.</p>\n<p dir="auto">It keeps small slips from turning into big falls by buying you time to level up. Practice it daily on low-stakes stuff so it&#8217;s locked in when the real heat comes. If cravings or feels are nonstop, tap into SMART meetings, a therapist, or your support crew. Keep it locked, you got this.</p>\n</div>\n',
+					isAcronym: true,
 					letters: [
 						{
 							letter: 'S',
@@ -1183,23 +1065,9 @@ const data = {
 					scenariosField: {
 						nodes: [
 							{
-								databaseId: 'cG9zdDo4MQ==',
-								id: 81,
-								__typename: 'Scenario',
-								title: 'About to Relapse',
-								scenariosFieldGroup: {
-									description:
-										'<p>Hand reaching for the bottle → S.T.O.P.<br />Stop moving, take a breath, notice the urge in your chest, remember why you quit… then call someone instead.</p>\n',
-								},
-							},
-							{
-								databaseId: 'cG9zdDo4Mg==',
-								id: 82,
-								__typename: 'Scenario',
-								title: 'Argument Escalating',
-								scenariosFieldGroup: {
-									description: '<p>Voice rising → S.T.O.P.<br />Pause, breathe, notice you’re flooded, say “I need a minute” and step outside. Saves relationships.</p>\n',
-								},
+								databaseId: 'cG9zdDox',
+								id: 1,
+								__typename: 'Post',
 							},
 						],
 					},
@@ -1219,6 +1087,13 @@ const data = {
 				},
 			},
 			{
+				databaseId: 'cG9zdDozMzI=',
+				id: 332,
+				title: 'Shapes',
+				slug: 'shapes',
+				toolFieldGroup: null,
+			},
+			{
 				databaseId: 'cG9zdDoxMjI=',
 				id: 122,
 				title: 'T.I.P.P.',
@@ -1226,6 +1101,7 @@ const data = {
 				toolFieldGroup: {
 					description:
 						'<p dir="auto">The TIPP skill from DBT (Dialectical Behavior Therapy) is a quick-hit tactic for when your emotions are spiking hard and you need to dial them down fast—think panic, rage, or that overwhelming emotion that&#8217;s got you ready to snap.</p>\n<p dir="auto">It&#8217;s all about hacking your body&#8217;s stress response with simple moves to chill the nervous system and get back in control. No mystical or higher power vibes here—just science-backed ways to reset your vibe when distress is hitting peak levels.</p>\n<p dir="auto">Use it in the moment, like an emergency brake, to avoid making rash moves.</p>\n',
+					isAcronym: true,
 					letters: [
 						{
 							letter: 'T',
@@ -1278,6 +1154,7 @@ const data = {
 				toolFieldGroup: {
 					description:
 						'<p dir="auto">These Six P&#8217;s are your reminder that winning in recovery starts with being intentional AF. Don&#8217;t wait for life to hit you—hit it first.</p>\n<p dir="auto">Jot this down, review it weekly, and pair it with other tools like DEADS or H.O.V. for max impact. If things feel shaky, link up with a pro or support group. You&#8217;re built for this; keep pushing to hit your goals.</p>\n',
+					isAcronym: true,
 					letters: [
 						{
 							letter: 'P',
@@ -1319,24 +1196,9 @@ const data = {
 					scenariosField: {
 						nodes: [
 							{
-								databaseId: 'cG9zdDo4Nw==',
-								id: 87,
-								__typename: 'Scenario',
-								title: 'Plan the night, don’t fight the night.',
-								scenariosFieldGroup: {
-									description:
-										'<p>You usually met friends at the pub on Fridays, but now you’re focusing on recovery.</p>\n<p><b>Proper → Be honest:</b><br />Pubs are a high-risk place right now.</p>\n<p><b>Preparation →</b><br />Have alcohol-free drinks stocked at home and line up a safe activity.</p>\n<p><b>Planning →</b><br />Tell your friends ahead you won’t be joining at the pub.</p>\n<p><b>Prevents →</b><br />Stops you from getting caught off-guard.</p>\n<p><b>Poor →</b><br />If you don’t think ahead, you might end up at the pub “just for one.”</p>\n<p><b>Performance →</b><br />You stick to your plan, avoid cravings, and still enjoy Friday night.</p>\n',
-								},
-							},
-							{
-								databaseId: 'cG9zdDo4OA==',
-								id: 88,
-								__typename: 'Scenario',
-								title: 'Stress ahead? Take the recovery detour.',
-								scenariosFieldGroup: {
-									description:
-										'<p>Work stress hits hard, and in the past you’d cope by drinking or using.</p>\n<p><b>Proper →</b><br />Admit stress is a trigger.</p>\n<p><b>Preparation →</b><br />Practice breathing exercises or list healthy activities.</p>\n<p><b>Planning →</b><br />Set reminders to take breaks.</p>\n<p><b>Prevents →</b><br />Stops pressure building to relapse.</p>\n<p><b>Poor →</b><br />Without a plan, stress pushes you off the road.</p>\n<p><b>Performance →</b><br />You use healthy coping tools instead of falling back.</p>\n',
-								},
+								databaseId: 'cG9zdDox',
+								id: 1,
+								__typename: 'Post',
 							},
 						],
 					},

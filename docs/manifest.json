@@ -1,7 +1,7 @@
 {
 	"name": "Ummi",
 	"short_name": "Ummi",
-	"description": "Understanding Me Myself & I (Ummi) is a companion app for mental health, wellbeing, and recovery providing quick access to therapy tools learnt in SMART, Cognitive Behavioural Therapy (CBT), Acceptance Commitment Therapy (ACT), Dialectical Behaviour Therapy (DBT) and other therapies.",
+	"description": "Understanding Me Myself & I (Ummi) is a companion app and website providing support for mental health, wellbeing, and addiction recovery. It provides quick access to tools and skills learnt in SMART, Cognitive Behavioural Therapy (CBT), Acceptance Commitment Therapy (ACT), Dialectical Behaviour Therapy (DBT) and other therapies.",
 	"start_url": "/index.html?fullscreen=true",
 	"scope": "https://www.ummi.now",
 	"launch_handler": {

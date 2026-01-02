@@ -13,11 +13,12 @@ import BlurOnOutlinedIcon from "@mui/icons-material/BlurOnOutlined";
 import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined'
 // import { title } from "process";
 const cnf = {
-	appName: "Ummi",
-	appLogName: "Understanding Me, Myself, and I",
-	installDescription:"Install the Ummi App",
-	appDescription: "Ummi is a app that provides tools, techniques and content that helps people cope with emotions, thoughts, feelings and mental health.",
-	logoURI: "/UmmiIcon2.svg",
+	appName: 'Ummi',
+	appLogName: 'Understanding Me, Myself, and I',
+	installDescription: 'Install the Ummi App',
+	appDescription:
+		'Understanding Me Myself & I (Ummi) is a companion app and website providing support for mental health, wellbeing, and addiction recovery. It provides quick access to tools and skills learnt in SMART, Cognitive Behavioural Therapy (CBT), Acceptance Commitment Therapy (ACT), Dialectical Behaviour Therapy (DBT) and other therapies.',
+	logoURI: '/UmmiIcon2.svg',
 	duration: {
 		hide: {
 			snackbar: 2000,
@@ -30,16 +31,16 @@ const cnf = {
 	},
 	classes: {
 		activity: {
-			dormant: "dormant",
-			awake: "show",
-			hide: "hide",
+			dormant: 'dormant',
+			awake: 'show',
+			hide: 'hide',
 		},
 	},
 	sel: {
-		activityContainer: ".activities",
-		activityNode: ".activity",
+		activityContainer: '.activities',
+		activityNode: '.activity',
 	},
-};
+}
 
 // ---------------------------------------------------------------
 // Icon ids are fixed and should not be mutated as they are used as reference
@@ -265,14 +266,14 @@ const strings = {
 					title: 'Your Recovery Toolbox',
 					icon: HandymanIcon,
 					content: [
-						'<span>Find tools that work for you.</span>',
-						'<span>Create your own personal toolbox.</span>',
-						'<span>Text & video descriptions.</span>',
-						'<span>Private Days Counter X2.</span>',
-						'<span>Complete privacy you control.</span>',
+						'<span>Addiction Recovery tools explained.</span>',
+						'<span>Create your own toolbox to help you recover.</span>',
+						'<span>Tools explained with text & videos.</span>',
 						'<span>Scenarios describing each tool.</span>',
-						'<span>Available online or offline.</span>',
+						'<span>Private Days Counter to track recovery.</span>',
 						'<span>Quick exit to Google for whenever that could be helpful.</span>',
+						'<span>Available online or offline.</span>',
+						'<span>Complete privacy you control.</span>',
 						'<span>Erase all data at anytime.</span>',
 					],
 				},
