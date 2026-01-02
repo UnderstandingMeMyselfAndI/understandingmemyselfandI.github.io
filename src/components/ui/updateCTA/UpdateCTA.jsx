@@ -53,11 +53,10 @@ const maxMinsVersionInterval = 10
         if (versionRemote) {
             const versionRemoteString = JSON.stringify(versionRemote)
             if (versionRemoteString === version) {
-                setUpToDate(true)
-                window.location.reload()
-            } else {
-                setUpToDate(false)
-            }
+							setUpToDate(true)
+						} else {
+							setUpToDate(false)
+						}
             return versionRemote;
         }
     }
@@ -80,9 +79,10 @@ const maxMinsVersionInterval = 10
             if (hasError) {
                 setUpdateMessage('Update failed. Try again soon.')				
             } else {
-                setUpdateMessage('Latest version installed.')
+                setUpdateMessage('Installing latest version.')
                 setUpdating(false)
                 setUpToDate(true)
+                setTimeout(window.location.reload(), 1000)
             }
             
 
