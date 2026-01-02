@@ -271,7 +271,7 @@ const strings = {
 						'<span>Text & video eplanations.</span>',
 						'<span>Scenarios describing when tools can be used.</span>',
 						'<span>Private Days Counter to track recovery.</span>',
-						'<span>Quick exit button to open Google for whenever that could be helpful.</span>',
+						'<span>Quick exit button to open Google.com for times when that could be helpful.</span>',
 						'<span>Available online or offline.</span>',
 						'<span>Complete privacy you control.</span>',
 						'<span>Erase all data at anytime.</span>',
@@ -293,7 +293,7 @@ const strings = {
 						classes: 'ummi-blue',
 						content: [
 							"How's it going?",
-							"Recovery is tough work so if you're in recovery we hope your holding it down and stacking the wins.",
+							"Recovery is tough work so if you're working at it, keep holding it down and stacking the wins.",
 							'Struggling?<br /><b>"Play the tape forward"</b><br /> helps some people to get out of a rut. ',
 							'It\'s in <a href="tools"><b>Lingo & Phrases</b></a><br /> below tools below.',
 							'Stay strong and<br /> hang on in there.👊🏼',
