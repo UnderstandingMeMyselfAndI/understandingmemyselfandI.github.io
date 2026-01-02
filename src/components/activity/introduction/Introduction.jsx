@@ -71,7 +71,7 @@ const Introduction = () => {
 					// yes, we can add it to an entire timeline!
 					scrollTrigger: {
 						trigger: section, // '.point',
-						markers: true,
+						markers: false,
 						id: 'section' + i,
 						pin: false, // pin the trigger element while active
 						start: 'top+=10% bottom-=15%', // when the top of the trigger hits the top of the viewport
@@ -90,7 +90,7 @@ const Introduction = () => {
 				tl2
 					.addLabel('start')
 
-					.from(icon, { duration: 1, scale: 0.25, webkitFilter: `blur(${blur}px)`, filter: `blur(${blur}px)` })
+					.from(icon, { duration: 0.5, scale: 0.25, webkitFilter: `blur(${blur}px)`, filter: `blur(${blur}px)` })
 					.addLabel('show')
 					.to(icon, { scale: 1, webkitFilter: 'blur(0px)', filter: 'blur(0px)' })
 					.addLabel('leave')
