@@ -1,155 +1,317 @@
+import { pl } from 'zod/v4/locales'
+import { tr } from 'zod/v4/locales'
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
-
+// TODO: Implement short names
 const useAppStore = create(
 	persist(
 		(set, get) => ({
-			toolAdded: false,
-			activity: 0,
-			scrollStage: 0,
-			acronymID: 0,
-			active: false,
-			showAccCard: false,
-			isMobile: false,
-			showToolsOnly: false,
-			userToolIDs: [],
-			accData: [],
-			message: '',
-			showSnackbar: false,
+			//toolAdded: false,
+			//active: false,
+			// ----------------------------------------
+			// Last Version Check
+			lvc: '',
+			/**
+			 * Sets the last version check date to the given value.
+			 * @param {string} v The date to set as the last version check date.
+			 */
+			setLVC: (v) => {
+				set(() => ({ lvc: v }))
+			},
 			lastVersionCheck: '',
-			setLastVersionCheck: (value) => set(() => ({ lastVersionCheck: value })),
+			setLastVersionCheck: (v) => {
+				set(() => ({ lastVersionCheck: v }))
+				set(() => ({ lvc: v }))
+			},
+			// ----------------------------------------
+			// Version
 			version: '',
-			setVersion: (version) => set(() => ({ version: version })),
+			setVersion: (v) => set(() => ({ version: v })),
+			// ----------------------------------------
+			// Subscribed to Newsletter
 			nss: false, // subscribed to newsletter
-			setNSS: (value) => set(() => ({ nss: value })),
+			setNSS: (v) => set(() => ({ nss: v })),
+			// ----------------------------------------
+			// Is Installable
+			ins: true,
+			setIns: (v) => set(() => ({ ins: v })),
+
 			isInstallable: true,
-			setIsInstallable: (value) => set(() => ({ isInstallable: value })),
+			setIsInstallable: (v) => {
+				set(() => ({ isInstallable: v }))
+				set(() => ({ ins: v }))
+			},
+			// ----------------------------------------
+			// Is Installed
+			isisn: false,
+			setIsISN: (v) => set(() => ({ isisn: v })),
 			isInstalled: false,
-			setIsInstalled: (isInstalled) => set(() => ({ isInstalled: isInstalled })),
-			toolsInView: false,
+			setIsInstalled: (v) => {
+				set(() => ({ isInstalled: v }))
+				set(() => ({ isisn: v }))
+			},
+			// ----------------------------------------
+
+			// ----------------------------------------
+			// Need Update
+			nu: false,
+			setNU: (v) => set(() => ({ nu: v })),
 			needUpdate: false,
-			setNeedUpdate: (value) => set({ needUpdate: value }),
+			setNeedUpdate: (v) => {
+				set({ needUpdate: v })
+				set({ nu: v })
+			},
+			// ----------------------------------------
+			// Show Phrase Views
 			spv: false,
-			setSpv: (value) => set({ spv: value }), //showPhraseViews
-			vc: 0, //visit count
+			setSpv: (v) => set({ spv: v }), //showPhraseViews
+			// ----------------------------------------
+			// Visit Count
+			vc: 0,
 			setVC: (v) => {
 				set(() => ({ vc: v }))
 			},
+
 			incVC: () => {
 				set((state) => ({ vc: state.vc + 1 }))
 			},
-			lvd: 0, //last visit date
+			// ----------------------------------------
+			// Last Visit Date
+			lvd: 0,
 			setLVD: (v) => {
 				set(() => ({ lvd: v }))
 			},
-			fvd: 0, //first visit date
+			// ----------------------------------------
+			// First Visit Date
+			fvd: 0,
 			setFVD: (v) => {
 				set((state) => ({ fvd: state.vc === 1 ? v : state.fvd }))
 			},
+			// ----------------------------------------
+			// Increment Visit
 			vsts: 0,
 			incVSTS: () => {
 				set((state) => ({ vsts: state.vsts + 1 }))
 			},
+			// ----------------------------------------
+			// Phrases
+			p: [],
+			setP: (v) => {
+				set(() => ({ p: v }))
+			},
+
 			phrase: [],
-			setPhrase: (phrase) => {
-				set(() => ({ phrase: phrase }))
+			setPhrase: (v) => {
+				set(() => ({ phrase: v }))
+				set(() => ({ p: v }))
+			},
+			// ----------------------------------------
+			// Days Counter
+			dc: true,
+			setDc: (v) => {
+				set(() => ({ dc: v }))
 			},
 			daysCounterEnabled: true,
-			enableDaysCounter: (show) => {
-				set(() => ({ daysCounterEnabled: show }))
+			enableDaysCounter: (v) => {
+				set(() => ({ daysCounterEnabled: v }))
+				set(() => ({ dc: v }))
+			},
+			// ----------------------------------------
+			// Toolbox Filter
+			tf: true,
+			setTf: (v) => {
+				set(() => ({ tf: v }))
 			},
 			toolboxFilterEnabled: true,
-			enableToolboxFilter: (show) => {
-				set(() => ({ toolboxFilterEnabled: show }))
+			enableToolboxFilter: (v) => {
+				set(() => ({ toolboxFilterEnabled: v }))
+				set(() => ({ tf: v }))
+			},
+			// ----------------------------------------
+			// Your Tools
+			yt: true,
+			setYt: (v) => {
+				set(() => ({ yt: v }))
 			},
 			yourToolsEnabled: true,
-			enableYourTools: (show) => {
-				set(() => ({ yourToolsEnabled: show }))
+			enableYourTools: (v) => {
+				set(() => ({ yourToolsEnabled: v }))
+				set(() => ({ yt: v }))
+			},
+			// ----------------------------------------
+			// PIN Lock
+			pl: true,
+			setPl: (v) => {
+				set(() => ({ pl: v }))
 			},
 			PINLockEnabled: true,
-			enablePINLock: (use) => {
-				set(() => ({ PINLockEnabled: use }))
+			enablePINLock: (v) => {
+				set(() => ({ PINLockEnabled: v }))
+				set(() => ({ pl: v }))
+			},
+			// ----------------------------------------
+			// Quick Exit
+			qe: true,
+			setQe: (v) => {
+				set(() => ({ qe: v }))
 			},
 			quickExitEnabled: true,
-			enableQuickExit: (show) => {
-				set(() => ({ quickExitEnabled: show }))
+			enableQuickExit: (v) => {
+				set(() => ({ quickExitEnabled: v }))
+				set(() => ({ qe: v }))
+			},
+			// ----------------------------------------
+			// Quick Exit Message
+			qem: true,
+			setQem: (v) => {
+				set(() => ({ qem: v }))
 			},
 			quickExitMessageEnabled: true,
-			enableQuickExitMessage: (show) => {
-				set(() => ({ quickExitMessageEnabled: show }))
+			enableQuickExitMessage: (v) => {
+				set(() => ({ quickExitMessageEnabled: v }))
+				set(() => ({ qem: v }))
+			},
+			// ----------------------------------------
+			// Quick Exit URL
+			qeu: '',
+			setQeu: (v) => {
+				set(() => ({ qeu: v }))
 			},
 			quickExitURL: 'https://google.com',
-			setQuickExitURL: (url) => {
-				set(() => ({ quickExitURL: url }))
+			setQuickExitURL: (v) => {
+				set(() => ({ quickExitURL: v }))
+				set(() => ({ qeu: v }))
+			},
+			// ----------------------------------------
+			// Allow Cookies
+			c: true,
+			setC: (v) => {
+				set(() => ({ c: v }))
 			},
 			allowCookies: true,
-			setAllowCookies: (allow) => {
-				set(() => ({ allowCookies: allow }))
+			setAllowCookies: (v) => {
+				set(() => ({ allowCookies: v }))
+				set(() => ({ c: v }))
+			},
+			// ----------------------------------------
+			// Allow Third Party Cookies
+			tpc: true,
+			setTPC: (v) => {
+				set(() => ({ tpc: v }))
 			},
 			allowThirdPartyCookies: true,
-			setAllowThirdPartyCookies: (allow) => {
-				set(() => ({ allowThirdPartyCookies: allow }))
+			setAllowThirdPartyCookies: (v) => {
+				set(() => ({ allowThirdPartyCookies: v }))
+				set(() => ({ tpc: v }))
 			},
-			setToolIDs: (ids) => set(() => ({ userToolIDs: ids })),
+			// ----------------------------------------
+			// User Tool IDs
+			userToolIDs: [],
+			setToolIDs: (v) => set(() => ({ userToolIDs: v })),
+			// ----------------------------------------
 			// Adds an ID only if it doesn't already exist (prevents duplicates)
-			addTool: (id) =>
+			addTool: (v) =>
 				set((state) => ({
-					userToolIDs: state.userToolIDs.includes(id) ? state.userToolIDs : [...state.userToolIDs, id],
+					userToolIDs: state.userToolIDs.includes(v) ? state.userToolIDs : [...state.userToolIDs, v],
 				})),
 
 			// Removes a specific ID from the array
-			removeTool: (id) =>
+			removeTool: (v) =>
 				set((state) => ({
-					userToolIDs: state.userToolIDs.filter((toolId) => toolId !== id),
+					userToolIDs: state.userToolIDs.filter((toolId) => toolId !== v),
 				})),
+			// ----------------------------------------
+			// Returns an array of active tool IDs
 			getActiveToolIDs: () => {
 				return get().userToolIDs
 			},
-
-			setToolsInView: (inView) => set(() => ({ toolsInView: inView })),
-
-			setIsMobile: (isMobile) => set(() => ({ isMobile: isMobile })),
-			setMessage: (msg) => set(() => ({ message: msg })),
-			setShowSnackbar: (show) => set(() => ({ showSnackbar: show })),
-			setActivity: (id) => {
-				// console.trace(`setActivity called with value: ${id}`);
-				set(() => ({ activity: id }))
+			// ----------------------------------------
+			// Tools in views
+			toolsInView: false,
+			setToolsInView: (v) => set(() => ({ toolsInView: v })),
+			// ----------------------------------------
+			// Is mobile
+			isMobile: false,
+			setIsMobile: (v) => set(() => ({ isMobile: v })),
+			// ----------------------------------------
+			// Message
+			message: '',
+			setMessage: (v) => set(() => ({ message: v })),
+			// ----------------------------------------
+			// Snackbar
+			showSnackbar: false,
+			setShowSnackbar: (v) => set(() => ({ showSnackbar: v })),
+			// ----------------------------------------
+			// Activity ID
+			activity: 0,
+			setActivity: (v) => {
+				set(() => ({ activity: v }))
 			},
-			setAccData: (data) => set(() => ({ accData: data })),
-
-			setShowToolsOnly: (show) => set(() => ({ showToolsOnly: show })),
+			// ----------------------------------------
+			// Activity Data
+			accData: [],
+			setAccData: (v) => set(() => ({ accData: v })),
+			// ----------------------------------------
+			// Activity Data
+			showToolsOnly: false,
+			setShowToolsOnly: (v) => set(() => ({ showToolsOnly: v })),
+			// ----------------------------------------
+			// Toggles showToolsOnly
 			toggleShowToolsOnly: () => set((state) => ({ showToolsOnly: !state.showToolsOnly })),
-
-			setAcronymID: (id) => set(() => ({ acronymID: id })),
-			setScrollStage: (stage) => set(() => ({ scrollStage: stage })),
-			setShowAccCard: (show) => {
+			// ----------------------------------------
+			// Acronym ID
+			acronymID: 0,
+			setAcronymID: (v) => set(() => ({ acronymID: v })),
+			// ----------------------------------------
+			// Scroll Stage
+			scrollStage: 0,
+			setScrollStage: (v) => set(() => ({ scrollStage: v })),
+			// ----------------------------------------
+			// Show Acronym Card
+			showAccCard: false,
+			setShowAccCard: (v) => {
 				// console.trace(`setShowAccCard called with value: ${show}`);
-				set(() => ({ showAccCard: show }))
+				set(() => ({ showAccCard: v }))
 			},
+			// ----------------------------------------
+			// analytics enabled
 			gae: false,
-			setGAE: (value) => set(() => ({ gae: value })),
+			setGAE: (v) => set(() => ({ gae: v })),
+			// ----------------------------------------
 		}),
 		{
 			name: 'ummi',
 			storage: createJSONStorage(() => localStorage),
 			// Keys to persist in localStorage
 			partialize: (state) => ({
+				dc: state.dc,
 				daysCounterEnabled: state.daysCounterEnabled,
+				tf: state.tf,
 				toolboxFilterEnabled: state.toolboxFilterEnabled,
+				yt: state.yt,
 				yourToolsEnabled: state.yourToolsEnabled,
+				pl: state.pl,
 				PINLockEnabled: state.PINLockEnabled,
+				qe: state.qe,
 				quickExitEnabled: state.quickExitEnabled,
+				qem: state.qem,
 				quickExitMessageEnabled: state.quickExitMessageEnabled,
+				c: state.c,
 				allowCookies: state.allowCookies,
+				tpc: state.tpc,
 				allowThirdPartyCookies: state.allowThirdPartyCookies,
-				usePINLock: state.usePINLock,
+
+				// usePINLock: state.usePINLock,
+				isins: state.isins,
 				isInstallable: state.isInstallable,
+				ins: state.ins,
 				isInstalled: state.isInstalled,
 				vc: state.vc,
 				lvd: state.lvd,
 				fvd: state.fvd,
 				nss: state.nss,
 				version: state.version,
+				lvc: state.lvc,
 				lastVersionCheck: state.lastVersionCheck,
 				spv: state.spv,
 				gae: state.gae,

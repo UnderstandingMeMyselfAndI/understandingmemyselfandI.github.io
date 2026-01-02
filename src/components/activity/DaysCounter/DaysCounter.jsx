@@ -117,7 +117,7 @@ const DaysCounter = () => {
 	// }
 	return (
 		<div className={'days-counter-activity' + (dates.length === 2 ? ' full' : '') + (open ? ' open' : '')}>
-			<CloseBtn handleClick={handleClose} />
+			<CloseBtn  handleClick={handleClose} />
 			{showDialog && (
 				<Dialog
 					show={showDialog}
@@ -218,12 +218,6 @@ const DaysCounter = () => {
 							</div>
 						</div>
 					))}
-					<span className='days-counter-note'>
-						* All dates are saved only on your device to ensure your privacy.
-						<br />
-						<br />
-						You can hide &amp; unhide this feature in settings and keep the counter.
-					</span>
 				</div>
 
 				{dates.length > 0 && dates.length < 2 && (
@@ -231,6 +225,15 @@ const DaysCounter = () => {
 						({dates.length}/2)
 					</button>
 				)}
+			</div>
+			<div className='days-counter-note-container'>
+				<div className='days-counter-note'>
+					<p>
+						* All dates are saved <u>only on your device</u> to ensure your privacy.
+					</p>
+
+					<p>Disble controls available in settings.</p>
+				</div>
 			</div>
 			<div className='days-counter-backdrop'>
 				<BackdropParallax initialImageId={4} initialDelay={0} interval={6000} parallaxStrength={0} />

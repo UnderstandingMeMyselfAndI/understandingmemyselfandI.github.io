@@ -13,7 +13,7 @@ import Header from 'ui/header/Header.jsx'
 import Footer from "ui/footer/Footer";
 // import Podcasts from "./components/activity/podcasts/Podcasts";
 import PrivacyPolicy from './components/activity/privacy/PrivacyPolicy'
-import Introduction from 'components/activity/introduction/Introduction'
+import Introduction from '@/components/activity/introduction/Introduction'
 import YourPrivacyCTA from "./components/ui/sections/privacy/YourPrivacyCTA";
 import Tools from "components/activity/tools/Tools.jsx";
 
@@ -26,8 +26,8 @@ import InstallCTA from 'ui/install/InstallCTA'
 import AcronymExplained from "./components/activity/acronymExplained/AcronymExplained";
 import BadgeToolbox from "ui/badges/BadgeToolbox";
 
-import DaysCounter from "./components/activity/DaysCounter/DaysCounter";
-import DaysCounterCTA from "./components/activity/DaysCounter/DaysCounterCTA";
+import DaysCounter from "./components/activity/daysCounter/DaysCounter";
+import DaysCounterCTA from "./components/activity/daysCounter/DaysCounterCTA";
 import AppMenu from "./components/ui/menu/AppMenu";
 import CookieConsent from "./components/ui/cookieConsent/CookieConsent";
 import UmmiAgeGate from './components/ui/ageGate/UmmiAgeGate'

@@ -1,5 +1,5 @@
-import { URLPattern } from 'urlpattern-polyfill'
-globalThis.URLPattern = URLPattern
+// import { URLPattern } from 'urlpattern-polyfill'
+// globalThis.URLPattern = URLPattern
 // service worker version number
 const SW_VERSION = 1
 const IDB_VERSION = 1
@@ -226,12 +226,14 @@ const retryRequests = async () => {
 // cache all files and routes when the Service Worker is installed
 // add {cache: 'no-cache'} } to all requests to bypass the browser cache so content is always fetched from the server
 const installHandler = (e) => {
-	e.addRoutes({
-		condition: {
-			urlPattern: new URLPattern({}),
-		},
-		source: 'fetch-event',
-	})
+	// added due to whitescreen isusue : https://issues.chromium.org/issues/466790291
+	// TODO: Implement this
+	// e.addRoutes({
+	// 	condition: {
+	// 		urlPattern: new URLPattern({}),
+	// 	},
+	// 	source: 'fetch-event',
+	// })
 	e.waitUntil(
 		caches
 			.open(cacheName)
