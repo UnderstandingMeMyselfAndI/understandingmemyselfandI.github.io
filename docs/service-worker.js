@@ -7,19 +7,19 @@ const cacheName = `web-app-cache-${SW_VERSION}`;
 
 // static files to cache
 const staticFiles = [
-	"/sw-registration.js",
-	"/index.html",
-	"/manifest.json",
-	"/icons/UmmiIcons.svg",
-	"/icons/apple-touch-icon-180x180.png",
-	"/icons/maskable-icon-512x512.png",
-	"/icons/pwa-192x192.png",
-	"/icons/pwa-512x512.png",
-	"/icons/QRCodes/qr-code-src-app-white-318.png",
-	"/icons/QRCodes/qr-code-src-app-dark-318.png",
-	"/fonts/PlusJakartaSans-VariableFont_wght.woff",
-	"/fonts/PlusJakartaSans-Italic-VariableFont_wght.woff",
-];
+	// "/sw-registration.js",
+	// "/index.html",
+	// "/manifest.json",
+	// "/icons/UmmiIcons.svg",
+	// "/icons/apple-touch-icon-180x180.png",
+	// "/icons/maskable-icon-512x512.png",
+	// "/icons/pwa-192x192.png",
+	// "/icons/pwa-512x512.png",
+	// "/icons/QRCodes/qr-code-src-app-white-318.png",
+	// "/icons/QRCodes/qr-code-src-app-dark-318.png",
+	// "/fonts/PlusJakartaSans-VariableFont_wght.woff",
+	// "/fonts/PlusJakartaSans-Italic-VariableFont_wght.woff",
+]
 
 // routes to cache
 const routes = ["/"]; //["/", "/about"];
