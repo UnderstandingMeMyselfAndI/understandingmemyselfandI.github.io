@@ -45,7 +45,7 @@ const Introduction = () => {
 						id: 'section' + i,
 						pin: false, // pin the trigger element while active
 						start: 'top+=15% bottom-=20%', // when the top of the trigger hits the top of the viewport
-						end: 'top top+=25%', // end after scrolling 500px beyond the start
+						end: 'bottom-=15% top+=35%', // end after scrolling 500px beyond the start
 						scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
 						toggleActions: 'play pause reverse reverse',
 						snap: {
@@ -58,41 +58,43 @@ const Introduction = () => {
 				})
 				tl.addLabel('start')
 
-					.from(section, { autoAlpha: 0, y: 150 })
+					.from(section, { duration: 1, autoAlpha: 0, y: 150 })
 					.addLabel('show')
 					.to(section, { autoAlpha: 1, y: 0 })
 					.addLabel('leave')
-					.to(section, { autoAlpha: 0, y: -150 })
+					.to(section, { duration: 1, autoAlpha: 0, y: -150 })
 					.addLabel('end')
 			})
 			sections.forEach((section, i) => {
 				const icon = section.querySelector('.icon')
-				let tl = gsap.timeline({
+				let tl2 = gsap.timeline({
 					// yes, we can add it to an entire timeline!
 					scrollTrigger: {
 						trigger: section, // '.point',
-						markers: false,
+						markers: true,
 						id: 'section' + i,
 						pin: false, // pin the trigger element while active
-						start: 'top+=15% bottom-=20%', // when the top of the trigger hits the top of the viewport
-						end: 'top top+=15%', // end after scrolling 500px beyond the start
+						start: 'top+=10% bottom-=15%', // when the top of the trigger hits the top of the viewport
+						end: 'bottom top+=5%', // end after scrolling 500px beyond the start
 						scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
 						toggleActions: 'play pause reverse reverse',
 						snap: {
 							snapTo: 'labels', // snap to the closest label in the timeline
 							duration: { min: 2.5, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
 							delay: 0.5, // wait 0.2 seconds from the last scroll event before doing the snapping
-							ease: 'power2.inOut', // the ease of the snap animation ("power3" by default)
+							ease: 'power4.inOut', // the ease of the snap animation ("power3" by default)
 						},
 					},
 				})
-				tl.addLabel('start')
+				const blur = 150
+				tl2
+					.addLabel('start')
 
-					.from(icon, { duration: 1, scale: 0.5, y: -100, webkitFilter: 'blur(150px)', filter: 'blur(200px)' })
+					.from(icon, { duration: 1, scale: 0.25, y: '-75%', webkitFilter: `blur(${blur}px)`, filter: `blur(${blur}px)` })
 					.addLabel('show')
-					.to(icon, { scale: 1, y: 0, webkitFilter: 'blur(0px)', filter: 'blur(0px)' })
+					.to(icon, { scale: 1, webkitFilter: 'blur(0px)', filter: 'blur(0px)' })
 					.addLabel('leave')
-					.to(icon, { duration: 1, scale: 1.25, y: -150, webkitFilter: 'blur(150px)', filter: 'blur(200px)' })
+					.to(icon, { duration: 1, scale: 0.25, y: '0%', webkitFilter: `blur(${blur}px)`, filter: `blur(${blur}px)` })
 					.addLabel('end')
 			})
 		},
