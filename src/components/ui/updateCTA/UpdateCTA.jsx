@@ -54,6 +54,7 @@ const maxMinsVersionInterval = 10
             const versionRemoteString = JSON.stringify(versionRemote)
             if (versionRemoteString === version) {
                 setUpToDate(true)
+                window.location.reload()
             } else {
                 setUpToDate(false)
             }

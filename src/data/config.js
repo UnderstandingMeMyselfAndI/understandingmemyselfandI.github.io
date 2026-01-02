@@ -9,8 +9,7 @@ import AutoAwesomeOutlinedIcon from "@mui/icons-material/AutoAwesomeOutlined";
 import AutoGraphOutlinedIcon from "@mui/icons-material/AutoGraphOutlined";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import UmmiIcon from "@/components/ui/icons/UmmiIcon";
-import BlurOnOutlinedIcon from "@mui/icons-material/BlurOnOutlined";
-import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined'
+import BlurOnOutlinedIcon from '@mui/icons-material/BlurOnOutlined'
 // import { title } from "process";
 const cnf = {
 	appName: 'Ummi',
@@ -283,6 +282,7 @@ const strings = {
 						'If you are learning tools at groups<br /> that use ACT, CBT, DBT, REBT, <br /> or SMART therapies<br /><b class="lrg">this app is for you.</b>',
 						'These tools are ace.',
 						'<b>But remembering them<br /> can be hard.</b> ',
+						'<b>Ummi is a support tool<br /> to help you use them<br /> on your journey.</b> ',
 					],
 				},
 			],
@@ -311,7 +311,7 @@ const strings = {
 						"🔎Looking for Recovery tools?👀 <br/><br />👍 You're in the right place.✔<br /><br /> 👊🏾👇Check them out below👇👊",
 						"👋It's great to see you again😎🫵",
 						"👋You're in good Company😎🫵",
-						"👋You\'re back, that\'s ace👋 <br />All the solid ones do👊",
+						"👋You're back, that's ace👋 <br />All the solid ones do👊",
 						"🫵Hope you're doing🫵<br /> well today<br /> 🏆champ.🏆 <br /><br /> 👇 Check out some 👇<br />🛠️ tools 🛠️<br />and keep up your game💪",
 						'🥾Working hard on 🥾<br /> your recovery?🫶🏻<br /><br />🏋️‍♂️Stay strong🏋🏿‍♂️<br /><br /><u>🫵You are worth it💪🏼</u>',
 						'👉Pushing through Recovery?<br /><br /> 🤜Keep crushing those🤛 <br />gremlins like a boss.😎',
