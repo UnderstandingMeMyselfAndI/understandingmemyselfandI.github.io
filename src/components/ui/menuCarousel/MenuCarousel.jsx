@@ -214,7 +214,7 @@ const MenuCarousel = ({ data, filterIDs, showFavourites, handleClick }) => {
 		}
 
 		return (
-			<div key={`AccordionItem-cont-${item.id ?? index}`} className={'carousel-item'} onClick={handleClick(item.id)}>
+			<div key={`AccordionItem-cont-${item.id ?? index}`} className={'carousel-item' + (isSelected ? ' selected' : '')} onClick={handleClick(item.id)}>
 				<div className='AccordionItem inner item' key={`AccordionItem-${item.id ?? index}`} style={{ cursor: 'pointer' }}>
 					<div className='title' aria-controls={`Accronym-${index}-content`} id={`panel${item?.id}-header`}>
 						{showFavourites && <HandymanIcon className={'icon' + (isSelected ? ' active' : '')} key={`AccordionItem-icon-${item.id ?? index}`} />}
