@@ -5,7 +5,7 @@ const IDB_VERSION = 1;
 const cacheName = `web-app-cache-${SW_VERSION}`;
 
 const staticFiles = [
-  "/sw-registration.js",
+
   "/index.html",
   "/manifest.json",
   "/icons/UmmiIcons.svg",
