@@ -1,7 +1,7 @@
 import path from "path";
 import fs from 'fs'
 
-import { defineConfig } from 'vite'
+import {defineConfig, loadEnv} from "vite";
 import react from '@vitejs/plugin-react'
 import commonjs from 'vite-plugin-commonjs'
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
@@ -10,7 +10,8 @@ import Sitemap from 'vite-plugin-sitemap'
 import getDynamicRoutes from './getDynamicRoutes.js'
 
 
-const __dirname = path.dirname('./src')
+ const __dirname = path.dirname('./src')
+
 
 //version meta data
 const metadata = JSON.parse(fs.readFileSync('./src/metadata.json', 'utf-8'))
