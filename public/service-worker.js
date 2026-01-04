@@ -1,5 +1,3 @@
-// import { URLPattern } from 'urlpattern-polyfill'
-// globalThis.URLPattern = URLPattern
 // service worker version number
 const SW_VERSION = 2
 const IDB_VERSION = 1
@@ -9,18 +7,24 @@ const cacheName = `web-app-cache-${SW_VERSION}`
 
 // static files to cache
 const staticFiles = [
-	// "/sw-registration.js",
-	// "/index.html",
-	// "/manifest.json",
-	// "/icons/UmmiIcons.svg",
-	// "/icons/apple-touch-icon-180x180.png",
-	// "/icons/maskable-icon-512x512.png",
-	// "/icons/pwa-192x192.png",
-	// "/icons/pwa-512x512.png",
-	// "/icons/QRCodes/qr-code-src-app-white-318.png",
-	// "/icons/QRCodes/qr-code-src-app-dark-318.png",
-	// "/fonts/PlusJakartaSans-VariableFont_wght.woff",
-	// "/fonts/PlusJakartaSans-Italic-VariableFont_wght.woff",
+	"/sw-registration.js",
+	"/index.html",
+	"/manifest.json",
+	"/icons/UmmiIcons.svg",
+	"/icons/apple-touch-icon-180x180.png",
+	"/icons/maskable-icon-512x512.png",
+	"/icons/pwa-192x192.png",
+	"/icons/pwa-512x512.png",
+	"/icons/QRCodes/qr-code-src-app-white-318.png",
+	"/icons/QRCodes/qr-code-src-app-dark-318.png",
+	"/fonts/PlusJakartaSans-VariableFont_wght.woff",
+	"/fonts/PlusJakartaSans-Italic-VariableFont_wght.woff",
+	"/bgs/1.avif",
+	"/bgs/2.avif",
+	"/bgs/3.avif",
+	"/bgs/4.avif",
+	"/bgs/5.avif",
+	
 ]
 
 // routes to cache
@@ -227,12 +231,12 @@ const retryRequests = async () => {
 // add {cache: 'no-cache'} } to all requests to bypass the browser cache so content is always fetched from the server
 const installHandler = (e) => {
 
-	e.addRoutes({
-		condition: {
-			urlPattern: new URLPattern({}),
-		},
-		source: 'fetch-event',
-	})
+	// e.addRoutes({
+	// 	condition: {
+	// 		urlPattern: new URLPattern({}),
+	// 	},
+	// 	source: 'fetch-event',
+	// })
 	e.waitUntil(
 		caches
 			.open(cacheName)
@@ -243,7 +247,8 @@ const installHandler = (e) => {
 
 // delete any outdated caches when the Service Worker is activated
 const activateHandler = (e) => {
-	e.waitUntil(caches.keys().then((names) => Promise.all(names.filter((name) => name !== cacheName).map((name) => caches.delete(name)))))
+	e.waitUntil(caches.keys()
+	.then((names) => Promise.all(names.filter((name) => name !== cacheName).map((name) => caches.delete(name)))))
 }
 
 // in case the caches response is a redirect, we need to clone it to set its "redirected" property to false
