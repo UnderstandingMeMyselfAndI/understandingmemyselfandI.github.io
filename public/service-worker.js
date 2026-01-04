@@ -261,7 +261,39 @@ const fetchHandler = async (e) => {
 //     })()
 //   );
 // };
+// Message handler for postMessage communication from clients
+const messageHandler = async (event) => {
+  const { data } = event;
 
+  if (!data || !data.type) return;
+
+  switch (data.type) {
+    case "SKIP_WAITING":
+      // Allow immediate update when client asks
+      await self.skipWaiting();
+      await self.clients.claim();
+      break;
+
+    case "retry-requests":
+      // Manual retry for browsers without Background Sync
+      if (!("sync" in self.registration)) {
+        await retryRequests();
+      }
+      break;
+
+    // You can add more message types here if needed
+    default:
+      console.log("Unknown message type:", data.type);
+  }
+};
+
+// Now attach the listeners (this must come AFTER the function is defined)
+self.addEventListener("message", messageHandler);
+
+self.addEventListener("install", installHandler);
+self.addEventListener("activate", activateHandler);
+self.addEventListener("fetch", fetchHandler);
+self.addEventListener("sync", syncHandler);
 const syncHandler = async (e) => {
   if (e.tag === "retry-request") {
     e.waitUntil(retryRequests());
