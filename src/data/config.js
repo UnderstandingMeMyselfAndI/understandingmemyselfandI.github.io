@@ -271,7 +271,7 @@ const strings = {
 						'<span>Easily explained with <u>Text &amp; videos</u>.</span>',
 						'<span>Scenarios describing<br /> <u>when tools can be useful</u>.</span>',
 						'<span>Private <u>Days Counter</u> to track recovery.</span>',
-						'<span>Quick exit button - <br /> <u>leave &amp; straight to Google.com</u><br /></span>',
+						'<span>Quick exit button - <br /> <u>leave straight to Google.com</u><br /></span>',
 						'<span><u>Complete privacy</u><br /> you control.</span>',
 						'<span>Erase all data,<br /> <u>instantly</u>, <u>at anytime</u>.</span>',
 					],
