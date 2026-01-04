@@ -231,12 +231,12 @@ const retryRequests = async () => {
 // add {cache: 'no-cache'} } to all requests to bypass the browser cache so content is always fetched from the server
 const installHandler = (e) => {
 
-	// e.addRoutes({
-	// 	condition: {
-	// 		urlPattern: new URLPattern({}),
-	// 	},
-	// 	source: 'fetch-event',
-	// })
+	e.addRoutes({
+		condition: {
+			urlPattern: new URLPattern({}),
+		},
+		source: 'fetch-event',
+	})
 	e.waitUntil(
 		caches
 			.open(cacheName)
