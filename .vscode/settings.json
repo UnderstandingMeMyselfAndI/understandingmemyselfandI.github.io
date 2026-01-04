@@ -1,5 +1,6 @@
 {
-    "[javascript]": {
-        "editor.defaultFormatter": "prettier.prettier-vscode"
-    }
+  "[javascript]": {
+    "editor.defaultFormatter": "prettier.prettier-vscode"
+  },
+  "prettier.prettierPath": "C:\\Program Files\\nodejs\\node_modules\\prettier"
 }

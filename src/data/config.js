@@ -265,24 +265,24 @@ const strings = {
 					title: 'Your Recovery Toolbox',
 					icon: HandymanIcon,
 					content: [
-						'<span>Addiction Recovery tools explained.</span>',
-						'<span>Create your own toolbox to help you recover.</span>',
-						'<span>Text & video eplanations.</span>',
-						'<span>Scenarios describing when tools can be used.</span>',
-						'<span>Private Days Counter to track recovery.</span>',
-						'<span>Quick exit button to open Google.com for times when that could be helpful.</span>',
-						'<span>Available online or offline.</span>',
-						'<span>Complete privacy you control.</span>',
-						'<span>Erase all data at anytime.</span>',
+						'<span>Addiction <u  className="orange">Recovery tools explained</u>.</span>',
+						'<span>Find tools<br /> <u className="orange">that work for you</u>.</span>',
+						'<span>Create<br /> <u className="orange">your own toolbox</u>.</span>',
+						'<span>Easily explained with <u className="orange">Text &amp; videos</u>.</span>',
+						'<span>Scenarios describing<br /> <u className="orange">when tools can be useful</u>.</span>',
+						'<span>Private <u className="orange">Days Counter</u> to track recovery.</span>',
+						'<span>Quick exit button - <br /> <u className="orange">straight to Google.com</u><br /> - for when that could be helpful.</span>',
+						'<span><u className="orange">Complete privacy</u><br /> you control.</span>',
+						'<span>Erase all data,<br /> <u className="orange">instantly</u>, <u <u className="orange">at anytime</u>.</span>',
 					],
 				},
 				{
 					title: 'Who is Ummi for?',
 					content: [
-						'If you are learning tools at groups<br /> that use ACT, CBT, DBT, REBT, <br /> or SMART therapies<br /><b class="lrg">this app is for you.</b>',
-						'These tools are ace.',
-						'<b>But remembering them<br /> can be hard.</b> ',
-						'<b>Ummi is a support tool<br /> to help you use them<br /> on your journey.</b> ',
+						'Learning recovery tools at groups using <br />ACT, CBT, DBT, REBT, or SMART therapies?<br /><b class="lrg">this app is for you.</b>',
+
+						'<u>The tools are ace. <b>But remembering them<br /> can be hard</u>.</b> ',
+						'<b>Ummi helps you find and use <u>tools that work for you, and your journey</u>.</b> ',
 					],
 				},
 			],
@@ -331,10 +331,13 @@ const strings = {
 			name: 'tools',
 			slug: '#recovery-tools',
 			title: 'The Tools',
-			content: [
-				'Tap a heading for an explanation of the tool, how to use it, scenarios where it might be useful, and more.',
+			description: [
+				'These tools don\'t <br />work for <u>everbody</u>.',
+				'They might work for <u>one person</u> but not the <u>next person</u>.',
+				'However, they have worked for <u>somebody</u>.'
 				// "Some tools also include videos that help to explain them."
 			],
+			content:[],
 			btnLabel: '',
 			cta: {
 				title: '',
