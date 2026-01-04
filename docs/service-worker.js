@@ -286,6 +286,11 @@ const messageHandler = async (event) => {
       console.log("Unknown message type:", data.type);
   }
 };
+const syncHandler = async (e) => {
+  if (e.tag === "retry-request") {
+    e.waitUntil(retryRequests());
+  }
+};
 
 // Now attach the listeners (this must come AFTER the function is defined)
 self.addEventListener("message", messageHandler);
@@ -294,11 +299,6 @@ self.addEventListener("install", installHandler);
 self.addEventListener("activate", activateHandler);
 self.addEventListener("fetch", fetchHandler);
 self.addEventListener("sync", syncHandler);
-const syncHandler = async (e) => {
-  if (e.tag === "retry-request") {
-    e.waitUntil(retryRequests());
-  }
-};
 
 self.addEventListener("install", installHandler);
 self.addEventListener("activate", activateHandler);
