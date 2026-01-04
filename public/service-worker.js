@@ -7,6 +7,7 @@ const cacheName = `web-app-cache-${SW_VERSION}`;
 const staticFiles = [
 
   "/index.html",
+  "/offline.html",
   "/manifest.json",
   "/icons/UmmiIcons.svg",
   "/icons/apple-touch-icon-180x180.png",
@@ -149,55 +150,117 @@ const activateHandler = (e) => {
 // Fetch: Cache-first + runtime caching + better offline handling
 const fetchHandler = async (e) => {
   const { request } = e;
+  const url = new URL(request.url);
+
+  // Detect if this is a page navigation (critical for SPA routing)
+  const isNavigationRequest =
+    request.mode === "navigate" ||
+    (request.headers.get("accept") || "").includes("text/html");
 
   e.respondWith(
     (async () => {
-      // Special handling for mutable requests when offline
+      // 1. Offline + mutable request → queue it and show offline page
       if (!navigator.onLine && isRequestEligibleForRetry(request)) {
-        await storeRequest(request);
-        return (await caches.match("/index.html")) || new Response("Offline – request queued", { status: 503 });
+        await storeRequest(request.clone());
+
+        const offlinePage = await caches.match("/offline.html");
+        if (offlinePage) return offlinePage;
+
+        return new Response("You are offline – your changes will sync later.", {
+          status: 503,
+          headers: { "Content-Type": "text/plain" },
+        });
       }
 
-      // Try cache first
-      let response = await caches.match(request, { ignoreSearch: true });
-      if (response) return response;
-
-      // Network
+      // 2. Try network first (recommended for Vite apps with hashed assets)
       try {
         const networkResponse = await fetch(request);
-        
-        // Cache successful opaque/200 responses (runtime caching)
-        if (networkResponse && (networkResponse.type === "basic" || networkResponse.type === "cors") && networkResponse.status === 200) {
+
+        // Cache successful responses for future offline use
+        if (networkResponse && networkResponse.status === 200) {
           const cache = await caches.open(cacheName);
+          // Clone before putting because the body can only be read once
           cache.put(request, networkResponse.clone());
         }
 
         return networkResponse;
-      } catch (err) {
-        // General offline/network error fallback
-        const offlineResponse = await caches.match("/index.html");
-        if (offlineResponse) return offlineResponse;
-        
-        return new Response("Offline", { status: 503 });
+
+      } catch (networkError) {
+        // 3. Network failed → try cache
+        const cachedResponse = await caches.match(request, { ignoreSearch: true });
+        if (cachedResponse) {
+          return cachedResponse;
+        }
+
+        // 4. Special fallback for page navigation (refresh or deep links)
+        if (isNavigationRequest) {
+          const shellResponse = await caches.match("/index.html");
+          if (shellResponse) {
+            return shellResponse; // Let client-side router handle the route
+          }
+        }
+
+        // 5. Final fallback: dedicated offline page
+        const offlinePage = await caches.match("/offline.html");
+        if (offlinePage) {
+          return offlinePage;
+        }
+
+        // Absolute last resort
+        return new Response("No connection and no cached page available.", {
+          status: 503,
+          headers: { "Content-Type": "text/plain" },
+        });
       }
     })()
   );
 };
+// const fetchHandler = async (e) => {
+//   const { request } = e;
 
-// Message & Sync handlers (unchanged, but remove PREPARE_CACHES_FOR_UPDATE if unused)
-const messageHandler = async ({ data }) => {
-  const { type } = data;
-  switch (type) {
-    case "SKIP_WAITING":
-      await self.skipWaiting();
-      await self.clients.claim();
-      break;
-    case "retry-requests":
-      if (!("sync" in self.registration)) await retryRequests();
-      break;
-    // Removed PREPARE_CACHES_FOR_UPDATE – not needed
-  }
-};
+//   // Detect navigation requests (HTML pages)
+//   const isNavigation = request.mode === 'navigate' || 
+//                        (request.headers.get('accept') || '').includes('text/html');
+
+//   e.respondWith(
+//     (async () => {
+//       // Offline mutable requests: queue and show fallback
+//       if (!navigator.onLine && isRequestEligibleForRetry(request)) {
+//         await storeRequest(request);
+//         const offlineResp = await caches.match('/offline.html');
+//         return offlineResp || new Response('Offline – request queued', { status: 503 });
+//       }
+
+//       try {
+//         // Try network first for better freshness (or cache-first if you prefer)
+//         const networkResponse = await fetch(request);
+
+//         // Runtime cache successful responses (optional but recommended)
+//         if (networkResponse && networkResponse.status === 200) {
+//           const cache = await caches.open(cacheName);
+//           cache.put(request, networkResponse.clone());
+//         }
+
+//         return networkResponse;
+
+//       } catch (err) {
+//         // Network failed → try cache
+//         const cached = await caches.match(request, { ignoreSearch: true });
+//         if (cached) return cached;
+
+//         // Special fallback for navigation requests (SPA routing!)
+//         if (isNavigation) {
+//           const fallback = await caches.match('/index.html');
+//           if (fallback) return fallback;
+//         }
+
+//         // General fallback (create /offline.html and cache it!)
+//         const offlineResp = await caches.match('/offline.html');
+//         return offlineResp || new Response('Offline – no connection', { status: 503 });
+//       }
+//     })()
+//   );
+// };
 
 const syncHandler = async (e) => {
   if (e.tag === "retry-request") {
