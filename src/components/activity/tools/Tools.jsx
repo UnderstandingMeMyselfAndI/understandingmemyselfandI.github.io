@@ -22,8 +22,7 @@ const Tools = () => {
   );
   const content =
     strings.activity.find((activity) => activity.name === name) || null;
-  console.log('content', content);
-  console.log('description ', content.description);
+
   if (content === null) {
     console.warn(`No content found for activity "${name}"`);
   }
