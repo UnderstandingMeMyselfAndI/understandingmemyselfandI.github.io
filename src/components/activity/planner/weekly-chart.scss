@@ -1,0 +1,65 @@
+.weekly-chart {
+  padding: 1rem;
+  max-width: 420px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__toggle {
+    font-size: 0.875rem;
+    display: flex;
+    gap: 0.5rem;
+    cursor: pointer;
+
+    input {
+      cursor: pointer;
+    }
+  }
+
+  &__summary {
+    margin: 0.5rem 0 1rem;
+    font-size: 0.95rem;
+  }
+
+  &__svg {
+    width: 100%;
+    outline: none;
+  }
+
+  &__bar rect {
+    fill: currentColor;
+  }
+
+  &__bar rect:focus {
+    outline: 3px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  &__reference {
+    line {
+      stroke: currentColor;
+      stroke-dasharray: 4 4;
+    }
+
+    text {
+      font-size: 0.75rem;
+    }
+  }
+
+  &__note {
+    font-size: 0.8rem;
+    opacity: 0.85;
+  }
+}
+
+.weekly-chart__bar rect {
+  min-height: 4px;
+}
+
+.weekly-chart__toggle {
+  min-height: 44px;
+  align-items: center;
+}

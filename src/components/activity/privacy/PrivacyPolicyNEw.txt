@@ -1,0 +1,140 @@
+
+// TODO: Some of this should be integrated into the current PP when encryption is implemented.
+
+Privacy Notice
+
+Last updated: [add date]
+
+1. Who we are
+
+This app is a local-only web application (PWA).
+We do not operate a server, collect analytics, or receive any personal data from you.
+
+For the purposes of data protection law:
+
+You are the data controller
+
+This app does not act as a data processor
+
+2. What data this app stores
+
+This app stores data only on your own device.
+Typical data may include:
+
+Information you enter into the app (for example, logs, notes, or preferences)
+
+App settings (such as reminders or display options)
+
+Optional security information (such as an encrypted lock)
+
+No data is sent to us or any third party.
+
+3. Where your data is stored
+
+Your data is stored locally using:
+
+Your browser’s secure storage (IndexedDB / local storage)
+
+Your device’s own file system (via your browser)
+
+We do not store or receive your data.
+We cannot see, access, or recover it.
+
+4. Encryption and security
+
+If you choose to enable security features:
+
+Your data is encrypted on your device using your password
+
+The password is never sent anywhere
+
+We do not know or store your password
+
+If the correct password is not entered, the data cannot be read.
+
+⚠️ If you forget your password and any recovery options you set, your data cannot be recovered.
+
+5. PINs and convenience access
+
+You may optionally set a PIN for quicker access:
+
+PINs are stored securely on your device
+
+They are never stored as plain numbers
+
+PINs are used only to unlock access on your device
+
+6. Data sharing
+
+We do not:
+
+Share data with third parties
+
+Use analytics or tracking
+
+Send data to servers
+
+Use cookies for profiling or advertising
+
+Your data stays on your device at all times.
+
+7. Your rights under GDPR
+
+Because this app stores data only on your device, your GDPR rights are exercised directly by you:
+
+Right of access – you can view your data in the app
+
+Right to rectification – you can edit your data
+
+Right to erasure – you can delete your data
+
+Right to portability – you can export your data (if export is enabled)
+
+There is no data held by us to request, correct, or delete on your behalf.
+
+8. Data retention
+
+Your data remains on your device until:
+
+You delete it in the app
+
+You clear your browser storage
+
+You uninstall the app or reset your device
+
+We do not retain any copies.
+
+9. Children’s data
+
+This app does not knowingly collect data from children.
+All data entry is entirely user-controlled.
+
+10. Changes to this notice
+
+If this privacy notice changes, the updated version will be shown within the app.
+
+11. Contact
+
+Because this app does not collect or receive personal data, there is no data controller contact address for data access requests.
+
+If you have general questions about how the app works, you can refer to the help section within the app.
+
+Summary (plain English)
+
+Your data stays on your device
+
+We don’t collect, see, or store your data
+
+Encryption keeps your data private
+
+If you delete the app or forget your password, the data is gone
+
+If you want, I can also:
+
+Shorten this for an app store listing
+
+Create a 1-paragraph privacy summary
+
+Add legal references (UK GDPR / EU GDPR articles)
+
+Tailor it for health-related data wording

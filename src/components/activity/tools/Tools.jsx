@@ -9,6 +9,7 @@ import parse from 'html-react-parser';
 import { strings } from '@/data/config';
 import './styles.scss';
 import PropTypes from 'prop-types';
+
 const Tools = () => {
   const data = toolsData.tools.nodes;
   const name = 'tools';
