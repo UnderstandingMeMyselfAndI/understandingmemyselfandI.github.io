@@ -4,7 +4,8 @@ import { activities } from '@/data/config';
 import MenuCarousel from '@/components/ui/menuCarousel/MenuCarousel';
 import toolsData from '../../../data/tools.js';
 
-import { useInView, useOnInView } from 'react-intersection-observer';
+// import { useInView, useOnInView } from 'react-intersection-observer';
+import { useOnInView } from 'react-intersection-observer';
 import parse from 'html-react-parser';
 import { strings } from '@/data/config';
 import './styles.scss';
@@ -56,7 +57,8 @@ const Tools = () => {
   }, [activity, activityID]);
 
   const inViewRef = useOnInView(
-    (inView, entry) => {
+    // (inView, entry) => {
+    (inView) => {
       if (inView) {
         // Do something with the element that came into view
         // console.log('Element is in view', entry.target)
