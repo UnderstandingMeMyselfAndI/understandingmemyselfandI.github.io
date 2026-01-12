@@ -30,14 +30,15 @@ import DaysCounter from './components/activity/daysCounter/DaysCounter';
 import DaysCounterCTA from './components/activity/daysCounter/DaysCounterCTA';
 import AppMenu from './components/ui/menu/AppMenu';
 import CookieConsent from './components/ui/cookieConsent/CookieConsent';
-import UmmiAgeGate from './components/ui/ageGate/UmmiAgeGate';
+// import UmmiAgeGate from './components/ui/ageGate/UmmiAgeGate';
 import { smoothScroll } from './js/utils.js';
 import NewsletterSignUp from './components/ui/newsletterSignup/NewsletterSignUp';
 import Exit from './components/ui/exit/Exit';
 import Settings from './components/activity/settings/Settings';
 import Vcn from './components/visits/Vcn.jsx';
 import Lingo from './components/activity/lingo/Lingo';
-import Quiz from './components/activity/quiz/Quiz';
+// import Quiz from './components/activity/quiz/Quiz';
+import UnitsCalculator from './components/activity/unitsCalculator/UnitsCalculator';
 
 import './App.scss';
 // TODO: "Clear Local Data" functionality
@@ -61,7 +62,7 @@ function App() {
   return (
     <div>
       <div className='app'>
-        <UmmiAgeGate />
+        {/* <UmmiAgeGate /> */}
         <CookieConsent />
 
         <AppMenu />
@@ -78,6 +79,7 @@ function App() {
           {daysCounterEnabled && <DaysCounterCTA />}
           <Lingo />
           {/* <Quiz /> */}
+          <UnitsCalculator />
 
           <div className='activities' id='top'>
             {daysCounterEnabled && <DaysCounter />}
@@ -94,12 +96,12 @@ function App() {
         <SnackBars />
         <ScrollPosition />
       </div>
-      <BackdropParallax
+      {/* <BackdropParallax
         initialImageId={2}
         initialDelay={3000}
         interval={6000}
         parallaxStrength={0}
-      />
+      /> */}
       <Routing />
       <Vcn />
     </div>

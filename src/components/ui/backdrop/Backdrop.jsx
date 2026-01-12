@@ -8,8 +8,8 @@ const allImages = ImageData; // already an array
 const newImgInterval = 10000;
 
 export default function Backdrop({ initialImageId = null }) {
-  const bgImg = new Image();
-  bgImg.url = '/bgs/2.avif';
+  // const bgImg = new Image();
+  // bgImg.url = '/bgs/2.avif';
   // Allow parent to control first image, otherwise random
   const getInitialImages = () => {
     if (initialImageId) {
@@ -100,12 +100,12 @@ export default function Backdrop({ initialImageId = null }) {
       <div className='vig' />
       <div className='cont'>
         <img
-          src={images[0]?.url || bgImg}
+          src={images[0]?.url || './bgs/2.avif'}
           alt={images[0]?.alt || 'Backdrop'}
           className={activeIndex === 0 ? 'active' : 'inactive'}
         />
         <img
-          src={images[1]?.url || bgImg}
+          src={images[1]?.url || './bgs/2.avif'}
           alt={images[1]?.alt || 'Backdrop'}
           className={activeIndex === 1 ? 'active' : 'inactive'}
         />

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDrinkLogStore } from '@/store/drinkLogStore';
-import { calcUnits, getWeekDates } from '../utils/alcoholUtils';
+import { calcUnits, getWeekDates } from '@/src/js/utils/alcoholUtils';
 import '../styles/weekly-chart.scss';
 import '../styles/a11y.scss';
 export default function WeeklyChart() {

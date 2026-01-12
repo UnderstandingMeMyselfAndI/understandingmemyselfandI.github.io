@@ -1,5 +1,5 @@
 import { usePlannerStore } from '@/store/usePlannerStore';
-import { calcUnits } from './alcoholUtils';
+import { calcUnits } from '.@/src//js/utils/alcoholUtils';
 
 export default function FuturePlanner() {
   const { plans, addPlan, removePlan } = usePlannerStore();
