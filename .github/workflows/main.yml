@@ -19,7 +19,7 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_DEV_KEY }}
           ARGS:
             '-rlgoDzvc -i -a --recursive --force --compress --human-readable'
-          SOURCE: 'docs/'
+          SOURCE: './docs'
           REMOTE_HOST: ${{ secrets.DEPLOY_DEV_SERVER }}
           REMOTE_USER: ${{ secrets.DEPLOY_DEV_USER }}
           TARGET: ${{ secrets.DEPLOY_REMOTE_DEV_DIR }}
