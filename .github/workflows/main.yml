@@ -1,0 +1,33 @@
+name: Github Action SSH Publish Theme to host
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  web-deploy:
+    name: Deploy to Staging server
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get Latest Commit
+        uses: actions/checkout@v4
+
+      - name: 📂 Sync Files with hosting server
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_DEV_KEY }}
+          ARGS:
+            '-rlgoDzvc -i -a --recursive --force --compress --human-readable'
+          SOURCE: './'
+          REMOTE_HOST: ${{ secrets.DEPLOY_DEV_SERVER }}
+          REMOTE_USER: ${{ secrets.DEPLOY_DEV_USER }}
+          TARGET: ${{ secrets.DEPLOY_REMOTE_DEV_DIR }}
+          EXCLUDE: 'cms, data, playwright-report,cms,tmp, /node_modules/'
+          SCRIPT_BEFORE: |
+            whoami
+            ls -al
+          SCRIPT_AFTER: |
+            whoami
+            ls -al
+            echo $RSYNC_STDOUT
