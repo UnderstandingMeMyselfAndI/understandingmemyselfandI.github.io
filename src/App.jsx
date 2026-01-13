@@ -4,6 +4,7 @@
 // import "components/utils/activities.js";
 import Routing from './components/routing/Routing';
 import { useThemeStore } from '@/store/useThemeStore';
+import { useShallow } from 'zustand/react/shallow';
 import useAppStore from './store/useAppStore';
 // import DaysCounter from "./components/ui/DaysCounter/DaysCounter";
 import applyTheme from 'components/theme/applyTheme';
@@ -48,6 +49,7 @@ function App() {
   // const enableYourTools = useAppStore((s) => s.enableYourTools)
   const quickExitEnabled = useAppStore((s) => s.quickExitEnabled);
   const setActivity = useAppStore((s) => s.setActivity);
+
   setActivity(-1);
   smoothScroll();
   const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme);
@@ -65,8 +67,9 @@ function App() {
         {/* <UmmiAgeGate /> */}
         <CookieConsent />
         <div className='dev-version'>
-          Development Version. Full version{' '}
-          <a href='https://ummi.now'>https://ummi.now</a>
+          Development Version.
+          <br />
+          NOT Full version{' '}
         </div>
         <AppMenu />
 
@@ -99,12 +102,12 @@ function App() {
         <SnackBars />
         <ScrollPosition />
       </div>
-      {/* <BackdropParallax
+      <BackdropParallax
         initialImageId={2}
         initialDelay={3000}
         interval={6000}
         parallaxStrength={0}
-      /> */}
+      />
       <Routing />
       <Vcn />
     </div>

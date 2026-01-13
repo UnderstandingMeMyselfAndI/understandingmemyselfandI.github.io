@@ -29,8 +29,8 @@ const Introduction = () => {
   const vc = useAppStore((state) => state.vc); // visit count
 
   useEffect(() => {
-    setOpen(activityID === activity);
-  }, [activity, activityID]);
+    setOpen(activity === -1);
+  }, [activity]);
 
   function getRand(max) {
     return Math.floor(Math.random() * (max - 1 + 1)) + 1;

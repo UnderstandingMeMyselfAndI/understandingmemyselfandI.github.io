@@ -34,7 +34,7 @@
   }
 
   .close-btn {
-    right: 0.75rem;
+    right: 0.5rem;
     top: 0.75rem;
     svg {
       width: 64px;
@@ -72,7 +72,7 @@
           margin-bottom: 1rem;
           h2 {
             margin: 1rem 0 0.5rem 0;
-            font-size: variables.$h3_size;
+            font-size: variables.$h2_size;
           }
           .intro {
             padding: 0 2rem;
@@ -84,7 +84,7 @@
           row-gap: 0.25rem;
           // outline: 1px solid #b91616;
           justify-content: center;
-          flex: 1;
+          // flex: 1;
           margin: 0;
         }
 
@@ -138,7 +138,7 @@
         padding: 6px 0;
       }
       .selected-measures {
-        flex: 1;
+        // flex: 1;
         display: flex;
         flex-flow: column nowrap;
 
@@ -317,7 +317,7 @@
       }
 
       .container-buttons {
-        flex: 0;
+        // flex: 0;
         display: flex;
         flex-flow: column nowrap;
         height: 272px;
@@ -515,7 +515,7 @@
           justify-content: flex-start;
           width: 100%;
           .container-buttons {
-            flex: 1;
+            // flex: 1;
             display: flex;
             flex-flow: column nowrap;
             justify-content: flex-start;

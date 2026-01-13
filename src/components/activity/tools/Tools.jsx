@@ -52,9 +52,13 @@ const Tools = () => {
     setActivity(1);
   };
 
+  // useEffect(() => {
+  //   setOpen(activityID === activity);
+  // }, [activity, activityID]);
+
   useEffect(() => {
-    setOpen(activityID === activity);
-  }, [activity, activityID]);
+    setOpen(activity === -1);
+  }, [activity]);
 
   const inViewRef = useOnInView(
     // (inView, entry) => {
