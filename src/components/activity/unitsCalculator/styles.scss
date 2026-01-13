@@ -34,9 +34,12 @@
   }
 
   .close-btn {
-    top: 0.5rem;
-    right: 0.25rem;
-    z-index: 8000;
+    right: 0.75rem;
+    top: 0.75rem;
+    svg {
+      width: 64px;
+      height: 64px;
+    }
   }
   .inner {
     position: relative;

@@ -64,7 +64,10 @@ function App() {
       <div className='app'>
         {/* <UmmiAgeGate /> */}
         <CookieConsent />
-
+        <div className='dev-version'>
+          Development Version. Full version{' '}
+          <a href='https://ummi.now'>https://ummi.now</a>
+        </div>
         <AppMenu />
 
         {quickExitEnabled && <Exit />}

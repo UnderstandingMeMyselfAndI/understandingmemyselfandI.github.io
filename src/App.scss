@@ -8,7 +8,16 @@ html {
   margin: 0;
   background: #000;
 }
-
+.dev-version {
+  position: absolute;
+  z-index: 99999;
+  top: 0;
+  left: 0;
+  background-color: #000;
+  color: #b3b3b3;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+}
 :root {
   color-scheme: light dark;
   // --user-scale: 1;
