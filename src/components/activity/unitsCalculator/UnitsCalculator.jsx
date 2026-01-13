@@ -151,7 +151,7 @@ const UnitsCalculator = () => {
               </div>
               <div className='container-buttons'>
                 <div className='measures-selector'>
-                  {drinks.length === 0 && (
+                  {type === null && (
                     <div className='measures-selector-label'>
                       Make a selection
                     </div>
