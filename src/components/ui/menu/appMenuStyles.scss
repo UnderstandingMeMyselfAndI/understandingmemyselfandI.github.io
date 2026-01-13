@@ -5,9 +5,10 @@
     display: none;
   }
   position: fixed;
-  top: -0.5rem;
-  right: -0.5rem;
-  left: auto;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
   overflow-x: clip;
   z-index: 5600;
   display: flex;
