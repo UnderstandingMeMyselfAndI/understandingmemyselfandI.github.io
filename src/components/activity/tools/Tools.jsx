@@ -18,10 +18,10 @@ const Tools = () => {
   const setToolsInView = useAppStore((s) => s.setToolsInView);
 
   const [open, setOpen] = useState(true);
-  const activity = useAppStore((s) => s.activity);
-  const activityID = activities.find((activity) =>
-    activity.url === name ? activity.id : null,
-  );
+  // const activity = useAppStore((s) => s.activity);
+  // const activityID = activities.find((activity) =>
+  //   activity.url === name ? activity.id : null,
+  // );
   const content =
     strings.activity.find((activity) => activity.name === name) || null;
 
@@ -56,9 +56,9 @@ const Tools = () => {
   //   setOpen(activityID === activity);
   // }, [activity, activityID]);
 
-  useEffect(() => {
-    setOpen(activity === -1);
-  }, [activity]);
+  // useEffect(() => {
+  //   setOpen(activity === -1);
+  // }, [activity]);
 
   const inViewRef = useOnInView(
     // (inView, entry) => {
