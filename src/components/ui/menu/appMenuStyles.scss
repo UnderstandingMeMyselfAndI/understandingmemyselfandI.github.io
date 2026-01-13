@@ -121,6 +121,8 @@
   }
 
   &:has(.open) {
+    position: fixed;
+
     ul#app-menu {
 
       margin-right: 0;
