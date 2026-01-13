@@ -225,7 +225,7 @@ const DaysCounter = () => {
                 <div className='title'>
                   <input
                     type='text'
-                    placeholder='Tap here to set a title'
+                    placeholder='Tap to set a title'
                     value={date.label}
                     onChange={(e) =>
                       updateDate(index, date.selectedDate, e.target.value)
@@ -286,9 +286,9 @@ const DaysCounter = () => {
           <p>Disble controls available in settings.</p>
         </div>
       </div>
-      <div className='days-counter-backdrop'>
-        {/* <BackdropParallax initialImageId={4} initialDelay={0} interval={6000} parallaxStrength={0} /> */}
-      </div>
+      {/* <div className='days-counter-backdrop'>
+        {/* <BackdropParallax initialImageId={4} initialDelay={0} interval={6000} parallaxStrength={0} /> 
+      </div> */}
     </div>
   );
 };

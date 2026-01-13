@@ -53,9 +53,11 @@ const DRINK_PRESETS = [
 const UnitsCalculator = () => {
   const setActivity = useAppStore((state) => state.setActivity);
   const [type, setType] = useState(null);
+  const [isMeasuresVisible, setIsMeasuresVisible] = useState(false);
+  const [multiplier, setMultiplier] = useState(1);
   const [customDrink, setCustomDrink] = useState({
     label: 'Custom Drink',
-    volume: 568,
+    volume: 440,
     unit: 'ml',
     abv: 5,
     count: 1,
@@ -73,8 +75,12 @@ const UnitsCalculator = () => {
   }, [activity]);
 
   const handleClose = () => {
-    setOpen(false);
-    setActivity(-1);
+    if (isMeasuresVisible) {
+      setIsMeasuresVisible(false);
+    } else {
+      setOpen(false);
+      setActivity(-1);
+    }
   };
 
   const addDrink = (preset, countToAdd = 1) => {
@@ -136,7 +142,7 @@ const UnitsCalculator = () => {
 
   const totalDrinkCount = drinks.reduce((sum, d) => sum + d.count, 0);
 
-  return (
+  return open ? (
     <div
       className={'ummi-units-calculator' + (open ? ' open' : '')}
       id='ummi-units-calculator'
@@ -192,7 +198,7 @@ const UnitsCalculator = () => {
                           <div className='row-1'>
                             <div className='multiplier'>{d.count}x</div>{' '}
                             <div className='label'>
-                              {d.label} ({d.type}){' '}
+                              {d.label} <span>({d.type})</span>{' '}
                             </div>
                           </div>{' '}
                           <div className='row-2'>
@@ -215,33 +221,100 @@ const UnitsCalculator = () => {
                 </ul>
                 <div className='drinks-total'>
                   <div className='drinks-total-wrap'>
-                    <h3>Total : {totalUnits.toFixed(2)} units</h3>
-                    <div>({totalDrinkCount} drinks)</div>
+                    <h3>
+                      Total : <span>{totalUnits.toFixed(2)} units </span>
+                    </h3>{' '}
+                    <div className='drinks-count'>
+                      ({totalDrinkCount} drinks)
+                    </div>
                   </div>
                 </div>
               </div>
               <div className='container-buttons'>
                 <div className='measures-selector'>
-                  {/* {type === null && (
-                    <div className='measures-selector-label'>
-                      Make a selection
-                    </div>
-                  )} */}
-
                   <div className='buttons'>
-                    {DRINK_PRESETS.map((group) => (
-                      <button
-                        key={group.label}
-                        onClick={() => setType(group.type)}
-                        className={
-                          'group' + (group.type === type ? ' selected' : ' ')
-                        }
-                      >
-                        {group.label}
-                      </button>
-                    ))}
+                    <button
+                      onClick={() => {
+                        setType('custom');
+                        setIsMeasuresVisible(false);
+                      }}
+                      className={
+                        'group' + (type === 'custom' ? ' selected' : ' ')
+                      }
+                    >
+                      Custom
+                    </button>
+                    <button
+                      onClick={() => setIsMeasuresVisible(true)}
+                      className='group'
+                    >
+                      Measures
+                    </button>
                   </div>
                 </div>
+                {isMeasuresVisible && (
+                  <div
+                    className='measures-scroll-list'
+                    onClick={() => setIsMeasuresVisible(false)}
+                  >
+                    <div
+                      className='measures-scroll-list-inner'
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <CloseBtn
+                        className='close-btn-measures'
+                        handleClick={() => setIsMeasuresVisible(false)}
+                      />
+                      <div className='multiplier-input'>
+                        <label htmlFor='multiplier'>No of:</label>
+                        <input
+                          type='number'
+                          id='multiplier'
+                          name='multiplier'
+                          value={multiplier}
+                          onChange={(e) =>
+                            setMultiplier(parseInt(e.target.value, 10) || 1)
+                          }
+                          min={1}
+                        />
+                      </div>
+                      {DRINK_PRESETS.map((group) =>
+                        group.type !== 'custom' ? (
+                          <div key={group.label} className='measures-group'>
+                            <div className='measures-group-title'>
+                              {group.label}
+                            </div>
+                            <div className='measures-group-buttons'>
+                              {group.drinks.map((preset) => (
+                                <button
+                                  key={preset.label}
+                                  onClick={() => {
+                                    addDrink(
+                                      { ...preset, type: group.type },
+                                      multiplier,
+                                    );
+                                    setIsMeasuresVisible(false);
+                                  }}
+                                  className='measure'
+                                >
+                                  <span className='measure-title'>
+                                    {preset.label}
+                                  </span>
+                                  <span className='spec'>
+                                    <span className='volume'>
+                                      {preset.volume} {preset.unit}
+                                    </span>
+                                    <span className='abv'>{preset.abv} %</span>
+                                  </span>
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        ) : null,
+                      )}
+                    </div>
+                  </div>
+                )}
                 <div className='measures-container'>
                   {type === 'custom' && (
                     <form
@@ -263,7 +336,6 @@ const UnitsCalculator = () => {
                       </div>
                       <div className='row'>
                         <label htmlFor='custom-drink-count'>
-                          <div>No.</div>
                           <input
                             id='custom-drink-count'
                             type='number'
@@ -272,6 +344,7 @@ const UnitsCalculator = () => {
                             onChange={handleCustomDrinkChange}
                             placeholder='Count'
                           />
+                          <div>x</div>
                         </label>
                         <label htmlFor='custom-drink-volume'>
                           <input
@@ -301,34 +374,6 @@ const UnitsCalculator = () => {
                       </button>
                     </form>
                   )}
-                  {DRINK_PRESETS.map((group) =>
-                    group.type === type && group.type !== 'custom' ? (
-                      <div key={group.label}>
-                        <div className='measures-group'>
-                          {/* <div className='measures-group-title'>{group.label}</div> */}
-                          {group.drinks.map((preset) => (
-                            <button
-                              key={preset.label}
-                              onClick={() =>
-                                addDrink({ ...preset, type: group.type })
-                              }
-                              className='measure'
-                            >
-                              <span className='measure-title'>
-                                {preset.label}
-                              </span>
-                              <span className='spec'>
-                                <span className='volume'>
-                                  {preset.volume} {preset.unit}
-                                </span>
-                                <span className='abv'>{preset.abv} %</span>
-                              </span>
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    ) : null,
-                  )}
                 </div>
               </div>
             </section>
@@ -349,6 +394,8 @@ const UnitsCalculator = () => {
         />
       </div>
     </div>
+  ) : (
+    <></>
   );
 };
 

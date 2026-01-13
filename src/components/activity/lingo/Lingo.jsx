@@ -10,6 +10,11 @@ const Lingo = () => {
   const [showDialog, setShowDialog] = useState(false);
   const [content, setContent] = useState([]);
   const gae = useAppStore((s) => s.gae);
+  const [open, setOpen] = useState(false);
+  const activity = useAppStore((s) => s.activity);
+  useEffect(() => {
+    setOpen(activity === -1);
+  }, [activity]);
 
   const setPhrase = useAppStore((state) => state.setPhrase);
   function getContent(id) {
@@ -48,7 +53,7 @@ const Lingo = () => {
       }
     }
   }, [content, setPhrase, gae]);
-  return (
+  return open ? (
     <section className='search-lingo activity' id='lingo'>
       <Dialog
         show={showDialog}
@@ -62,6 +67,8 @@ const Lingo = () => {
       <h3>Lingo &amp; Phrases</h3>
       <SearchField handleClick={handleClick} />
     </section>
+  ) : (
+    <></>
   );
 };
 

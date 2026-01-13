@@ -35,6 +35,7 @@ export const MenuCloseIcon = () => (
 export default function AppMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
+  const [showComponent, setOpenComponent] = useState(true);
   const [show, setShow] = useState(true);
 
   const daysCounterEnabled = useAppStore((state) => state.daysCounterEnabled);
@@ -43,12 +44,18 @@ export default function AppMenu() {
 
   const isInstalled = useAppStore((state) => state.isInstalled);
   const isInstallable = useAppStore((state) => state.isInstallable);
+
   const gae = useAppStore((s) => s.gae); // Google analytics enabled
+
+  useEffect(() => {
+    setOpenComponent(activity === -1);
+  }, [activity]);
 
   const toggleOpen = () => {
     setOpen(!open);
   };
   const handleClose = () => {
+    setActivity(-1);
     setOpen(false);
   };
 
@@ -62,7 +69,7 @@ export default function AppMenu() {
     }
   }, [activity]);
 
-  return (
+  return showComponent ? (
     <div className={'AppMenu' + (show ? '' : ' hide')}>
       <div className='burger-stack' id='burger-button'>
         <input
@@ -103,7 +110,7 @@ export default function AppMenu() {
           className='new'
           onClick={() => {
             handleClose();
-            setActivity(13);
+            setActivity(-1);
             const el = document.getElementById('lingo');
             if (gae && window.gtag) {
               window.gtag('event', 'lingo_phrases', {
@@ -287,5 +294,7 @@ export default function AppMenu() {
         {/* <li onClick={handleClose}>Settings</li> */}
       </ul>
     </div>
+  ) : (
+    <></>
   );
 }
