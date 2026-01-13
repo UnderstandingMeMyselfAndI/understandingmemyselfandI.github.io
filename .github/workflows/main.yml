@@ -1,4 +1,4 @@
-name: Github Action SSH Publish Theme to host
+name: Publish Bracnh To Dev
 
 on:
   push:
