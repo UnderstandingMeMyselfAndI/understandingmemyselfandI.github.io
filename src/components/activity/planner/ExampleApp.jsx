@@ -1,11 +1,11 @@
-import WeeklyChart from './WeeklyChart';
-import FuturePlanner from './FuturePlanner';
+// import WeeklyChart from './WeeklyChart';
+// import FuturePlanner from './FuturePlanner';
 
-export default function App() {
-  return (
-    <main>
-      <WeeklyChart />
-      <FuturePlanner />
-    </main>
-  );
-}
+// export default function App() {
+//   return (
+//     <main>
+//       <WeeklyChart />
+//       <FuturePlanner />
+//     </main>
+//   );
+// }

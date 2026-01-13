@@ -1,6 +1,6 @@
 // Quiz.jsx (updated with simplified analytics)
 import React, { useState, useEffect } from 'react';
-import Backdrop from '@/components/ui/backdrop/Backdrop';
+import BackdropParallax from '@/components/ui/backdrop/BackdropParallax';
 import QuizProgress from './quizProgress/QuizProgress';
 import QuizQuestion from './quizQuestion/QuizQuestion';
 import QuizStart from './quizStart/QuizStart';
@@ -144,7 +144,12 @@ const Quiz = () => {
           />
         )}
       </div>
-      <Backdrop />
+      <BackdropParallax
+        initialImageId={2}
+        initialDelay={3000}
+        interval={6000}
+        parallaxStrength={0}
+      />
     </div>
   );
 };

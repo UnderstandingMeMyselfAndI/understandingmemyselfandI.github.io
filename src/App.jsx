@@ -4,6 +4,7 @@
 // import "components/utils/activities.js";
 import Routing from './components/routing/Routing';
 import { useThemeStore } from '@/store/useThemeStore';
+import { useShallow } from 'zustand/react/shallow';
 import useAppStore from './store/useAppStore';
 // import DaysCounter from "./components/ui/DaysCounter/DaysCounter";
 import applyTheme from 'components/theme/applyTheme';
@@ -37,7 +38,8 @@ import Exit from './components/ui/exit/Exit';
 import Settings from './components/activity/settings/Settings';
 import Vcn from './components/visits/Vcn.jsx';
 import Lingo from './components/activity/lingo/Lingo';
-import Quiz from './components/activity/quiz/Quiz';
+// import Quiz from './components/activity/quiz/Quiz';
+import UnitsCalculator from './components/activity/unitsCalculator/UnitsCalculator';
 
 import './App.scss';
 // TODO: "Clear Local Data" functionality
@@ -47,6 +49,7 @@ function App() {
   // const enableYourTools = useAppStore((s) => s.enableYourTools)
   const quickExitEnabled = useAppStore((s) => s.quickExitEnabled);
   const setActivity = useAppStore((s) => s.setActivity);
+
   setActivity(-1);
   smoothScroll();
   const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme);
@@ -63,7 +66,7 @@ function App() {
       <div className='app'>
         <UmmiAgeGate />
         <CookieConsent />
-
+        <div className='dev-version'>Development Version.</div>
         <AppMenu />
 
         {quickExitEnabled && <Exit />}
@@ -78,6 +81,7 @@ function App() {
           {daysCounterEnabled && <DaysCounterCTA />}
           <Lingo />
           {/* <Quiz /> */}
+          <UnitsCalculator />
 
           <div className='activities' id='top'>
             {daysCounterEnabled && <DaysCounter />}
@@ -99,6 +103,7 @@ function App() {
         initialDelay={3000}
         interval={6000}
         parallaxStrength={0}
+        className='backdrop'
       />
       <Routing />
       <Vcn />
