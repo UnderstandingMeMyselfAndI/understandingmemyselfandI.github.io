@@ -79,7 +79,7 @@ const Tools = () => {
     }, // Optional IntersectionObserver options
   );
 
-  return open ? (
+  return (
     <div ref={inViewRef} className={'activity' + (open ? ' show' : ' ')}>
       <section className='tools' id='tools'>
         <h2>
@@ -99,7 +99,7 @@ const Tools = () => {
         />
       </section>
     </div>
-  ) : null;
+  );
 };
 Tools.propTypes = {
   handleMenuClick: PropTypes.func,
