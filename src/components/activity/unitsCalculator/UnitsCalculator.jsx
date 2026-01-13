@@ -67,8 +67,22 @@ const UnitsCalculator = () => {
   const [drinks, setDrinks] = useState([]);
 
   const addDrink = (preset) => {
-    console.log('addDrink', preset);
-    setDrinks([...drinks, { ...preset, id: crypto.randomUUID() }]);
+    const existingDrink = drinks.find(
+      (d) =>
+        d.label === preset.label &&
+        d.volume === preset.volume &&
+        d.abv === preset.abv,
+    );
+
+    if (existingDrink) {
+      setDrinks(
+        drinks.map((d) =>
+          d.id === existingDrink.id ? { ...d, count: d.count + 1 } : d,
+        ),
+      );
+    } else {
+      setDrinks([...drinks, { ...preset, id: crypto.randomUUID(), count: 1 }]);
+    }
   };
 
   // const updateDrink = (id, field, value) => {
@@ -78,11 +92,18 @@ const UnitsCalculator = () => {
   // };
 
   const removeDrink = (id) => {
-    setDrinks(drinks.filter((d) => d.id !== id));
+    const drinkToRemove = drinks.find((d) => d.id === id);
+    if (drinkToRemove.count > 1) {
+      setDrinks(
+        drinks.map((d) => (d.id === id ? { ...d, count: d.count - 1 } : d)),
+      );
+    } else {
+      setDrinks(drinks.filter((d) => d.id !== id));
+    }
   };
 
   const totalUnits = drinks.reduce(
-    (sum, d) => sum + calcUnits(d.volume, d.abv),
+    (sum, d) => sum + calcUnits(d.volume, d.abv) * d.count,
     0,
   );
 
@@ -105,6 +126,19 @@ const UnitsCalculator = () => {
             </header>
             <section className='calculator-core'>
               <div className='selected-measures'>
+                <div
+                  style={{
+                    textAlign: 'right',
+                    fontSize: '0.7rem',
+                    paddingRight: '1.6rem',
+                    paddingBottom: '0.0rem',
+                    textTransform: 'uppercase',
+                    color: 'var(--greyLight)',
+                    fontWeight: 600,
+                  }}
+                >
+                  Less
+                </div>
                 <ul
                   className={'measures ' + (drinks.length === 0 ? ' none' : '')}
                 >
@@ -114,7 +148,11 @@ const UnitsCalculator = () => {
                         calcUnits(a.volume, a.abv) - calcUnits(b.volume, b.abv),
                     )
                     .map((d) => (
-                      <li key={d.id} className='drinks-entry'>
+                      <li
+                        key={d.id}
+                        className='drinks-entry'
+                        onClick={() => removeDrink(d.id)}
+                      >
                         {/* <input
                   type='number'
                   value={d.volume}
@@ -122,9 +160,9 @@ const UnitsCalculator = () => {
                 />{' '} */}
                         <div className='desc'>
                           <div className='row-1'>
-                            <div className='multiplier'>1x</div>{' '}
+                            <div className='multiplier'>{d.count}x</div>{' '}
                             <div className='label'>
-                              {d.label} ({d.type} ){' '}
+                              {d.label} ({d.type}){' '}
                             </div>
                           </div>{' '}
                           <div className='row-2'>
@@ -136,9 +174,12 @@ const UnitsCalculator = () => {
                         </div>
                         <div className='equals'>=</div>
                         <div className='units'>
-                          {calcUnits(d.volume, d.abv).toFixed(2)} units
+                          {(calcUnits(d.volume, d.abv) * d.count).toFixed(2)}{' '}
+                          units
                         </div>
-                        <button onClick={() => removeDrink(d.id)}>✕</button>
+                        <button className='measure-action'>
+                          {d.count > 1 ? '-' : '✕'}
+                        </button>
                       </li>
                     ))}
                 </ul>
