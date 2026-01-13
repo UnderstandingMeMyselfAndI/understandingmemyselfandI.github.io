@@ -92,7 +92,7 @@ const UnitsCalculator = () => {
       id='ummi-units-calculator'
     >
       <div className='inner'>
-        <CloseBtn />
+        <CloseBtn className='close-btn' />
         <div className='content'>
           <div className='wrap'>
             {' '}
