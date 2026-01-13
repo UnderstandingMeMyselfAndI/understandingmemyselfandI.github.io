@@ -149,9 +149,9 @@ const UnitsCalculator = () => {
             <header>
               {' '}
               <h2>Units calculator</h2>
-              <div className='intro'>
+              {/* <div className='intro'>
                 Calculate the total units of alcohol in common measures.
-              </div>
+              </div> */}
             </header>
             <section className='calculator-core'>
               <div className='selected-measures'>
@@ -222,11 +222,11 @@ const UnitsCalculator = () => {
               </div>
               <div className='container-buttons'>
                 <div className='measures-selector'>
-                  {type === null && (
+                  {/* {type === null && (
                     <div className='measures-selector-label'>
                       Make a selection
                     </div>
-                  )}
+                  )} */}
 
                   <div className='buttons'>
                     {DRINK_PRESETS.map((group) => (
