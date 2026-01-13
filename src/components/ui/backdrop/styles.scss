@@ -1,11 +1,18 @@
 @use '@/scss/_variables.scss';
 @import '@/globals.css';
+
 .backdrop {
   position: absolute;
   inset: 0;
   z-index: 0;
-  overflow: hidden;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   background: var(--background);
+  border: none;
+
+
   // &::after {
   // 	content: "";
   // 	position: absolute;
@@ -27,15 +34,19 @@
   // }
   .cont {
     position: relative;
-    width: 100%;
-    height: 100%;
+    width: 110%;
+    height: 100&;
     opacity: 0.4;
+
     img {
       position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
       height: 100%; // gives space for the parallax movement
+      // inset: 0;
+      width: 100%;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
       object-fit: cover;
       /* Start invisible for incoming images */
       opacity: 0;
@@ -43,11 +54,13 @@
       left: 0;
       will-change: transform;
     }
+
     img.active {
       opacity: 1;
       animation: fadeIn 2s cubic-bezier(0.5, 0, 0.5, 1) forwards;
       z-index: 1;
     }
+
     img.inactive {
       opacity: 0;
       animation: fadeOut 2s cubic-bezier(0.5, 0, 0.5, 1) forwards;
@@ -58,12 +71,14 @@
   .vig {
     position: absolute;
     inset: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
     pointer-events: none;
-    background: radial-gradient(
-      circle,
-      rgba(0, 0, 0, 0.05) 40%,
-      rgba(0, 0, 0, 0.4) 80%
-    );
+    background: radial-gradient(circle,
+        rgba(0, 0, 0, 0.05) 40%,
+        rgba(0, 0, 0, 0.4) 80%);
     z-index: 3;
   }
 }
@@ -73,6 +88,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -82,6 +98,7 @@
   from {
     opacity: 1;
   }
+
   to {
     opacity: 0;
   }

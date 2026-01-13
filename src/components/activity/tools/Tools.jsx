@@ -80,24 +80,26 @@ const Tools = () => {
   );
 
   return (
-    <div ref={inViewRef} className={'activity' + (open ? ' show' : ' ')}>
-      <section className='tools' id='tools'>
-        <h2>
-          <u>{content?.title}</u>
-        </h2>
-        <div className='description'>
-          {content.description &&
-            content.description.map((html, i) => {
-              return <p key={i}>{parse(html)}</p>;
-            })}
-        </div>
-        <MenuCarousel
-          handleClick={handleClick}
-          data={carouselData}
-          filterIDs={positiveIDsSet}
-          showFavourites={yourToolsEnabled}
-        />
-      </section>
+    <div className={'activity' + (open ? ' show' : ' hide')}>
+      <div ref={inViewRef} className={'activity' + (open ? ' show' : ' ')}>
+        <section className='tools' id='tools'>
+          <h2>
+            <u>{content?.title}</u>
+          </h2>
+          <div className='description'>
+            {content.description &&
+              content.description.map((html, i) => {
+                return <p key={i}>{parse(html)}</p>;
+              })}
+          </div>
+          <MenuCarousel
+            handleClick={handleClick}
+            data={carouselData}
+            filterIDs={positiveIDsSet}
+            showFavourites={yourToolsEnabled}
+          />
+        </section>
+      </div>
     </div>
   );
 };

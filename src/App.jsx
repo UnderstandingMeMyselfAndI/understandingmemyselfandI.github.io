@@ -31,7 +31,7 @@ import DaysCounter from './components/activity/daysCounter/DaysCounter';
 import DaysCounterCTA from './components/activity/daysCounter/DaysCounterCTA';
 import AppMenu from './components/ui/menu/AppMenu';
 import CookieConsent from './components/ui/cookieConsent/CookieConsent';
-// import UmmiAgeGate from './components/ui/ageGate/UmmiAgeGate';
+import UmmiAgeGate from './components/ui/ageGate/UmmiAgeGate';
 import { smoothScroll } from './js/utils.js';
 import NewsletterSignUp from './components/ui/newsletterSignup/NewsletterSignUp';
 import Exit from './components/ui/exit/Exit';
@@ -64,7 +64,7 @@ function App() {
   return (
     <div>
       <div className='app'>
-        {/* <UmmiAgeGate /> */}
+        <UmmiAgeGate />
         <CookieConsent />
         <div className='dev-version'>Development Version.</div>
         <AppMenu />
@@ -103,6 +103,7 @@ function App() {
         initialDelay={3000}
         interval={6000}
         parallaxStrength={0}
+        className='backdrop'
       />
       <Routing />
       <Vcn />

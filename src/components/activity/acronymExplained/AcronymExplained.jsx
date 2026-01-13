@@ -267,12 +267,6 @@ const AcronymExplained = () => {
           </div>
         </div>
       </div>
-      <Backdrop
-        initialImageId={23}
-        initialDelay={3000}
-        interval={6000}
-        parallaxStrength={0}
-      />
     </div>
   );
 };

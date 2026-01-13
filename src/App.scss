@@ -1,6 +1,7 @@
 @use './scss/_variables.scss';
 @use './scss/_fonts';
 @import '@/globals.css';
+
 html {
   width: 100%;
   height: 100%;
@@ -8,6 +9,7 @@ html {
   margin: 0;
   background: #000;
 }
+
 .dev-version {
   position: fixed;
   z-index: 99999;
@@ -19,6 +21,7 @@ html {
   font-size: 0.8rem;
   text-align: left;
 }
+
 :root {
   color-scheme: light dark;
   // --user-scale: 1;
@@ -27,7 +30,7 @@ html {
 body {
   scroll-behavior: smooth;
   // overscroll-behavior-y: contain;
-  background: #000 !important;
+  background: #e40707 !important;
   width: 100%;
   height: 100%;
   // overflow-x: clip;
@@ -50,12 +53,23 @@ body {
   h2 {
     margin: 0.75rem 0 1.5rem 0;
   }
+
+  .activity.hide {
+    display: none;
+  }
+
+  .backdrop {
+    width: 102%;
+  }
+
   .new,
   .soon {
     position: relative;
+
     .register::after {
       opacity: 0.2;
     }
+
     &::before {
       content: '';
       position: absolute;
@@ -69,6 +83,7 @@ body {
       font-variation-settings: 'wght' 600;
     }
   }
+
   .new {
     &::before {
       content: 'new';
@@ -76,15 +91,18 @@ body {
       background-color: var(--orange);
     }
   }
+
   .soon {
     text-decoration: line-through;
     color: rgba(10, 10, 10, 0.3);
+
     &::before {
       content: 'soon';
       color: var(--primary);
       background-color: grey;
     }
   }
+
   #root {
     width: 100%;
     min-height: 100%;
@@ -93,6 +111,7 @@ body {
     text-align: center;
     scrollbar-width: 0;
   }
+
   .app {
     position: relative;
     top: 0;
@@ -114,7 +133,8 @@ body {
       position: relative;
       z-index: 6000;
     }
-    > .inner {
+
+    >.inner {
       width: 100%;
 
       .content {
@@ -128,44 +148,53 @@ body {
     font-weight: variables.$h1_weight;
     color: var(--primary);
   }
+
   h2 {
     font-size: variables.$h2_size;
     font-weight: variables.$h2_weight;
     color: var(--primary);
   }
+
   h3 {
     font-size: variables.$h3_size;
     font-weight: variables.$h3_weight;
     color: var(--primary);
   }
+
   h4 {
     font-size: variables.$h4_size;
     font-weight: variables.$h4_weight;
     color: var(--primary);
   }
+
   h5 {
     font-size: variables.$h5_size;
     font-weight: variables.$h5_weight;
     color: var(--primary);
   }
+
   .ummi {
     font-weight: 800;
     font-variation-settings: 'wght' 800;
     color: var(--lightBlue);
     font-size: variables.$ummi_size;
   }
+
   .ummi-blue {
     font-weight: 800;
     font-variation-settings: 'wght' 800;
     color: var(--lightBlue);
   }
+
   *.MuiTypography-root {
     font-family: 'Plus Jakarta Sans', sans-serif;
     color: var(--primary);
   }
+
   div.MuiModal-root {
     max-width: 100%;
     font-family: 'Plus Jakarta Sans', sans-serif;
+
     div.MuiBox-root {
       max-width: 90dvw;
       left: 5dvw;
@@ -174,7 +203,9 @@ body {
       border-image: none;
     }
   }
+
   section {
+
     .title,
     h4 {
       text-decoration-thickness: 4px;
@@ -182,21 +213,25 @@ body {
       text-decoration-line: underline;
       text-decoration-color: var(--yellow);
     }
+
     b {
       font-weight: 600;
       font-variation-settings: 'wght' 600;
     }
+
     .title {
       font-size: variables.$h3_size;
       font-weight: 800;
       font-variation-settings: 'wght' 800;
     }
   }
+
   button.btn {
     padding: 1.25rem 2rem;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
     position: relative;
     background-color: transparent;
+
     &::after {
       outline: 1px solid var(--lightBlue);
       position: absolute;
@@ -212,21 +247,27 @@ body {
       border-radius: var(--border-radius);
     }
   }
+
   .orange {
     color: var(--orange);
   }
+
   .yellow {
     color: var(--yellow);
   }
+
   .yellow2 {
     color: var(--yellow2);
   }
+
   .blue {
     color: var(--blue);
   }
+
   .lightBlue {
     color: var(--lightBlue);
   }
+
   .grey {
     color: var(--greyDark);
   }
@@ -242,6 +283,7 @@ body {
   outline: none;
   box-shadow: none;
 }
+
 svg:focus,
 button:focus,
 svg:focus-visible,
@@ -250,6 +292,7 @@ button:focus-visible {
   border: none;
   box-shadow: none;
 }
+
 section {
   margin: 1.5rem 0;
   text-shadow: 0 0px 6px rgba(0, 0, 0, 0.4);
@@ -264,6 +307,7 @@ section {
   height: 100%;
   user-select: none;
   z-index: -1;
+
   /* overflow: hidden; */
   .icon {
     position: absolute;
@@ -271,10 +315,12 @@ section {
     top: 0;
     left: 0;
     width: 100%;
+
     svg {
       max-width: 425px;
       width: 100%;
       opacity: 0.07;
+
       path {
         fill: #181136;
         stroke: #181136;
@@ -287,21 +333,25 @@ section {
     right: 0%;
     top: 0%;
     transform: rotate(-15deg) scale(0.8) translate(30%, -0%) scaleX(-1);
+
     svg {
       opacity: 0.07;
     }
   }
+
   .icon.vwhand {
     top: 15%;
     left: 0;
     transform: rotateZ(45deg) scale(0.7) translate(-40%, 0);
   }
+
   .icon.peacehand {
     top: 26%;
     left: auto;
     /* right: 0%; */
     margin-right: -10%;
     transform: rotate(45deg) scale(0.53) translate(-40%, 0%);
+
     svg {
       path {
         fill: #181136;
