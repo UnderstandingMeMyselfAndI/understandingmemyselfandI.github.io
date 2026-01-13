@@ -1,9 +1,9 @@
-name: Github Action SSH Publish Theme to host
+name: Publish Bracnh To Dev
 
 on:
   push:
     branches:
-      - main
+      - unitsCalculator
 
 jobs:
   web-deploy:
@@ -18,13 +18,13 @@ jobs:
         with:
           SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_DEV_KEY }}
           ARGS:
-            '-rlgoDzvc -i -a --recursive --delete --force --compress
+            '-rlgoDzvc -i -av --delete --recursive --force --compress
             --human-readable'
           SOURCE: 'docs/'
           REMOTE_HOST: ${{ secrets.DEPLOY_DEV_SERVER }}
           REMOTE_USER: ${{ secrets.DEPLOY_DEV_USER }}
           TARGET: ${{ secrets.DEPLOY_REMOTE_DEV_DIR }}
-          EXCLUDE: 'FLP_DB_EXPORT,ACFE-Issues.txt /node_modules/'
+          EXCLUDE: 'cms, data, playwright-report,cms,tmp, /node_modules/'
           SCRIPT_BEFORE: |
             whoami
             ls -al

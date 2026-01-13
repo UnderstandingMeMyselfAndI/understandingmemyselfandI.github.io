@@ -68,7 +68,7 @@ export default defineConfig({
     analyzer() /*, analyzer() uncomment for bundle analyzer*/,
     Sitemap({
       outDir: 'docs',
-      hostname: 'https://www.ummi.now', // Required: your site's base URL
+      hostname: 'https://dev.ummi.now', // Required: your site's base URL
       // Optional: Add dynamic or extra routes if needed
       dynamicRoutes: getDynamicRoutes(),
       // Optional: Customize defaults
