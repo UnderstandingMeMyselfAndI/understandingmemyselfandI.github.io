@@ -9,11 +9,6 @@ const calcUnits = (ml, abv) => (ml * abv) / 1000;
 
 const DRINK_PRESETS = [
   {
-    label: 'Custom',
-    type: 'custom',
-    drinks: [],
-  },
-  {
     label: 'Beer & Cider',
     type: 'beer',
     drinks: [
@@ -47,6 +42,11 @@ const DRINK_PRESETS = [
       { label: 'Bottle', volume: 70, unit: 'cl', abv: 40 },
       { label: 'Half Bottle', volume: 35, unit: 'cl', abv: 40 },
     ],
+  },
+  {
+    label: 'Custom',
+    type: 'custom',
+    drinks: [],
   },
 ];
 
