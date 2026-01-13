@@ -1,102 +1,123 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 // import Button from '@mui/material/Button';
 // import Menu from '@mui/material/Menu';
 // import MenuItem from '@mui/material/MenuItem';
-import useAppStore from '@/store/useAppStore'
-import { getPWADisplayMode } from '@/utils/isAppInstalled'
-import { activities } from '@/data/config'
+import useAppStore from '@/store/useAppStore';
+import { getPWADisplayMode } from '@/utils/isAppInstalled';
+import { activities } from '@/data/config';
 // import driverObj from '@/js/tour.js'
 // import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 // import Slide from '@mui/material/Slide';
-import './appMenuStyles.scss'
+import './appMenuStyles.scss';
 export const MenuOpenIcon = () => (
-	<svg xmlns='http://www.w3.org/2000/svg' height='40px' width='40px' viewBox='0 -960 960 960' fill='#ffffff'>
-		<path d='M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z' />
-	</svg>
-)
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    height='40px'
+    width='40px'
+    viewBox='0 -960 960 960'
+    fill='#ffffff'
+  >
+    <path d='M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z' />
+  </svg>
+);
 export const MenuCloseIcon = () => (
-	<svg xmlns='http://www.w3.org/2000/svg' height='40px' viewBox='0 -960 960 960' width='40px' fill='#ffffff'>
-		<path d='m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z' />
-	</svg>
-)
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    height='40px'
+    viewBox='0 -960 960 960'
+    width='40px'
+    fill='#ffffff'
+  >
+    <path d='m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z' />
+  </svg>
+);
 // TODO: Implement URLS
 export default function AppMenu() {
-	const [anchorEl, setAnchorEl] = useState(null)
-	const [open, setOpen] = useState(false)
-	const [show, setShow] = useState(true)
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [show, setShow] = useState(true);
 
-	const daysCounterEnabled = useAppStore((state) => state.daysCounterEnabled)
-	const setActivity = useAppStore((state) => state.setActivity)
-	const activity = useAppStore((state) => state.activity)
+  const daysCounterEnabled = useAppStore((state) => state.daysCounterEnabled);
+  const setActivity = useAppStore((state) => state.setActivity);
+  const activity = useAppStore((state) => state.activity);
 
-	const isInstalled = useAppStore((state) => state.isInstalled)
-	const isInstallable = useAppStore((state) => state.isInstallable)
-	const gae = useAppStore((s) => s.gae) // Google analytics enabled
+  const isInstalled = useAppStore((state) => state.isInstalled);
+  const isInstallable = useAppStore((state) => state.isInstallable);
+  const gae = useAppStore((s) => s.gae); // Google analytics enabled
 
-	const toggleOpen = () => {
-		setOpen(!open)
-	}
-	const handleClose = () => {
-		setOpen(false)
-	}
+  const toggleOpen = () => {
+    setOpen(!open);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
-	useEffect(() => {
-		const obj = activities.find((a) => (parseInt(a.id) === parseInt(activity) ? activity : null))
+  useEffect(() => {
+    const obj = activities.find((a) =>
+      parseInt(a.id) === parseInt(activity) ? activity : null,
+    );
 
-		if (obj) {
-			setShow(obj.menu)
-		}
-	}, [activity])
+    if (obj) {
+      setShow(obj.menu);
+    }
+  }, [activity]);
 
-	return (
-		<div className={'AppMenu' + (show ? '' : ' hide')}>
-			<div className='burger-stack' id='burger-button'>
-				<input type='checkbox' id='checkbox1' value={open} checked={open} className='checkbox1 visuallyHidden' onChange={toggleOpen} />
-				<label htmlFor='checkbox1'>
-					<div className='hamburger hamburger1'>
-						<span className='bar bar1'></span>
-						<span className='bar bar2'></span>
-						<span className='bar bar3'></span>
-						<span className='bar bar4'></span>
-					</div>
-				</label>
-			</div>
-			<ul className={open ? ' open' : ' '} id='app-menu'>
-				<li
-					onClick={() => {
-						setActivity(1)
-						const el = document.getElementById('tools')
-						if (gae && window.gtag) {
-							window.gtag('event', 'screen_viewed', {
-								app_name: 'Ummi',
-								screen_name: 'Tools',
-							})
-						}
-						el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-						handleClose()
-					}}
-				>
-					Tools
-				</li>
-				<li
-					className='new'
-					onClick={() => {
-						handleClose()
-						setActivity(13)
-						const el = document.getElementById('lingo')
-						if (gae && window.gtag) {
-							window.gtag('event', 'screen_viewed', {
-								app_name: 'Ummi',
-								screen_name: 'Lingo & Phrases',
-							})
-						}
+  return (
+    <div className={'AppMenu' + (show ? '' : ' hide')}>
+      <div className='burger-stack' id='burger-button'>
+        <input
+          type='checkbox'
+          id='checkbox1'
+          value={open}
+          checked={open}
+          className='checkbox1 visuallyHidden'
+          onChange={toggleOpen}
+        />
+        <label htmlFor='checkbox1'>
+          <div className='hamburger hamburger1'>
+            <span className='bar bar1'></span>
+            <span className='bar bar2'></span>
+            <span className='bar bar3'></span>
+            <span className='bar bar4'></span>
+          </div>
+        </label>
+      </div>
+      <ul className={open ? ' open' : ' '} id='app-menu'>
+        <li
+          onClick={() => {
+            setActivity(1);
+            const el = document.getElementById('tools');
+            if (gae && window.gtag) {
+              window.gtag('event', 'tools', {
+                app_name: 'Ummi',
+                screen_name: 'Tools',
+              });
+            }
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            handleClose();
+          }}
+        >
+          Tools
+        </li>
+        <li
+          className='new'
+          onClick={() => {
+            handleClose();
+            setActivity(13);
+            const el = document.getElementById('lingo');
+            if (gae && window.gtag) {
+              window.gtag('event', 'lingo_phrases', {
+                app_name: 'Ummi',
+                screen_name: 'Lingo & Phrases',
+              });
+            }
 
-						el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-					}}
-				>
-					Lingo &amp; Phrases
-				</li>
-				{/* <li
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }}
+        >
+          Lingo &amp; Phrases
+        </li>
+        {/* <li
 					className='strikethrough'
 					// onClick={() => {
 					// 	handleClose()
@@ -117,98 +138,115 @@ export default function AppMenu() {
 				>
 					Tour
 				</li> */}
-				{/** Only show if days counter is enabled	 */}
+        {/** Only show if days counter is enabled	 */}
 
-				{daysCounterEnabled && (
-					<li
-						className='new'
-						onClick={() => {
-							handleClose()
-							if (gae && window.gtag) {
-								window.gtag('event', 'screen_viewed', {
-									app_name: 'Ummi',
-									screen_name: 'Days Counter',
-								})
-							}
-							setActivity(2)
-						}}
-					>
-						Days Counter
-					</li>
-				)}
+        {daysCounterEnabled && (
+          <li
+            className='new'
+            onClick={() => {
+              handleClose();
+              if (gae && window.gtag) {
+                window.gtag('event', 'days_counter', {
+                  app_name: 'Ummi',
+                  screen_name: 'Days Counter',
+                });
+              }
+              setActivity(2);
+            }}
+          >
+            Days Counter
+          </li>
+        )}
+        {daysCounterEnabled && (
+          <li
+            className='new'
+            onClick={() => {
+              handleClose();
+              if (gae && window.gtag) {
+                window.gtag('event', 'unites_calculator', {
+                  app_name: 'Ummi',
+                  screen_name: 'Units Calculator',
+                });
+              }
+              setActivity(5);
+            }}
+          >
+            Units Calculator
+          </li>
+        )}
 
-				{!isInstalled && isInstallable && (
-					<li
-						className=''
-						onClick={() => {
-							handleClose()
-							if (gae && window.gtag) {
-								window.gtag('event', 'screen_viewed', {
-									app_name: 'Ummi',
-									screen_name: 'Install',
-								})
-							}
-							setActivity(-1)
-							const el = document.getElementById('install')
+        {!isInstalled && isInstallable && (
+          <li
+            className=''
+            onClick={() => {
+              handleClose();
+              if (gae && window.gtag) {
+                window.gtag('event', 'install', {
+                  app_name: 'Ummi',
+                  screen_name: 'Install',
+                });
+              }
+              setActivity(-1);
+              const el = document.getElementById('install');
 
-							el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-						}}
-					>
-						Install
-					</li>
-				)}
-				<li
-					onClick={() => {
-						handleClose()
+              el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
+          >
+            Install
+          </li>
+        )}
+        <li
+          onClick={() => {
+            handleClose();
 
-						if (gae && window.gtag) {
-							window.gtag('event', 'screen_viewed', {
-								app_name: 'Ummi',
-								screen_name: 'Share',
-							})
-						}
-						setActivity(-1)
-						const el = document.getElementById('share')
+            if (gae && window.gtag) {
+              window.gtag('event', 'share', {
+                app_name: 'Ummi',
+                screen_name: 'Share',
+              });
+            }
+            setActivity(-1);
+            const el = document.getElementById('share');
 
-						el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-					}}
-				>
-					Share
-				</li>
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }}
+        >
+          Share
+        </li>
 
-				<li
-					onClick={() => {
-						handleClose()
-						if (gae && window.gtag) {
-							window.gtag('event', 'screen_viewed', {
-								app_name: 'Ummi',
-								screen_name: 'Newsletter',
-							})
-						}
-						setActivity(15)
-						const el = document.getElementById('newsletter')
+        <li
+          onClick={() => {
+            handleClose();
+            if (gae && window.gtag) {
+              window.gtag('event', 'newsletter', {
+                app_name: 'Ummi',
+                screen_name: 'Newsletter',
+              });
+            }
+            setActivity(15);
+            const el = document.getElementById('newsletter');
 
-						el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-					}}
-				>
-					Newsletter
-				</li>
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }}
+        >
+          Newsletter
+        </li>
 
-				<li
-					onClick={() => {
-						handleClose()
-						if (gae && window.gtag) {
-							window.gtag('event', 'screen_viewed', {
-								app_name: 'Ummi',
-								screen_name: 'Privacy Policy',
-							})
-						}
-						setActivity(10)
-					}}
-				>
-					Your privacy
-				</li>
-				{/* <li className='strikethrough'>
+        <li
+          onClick={() => {
+            handleClose();
+            if (gae && window.gtag) {
+              window.gtag('event', 'privacy_policy', {
+                app_name: 'Ummi',
+                screen_name: 'Privacy Policy',
+              });
+            }
+            setActivity(10);
+          }}
+        >
+          Your privacy
+        </li>
+        {/* <li className='strikethrough'>
 					<div className='loginRegister'>
 						<div
 							className='register'
@@ -230,24 +268,24 @@ export default function AppMenu() {
 						</div>
 					</div> 
 				</li>*/}
-				<li
-					className=''
-					onClick={() => {
-						if (gae && window.gtag) {
-							window.gtag('event', 'screen_viewed', {
-								app_name: 'Ummi',
-								screen_name: 'Settings',
-							})
-						}
-						setActivity(12)
-						handleClose()
-					}}
-				>
-					Settings
-				</li>
-				{/* <li onClick={handleClose}>Tour</li> */}
-				{/* <li onClick={handleClose}>Settings</li> */}
-			</ul>
-		</div>
-	)
+        <li
+          className=''
+          onClick={() => {
+            if (gae && window.gtag) {
+              window.gtag('event', 'settings', {
+                app_name: 'Ummi',
+                screen_name: 'Settings',
+              });
+            }
+            setActivity(12);
+            handleClose();
+          }}
+        >
+          Settings
+        </li>
+        {/* <li onClick={handleClose}>Tour</li> */}
+        {/* <li onClick={handleClose}>Settings</li> */}
+      </ul>
+    </div>
+  );
 }

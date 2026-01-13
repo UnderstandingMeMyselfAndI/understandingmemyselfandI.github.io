@@ -1,5 +1,5 @@
-import { useState } from 'react';
-// import { useShallow } from 'zustand/react/shallow';
+import { useState, useEffect } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 import useAppStore from '@/store/useAppStore';
 import BackdropParallax from '@/components/ui/backdrop/BackdropParallax';
 import CloseBtn from '../../ui/buttons/close/CloseBtn';
@@ -61,17 +61,21 @@ const UnitsCalculator = () => {
     count: 1,
   });
 
-  //   const { activity } = useAppStore(
-  //     useShallow((state) => ({ activity: state.activity })),
-  //   );
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  //   setActivity(-1);
-  // };
-
   const [open, setOpen] = useState(false);
   const [drinks, setDrinks] = useState([]);
+
+  const { activity } = useAppStore(
+    useShallow((state) => ({ activity: state.activity })),
+  );
+
+  useEffect(() => {
+    setOpen(activity === 5);
+  }, [activity]);
+
+  const handleClose = () => {
+    setOpen(false);
+    setActivity(-1);
+  };
 
   const addDrink = (preset, countToAdd = 1) => {
     const existingDrink = drinks.find(
@@ -137,8 +141,8 @@ const UnitsCalculator = () => {
       className={'ummi-units-calculator' + (open ? ' open' : '')}
       id='ummi-units-calculator'
     >
+      <CloseBtn className='close-btn' handleClick={handleClose} />
       <div className='inner'>
-        <CloseBtn className='close-btn' />
         <div className='content'>
           <div className='wrap'>
             {' '}

@@ -2,14 +2,16 @@
 @import '@/globals.css';
 
 .ummi-units-calculator {
+  display: none;
+  &.open {
+    display: flex;
+  }
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   max-width: 100%;
-
-  display: flex;
   justify-content: center;
   align-items: center;
   z-index: 15000;
@@ -34,6 +36,7 @@
   .close-btn {
     top: 0.5rem;
     right: 0.25rem;
+    z-index: 8000;
   }
   .inner {
     position: relative;
@@ -78,7 +81,7 @@
           row-gap: 0.25rem;
           // outline: 1px solid #b91616;
           justify-content: center;
-          // flex: 1;
+          flex: 1;
           margin: 0;
         }
 
@@ -160,9 +163,9 @@
           width: 90%;
           max-width: 90%;
           // height: auto;
-          height: 156px;
-          min-height: 156px;
-          max-height: 156px;
+          height: 150px;
+          min-height: 150px;
+          max-height: 150px;
           overflow-y: scroll;
           padding: 0.75rem 0rem;
           margin: 0 auto;
