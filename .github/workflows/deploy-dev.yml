@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: 🚚 Get Latest Commit
         uses: actions/checkout@v4
+        with:
+          ref: unitsCalculator
 
       - name: 📂 Sync Files with hosting server
         uses: easingthemes/ssh-deploy@main

@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 // import { useShallow } from 'zustand/react/shallow';
 import useAppStore from '@/store/useAppStore';
-import BackdropParallax from '@/components/ui/backdrop/BackdropParallax';
+// import BackdropParallax from '@/components/ui/backdrop/BackdropParallax';
 import CloseBtn from '../../ui/buttons/close/CloseBtn';
 import './styles.scss';
 
@@ -9,13 +9,18 @@ const calcUnits = (ml, abv) => (ml * abv) / 1000;
 
 const DRINK_PRESETS = [
   {
+    label: 'Custom',
+    type: 'custom',
+    drinks: [],
+  },
+  {
     label: 'Beer & Cider',
     type: 'beer',
     drinks: [
       { label: 'Pint', volume: 568, unit: 'ml', abv: 5 },
       { label: 'Half pint ', volume: 284, unit: 'ml', abv: 4.5 },
-      { label: 'Standard Can', volume: 440, unit: 'ml', abv: 5 },
-      { label: 'Small Can', volume: 330, unit: 'ml', abv: 5 },
+      { label: 'Std Can', volume: 440, unit: 'ml', abv: 5 },
+      { label: 'Sml Can', volume: 330, unit: 'ml', abv: 5 },
       { label: 'Strong Larger', volume: 440, unit: 'ml', abv: 7.5 },
       { label: 'Strong Cider', volume: 440, unit: 'ml', abv: 7.5 },
     ],
@@ -26,9 +31,9 @@ const DRINK_PRESETS = [
     label: 'Wine',
     type: 'wine',
     drinks: [
-      { label: 'Small Glass', volume: 125, unit: 'ml', abv: 13 },
-      { label: 'Medium Glass', volume: 175, unit: 'ml', abv: 13 },
-      { label: 'Large Glass', volume: 250, unit: 'ml', abv: 13 },
+      { label: 'Sml Glass', volume: 125, unit: 'ml', abv: 13 },
+      { label: 'Med Glass', volume: 175, unit: 'ml', abv: 13 },
+      { label: 'Lrg Glass', volume: 250, unit: 'ml', abv: 13 },
       { label: 'Bottle', volume: 750, unit: 'ml', abv: 13 },
     ],
   },
@@ -53,10 +58,10 @@ const UnitsCalculator = () => {
   //     useShallow((state) => ({ activity: state.activity })),
   //   );
 
-  const handleClose = () => {
-    setOpen(false);
-    setActivity(-1);
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  //   setActivity(-1);
+  // };
 
   const [open, setOpen] = useState(false);
   const [drinks, setDrinks] = useState([]);
@@ -66,11 +71,11 @@ const UnitsCalculator = () => {
     setDrinks([...drinks, { ...preset, id: crypto.randomUUID() }]);
   };
 
-  const updateDrink = (id, field, value) => {
-    setDrinks(
-      drinks.map((d) => (d.id === id ? { ...d, [field]: Number(value) } : d)),
-    );
-  };
+  // const updateDrink = (id, field, value) => {
+  //   setDrinks(
+  //     drinks.map((d) => (d.id === id ? { ...d, [field]: Number(value) } : d)),
+  //   );
+  // };
 
   const removeDrink = (id) => {
     setDrinks(drinks.filter((d) => d.id !== id));
@@ -89,91 +94,118 @@ const UnitsCalculator = () => {
       <div className='inner'>
         <CloseBtn />
         <div className='content'>
-          {' '}
-          <h2>Units calculator</h2>
-          <div className='calculator-core'>
-            <div className='container-buttons'>
-              <div className='measures-selector'>
-                {DRINK_PRESETS.map((group) => (
-                  <button
-                    key={group.label}
-                    onClick={() => setType(group.type)}
-                    className={
-                      'group' + (group.type === type ? ' selected' : ' ')
-                    }
-                  >
-                    {group.label}
-                  </button>
-                ))}
+          <div className='wrap'>
+            {' '}
+            <header>
+              {' '}
+              <h2>Units calculator</h2>
+              <div className='intro'>
+                Calculate the total units of alcohol in common measures.
               </div>
-              <div className='measures-container'>
-                {DRINK_PRESETS.map((group) =>
-                  group.type === type ? (
-                    <div key={group.label}>
-                      <div className='measures-group'>
-                        {/* <div className='measures-group-title'>{group.label}</div> */}
-                        {group.drinks.map((preset) => (
-                          <button
-                            key={preset.label}
-                            onClick={() =>
-                              addDrink({ ...preset, type: group.type })
-                            }
-                            className='measure'
-                          >
-                            <span className='title'>{preset.label}</span>
-                            <span className='spec'>
-                              <span className='volume'>
-                                {preset.volume} {preset.unit}
-                              </span>
-                              <span className='abv'>{preset.abv} %</span>
-                            </span>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  ) : null,
-                )}
-              </div>
-            </div>
-            <ul className='drinks-list'>
-              {drinks.map((d) => (
-                <li key={d.id} className='drinks-entry'>
-                  {/* <input
+            </header>
+            <section className='calculator-core'>
+              <div className='selected-measures'>
+                <ul
+                  className={'measures ' + (drinks.length === 0 ? ' none' : '')}
+                >
+                  {[...drinks]
+                    .sort(
+                      (a, b) =>
+                        calcUnits(a.volume, a.abv) - calcUnits(b.volume, b.abv),
+                    )
+                    .map((d) => (
+                      <li key={d.id} className='drinks-entry'>
+                        {/* <input
                   type='number'
                   value={d.volume}
                   onChange={(e) => updateDrink(d.id, 'volume', e.target.value)}
                 />{' '} */}
-                  <div className='desc'>
-                    <div className='row-1'>
-                      <div className='multiplier'>1x</div>{' '}
-                      <div className='label'>
-                        {d.label} ({d.type} ){' '}
-                      </div>
-                    </div>{' '}
-                    <div className='row-2'>
-                      <div className='vol'>
-                        {d.volume} {d.unit}
-                      </div>{' '}
-                      <div className='pct-abv'>{d.abv} % ABV</div>
+                        <div className='desc'>
+                          <div className='row-1'>
+                            <div className='multiplier'>1x</div>{' '}
+                            <div className='label'>
+                              {d.label} ({d.type} ){' '}
+                            </div>
+                          </div>{' '}
+                          <div className='row-2'>
+                            <div className='vol'>
+                              {d.volume} {d.unit}
+                            </div>{' '}
+                            <div className='pct-abv'>{d.abv} % ABV</div>
+                          </div>
+                        </div>
+                        <div className='equals'>=</div>
+                        <div className='units'>
+                          {calcUnits(d.volume, d.abv).toFixed(2)} units
+                        </div>
+                        <button onClick={() => removeDrink(d.id)}>✕</button>
+                      </li>
+                    ))}
+                </ul>
+                <div className='drinks-total'>
+                  <div className='drinks-total-wrap'>
+                    <h3>Total : {totalUnits.toFixed(2)} units</h3>
+                    <div>({drinks.length} drinks)</div>
+                  </div>
+                </div>
+              </div>
+              <div className='container-buttons'>
+                <div className='measures-selector'>
+                  {drinks.length === 0 && (
+                    <div className='measures-selector-label'>
+                      Make a selection
                     </div>
+                  )}
+
+                  <div className='buttons'>
+                    {DRINK_PRESETS.map((group) => (
+                      <button
+                        key={group.label}
+                        onClick={() => setType(group.type)}
+                        className={
+                          'group' + (group.type === type ? ' selected' : ' ')
+                        }
+                      >
+                        {group.label}
+                      </button>
+                    ))}
                   </div>
-                  <div className='equals'>=</div>
-                  <div className='units'>
-                    {calcUnits(d.volume, d.abv).toFixed(2)} units
-                  </div>
-                  <button onClick={() => removeDrink(d.id)}>✕</button>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className='drinks-total'>
-            <div>
-              <h3>Total : {totalUnits.toFixed(2)} units</h3>
-            </div>
-            <div className='calculation-details'>
-              <div>How this is calculated:</div>
+                </div>
+                <div className='measures-container'>
+                  {DRINK_PRESETS.map((group) =>
+                    group.type === type ? (
+                      <div key={group.label}>
+                        <div className='measures-group'>
+                          {/* <div className='measures-group-title'>{group.label}</div> */}
+                          {group.drinks.map((preset) => (
+                            <button
+                              key={preset.label}
+                              onClick={() =>
+                                addDrink({ ...preset, type: group.type })
+                              }
+                              className='measure'
+                            >
+                              <span className='measure-title'>
+                                {preset.label}
+                              </span>
+                              <span className='spec'>
+                                <span className='volume'>
+                                  {preset.volume} {preset.unit}
+                                </span>
+                                <span className='abv'>{preset.abv} %</span>
+                              </span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    ) : null,
+                  )}
+                </div>
+              </div>
+            </section>
+            <div className='calculation-information'>
               <div>
-                <span>Units</span> = <span>(volume in ml</span> X{' '}
+                <span>Units calculated</span> = <span>(volume in ml</span> X{' '}
                 <span>ABV%)</span> ÷ <span>1000</span>
               </div>
             </div>
