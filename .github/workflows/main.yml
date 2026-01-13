@@ -3,7 +3,7 @@ name: Github Action SSH Publish Theme to host
 on:
   push:
     branches:
-      - main
+      - unitsCalculator
 
 jobs:
   web-deploy:
