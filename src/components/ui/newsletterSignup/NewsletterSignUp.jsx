@@ -244,9 +244,7 @@ const NewsletterSignUp = () => {
         </div>
       )}
     </>
-  ) : (
-    <></>
-  );
+  ) : null;
 };
 
 export default NewsletterSignUp;

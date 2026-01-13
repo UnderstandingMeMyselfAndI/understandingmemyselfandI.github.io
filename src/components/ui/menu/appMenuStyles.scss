@@ -2,11 +2,11 @@
 @import '@/globals.css';
 
 .AppMenu {
-  &.hide {
-    display: none;
+
+  &.show {
+    position: fixed;
   }
 
-  position: fixed;
   top: 0;
   right: 0;
   left: 0;
@@ -26,6 +26,7 @@
   }
 
   .burger-stack {
+    position: fixed;
     background: none;
     border: none;
     padding: 0.5rem;
@@ -119,6 +120,15 @@
     }
   }
 
+  &:has(.open) {
+    ul#app-menu {
+
+      margin-right: 0;
+      transition: all 0.25s cubic-bezier(0.5, 0, 0.25, 1);
+
+    }
+  }
+
   ul#app-menu {
     position: fixed;
 
@@ -129,10 +139,7 @@
     margin-right: -100%;
     transition: all 0.35s cubic-bezier(0.5, 0, 0.25, 1);
 
-    &.open {
-      margin-right: 0;
-      transition: all 0.25s cubic-bezier(0.5, 0, 0.25, 1);
-    }
+
 
     list-style: none;
     width: 100vw;

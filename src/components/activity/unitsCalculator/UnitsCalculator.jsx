@@ -394,9 +394,7 @@ const UnitsCalculator = () => {
         />
       </div>
     </div>
-  ) : (
-    <></>
-  );
+  ) : null;
 };
 
 export default UnitsCalculator;

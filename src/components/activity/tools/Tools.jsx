@@ -99,9 +99,7 @@ const Tools = () => {
         />
       </section>
     </div>
-  ) : (
-    <></>
-  );
+  ) : null;
 };
 Tools.propTypes = {
   handleMenuClick: PropTypes.func,

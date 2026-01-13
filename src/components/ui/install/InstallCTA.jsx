@@ -161,9 +161,7 @@ const InstallCTA = () => {
       {/* https://github.com/khmyznikov/pwa-install */}
       {/* <PWAInstall ref={pwaInstallRef} name='ummi' icon={UmmiIcon} externalPromptEvent={deferredPrompt} onPwaInstallAvailableEvent={handleOnPwaInstallAvailableEvent}></PWAInstall> */}
     </div>
-  ) : (
-    <></>
-  );
+  ) : null;
 };
 
 export default InstallCTA;

@@ -67,9 +67,7 @@ const Lingo = () => {
       <h3>Lingo &amp; Phrases</h3>
       <SearchField handleClick={handleClick} />
     </section>
-  ) : (
-    <></>
-  );
+  ) : null;
 };
 
 export default Lingo;

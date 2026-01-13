@@ -121,7 +121,7 @@ const UpdateCTA = () => {
       </div>
     </div>
   ) : (
-    <></>
+    null 
   );
 };
 

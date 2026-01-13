@@ -207,9 +207,7 @@ const Header = ({ classes = '' }) => {
         </div>
       </div>
     </header>
-  ) : (
-    <></>
-  );
+  ) : null;
 };
 
 export default Header;

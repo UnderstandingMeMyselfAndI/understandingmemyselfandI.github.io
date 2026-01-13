@@ -157,9 +157,7 @@ function Footer() {
 
       <FooterMetadata />
     </div>
-  ) : (
-    <></>
-  );
+  ) : null;
 }
 
 export default Footer;

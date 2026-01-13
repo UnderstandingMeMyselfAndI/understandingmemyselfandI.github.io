@@ -75,7 +75,5 @@ export default function BadgeToolbox() {
         </Badge>
       </div>
     </div>
-  ) : (
-    <></>
-  );
+  ) : null;
 }

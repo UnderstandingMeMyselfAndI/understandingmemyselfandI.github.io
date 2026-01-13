@@ -115,10 +115,10 @@ const Introduction = () => {
           .addLabel('end');
       });
     },
-    { scope: ref, revertOnUpdate: true },
+    { scope: ref, revertOnUpdate: false },
   );
 
-  return open ? (
+  return (
     <div className={'activity' + (open ? ' show' : ' hide')}>
       <section className='intro' id='intro'>
         <div className='i1'>
@@ -198,8 +198,6 @@ const Introduction = () => {
         </div>
       </section>
     </div>
-  ) : (
-    <></>
   );
 };
 

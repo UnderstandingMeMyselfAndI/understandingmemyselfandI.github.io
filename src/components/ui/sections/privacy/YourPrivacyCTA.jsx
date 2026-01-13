@@ -39,9 +39,7 @@ const YourPrivacyCTA = () => {
         {content?.cta?.btnLabel}
       </button>
     </section>
-  ) : (
-    <></>
-  );
+  ) : null;
 };
 
 export default YourPrivacyCTA;

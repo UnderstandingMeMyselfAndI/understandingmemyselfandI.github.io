@@ -57,6 +57,8 @@ export default function AppMenu() {
   const handleClose = () => {
     setActivity(-1);
     setOpen(false);
+    setOpenComponent;
+    false;
   };
 
   useEffect(() => {
@@ -70,7 +72,7 @@ export default function AppMenu() {
   }, [activity]);
 
   return showComponent ? (
-    <div className={'AppMenu' + (show ? '' : ' hide')}>
+    <div className={'AppMenu' + (show ? ' ' : ' hide')}>
       <div className='burger-stack' id='burger-button'>
         <input
           type='checkbox'
@@ -89,7 +91,7 @@ export default function AppMenu() {
           </div>
         </label>
       </div>
-      <ul className={open ? ' open' : ' '} id='app-menu'>
+      <ul className={open ? ' open' : ' closed'} id='app-menu'>
         <li
           onClick={() => {
             setActivity(1);
@@ -294,7 +296,5 @@ export default function AppMenu() {
         {/* <li onClick={handleClose}>Settings</li> */}
       </ul>
     </div>
-  ) : (
-    <></>
-  );
+  ) : null;
 }
