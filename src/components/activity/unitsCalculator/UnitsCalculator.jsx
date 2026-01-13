@@ -53,6 +53,13 @@ const DRINK_PRESETS = [
 const UnitsCalculator = () => {
   const setActivity = useAppStore((state) => state.setActivity);
   const [type, setType] = useState(null);
+  const [customDrink, setCustomDrink] = useState({
+    label: 'Custom Drink',
+    volume: 568,
+    unit: 'ml',
+    abv: 5,
+    count: 1,
+  });
 
   //   const { activity } = useAppStore(
   //     useShallow((state) => ({ activity: state.activity })),
@@ -66,7 +73,7 @@ const UnitsCalculator = () => {
   const [open, setOpen] = useState(false);
   const [drinks, setDrinks] = useState([]);
 
-  const addDrink = (preset) => {
+  const addDrink = (preset, countToAdd = 1) => {
     const existingDrink = drinks.find(
       (d) =>
         d.label === preset.label &&
@@ -77,12 +84,28 @@ const UnitsCalculator = () => {
     if (existingDrink) {
       setDrinks(
         drinks.map((d) =>
-          d.id === existingDrink.id ? { ...d, count: d.count + 1 } : d,
+          d.id === existingDrink.id ? { ...d, count: d.count + countToAdd } : d,
         ),
       );
     } else {
-      setDrinks([...drinks, { ...preset, id: crypto.randomUUID(), count: 1 }]);
+      setDrinks([
+        ...drinks,
+        { ...preset, id: crypto.randomUUID(), count: countToAdd },
+      ]);
     }
+  };
+
+  const handleCustomDrinkChange = (e) => {
+    const { name, value } = e.target;
+    setCustomDrink((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleCustomDrinkSubmit = (e) => {
+    e.preventDefault();
+    addDrink(
+      { ...customDrink, type: 'custom' },
+      parseInt(customDrink.count, 10) || 1,
+    );
   };
 
   // const updateDrink = (id, field, value) => {
@@ -107,6 +130,8 @@ const UnitsCalculator = () => {
     0,
   );
 
+  const totalDrinkCount = drinks.reduce((sum, d) => sum + d.count, 0);
+
   return (
     <div
       className={'ummi-units-calculator' + (open ? ' open' : '')}
@@ -128,16 +153,17 @@ const UnitsCalculator = () => {
               <div className='selected-measures'>
                 <div
                   style={{
-                    textAlign: 'right',
+                    textAlign: 'center',
                     fontSize: '0.7rem',
-                    paddingRight: '1.6rem',
-                    paddingBottom: '0.0rem',
+                    paddingRight: '0.8rem',
+                    padding: '0 0 0.0rem 0',
+                    margin: '0 0 0.0rem 0',
                     textTransform: 'uppercase',
                     color: 'var(--greyLight)',
                     fontWeight: 600,
                   }}
                 >
-                  Less
+                  Tap row to remove
                 </div>
                 <ul
                   className={'measures ' + (drinks.length === 0 ? ' none' : '')}
@@ -177,16 +203,16 @@ const UnitsCalculator = () => {
                           {(calcUnits(d.volume, d.abv) * d.count).toFixed(2)}{' '}
                           units
                         </div>
-                        <button className='measure-action'>
+                        {/* <button className='measure-action'>
                           {d.count > 1 ? '-' : '✕'}
-                        </button>
+                        </button> */}
                       </li>
                     ))}
                 </ul>
                 <div className='drinks-total'>
                   <div className='drinks-total-wrap'>
                     <h3>Total : {totalUnits.toFixed(2)} units</h3>
-                    <div>({drinks.length} drinks)</div>
+                    <div>({totalDrinkCount} drinks)</div>
                   </div>
                 </div>
               </div>
@@ -213,8 +239,66 @@ const UnitsCalculator = () => {
                   </div>
                 </div>
                 <div className='measures-container'>
+                  {type === 'custom' && (
+                    <form
+                      onSubmit={handleCustomDrinkSubmit}
+                      className='custom-drink-form'
+                    >
+                      <div className='row'>
+                        {/* <div>Name</div> */}
+                        <label htmlFor='custom-drink-name'>
+                          <input
+                            id='custom-drink-name'
+                            type='text'
+                            name='label'
+                            value={customDrink.label}
+                            onChange={handleCustomDrinkChange}
+                            placeholder='Drink Name'
+                          />
+                        </label>
+                      </div>
+                      <div className='row'>
+                        <label htmlFor='custom-drink-count'>
+                          <div>No.</div>
+                          <input
+                            id='custom-drink-count'
+                            type='number'
+                            name='count'
+                            value={customDrink.count}
+                            onChange={handleCustomDrinkChange}
+                            placeholder='Count'
+                          />
+                        </label>
+                        <label htmlFor='custom-drink-volume'>
+                          <input
+                            id='custom-drink-volume'
+                            type='number'
+                            name='volume'
+                            value={customDrink.volume}
+                            onChange={handleCustomDrinkChange}
+                            placeholder='Volume (ml)'
+                          />
+                          <div>(ml)</div>
+                        </label>
+                        <label htmlFor='custom-drink-abv'>
+                          <input
+                            id='custom-drink-abv'
+                            type='number'
+                            name='abv'
+                            value={customDrink.abv}
+                            onChange={handleCustomDrinkChange}
+                            placeholder='ABV (%)'
+                          />
+                          <div>ABV (%)</div>
+                        </label>
+                      </div>
+                      <button type='submit' className='measure custom'>
+                        Add Custom Drink
+                      </button>
+                    </form>
+                  )}
                   {DRINK_PRESETS.map((group) =>
-                    group.type === type ? (
+                    group.type === type && group.type !== 'custom' ? (
                       <div key={group.label}>
                         <div className='measures-group'>
                           {/* <div className='measures-group-title'>{group.label}</div> */}
