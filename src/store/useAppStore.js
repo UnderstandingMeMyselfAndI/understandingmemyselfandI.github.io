@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import { del, get, set } from 'idb-keyval';
+import { del, get, set, clear } from 'idb-keyval';
 
 const indexedDBStorage = {
   getItem: async (name) => {
@@ -315,6 +315,13 @@ const useAppStore = create(
       // analytics enabled
       gae: false,
       setGAE: (v) => set(() => ({ gae: v })),
+      // ----------------------------------------
+      // Clear IDB
+      clearIDB: async () => {
+        await clear();
+        console.log('IndexedDB cleared');
+        window.location.reload();
+      },
       // ----------------------------------------
     }),
     {

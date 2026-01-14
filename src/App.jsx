@@ -4,7 +4,7 @@
 // import "components/utils/activities.js";
 import Routing from './components/routing/Routing';
 import { useThemeStore } from '@/store/useThemeStore';
-import { useShallow } from 'zustand/react/shallow';
+// import { useShallow } from 'zustand/react/shallow';
 import useAppStore from './store/useAppStore';
 // import DaysCounter from "./components/ui/DaysCounter/DaysCounter";
 import applyTheme from 'components/theme/applyTheme';

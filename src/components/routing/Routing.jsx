@@ -16,7 +16,7 @@ const appURL =
 
 // TODO: Look at URLPattern API https://developer.mozilla.org/docs/Web/API/URL_Pattern_API
 function setBrowserHistory(slug, title) {
-  if (slug) history.pushState({ page: title }, '', slug);
+  // if (slug) history.pushState({ page: title }, '', slug);
 }
 // function getAcronymID(slug) {
 // 	return toolsData.tools.nodes.find((tool) => {

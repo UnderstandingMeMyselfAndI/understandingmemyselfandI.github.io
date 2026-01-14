@@ -58,11 +58,13 @@ const Settings = () => {
   const name = 'settings';
   const [open, setOpen] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [showDeleteIDBDialog, setShowDeleteIDBDialog] = useState(false);
   const [showConfirmDeleteDialog, setShowConfirmDeleteDialog] = useState(false);
   const setActivity = useAppStore((s) => s.setActivity);
   // const showToolsOnly = useAppStore((s) => s.showToolsOnly)
   const setShowToolsOnly = useAppStore((s) => s.setShowToolsOnly);
   const activity = useAppStore((s) => s.activity);
+  const clearIDB = useAppStore((s) => s.clearIDB);
   const activityID = activities.find((activity) =>
     activity.url === name ? activity.id : null,
   );
@@ -169,6 +171,11 @@ const Settings = () => {
   const handleClearUserData = () => {
     setShowDeleteDialog(true);
   };
+
+  const handleClearIDB = () => {
+    setShowDeleteIDBDialog(true);
+  };
+
   const resetAll = () => {
     YourToolboxSettings.set(true);
     YourToolsSettings.set(true);
@@ -177,6 +184,7 @@ const Settings = () => {
     QuickExitMessageSettings.set(true);
     PINLockSettings.set(true);
     AnalyticsCookiesSettings.set(true);
+    unitsCalculatorSettings.set(true);
   };
   const handleClose = () => {
     if (!YourToolsSettings.state) {
@@ -197,17 +205,24 @@ const Settings = () => {
     setShowConfirmDeleteDialog(true);
     setShowDeleteDialog(false);
     // force reload url
-    setTimeout(() => {
-      window.location = window.location.href + '?cb=' + Date.now();
-    }, 200);
+    // setTimeout(() => {
+    //   setActivity(activityID.id);
+    // }, 200);
+  };
+  const handleConfirmDeleteIDB = () => {
+    clearIDB();
+    setShowDeleteIDBDialog(false);
   };
   const handleCloseDeleteData = () => {
     setShowDeleteDialog(false);
   };
+  const handleCloseDeleteIDB = () => {
+    setShowDeleteIDBDialog(false);
+  };
 
   return (
     <div className={'activity' + ' ' + name + (open ? ' show' : ' hide')}>
-      <Dialog
+      {/* <Dialog
         show={showDeleteDialog}
         title='Confirm Clear All Data'
         instruction='Do you want to clear all data?<br /><br />This will reset all settings to their default values and cannot be undone.'
@@ -216,6 +231,16 @@ const Settings = () => {
         classes={['delete-dialog']}
         onCancel={handleCloseDeleteData}
         onConfirm={handleConfirmDeleteData}
+      /> */}
+      <Dialog
+        show={showDeleteIDBDialog}
+        title='Confirm Clear IndexedDB'
+        instruction='Do you want to clear all data?<br /><br />This will reset some settings to their default values and cannot be undone.'
+        confirmLabel='Yes'
+        cancelLabel='Cancel'
+        classes={['delete-dialog']}
+        onCancel={handleCloseDeleteIDB}
+        onConfirm={handleConfirmDeleteIDB}
       />
       <Dialog
         show={showConfirmDeleteDialog}
@@ -399,7 +424,7 @@ const Settings = () => {
         </div>
 
         <div className='section'>
-          <div className='title'>Privacy &amp; Your Data</div>
+          <div className='title'>Privacy & Your Data</div>
 
           <div className={'row ' + PINLockSettings.classes}>
             <div className={'checkBox-row '}>
@@ -471,9 +496,10 @@ const Settings = () => {
           <div className='row'>
             <div className='setting-title'></div>
             <div className='checkBox-row btns-bottom'>
-              <button className='btn btn-delete' onClick={handleClearUserData}>
+              <button className='btn btn-delete' onClick={handleClearIDB}>
                 Clear Your Data
               </button>
+
               <button className='btn' onClick={() => handleClose()}>
                 Close
               </button>
