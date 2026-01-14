@@ -59,7 +59,7 @@ export default function AppMenu() {
   const handleClose = () => {
     // setActivity(-1);
     setOpen(false);
-    setOpenComponent;
+    // setOpenComponent(activity === -1);
     false;
   };
 
@@ -105,7 +105,7 @@ export default function AppMenu() {
             }
             el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-            setActivity(1);
+            setActivity(-1);
             handleClose();
           }}
         >

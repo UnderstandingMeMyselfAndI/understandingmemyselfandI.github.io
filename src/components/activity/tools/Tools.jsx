@@ -17,7 +17,9 @@ const Tools = () => {
 
   const setToolsInView = useAppStore((s) => s.setToolsInView);
 
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [activityInView, setActivityInView] = useState(false);
+
   const activity = useAppStore((s) => s.activity);
   const activityID = activities.find((activity) =>
     activity.url === name ? activity.id : null,
@@ -57,8 +59,12 @@ const Tools = () => {
   }, [activity, activityID]);
 
   useEffect(() => {
+    setOpen(true);
+  }, [setToolsInView]);
+
+  useEffect(() => {
     setOpen(activity === -1);
-  }, [activity]);
+  }, [activityInView]);
 
   const inViewRef = useOnInView(
     // (inView, entry) => {
@@ -67,6 +73,7 @@ const Tools = () => {
         // Do something with the element that came into view
         // console.log('Element is in view', entry.target)
         setToolsInView(true);
+        setActivityInView(true);
       } else {
         // console.log('Element left view', entry.target)
         setToolsInView(false);
