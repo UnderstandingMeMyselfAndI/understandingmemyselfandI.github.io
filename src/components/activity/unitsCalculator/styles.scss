@@ -65,8 +65,8 @@
         justify-content: space-between;
         align-content: center;
         align-items: center;
-        height: 96%;
-        margin: 8.5% 0;
+        height: 94%;
+        margin: 12% 0 0 0;
 
         header {
           flex: 0;
@@ -88,7 +88,7 @@
           flex: 1;
           margin: 0;
           width: 100%;
-          height: calc(100% - 246px);
+          height: calc(100% - 286px);
           ;
         }
       }
@@ -194,7 +194,7 @@
         display: flex;
         flex-flow: column nowrap;
         height: 100%;
-        max-height: calc(100% - 246px);
+        max-height: calc(100% - 286px);
         flex: 1;
 
         div.selected-measures-title {

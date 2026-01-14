@@ -52,7 +52,7 @@ const DRINK_PRESETS = [
 
 const UnitsCalculator = () => {
   const setActivity = useAppStore((state) => state.setActivity);
-  const [type, setType] = useState(null);
+  const [type, setType] = useState('custom');
   const [isMeasuresVisible, setIsMeasuresVisible] = useState(false);
   const [multiplier, setMultiplier] = useState(1);
   const [customDrink, setCustomDrink] = useState({

@@ -96,16 +96,16 @@ export default function AppMenu() {
       <ul className={open ? ' open' : ' closed'} id='app-menu'>
         <li
           onClick={() => {
-            const el = document.getElementById('tools');
             if (gae && window.gtag) {
               window.gtag('event', 'tools', {
                 app_name: 'Ummi',
                 screen_name: 'Tools',
               });
             }
+            setActivity(-1);
+            const el = document.getElementById('tools');
             el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-            setActivity(-1);
             handleClose();
           }}
         >
