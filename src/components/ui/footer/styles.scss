@@ -37,7 +37,7 @@
 	scroll-margin-top: 20vh;
 }
 
-div.footer {
+div.activity.footer {
 
 	user-select: none;
 	visibility: hidden;
@@ -55,7 +55,7 @@ div.footer {
 	}
 }
 
-div.footer {
+div.activity.footer {
 	display: flex;
 	flex-direction: column;
 	row-gap: 0.5rem;
