@@ -52,9 +52,9 @@ const Tools = () => {
     setActivity(1);
   };
 
-  // useEffect(() => {
-  //   setOpen(activityID === activity);
-  // }, [activity, activityID]);
+  useEffect(() => {
+    setOpen(activityID === activity);
+  }, [activity, activityID]);
 
   useEffect(() => {
     setOpen(activity === -1);
