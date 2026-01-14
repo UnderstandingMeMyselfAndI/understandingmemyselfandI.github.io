@@ -182,7 +182,7 @@ const Header = ({ classes = '' }) => {
 
   return (
     <header ref={cont} id='header' className={'header' + (open ? ' show' : '')}>
-      <div id='header-viewport-position'></div>
+      {/* <div id='header-viewport-position'></div> */}
       <div className='home-grp'>
         <div className='home-logo homelogo' ref={logo}>
           <Logo />
