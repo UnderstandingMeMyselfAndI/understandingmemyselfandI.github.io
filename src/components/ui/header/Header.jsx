@@ -3,7 +3,7 @@ import { useRef, useEffect } from 'react';
 import Logo from 'ui/logo/Logo.jsx';
 import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined';
 import useAppStore from '@/store/useAppStore';
-
+import { useOnInView } from 'react-intersection-observer';
 // import React from "https://esm.sh/react@19.1.0";
 // import ReactDOM from "https://esm.sh/react-dom@19.1.0/client";
 
@@ -17,6 +17,7 @@ import './styles.scss';
 
 const Header = ({ classes = '' }) => {
   const [open, setOpen] = React.useState(false);
+  const [isInView, setIsInView] = React.useState(true);
   //   const [stage, setStage] = React.useState(0);
   const activity = useAppStore((s) => s.activity);
   const scrollStage = useAppStore((state) => state.scrollStage);
@@ -30,7 +31,6 @@ const Header = ({ classes = '' }) => {
   }, [scrollStage, setOpen]);
 
   const cont = useRef();
-
   const logo = useRef();
   const wGrp = useRef();
   const w0 = useRef();
@@ -180,8 +180,9 @@ const Header = ({ classes = '' }) => {
     { dependencies: [cnf, scrollStage], revertOnUpdate: true },
   );
 
-  return open ? (
-    <header ref={cont} id='header' className={'header' + (open ? ' open' : '')}>
+  return (
+    <header ref={cont} id='header' className={'header' + (open ? ' show' : '')}>
+      <div id='header-viewport-position'></div>
       <div className='home-grp'>
         <div className='home-logo homelogo' ref={logo}>
           <Logo />
@@ -207,7 +208,7 @@ const Header = ({ classes = '' }) => {
         </div>
       </div>
     </header>
-  ) : null;
+  );
 };
 
 export default Header;

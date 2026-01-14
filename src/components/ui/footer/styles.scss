@@ -1,35 +1,60 @@
 @use "@/scss/_variables.scss";
 @import "@/globals.css";
+
 #feedback,
 #daysCounter,
 #share,
-#installInstructions{
+#installInstructions {
 	scroll-padding-top: 260px;
-	
-	padding-bottom:160px;
+
+	padding-bottom: 160px;
 }
-#gratitude{
+
+#gratitude {
 	scroll-padding-top: 260px;
-	
-	padding-bottom:160px;
+
+	padding-bottom: 160px;
 }
+
 .version-footer {
 	font-size: 1rem;
 	padding: 2rem 0;
 }
+
 .sf-footer-version {
 	font-size: variables.$small_size;
 	font-weight: 300;
 	color: var(--grey);
 }
+
 .update {
 	color: var(--primary);
 	margin: 0 0.25rem;
 	font-weight: 600;
 }
-#share{
-	scroll-margin-top:20vh;
+
+#share {
+	scroll-margin-top: 20vh;
 }
+
+div.footer {
+
+	user-select: none;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.15s cubic-bezier(0.5, 0, 0.9, 1);
+	z-index: -1;
+	position: relative;
+
+	&.show {
+		z-index: 101;
+		visibility: visible;
+		user-select: auto;
+		opacity: 1;
+		transition: opacity 0.15s cubic-bezier(0.5, 0, 0.9, 1);
+	}
+}
+
 div.footer {
 	display: flex;
 	flex-direction: column;
@@ -40,39 +65,47 @@ div.footer {
 	text-align: center;
 	width: 90%;
 	background-color: transparent;
-	
-	
+
+
 	line-height: 1.5;
 	position: relative;
-    z-index: 3000;
+	z-index: 3000;
+
 	h1 {
 		font-size: variables.$h1_size;
 		font-weight: variables.$h1_weight;
 	}
+
 	h2 {
 		font-size: variables.$h2_size;
 		font-weight: variables.$h2_weight;
 	}
+
 	h3 {
 		font-size: variables.$h3_size;
 		font-weight: variables.$h3_weight;
 	}
+
 	h4 {
 		font-size: variables.$h4_size;
 		font-weight: variables.$h4_weight;
 	}
+
 	h5 {
 		font-size: variables.$h5_size;
 		font-weight: variables.$h5_weight;
 	}
+
 	h4 {
 		font-size: variables.$h4_size;
 		max-width: 80%;
 		margin: 1rem auto;
 	}
+
 	p {
 		margin: 1rem 0;
 	}
+
 	.links {
 		margin: 1rem 0;
 		display: flex;
@@ -117,6 +150,7 @@ div.footer {
 		text-decoration-color: var(--yellow);
 		text-decoration-thickness: 4px;
 		font-weight: 600;
+
 		img {
 			// max-width: 30px;
 			// max-height: 30px;
@@ -125,13 +159,16 @@ div.footer {
 			margin: 0;
 		}
 	}
+
 	a:hover {
 		color: var(--lightBlue);
 	}
+
 	b {
 		position: relative;
 		display: inline-block;
 	}
+
 	b::after {
 		content: " ";
 		width: 105%;
@@ -146,36 +183,45 @@ div.footer {
 		margin-top: 5%;
 		margin-left: -5.5%;
 	}
+
 	u {
 		text-decoration-color: var(--yellow);
 		text-decoration-thickness: 4px;
 	}
+
 	.logo.apple svg path {
 		fill: var(--primary);
 	}
+
 	.logo.android svg path {
 		fill: var(--primary);
 	}
+
 	.big {
 		font-size: variables.$h2_size;
 	}
+
 	.big2 {
 		font-size: variables.$h3_size;
-		font-weight:800;
+		font-weight: 800;
 	}
+
 	span.big4.r90 {
 		display: block;
 		font-size: variables.$h1_size;
 		transform: rotate(90deg);
 	}
-	section.qr p{
+
+	section.qr p {
 		font-size: variables.$lrg_size;
-		line-height:variables.$lrg_line_height;
-		u{
+		line-height: variables.$lrg_line_height;
+
+		u {
 			text-decoration: none;
 			position: relative;
 			display: inline-block;
-			font-weight:variables.$lrg_weight;
+			font-weight: variables.$lrg_weight;
+
 			&::after {
 				content: " ";
 				width: 105%;
@@ -193,5 +239,5 @@ div.footer {
 		}
 	}
 
-	
+
 }

@@ -130,7 +130,6 @@ const baseActivities = [
     id: 1,
     url: 'tools',
     title: 'Tools',
-
     menu: true,
     speedDial: true,
   },

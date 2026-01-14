@@ -15,7 +15,7 @@ import Footer from 'ui/footer/Footer';
 // import Podcasts from "./components/activity/podcasts/Podcasts";
 import PrivacyPolicy from './components/activity/privacy/PrivacyPolicy';
 import Introduction from '@/components/activity/introduction/Introduction';
-import YourPrivacyCTA from './components/ui/sections/privacy/YourPrivacyCTA';
+import YourPrivacyCTA from './components/ui/privacy/YourPrivacyCTA';
 import Tools from 'components/activity/tools/Tools.jsx';
 
 // import Backdrop from "ui/backdrop/Backdrop";

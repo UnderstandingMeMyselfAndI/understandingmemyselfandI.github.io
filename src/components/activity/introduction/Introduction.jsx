@@ -13,7 +13,7 @@ import './styles.scss';
 
 const Introduction = () => {
   const name = 'introduction';
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const activity = useAppStore((s) => s.activity);
   const activityID = activities.find((activity) =>
     activity.url === name ? activity.id : null,
@@ -119,85 +119,81 @@ const Introduction = () => {
   );
 
   return (
-    <div className={'activity' + (open ? ' show' : ' hide')}>
-      <section className='intro' id='intro'>
-        <div className='i1'>
-          <h2>
-            {(!isInstalled || (isInstalled && vc < 3)) && (
-              <u>{content.title}</u>
-            )}
+    <section className={'intro' + (open ? ' show' : ' hide')} id='intro'>
+      <div className='i1'>
+        <h2>
+          {(!isInstalled || (isInstalled && vc < 3)) && <u>{content.title}</u>}
 
-            {isInstalled && vc >= 3 && (
-              <u>
-                {parse(
-                  content?.returning?.content?.titles[
-                    getRand(content?.returning?.content?.titles?.length - 1)
-                  ],
-                )}
-              </u>
-            )}
-          </h2>
-          {isInstalled &&
-            vc > 20 &&
-            vc < 33 && // if app is installed show different content
-            content?.installed.content?.map((cnt, i) => {
-              return (
-                <div
-                  key={`intro-${i}`}
-                  className={'sub subsection installed sec-' + i}
-                >
-                  <div className='title '>
-                    <h2>{parse(cnt?.title)}</h2>
-                  </div>
-                  {cnt?.content?.map((para, k) => {
-                    return (
-                      <div className='' key={'p-' + k}>
-                        {i === 1 && <DoneOutlineIcon className='icon' />}
-                        <p key={k}>{parse(para)}</p>
-                      </div>
-                    );
-                  })}
-                </div>
-              );
-            })}
-
-          {isInstalled && vc >= 20 && (
-            <div key={`intro`} className={'sub subsection sec-'}>
-              <div className=' returning'>
-                {parse(
-                  content?.returning?.content?.contents[
-                    getRand(content?.returning?.content?.contents?.length - 1)
-                  ],
-                )}
-              </div>
-            </div>
+          {isInstalled && vc >= 3 && (
+            <u>
+              {parse(
+                content?.returning?.content?.titles[
+                  getRand(content?.returning?.content?.titles?.length - 1)
+                ],
+              )}
+            </u>
           )}
-
-          {(!isInstalled || (isInstalled && vc < 20)) &&
-            content?.content?.map((cnt, i) => {
-              return (
-                <div
-                  key={`intro-${i}`}
-                  className={'sub notinstalled subsection sec-' + i}
-                  ref={i === 1 ? ref : null}
-                >
-                  <div className='title '>
-                    <h2>{parse(cnt?.title)}</h2>
-                  </div>
-                  {cnt?.content?.map((para, k) => {
-                    return (
-                      <div className={'point' + ' ' + ' p-' + k} key={'p-' + k}>
-                        {i === 1 && <DoneOutlineIcon className='icon' />}
-                        <p key={k}>{parse(para)}</p>
-                      </div>
-                    );
-                  })}
+        </h2>
+        {isInstalled &&
+          vc > 20 &&
+          vc < 33 && // if app is installed show different content
+          content?.installed.content?.map((cnt, i) => {
+            return (
+              <div
+                key={`intro-${i}`}
+                className={'sub subsection installed sec-' + i}
+              >
+                <div className='title '>
+                  <h2>{parse(cnt?.title)}</h2>
                 </div>
-              );
-            })}
-        </div>
-      </section>
-    </div>
+                {cnt?.content?.map((para, k) => {
+                  return (
+                    <div className='' key={'p-' + k}>
+                      {i === 1 && <DoneOutlineIcon className='icon' />}
+                      <p key={k}>{parse(para)}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
+
+        {isInstalled && vc >= 20 && (
+          <div key={`intro`} className={'sub subsection sec-'}>
+            <div className=' returning'>
+              {parse(
+                content?.returning?.content?.contents[
+                  getRand(content?.returning?.content?.contents?.length - 1)
+                ],
+              )}
+            </div>
+          </div>
+        )}
+
+        {(!isInstalled || (isInstalled && vc < 20)) &&
+          content?.content?.map((cnt, i) => {
+            return (
+              <div
+                key={`intro-${i}`}
+                className={'sub notinstalled subsection sec-' + i}
+                ref={i === 1 ? ref : null}
+              >
+                <div className='title '>
+                  <h2>{parse(cnt?.title)}</h2>
+                </div>
+                {cnt?.content?.map((para, k) => {
+                  return (
+                    <div className={'point' + ' ' + ' p-' + k} key={'p-' + k}>
+                      {i === 1 && <DoneOutlineIcon className='icon' />}
+                      <p key={k}>{parse(para)}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
+      </div>
+    </section>
   );
 };
 

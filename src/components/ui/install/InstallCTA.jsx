@@ -109,8 +109,8 @@ const InstallCTA = () => {
   return open ? (
     <div>
       {!isInstalled && isInstallable && showInstallCTA && (
-        <section>
-          <div className='installCTA cta' id='install'>
+        <section className={'installCTA cta ' + (open ? ' open' : '')}>
+          <div id='install'>
             <h3>
               <u>
                 <span>

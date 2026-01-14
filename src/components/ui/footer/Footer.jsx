@@ -14,8 +14,8 @@ function Footer() {
     setOpen(activity === -1);
   }, [activity]);
 
-  return open ? (
-    <div className='activity footer'>
+  return (
+    <div className={'activity footer' + (open ? ' show' : '')}>
       <section className='qr' id='share'>
         <h3>
           <u>Spread the love</u>
@@ -157,7 +157,7 @@ function Footer() {
 
       <FooterMetadata />
     </div>
-  ) : null;
+  );
 }
 
 export default Footer;

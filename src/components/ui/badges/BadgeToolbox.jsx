@@ -9,7 +9,7 @@ import { storeKeys, localStore } from 'data/localStore.js';
 import data from 'data/data.js';
 import { strings } from 'data/config.js';
 
-import './BadgeToolbox.scss';
+import './styles.scss';
 
 export default function BadgeToolbox() {
   const activeIDs = useAppStore((state) => state.userToolIDs);
@@ -59,8 +59,8 @@ export default function BadgeToolbox() {
     toggleShowToolsOnly();
   };
 
-  return open ? (
-    <div>
+  return (
+    <div className={'badge-toolbox' + (open ? ' open' : '')}>
       <div className={'badge-cont ' + (show ? '' : ' hide')}>
         <Badge
           className={'badge toolbox' + (showToolsOnly ? ' active' : '')}
@@ -75,5 +75,5 @@ export default function BadgeToolbox() {
         </Badge>
       </div>
     </div>
-  ) : null;
+  );
 }

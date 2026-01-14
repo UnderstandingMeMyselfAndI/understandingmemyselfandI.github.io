@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import parse from 'html-react-parser';
 import { strings } from '@/data/config';
 import useAppStore from '@/store/useAppStore';
+
 import './styles.scss';
 const YourPrivacyCTA = () => {
   const activity = useAppStore((state) => state.activity);
@@ -25,8 +26,8 @@ const YourPrivacyCTA = () => {
     setActivity(10);
   };
 
-  return open ? (
-    <section className='your-privacy cta'>
+  return (
+    <section className={'your-privacy cta' + (open ? ' show' : '')}>
       <div className='title'>
         <h3>
           <u>{parse(content?.title)}</u>
@@ -39,7 +40,7 @@ const YourPrivacyCTA = () => {
         {content?.cta?.btnLabel}
       </button>
     </section>
-  ) : null;
+  );
 };
 
 export default YourPrivacyCTA;

@@ -144,7 +144,7 @@ const UnitsCalculator = () => {
 
   return open ? (
     <div
-      className={'ummi-units-calculator' + (open ? ' open' : '')}
+      className={'ummi-units-calculator activity' + (open ? ' open' : '')}
       id='ummi-units-calculator'
     >
       <CloseBtn className='close-btn' handleClick={handleClose} />
@@ -394,7 +394,9 @@ const UnitsCalculator = () => {
         />
       </div>
     </div>
-  ) : null;
+  ) : (
+    <></>
+  );
 };
 
 export default UnitsCalculator;

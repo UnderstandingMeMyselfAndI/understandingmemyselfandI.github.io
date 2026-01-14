@@ -1,35 +1,54 @@
 @use "@/scss/_variables.scss";
 @import "@/globals.css";
-section div.installCTA {
+
+section.installCTA {
 	scroll-margin-top: 30vh;
-	margin:160px 0 160px 0;
+	margin: 160px 0 160px 0;
 	scroll-snap-align: center;
-	.homescreenIcon,
-	.shareIcon{
-		display:inline-block;
-		margin-bottom:-13px;
+
+	user-select: none;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.15s cubic-bezier(0.5, 0, 0.9, 1);
+
+	&.open {
+
+		visibility: visible;
+		user-select: auto;
+		opacity: 1;
+		transition: opacity 0.15s cubic-bezier(0.5, 0, 0.9, 1);
 	}
-	.shareIcon{
+
+	.homescreenIcon,
+	.shareIcon {
+		display: inline-block;
+		margin-bottom: -13px;
+	}
+
+	.shareIcon {
 		transform: scale(0.9);
 	}
-	p{
-		line-height:1.6;
+
+	p {
+		line-height: 1.6;
 	}
-    .title{
-		margin-top:2rem;
-		font-size:variables.$h4_size;
-        font-weight: 600;
+
+	.title {
+		margin-top: 2rem;
+		font-size: variables.$h4_size;
+		font-weight: 600;
 		font-variation-settings: "wght" 600;
-        text-decoration-color: var(--yellow);
+		text-decoration-color: var(--yellow);
 		text-decoration-thickness: 5px;
-        text-decoration-style: solid;
-        text-decoration-line: underline;
-		span{
+		text-decoration-style: solid;
+		text-decoration-line: underline;
+
+		span {
 			position: relative;
-			display:block;
-            width:fit-content;
-            margin:0 auto;
-			
+			display: block;
+			width: fit-content;
+			margin: 0 auto;
+
 			&::after {
 				content: " ";
 				width: 115%;
@@ -38,12 +57,12 @@ section div.installCTA {
 				opacity: 0.2;
 				position: absolute;
 				top: 20%;
-				left:-15%;
+				left: -15%;
 				z-index: -1;
 
 				margin-top: -5%;
 				margin-left: 7.5%;
-				transform:rotate(-4deg);
+				transform: rotate(-4deg);
 			}
 		}
 	}

@@ -8,7 +8,7 @@ import { activities } from '@/data/config';
 // import driverObj from '@/js/tour.js'
 // import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 // import Slide from '@mui/material/Slide';
-import './appMenuStyles.scss';
+import './styles.scss';
 export const MenuOpenIcon = () => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
@@ -109,7 +109,7 @@ export default function AppMenu() {
           Tools
         </li>
         <li
-          className='new'
+          className=''
           onClick={() => {
             handleClose();
             setActivity(-1);
