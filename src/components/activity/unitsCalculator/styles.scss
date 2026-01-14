@@ -38,13 +38,8 @@
   }
 
   .close-btn {
-    right: 0.65rem;
-    top: 0.675rem;
-
-    svg {
-      width: 64px;
-      height: 64px;
-    }
+    // right: 0.65rem;
+    // top: 0.7rem;
   }
 
   .inner {
@@ -348,7 +343,7 @@
 
       input {
         width: 56px;
-        border: 1px solid rgba(100, 100, 100, 0.35);
+        border: 1px solid rgba(150, 150, 150, 0.5);
         background: transparent;
         line-height: 1.4;
         padding: 0.35rem 0.5rem;
@@ -539,12 +534,12 @@
 
       button.measure {
         font-size: 1rem;
-        width: 110px;
+        width: 130px;
         border-radius: 6px;
         border: 1px solid var(--grey2);
         border: none;
         // box-shadow: 0px 0px 6px rgba(10, 10, 10, 0.5);
-        padding: 8px 8px;
+        padding: 10px 8px;
         display: flex;
         flex-flow: column;
         justify-content: center;

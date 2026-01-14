@@ -1,24 +1,33 @@
-.close-btn {
+body div.app div.main button.close-btn {
   position: fixed;
-  right: 1rem;
-  top: 1rem;
+  right: 1.5rem;
+  top: 1.5rem;
   width: 60px;
   height: 60px;
   background: none;
   border: none;
   cursor: pointer;
   z-index: 15501;
-
+  margin: 0;
   transform: rotate(45deg);
+  outline: none;
 
-  >div>div {
+  .close-btn-inner {
+    display: block;
+    width: 40px;
+    height: 40px;
+    transform: translateX(-16px) translateY(-4px);
+
+  }
+
+  .close-btn-inner>div {
     width: 40px;
     height: 3px;
     background-color: #fff;
     position: absolute;
   }
 
-  >div>div:first-child {
+  .close-btn-inner>div:first-child {
     transform: rotateZ(90deg);
   }
 

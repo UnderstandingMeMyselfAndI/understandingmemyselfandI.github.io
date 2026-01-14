@@ -3,7 +3,7 @@ import AddIcon from '@mui/icons-material/Add';
 const CloseBtn = ({ handleClick }) => {
   return (
     <button className='close-btn' onClick={handleClick}>
-      <div>
+      <div className='close-btn-inner'>
         <div></div>
         <div></div>
       </div>

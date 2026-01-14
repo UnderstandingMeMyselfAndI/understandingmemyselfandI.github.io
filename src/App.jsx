@@ -48,6 +48,7 @@ function App() {
   const daysCounterEnabled = useAppStore((s) => s.daysCounterEnabled);
   // const enableYourTools = useAppStore((s) => s.enableYourTools)
   const quickExitEnabled = useAppStore((s) => s.quickExitEnabled);
+  const unitsCalculatorEnabled = useAppStore((s) => s.unitsCalculatorEnabled);
   const setActivity = useAppStore((s) => s.setActivity);
 
   setActivity(-1);
@@ -73,7 +74,6 @@ function App() {
 
         <div className='main'>
           {toolboxFilterEnabled && <BadgeToolbox />}
-
           <Header />
           <Introduction />
           <Tools />
@@ -81,18 +81,16 @@ function App() {
           {daysCounterEnabled && <DaysCounterCTA />}
           <Lingo />
           {/* <Quiz /> */}
-          <UnitsCalculator />
-
+          {unitsCalculatorEnabled && <UnitsCalculator />}
+          <Settings />
           <div className='activities' id='top'>
             {daysCounterEnabled && <DaysCounter />}
-            <Settings />
+
             <AcronymExplained />
             <PrivacyPolicy />
           </div>
-
           <NewsletterSignUp />
           <InstallCTA />
-
           <Footer />
         </div>
         <SnackBars />

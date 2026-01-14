@@ -39,6 +39,8 @@ export default function AppMenu() {
   const [show, setShow] = useState(true);
 
   const daysCounterEnabled = useAppStore((state) => state.daysCounterEnabled);
+  const unitsCalculatorEnabled = useAppStore((s) => s.unitsCalculatorEnabled);
+
   const setActivity = useAppStore((state) => state.setActivity);
   const activity = useAppStore((state) => state.activity);
 
@@ -55,7 +57,7 @@ export default function AppMenu() {
     setOpen(!open);
   };
   const handleClose = () => {
-    setActivity(-1);
+    // setActivity(-1);
     setOpen(false);
     setOpenComponent;
     false;
@@ -94,7 +96,6 @@ export default function AppMenu() {
       <ul className={open ? ' open' : ' closed'} id='app-menu'>
         <li
           onClick={() => {
-            setActivity(1);
             const el = document.getElementById('tools');
             if (gae && window.gtag) {
               window.gtag('event', 'tools', {
@@ -103,6 +104,8 @@ export default function AppMenu() {
               });
             }
             el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            setActivity(1);
             handleClose();
           }}
         >
@@ -111,8 +114,6 @@ export default function AppMenu() {
         <li
           className=''
           onClick={() => {
-            handleClose();
-            setActivity(-1);
             const el = document.getElementById('lingo');
             if (gae && window.gtag) {
               window.gtag('event', 'lingo_phrases', {
@@ -120,6 +121,9 @@ export default function AppMenu() {
                 screen_name: 'Lingo & Phrases',
               });
             }
+
+            setActivity(-1);
+            handleClose();
 
             el.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }}
@@ -153,7 +157,6 @@ export default function AppMenu() {
           <li
             className='new'
             onClick={() => {
-              handleClose();
               if (gae && window.gtag) {
                 window.gtag('event', 'days_counter', {
                   app_name: 'Ummi',
@@ -161,16 +164,16 @@ export default function AppMenu() {
                 });
               }
               setActivity(2);
+              handleClose();
             }}
           >
             Days Counter
           </li>
         )}
-        {daysCounterEnabled && (
+        {unitsCalculatorEnabled && (
           <li
             className='new'
             onClick={() => {
-              handleClose();
               if (gae && window.gtag) {
                 window.gtag('event', 'unites_calculator', {
                   app_name: 'Ummi',
@@ -178,6 +181,7 @@ export default function AppMenu() {
                 });
               }
               setActivity(5);
+              handleClose();
             }}
           >
             Units Calculator
@@ -188,17 +192,19 @@ export default function AppMenu() {
           <li
             className=''
             onClick={() => {
-              handleClose();
               if (gae && window.gtag) {
                 window.gtag('event', 'install', {
                   app_name: 'Ummi',
                   screen_name: 'Install',
                 });
               }
-              setActivity(-1);
+
               const el = document.getElementById('install');
 
               el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+              setActivity(-1);
+              handleClose();
             }}
           >
             Install
@@ -206,18 +212,18 @@ export default function AppMenu() {
         )}
         <li
           onClick={() => {
-            handleClose();
-
             if (gae && window.gtag) {
               window.gtag('event', 'share', {
                 app_name: 'Ummi',
                 screen_name: 'Share',
               });
             }
-            setActivity(-1);
+
             const el = document.getElementById('share');
 
             el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            setActivity(-1);
+            handleClose();
           }}
         >
           Share
@@ -225,17 +231,18 @@ export default function AppMenu() {
 
         <li
           onClick={() => {
-            handleClose();
             if (gae && window.gtag) {
               window.gtag('event', 'newsletter', {
                 app_name: 'Ummi',
                 screen_name: 'Newsletter',
               });
             }
-            setActivity(15);
+
             const el = document.getElementById('newsletter');
 
             el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            setActivity(15);
+            handleClose();
           }}
         >
           Newsletter
@@ -243,7 +250,6 @@ export default function AppMenu() {
 
         <li
           onClick={() => {
-            handleClose();
             if (gae && window.gtag) {
               window.gtag('event', 'privacy_policy', {
                 app_name: 'Ummi',
@@ -251,6 +257,7 @@ export default function AppMenu() {
               });
             }
             setActivity(10);
+            handleClose();
           }}
         >
           Your privacy
