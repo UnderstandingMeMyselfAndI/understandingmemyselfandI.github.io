@@ -55,7 +55,7 @@ const Tools = () => {
   };
 
   useEffect(() => {
-    setOpen(activityID === activity);
+    setOpen(activity == -1);
   }, [activity, activityID]);
 
   useEffect(() => {
@@ -64,7 +64,7 @@ const Tools = () => {
 
   useEffect(() => {
     setOpen(activity === -1);
-  }, [activityInView]);
+  }, [activityInView, activity]);
 
   const inViewRef = useOnInView(
     // (inView, entry) => {
