@@ -16,7 +16,7 @@ div.AccordionRoot {
 	flex-flow: column wrap;
 	justify-content: center;
 	align-items: center;
-	z-index:3000;
+	z-index: 3000;
 
 	div.accronym-menu {
 		div.list-item {
@@ -25,21 +25,24 @@ div.AccordionRoot {
 			border-radius: var(--border-radius);
 			margin: 0.5rem auto;
 
-			 width: fit-content;
+			width: fit-content;
 			// min-width: 60vw;
-			max-width: 90vw;
+			max-width: 600px;
 			position: relative;
 			// outline: 1px solid #ccc;
 			cursor: pointer;
+
 			.active {
 				position: relative;
 				transition: all var(--transition);
 			}
+
 			.carousel-item {
 				width: 100%;
 				padding: 0.75rem 2rem;
 				// outline: 1px solid #ccc;
 				position: relative;
+
 				.title {
 					word-break: break-all;
 					word-wrap: break-word;
@@ -50,6 +53,7 @@ div.AccordionRoot {
 					width: 100%;
 					min-height: 60px;
 					height: 60px;
+
 
 					.letters-cont {
 						display: flex;
@@ -64,6 +68,7 @@ div.AccordionRoot {
 
 						height: 100%;
 						width: 100%;
+
 						position: absolute;
 						left: 0;
 						top: 0;
@@ -74,9 +79,10 @@ div.AccordionRoot {
 							// outline: 1px solid #ccc;
 							height: fit-content;
 							width: fit-content;
-							color: #fff;							
+							color: #fff;
 							position: relative;
 							margin-right: 2px;
+
 							&::after {
 								content: "";
 								position: absolute;
@@ -91,9 +97,10 @@ div.AccordionRoot {
 								// outline: 2px solid var(--primary);
 								transform: translate(140%, -80%);
 							}
-			
+
 						}
 					}
+
 					.icon {
 						opacity: 0;
 						position: absolute;
@@ -104,11 +111,13 @@ div.AccordionRoot {
 						fill: var(--orange);
 						stroke: var(--orange);
 					}
+
 					.icon.active {
 						opacity: 1;
 					}
 				}
 			}
+
 			&::after {
 				content: "";
 				width: 100%;
@@ -124,6 +133,7 @@ div.AccordionRoot {
 				box-shadow: 0px 0px 6px rgba(20, 20, 20, 0.9), 0px 0px 9px rgba(20, 20, 20, 0.9), 0px 0px 20px rgba(30, 30, 30, 0.4);
 			}
 		}
+
 		// div.list-item:has(.selected){
 		// 	&::before {
 		// 		content:"";
@@ -138,7 +148,7 @@ div.AccordionRoot {
 		// 		outline:2px solid  var(--orange);
 		// 	}
 		// 	&::after {
-				
+
 		// 		z-index: -2;
 		// 		// background-color: var(--orange);
 		// 	}

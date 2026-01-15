@@ -1,0 +1,37 @@
+.search-lingo {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+div.lingo-list {
+    max-height: 210px;
+    // overflow: hidden;
+    mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
+    mask-mode: alpha;
+
+}
+
+div.lingo-list-arrow {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+
+
+    &::after {
+        content: "➔";
+        font-size: 50px;
+        position: absolute;
+        transform: rotatez(90deg) translate(50px, 0px);
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 50px;
+        z-index: 100000000;
+    }
+
+
+}
+
+svg.lingo-list-icon {
+    transform: scale(4);
+}

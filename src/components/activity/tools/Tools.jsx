@@ -95,18 +95,19 @@ const Tools = () => {
         <h2>
           <u>{content?.title}</u>
         </h2>
-        <div className='description'>
-          {content.description &&
-            content.description.map((html, i) => {
-              return <p key={i}>{parse(html)}</p>;
-            })}
-        </div>
+
         <MenuCarousel
           handleClick={handleClick}
           data={carouselData}
           filterIDs={positiveIDsSet}
           showFavourites={yourToolsEnabled}
         />
+        <div className='tools-description'>
+          {content.description &&
+            content.description.map((html, i) => {
+              return <p key={i}>{parse(html)}</p>;
+            })}
+        </div>
       </section>
     </div>
   );

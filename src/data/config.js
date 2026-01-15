@@ -344,8 +344,9 @@ const strings = {
       title: 'The Tools',
       description: [
         "These tools don't <br />work for <u>everbody</u>.",
-        'They might work for <u>one person</u> but not the <u>next person</u>.',
-        'However, they have worked for <u>somebody</u>.',
+        'They might work for <br /><u>one person</u> <br />but not the <u>next</u>.',
+        'They have worked for <br /><u>somebody</u>.',
+        "<u><span class='orange'>Everbody's journey <br />is different.</span></u>",
         // "Some tools also include videos that help to explain them."
       ],
       content: [],

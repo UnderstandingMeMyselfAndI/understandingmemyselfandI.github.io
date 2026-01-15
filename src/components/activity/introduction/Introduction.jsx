@@ -184,7 +184,7 @@ const Introduction = () => {
                 {cnt?.content?.map((para, k) => {
                   return (
                     <div className={'point' + ' ' + ' p-' + k} key={'p-' + k}>
-                      {i === 1 && <DoneOutlineIcon className='icon' />}
+                      {i === 1 && <DoneOutlineIcon className='tick-icon' />}
                       <p key={k}>{parse(para)}</p>
                     </div>
                   );

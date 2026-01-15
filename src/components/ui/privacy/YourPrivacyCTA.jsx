@@ -36,7 +36,7 @@ const YourPrivacyCTA = () => {
       {content?.cta?.content?.map((html, i) => {
         return <p key={i}>{parse(html)}</p>;
       })}
-      <button className='btn' onClick={() => handleClick()}>
+      <button className='privacy-cta-btn btn' onClick={() => handleClick()}>
         {content?.cta?.btnLabel}
       </button>
     </section>

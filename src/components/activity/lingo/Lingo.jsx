@@ -3,7 +3,7 @@ import SearchField from '@/components/ui/search/SearchField';
 import Dialog from '@/components/ui/dialog/Dialog';
 import lingo from '@/data/lingo.js';
 import { sanitizeStringForUrl } from '@/js/utils.js';
-
+// import UnfoldMoreDoubleIcon from '@mui/icons-material/UnfoldMoreDouble';
 import './styles.scss';
 import useAppStore from '@/store/useAppStore';
 const Lingo = () => {
@@ -66,6 +66,10 @@ const Lingo = () => {
       />
       <h3>Lingo &amp; Phrases</h3>
       <SearchField handleClick={handleClick} />
+      {/* <div className='lingo-list-arrow'>
+        {/* <UnfoldMoreDoubleIcon className='lingo-list-icon' />
+        <UnfoldMoreDoubleIcon className='lingo-list-icon' /> 
+      </div> */}
     </section>
   ) : null;
 };
