@@ -1,5 +1,6 @@
+import PropTypes from 'prop-types';
 import './styles.scss';
-import AddIcon from '@mui/icons-material/Add';
+
 const CloseBtn = ({ handleClick }) => {
   return (
     <button className='close-btn' onClick={handleClick}>
@@ -10,7 +11,9 @@ const CloseBtn = ({ handleClick }) => {
     </button>
   );
 };
-// CloseBtn.propTypes = {
-// 	handleClick:function
-// };
+
+CloseBtn.propTypes = {
+  handleClick: PropTypes.func,
+};
+
 export default CloseBtn;

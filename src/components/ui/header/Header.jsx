@@ -3,21 +3,25 @@ import { useRef, useEffect } from 'react';
 import Logo from 'ui/logo/Logo.jsx';
 import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined';
 import useAppStore from '@/store/useAppStore';
-import { useOnInView } from 'react-intersection-observer';
+// import { useOnInView } from 'react-intersection-observer';
 // import React from "https://esm.sh/react@19.1.0";
 // import ReactDOM from "https://esm.sh/react-dom@19.1.0/client";
+// import PropTypes from 'prop-types';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { GSDevTools } from 'gsap/GSDevTools';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SplitText } from 'gsap/SplitText';
 
-import gsap from 'gsap'; // <-- import GSAP
-import { useGSAP } from '@gsap/react'; // <-- import the hook from our React package
-gsap.registerPlugin(useGSAP); // register the hook to avoid React version discrepancies
+gsap.registerPlugin(useGSAP, GSDevTools, ScrollTrigger, SplitText);
 
 // import "../../../scss/Animation.css";
 // import "./AnimationIntro.scss";
 import './styles.scss';
 
-const Header = ({ classes = '' }) => {
+const Header = () => {
   const [open, setOpen] = React.useState(false);
-  const [isInView, setIsInView] = React.useState(true);
+  // const [isInView, setIsInView] = React.useState(true);
   //   const [stage, setStage] = React.useState(0);
   const activity = useAppStore((s) => s.activity);
   const scrollStage = useAppStore((state) => state.scrollStage);
@@ -210,5 +214,5 @@ const Header = ({ classes = '' }) => {
     </header>
   );
 };
-
+Header.PropTypes = {};
 export default Header;

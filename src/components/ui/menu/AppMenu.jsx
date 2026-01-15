@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 // import Menu from '@mui/material/Menu';
 // import MenuItem from '@mui/material/MenuItem';
 import useAppStore from '@/store/useAppStore';
-import { getPWADisplayMode } from '@/utils/isAppInstalled';
+// import { getPWADisplayMode } from '@/utils/isAppInstalled';
 import { activities } from '@/data/config';
 // import driverObj from '@/js/tour.js'
 // import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
@@ -33,7 +33,7 @@ export const MenuCloseIcon = () => (
 );
 // TODO: Implement URLS
 export default function AppMenu() {
-  const [anchorEl, setAnchorEl] = useState(null);
+  // const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
   const [showComponent, setOpenComponent] = useState(true);
   const [show, setShow] = useState(true);

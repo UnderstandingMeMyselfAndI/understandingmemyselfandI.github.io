@@ -7,6 +7,7 @@ div.AcronymExplained {
 	z-index: -10;
 	opacity: 0;
 	visibility: hidden;
+	left: -100%;
 
 	width: 100vw;
 	max-width: var(--appMaxWidth);
@@ -21,6 +22,7 @@ div.AcronymExplained {
 	background: rgba(0, 0, 0, 0.85);
 	transition: all 0.2s ease-out;
 	transform: scale(1.025) translate(-50%, 0);
+	z-index: -1;
 
 	&.open {
 		opacity: 1;
@@ -28,6 +30,7 @@ div.AcronymExplained {
 		transition: all 0.2s ease-in;
 		z-index: 6000;
 		visibility: visible;
+		left: 50%;
 	}
 
 	ul {
