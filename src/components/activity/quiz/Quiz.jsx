@@ -1,5 +1,5 @@
 // Quiz.jsx (updated with simplified analytics)
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 import BackdropParallax from '@/components/ui/backdrop/BackdropParallax';
 import QuizProgress from './quizProgress/QuizProgress';
@@ -109,7 +109,7 @@ const Quiz = () => {
 
 
   return (
-    <div className={'activity quiz'+  (open ? ' show' : '')}>
+    <div className={'activity activity-quiz fixed'+  (open ? ' show' : '')}>
       <CloseBtn className='close-btn' handleClick={handleClose} />
       <div className='inner'>
         {!started ? (

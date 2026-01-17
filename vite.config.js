@@ -1,39 +1,32 @@
 import path from 'path';
 import fs from 'fs';
 
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import commonjs from 'vite-plugin-commonjs';
-import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import { analyzer } from 'vite-bundle-analyzer';
 import Sitemap from 'vite-plugin-sitemap';
+import { VitePWA } from 'vite-plugin-pwa';
 import getDynamicRoutes from './getDynamicRoutes.js';
-
-const __dirname = path.dirname('./src');
 
 //version meta data
 const metadata = JSON.parse(fs.readFileSync('./src/metadata.json', 'utf-8'));
 
 export default defineConfig({
   root: './',
-  base: './',
   publicDir: 'public',
   define: {
     __BUILD_METADATA__: JSON.stringify(metadata),
-    // __PRECACHE_FONTS__: JSON.stringify(fontFiles),
   },
   build: {
     minify: 'terser',
     cssMinify: true,
-    base: './',
     outDir: './docs',
-    emptyOutDir: true, // also necessary,
-    commonjsOptions: { transformMixedEsModules: true }, // Change
+    emptyOutDir: true,
+    commonjsOptions: { transformMixedEsModules: true },
     cssCodeSplit: true,
-    sourcemap: true,
+    sourcemap: false, // Disabled for production
     rollupOptions: {
       treeshake: 'smallest',
-      // external: ['lit', 'lit/decorators.js', 'lit/directives/class-map.js', 'lit/directives/style-map.js'],
       output: {
         manualChunks: {
           'react-dom': ['react-dom'],
@@ -42,61 +35,109 @@ export default defineConfig({
           '@gsap/react': ['@gsap/react'],
           '@jmeirinkmarimed/age-gate': ['@jmeirinkmarimed/age-gate'],
           'react-lite-youtube-embed': ['react-lite-youtube-embed'],
-
-          // 'firebase': ['firebase'],
-          // 'firebaseui': ['firebaseui'],
-          // 'driver.js': ['driver.js'],
-          // 'zustand': ['zustand'],
-
           gsap: ['gsap'],
         },
       },
     },
     watch: {
       include: ['src/**'],
-      // excude: ["src/assets/**"],
-      excude: ['node_modules/**', 'dist/**'],
-
+      exclude: ['node_modules/**', 'dist/**'],
       clearScreen: false,
       skipWrite: false,
     },
   },
   plugins: [
     react(),
-    commonjs(),
-    cssInjectedByJsPlugin(),
     analyzer() /*, analyzer() uncomment for bundle analyzer*/,
     Sitemap({
       outDir: 'docs',
-      hostname: 'https://dev.ummi.now', // Required: your site's base URL
-      // Optional: Add dynamic or extra routes if needed
+      hostname: 'https://dev.ummi.now',
       dynamicRoutes: getDynamicRoutes(),
-      // Optional: Customize defaults
       changefreq: 'weekly',
       priority: 0.8,
-      // Generates robots.txt too if you want
       robots: [{ userAgent: '*', allow: '/' }],
+    }),
+    VitePWA({
+      registerType: 'autoUpdate',
+      injectRegister: 'script', // Injects the registration script into index.html
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,avif,woff,woff2}'],
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'google-fonts-cache',
+              expiration: {
+                maxEntries: 10,
+                maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+          {
+            urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'gstatic-fonts-cache',
+              expiration: {
+                maxEntries: 10,
+                maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+        ],
+      },
+      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
+      manifest: {
+        name: 'DevUmmi',
+        short_name: 'DevUmmi',
+        description:
+          'A companion app for mental health, wellbeing, and addiction recovery.',
+        theme_color: '#819ec9',
+        icons: [
+          {
+            src: 'icons/pwa-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: 'icons/pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+          {
+            src: 'icons/maskable-icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable',
+          },
+        ],
+      },
     }),
   ],
   server: {
     port: 5174,
-    strictPort: true,
     hmr: {
       host: 'localhost',
-      //   protocol: 'ws',
+      clientPort: 5174,
     },
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src/'),
-      icons: path.resolve(__dirname, './src/components/icons/'),
-      buttons: path.resolve(__dirname, './src/components/ui/buttons/'),
-      ui: path.resolve(__dirname, './src/components/ui/'),
-      components: path.resolve(__dirname, './src/components/'),
-
-      public: path.resolve(__dirname, './public/'),
-      data: path.resolve(__dirname, './src/data/'),
-      scss: path.resolve(__dirname, './src/scss/'),
+      '@': path.resolve('./src/'),
+      icons: path.resolve('./src/components/icons/'),
+      buttons: path.resolve('./src/components/ui/buttons/'),
+      ui: path.resolve('./src/components/ui/'),
+      components: path.resolve('./src/components/'),
+      public: path.resolve('./public/'),
+      data: path.resolve('./src/data/'),
+      scss: path.resolve('./src/scss/'),
     },
   },
 });

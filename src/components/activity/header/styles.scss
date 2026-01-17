@@ -5,18 +5,16 @@ section.header#header {
 	position: relative;
 	top: 0;
 	left: 0;
-	// z-index: 1;
 	user-select: none;
 	pointer-events: none;
 	height: 100dvh;
 	width: 100%;
 	max-width: 100dvw;
-	// overflow: hidden;
 	padding: 0;
-	margin: 0 0 160px 0;
-	text-shadow: 0 0px 12px rgba(0, 0, 0, 0.4);
+	margin: 0;
+	margin-top: -6rem; // offset the first row-gap in #main
+	text-shadow: var(--textShadowDarkValue);
 	transition: height 0.35s ease-in-out;
-
 
 	.home-grp {
 		width: 100%;
@@ -26,8 +24,6 @@ section.header#header {
 		align-items: center;
 		justify-content: center;
 		row-gap: 1.25rem;
-
-		// outline: 1px solid yellow;
 	}
 
 	.homelogo {
@@ -41,7 +37,6 @@ section.header#header {
 		width: 10vw;
 		opacity: 0;
 		transform: scale(1.6);
-		// outline: 1px solid yellow;
 
 		.Ummi-logo {
 			max-width: 100%;
@@ -69,8 +64,6 @@ section.header#header {
 		justify-content: center;
 		align-items: center;
 		margin-bottom: -20vh;
-		// outline: 1px solid yellow;
-
 
 		.r1 {
 			width: fit-content;
@@ -86,7 +79,6 @@ section.header#header {
 			.w1:after {
 				content: ",";
 				color: var(--grey);
-				// outline: 4px solid yellow;
 			}
 		}
 
@@ -102,7 +94,6 @@ section.header#header {
 		.w4,
 		.w5 {
 			opacity: 0;
-			// outline: 4px solid yellow;
 		}
 
 		.w0 {

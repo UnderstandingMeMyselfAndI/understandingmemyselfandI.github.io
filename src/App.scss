@@ -54,40 +54,7 @@ body {
     margin: 0.75rem 0 1.5rem 0;
   }
 
-  div.activity {
-    position: relative;
-    // visibility: hidden;
-    display: none;
-    z-index: -10;
-    top: 0;
-    left: 0;
-    width: 100dvw;
-    height: 100dvh;
 
-
-    &.hide,
-    &.close {
-      // visibility: hidden;
-      z-index: -10;
-      pointer-events: none;
-
-    }
-
-    &.show {
-      // visibility: visible;
-      pointer-events: auto;
-      z-index: 6000;
-      display: block;
-    }
-
-    button.close-btn {
-      position: absolute;
-      right: 1.5rem;
-      top: 1.5rem;
-      left: auto;
-      z-index: 6005;
-    }
-  }
 
   .backdrop {
     width: 102%;
@@ -172,13 +139,70 @@ body {
   .main {
     scrollbar-width: 0;
     width: 100%;
-
     margin: 0 auto;
     padding: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    row-gap: 6rem;
 
     .activities {
       position: relative;
       z-index: 6000;
+    }
+
+    section.activity,
+    div.activity {
+      position: relative;
+      visibility: hidden;
+
+      z-index: -10;
+      top: 0;
+      left: 0;
+      width: 100dvw;
+      min-height: 60dvh;
+      max-width: 600px;
+      margin: 0 auto;
+
+      flex-flow: column wrap;
+      align-content: center;
+      align-items: center;
+      justify-content: center;
+      // outline: 1px solid yellow;
+      display: none;
+
+      &.hide,
+      &.close {
+        visibility: hidden;
+        z-index: -10;
+        pointer-events: none;
+
+      }
+
+      &.fixed {
+        position: fixed;
+
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+
+
+      &.show {
+        visibility: visible;
+        pointer-events: auto;
+        z-index: 6000;
+        display: flex;
+        align-content: center;
+      }
+
+      button.close-btn {
+        position: absolute;
+        right: 1.5rem;
+        top: 1.5rem;
+        left: auto;
+        z-index: 6005;
+      }
     }
 
     >.inner {

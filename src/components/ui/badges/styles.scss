@@ -44,7 +44,7 @@ span.tooltip {
 }
 
 .badge.toolbox {
-	text-shadow: 4px 0px 7px rgba(0, 0, 0, 1);
+	text-shadow: var(--textShadowDarkValue);
 	opacity: 0.5;
 	transition: all var(--transition2);
 	animation: bounce-out 0.25s ease-in-out;

@@ -27,12 +27,12 @@ const YourPrivacyCTA = () => {
   };
 
   return (
-    <section className={'your-privacy cta' + (open ? ' show' : '')}>
-      <div className='title'>
-        <h3>
+    <section className={'activity activity-privacy-cta' + (open ? ' show' : '')}>
+
+        <h3 className='title'>
           <u>{parse(content?.title)}</u>
         </h3>
-      </div>
+
       {content?.cta?.content?.map((html, i) => {
         return <p key={i}>{parse(html)}</p>;
       })}

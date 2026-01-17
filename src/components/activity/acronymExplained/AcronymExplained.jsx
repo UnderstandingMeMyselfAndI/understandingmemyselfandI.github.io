@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import useAppStore from '@/store/useAppStore';
 import ButtonToolbox from 'buttons/toolbox/ButtonToolbox';
-import Backdrop from 'ui/backdrop/Backdrop';
+// import Backdrop from 'ui/backdrop/Backdrop';
 
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
@@ -92,8 +92,8 @@ const AcronymExplained = () => {
   };
 
   return (
-    <div
-      className={'activity AcronymExplained' + (open ? ' show' : '')}
+    <section
+      className={'activity acronym-explained-activity fixed' + (open ? ' show' : '')}
       key='acronym-card'
     >
       <div className='inner'>
@@ -224,7 +224,7 @@ const AcronymExplained = () => {
           )}
           
         </section>
-        <div className='footer' key='acronym-card-footer'>
+        <div className='footer acronym-card-footer' key='acronym-card-footer'>
 
           <ButtonToolbox
             id={acronymData?.id}
@@ -256,7 +256,7 @@ const AcronymExplained = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 AcronymExplained.displayName = 'AcronymExplained';

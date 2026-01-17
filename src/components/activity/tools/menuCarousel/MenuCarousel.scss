@@ -7,29 +7,28 @@
 
 div.AccordionRoot {
 	// background-color: transparent;
-	margin: 0;
-	margin-top: 0.5rem;
-	position: relative;
+	// margin: 0 auto;
+	position: static;
+	// position: relative;
+	// top: 0;
+	// left: 0;
 	transition: all var(--transition);
-	display: block;
-	display: flex;
-	flex-flow: column wrap;
-	justify-content: center;
-	align-items: center;
-	z-index: 3000;
+
+	// display: flex;
+	// flex-flow: column nowrap;
+	// justify-content: center;
+	// align-items: center;
+	// z-index: 3000;
+	width: 100%;
 
 	div.accronym-menu {
 		div.list-item {
 			transition: all var(--transition);
-			// background: transparent;
 			border-radius: var(--border-radius);
 			margin: 0.5rem auto;
-
 			width: fit-content;
-			// min-width: 60vw;
 			max-width: 390px;
 			position: relative;
-			// outline: 1px solid #ccc;
 			cursor: pointer;
 
 			.active {
@@ -64,7 +63,6 @@ div.AccordionRoot {
 						column-gap: 0.65rem;
 						justify-content: center;
 						align-items: center;
-						// padding: 1.5rem 0.5rem; // don't add padding here
 
 						height: 100%;
 						width: 100%;

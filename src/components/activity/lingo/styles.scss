@@ -1,24 +1,8 @@
-section.search-lingo {
-    width: 100dvw;
-    max-width: 100%;
-    // position: relative;
-    top: 0;
-    left: 0;
-    // z-index: 4000;
-    // overflow: hidden;
-
-    overflow-x: hidden;
-
-
-    .search-lingo-wrap {
-        max-width: 600px;
-        margin: 0 auto;
-    }
-
-}
+section.activity-search-lingo {}
 
 div.lingo-list-wrapper {
     transition: height 1.05s cubic-bezier(0.75, 0, 0.5, 1);
+    overflow: hidden;
 }
 
 div.lingo-list-wrapper.expanded {
@@ -60,16 +44,14 @@ div.lingo-list-btn {
     cursor: pointer;
     width: fit-content;
     height: 50px;
-    // outline: 1px solid red;
     margin: 0 auto;
-
     background: var(--blue);
     padding: 1rem 1.25rem;
     border-radius: 4px;
-    box-shadow: 0px 0px 6px rgba(10, 10, 10, 0.5);
+    box-shadow: var(--textShadowDarkValue);
 
 }
 
-svg.lingo-list-icon {
-    transform: scale(4);
-}
+// svg.lingo-list-icon {
+//     transform: scale(4);
+// }

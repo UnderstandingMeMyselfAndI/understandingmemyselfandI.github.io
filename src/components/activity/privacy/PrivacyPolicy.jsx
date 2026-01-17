@@ -36,7 +36,7 @@ const PrivacyPolicy = () => {
   };
 
   return (
-    <div className={'activity privacy' + (open ? ' show' : '')} id='privacy'>
+    <div className={'activity activity-privacy fixed' + (open ? ' show' : '')} id='privacy'>
       <CloseBtn handleClick={handleClose} className='close-btn' />
       <div className='inner'>
         <h1>Privacy Policy</h1>
@@ -47,7 +47,7 @@ const PrivacyPolicy = () => {
           <h2>1. Introduction</h2>
           <p>
             Welcome to the <strong>Ummi</strong> Progressive Web Application
-            (the "App"). This Privacy Policy explains how we collect, use,
+            (the &quot;App&quot;). This Privacy Policy explains how we collect, use,
             disclose, and safeguard your information when you use our App, which
             provides informational resources and tools related to Cognitive
             Behavioral Therapy (CBT), Acceptance and Commitment Therapy (ACT),
@@ -154,7 +154,7 @@ const PrivacyPolicy = () => {
           <ul>
             <li>
               <strong>Favourites / Tools in Your Toolbox:</strong> Your list of
-              favourited tools is stored exclusively in your device's local
+              favourited tools is stored exclusively in your device&apos;s local
               IndexedDB database. We do not have remote access to this data.
             </li>
             <li>
@@ -172,7 +172,7 @@ const PrivacyPolicy = () => {
           <p>We use the information we collect to:</p>
           <ul>
             <li>
-              Provide, operate, improve and maintain the App's functionality.
+              Provide, operate, improve and maintain the App&apos;s functionality.
             </li>
             <li>Authenticate your account and secure access.</li>
             <li>
@@ -181,7 +181,7 @@ const PrivacyPolicy = () => {
               this consent at any time.
             </li>
             <li>
-              Improve the App's content and user experience based on anonymous,
+              Improve the App&apos;s content and user experience based on anonymous,
               aggregated analytics (subject to consent).
             </li>
             <li>
@@ -225,9 +225,9 @@ const PrivacyPolicy = () => {
           <ul>
             <li>
               <strong>Local Storage:</strong> Favourites and Days Counter data
-              are stored locally in your browser's IndexedDB. You can clear this
-              data at any time via browser settings or the App's "Clear Local
-              Data" function.
+              are stored locally in your browser&apos;s IndexedDB. You can clear this
+              data at any time via browser settings or the App&apos;s &quot;Clear Local
+              Data&quot; function.
             </li>
 
             <li>
@@ -311,7 +311,7 @@ const PrivacyPolicy = () => {
                       setActivity(12);
                     }}
                   >
-                    "Clear Your Data"
+                    &quot;Clear Your Data&quot;
                   </span>
                 </u>
               </b>{' '}
@@ -380,14 +380,14 @@ const PrivacyPolicy = () => {
         <section>
           <h2>11. Changes to This Privacy Policy</h2>
           <p>
-            We may update this policy. We'll notify registered users of material
+            We may update this policy. We&apos;ll notify registered users of material
             changes via email or in-App notice. Continued use accepts changes.
           </p>
           {/* <ul>
 						<li>
 							For California Residents: See our{' '}
 							<a href='#' onClick={handleCCPAClick}>
-								"CCPA Privacy Notice"
+								&quot;CCPA Privacy Notice&quot;
 							</a>{' '}
 							for CCPA rights.
 						</li>

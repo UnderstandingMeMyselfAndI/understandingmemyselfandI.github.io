@@ -6,7 +6,7 @@ import ButtonSettings from "../buttons/settings/ButtonSettings.jsx";
 // import CheckboxOffline from '../footer/offlineCheckbox/OfflineCheckbox.jsx';
 import iconAndroid from "@icons/iconAndroid.jsx";
 import iconApple from "@icons/iconApple.jsx";
-import BackgroundOptions from "../footer/background/BackgroundOptions";
+import BackgroundOptions from "../../activity/footer/background/BackgroundOptions";
 import CheckboxFilterFavourites from "@/components/ui/CheckboxFilterFavourites/CheckboxFilterFavourites.jsx";
 import ButtonUpdate from "../buttons/update/ButtonUpdate.jsx";
 export function DrawerSettings() {

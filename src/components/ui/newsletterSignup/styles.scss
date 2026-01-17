@@ -21,7 +21,7 @@
     border-color: transparent;
     border-style: solid;
 
-    text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.9);
+    text-shadow: var(--boxShadowDarkValue);
 
     padding: 2rem 0;
     justify-content: center;
@@ -217,7 +217,7 @@
                     background-color: var(--greyDark);
                     opacity: 0.3;
                     outline: 1px solid rgba(200, 200, 200, 0.5);
-                    box-shadow: 0px 0px 12px rgba(10, 10, 10, 0.8);
+                    box-shadow:var(--boxShadowDarkValue);
 
                 }
 

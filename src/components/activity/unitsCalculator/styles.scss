@@ -382,7 +382,7 @@ section.ummi-units-calculator {
           margin-top: 0.75rem;
           border: 1px solid rgba(200, 200, 200, 0.25);
           outline: none;
-          box-shadow: 0px 0px 6px rgba(200, 200, 200, 0.25);
+          box-shadow: var(--boxShadowLightValue);
         }
       }
 
@@ -424,7 +424,7 @@ section.ummi-units-calculator {
         width: 114px;
         border-radius: 6px;
         border: none;
-        box-shadow: 0px 0px 6px rgba(10, 10, 10, 0.15);
+        box-shadow: var(--boxShadowDarkValue);
         padding: 8px 8px;
         display: flex;
         flex-flow: column;
@@ -497,7 +497,7 @@ section.ummi-units-calculator {
           color: var(--primary);
           border: 1px solid rgba(200, 200, 200, 0.45);
           outline: none;
-          box-shadow: 0px 0px 6px rgba(200, 200, 200, 0.5);
+          box-shadow: var(--boxShadowDarkValue);
           transition: all 0.35s ease-in-out;
         }
       }
@@ -534,7 +534,7 @@ section.ummi-units-calculator {
           z-index: -1;
           transition: all 0.35s ease-in-out;
           border: 1px solid var(--lightBlue);
-          box-shadow: 0px 0px 6px rgba(200, 200, 200, 0.5);
+          box-shadow: var(--boxShadowDarkValue);
         }
 
         cursor:pointer &:hover {
@@ -566,7 +566,7 @@ section.ummi-units-calculator {
           color: var(--primary);
           font-weight: 700;
           font-variation-settings: 'wght' 700;
-          text-shadow: 0px 0px 3px rgba(10, 10, 10, 0.5);
+          text-shadow: var(--textShadowDarkValue);
         }
       }
 

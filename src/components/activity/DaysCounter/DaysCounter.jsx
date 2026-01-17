@@ -4,7 +4,8 @@ import './styles.scss';
 import AddIcon from '@mui/icons-material/Add';
 import CloseBtn from '../../ui/buttons/close/CloseBtn';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import BackdropParallax from '../../ui/backdrop/Backdrop';
+// import BackdropParallax from '../../ui/backdrop/Backdrop';
+import parse from 'html-react-parser';
 import useAppStore from '@/store/useAppStore';
 
 import Dialog from 'components/ui/dialog/Dialog';
@@ -104,13 +105,17 @@ const DaysCounter = () => {
   const formatDate = (dateString) => {
     if (!dateString) return '';
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
+    const returnDate = date.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
       hour: '2-digit',
       minute: '2-digit',
     });
+    const arr = returnDate.split(' ');
+    const formattedDate = `<span>${arr[0]} ${arr[1]} ${arr[2]}</span> <span>${arr[3]} ${arr[4]}${arr[5]}</span>`;
+    
+    return formattedDate
   };
 
   const handleDateClick = (index) => {
@@ -122,7 +127,7 @@ const DaysCounter = () => {
   // 	return null
   // }
   return (
-    <div className={"activity activity-days-counter" + (open ? ' show' : '')}>
+    <section className={"activity days-counter-activity fixed" + (open ? ' show' : '')}>
       <div
         className={
           'days-counter-activity ' +
@@ -169,8 +174,7 @@ const DaysCounter = () => {
             className={'days-counter-list' + (dates.length === 2 ? ' full' : '')}
           >
             {dates.map((date, index) => (
-              <div key={date.id} className='days-counter-card'>
-                <div className='days-counter-card-header'>
+              <div key={date.id} className='days-counter-card'>               
                   
                     <button
                       onClick={() => {
@@ -181,9 +185,7 @@ const DaysCounter = () => {
                       title='Delete'
                     >
                       <DeleteForeverIcon />
-                    </button>
-                  
-                </div>
+                    </button>                
 
                 {date.selectedDate ? (
                   <div className='days-counter-values'>
@@ -224,9 +226,10 @@ const DaysCounter = () => {
                     </div>
                   </div>
                 )}
-                <div className='new-date'>
+                <div className='days-counter-card-date'>
                   <div className='title'>
                     <input
+                      id={`Days-Counter-Title-${index}`}
                       type='text'
                       placeholder='Tap to set a title'
                       value={date.label}
@@ -243,7 +246,7 @@ const DaysCounter = () => {
                         onClick={() => handleDateClick(index)}
                         style={{ cursor: 'pointer' }}
                       >
-                        {formatDate(date.selectedDate)}
+                        {parse(formatDate(date.selectedDate))}
                       </span>
                     ) : (
                       <></>
@@ -294,7 +297,7 @@ const DaysCounter = () => {
         </div> */}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

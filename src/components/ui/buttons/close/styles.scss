@@ -1,25 +1,33 @@
 button.close-btn {
   position: fixed;
-  right: 1.5rem;
-  top: 1.5rem;
-  width: 60px;
-  height: 60px;
+  right: 0;
+  top: 0;
+  width: 55px;
+  height: 55px;
   background: none;
   border: none;
   outline: none;
   cursor: pointer;
   z-index: 15501;
   margin: 0;
-  transform: rotate(45deg);
+  padding: 0;
   outline: none;
   box-shadow: none;
+  transform: translate(13%, -20%);
+
+  .close-btn-wrap {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: translate(-22%, 40%)
+  }
 
   .close-btn-inner {
     display: block;
-    width: 40px;
-    height: 40px;
-    transform: translateX(-16px) translateY(-4px);
-
+    width: 100%;
+    height: 100%;
+    transform-origin: 50% 50%;
+    transform: rotate(45deg);
   }
 
   .close-btn-inner>div {

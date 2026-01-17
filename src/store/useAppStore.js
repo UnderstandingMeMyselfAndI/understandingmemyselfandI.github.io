@@ -14,7 +14,7 @@ const indexedDBStorage = {
   },
 };
 
-// TODO: Implement short names
+// TODO[x]: Implement short names
 const useAppStore = create(
   persist(
     (set, get) => ({

@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from 'react';
 import useAppStore from '@/store/useAppStore';
 import { activities } from '@/data/config';
-import MenuCarousel from '@/components/ui/menuCarousel/MenuCarousel';
+import MenuCarousel from '@/components/activity/tools/menuCarousel/MenuCarousel.jsx';
 import toolsData from '../../../data/tools.js';
 
 // import { useInView, useOnInView } from 'react-intersection-observer';
@@ -89,7 +89,7 @@ const Tools = () => {
   return (
     <section
       ref={inViewRef}
-      className={'activity activity-tools tools ' + (open ? ' show' : ' hide')}  id='tools'
+      className={'activity activity-tools tools ' + (open ? ' show' : ' hide')}  id='the-tools'
     >
 
         <h2>

@@ -4,37 +4,30 @@
 	outline: none;
 	border: none;
 	background: none;
-	margin:0;
+	margin: 0;
+
 	svg {
 		color: var(--primary);
 	}
+
 	&.active {
 		svg {
 			color: var(--yellow);
 		}
 	}
 }
+
 .MuiAccordion-root {
 	.MuiAccordion-heading {
 		.MuiAccordionSummary-root.AcronymTitle {
 			position: relative;
 
 			.MuiAccordionSummary-content {
-				// height: 100%;
-				// outline: 1px solid 999;
 				.btn.toolbox {
 					width: 28px;
 					height: 28px;
-					// outline: 1px solid #ccc;
-					// min-height: 100%;
-					// display: flex;
-					// outline: 1px solid #ccc;
-					// justify-content: center;
-					// align-items: center;
-					// // position: absolute;
-
-					// transform: translate(0, 50%);
 					transition: all 0.35s ease-in-out;
+
 					svg {
 						width: 100%;
 						height: 100%;
@@ -43,15 +36,5 @@
 			}
 		}
 	}
-	&.Mui-expanded {
-		.MuiAccordion-heading {
-			.MuiAccordionSummary-root.AcronymTitle {
-				.MuiAccordionSummary-content {
-					.btn.toolbox {
-						// left: 3vw;
-					}
-				}
-			}
-		}
-	}
+
 }

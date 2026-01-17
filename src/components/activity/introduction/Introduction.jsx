@@ -37,86 +37,102 @@ const Introduction = () => {
     return Math.floor(Math.random() * (max - 1 + 1)) + 1;
   }
 
-  // useGSAP(
-  //   () => {
-  //     const points = gsap.utils.toArray('.point');
+  useGSAP(
+    () => {
+      const points = gsap.utils.toArray('.point');
 
-  //     points &&
-  //       points.forEach((point, i) => {
-  //         console.log('point', point);
-  //         let tl = gsap.timeline({
-  //           // yes, we can add it to an entire timeline!
-  //           scrollTrigger: {
-  //             trigger: point, // '.point',
-  //             markers: false,
-  //             id: 'section' + i,
-  //             pin: false, // pin the trigger element while active
-  //             start: 'top+=15% bottom-=20%', // when the top of the trigger hits the top of the viewport
-  //             end: 'bottom-=15% top+=35%', // end after scrolling 500px beyond the start
-  //             scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
-  //             toggleActions: 'play pause reverse reverse',
-  //             snap: {
-  //               snapTo: 'labels', // snap to the closest label in the timeline
-  //               duration: { min: 2.5, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
-  //               delay: 0.5, // wait 0.2 seconds from the last scroll event before doing the snapping
-  //               ease: 'power4.inOut', // the ease of the snap animation ("power3" by default)
-  //             },
-  //           },
-  //         });
-  //         tl.addLabel('start-t1')
-  //           .from(point, { duration: 1, autoAlpha: 0, y: 150 })
-  //           .addLabel('show-t1')
-  //           .to(point, { autoAlpha: 1, y: 0 })
-  //           .addLabel('leave-t1')
-  //           .to(point, { duration: 1, autoAlpha: 0, y: -150 })
-  //           .addLabel('end-t1');
-  //         const icon = point.querySelector('.icon');
-  //         let tl2 = gsap.timeline({
-  //           // yes, we can add it to an entire timeline!
-  //           scrollTrigger: {
-  //             trigger: point, // '.point',
-  //             markers: false,
-  //             id: 'section' + i,
-  //             pin: false, // pin the trigger element while active
-  //             start: 'top+=10% bottom-=15%', // when the top of the trigger hits the top of the viewport
-  //             end: 'bottom top+=5%', // end after scrolling 500px beyond the start
-  //             scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
-  //             toggleActions: 'play pause reverse reverse',
-  //             snap: {
-  //               snapTo: 'labels', // snap to the closest label in the timeline
-  //               duration: { min: 2.5, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
-  //               delay: 0.5, // wait 0.2 seconds from the last scroll event before doing the snapping
-  //               ease: 'power4.inOut', // the ease of the snap animation ("power3" by default)
-  //             },
-  //           },
-  //         });
-  //         const blur = 150;
-  //         tl2
-  //           .addLabel('start-t2')
-  //           .from(icon, {
-  //             duration: 0.5,
-  //             scale: 0.25,
-  //             webkitFilter: `blur(${blur}px)`,
-  //             filter: `blur(${blur}px)`,
-  //           })
-  //           .addLabel('show-t2')
-  //           .to(icon, {
-  //             scale: 1,
-  //             webkitFilter: 'blur(0px)',
-  //             filter: 'blur(0px)',
-  //           })
-  //           .addLabel('leave-t2')
-  //           .to(icon, {
-  //             duration: 1,
-  //             scale: 0.25,
-  //             webkitFilter: `blur(${blur}px)`,
-  //             filter: `blur(${blur}px)`,
-  //           })
-  //           .addLabel('end-t2');
-  //       });
-  //   },
-  //   { revertOnUpdate: false },
-  // );
+      points !== null &&
+        points.forEach((point, i) => {
+          
+          if(point !== null){
+          let tl = gsap.timeline({
+            // yes, we can add it to an entire timeline!
+            scrollTrigger: {
+              trigger: point, // '.point',
+              markers: false,//i === 3 ,
+              id: 'section' + i,
+              pin: false, // pin the trigger element while active
+              start: 'center center+=35%', // when the top of the trigger hits the top of the viewport
+              end: 'center center-=35%', // end after scrolling 500px beyond the start
+              scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
+              toggleActions: 'play pause reverse reverse',
+              
+              snap: {
+                snapTo: 'labels', // snap to the closest label in the timeline
+                duration: { min: 1, max: 2 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+                // delay: 0.5, // wait 0.2 seconds from the last scroll event before doing the snapping
+                ease: 'power4.inOut', // the ease of the snap animation ("power3" by default)
+              },
+            },
+          });
+          tl.addLabel('start-t1')
+            .from(point, { duration: 1.25, autoAlpha: 0 })
+            .addLabel('show-t1')
+            .to(point, { duration: 2, autoAlpha: 1 })
+            .addLabel('leave-t1')
+            .to(point, { duration: 1.25, autoAlpha: 0 })
+            .addLabel('end-t1');
+          const icon = point.querySelector('.icon');
+          let tl2 = gsap.timeline({
+
+            scrollTrigger: {
+              trigger: point, // '.point',
+              markers: false ,
+              id: 'section' + i,
+              pin: false, // pin the trigger element while active
+              start: 'center center+=35%', // when the top of the trigger hits the top of the viewport
+              end: 'center center-=35%', // end after scrolling 500px beyond the start
+              scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
+              toggleActions: 'play pause reverse reverse',
+              snap: {
+                snapTo: 'labels', // snap to the closest label in the timeline
+                duration: { min: 1, max: 2 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+                delay: 0.0, // wait 0.2 seconds from the last scroll event before doing the snapping
+                // ease: 'power4.inOut', // the ease of the snap animation ("power3" by default)
+              },
+              onEnter:(() => {
+                console.log('onEnter'); 
+              }),
+              onLeave:(() => {
+                console.log('onLeave'); 
+              })
+            },
+          });
+          const blur = 250;
+          tl2
+            .addLabel('start-t2')
+            .from(icon, {
+              duration: 1.25,
+              scale: 0.25,
+              // y: 0,
+              webkitFilter: `blur(${blur}px)`,
+              filter: `blur(${blur}px)`,
+              ease:'power4.out'
+            })
+            .addLabel('show-t2')
+            .to(icon, {
+              duration: 2,
+              scale: 1,
+              // y: 0,
+              webkitFilter: 'blur(0px)',
+              filter: 'blur(0px)',
+             
+            })            
+            .addLabel('leave-t2')
+            .to(icon, {
+              duration: 1.25,
+              scale: 0.25,
+              // y: 0,
+              webkitFilter: `blur(${blur}px)`,
+              filter: `blur(${blur}px)`,
+               ease:'power4.in',
+            })
+            .addLabel('end-t2');
+          }
+        });
+    },
+    { revertOnUpdate: true },
+  );
 
   return (
     <section
@@ -125,7 +141,7 @@ const Introduction = () => {
       ref={sectionRef}
     >
       <div className='introduction-inner'>
-      <div className='i1'>
+      <div className='inner'>
         <h2>
           {(!isInstalled || (isInstalled && vc < 3)) && <u>{content.title}</u>}
 
@@ -149,9 +165,12 @@ const Introduction = () => {
                 key={`intro-${i}`}
                 className={'sub subsection installed sec-' + i}
               >
-                <div className='subsection-title'>
-                  <h2>{parse(cnt?.title)}</h2>
-                </div>
+                {cnt?.title && (
+                  <div className='subsection-title'>
+                    <h2>{parse(cnt?.title)}</h2>
+                  </div>
+                )}
+                
                 {cnt?.content?.map((para, k) => {
                   return (
                     <div className='' key={'p-' + k}>
@@ -184,14 +203,17 @@ const Introduction = () => {
                 className={'sub notinstalled subsection sec-' + i}
                 ref={i === 1 ? sectionRef : null}
               >
-                <div className='subsection-title'>
-                  <h2>{parse(cnt?.title)}</h2>
-                </div>
+                {cnt?.title && (
+                  <div className='subsection-title'>
+                    <h2 className='title2'><u>{parse(cnt?.title)}</u></h2>
+                  </div>
+                )}
                 {cnt?.content?.map((para, k) => {
                   return (
                     <div className={'point' + ' ' + ' p-' + k} key={'p-' + k}>
-                      {i === 1 && <DoneOutlineIcon className='tick-icon' />}
+                      {i === 1 && <DoneOutlineIcon className='tick-icon icon' />}
                       <p key={k}>{parse(para)}</p>
+
                     </div>
                   );
                 })}

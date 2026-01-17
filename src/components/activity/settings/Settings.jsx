@@ -57,7 +57,7 @@ const Setting = (
 const Settings = () => {
   const name = 'settings';
   const [open, setOpen] = useState(false);
-  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  // const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [showDeleteIDBDialog, setShowDeleteIDBDialog] = useState(false);
   const [showConfirmDeleteDialog, setShowConfirmDeleteDialog] = useState(false);
   const setActivity = useAppStore((s) => s.setActivity);
@@ -168,9 +168,9 @@ const Settings = () => {
   );
   settings.push(AnalyticsCookiesSettings);
 
-  const handleClearUserData = () => {
-    setShowDeleteDialog(true);
-  };
+  // const handleClearUserData = () => {
+  //   setShowDeleteDialog(true);
+  // };
 
   const handleClearIDB = () => {
     setShowDeleteIDBDialog(true);
@@ -199,29 +199,29 @@ const Settings = () => {
   const handleCloseConfirmDeleteDialog = () => {
     setShowConfirmDeleteDialog(false);
   };
-  const handleConfirmDeleteData = () => {
-    localStorage.clear();
-    resetAll();
-    setShowConfirmDeleteDialog(true);
-    setShowDeleteDialog(false);
-    // force reload url
-    // setTimeout(() => {
-    //   setActivity(activityID.id);
-    // }, 200);
-  };
+  // const handleConfirmDeleteData = () => {
+  //   localStorage.clear();
+  //   resetAll();
+  //   setShowConfirmDeleteDialog(true);
+  //   setShowDeleteDialog(false);
+  //   // force reload url
+  //   // setTimeout(() => {
+  //   //   setActivity(activityID.id);
+  //   // }, 200);
+  // };
   const handleConfirmDeleteIDB = () => {
     clearIDB();
     setShowDeleteIDBDialog(false);
   };
-  const handleCloseDeleteData = () => {
-    setShowDeleteDialog(false);
-  };
+  // const handleCloseDeleteData = () => {
+  //   setShowDeleteDialog(false);
+  // };
   const handleCloseDeleteIDB = () => {
     setShowDeleteIDBDialog(false);
   };
 
   return (
-    <div className={'activity' + ' ' + name + (open ? ' show' : ' hide')}>
+    <div className={'activity activity-settings fixed' + ' ' + name + (open ? ' show' : ' hide')}>
       {/* <Dialog
         show={showDeleteDialog}
         title='Confirm Clear All Data'
@@ -268,7 +268,7 @@ const Settings = () => {
           <p>You can show and enable features whenever that feels helpful. </p>
           <p>Features that are disabled are completely hidden.</p>
           <p>
-            To remove all data use the "Clear Your Data" button
+            To remove all data use the &quot;Clear Your Data &quot; button
             <br /> at the bottom.
           </p>
         </div>

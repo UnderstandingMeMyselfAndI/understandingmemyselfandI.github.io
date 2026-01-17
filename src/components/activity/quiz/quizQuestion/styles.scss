@@ -15,7 +15,7 @@
   padding: 4rem 1rem;
   width: 100%;
   transition: all 0.3s ease-in-out;
-  text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
+  text-shadow: var(--textShadowDarkValue);
 
   .question {
     font-size: 1.75rem;
@@ -24,11 +24,12 @@
     margin: 0 auto;
     text-align: center;
     color: var(--primary);
-    text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
+
     flex-grow: 1;
     opacity: 0;
     transition: all 0s ease-in-out;
     filter: blur(40px);
+
     // transition-delay: 750ms;
     &.in {
       opacity: 1;
@@ -36,6 +37,7 @@
       transition-delay: 450ms;
       filter: blur(0px);
     }
+
     &.out {
       opacity: 0;
       transition: all 0.3s ease-in-out;
@@ -64,6 +66,7 @@
     background-color: rgba(0, 0, 0, 0.25);
     transition: all 0.2s ease;
     position: relative;
+
     &::before {
       content: '';
       position: absolute;
@@ -78,6 +81,7 @@
       transition: all 0.2s ease;
       z-index: -2;
     }
+
     &::after {
       content: '';
       position: absolute;
@@ -104,6 +108,7 @@
     appearance: none;
 
     position: relative;
+
     &::after {
       position: absolute;
       content: ' ';
@@ -116,6 +121,7 @@
       transition: all 0.2s ease;
       z-index: 0;
     }
+
     &::before {
       content: ' ';
       position: absolute;
@@ -136,22 +142,25 @@
     flex: 1;
     font-size: 1rem;
     color: var(--primary);
-    text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
+
   }
+
   .option.selected-incorrect,
   .option.selected-pending {
     transition: all 0.3s ease-in-out;
 
     &::after {
       border: 1px solid var(--primary);
-      box-shadow: 0px 0px 6px var(--orange);
+      box-shadow: var(--boxShadowOrangeValue);
       background: var(--orange);
       opacity: 1;
       transition: all 0.3s ease-in-out;
     }
+
     .radio-text {
       font-weight: 400;
     }
+
     input[type='radio'] {
       &::after {
         width: 100%;
@@ -160,6 +169,7 @@
         opacity: 1;
         transition: all 0.2s ease;
       }
+
       &::before {
         content: ' ';
         position: absolute;
@@ -177,21 +187,26 @@
       }
     }
   }
+
   .option.selected-incorrect {
     transition: all 0.3s ease-in-out;
+
     &::after {
       opacity: 0.6;
       border: 1px solid var(greyDark);
       transition: all 0.3s ease-in-out;
     }
+
     .answer-text {
       font-weight: 400;
       color: var(--grey);
     }
   }
+
   .option.selected-incorrect {
     transition: all 0.3s ease-in-out;
     opacity: 0.35;
+
     .answer-text {
       font-weight: 700;
       color: var(--primary);
@@ -200,11 +215,12 @@
     &::after {
       border: 1px solid rgba(50, 50, 50, 0.5);
 
-      box-shadow: 0px 0px 6px var(--greyDark);
+      box-shadow: var(--boxShadowDarkValue);
       background: rgba(50, 50, 50, 0.5);
       opacity: 1;
       transition: all 0.3s ease-in-out;
     }
+
     &::before {
       border: 1px solid rgba(100, 100, 100, 0.8);
       // box-shadow:none;
@@ -222,6 +238,7 @@
         opacity: 1;
         transition: all 0.2s ease;
       }
+
       &::before {
         content: ' ';
         position: absolute;
@@ -240,6 +257,7 @@
       }
     }
   }
+
   .option.selected-pending .answer-text {
     font-weight: 600;
     color: var(--primary);
@@ -250,17 +268,21 @@
     background-color: var(--mainBackground);
     border-color: var(--primary);
     color: var(--orange);
+
     &::after {
       background: var(--mainBackground);
       outline-color: var(--orange);
-      box-shadow: 0px 0px 6px rgb(200, 200, 200, 0.35);
+      box-shadow: var(--boxShadowLightValue);
       opacity: 1;
     }
+
     input[type='radio'] {
       appearance: none;
+
       &::after {
         outline: 4px solid var(--primary);
       }
+
       &::before {
         width: 50%;
         height: 50%;
@@ -280,31 +302,36 @@
     background-color: transparent;
     border-color: #a5d6a7;
     color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
+    box-shadow: var(--boxShadowDarkValue);
+
     &::after {
       background-color: var(--orange);
       opacity: 1;
     }
+
     &::before {
       background-color: var(--mainBackground);
       opacity: 1;
     }
+
     input[type='radio'] {
+
       // width:32px;
       // height:32px;
       &::after {
         outline: 4px solid var(--primary);
       }
+
       &::before {
         //  width:70%;
         //   height:70%;
         background-color: var(--orange);
       }
     }
-    .answer-text {
-      text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
-    }
+
+    .answer-text {}
   }
+
   .last-message,
   .feedback-message {
     min-height: 15vh;
@@ -320,12 +347,14 @@
     transition: flex 0.75s ease-in-out;
     opacity: 0;
     transition: all 0.3s ease-in-out;
+
     &.show {
       opacity: 1;
       transition: all 0.3s ease-in-out;
       // transition-delay: 250ms;
     }
   }
+
   .show p,
   .last-message p,
   .feedback-message p {
@@ -335,8 +364,10 @@
     line-height: 1.2;
     color: var(--orange);
     font-weight: 600;
-    > span {
+
+    >span {
       position: relative;
+
       &::after {
         position: absolute;
         content: '';
@@ -349,6 +380,7 @@
       }
     }
   }
+
   .last-message {
     position: absolute;
     top: 0;
@@ -358,11 +390,13 @@
     transition: all 0.3s ease-in-out;
     transition-delay: 1500ms;
   }
+
   .last-message.show {
     opacity: 1;
     transition: all 0.3s ease-in-out;
     transition-delay: 0ms;
   }
+
   .button-group {
     display: flex;
     justify-content: center;
@@ -374,7 +408,6 @@
   button.next-button {
     padding: 14px 32px;
     color: var(--primary);
-    text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
     font-size: 1.5rem;
     font-weight: 600;
     border: none;
@@ -383,6 +416,7 @@
     transition: background-color 0.2s ease;
     background-color: rgba(10, 10, 10, 0.25);
     position: relative;
+
     &::after {
       content: '';
       position: absolute;
@@ -391,14 +425,13 @@
       width: 100%;
       height: 100%;
       border-radius: 8px;
-      // border:2px solid var(--orange);
-      // box-shadow:0px 0px 12px rgb(200, 200, 200,0.35);
       transition: all 0.5s ease;
       background: var(--orange);
 
       opacity: 1;
       z-index: -1;
     }
+
     &::before {
       content: '';
       position: absolute;
@@ -417,6 +450,7 @@
   .submit-button {
     background-color: rgba(10, 10, 10, 0.25);
     color: white;
+
     &::after {
       // border:2px solid var(--orange);
       background: var(--orange);
@@ -430,15 +464,16 @@
   .submit-button,
   .next-button {
     color: var(--primary);
-    text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
-    box-shadow: 0px 0px 6px rgba(20, 20, 20, 0.5);
+    box-shadow: var(--boxShadowDarkValue);
     cursor: pointer;
     background-color: rgba(10, 10, 10, 0.1);
     background: transparent;
+
     &::after {
       background: var(--blue);
       opacity: 1;
     }
+
     &::before {
       border: 1px solid var(--orange);
       background: transparent;
@@ -451,9 +486,11 @@
     background-color: rgba(100, 100, 100, 0.3);
     color: var(--grey);
     box-shadow: none;
+
     &::after {
       opacity: 0;
     }
+
     cursor: not-allowed;
   }
 }

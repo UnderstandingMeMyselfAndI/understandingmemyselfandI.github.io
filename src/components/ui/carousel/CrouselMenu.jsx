@@ -3,7 +3,7 @@ import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ButtonToolbox from "../buttons/toolbox/ButtonToolbox";
+// import ButtonToolbox from "../buttons/toolbox/ButtonToolbox";
 import Skeleton from "@mui/material/Skeleton";
 import ScenarioDialog from "../dialog/ScenarioDialog";
 import useAppStore from "@/store/useAppStore";
@@ -149,10 +149,10 @@ const AccordionItemWithEffects = ({item, index, expanded, handleChange, config =
 					aria-controls={"panel" + index + "-content"}
 					id={"panel" + index + "-header"}
 				>
-					<ButtonToolbox
+					{/* <ButtonToolbox
 						id={item?.id}
 						className={item?.title?.replaceAll(".", "")}
-					/>
+					/> */}
 					<div className="cont">
 						{item.title.split(".").map(
 							(subItem, index) =>

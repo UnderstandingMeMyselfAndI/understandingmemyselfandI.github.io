@@ -1,20 +1,7 @@
 @use "@/scss/_variables.scss";
 @import "@/globals.css";
 
-#feedback,
-#daysCounter,
-#share,
-#installInstructions {
-	scroll-padding-top: 260px;
 
-	padding-bottom: 160px;
-}
-
-#gratitude {
-	scroll-padding-top: 260px;
-
-	padding-bottom: 160px;
-}
 
 .version-footer {
 	font-size: 1rem;
@@ -37,39 +24,35 @@
 	scroll-margin-top: 20vh;
 }
 
-div.activity.footer {
 
-	user-select: none;
-	visibility: hidden;
-	opacity: 0;
-	transition: opacity 0.15s cubic-bezier(0.5, 0, 0.9, 1);
-	z-index: -1;
-	position: relative;
-
-	&.show {
-		z-index: 101;
-		visibility: visible;
-		user-select: auto;
-		opacity: 1;
-		transition: opacity 0.15s cubic-bezier(0.5, 0, 0.9, 1);
-	}
-}
-
-div.activity.footer {
+div.activity-footer {
 	display: flex;
-	flex-direction: column;
-	row-gap: 0.5rem;
-
+	flex-flow: column nowrap;
+	row-gap: 8rem;
 	margin: 0 auto;
 	color: var(--primary);
 	text-align: center;
 	width: 90%;
+	max-width: 600px;
 	background-color: transparent;
-
-
 	line-height: 1.5;
-	position: relative;
-	z-index: 3000;
+
+	section {
+		max-width: 80%;
+		margin: 0 auto;
+		display: flex;
+		flex-flow: column nowrap;
+		row-gap: 1rem;
+
+	}
+
+	section#feedback,
+	section#daysCounter,
+	section#share,
+	section#installInstructions,
+	section#gratitude {
+		scroll-padding-top: 260px;
+	}
 
 	h1 {
 		font-size: variables.$h1_size;
@@ -107,7 +90,7 @@ div.activity.footer {
 	}
 
 	.links {
-		margin: 1rem 0;
+		// margin: 1rem 0;
 		display: flex;
 		justify-content: space-evenly;
 		column-gap: 2rem;
@@ -119,7 +102,7 @@ div.activity.footer {
 			align-content: center;
 			align-items: center;
 			padding: 2rem 1rem;
-			row-gap: 1rem;
+			row-gap: 20rem;
 			border-radius: var(--border-radius);
 			outline: 1px solid #b6b6b6;
 			text-decoration: none;
@@ -213,31 +196,66 @@ div.activity.footer {
 	}
 
 	section.qr p {
-		font-size: variables.$lrg_size;
+		font-size: variables.$h4_size;
+		;
 		line-height: variables.$lrg_line_height;
 
+
+	}
+
+	b {
+		display: inline-block;
+	}
+
+	h3 {
+		width: max-content;
+		max-width: 400px;
+		margin: 0 auto;
+		// outline: 1px solid blue;
+
 		u {
-			text-decoration: none;
-			position: relative;
-			display: inline-block;
-			font-weight: variables.$lrg_weight;
-
-			&::after {
-				content: " ";
-				width: 105%;
-				height: 60%;
-				background-color: var(--yellow);
-				opacity: 0.3;
-				position: absolute;
-				top: 0;
-				left: 0;
-				z-index: -1;
-
-				margin-top: 5%;
-				margin-left: -5.5%;
-			}
+			text-decoration-thickness: 11px;
+			width: fit-content;
 		}
 	}
 
+	p {
+		text-shadow: none;
+
+		u {
+			text-decoration-thickness: 6px;
+			text-decoration-color: var(--blue);
+		}
+	}
+
+	section#feedback {
+		p u {
+			text-decoration-thickness: 4px;
+			text-decoration-color: var(--yellow);
+		}
+	}
+
+	u {
+
+		width: fit-content;
+		position: relative;
+		display: inline-block;
+		font-weight: variables.$lrg_weight;
+
+		&::after {
+			content: " ";
+			width: 85%;
+			height: 60%;
+			background-color: var(--blue);
+			opacity: 0.3;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1;
+
+			margin-top: 5%;
+			margin-left: -5.5%;
+		}
+	}
 
 }

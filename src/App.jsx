@@ -10,8 +10,8 @@ import useAppStore from './store/useAppStore';
 import applyTheme from 'components/theme/applyTheme';
 import ScrollPosition from 'components/utils/ScrollPosition';
 // import LogoFloating from "ui/logo/LogoFloating";
-import Header from 'ui/header/Header.jsx';
-import Footer from 'ui/footer/Footer';
+import Header from '@/components/activity/header/Header.jsx';
+import Footer from '@/components/activity/footer/Footer';
 // import Podcasts from "./components/activity/podcasts/Podcasts";
 import PrivacyPolicy from './components/activity/privacy/PrivacyPolicy';
 import Introduction from '@/components/activity/introduction/Introduction';
@@ -40,7 +40,7 @@ import Vcn from './components/visits/Vcn.jsx';
 import Lingo from './components/activity/lingo/Lingo';
 // import Quiz from './components/activity/quiz/Quiz';
 import UnitsCalculator from './components/activity/unitsCalculator/UnitsCalculator';
-import Motivation from './components/activity/motivation/Motivation';
+// import Motivation from './components/activity/motivation/Motivation';
 import './App.scss';
 // TODO: "Clear Local Data" functionality
 function App() {

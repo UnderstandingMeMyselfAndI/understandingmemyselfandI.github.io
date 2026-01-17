@@ -1,7 +1,7 @@
 @use "@/scss/variables";
 @import "@/globals.css";
 
-div.activity:has(.settings) {
+div.activity-settings {
     position: fixed;
     top: 0;
     left: 0;

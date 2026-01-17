@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import QRCode from 'ui/QRCode/QRCode.jsx';
-import FooterMetadata from 'ui/footer/FooterMetadata.jsx';
-import UpdateCTA from '../updateCTA/updateCTA';
+import FooterMetadata from '@/components/activity/footer/FooterMetadata.jsx';
+import UpdateCTA from '../../ui/updateCTA/updateCTA';
 import useAppStore from '@/store/useAppStore';
 
 import './styles.scss';
@@ -15,7 +15,7 @@ function Footer() {
   }, [activity]);
 
   return (
-    <div className={'activity footer' + (open ? ' show' : '')}>
+    <div className={'activity activity-footer' + (open ? ' show' : '')}>
       <section className='qr' id='share'>
         <h3>
           <u>Spread the love</u>
@@ -34,9 +34,9 @@ function Footer() {
 
       <section id='gratitude'>
         <div className='big2'>
-          <b>
-            <u>Gratitude &amp; Inspiration</u>
-          </b>
+           <h3>
+          <u>Gratitude &amp; Inspiration</u>
+          </h3>
         </div>
         <p>
           This app was inspired by the amazing people who facilitate groups and

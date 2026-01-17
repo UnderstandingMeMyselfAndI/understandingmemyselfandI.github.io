@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import { useRef, useEffect } from 'react';
 import Logo from 'ui/logo/Logo.jsx';
 import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined';
@@ -21,9 +21,9 @@ import './styles.scss';
 import { fabClasses } from '@mui/material/Fab';
 
 const Header = () => {
-  const [open, setOpen] = React.useState(false);
-  // const [isInView, setIsInView] = React.useState(true);
-  //   const [stage, setStage] = React.useState(0);
+  const [open, setOpen] = useState(false);
+  // const [isInView, setIsInView] = useState(true);
+  //   const [stage, setStage] = useState(0);
   const activity = useAppStore((s) => s.activity);
   // const scrollStage = useAppStore((state) => state.scrollStage);
     const cont1 = useRef();
@@ -31,7 +31,7 @@ const Header = () => {
   const arrowsCont = useRef();
 
   useEffect(() => {
-    console.log("activity", activity);
+    console.log("Header activity", activity);
     setOpen(activity === -1);
   }, [activity]);
 

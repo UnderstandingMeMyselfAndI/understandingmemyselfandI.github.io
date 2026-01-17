@@ -4,9 +4,11 @@ import './styles.scss';
 const CloseBtn = ({ handleClick, classes = '' }) => {
   return (
     <button className={'close-btn'+ (classes ? ' ' + classes : '')} onClick={handleClick}>
-      <div className='close-btn-inner'>
-        <div></div>
-        <div></div>
+      <div className='close-btn-wrap'>
+        <div className='close-btn-inner'>
+          <div></div>
+          <div></div>
+        </div>
       </div>
     </button>
   );

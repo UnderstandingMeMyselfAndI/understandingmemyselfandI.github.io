@@ -96,6 +96,10 @@ const InstallCTA = () => {
     //TODO: Send anayltics event
   };
 
+  useEffect(() => {
+    setOpen(activity === -1);
+  },[activity]);
+
   //TODO: Install process not working
   // console.log('isInstalled', isInstalled)
   // console.log('isInstallable', isInstallable)
@@ -105,10 +109,10 @@ const InstallCTA = () => {
   // 	console.log('handleOnPwaInstallAvailableEvent', e)
   // }
 
-  return open ? (
-    <div>
-      {!isInstalled && isInstallable && showInstallCTA && (
-        <section className={'activity installCTA cta ' + (open ? ' show' : '')}>
+  return open ? 
+   
+      !isInstalled && isInstallable && showInstallCTA && (
+        <section className={'activity activity-installCTA ' + (open ? ' show' : ' hide')}>
           <div id='install'>
             <h3>
               <u>
@@ -156,11 +160,14 @@ const InstallCTA = () => {
             )}
           </div>
         </section>
-      )}
-      {/* https://github.com/khmyznikov/pwa-install */}
-      {/* <PWAInstall ref={pwaInstallRef} name='ummi' icon={UmmiIcon} externalPromptEvent={deferredPrompt} onPwaInstallAvailableEvent={handleOnPwaInstallAvailableEvent}></PWAInstall> */}
-    </div>
-  ) : null;
+      ) : (null)
+
 };
 
 export default InstallCTA;
+
+/* 
+https://github.com/khmyznikov/pwa-install       
+<PWAInstall ref={pwaInstallRef} name='ummi' icon={UmmiIcon} externalPromptEvent={deferredPrompt} onPwaInstallAvailableEvent={handleOnPwaInstallAvailableEvent}></PWAInstall> 
+*/
+    

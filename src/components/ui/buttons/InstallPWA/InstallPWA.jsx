@@ -11,7 +11,7 @@ const InstallPWA = ({ handleClick, label }) => {
 		<div>
 			<button aria-label='install' className='install btn' onClick={handleClick}>
 				<Logo classes='small' showText={false} />
-				<span>{label}</span>
+				<div>{label}</div>
 			</button>
 		</div>
 	)

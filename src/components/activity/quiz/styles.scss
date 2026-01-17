@@ -1,7 +1,7 @@
 @use './scss/_variables.scss';
 @import '@/globals.css';
 
-.quiz {
+.activity-quiz {
   position: absolute;
   top: 0;
   left: 0;
@@ -84,9 +84,7 @@
   text-align: center;
 }
 
-.completion-status {
-  // margin-bottom: 40px;
-}
+
 
 .status-title {
   font-size: 3rem;
@@ -107,7 +105,7 @@
   flex-flow: column nowrap;
   row-gap: 0.5rem;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--textShadowDarkValue);
   // margin-bottom: 40px;
 }
 
@@ -139,7 +137,7 @@ body div.final-score h3 {
 .restart-button {
   padding: 14px 32px;
   color: var(--primary);
-  text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
+  text-shadow: var(--textShadowDarkValue);
   font-size: 1.5rem;
   font-weight: 600;
   border: none;

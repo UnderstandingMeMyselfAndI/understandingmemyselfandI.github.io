@@ -103,7 +103,7 @@ export default function AppMenu() {
               });
             }
             setActivity(-1);
-            const el = document.getElementById('tools');
+            const el = document.getElementById('the-tools');
             el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
             handleClose();

@@ -256,7 +256,7 @@ const strings = {
           title: '',
           classes: 'ummi-blue',
           content: [
-            '<b><span class="ummi-blue">U</span>nderstanding <span class="ummi-blue">M</span>e, <span class="ummi-blue">M</span>yself, and <span class="ummi-blue">I</span></b><br /> <span class="ummi-blue">(U.M.M.I)</span><br /> is your <b><u>FREE</u></b> companion app.',
+            '<b><span class="ummi-blue">U</span>nderstanding <span class="ummi-blue">M</span>e, <span class="ummi-blue">M</span>yself, and <span class="ummi-blue">I</span></b><br /> <span class="ummi-blue">(U.M.M.I)</span><br /> is your <b><u>FREE</u></b> <br />companion app.',
           ],
         },
 

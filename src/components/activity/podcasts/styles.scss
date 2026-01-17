@@ -35,7 +35,7 @@ section.podcasts {
 
     img {
         width: 100%;
-        box-shadow: 0px 0px 6px 3px rgba(10, 10, 10, 0.25);
+        box-shadow: var(--textShadowDarkValue);
     }
 
     a {
@@ -60,7 +60,7 @@ section.podcasts {
                 // fill: var(--orange);
                 // stroke: var(--orange);
                 path {
-                    box-shadow: 0px 0px 3px 1px rgba(10, 10, 10, 1.25);
+                    box-shadow: var(--textShadowDarkValue);
                 }
             }
         }

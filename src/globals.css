@@ -2,6 +2,18 @@
   --appMaxWidth: 600px;
   --border-radius: 6px;
   --blueBackground: #036075;
+  --backgroundGrayTrans5:rgba(10,10,10,0.05);
+  --backgroundGrayTrans10:rgba(10,10,10,0.10);
+  --backgroundGrayTrans15:rgba(10,10,10,0.15);
+  --backgroundGrayTrans20:rgba(10,10,10,0.20);
+  --backgroundGrayTrans25:rgba(10,10,10,0.25);
+  --backgroundGrayTrans30:rgba(10,10,10,0.30);
+  --backgroundGrayTrans35:rgba(10,10,10,0.35);
+  --backgroundGrayTrans40:rgba(10,10,10,0.40);
+  --backgroundGrayTrans45:rgba(10,10,10,0.45);
+  --backgroundGrayTrans50:rgba(10,10,10,0.5);
+  --backgroundGrayTrans75:rgba(10,10,10,0.75);
+  --backgroundGrayTrans85:rgba(10,10,10,0.85);
   --mainBackground: linear-gradient(
     140deg,
     rgba(27, 134, 158, 1) 0%,
@@ -56,6 +68,12 @@
   --sidebar-ring: oklch(0.439 0 0);
   --transition: 0.35s cubic-bezier(0.53, 0, 0.54, 1);
   --transition2: 0.35s cubic-bezier(0.3, 0, 0.74, 1);
+  --textShadowDarkValue:0px 0px 6px rgba(10, 10,10, 0.5);
+  --textShadowLightValue:0px 0px 6px rgba(200, 200, 200, 0.5);
+  --boxShadowDarkValue:0px 0px 6px rgba(10, 10, 10, 0.5);
+  --boxShadowLightValue:0px 0px 6px rgba(200, 200, 200, 0.5);
+  --boxShadowBlueValue:0px 0px 6px rgba(10, 10, 200, 0.5);
+   --boxShadowOrangeValue:0px 0px 6px rgba(255, 187, 0, 0.781);
 }
 .light {
   --blueBackground: oklch(0.985 0 0);
