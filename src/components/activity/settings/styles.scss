@@ -5,7 +5,7 @@ div.activity:has(.settings) {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 8000;
+
     width: 100vw;
     min-height: 100vh;
     height: 100%;
@@ -14,29 +14,12 @@ div.activity:has(.settings) {
     text-align: right;
     overflow-y: scroll;
     overflow-x: clip;
-    display: none;
-
-    &.show {
-        display: flex;
-    }
 
     h3 {
         text-align: left;
         margin-top: 2rem;
     }
 
-
-
-    .close-btn {
-        position: absolute;
-        right: 2rem;
-        top: 0.35rem;
-
-        svg {
-            width: 70px;
-            height: 70px;
-        }
-    }
 
     .head {
         margin-bottom: 1rem;

@@ -2,32 +2,57 @@
 @import '@/globals.css';
 
 .AppMenu {
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+
+  left: 100%;
+  width: 100vw;
+  height: 100dvh;
 
   &.show {
-    position: fixed;
+    left: 0%;
   }
 
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
+
   overflow-x: clip;
-  z-index: 5600;
+
   display: flex;
   flex-flow: column wrap;
   row-gap: 0rem;
   align-items: flex-end;
   justify-content: flex-start;
 
-  &:has(.checkbox1:checked) {
-    background-color: rgba(20, 20, 20, 0.75);
-    width: 100vw;
+  .app-nemu-bg {
+    width: 100dvw;
     height: 100vh;
+    z-index: 1;
+    position: absolute;
+    background-color: transparent;
+    transition: background-color 0.25s cubic-bezier(0.9, 0.0, 0.5, 1);
   }
+
+  &:has(.checkbox1:checked) {
+    left: 0;
+
+    .app-nemu-bg {
+      width: 100%;
+      height: 100vh;
+      left: 0;
+      top: 0;
+      z-index: -1;
+      transition: background-color 0.25s cubic-bezier(0.9, 0.0, 0.5, 1);
+      background-color: rgba(20, 20, 20, 0.75);
+      outline: 10px solid rgb(243, 243, 3, 0.7);
+    }
+  }
+
 
   .burger-stack {
     position: fixed;
     background: none;
+    top: 0;
+    right: 0;
     border: none;
     padding: 0.5rem;
 
@@ -36,6 +61,7 @@
     align-content: center;
     align-items: center;
     justify-content: center;
+    z-index: 75001;
 
     svg {
       fill: #fff;
@@ -58,6 +84,7 @@
       width: 40px;
       height: 30px;
       position: relative;
+      z-index: 75001;
     }
 
     .hamburger .bar {
@@ -128,6 +155,17 @@
       margin-right: 0;
       transition: all 0.25s cubic-bezier(0.5, 0, 0.25, 1);
 
+      width: fit-content;
+      pointer-events: auto;
+      position: relative;
+      z-index: 0;
+
+      li {
+        pointer-events: all;
+        position: relative;
+        z-index: 20;
+
+      }
     }
   }
 
@@ -233,4 +271,6 @@
       }
     }
   }
+
+
 }

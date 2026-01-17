@@ -281,7 +281,7 @@ const useAppStore = create(
       // Activity ID
       activity: 0,
       setActivity: (v) => {
-        console.trace(`setActivity called with value: ${v}`);
+        // console.trace(`setActivity called with value: ${v}`);
         set(() => ({ activity: v }));
       },
       // ----------------------------------------
@@ -319,7 +319,7 @@ const useAppStore = create(
       // Clear IDB
       clearIDB: async () => {
         await clear();
-        console.log('IndexedDB cleared');
+        // console.log('IndexedDB cleared');
         window.location.reload();
       },
       // ----------------------------------------

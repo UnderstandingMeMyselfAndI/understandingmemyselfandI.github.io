@@ -5,7 +5,6 @@ body .privacy {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 5500;
     width: 100vw;
     height: 100vh;
     overflow-y: scroll;
@@ -17,11 +16,6 @@ body .privacy {
     padding: 6rem 0;
     display: none;
     opacity: 0;
-
-    &.show {
-        display: block;
-        opacity: 1;
-    }
 
     .inner {
         position: relative;

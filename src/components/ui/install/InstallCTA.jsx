@@ -43,7 +43,6 @@ const InstallCTA = () => {
   function handleBeforeInstallPrompt(event) {
     event.preventDefault(); // Prevent automatic prompt
     // app is installable
-    console.log('isInstallable');
     setDeferredPrompt(event); // Store the event
 
     //  Show the install button
@@ -109,7 +108,7 @@ const InstallCTA = () => {
   return open ? (
     <div>
       {!isInstalled && isInstallable && showInstallCTA && (
-        <section className={'installCTA cta ' + (open ? ' open' : '')}>
+        <section className={'activity installCTA cta ' + (open ? ' show' : '')}>
           <div id='install'>
             <h3>
               <u>

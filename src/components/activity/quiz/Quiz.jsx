@@ -1,22 +1,30 @@
 // Quiz.jsx (updated with simplified analytics)
 import React, { useState, useEffect } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 import BackdropParallax from '@/components/ui/backdrop/BackdropParallax';
 import QuizProgress from './quizProgress/QuizProgress';
 import QuizQuestion from './quizQuestion/QuizQuestion';
 import QuizStart from './quizStart/QuizStart';
 import questions from './questions-dev-2.js';
+import CloseBtn from '@/components/ui/buttons/close/CloseBtn';
 import useQuizStore from './useQuizStore';
+import useAppStore from '@/store/appStore';
 import { trackEvent } from '@/js/analytics/analytics';
 import './styles.scss';
 
 const Quiz = () => {
+  const [open, setOpen] = useState(false);
   const [started, setStarted] = useState(false);
   const [currentLevel, setCurrentLevel] = useState(null);
   const [optInAnalytics, setOptInAnalytics] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [totalAnswered, setTotalAnswered] = useState(0);
+  const setActivity = useAppStore((state) => state.setActivity);
 
+  const { activity } = useAppStore(
+    useShallow((state) => ({ activity: state.activity })),
+  );
   const { incrementPlayCount, getPlayCount, saveScore } = useQuizStore();
 
   const levelQuestions = currentLevel ? questions.levels[currentLevel] : [];
@@ -92,9 +100,17 @@ const Quiz = () => {
 
   const status = currentIndex >= totalQuestions ? getCompletionStatus() : null;
   const isComplete = currentIndex >= totalQuestions;
+  useEffect(() => {
+    setOpen(activity === 2);
+  }, [activity]);
+   const handleClose = () => {
+    setActivity(-1);
+  };
+
 
   return (
-    <div className='quiz'>
+    <div className={'activity quiz'+  (open ? ' show' : '')}>
+      <CloseBtn className='close-btn' handleClick={handleClose} />
       <div className='inner'>
         {!started ? (
           <QuizStart onStart={handleStart} levels={questions.levels} />

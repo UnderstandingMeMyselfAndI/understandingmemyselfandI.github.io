@@ -36,7 +36,7 @@ const PrivacyPolicy = () => {
   };
 
   return (
-    <div className={'privacy' + (open ? ' show' : '')} id='privacy'>
+    <div className={'activity privacy' + (open ? ' show' : '')} id='privacy'>
       <CloseBtn handleClick={handleClose} className='close-btn' />
       <div className='inner'>
         <h1>Privacy Policy</h1>

@@ -16,8 +16,8 @@ const NewsletterSignUp = () => {
   }, [activity]);
 
   useLoadScript('https://sibforms.com/forms/end-form/build/main.js', {
-    // onLoad: () => console.log('Script loaded'),
-    // onError: () => console.error('Script failed to load'),
+    onLoad: () => console.log('Script loaded'),
+    onError: () => console.error('Script failed to load'),
     async: true,
     defer: true,
   });
@@ -106,7 +106,7 @@ const NewsletterSignUp = () => {
   //Only show if the user hasn't subscribed from this device
   return nss ? (
     <div
-      className={'newsletter-signup-form' + open ? ' open' : ''}
+      className={'activity newsletter-signup-form' + open ? ' open' : ''}
       id='newsletter'
     >
       <div className='sib-form'>
@@ -121,7 +121,7 @@ const NewsletterSignUp = () => {
               id='sib-form'
               method='POST'
               data-type='subscription'
-              noValidate={true}
+              // noValidate={true}
             >
               <div className='form-row'>
                 <div className='title'>

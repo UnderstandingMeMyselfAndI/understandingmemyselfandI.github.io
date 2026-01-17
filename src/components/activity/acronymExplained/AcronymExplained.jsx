@@ -93,7 +93,7 @@ const AcronymExplained = () => {
 
   return (
     <div
-      className={'AcronymExplained' + (open ? ' open' : '')}
+      className={'activity AcronymExplained' + (open ? ' show' : '')}
       key='acronym-card'
     >
       <div className='inner'>
@@ -222,21 +222,10 @@ const AcronymExplained = () => {
               )}
             </div>
           )}
-          {/* 
-					{acronymData?.cats.length > 0 && (
-						<div className='tags'>
-							<div className='title'>TAGS</div>
-							<div className='tags-list'>
-								{acronymData?.cats.map((cat, index) => (
-									<div key={'cat-' + index}>{cat}</div>
-								))}
-							</div>
-						</div>
-					)} */}
+          
         </section>
         <div className='footer' key='acronym-card-footer'>
-          {/* <ButtonEmergencyToolbox id={accData?.id} />
-           */}
+
           <ButtonToolbox
             id={acronymData?.id}
             key={`toolbox-btn-${acronymData?.id}`}

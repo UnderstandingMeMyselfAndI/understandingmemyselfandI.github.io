@@ -1,4 +1,4 @@
-body div.app div.main button.close-btn {
+button.close-btn {
   position: fixed;
   right: 1.5rem;
   top: 1.5rem;
@@ -6,11 +6,13 @@ body div.app div.main button.close-btn {
   height: 60px;
   background: none;
   border: none;
+  outline: none;
   cursor: pointer;
   z-index: 15501;
   margin: 0;
   transform: rotate(45deg);
   outline: none;
+  box-shadow: none;
 
   .close-btn-inner {
     display: block;

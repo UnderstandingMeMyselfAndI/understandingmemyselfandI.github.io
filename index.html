@@ -13,16 +13,16 @@
       rel="icon"
       type="image/svg+xml"
       sizes="any"
-      href="/icons/invert/UmmiIcon.svg"
+      href="/icons/UmmiIcon.svg"
     />
-    <link rel="mask-icon" href="/icons/invert/UmmiIcon.svg" color="#FFFFFF" />
+    <link rel="mask-icon" href="/icons/UmmiIcon.svg" color="#FFFFFF" />
     <link
       rel="apple-touch-icon"
-      href="/icons/invert/UmmiIcon.svg"
+      href="/icons/UmmiIcon.svg"
       sizes="any"
     />
 
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="manifest" href="manifest.json?cache=sadsad" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -30,6 +30,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <link rel="preconnect" href="https://dev.ummi.now" />
+    
 
     <link
       rel="preload"
@@ -69,18 +70,18 @@
       };
       var AUTOHIDE = Boolean(1);
 
-      function reCaptchaOnload() {
-        grecaptcha.execute();
-      }
+      // function reCaptchaOnload() {
+      //   grecaptcha.execute();
+      // }
       var onSubmit = function (token) {
-        console.log('success! ', token);
+        // console.log('success! ', token);
       };
-      var onloadCallback = function () {
-        grecaptcha.render('submit', {
-          sitekey: 'your_site_key',
-          callback: onSubmit,
-        });
-      };
+      // var onloadCallback = function () {
+      //   grecaptcha.render('submit', {
+      //     sitekey: 'your_site_key',
+      //     callback: onSubmit,
+      //   });
+      // };
     </script>
   </body>
 </html>

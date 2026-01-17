@@ -3,11 +3,9 @@
   "short_name": "UmmiDev",
   "description": "Understanding Me Myself & I (Ummi) is a companion app providing support for mental health and addiction recovery. It provides quick access to tools and skills learnt in SMART, Cognitive Behavioural Therapy (CBT), Acceptance Commitment Therapy (ACT), Dialectical Behaviour Therapy (DBT) and others.",
   "start_url": "/index.html?fullscreen=true",
-  "scope": "https://dev.ummi.now",
   "launch_handler": {
     "client_mode": ["navigate-existing", "focus-existing", "auto"]
   },
-  "scope_extensions": [{ "type": "origin", "origin": "https://dev.ummi.now" }],
   "capture_links": "existing_client_event",
   "url_handlers": [
     {
@@ -33,78 +31,78 @@
   },
   "icons": [
     {
-      "src": "/icons/invert/UmmiIcon2.svg",
+      "src": "/icons/UmmiIcon2.svg",
       "sizes": "any",
       "type": "image/svg+xml"
     },
 
     {
-      "src": "/icons/invert/pwa-512x512.avif",
+      "src": "/icons/pwa-512x512.avif",
       "sizes": "512x512",
       "type": "image/avif"
     },
     {
-      "src": "/icons/invert/pwa-512x512.png",
+      "src": "/icons/pwa-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "/icons/invert/pwa-192x192.avif",
+      "src": "/icons/pwa-192x192.avif",
       "sizes": "192x192",
       "type": "image/avif"
     },
     {
-      "src": "/icons/invert/pwa-192x192.png",
+      "src": "/icons/pwa-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/icons/invert/pwa-144x144.avif",
+      "src": "/icons/pwa-144x144.avif",
       "sizes": "144x144",
       "type": "image/avif"
     },
     {
-      "src": "/icons/invert/pwa-144x144.png",
+      "src": "/icons/pwa-144x144.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "/icons/invert/pwa-96x96.avif",
+      "src": "/icons/pwa-96x96.avif",
       "sizes": "96x96",
       "type": "image/avif"
     },
     {
-      "src": "/icons/invert/pwa-96x96.png",
+      "src": "/icons/pwa-96x96.png",
       "sizes": "96x96",
       "type": "image/png"
     },
     {
-      "src": "/icons/invert/pwa-72x72.avif",
+      "src": "/icons/pwa-72x72.avif",
       "sizes": "72x72",
       "type": "image/avif"
     },
     {
-      "src": "/icons/invert/pwa-72x72.png",
+      "src": "/icons/pwa-72x72.png",
       "sizes": "72x72",
       "type": "image/png"
     },
     {
-      "src": "/icons/invert/pwa-64x64.avif",
+      "src": "/icons/pwa-64x64.avif",
       "sizes": "64x64",
       "type": "image/avif"
     },
     {
-      "src": "/icons/invert/pwa-64x64.png",
+      "src": "/icons/pwa-64x64.png",
       "sizes": "64x64",
       "type": "image/png"
     },
     {
-      "src": "/icons/invert/pwa-48x48.avif",
+      "src": "/icons/pwa-48x48.avif",
       "sizes": "48x48",
       "type": "image/avif"
     },
     {
-      "src": "/icons/invert/pwa-48x48.png",
+      "src": "/icons/pwa-48x48.png",
       "sizes": "48x48",
       "type": "image/png"
     }

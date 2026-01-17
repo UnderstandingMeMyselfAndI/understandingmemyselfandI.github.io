@@ -54,18 +54,38 @@ body {
     margin: 0.75rem 0 1.5rem 0;
   }
 
-  .activity {
-    visibility: visible;
-    user-select: auto;
+  div.activity {
+    position: relative;
+    // visibility: hidden;
+    display: none;
+    z-index: -10;
+    top: 0;
+    left: 0;
+    width: 100dvw;
+    height: 100dvh;
 
-    &.hide {
-      user-select: none;
-      visibility: hidden;
+
+    &.hide,
+    &.close {
+      // visibility: hidden;
+      z-index: -10;
+      pointer-events: none;
+
     }
 
     &.show {
-      visibility: visible;
-      user-select: auto;
+      // visibility: visible;
+      pointer-events: auto;
+      z-index: 6000;
+      display: block;
+    }
+
+    button.close-btn {
+      position: absolute;
+      right: 1.5rem;
+      top: 1.5rem;
+      left: auto;
+      z-index: 6005;
     }
   }
 

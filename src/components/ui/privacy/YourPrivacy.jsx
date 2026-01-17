@@ -19,7 +19,7 @@ const YourPrivacy = () => {
   }
 
   return (
-    <section className={'privacy' + (open ? ' show' : '')}>
+    <section className={'activity privacy' + (open ? ' show' : '')}>
       <h4>{parse(content?.title)}</h4>
       {content?.content?.map((html, i) => {
         return <p key={i}>{parse(html)}</p>;

@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-const CloseBtn = ({ handleClick }) => {
+const CloseBtn = ({ handleClick, classes = '' }) => {
   return (
-    <button className='close-btn' onClick={handleClick}>
+    <button className={'close-btn'+ (classes ? ' ' + classes : '')} onClick={handleClick}>
       <div className='close-btn-inner'>
         <div></div>
         <div></div>
@@ -13,6 +13,7 @@ const CloseBtn = ({ handleClick }) => {
 };
 
 CloseBtn.propTypes = {
+  classes: PropTypes.string,
   handleClick: PropTypes.func,
 };
 

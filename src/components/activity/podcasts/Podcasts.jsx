@@ -15,7 +15,7 @@ const Podcasts = () => {
 
     // const activityID = activities.find(activity => (activity.url === "tools" ? activity.id : null));
     return (
-        <section id="podcasts" className={"podcasts" + (open ? " show" : " ")}>
+        <section id="podcasts" className={"activity podcasts" + (open ? " show" : " ")}>
             <h2><u>Podcasts</u></h2>
             <p>The following podcasts are available on Spotify. Following a link will take you to the podcast.</p>
             {data.map((podcast, i) => {

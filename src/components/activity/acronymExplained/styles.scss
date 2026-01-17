@@ -4,33 +4,20 @@
 $gutters: 0;
 
 div.AcronymExplained {
-	z-index: -10;
-	opacity: 0;
-	visibility: hidden;
-	left: -100%;
-
 	width: 100vw;
 	max-width: var(--appMaxWidth);
 	height: 100vh;
 	max-height: 100vh;
-	position: fixed;
-
 	padding: 0;
 	margin: 0 auto;
-	top: 0;
-	left: 50%;
+
 	background: rgba(0, 0, 0, 0.85);
 	transition: all 0.2s ease-out;
 	transform: scale(1.025) translate(-50%, 0);
-	z-index: -1;
 
 	&.open {
-		opacity: 1;
 		transform: scale(1) translate(-50%, 0);
 		transition: all 0.2s ease-in;
-		z-index: 6000;
-		visibility: visible;
-		left: 50%;
 	}
 
 	ul {
@@ -75,7 +62,7 @@ div.AcronymExplained {
 
 	.inner {
 		position: relative;
-		z-index: 6000;
+		// z-index: 6000;
 		height: 100dvh;
 		width: 100%;
 

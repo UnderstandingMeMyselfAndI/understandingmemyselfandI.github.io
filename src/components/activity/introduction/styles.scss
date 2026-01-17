@@ -10,42 +10,29 @@ section.intro {
   color: var(--primary);
   margin: 2.5rem 0;
   width: 100%;
-  display: flex;
+
+  min-height: 100vh;
+  max-width: 100%;
+
   flex-flow: column nowrap;
   row-gap: 2.75rem;
   justify-content: center;
   align-items: center;
-  margin-top: 20dvh;
+  // margin-top: 20dvh;
   position: relative;
-  z-index: 3010;
-  overflow-x: clip;
+  top: 0;
+  left: 0;
+
+  overflow-x: hidden;
   text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 
-  user-select: none;
-  visibility: hidden;
-  opacity: 0;
+  &.show {
+    display: flex;
+  }
+
+
   transition: opacity 0.15s cubic-bezier(0.5, 0, 0.9, 1);
   position: relative;
-  z-index: -1;
-
-  &.show {
-    visibility: visible;
-    user-select: auto;
-    opacity: 1;
-    transition: opacity 0.15s cubic-bezier(0.5, 0, 0.9, 1);
-    position: relative;
-    z-index: 1;
-  }
-
-  &.hide {
-    user-select: none;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.15s cubic-bezier(0.5, 0, 0.9, 1);
-    position: relative;
-    z-index: -1;
-  }
-
 
   .notinstalled {
     max-width: 600px;
@@ -55,6 +42,8 @@ section.intro {
     .point {
       display: flex;
       width: 90%;
+      max-width: 60%;
+
 
       margin: 0 auto;
 
@@ -91,7 +80,6 @@ section.intro {
     margin: 4rem 0;
     position: relative;
   }
-
 
   .sub:nth-child(0)::after {
     display: none;
@@ -139,8 +127,12 @@ section.intro {
     &.sec-1 {
       margin-bottom: 30vh;
 
-      .title {
+      .subsection-title {
         margin-bottom: 4rem;
+        max-width: 100%;
+        width: 90dvw;
+        margin: 0 auto;
+
       }
 
       .p-0 {
@@ -276,11 +268,24 @@ section.intro {
 
   .quick-access,
   .days-section {
+    .subsection-title {
+      margin-bottom: 4rem;
+      max-width: 80%;
+      width: 80dvw;
+      margin: 0 auto;
+      outline: 1px solid red;
+
+      h2 {
+        width: 100%;
+      }
+    }
+
     .title {
       font-size: variables.$h4_size;
       font-weight: 600;
       width: 80%;
       margin: 0 auto;
+      outline: 1px solid red;
     }
   }
 }

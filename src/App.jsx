@@ -40,7 +40,7 @@ import Vcn from './components/visits/Vcn.jsx';
 import Lingo from './components/activity/lingo/Lingo';
 // import Quiz from './components/activity/quiz/Quiz';
 import UnitsCalculator from './components/activity/unitsCalculator/UnitsCalculator';
-
+import Motivation from './components/activity/motivation/Motivation';
 import './App.scss';
 // TODO: "Clear Local Data" functionality
 function App() {
@@ -76,19 +76,20 @@ function App() {
           {toolboxFilterEnabled && <BadgeToolbox />}
           <Header />
           <Introduction />
+         
           <Tools />
-          <YourPrivacyCTA />
-          {daysCounterEnabled && <DaysCounterCTA />}
+          <YourPrivacyCTA />          
           <Lingo />
-          {/* <Quiz /> */}
-          {unitsCalculatorEnabled && <UnitsCalculator />}
-          <Settings />
-          <div className='activities' id='top'>
-            {daysCounterEnabled && <DaysCounter />}
+          {/* <Quiz /> */}         
+          <Settings />          
 
-            <AcronymExplained />
-            <PrivacyPolicy />
-          </div>
+          {unitsCalculatorEnabled && <UnitsCalculator />}
+          {daysCounterEnabled && <DaysCounterCTA />}
+          {daysCounterEnabled && <DaysCounter />}
+          <AcronymExplained />
+            {/* <Motivation /> */}
+          <PrivacyPolicy />
+
           <NewsletterSignUp />
           <InstallCTA />
           <Footer />

@@ -6,6 +6,7 @@ content/Menu/footer: 3000
 Menu/Badges: 4000
 tools:4500
 Snackbars?notifications: 5000
-Menu: 5500
+
 Activities (apart from tools): 6000
 cookie-consent-overlay: 6000
+Menu: 7500

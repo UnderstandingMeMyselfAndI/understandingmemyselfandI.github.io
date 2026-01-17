@@ -1,61 +1,69 @@
 @use "@/scss/_variables.scss";
 @import "@/globals.css";
-section.podcasts{
-    z-index: 3010;
+
+section.podcasts {
     position: relative;
-     width:100%;
-     padding-top:120px;
-     padding-bottom:120px;
-     .podcast:nth-child(odd) a{
-        text-decoration-color:var(--yellow);
+    width: 100%;
+    padding-top: 120px;
+    padding-bottom: 120px;
+
+    .podcast:nth-child(odd) a {
+        text-decoration-color: var(--yellow);
         text-decoration-thickness: 6px;
     }
-    .podcast:nth-child(even) a{
-        text-decoration-color:var(--lightBlue);
-         text-decoration-thickness: 6px;
+
+    .podcast:nth-child(even) a {
+        text-decoration-color: var(--lightBlue);
+        text-decoration-thickness: 6px;
     }
 }
-.podcast{
-    margin:6rem 0;
-    width:100%;
-    .podcast-title{
-        font-size:variables.$h3_size;
-        font-weight:variables.$h3_weight;
-        line-height:variables.$h3_line_height;
-        margin-bottom:0.5rem;
-        color:var(--primary);
-        padding:0.5rem 0;
-        width:85%;
-        margin:0 auto;
+
+.podcast {
+    margin: 6rem 0;
+    width: 100%;
+
+    .podcast-title {
+        font-size: variables.$h3_size;
+        font-weight: variables.$h3_weight;
+        line-height: variables.$h3_line_height;
+        margin-bottom: 0.5rem;
+        color: var(--primary);
+        padding: 0.5rem 0;
+        width: 85%;
+        margin: 0 auto;
     }
-    img{
-    width:100%;
-        box-shadow: 0px 0px 6px 3px rgba(10,10, 10, 0.25);
+
+    img {
+        width: 100%;
+        box-shadow: 0px 0px 6px 3px rgba(10, 10, 10, 0.25);
     }
-    a{
-        position:relative;
-       
-        display:inline-block;
-        .icon{
-            position:absolute;
-            right:3rem;
-            top:1rem;
-            z-index:10;
-            width:40px;
-            height:40px;
-             fill: var(--orange);
-              
-                // stroke: var(--orange);
-            svg{
-                width:100%;
-                height:100%;
+
+    a {
+        position: relative;
+
+        display: inline-block;
+
+        .icon {
+            position: absolute;
+            right: 3rem;
+            top: 1rem;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            fill: var(--orange);
+
+            // stroke: var(--orange);
+            svg {
+                width: 100%;
+                height: 100%;
+
                 // fill: var(--orange);
                 // stroke: var(--orange);
-                path{
-                    box-shadow: 0px 0px 3px 1px rgba(10,10, 10,1.25);
+                path {
+                    box-shadow: 0px 0px 3px 1px rgba(10, 10, 10, 1.25);
                 }
             }
         }
     }
-   
+
 }

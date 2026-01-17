@@ -87,11 +87,11 @@ const Tools = () => {
   );
 
   return (
-    <div
+    <section
       ref={inViewRef}
-      className={'activity-tools' + (open ? ' show' : ' hide')}
+      className={'activity activity-tools tools ' + (open ? ' show' : ' hide')}  id='tools'
     >
-      <section className='tools' id='tools'>
+
         <h2>
           <u>{content?.title}</u>
         </h2>
@@ -109,7 +109,7 @@ const Tools = () => {
             })}
         </div>
       </section>
-    </div>
+
   );
 };
 Tools.propTypes = {

@@ -143,8 +143,8 @@ const UnitsCalculator = () => {
   const totalDrinkCount = drinks.reduce((sum, d) => sum + d.count, 0);
 
   return open ? (
-    <div
-      className={'ummi-units-calculator activity' + (open ? ' open' : '')}
+    <section
+      className={'activity ummi-units-calculator ' + (open ? ' open' : '')}
       id='ummi-units-calculator'
     >
       <CloseBtn className='close-btn' handleClick={handleClose} />
@@ -393,7 +393,7 @@ const UnitsCalculator = () => {
           parallaxStrength={0}
         />
       </div>
-    </div>
+    </section>
   ) : (
     <></>
   );

@@ -1,34 +1,72 @@
-.search-lingo {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-div.lingo-list {
-    max-height: 210px;
+section.search-lingo {
+    width: 100dvw;
+    max-width: 100%;
+    // position: relative;
+    top: 0;
+    left: 0;
+    // z-index: 4000;
     // overflow: hidden;
-    mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
-    mask-mode: alpha;
 
-}
-
-div.lingo-list-arrow {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
+    overflow-x: hidden;
 
 
-    &::after {
-        content: "➔";
-        font-size: 50px;
-        position: absolute;
-        transform: rotatez(90deg) translate(50px, 0px);
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 50px;
-        z-index: 100000000;
+    .search-lingo-wrap {
+        max-width: 600px;
+        margin: 0 auto;
     }
 
+}
+
+div.lingo-list-wrapper {
+    transition: height 1.05s cubic-bezier(0.75, 0, 0.5, 1);
+}
+
+div.lingo-list-wrapper.expanded {
+    mask-image: none;
+    mask-mode: unset;
+    transition: height 1.35s cubic-bezier(0.75, 0, 0.5, 1);
+
+    div.lingo-list-btn {
+        margin-top: -60px;
+    }
+
+}
+
+div.lingo-list-wrapper.collapse {
+    mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
+    mask-mode: alpha;
+    position: relative;
+    transition: height 1.05s cubic-bezier(0.75, 0, 0.5, 1);
+
+    div.lingo-list-btn {
+        margin-top: -50px;
+    }
+
+}
+
+div.lingo-field {
+    input[type=text] {
+        max-width: 300px;
+        margin: 2rem;
+    }
+}
+
+
+div.lingo-list-btn {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: fit-content;
+    height: 50px;
+    // outline: 1px solid red;
+    margin: 0 auto;
+
+    background: var(--blue);
+    padding: 1rem 1.25rem;
+    border-radius: 4px;
+    box-shadow: 0px 0px 6px rgba(10, 10, 10, 0.5);
 
 }
 

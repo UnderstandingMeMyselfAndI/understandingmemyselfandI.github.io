@@ -60,7 +60,7 @@ export default function AppMenu() {
     // setActivity(-1);
     setOpen(false);
     // setOpenComponent(activity === -1);
-    false;
+    
   };
 
   useEffect(() => {
@@ -74,7 +74,7 @@ export default function AppMenu() {
   }, [activity]);
 
   return showComponent ? (
-    <div className={'AppMenu' + (show ? ' ' : ' hide')}>
+    <div className={'AppMenu' + (show ? ' ' : ' hide')} >
       <div className='burger-stack' id='burger-button'>
         <input
           type='checkbox'
@@ -93,7 +93,7 @@ export default function AppMenu() {
           </div>
         </label>
       </div>
-      <ul className={open ? ' open' : ' closed'} id='app-menu'>
+      <ul className={open ? ' open' : ' closed'} id='app-menu'  onClick={handleClose}>
         <li
           onClick={() => {
             if (gae && window.gtag) {
@@ -302,6 +302,7 @@ export default function AppMenu() {
         {/* <li onClick={handleClose}>Tour</li> */}
         {/* <li onClick={handleClose}>Settings</li> */}
       </ul>
+      <div className="app-nemu-bg" onClick={handleClose}></div>
     </div>
   ) : null;
 }
