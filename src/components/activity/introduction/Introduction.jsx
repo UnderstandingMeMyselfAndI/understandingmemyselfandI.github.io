@@ -45,41 +45,82 @@ const Introduction = () => {
           
           if(point !== null){
 
+            // ---------------------------------------------------------
+
             gsap.timeline({scrollTrigger:{
               trigger: point,
-              end: 'bottom top', 
-              start: 'top bottom-=10%', 
-              scrub:1.75,
-              markers:true,
+              // end: 'bottom top', 
+              end: 'bottom-=10% center', 
+              scrub:0.25,
+              markers:false,
               id:"point-"+i,
               toggleActions: 'play reverse reverse reset ',
             }})
                  
             .to(point, {
               duration: 1, 
+              rotateX:'0deg',
               autoAlpha:1,
-              delay:2,
+              delay:0,
+              ease:'power4.inOut',
+            }) 
+
+            gsap.timeline({scrollTrigger:{
+              trigger: point,
+              start: 'top top+=30%', 
+              scrub:0.25,
+              markers:false,
+              id:"point-"+i,
+              toggleActions: 'play reverse reverse reset ',
+            }})
+                 
+            .to(point, {
+              duration: 1, 
+              autoAlpha:0,
+              rotateX:'35deg',
+              delay:0,
               ease:'power4.inOut',
             }) 
             
-            
+            // ---------------------------------------------------------
 
-            const box = point.querySelector('.tick-icon');
+            const tick_icon = point.querySelector('.tick-icon');
             gsap.timeline({scrollTrigger:{
                 trigger: point,
-                end: 'bottom center', 
-                scrub:1.75,
+                end: 'bottom-=10% center', 
+                scrub:0.25,
+                markers:false,
                 toggleActions: 'play reverse reverse reset ',
             }})
             .addLabel('start')           
-              .to(box, {
+              .to(tick_icon, {
                 duration:1, 
-                scale:1,
+                scale:0.75,
                 autoAlpha:0.25,
                 ease:'power4.inOut',
                 webkitFilter: `blur(0px)`,
                 filter: `blur(0px)`,
-              })              
+              }) 
+              
+              
+              gsap.timeline({scrollTrigger:{
+                trigger: point,
+                start: 'center center-=10%', 
+                scrub:0.25,
+                markers:false,
+                toggleActions: 'play reverse reverse reset ',
+              }})
+              .addLabel('start')           
+                .to(tick_icon, {
+                  duration:1, 
+                  scale:2.5,
+                  autoAlpha:0.25,
+                  ease:'power4.inOut',
+                  webkitFilter: `blur(250px)`,
+                  filter: `blur(250px)`,
+                }) 
+
+                // ---------------------------------------------------------
           }
         });
     },

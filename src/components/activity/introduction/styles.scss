@@ -154,7 +154,7 @@ section.intro {
   }
 
   .tick-icon {
-    transform: scale(3.5);
+    transform: scale(2.5) translate(0, 0) rotateX(-35deg);
     filter: blur(250px);
     -webkit-filter: blur(250px);
     opacity: 0
