@@ -71,7 +71,7 @@ function App() {
           <div className="vertical"></div>
           <div className="horizontal"></div>
           </div>
-        {/* <div className='dev-version'>Development Version.</div> */}
+        <div className='dev-version'>Development Version.</div>
         <AppMenu />
 
         <Header />
