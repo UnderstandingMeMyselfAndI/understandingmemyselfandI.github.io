@@ -38,8 +38,27 @@ const Header = () => {
   useGSAP(
     () => {
        gsap.set('.w3', { autoAlpha: 0, rotateY: '1080deg', x: 0, y: 0 });
-        cont1.current = gsap.timeline({repeat: -1, repeatDelay: 0, yoyo: true, defaults: { duration: 0.65, ease: 'power3.inOut' } })
-          .fromTo('.homelogo',{ autoAlpha: 0, scale: 1.4, delay:0,duration:0.3 }, { autoAlpha: 1, scale: 1 ,scrollTrigger: {
+        cont1.current = gsap.timeline(
+          {
+            repeat: -1, 
+            repeatDelay: 0, 
+            yoyo: true, 
+            defaults: { 
+              duration: 0.65,               
+              ease: 'power3.inOut' 
+            }
+          })
+          .fromTo('.homelogo',
+            { 
+              autoAlpha: 0, 
+              scale: 1.4, 
+              delay:0,
+              duration:0.3 
+            },
+             { 
+              autoAlpha: 1, 
+              scale: 1,
+              scrollTrigger: {
               trigger: '.homelogo',
               start: "top 80%",              
               end: "top 30%",              
@@ -71,17 +90,25 @@ const Header = () => {
 const scrub = true;
         cont2.current = gsap.timeline({defaults: { duration: 0.65, ease: 'power3.inOut' }})
 
-          .fromTo('.home-logo-wrap',{ autoAlpha: 1, scale: 1, translateY:0 },{ autoAlpha: 0.15, scale: 0.6, translateY:500, duration:1.5,
-            scrollTrigger: {
-              // trigger: '.homelogo',
-              start: "top top+=5%",              
-              end: "bottom ",              
-              scrub: scrub,
-              markers: false,
-              id:"logo",
-              toggleActions: "play reverse resume reverse"
+          .fromTo('.home-logo-wrap',
+            { autoAlpha: 1, 
+              scale: 1, 
+              translateY:0 
+            },{ 
+              autoAlpha: 0.15,               
+              scale: 0.6, 
+              translateY:500, 
+              duration:1.5,
+              scrollTrigger: {
+                // trigger: '.homelogo',
+                start: "top top+=5%",              
+                end: "bottom ",              
+                scrub: scrub,
+                markers: false,
+                id:"logo",
+                toggleActions: "play pause resume reset"
 
-          }},'0.7')
+            }},'0.7')
           .to('.w0w', { autoAlpha: 0.0,rotateX:'-90deg', duration:3, scrollTrigger: {
               trigger: '.homelogo',
               start: "top 20%",              
@@ -100,45 +127,6 @@ const scrub = true;
               toggleActions: "play pause resume reset"
 
           } },' -0.5')
-          
-          // .to('.w1w', { autoAlpha: 0.15,translateX:-120, translateY:200, scale:0.8, duration:2, scrollTrigger: {
-          //     trigger: '.homelogo',
-          //     start: "top 20%",              
-          //     scrub: scrub,
-          //     markers: true,
-          //     id:"group",
-          //     toggleActions: "play pause resume reset"
-
-          // } },' -1.75')
-          // .to('.w2w', { autoAlpha: 0.0,translateX:-20,translateY:300, rotateX:'90deg', scale:0.6, duration:4, scrollTrigger: {
-          //     trigger: '.homelogo',
-          //     start: "top 20%",              
-          //     scrub: scrub,
-          //     markers: true,
-          //     id:"group",
-          //     toggleActions: "play pause resume reset"
-
-          // } },' -0.75')
-          // .to('.w3w', { autoAlpha: 0.15,translateX:10,translateY:180, scale:0.8, duration:3, scrollTrigger: {
-          //     trigger: '.homelogo',
-          //     start: "top 20%",              
-          //     scrub: scrub,
-          //     markers: true,
-          //     id:"group",
-          //     toggleActions: "play pause resume reset"
-
-          // } },' -0.75')
-          //  .to('.w4w', { autoAlpha: 0.15,translateX:40,translateY:250, scale:0.6, duration:4, scrollTrigger: {
-          //     trigger: '.homelogo',
-          //     start: "top 20%",              
-          //     scrub: scrub,
-          //     markers: true,
-          //     id:"group",
-          //     toggleActions: "play pause resume reset"
-
-          // } },' -0.6')
-
-
       
 
     },

@@ -46,6 +46,7 @@ const Motivation = () => {
     'YOU ARE GREAT',
     'LEARN FLOURISH GROW',
     'YOU ARE STRONG TO FACE IT',
+    'THERE IS ALWAYS HOPE',
     'DONT COUNT THE DAYS, MAKE THE DAYS COUNT',
   ].flatMap((phrase) => phrase.split(' '));
 
