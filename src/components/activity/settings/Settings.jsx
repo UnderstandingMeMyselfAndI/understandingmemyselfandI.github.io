@@ -221,7 +221,7 @@ const Settings = () => {
   };
 
   return (
-    <div className={'activity activity-settings fixed' + ' ' + name + (open ? ' show' : ' hide')}>
+    <div id="settings" className={'activity activity-settings fixed' + ' ' + name + (open ? ' show' : ' hide')}>
       {/* <Dialog
         show={showDeleteDialog}
         title='Confirm Clear All Data'

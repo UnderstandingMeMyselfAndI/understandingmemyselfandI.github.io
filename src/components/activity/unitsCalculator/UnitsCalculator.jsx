@@ -144,8 +144,9 @@ const UnitsCalculator = () => {
 
   return open ? (
     <section
+     id='ummi-units-calculator'
       className={'activity ummi-units-calculator fixed' + (open ? ' open' : '')}
-      id='ummi-units-calculator'
+     
     >
       <CloseBtn className='close-btn' handleClick={handleClose} />
       <div className='inner'>

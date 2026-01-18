@@ -20,7 +20,6 @@ const Lingo = () => {
   const listRef = useRef(null);
 
   useEffect(() => {
-    console.log("activity", activity);
     setOpen(activity === -1);
   }, [activity]);
 
@@ -77,8 +76,9 @@ const Lingo = () => {
   }, [content, setPhrase, gae]);
   return (
     <section
+    id='lingo'
       className={'activity activity-search-lingo' + (open ? ' show' : ' hide')}
-      id='lingo'
+      
     >
       <div className='search-lingo-wrap'>
         <Dialog
@@ -99,7 +99,6 @@ const Lingo = () => {
         >
           <SearchField
             handleClick={handleClick}
-            classes='lingo-search-list'
             ref={listRef}
           />
         </div>

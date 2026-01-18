@@ -9,9 +9,14 @@ const NewsletterSignUp = () => {
   const nss = useAppStore((s) => s.nss); // subscribed to newsletter
   const setNss = useAppStore((s) => s.setNSS);
 
+  console.log("newsletter signed up", nss);
+  // TODO #22 [ ]: Ensure that Newsletter menu item is removed after user sign up. Should also be recorded in the store
+  // TODO #23 : Check form validation and UX 
   const [open, setOpen] = useState(true);
   const activity = useAppStore((s) => s.activity);
+
   useEffect(() => {
+    console.log("show newsletter sign up activity ",activity);
     setOpen(activity === -1);
   }, [activity]);
 
@@ -22,10 +27,10 @@ const NewsletterSignUp = () => {
     defer: true,
   });
 
-  const onSuccess = (e) => {
+  const onSuccess = () => {
     setNss(true);
   };
-  const onError = (e) => {};
+  const onError = () => {};
   const [formData, setFormData] = useState({
     email: '',
   });
@@ -57,7 +62,7 @@ const NewsletterSignUp = () => {
       submitData.append('email_address_check', ''); // Honeypot field
       submitData.append('locale', 'en');
 
-      const response = await fetch(
+      await fetch(
         `https://d44b221a.sibforms.com/serve/${formId}`,
         {
           method: 'POST',
@@ -76,6 +81,7 @@ const NewsletterSignUp = () => {
       onError && onError(error.message);
     }
   };
+  //TODO: #24 Check this is being fisplayed following sign up - it wasn't wahen tested
   if (status.success) {
     return (
       <div className='signup-success'>
@@ -104,10 +110,11 @@ const NewsletterSignUp = () => {
     setChecked(e.target.checked);
   };
   //Only show if the user hasn't subscribed from this device
-  return nss ? (
+  return !nss ? (
     <div
-      className={'activity newsletter-signup-form' + open ? ' open' : ''}
-      id='newsletter'
+    id='newsletter'
+      className={'activity activity-newsletter-signup-form' + (open ? ' show' : '')}
+      
     >
       <div className='sib-form'>
         <div id='sib-form-container' className='sib-form-container'>
@@ -125,7 +132,7 @@ const NewsletterSignUp = () => {
             >
               <div className='form-row'>
                 <div className='title'>
-                  Big things are coming.
+                  Bigger things are coming.
                   <br />
                   Be the first to hear.
                 </div>
@@ -150,13 +157,13 @@ const NewsletterSignUp = () => {
                   placeholder='Email address'
                   value={formData.email}
                   onChange={handleChange}
-                  // autoComplete
+                  autoComplete={'off'}
                   required
                   // data-required='true'
                   // disabled={status.loading}
                   className='email-input input'
                 />
-                <label className='entry__error entry__error--primary'></label>
+                <label htmlFor="email" className='entry__error entry__error--primary'></label>
               </div>
               <div className='form-row '>
                 <div>
@@ -180,7 +187,7 @@ const NewsletterSignUp = () => {
                     </label>
                     <div className='consent'></div>
                   </div>
-                  <label className='entry__error entry__error--primary'></label>
+                  <label htmlFor="error"className='entry__error entry__error--primary'></label>
                 </div>
               </div>
               <div className='form-row privacy'>

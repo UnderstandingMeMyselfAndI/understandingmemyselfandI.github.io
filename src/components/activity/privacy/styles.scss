@@ -1,23 +1,36 @@
 @use "@/scss/_variables.scss";
 @import "@/globals.css";
 
+#privacy {
+    overflow-y: scroll;
+    height: 100%;
+    overflow-y: auto;
+    justify-content: flex-start;
+    align-items: flex-start;
+    top: 0;
+    left: 0;
+    transform: none;
+}
+
 div.activity-privacy,
 section.activity-privacy {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
-    overflow-y: scroll;
-    background: var(--backgroundGrayTrans85);
+
+    background: var(--backgroundGrayTrans90);
     color: var(--primary);
     text-shadow: none;
     text-align: left;
     line-height: 1.4;
     padding: 6rem 0;
 
+
     .inner {
         position: relative;
+        height: fit-content;
         z-index: 10;
         width: 84%;
         margin: 0 auto;
@@ -69,6 +82,12 @@ section.activity-privacy {
         display: flex;
         justify-content: space-between;
         column-gap: 1rem;
+
+        button.btn {
+            border-radius: 4px;
+            font-size: 1rem;
+            min-height: 44px;
+        }
     }
 
     .close-btn {

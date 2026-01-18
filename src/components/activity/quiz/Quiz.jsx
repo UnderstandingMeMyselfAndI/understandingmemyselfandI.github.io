@@ -109,7 +109,7 @@ const Quiz = () => {
 
 
   return (
-    <div className={'activity activity-quiz fixed'+  (open ? ' show' : '')}>
+    <div id="quiz" className={'activity activity-quiz fixed'+  (open ? ' show' : '')}>
       <CloseBtn className='close-btn' handleClick={handleClose} />
       <div className='inner'>
         {!started ? (

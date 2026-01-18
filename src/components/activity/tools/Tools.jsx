@@ -89,7 +89,8 @@ const Tools = () => {
   return (
     <section
       ref={inViewRef}
-      className={'activity activity-tools tools ' + (open ? ' show' : ' hide')}  id='the-tools'
+      id='the-tools'
+      className={'activity activity-tools tools ' + (open ? ' show' : ' hide')}  
     >
 
         <h2>

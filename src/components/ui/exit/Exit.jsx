@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import useAppStore from '@/store/useAppStore';
 import ExitButton from 'buttons/exit/ExitButton';
 import Dialog from 'components/ui/dialog/Dialog';

@@ -1,8 +1,37 @@
-section.activity-search-lingo {}
+#lingo {
+    scroll-margin-top: 25vh;
+}
 
 div.lingo-list-wrapper {
     transition: height 1.05s cubic-bezier(0.75, 0, 0.5, 1);
     overflow: hidden;
+    width: 100%;
+
+    .search-field {
+        width: 100%;
+    }
+}
+
+div.search-lingo-wrap {
+    max-width: var(--max-width);
+
+    div.search-field {
+        min-width: fit-contnet;
+        padding: 0 3px;
+
+        input[type=text] {
+            max-width: 300px;
+            min-width: 300px;
+            margin: 2rem;
+            margin: 6px;
+        }
+    }
+
+    .search-list {
+
+        min-width: 100%;
+    }
+
 }
 
 div.lingo-list-wrapper.expanded {
@@ -28,12 +57,7 @@ div.lingo-list-wrapper.collapse {
 
 }
 
-div.lingo-field {
-    input[type=text] {
-        max-width: 300px;
-        margin: 2rem;
-    }
-}
+
 
 
 div.lingo-list-btn {

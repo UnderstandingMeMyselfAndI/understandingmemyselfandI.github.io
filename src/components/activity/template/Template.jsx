@@ -18,7 +18,7 @@ const Template = () => {
 	// const handleClose = () => setOpen(false);
 
 	return (
-		<div className={'activity' + (open ? ' show' : ' hide')}>
+		<div id="idname" className={'activity' + (open ? ' show' : ' hide')}>
 			<section className={name}></section>
 		</div>
 	)

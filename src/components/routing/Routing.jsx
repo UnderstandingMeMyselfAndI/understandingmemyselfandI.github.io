@@ -5,8 +5,8 @@ import toolsData from '@/data/tools.js';
 import { sanitizeStringForUrl } from '@/js/utils.js';
 // import PropTypes from 'prop-types'
 
-// TODO: Ga event names need to be changed phrase_viewed - > [name of phrase]_viewed
-// TODO: Ga event names need to be changed acronym_viewed - > [name of acronym]_tool_viewed
+// TODO: #14 Ga event names need to be changed phrase_viewed - > [name of phrase]_viewed
+// TODO: #15 Ga event names need to be changed acronym_viewed - > [name of acronym]_tool_viewed
 
 const appURL =
   window.location.protocol +

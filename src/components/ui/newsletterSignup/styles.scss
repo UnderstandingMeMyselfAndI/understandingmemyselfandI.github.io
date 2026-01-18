@@ -92,26 +92,11 @@
 
 }
 
-.newsletter-signup-form {
-    user-select: none;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.15s cubic-bezier(0.5, 0, 0.9, 1);
-
-    &.open {
-
-        visibility: visible;
-        user-select: auto;
-        opacity: 1;
-        transition: opacity 0.15s cubic-bezier(0.5, 0, 0.9, 1);
-    }
-}
-
 #newsletter {
-    scroll-margin-top: 15vh;
+    scroll-margin-top: 5vh;
 }
 
-.newsletter-signup-form {
+.activity-newsletter-signup-form {
     width: 100%;
 
     .sib-form {
@@ -119,9 +104,6 @@
 
         #sib-form-container {
             position: relative;
-
-
-
 
             #error-message {
                 font-size: 1rem;
@@ -217,7 +199,7 @@
                     background-color: var(--greyDark);
                     opacity: 0.3;
                     outline: 1px solid rgba(200, 200, 200, 0.5);
-                    box-shadow:var(--boxShadowDarkValue);
+                    box-shadow: var(--boxShadowDarkValue);
 
                 }
 
@@ -236,6 +218,12 @@
                 row-gap: 2rem;
                 justify-content: center;
 
+                .privacy {
+                    p {
+                        font-size: 0.75rem;
+                    }
+                }
+
                 .privacy-google {
                     font-size: 0.75rem;
                     color: var(--grey);
@@ -248,11 +236,22 @@
                 }
 
                 .privacy {
-                    font-size: 1rem;
+                    font-size: 0.75rem;
+                }
+
+                .privacy-label {
+                    input {
+                        font-size: 16px;
+                    }
                 }
 
                 .privacy-label {
                     color: var(--grey);
+                    font-size: 1rem;
+
+                    input {
+                        font-size: 1rem;
+                    }
                 }
 
                 .title {

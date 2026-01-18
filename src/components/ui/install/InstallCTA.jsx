@@ -12,7 +12,7 @@ import { strings } from '@/data/config';
 import './styles.scss';
 
 const InstallCTA = () => {
-  //TODO: Check this is working - don't show if already installed
+  //TODO: #16 Check this is working - don't show if already installed
   const content =
     strings.activity.find((activity) => activity.name === 'install') || null;
   if (content === null) {
@@ -100,7 +100,8 @@ const InstallCTA = () => {
     setOpen(activity === -1);
   },[activity]);
 
-  //TODO: Install process not working
+  //TODO: #17 Check install process is working for all platform
+  //TODO: #18 Create wide screen screenshots for install prompt
   // console.log('isInstalled', isInstalled)
   // console.log('isInstallable', isInstallable)
   // console.log('showInstallBtn', showInstallBtn)

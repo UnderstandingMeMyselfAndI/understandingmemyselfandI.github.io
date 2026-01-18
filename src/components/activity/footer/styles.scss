@@ -33,7 +33,7 @@ div.activity-footer {
 	color: var(--primary);
 	text-align: center;
 	width: 90%;
-	max-width: 600px;
+	max-width: var(--max-width);
 	background-color: transparent;
 	line-height: 1.5;
 

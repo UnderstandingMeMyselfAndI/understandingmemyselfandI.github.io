@@ -14,7 +14,7 @@ const indexedDBStorage = {
   },
 };
 
-// TODO[x]: Implement short names
+// TODO[x]: #20 Implement short names for brevity in storage
 const useAppStore = create(
   persist(
     (set, get) => ({
@@ -323,6 +323,10 @@ const useAppStore = create(
         window.location.reload();
       },
       // ----------------------------------------
+      // Exit Button Position
+      exitButtonPosition: { x: 0, y: 0 },
+      setExitButtonPosition: (v) => set(() => ({ exitButtonPosition: v })),
+      // ----------------------------------------
     }),
     {
       name: 'ummi',
@@ -347,6 +351,7 @@ const useAppStore = create(
         allowCookies: state.allowCookies,
         tpc: state.tpc,
         allowThirdPartyCookies: state.allowThirdPartyCookies,
+        exitButtonPosition: state.exitButtonPosition,
 
         // usePINLock: state.usePINLock,
         isins: state.isins,

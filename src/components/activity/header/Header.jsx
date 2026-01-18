@@ -31,7 +31,6 @@ const Header = () => {
   const arrowsCont = useRef();
 
   useEffect(() => {
-    console.log("Header activity", activity);
     setOpen(activity === -1);
   }, [activity]);
 

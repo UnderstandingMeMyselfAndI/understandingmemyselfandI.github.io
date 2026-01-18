@@ -122,7 +122,7 @@ const AccordionItemWithEffects = ({item, index, expanded, handleChange, config =
 			left: 0,
 			right: 0,
 			zIndex: 1000,
-			width: "100vw",
+			width: "100%",
 			backgroundColor: "var(--mainBackground)",
 			boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
 			maxHeight: "100vh",

@@ -4,7 +4,7 @@ import useAppStore from '@/store/useAppStore';
 import CloseBtn from 'buttons/close/CloseBtn';
 import Backdrop from 'components/ui/backdrop/Backdrop';
 import './styles.scss';
-// TODO: Add in newsletter supplier privacy
+// TODO: #13 Add in newsletter supplier privacy
 const PrivacyPolicy = () => {
   const name = 'privacy';
 
@@ -36,7 +36,7 @@ const PrivacyPolicy = () => {
   };
 
   return (
-    <div className={'activity activity-privacy fixed' + (open ? ' show' : '')} id='privacy'>
+    <div id='privacy' className={'activity activity-privacy fixed' + (open ? ' show' : '')} >
       <CloseBtn handleClick={handleClose} className='close-btn' />
       <div className='inner'>
         <h1>Privacy Policy</h1>

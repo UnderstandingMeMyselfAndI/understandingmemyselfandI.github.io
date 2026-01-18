@@ -1,10 +1,12 @@
 @use "@/scss/_variables.scss";
 @import "@/globals.css";
 
+
+#install {
+	scroll-margin-top: 25vh;
+}
+
 section.activity-installCTA {
-	scroll-margin-top: 30vh;
-	margin: 160px 0 160px 0;
-	scroll-snap-align: center;
 
 	.homescreenIcon,
 	.shareIcon {
@@ -51,8 +53,14 @@ section.activity-installCTA {
 	}
 
 	button.install {
+		border-radius: var(--border-radius);
+		background-color: var(--blue);
+		display: flex;
+		align-items: center;
+		align-content: center;
+		justify-content: center;
+		width: 170px;
 
-		// font-size: 1rem;
 		.ummi-logo.small {
 			min-width: 50px;
 

@@ -15,7 +15,7 @@ export default function FuturePlanner() {
   };
 
   return (
-    <div className="activity">
+    <div id='planner' className="activity">
       <h2>Future planner</h2>
 
       <button onClick={addSamplePlan}>Add planned drink</button>

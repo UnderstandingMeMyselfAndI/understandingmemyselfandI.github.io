@@ -10,7 +10,7 @@ const YourData = () => {
 		console.warn(`No content found for activity "${name}"`);
 	}
     return (
-        <div className="activity yourData">
+        <div id="your-data"className="activity yourData">
             <h2><u>{content.title}</u></h2>
             {content?.content?.map((html, i) => {
                 return (

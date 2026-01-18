@@ -31,7 +31,7 @@ export const MenuCloseIcon = () => (
     <path d='m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z' />
   </svg>
 );
-// TODO: Implement URLS
+// TODO: #19 Implement URLS and routing
 export default function AppMenu() {
   // const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
@@ -48,6 +48,7 @@ export default function AppMenu() {
   const isInstallable = useAppStore((state) => state.isInstallable);
 
   const gae = useAppStore((s) => s.gae); // Google analytics enabled
+  const nss = useAppStore((s) => s.nss); // subscribed to newsletter
 
   useEffect(() => {
     setOpenComponent(activity === -1);
@@ -102,10 +103,12 @@ export default function AppMenu() {
                 screen_name: 'Tools',
               });
             }
+            
+            requestAnimationFrame(() => {
+              const el = document.getElementById('the-tools');
+              el.scrollIntoView(true);
+            });
             setActivity(-1);
-            const el = document.getElementById('the-tools');
-            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
             handleClose();
           }}
         >
@@ -114,18 +117,21 @@ export default function AppMenu() {
         <li
           className=''
           onClick={() => {
-            const el = document.getElementById('lingo');
+            
             if (gae && window.gtag) {
-              window.gtag('event', 'lingo_phrases', {
+              window.gtag('event', 'lingo_and_phrases', {
                 app_name: 'Ummi',
                 screen_name: 'Lingo & Phrases',
               });
             }
 
+            requestAnimationFrame(() => {
+              const el = document.getElementById('lingo');
+              el.scrollIntoView(true);
+            });
             setActivity(-1);
             handleClose();
 
-            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }}
         >
           Lingo &amp; Phrases
@@ -175,7 +181,7 @@ export default function AppMenu() {
             className='new'
             onClick={() => {
               if (gae && window.gtag) {
-                window.gtag('event', 'unites_calculator', {
+                window.gtag('event', 'units_calculator', {
                   app_name: 'Ummi',
                   screen_name: 'Units Calculator',
                 });
@@ -198,11 +204,11 @@ export default function AppMenu() {
                   screen_name: 'Install',
                 });
               }
-
-              const el = document.getElementById('install');
-
-              el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
+              requestAnimationFrame(() => {
+                const el = document.getElementById('install');
+                el.scrollIntoView(true);
+                
+              })
               setActivity(-1);
               handleClose();
             }}
@@ -218,10 +224,10 @@ export default function AppMenu() {
                 screen_name: 'Share',
               });
             }
-
-            const el = document.getElementById('share');
-
-            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            requestAnimationFrame(() => {
+              const el = document.getElementById('share');
+              el.scrollIntoView(true);
+            })
             setActivity(-1);
             handleClose();
           }}
@@ -229,7 +235,8 @@ export default function AppMenu() {
           Share
         </li>
 
-        <li
+        {!nss && (
+          <li
           onClick={() => {
             if (gae && window.gtag) {
               window.gtag('event', 'newsletter', {
@@ -237,17 +244,18 @@ export default function AppMenu() {
                 screen_name: 'Newsletter',
               });
             }
-
-            const el = document.getElementById('newsletter');
-
-            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            setActivity(15);
+            requestAnimationFrame(() => {
+              const el = document.getElementById('newsletter');
+              el.scrollIntoView(true);
+            });
+            // setActivity(15);
+             setActivity(-1);
             handleClose();
           }}
         >
           Newsletter
         </li>
-
+        )}
         <li
           onClick={() => {
             if (gae && window.gtag) {

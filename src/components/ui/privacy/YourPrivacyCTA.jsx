@@ -27,7 +27,7 @@ const YourPrivacyCTA = () => {
   };
 
   return (
-    <section className={'activity activity-privacy-cta' + (open ? ' show' : '')}>
+    <section id="your-privacy-cta" className={'activity activity-privacy-cta' + (open ? ' show' : '')}>
 
         <h3 className='title'>
           <u>{parse(content?.title)}</u>

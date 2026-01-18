@@ -1,7 +1,7 @@
 import { useState, forwardRef } from 'react';
 import lingo from '@/data/lingo.js';
 import { useOnInView } from 'react-intersection-observer';
-import SearchItem from './searchItem';
+import SearchItem from './SearchItem';
 import PropTypes from 'prop-types';
 import './styles.scss';
 function searchLingo(query) {
@@ -24,10 +24,9 @@ function searchLingo(query) {
     });
 }
 
-const SearchField = forwardRef((handleClick, ref) => {
+const SearchField = forwardRef(({ classes, handleClick }, ref) => {
   const el = document.getElementById('search');
   const [searchTerm, setSearchTerm] = useState('');
-  const [inView, setInView] = useState(false);
 
   const filteredLingo = searchLingo(searchTerm);
 
@@ -36,10 +35,8 @@ const SearchField = forwardRef((handleClick, ref) => {
       if (inView) {
         // Do something with the element that came into view
         // console.log('Element is in view', entry.target)
-        setInView(true);
       } else {
         // console.log('Element left view', entry.target)
-        setInView(false);
       }
     },
     {
@@ -51,20 +48,22 @@ const SearchField = forwardRef((handleClick, ref) => {
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
     if (e.target.value !== '') {
-      el.scrollInToView({ behavior: 'smooth', block: 'start' });
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
   return (
-    <div className='lingo-field' ref={inViewRef} id='search'>
+    <div  id='search' className='search-field' ref={inViewRef}>
       <input
-        className=''
+        className={'search-input-field' + (classes ? ' ' + classes : '')}
         type='text'
         placeholder='Search Lingo & Phrases...'
         value={searchTerm}
         onChange={handleChange}
+        id="lingo-search"
+        name="lingo-search"
       />
-      <div className='lingo-list' ref={ref}>
+      <div className='search-list' ref={ref}>
         {filteredLingo.map((item) => (
           <SearchItem
             key={item.id}
@@ -80,9 +79,11 @@ const SearchField = forwardRef((handleClick, ref) => {
     </div>
   );
 });
+
 SearchField.propTypes = {
-  ref: PropTypes.any,
   handleClick: PropTypes.func.isRequired,
+  classes: PropTypes.string,
 };
+
 SearchField.displayName = 'SearchField';
 export default SearchField;

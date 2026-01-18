@@ -1,4 +1,5 @@
 :root {
+  --max-width: 600px;
   --appMaxWidth: 600px;
   --border-radius: 6px;
   --blueBackground: #036075;
@@ -10,10 +11,15 @@
   --backgroundGrayTrans30:rgba(10,10,10,0.30);
   --backgroundGrayTrans35:rgba(10,10,10,0.35);
   --backgroundGrayTrans40:rgba(10,10,10,0.40);
+  
+  --backgroundGrayTrans45:rgba(10,10,10,0.45);
   --backgroundGrayTrans45:rgba(10,10,10,0.45);
   --backgroundGrayTrans50:rgba(10,10,10,0.5);
   --backgroundGrayTrans75:rgba(10,10,10,0.75);
   --backgroundGrayTrans85:rgba(10,10,10,0.85);
+  --backgroundGrayTrans90:rgba(10,10,10,0.90);
+  --backgroundGrayTrans95:rgba(10,10,10,0.95);
+  --backgroundActivity:rgba(10,10,10,0.40);
   --mainBackground: linear-gradient(
     140deg,
     rgba(27, 134, 158, 1) 0%,

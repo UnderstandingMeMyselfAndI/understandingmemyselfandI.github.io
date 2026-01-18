@@ -34,7 +34,7 @@ import CookieConsent from './components/ui/cookieConsent/CookieConsent';
 import UmmiAgeGate from './components/ui/ageGate/UmmiAgeGate';
 import { smoothScroll } from './js/utils.js';
 import NewsletterSignUp from './components/ui/newsletterSignup/NewsletterSignUp';
-import Exit from './components/ui/exit/Exit';
+// import Exit from './components/ui/exit/Exit';
 import Settings from './components/activity/settings/Settings';
 import Vcn from './components/visits/Vcn.jsx';
 import Lingo from './components/activity/lingo/Lingo';
@@ -42,7 +42,7 @@ import Lingo from './components/activity/lingo/Lingo';
 import UnitsCalculator from './components/activity/unitsCalculator/UnitsCalculator';
 // import Motivation from './components/activity/motivation/Motivation';
 import './App.scss';
-// TODO: "Clear Local Data" functionality
+// TODO: #21 "Clear Local Data" functionality
 function App() {
   const toolboxFilterEnabled = useAppStore((s) => s.toolboxFilterEnabled);
   const daysCounterEnabled = useAppStore((s) => s.daysCounterEnabled);
@@ -64,36 +64,35 @@ function App() {
 
   return (
     <div>
-      <div className='app'>
+      <div className='main'>
         <UmmiAgeGate />
         <CookieConsent />
-        <div className='dev-version'>Development Version.</div>
+        <div id="centers">
+          <div className="vertical"></div>
+          <div className="horizontal"></div>
+          </div>
+        {/* <div className='dev-version'>Development Version.</div> */}
         <AppMenu />
 
-        {quickExitEnabled && <Exit />}
+        <Header />
+        <Introduction />        
+        <Tools />
+        <YourPrivacyCTA />          
+        <Lingo />       
+        <PrivacyPolicy />
+        <NewsletterSignUp />
+        <InstallCTA />
+        <Footer />
 
-        <div className='main'>
-          {toolboxFilterEnabled && <BadgeToolbox />}
-          <Header />
-          <Introduction />
-         
-          <Tools />
-          <YourPrivacyCTA />          
-          <Lingo />
-          {/* <Quiz /> */}         
-          <Settings />          
+        {/* <Motivation /> */}
+        {/* {quickExitEnabled && <Exit />} */}
+        {toolboxFilterEnabled && <BadgeToolbox />}
+        {unitsCalculatorEnabled && <UnitsCalculator />}
+        {daysCounterEnabled && <DaysCounterCTA />}
+        {daysCounterEnabled && <DaysCounter />}
+        <AcronymExplained />
+        <Settings />
 
-          {unitsCalculatorEnabled && <UnitsCalculator />}
-          {daysCounterEnabled && <DaysCounterCTA />}
-          {daysCounterEnabled && <DaysCounter />}
-          <AcronymExplained />
-            {/* <Motivation /> */}
-          <PrivacyPolicy />
-
-          <NewsletterSignUp />
-          <InstallCTA />
-          <Footer />
-        </div>
         <SnackBars />
         <ScrollPosition />
       </div>

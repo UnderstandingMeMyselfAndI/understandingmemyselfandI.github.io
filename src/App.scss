@@ -10,6 +10,10 @@ html {
   background: #000;
 }
 
+:target {
+  // scroll-margin-top: 30vh;
+}
+
 .dev-version {
   position: fixed;
   z-index: 99999;
@@ -32,14 +36,12 @@ body {
   // overscroll-behavior-y: contain;
   background: #000 !important;
   width: 100%;
+  max-width: 100dvw;
   height: 100%;
-  // overflow-x: clip;
-  // overflow-x: hidden;
   color: var(--primary);
   padding: 0;
   margin: 0;
   user-select: none;
-  scroll-behavior: smooth;
 
   h1,
   h2,
@@ -129,21 +131,28 @@ body {
     position: relative;
     top: 0;
     left: 0;
-    z-index: 10000;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    // z-index: 10000;
     width: 100%;
-    max-width: 100dvw;
+    // max-width: 100dvw;
     display: flex;
     flex-flow: column nowrap;
   }
 
   .main {
     scrollbar-width: 0;
+
     width: 100%;
     margin: 0 auto;
     padding: 0;
     display: flex;
     flex-flow: column nowrap;
     row-gap: 6rem;
+    overflow-x: hidden;
+    overflow-y: auto;
 
     .activities {
       position: relative;
@@ -154,13 +163,18 @@ body {
     div.activity {
       position: relative;
       visibility: hidden;
+      // outline: 1px solid #ccc;
+      pointer-events: none;
+
 
       z-index: -10;
       top: 0;
       left: 0;
-      width: 100dvw;
+      right: 0;
+      width: 100%;
       min-height: 60dvh;
-      max-width: 600px;
+
+      // max-width: var(--max-width);
       margin: 0 auto;
 
       flex-flow: column wrap;
@@ -169,6 +183,14 @@ body {
       justify-content: center;
       // outline: 1px solid yellow;
       display: none;
+
+      button.close-btn {
+        position: absolute;
+        right: 1.5rem;
+        top: 1.5rem;
+        left: auto;
+        z-index: 6005;
+      }
 
       &.hide,
       &.close {
@@ -180,9 +202,9 @@ body {
 
       &.fixed {
         position: fixed;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
+        // left: 50%;
+        // top: 50%;
+        // transform: translate(-50%, -50%);
       }
 
 
@@ -193,15 +215,11 @@ body {
         z-index: 6000;
         display: flex;
         align-content: center;
+        // outline: 1px solid #ccc;
+
       }
 
-      button.close-btn {
-        position: absolute;
-        right: 1.5rem;
-        top: 1.5rem;
-        left: auto;
-        z-index: 6005;
-      }
+
     }
 
     >.inner {
@@ -345,6 +363,41 @@ button:focus-visible {
 section {
   margin: 1.5rem 0;
   text-shadow: 0 0px 6px rgba(0, 0, 0, 0.4);
+}
+
+div#centers {
+  position: fixed;
+  user-select: 0;
+  pointer-events: none;
+
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999999999;
+  opacity: 0.2;
+
+  .horizontal {
+    width: 100%;
+    height: 1px;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+  }
+
+  .vertical {
+    width: 1px;
+    height: 100%;
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
 }
 
 .bgImgs {

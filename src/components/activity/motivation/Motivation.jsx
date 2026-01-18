@@ -135,7 +135,7 @@ const Motivation = () => {
   );
 
   return (
-    <div className='activity motivation-wrapper'>
+    <div id='motivation' className='activity motivation-wrapper'>
       <div className='motivation-trigger'></div>
       <div ref={container} className='motivation-container'>
         <div className='motivation-words'>

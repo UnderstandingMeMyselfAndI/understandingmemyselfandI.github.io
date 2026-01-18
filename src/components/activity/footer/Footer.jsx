@@ -15,7 +15,7 @@ function Footer() {
   }, [activity]);
 
   return (
-    <div className={'activity activity-footer' + (open ? ' show' : '')}>
+    <div id='footer' className={'activity activity-footer' + (open ? ' show' : '')}>
       <section className='qr' id='share'>
         <h3>
           <u>Spread the love</u>

@@ -11,12 +11,12 @@ const Vcn = () => {
     // // increment visit count
   const incVC = useAppStore((s) => s.incVC);
 
-  window.addEventListener('vite:preloadError', (event) => {
-    console.log('vite:preloadError ' + event);
+  window.addEventListener('vite:preloadError', () => {
+    // console.log('vite:preloadError ' + event);
     // window.reload() // for example, refresh the page
   });
   // increment visit count
-  console.log('Vcn ');
+
 
   useEffect(() =>{  
     incVC();
@@ -25,7 +25,7 @@ const Vcn = () => {
   }, [setLVD,incVC]);
 
   useEffect(() =>{  
- console.log('setFVD ');
+
     const sinceEpoch = Math.floor(Date.now() / 1000);
     if(fvd === 0) setFVD(sinceEpoch);
 
