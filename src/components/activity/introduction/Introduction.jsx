@@ -61,18 +61,8 @@ const Introduction = () => {
               delay:2,
               ease:'power4.inOut',
             }) 
-            .to(point, {
-              delay:3,
-              duration: 2, 
-              autoAlpha:1,
-              ease:'power4.inOut',
-            })
-            .to(point, {
-              duration: 3, 
-              delay:0,
-              autoAlpha:0,
-              ease:'power4.inOut',
-            })
+            
+            
 
             const box = point.querySelector('.tick-icon');
             gsap.timeline({scrollTrigger:{
@@ -83,7 +73,7 @@ const Introduction = () => {
             }})
             .addLabel('start')           
               .to(box, {
-                duration: 6, 
+                duration:1, 
                 scale:1,
                 autoAlpha:0.25,
                 ease:'power4.inOut',
