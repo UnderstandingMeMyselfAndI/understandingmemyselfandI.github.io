@@ -68,7 +68,7 @@ const Introduction = () => {
               start: 'top center+=30%', 
               end: 'bottom center', 
               scrub:0.25,
-              markers:i === 0 ? markers1 : false,
+              markers:false,//i === 0 ? markers1 : false,
               id:"p1-"+i,
               toggleActions: 'play pause reverse reset ',
             }})
@@ -85,7 +85,7 @@ const Introduction = () => {
               start: 'top+=50% center', 
               end: 'bottom center-=20%',
               scrub:0.25,
-              markers:i === 0 ? markers2 : false,
+              markers:false,//i === 0 ? markers2 : false,
               id:"p2-"+i,
               toggleActions: 'play pause reverse reset ',
             }})
@@ -157,6 +157,10 @@ const Introduction = () => {
                   filter: `blur(250px)`,
                 }) 
 
+
+                // ---------------------------------------------------------
+
+                ScrollTrigger.normalizeScroll(true);
 
                 // ---------------------------------------------------------
           }
