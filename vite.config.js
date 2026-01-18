@@ -10,6 +10,7 @@ import getDynamicRoutes from './getDynamicRoutes.js';
 
 //version meta data
 const metadata = JSON.parse(fs.readFileSync('./src/metadata.json', 'utf-8'));
+const swFilename = `sw-${metadata.buildMajor}.${metadata.buildMinor}.${metadata.buildRevision}.js`;
 
 export default defineConfig({
   root: './',
@@ -60,6 +61,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: 'script',
+      filename: swFilename,
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
         name: 'DevUmmi',

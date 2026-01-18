@@ -131,11 +131,8 @@ const scrub = true;
 
     },
     { scope:cont2, revertOnUpdate: fabClasses },
-
     
   );
-
-
 
   return (
     <section  id='header' className={'activity header' + (open ? ' show' : ' hide')}  ref={cont1}>
