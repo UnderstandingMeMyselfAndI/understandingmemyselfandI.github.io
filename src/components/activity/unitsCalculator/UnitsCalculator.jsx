@@ -148,7 +148,7 @@ const UnitsCalculator = () => {
       className={'activity ummi-units-calculator fixed' + (open ? ' open' : '')}
      
     >
-      <CloseBtn className='close-btn' handleClick={handleClose} />
+     {!isMeasuresVisible && ( <CloseBtn className='close-btn' handleClick={handleClose} />)}
       <div className='inner'>
         <div className='content'>
           <div className='wrap'>
@@ -253,69 +253,7 @@ const UnitsCalculator = () => {
                     </button>
                   </div>
                 </div>
-                {isMeasuresVisible && (
-                  <div
-                    className='measures-scroll-list'
-                    onClick={() => setIsMeasuresVisible(false)}
-                  >
-                    <div
-                      className='measures-scroll-list-inner'
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <CloseBtn
-                        className='close-btn-measures'
-                        handleClick={() => setIsMeasuresVisible(false)}
-                      />
-                      <div className='multiplier-input'>
-                        <label htmlFor='multiplier'>No of:</label>
-                        <input
-                          type='number'
-                          id='multiplier'
-                          name='multiplier'
-                          value={multiplier}
-                          onChange={(e) =>
-                            setMultiplier(parseInt(e.target.value, 10) || 1)
-                          }
-                          min={1}
-                        />
-                      </div>
-                      {DRINK_PRESETS.map((group) =>
-                        group.type !== 'custom' ? (
-                          <div key={group.label} className='measures-group'>
-                            <div className='measures-group-title'>
-                              {group.label}
-                            </div>
-                            <div className='measures-group-buttons'>
-                              {group.drinks.map((preset) => (
-                                <button
-                                  key={preset.label}
-                                  onClick={() => {
-                                    addDrink(
-                                      { ...preset, type: group.type },
-                                      multiplier,
-                                    );
-                                    setIsMeasuresVisible(false);
-                                  }}
-                                  className='measure'
-                                >
-                                  <span className='measure-title'>
-                                    {preset.label}
-                                  </span>
-                                  <span className='spec'>
-                                    <span className='volume'>
-                                      {preset.volume} {preset.unit}
-                                    </span>
-                                    <span className='abv'>{preset.abv} %</span>
-                                  </span>
-                                </button>
-                              ))}
-                            </div>
-                          </div>
-                        ) : null,
-                      )}
-                    </div>
-                  </div>
-                )}
+                
                 <div className='measures-container'>
                   {type === 'custom' && (
                     <form
@@ -378,6 +316,70 @@ const UnitsCalculator = () => {
                 </div>
               </div>
             </section>
+            {isMeasuresVisible && (
+                  <div
+                    className='measures-scroll-list'
+                    onClick={() => setIsMeasuresVisible(false)}
+                  >
+                     <CloseBtn
+                        className='close-btn-measures'
+                        handleClick={() => setIsMeasuresVisible(false)}
+                      />
+                    <div
+                      className='measures-scroll-list-inner'
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                     
+                      <div className='multiplier-input'>
+                        <label htmlFor='multiplier'>No of:</label>
+                        <input
+                          type='number'
+                          id='multiplier'
+                          name='multiplier'
+                          value={multiplier}
+                          onChange={(e) =>
+                            setMultiplier(parseInt(e.target.value, 10) || 1)
+                          }
+                          min={1}
+                        />
+                      </div>
+                      {DRINK_PRESETS.map((group) =>
+                        group.type !== 'custom' ? (
+                          <div key={group.label} className='measures-group'>
+                            {/* <div className='measures-group-title'>
+                              {group.label}
+                            </div> */}
+                            <div className='measures-group-buttons'>
+                              {group.drinks.map((preset) => (
+                                <button
+                                  key={preset.label}
+                                  onClick={() => {
+                                    addDrink(
+                                      { ...preset, type: group.type },
+                                      multiplier,
+                                    );
+                                    setIsMeasuresVisible(false);
+                                  }}
+                                  className='measure'
+                                >
+                                  <span className='measure-title'>
+                                    {preset.label}
+                                  </span>
+                                  <span className='spec'>
+                                    <span className='volume'>
+                                      {preset.volume} {preset.unit}
+                                    </span>
+                                    <span className='abv'>{preset.abv} %</span>
+                                  </span>
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        ) : null,
+                      )}
+                    </div>
+                  </div>
+            )}
             <div className='calculation-information'>
               <div>
                 <span>Units calculated</span> = <span>(volume in ml</span> X{' '}

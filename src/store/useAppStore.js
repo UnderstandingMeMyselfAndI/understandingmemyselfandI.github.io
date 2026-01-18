@@ -40,6 +40,13 @@ const useAppStore = create(
       version: '',
       setVersion: (v) => set(() => ({ version: v })),
       // ----------------------------------------
+      // Route
+      route: { url: '/', title: '' },
+      setRoute: (route) => {
+        set(() => ({ route: route }));
+      },
+
+      // ----------------------------------------
       // Subscribed to Newsletter
       nss: false, // subscribed to newsletter
       setNSS: (v) => set(() => ({ nss: v })),

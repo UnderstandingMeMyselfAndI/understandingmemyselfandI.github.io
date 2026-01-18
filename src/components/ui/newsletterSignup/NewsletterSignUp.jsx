@@ -9,7 +9,7 @@ const NewsletterSignUp = () => {
   const nss = useAppStore((s) => s.nss); // subscribed to newsletter
   const setNss = useAppStore((s) => s.setNSS);
 
-  console.log("newsletter signed up", nss);
+
   // TODO #22 [ ]: Ensure that Newsletter menu item is removed after user sign up. Should also be recorded in the store
   // TODO #23 : Check form validation and UX 
   const [open, setOpen] = useState(true);

@@ -3,9 +3,11 @@ import SearchField from '@/components/ui/search/SearchField';
 import Dialog from '@/components/ui/dialog/Dialog';
 import lingo from '@/data/lingo.js';
 import { sanitizeStringForUrl } from '@/js/utils.js';
+
 // import UnfoldMoreDoubleIcon from '@mui/icons-material/UnfoldMoreDouble';
 import './styles.scss';
 import useAppStore from '@/store/useAppStore';
+import { set } from 'idb-keyval';
 const Lingo = () => {
   const [showDialog, setShowDialog] = useState(false);
   const [showAll, setShowAll] = useState(false);
@@ -14,7 +16,7 @@ const Lingo = () => {
   const [open, setOpen] = useState(false);
   const initialHeight = 310;
   const [elHeight, setElHeight] = useState(initialHeight);
-  const [elHeightExpanded, setElHeightExpanded] = useState(initialHeight);
+  const [elHeightExpanded, setElExpandedHeight] = useState(initialHeight);
   const activity = useAppStore((s) => s.activity);
 
   const listRef = useRef(null);
@@ -31,14 +33,25 @@ const Lingo = () => {
       if (item.id === id) return item.lingoFieldGroup;
     });
   }
+  function getElementHeight(node){
+    return node ?  node.getBoundingClientRect().height : 0;
+  }
+
+  
   useEffect(() => {
-    if (listRef.current) {
-      if (!showAll && elHeight === initialHeight) {
-        const listNode = listRef.current.getBoundingClientRect();
-        setElHeightExpanded(listNode.height + 140);
+    if (!showAll && listRef.current) {
+      
+      if(getElementHeight(listRef.current) === 0) {
+        const int = setInterval(()=>{
+            const height = getElementHeight(listRef.current)
+            if(height === 0) return; 
+              clearInterval(int)
+              setElExpandedHeight(height + 140);
+        }, 300);
       }
     }
-  }, [elHeight, showAll]);
+    
+  }, [ listRef, showAll]);
 
   useEffect(() => {
     if (!showDialog) window.history.pushState({ page: '' }, '', '');
@@ -55,7 +68,7 @@ const Lingo = () => {
   const handleExpandClick = () => {
     const node = document.getElementById('lingo');
     node.scrollIntoView({ behavior: 'smooth' });
-    setShowAll(!showAll);
+    setShowAll(prevState => !prevState);
   };
   useEffect(() => {
     if (content?.title && content.id) {
@@ -72,8 +85,9 @@ const Lingo = () => {
       } else {
         console.log('GA not enabled');
       }
+     
     }
-  }, [content, setPhrase, gae]);
+  }, [content,setPhrase, gae]);
   return (
     <section
     id='lingo'

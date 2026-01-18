@@ -49,6 +49,7 @@ export default function AppMenu() {
 
   const gae = useAppStore((s) => s.gae); // Google analytics enabled
   const nss = useAppStore((s) => s.nss); // subscribed to newsletter
+  const setRoute = useAppStore((s) => s.setRoute); // subscribed to newsletter
 
   useEffect(() => {
     setOpenComponent(activity === -1);
@@ -57,20 +58,29 @@ export default function AppMenu() {
   const toggleOpen = () => {
     setOpen(!open);
   };
-  const handleClose = () => {
+  const handleClose = (obj) => {
     // setActivity(-1);
     setOpen(false);
-    // setOpenComponent(activity === -1);
-    
-  };
+    setRoute({
+      url:obj.url,
+      title:obj.title,
+    })       
+  }
 
+  function findObj(id){
+    const obj = activities.find((a) =>
+      parseInt(a.id) === parseInt(id) ? id : null,
+    );
+    return obj
+  }
+   
   useEffect(() => {
     const obj = activities.find((a) =>
       parseInt(a.id) === parseInt(activity) ? activity : null,
     );
 
     if (obj) {
-      setShow(obj.menu);
+      setShow(obj.menu);     
     }
   }, [activity]);
 
@@ -108,8 +118,14 @@ export default function AppMenu() {
               const el = document.getElementById('the-tools');
               el.scrollIntoView(true);
             });
-            setActivity(-1);
-            handleClose();
+
+
+              const activityObj = findObj(12);
+              handleClose({
+                url: activityObj.url,
+                title: activityObj.url,
+              });
+              setActivity(-1); // temp solution
           }}
         >
           Tools
@@ -129,8 +145,15 @@ export default function AppMenu() {
               const el = document.getElementById('lingo');
               el.scrollIntoView(true);
             });
+
+            const activityObj = findObj(13);
+              handleClose({
+                url: activityObj.url,
+                title: activityObj.url,
+              });
+
             setActivity(-1);
-            handleClose();
+
 
           }}
         >
@@ -169,8 +192,13 @@ export default function AppMenu() {
                   screen_name: 'Days Counter',
                 });
               }
+              const activityObj = findObj(2);
+              handleClose({
+                url: activityObj.url,
+                title: activityObj.url,
+              });
               setActivity(2);
-              handleClose();
+              
             }}
           >
             Days Counter
@@ -186,6 +214,11 @@ export default function AppMenu() {
                   screen_name: 'Units Calculator',
                 });
               }
+               const activityObj = findObj(5);
+              handleClose({
+                url: activityObj.url,
+                title: activityObj.url,
+              });
               setActivity(5);
               handleClose();
             }}
@@ -209,8 +242,13 @@ export default function AppMenu() {
                 el.scrollIntoView(true);
                 
               })
+              const activityObj = findObj(16);
+              handleClose({
+                url: activityObj.url,
+                title: activityObj.url,
+              });
               setActivity(-1);
-              handleClose();
+
             }}
           >
             Install
@@ -228,8 +266,13 @@ export default function AppMenu() {
               const el = document.getElementById('share');
               el.scrollIntoView(true);
             })
+             const activityObj = findObj(14);
+              handleClose({
+                url: activityObj.url,
+                title: activityObj.url,
+              });
             setActivity(-1);
-            handleClose();
+            
           }}
         >
           Share
@@ -248,9 +291,13 @@ export default function AppMenu() {
               const el = document.getElementById('newsletter');
               el.scrollIntoView(true);
             });
+            const activityObj = findObj(15);
+              handleClose({
+                url: activityObj.url,
+                title: activityObj.url,
+              });
             // setActivity(15);
              setActivity(-1);
-            handleClose();
           }}
         >
           Newsletter
@@ -264,8 +311,12 @@ export default function AppMenu() {
                 screen_name: 'Privacy Policy',
               });
             }
+            const activityObj = findObj(10);
+            handleClose({
+              url: activityObj.url,
+              title: activityObj.url,
+            });
             setActivity(10);
-            handleClose();
           }}
         >
           Your privacy
@@ -301,8 +352,14 @@ export default function AppMenu() {
                 screen_name: 'Settings',
               });
             }
+             const activityObj = findObj(12);
+            handleClose({
+              url: activityObj.url,
+              title: activityObj.url,
+            });
+
             setActivity(12);
-            handleClose();
+            
           }}
         >
           Settings
