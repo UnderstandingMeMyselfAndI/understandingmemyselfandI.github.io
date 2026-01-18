@@ -12,6 +12,20 @@ div.lingo-list-wrapper {
     }
 }
 
+body .search-list>div:not(.no-results) {
+    background: none;
+    border: none;
+    border-radius: 0;
+    font-size: 3vh;
+    border: none;
+    outline: none;
+    display: none;
+
+    &::after {
+        display: none;
+    }
+}
+
 div.search-lingo-wrap {
     max-width: var(--max-width);
 
@@ -32,48 +46,62 @@ div.search-lingo-wrap {
         min-width: 100%;
     }
 
-}
+    div.SearchItem {
+        background: none;
+        border: none;
+        border-radius: 0;
+        font-size: 3vh;
+        border: none;
+        outline: none;
+        display: none;
 
-div.lingo-list-wrapper.expanded {
-    mask-image: none;
-    mask-mode: unset;
-    transition: height 1.35s cubic-bezier(0.75, 0, 0.5, 1);
+        &::after {
+            display: none;
+        }
 
-    div.lingo-list-btn {
-        margin-top: -60px;
     }
 
-}
+    div.lingo-list-wrapper.expanded {
+        mask-image: none;
+        mask-mode: unset;
+        transition: height 1.35s cubic-bezier(0.75, 0, 0.5, 1);
 
-div.lingo-list-wrapper.collapse {
-    mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
-    mask-mode: alpha;
-    position: relative;
-    transition: height 1.05s cubic-bezier(0.75, 0, 0.5, 1);
+        div.lingo-list-btn {
+            margin-top: -60px;
+        }
 
-    div.lingo-list-btn {
-        margin-top: -50px;
     }
 
-}
+    div.lingo-list-wrapper.collapse {
+        mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
+        mask-mode: alpha;
+        position: relative;
+        transition: height 1.05s cubic-bezier(0.75, 0, 0.5, 1);
+
+        div.lingo-list-btn {
+            margin-top: -50px;
+        }
+
+    }
 
 
 
 
-div.lingo-list-btn {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    width: fit-content;
-    height: 50px;
-    margin: 0 auto;
-    background: var(--blue);
-    padding: 1rem 1.25rem;
-    border-radius: 4px;
-    box-shadow: var(--textShadowDarkValue);
+    div.lingo-list-btn {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        width: fit-content;
+        height: 50px;
+        margin: 0 auto;
+        background: var(--blue);
+        padding: 1rem 1.25rem;
+        border-radius: 4px;
+        // box-shadow: var(--textShadowDarkValue);
 
+    }
 }
 
 // svg.lingo-list-icon {
