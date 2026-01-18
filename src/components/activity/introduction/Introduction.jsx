@@ -47,7 +47,7 @@ const Introduction = () => {
 
             gsap.timeline({scrollTrigger:{
               trigger: point,
-              end: 'bottom center', 
+              end: 'bottom top', 
               start: 'top bottom-=10%', 
               scrub:1.75,
               markers:true,
