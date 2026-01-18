@@ -47,6 +47,8 @@ const Introduction = () => {
 
             gsap.timeline({scrollTrigger:{
               trigger: point,
+              end: 'bottom center', 
+              start: 'top bottom-=10%', 
               scrub:1.75,
               markers:true,
               id:"point-"+i,
@@ -54,12 +56,13 @@ const Introduction = () => {
             }})
                  
             .to(point, {
-              duration: 6, 
+              duration: 1, 
               autoAlpha:1,
               delay:2,
               ease:'power4.inOut',
             }) 
             .to(point, {
+              delay:3,
               duration: 2, 
               autoAlpha:1,
               ease:'power4.inOut',
@@ -74,7 +77,7 @@ const Introduction = () => {
             const box = point.querySelector('.tick-icon');
             gsap.timeline({scrollTrigger:{
                 trigger: point,
-                end: 'bottom center+=10%', 
+                end: 'bottom center', 
                 scrub:1.75,
                 toggleActions: 'play reverse reverse reset ',
             }})
