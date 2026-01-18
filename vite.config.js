@@ -61,12 +61,26 @@ export default defineConfig({
       registerType: 'autoUpdate',
       injectRegister: 'script', // Injects the registration script into index.html
       workbox: {
-        globPatterns: ['**/*.{js,css,ico,png,svg,avif,woff,woff2}'], // Excluded html
+        // Precaching is disabled for diagnostics
+        globPatterns: [],
         navigateFallback: 'index.html',
         cleanupOutdatedCaches: true,
         skipWaiting: true,
         clientsClaim: true,
         runtimeCaching: [
+          {
+            urlPattern: ({ request }) =>
+              request.destination === 'script' ||
+              request.destination === 'style',
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'asset-cache',
+              expiration: {
+                maxEntries: 60,
+                maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+              },
+            },
+          },
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
             handler: 'CacheFirst',
