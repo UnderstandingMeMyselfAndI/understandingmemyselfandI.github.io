@@ -61,7 +61,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       injectRegister: 'script', // Injects the registration script into index.html
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,avif,woff,woff2}'],
+        globPatterns: ['**/*.{js,css,ico,png,svg,avif,woff,woff2}'], // Excluded html
+        navigateFallback: 'index.html',
         cleanupOutdatedCaches: true,
         skipWaiting: true,
         clientsClaim: true,
@@ -101,7 +102,7 @@ export default defineConfig({
         name: 'DevUmmi',
         short_name: 'DevUmmi',
         description:
-          'A companion app for mental health, wellbeing, and addiction recovery.',
+          'A companion app for Addiction Recovery, Mental Health and Wellbeing.',
         theme_color: '#819ec9',
         icons: [
           {

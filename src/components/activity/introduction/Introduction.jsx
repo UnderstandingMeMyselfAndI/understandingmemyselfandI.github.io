@@ -52,7 +52,7 @@ const Introduction = () => {
               // end: 'bottom top', 
               end: 'bottom-=10% center', 
               scrub:0.25,
-              markers:false,
+              markers:i === 0,
               id:"point-"+i,
               toggleActions: 'play reverse reverse reset ',
             }})
@@ -89,7 +89,7 @@ const Introduction = () => {
                 trigger: point,
                 end: 'bottom-=10% center', 
                 scrub:0.25,
-                markers:false,
+                markers:i === 0,
                 toggleActions: 'play reverse reverse reset ',
             }})
             .addLabel('start')           
