@@ -46,17 +46,32 @@ const Introduction = () => {
           if(point !== null){
 
             // ---------------------------------------------------------
+            const markers1 =  {
+              startColor: "white", 
+              endColor: "white", 
+              fontSize: "16px", 
+              // fontWeight: "bold", 
+              indent: 140
+            }
+
+            const markers2 =  {
+              startColor: "yellow", 
+              endColor: "yellow", 
+              fontSize: "16px", 
+              // fontWeight: "bold", 
+              indent: 0
+            }
 
             gsap.timeline({scrollTrigger:{
               trigger: point,
               // end: 'bottom top', 
-              end: 'bottom-=10% center', 
+              start: 'top center+=30%', 
+              end: 'bottom center', 
               scrub:0.25,
-              markers:i === 0,
-              id:"point-"+i,
-              toggleActions: 'play reverse reverse reset ',
+              markers:i === 0 ? markers1 : false,
+              id:"p1-"+i,
+              toggleActions: 'play pause reverse reset ',
             }})
-                 
             .to(point, {
               duration: 1, 
               rotateX:'0deg',
@@ -67,51 +82,73 @@ const Introduction = () => {
 
             gsap.timeline({scrollTrigger:{
               trigger: point,
-              start: 'top top+=30%', 
+              start: 'top+=50% center', 
+              end: 'bottom center-=20%',
               scrub:0.25,
-              markers:false,
-              id:"point-"+i,
-              toggleActions: 'play reverse reverse reset ',
+              markers:i === 0 ? markers2 : false,
+              id:"p2-"+i,
+              toggleActions: 'play pause reverse reset ',
             }})
                  
             .to(point, {
+              delay:1,
               duration: 1, 
               autoAlpha:0,
               rotateX:'35deg',
-              delay:0,
               ease:'power4.inOut',
             }) 
             
             // ---------------------------------------------------------
+            const markers3 =  {
+              startColor: "yellow", 
+              endColor: "rgb(0, 170, 0)", 
+              fontSize: "16px", 
+              // fontWeight: "bold", 
+              indent: 5
+            }
 
+            const markers4 =  {
+              startColor: "red", 
+              endColor: "rgb(160, 5, 5)", 
+              fontSize: "16px", 
+              // fontWeight: "bold", 
+              indent: 140
+            }
+            
+            
             const tick_icon = point.querySelector('.tick-icon');
             gsap.timeline({scrollTrigger:{
                 trigger: point,
-                end: 'bottom-=10% center', 
+                start: 'top center+=30%', 
+                end: 'bottom center',  
                 scrub:0.25,
-                markers:i === 0,
-                toggleActions: 'play reverse reverse reset ',
+                markers:false,//i === 0 ? markers3 : false,
+                id:'t1-'+i,
+                toggleActions: 'play pause reverse reset ',
             }})
-            .addLabel('start')           
-              .to(tick_icon, {
+            .addLabel('start')          
+               .to(tick_icon, {
                 duration:1, 
+                delay:0,
                 scale:0.75,
                 autoAlpha:0.25,
                 ease:'power4.inOut',
                 webkitFilter: `blur(0px)`,
                 filter: `blur(0px)`,
-              }) 
-              
+              })
               
               gsap.timeline({scrollTrigger:{
                 trigger: point,
-                start: 'center center-=10%', 
+                start: 'top+=50% center', 
+                end: 'bottom center-=20%',
                 scrub:0.25,
-                markers:false,
-                toggleActions: 'play reverse reverse reset ',
+                markers:false,//i === 0 ? markers3 : false,
+                id:'t2-'+i,
+                toggleActions: 'play pause reverse reset ',
               }})
-              .addLabel('start')           
+              .addLabel('end')           
                 .to(tick_icon, {
+                  delay:1,
                   duration:1, 
                   scale:2.5,
                   autoAlpha:0.25,
@@ -119,6 +156,7 @@ const Introduction = () => {
                   webkitFilter: `blur(250px)`,
                   filter: `blur(250px)`,
                 }) 
+
 
                 // ---------------------------------------------------------
           }
