@@ -41,13 +41,15 @@ const Introduction = () => {
       const points = gsap.utils.toArray('.point');
 
       points !== null &&
-        points.forEach((point) => {
+        points.forEach((point,i) => {
           
           if(point !== null){
 
             gsap.timeline({scrollTrigger:{
               trigger: point,
               scrub:1.75,
+              markers:true,
+              id:"point-"+i,
               toggleActions: 'play reverse reverse reset ',
             }})
                  

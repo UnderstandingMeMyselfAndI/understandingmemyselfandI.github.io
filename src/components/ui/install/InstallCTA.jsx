@@ -51,6 +51,10 @@ const InstallCTA = () => {
     setIsInstallable(true);
   }
 
+  useEffect(() => {
+    setIsInstallable(showInstallCTA);
+  },[showInstallCTA,setIsInstallable])
+
   function handleAppInstalled() {
     // isInstallable = false; // Hide the install button
     setShowInstallBtn(false);
@@ -73,8 +77,7 @@ const InstallCTA = () => {
   });
 
   const handleClick = async () => {
-    console.log('handleClick');
-    console.log('deferredPrompt', deferredPrompt);
+
     if (!deferredPrompt) return;
 
     // pwaInstallRef.current?.showDialog(true)
