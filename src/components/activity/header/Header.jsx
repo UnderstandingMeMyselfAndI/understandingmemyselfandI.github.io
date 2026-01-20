@@ -96,7 +96,7 @@ const Header = () => {
           if(!open) return;
 
           const config = {
-            repeat: 5, 
+            repeat: -1, 
             repeatDelay: 3, 
             yoyo: true, 
             defaults: { 
