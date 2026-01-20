@@ -2,7 +2,8 @@ import { useEffect, useState, useRef } from 'react';
 import useAppStore from '@/store/useAppStore';
 import parse from 'html-react-parser';
 import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
-import { activities, strings } from '@/data/config';
+import {  strings } from '@/data/config';
+import Feature from './Feature';
 import gsap from 'gsap'; // <-- import GSAP
 import { useGSAP } from '@gsap/react'; // <-- import the hook from our React package
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -15,10 +16,18 @@ const Introduction = () => {
   const name = 'introduction';
   const [open, setOpen] = useState(true);
   const activity = useAppStore((s) => s.activity);
-  // const activityID = activities.find((activity) =>
-  //   activity.url === name ? activity.id : null,
-  // );
-  const sectionRef = useRef();
+
+  const sectionRefs = useRef([]);
+
+  const addToRefs = (el) => {
+    if (el && !sectionRefs.current.includes(el)) {
+      sectionRefs.current.push(el);
+    }
+  };
+
+  sectionRefs.current = [];
+
+
   const content =
     strings.activity.find((activity) => activity.name === name) || null;
   if (content === null) {
@@ -38,143 +47,19 @@ const Introduction = () => {
 
   useGSAP(
     () => {
-      const points = gsap.utils.toArray('.point');
 
-      points !== null &&
-        points.forEach((point,i) => {
-          
-          if(point !== null){
-
-            // ---------------------------------------------------------
-            const markers1 =  {
-              startColor: "white", 
-              endColor: "white", 
-              fontSize: "16px", 
-              // fontWeight: "bold", 
-              indent: 140
-            }
-
-            const markers2 =  {
-              startColor: "yellow", 
-              endColor: "yellow", 
-              fontSize: "16px", 
-              // fontWeight: "bold", 
-              indent: 0
-            }
-
-            gsap.timeline({scrollTrigger:{
-              trigger: point,
-              // end: 'bottom top', 
-              start: 'top center+=30%', 
-              end: 'bottom center', 
-              scrub:0.25,
-              markers:false,//i === 0 ? markers1 : false,
-              id:"p1-"+i,
-              toggleActions: 'play pause reverse reset ',
-            }})
-            .to(point, {
-              duration: 1, 
-              rotateX:'0deg',
-              autoAlpha:1,
-              delay:0,
-              ease:'power4.inOut',
-            }) 
-
-            gsap.timeline({scrollTrigger:{
-              trigger: point,
-              start: 'top+=50% center', 
-              end: 'bottom center-=20%',
-              scrub:0.25,
-              markers:false,//i === 0 ? markers2 : false,
-              id:"p2-"+i,
-              toggleActions: 'play pause reverse reset ',
-            }})
-                 
-            .to(point, {
-              delay:1,
-              duration: 1, 
-              autoAlpha:0,
-              rotateX:'35deg',
-              ease:'power4.inOut',
-            }) 
-            
-            // ---------------------------------------------------------
-            const markers3 =  {
-              startColor: "yellow", 
-              endColor: "rgb(0, 170, 0)", 
-              fontSize: "16px", 
-              // fontWeight: "bold", 
-              indent: 5
-            }
-
-            const markers4 =  {
-              startColor: "red", 
-              endColor: "rgb(160, 5, 5)", 
-              fontSize: "16px", 
-              // fontWeight: "bold", 
-              indent: 140
-            }
-            
-            
-            const tick_icon = point.querySelector('.tick-icon');
-            gsap.timeline({scrollTrigger:{
-                trigger: point,
-                start: 'top center+=30%', 
-                end: 'bottom center',  
-                scrub:0.25,
-                markers:false,//i === 0 ? markers3 : false,
-                id:'t1-'+i,
-                toggleActions: 'play pause reverse reset ',
-            }})
-            .addLabel('start')          
-               .to(tick_icon, {
-                duration:1, 
-                delay:0,
-                scale:0.75,
-                autoAlpha:0.25,
-                ease:'power4.inOut',
-                webkitFilter: `blur(0px)`,
-                filter: `blur(0px)`,
-              })
-              
-              gsap.timeline({scrollTrigger:{
-                trigger: point,
-                start: 'top+=50% center', 
-                end: 'bottom center-=20%',
-                scrub:0.25,
-                markers:false,//i === 0 ? markers3 : false,
-                id:'t2-'+i,
-                toggleActions: 'play pause reverse reset ',
-              }})
-              .addLabel('end')           
-                .to(tick_icon, {
-                  delay:1,
-                  duration:1, 
-                  scale:2.5,
-                  autoAlpha:0.25,
-                  ease:'power4.inOut',
-                  webkitFilter: `blur(250px)`,
-                  filter: `blur(250px)`,
-                }) 
-
-
-                // ---------------------------------------------------------
-
-                ScrollTrigger.normalizeScroll(true);
-
-                // ---------------------------------------------------------
-          }
-        });
     },
-    { revertOnUpdate: true },
+    { scope:sectionRefs,revertOnUpdate: true },
   );
+
+     
 
   return (
     <section
     id='intro'
       className={'activity intro' + (open ? ' show' : ' hide')}
       
-      ref={sectionRef}
+      
     >
       <div className='introduction-inner'>
       <div className='inner'>
@@ -199,7 +84,8 @@ const Introduction = () => {
             return (
               <div
                 key={`intro-${i}`}
-                className={'sub subsection installed sec-' + i}
+                className={'subsection installed'}
+                ref={addToRefs}
               >
                 {cnt?.title && (
                   <div className='subsection-title'>
@@ -209,10 +95,10 @@ const Introduction = () => {
                 
                 {cnt?.content?.map((para, k) => {
                   return (
-                    <div className='' key={'p-' + k}>
+                    <Feature key={'p-' + k}>                 
                       {i === 1 && <DoneOutlineIcon className='icon' />}
                       <p key={k}>{parse(para)}</p>
-                    </div>
+                    </Feature>
                   );
                 })}
               </div>
@@ -220,7 +106,7 @@ const Introduction = () => {
           })}
 
         {isInstalled && vc >= 20 && (
-          <div key={`intro`} className={'sub subsection sec-'}>
+          <div key={`intro`} className={'subsection'}>
             <div className=' returning'>
               {parse(
                 content?.returning?.content?.contents[
@@ -236,8 +122,8 @@ const Introduction = () => {
             return (
               <div
                 key={`intro-${i}`}
-                className={'sub notinstalled subsection sec-' + i}
-                ref={i === 1 ? sectionRef : null}
+                className={'subsection notinstalled ' }
+                ref={addToRefs}
               >
                 {cnt?.title && (
                   <div className='subsection-title'>
@@ -246,11 +132,10 @@ const Introduction = () => {
                 )}
                 {cnt?.content?.map((para, k) => {
                   return (
-                    <div className={'point' + ' ' + ' p-' + k} key={'p-' + k}>
-                      {i === 1 && <DoneOutlineIcon className='tick-icon icon' />}
+                    <Feature classes={'feature' } key={'p-' + k}>                 
+                      {i === 1 && <DoneOutlineIcon className='icon' />}
                       <p key={k}>{parse(para)}</p>
-                      
-                    </div>
+                    </Feature>
                   );
                 })}
               </div>

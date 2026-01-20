@@ -1,0 +1,81 @@
+@use './scss/_variables.scss';
+@import '@/globals.css';
+
+.point:first-child {
+    max-width: 100%;
+}
+
+
+.feature {
+
+    position: relative;
+    min-height: 50dvh;
+    width: 100%;
+    max-width: 70%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    column-gap: 0.25rem;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    text-shadow: var(--textShadowDarkValue);
+
+    p {
+        font-weight: 600;
+        font-variation-settings: 'wght' 600;
+        font-size: variables.$h2_size;
+    }
+
+    .icon {
+        position: absolute;
+        left: 50%;
+        right: 50%;
+        top: 50%;
+        bottom: 50%;
+        width: 100%;
+        max-width: 400px;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.35;
+        fill: var(--yellow);
+        transform: translate(-50%, -40%) scale(1);
+        transition: all 0.5s ease-in-out;
+        margin-top: 0;
+    }
+
+    p {
+        width: fit-content;
+        position: relative;
+        font-weight: 600;
+        font-variation-settings: 'wght' 600;
+        font-size: variables.$h2_size;
+
+        u {
+            text-decoration-color: var(--primary);
+            text-decoration-thickness: 6px;
+            font-weight: 600;
+            font-variation-settings: 'wght' 600;
+        }
+    }
+}
+
+.feature.out {
+    .icon {
+        transform: scale(1.5);
+        filter: blur(250px);
+        -webkit-filter: blur(250px);
+        opacity: 0;
+        transition: all 0.5s ease-in-out;
+        transform: translate(-50%, -100%) scale(1.5);
+    }
+
+    &.initial {
+        .icon {
+            transform: translate(-50%, 40%) scale(1.5);
+        }
+    }
+}

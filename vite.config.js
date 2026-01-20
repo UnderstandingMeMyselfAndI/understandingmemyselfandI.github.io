@@ -58,37 +58,37 @@ export default defineConfig({
       priority: 0.8,
       robots: [{ userAgent: '*', allow: '/' }],
     }),
-    VitePWA({
-      registerType: 'autoUpdate',
-      injectRegister: 'script',
-      filename: swFilename,
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
-      manifest: {
-        name: 'DevUmmi',
-        short_name: 'DevUmmi',
-        description:
-          'A companion app for Addiction Recovery, Mental Health and Wellbeing.',
-        theme_color: '#819ec9',
-        icons: [
-          {
-            src: 'icons/pwa-192x192.png',
-            sizes: '192x192',
-            type: 'image/png',
-          },
-          {
-            src: 'icons/pwa-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-          },
-          {
-            src: 'icons/maskable-icon-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-            purpose: 'maskable',
-          },
-        ],
-      },
-    }),
+    // VitePWA({
+    //   registerType: 'autoUpdate',
+    //   injectRegister: 'script',
+    //   filename: swFilename,
+    //   includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
+    //   manifest: {
+    //     name: 'DevUmmi',
+    //     short_name: 'DevUmmi',
+    //     description:
+    //       'A companion app for Addiction Recovery, Mental Health and Wellbeing.',
+    //     theme_color: '#819ec9',
+    //     icons: [
+    //       {
+    //         src: 'icons/pwa-192x192.png',
+    //         sizes: '192x192',
+    //         type: 'image/png',
+    //       },
+    //       {
+    //         src: 'icons/pwa-512x512.png',
+    //         sizes: '512x512',
+    //         type: 'image/png',
+    //       },
+    //       {
+    //         src: 'icons/maskable-icon-512x512.png',
+    //         sizes: '512x512',
+    //         type: 'image/png',
+    //         purpose: 'maskable',
+    //       },
+    //     ],
+    //   },
+    // }),
   ],
   server: {
     port: 5174,

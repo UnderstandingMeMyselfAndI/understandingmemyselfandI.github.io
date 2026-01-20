@@ -5,6 +5,7 @@ import { strings } from '@/data/config'
 import PropTypes from 'prop-types'
 import "./styles.scss";
 
+
 const Template = () => {
 	const name = 'lingo'
 	const [open, setOpen] = useState(false)

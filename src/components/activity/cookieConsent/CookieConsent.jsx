@@ -4,7 +4,7 @@ import useAppStore from '@/store/useAppStore'
 
 const CookieConsent = () => {
   const setGae = useAppStore((state) => state.setGAE)
-  const [showBanner, setShowBanner] = useState(false);
+  const [show, setShow] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [consent, setConsent] = useState({
     necessary: true,
@@ -22,11 +22,13 @@ const CookieConsent = () => {
       setConsent(parsed);
       loadScripts(parsed);
     } else {
-      setShowBanner(true);
+      setShow(true);
     }
   }, []);
 
   const loadScripts = (consentData) => {
+
+	
 		const id = 'G-YWBEQ7E972'
 
 		if (consentData.analytics && !window.GA_INITIALIZED) {
@@ -64,7 +66,7 @@ const CookieConsent = () => {
     localStorage.setItem('cookieConsentDate', new Date().toISOString());
     setConsent(consentData);
     loadScripts(consentData);
-    setShowBanner(false);
+    setShow(false);
     setShowSettings(false);
   };
 
@@ -101,11 +103,11 @@ const CookieConsent = () => {
     }));
   };
 
-  if (!showBanner && !showSettings) return null;
+  if (!show && !showSettings) return null;
 
   return (
-		<div className='cookie-consent-overlay'>
-			{showBanner && !showSettings && (
+		<div className={'activity activity-cookie-consent-overlay'+(show ? ' show' : '')}>
+			{show && !showSettings && (
 				<div className='cookie-banner'>
 					<div className='cookie-banner-content'>
 						<div className='cookie-banner-header'>

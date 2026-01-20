@@ -30,7 +30,7 @@ import BadgeToolbox from 'ui/badges/BadgeToolbox';
 import DaysCounter from './components/activity/daysCounter/DaysCounter';
 import DaysCounterCTA from './components/activity/daysCounter/DaysCounterCTA';
 import AppMenu from './components/ui/menu/AppMenu';
-import CookieConsent from './components/ui/cookieConsent/CookieConsent';
+import CookieConsent from './components/activity/cookieConsent/CookieConsent';
 import UmmiAgeGate from './components/ui/ageGate/UmmiAgeGate';
 import { smoothScroll } from './js/utils.js';
 import NewsletterSignUp from './components/ui/newsletterSignup/NewsletterSignUp';
@@ -66,7 +66,7 @@ function App() {
     <div>
       <div className='main'>
         <UmmiAgeGate />
-        <CookieConsent />
+       
         <div id="centers">
           <div className="vertical"></div>
           <div className="horizontal"></div>
@@ -105,6 +105,7 @@ function App() {
       />
       <Routing />
       <Vcn />
+       <CookieConsent />
     </div>
   );
 }
