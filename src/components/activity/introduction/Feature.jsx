@@ -1,6 +1,4 @@
 import { useState} from "react";
-import gsap from 'gsap'; // <-- import GSAP
-import { useGSAP } from '@gsap/react'; // <-- import the hook from our React package
 import PropTypes from 'prop-types'
 import "./featureStyles.scss";
 import { useOnInView } from 'react-intersection-observer';
@@ -103,7 +101,7 @@ const Feature = ({children = null, headline = '', classes =''}) => {
 		{
 			/* Optional options */
 			threshold: 0.05,
-			rootMargin: '-25% 0% -25% 0%',
+			rootMargin: '-35% 0% -35% 0%',
 		}, // Optional IntersectionObserver options
 	);
 
