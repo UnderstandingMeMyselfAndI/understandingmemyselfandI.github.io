@@ -6,7 +6,7 @@
 }
 
 
-.feature {
+section.intro .feature {
 
     position: relative;
     min-height: 50dvh;
@@ -78,7 +78,7 @@
     }
 }
 
-.feature.out {
+section.intro.feature.out {
     .icon {
         transform: scale(1.5);
         filter: blur(250px);
