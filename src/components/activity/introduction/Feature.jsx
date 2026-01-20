@@ -107,8 +107,10 @@ const Feature = ({children = null, headline = '', classes =''}) => {
 
 	return (
 		<div className={ ((!hasDisplayed	&& componentInView) ? ' initial' : '') + (componentInView ? ' in' : ' out') + ' ' + classes} ref={inViewRef}>
-			<div>{headline}</div>
-			{children && <div>{children}</div>}
+			<div className='inner'>
+				<div>{headline}</div>
+				{children && <div>{children}</div>}
+			</div>
 		</div>
 	)
 };

@@ -11,7 +11,6 @@
     position: relative;
     min-height: 50dvh;
     width: 100%;
-    max-width: 70%;
     max-width: 500px;
     margin: 0 auto;
     padding: 0;
@@ -20,14 +19,30 @@
     flex-flow: row nowrap;
     align-items: center;
     justify-content: center;
+    outline: 1px solid #666;
 
     text-align: center;
     text-shadow: var(--textShadowDarkValue);
 
+    .inner {
+        max-width: 90%;
+        outline: 1px solid #773a3a;
+        display: flex;
+        column-gap: 0.25rem;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: center;
+        row-gap: 0;
+        padding: 0;
+        margin: 0;
+        height: auto;
+    }
+
     p {
-        font-weight: 600;
-        font-variation-settings: 'wght' 600;
+        font-weight: 900;
+        font-variation-settings: 'wght' 900;
         font-size: variables.$h2_size;
+
     }
 
     .icon {
@@ -42,7 +57,7 @@
         z-index: -1;
         opacity: 0.35;
         fill: var(--yellow);
-        transform: translate(-50%, -40%) scale(1);
+        transform: translate(-50%, -30%) scale(1);
         transition: all 0.5s ease-in-out;
         margin-top: 0;
     }
@@ -50,15 +65,15 @@
     p {
         width: fit-content;
         position: relative;
-        font-weight: 600;
-        font-variation-settings: 'wght' 600;
+        font-weight: 900;
+        font-variation-settings: 'wght' 900;
         font-size: variables.$h2_size;
 
         u {
             text-decoration-color: var(--primary);
             text-decoration-thickness: 6px;
-            font-weight: 600;
-            font-variation-settings: 'wght' 600;
+            font-weight: 900;
+            font-variation-settings: 'wght' 900;
         }
     }
 }
