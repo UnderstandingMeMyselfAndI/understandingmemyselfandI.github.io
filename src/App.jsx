@@ -34,7 +34,7 @@ import CookieConsent from './components/activity/cookieConsent/CookieConsent';
 import UmmiAgeGate from './components/ui/ageGate/UmmiAgeGate';
 import { smoothScroll } from './js/utils.js';
 import NewsletterSignUp from './components/ui/newsletterSignup/NewsletterSignUp';
-// import Exit from './components/ui/exit/Exit';
+import Exit from './components/ui/exit/Exit';
 import Settings from './components/activity/settings/Settings';
 import Vcn from './components/visits/Vcn.jsx';
 import Lingo from './components/activity/lingo/Lingo';
@@ -85,7 +85,7 @@ function App() {
         <Footer />
 
         {/* <Motivation /> */}
-        {/* {quickExitEnabled && <Exit />} */}
+        {quickExitEnabled && <Exit />}
         {toolboxFilterEnabled && <BadgeToolbox />}
         {unitsCalculatorEnabled && <UnitsCalculator />}
         {daysCounterEnabled && <DaysCounterCTA />}
