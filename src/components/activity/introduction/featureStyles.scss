@@ -9,7 +9,7 @@
 section.intro .feature {
 
     position: relative;
-    min-height: 35dvh;
+    min-height: 55dvh;
     width: 100%;
     max-width: 500px;
     margin: 0 auto;
@@ -59,7 +59,9 @@ section.intro .feature {
         color: var(--greyLight);
         -webkit-text-stroke: 0.5px;
         -webkit-text-stroke-color: var(--primary);
-        -webkit-text-fill-color: transparent;
+        -webkit-text-fill-color: rgba(60, 60, 199, 0.452);
+
+
 
         u {
             text-decoration: none;
@@ -96,8 +98,8 @@ section.intro .feature {
         max-width: 240px;
         height: 100%;
         z-index: 100;
-        opacity: 0.35;
-        fill: var(--lightBlue);
+        opacity: 0.2;
+        fill: var(--yellow);
         transform: translate(-50%, -50%) scale(1);
         transition: all 0.5s ease-in-out;
         margin-top: 0;
