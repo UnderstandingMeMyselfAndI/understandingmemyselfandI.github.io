@@ -24,6 +24,17 @@ section.intro .feature {
     text-align: center;
     text-shadow: var(--textShadowDarkValue);
 
+    opacity: 0;
+    transform-origin: 50% 80%;
+    transform: scale(0.87) rotateX(-45deg);
+    transition: all 0.35s cubic-bezier(0.55, 0, 0.5, 0.99);
+
+    &.in {
+        opacity: 1;
+        transform: scale(1) rotateX(0deg);
+        transition: all 0.35s cubic-bezier(0.55, 0, 0.5, 0.99);
+    }
+
     .inner {
         max-width: 90%;
         // outline: 1px solid #773a3a;
