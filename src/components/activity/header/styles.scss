@@ -11,15 +11,17 @@ section.header#header {
 	height: 100dvh;
 	width: 100%;
 	max-width: 100%;
+	height: 100dvh;
 	padding: 0;
 	margin: 0;
 	margin-top: -6rem; // offset the first row-gap in #main
 	text-shadow: var(--textShadowDarkValue);
 	transition: height 0.35s ease-in-out;
+	// outline: 1px solid grey;
 
 	.home-grp {
-		width: 100%;
-		height: 100dvh;
+		// width: 100%;
+		// height: 100dvh;
 		display: flex;
 		flex-flow: column nowrap;
 		align-items: center;
@@ -34,20 +36,17 @@ section.header#header {
 		.ummi-logo {
 			display: flex;
 			flex-flow: column wrap;
-			// justify-content: center;
-			// align-items: center;
+			justify-content: center;
+			align-items: center;
 			align-content: center;
+			// outline: 1px solid #ccc;
 		}
 	}
 
 	.home-logo {
 		margin-top: -20vh;
-		// min-width: 140px;
-		// max-width: 112px;
-		width: 140px;
 		opacity: 0;
 		transform: scale(1.6);
-		outline: 1px solid #ccc;
 
 		.Ummi-logo {
 			max-width: 100%;
@@ -68,6 +67,27 @@ section.header#header {
 		text-decoration-thickness: 4px;
 	}
 
+	.w0,
+	.w1,
+	.w2 {
+		transition: color 0.35d ease-in-out;
+	}
+
+	.w0.leaving,
+	.w2.leaving {
+		color: var(--orange);
+		transition: color 0.35d ease-in-out;
+	}
+
+	.w1.leaving {
+		color: var(--lightBlue);
+		transition: color 0.35d ease-in-out;
+	}
+
+	.w0w {
+		transform-origin: 50% 100%;
+	}
+
 	.w0w,
 	.w1w,
 	.w2w,
@@ -84,13 +104,16 @@ section.header#header {
 		left: 0;
 		right: 0;
 		bottom: 10%;
-		outline: 1px solid red;
+		// outline: 1px solid red;
 	}
 
 	.group-wrap {
 		position: absolute;
 		width: fit-content;
-		height: fit-content;
+		// height: fit-content;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
 		// outline: 1px solid blue;
 
 	}
@@ -147,7 +170,7 @@ section.header#header {
 
 	.w1 {
 		transform-origin: 0% 0%;
-		;
+
 	}
 
 	// }
@@ -196,38 +219,6 @@ section.header#header {
 			text-shadow: 0px 0px 10px rgba(10, 10, 10, 1), 0px 0px 6px rgba(10, 10, 10, 1), 0px 0px 4px rgba(10, 10, 10, 1);
 		}
 
-		// .w0,
-		// .w1,
-		// .w2,
-		// .w3,
-		// .w4,
-		// .w5 {
-		// 	opacity: 0;
-		// }
-
-		// .w0 {
-		// 	transform: translateY(100%);
-		// 	-webkit-text-stroke: none;
-		// 	transition: all 0.35s ease-in-out;
-		// }
-
-		// .w0.active {
-		// 	color: transparent;
-		// 	-webkit-text-stroke: 1px rgba(250, 150, 150, 1);
-		// 	transition: all 0.35s ease-in-out;
-		// }
-
-		// .w1 {
-		// 	transform: translateX(80%) scale(0.7);
-		// }
-
-		// .w2 {
-		// 	transform: translateY(-100%);
-		// }
-
-		// .w2.active {
-		// 	transform: scaleY(-100%);
-		// }
 
 		.w3 {
 			transform: rotateY(720deg);

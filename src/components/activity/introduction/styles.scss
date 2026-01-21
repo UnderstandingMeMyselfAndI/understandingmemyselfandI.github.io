@@ -10,6 +10,7 @@ section.intro {
   position: relative;
   color: var(--primary);
   margin: 0;
+
   max-width: 400px;
   width: 100%;
   flex-flow: column wrap;
@@ -19,6 +20,9 @@ section.intro {
   top: 0;
   left: 0;
   text-shadow: var(--textShadowDarkValue);
+
+  // margin-top: 100dvh;
+  // outline: 1px solid red;
 
   &.show {
     display: flex;
@@ -30,6 +34,7 @@ section.intro {
     display: flex;
     flex-flow: column nowrap;
     row-gap: 6rem;
+    padding-top: 50dvh;
     // outline: 1px solid #ccc;
   }
 

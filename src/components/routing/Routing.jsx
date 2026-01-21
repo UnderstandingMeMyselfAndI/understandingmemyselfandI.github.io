@@ -56,7 +56,7 @@ const Routing = () => {
     });
 
     if (tool) {
-      console.log("tool: ", tool);
+      // console.log("tool: ", tool);
 
       setTimeout(() => {
         setBrowserHistory(
@@ -66,7 +66,7 @@ const Routing = () => {
       }, 100);
     }
     if (!tool) {
-        console.log('tool base: ')
+        // console.log('tool base: ')
         // setBrowserHistory(appURL, 'Ummi')
     }
   }, [acronymID]);

@@ -1,270 +1,250 @@
-import { useState } from 'react';
-import { useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Logo from 'ui/logo/Logo.jsx';
 import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined';
 import useAppStore from '@/store/useAppStore';
-// import { useOnInView } from 'react-intersection-observer';
-// import React from "https://esm.sh/react@19.1.0";
-// import ReactDOM from "https://esm.sh/react-dom@19.1.0/client";
-import PropTypes from 'prop-types';
-// import gsap from 'gsap';
+import { ErrorBoundary } from 'react-error-boundary';
 import { useGSAP } from '@gsap/react';
 import gsap from "https://esm.sh/gsap";
-// import { GSDevTools } from 'gsap/GSDevTools';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-// import { SplitText } from 'gsap/SplitText';
 import { useOnInView } from 'react-intersection-observer';
+
+import './styles.scss';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-// import "../../../scss/Animation.css";
-// import "./AnimationIntro.scss";
-import './styles.scss';
-
-
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const [isLeaving, setIsLeaving] = useState(false);
+  const [isFirstCall, setIsFirstCall] = useState(true);
 
-  // const [isInView, setIsInView] = useState(true);
-  //   const [stage, setStage] = useState(0);
-  const activity = useAppStore((s) => s.activity);
-  // const scrollStage = useAppStore((state) => state.scrollStage);
-    const cont = useRef();
-    const logoRef = useRef();
-    const groupRef = useRef();
-    const w0Ref = useRef();
-    const w1Ref = useRef();
-    const w2Ref = useRef();
-    const w3Ref = useRef();
-    const w4Ref = useRef();
+  const cont = useRef();
+  const groupRef = useRef();
   const arrowsCont = useRef();
-  
+
+  const aniLoopRefs = useRef([]);
+  const aniLeaveRefs = useRef([]);
+  const loopTimelines = useRef([]);
+  const leaveTimeline = useRef();
+
+  aniLoopRefs.current = [];
+  aniLeaveRefs.current = [];
+
+  const addLeaveRef = (el) => {
+    if (el && !aniLeaveRefs.current.includes(el)) {
+      aniLeaveRefs.current.push(el);
+    }
+  };
+
+  const addLoopRef = (el) => {
+    if (el && !aniLoopRefs.current.includes(el)) {
+      aniLoopRefs.current.push(el);
+    }
+  };
+
+  const activity = useAppStore((s) => s.activity);
 
   useEffect(() => {
     setOpen(activity === -1);
   }, [activity]);
 
   useGSAP(() => {
+    if (!open) return;
 
-   
-    if(!open) return;
-     console.log("open", open);
-    logoRef.current = gsap.timeline(
-      {
-        repeat: 5, 
-        repeatDelay: 2, 
-        yoyo: true, 
-        defaults: { 
-          duration: 0.65,               
-          ease: 'power3.inOut' 
-        }
-      })
-      .fromTo('.homelogo',
-        { 
-          autoAlpha: 0, 
-          scale: 1.2, 
-          delay:0,
-          duration:0.3 
-        },
-          { 
-          autoAlpha: 1, 
-          scale: 1,
-          duration:0.85,
-          ease: 'back.inOut' 
-          }).to('.homelogo',
-       
-          { 
-          autoAlpha: 1, 
-          delay:9.4,
-          }).to('.homelogo',
-       
-          { 
-           autoAlpha: 0, 
-          scale: 0.8, 
-          delay:0,
-          duration:0.6 
-          });
-
-           console.log("logoRef duration", logoRef.current.duration());
-
-  },  { dependencies:[open], scope:[logoRef], revertOnUpdate: false },);
-
-  useGSAP(
-    () => {
-       
-         
-          if(!open) return;
-
-          const config = {
-            repeat: -1, 
-            repeatDelay: 3, 
-            yoyo: true, 
-            defaults: { 
-              duration: 0.5,               
-              ease: 'power3.out' 
-            }
-          }         
-         
-          w0Ref.current = gsap.timeline({...config})
-          .delay(2)
-          .fromTo('.w0', 
-            { autoAlpha: 0, rotateX: '-80deg',  y: -50 },
-            { autoAlpha: 1, rotateX: 0,  y: 0,ease: 'back.inOut'},
-             '0')
-            .to('.w0',{ autoAlpha: 1, rotateX: 0,  y: 0, delay:3},
-             '0');      
-          console.log("w0Ref duration", w0Ref.current.duration());
-          
-          
-           w1Ref.current = gsap.timeline({...config})
-           .delay(2)
-          .fromTo('.w1', 
-            { autoAlpha: 0, rotateY: '-80deg', x: -15, delay:0.5},
-             { autoAlpha: 1, rotateY: 0, x: 0, delay:0.7},
-             '0')
-          .to('.w1',{ autoAlpha: 1, rotateY: 0, x: 0, delay:3},
-             '0')
-          console.log("w1Ref duration", w1Ref.current.duration());
-
-
-          w2Ref.current = gsap.timeline({...config})
-           .delay(2)
-          .fromTo('.w2', 
-             { autoAlpha: 0, scale: 0.9, x: 0, y: 0 },
-              { autoAlpha: 1, scale: 1, x: 0, y: 0, duration:1, delay:0.35 },
-             '0')
-          .to('.w2',{ autoAlpha: 1, scale: 1, x: 0, y: 0, delay:3 },
-             '0')
-          console.log("w2Ref duration", w2Ref.current.duration());
-
-
-          w3Ref.current = gsap.timeline({...config })
-          .delay(2)
-          .fromTo('.w3', 
-            { autoAlpha: 0, rotateY: '0', rotateX:'80deg', x: 0, y: 30 },
-            { autoAlpha: 1, rotateY: '0deg',  rotateX:'0deg', x: 0, y: 0 },
-             '0')
-          .to('.w3', {duration: 1.5, rotateY: '2160deg', delay:0.65},
-             '0')
-          .to('.w3', {duration: 1.5, rotateY: '2160deg', delay:2},
-             '0');
-
-            console.log("w3Ref duration", w3Ref.current.duration());
-          w4Ref.current = gsap.timeline({ ...config})
-          .delay(2)
-          .fromTo('.w4', 
-            { autoAlpha: 0, x: 0, y: 30, rotateZ: '-115deg',transformOrigin: "left top" },
-            { autoAlpha: 1,  x: 0, y:0, rotateZ: '0deg' , delay:0.95, duration: 1, ease: 'bounce.out',transformOrigin: "left top" },
-             '0')
-            .to( '.w4',{ autoAlpha: 1, rotateZ: '0deg', transformOrigin: "left top", x: 0, delay:3 },
-             '0');
-
-          console.log("w4Ref duration", w4Ref.current.duration());
-
-        
-    },
-    { dependencies:[open],scope:[cont,w0Ref,w1Ref,w2Ref,w3Ref,w4Ref], revertOnUpdate: false },
-    
-  );
-
-
-    
-  // );
- //https://gsap.com/resources/react-advanced#registereffect
-
- /* <FadeIn vars={{ x: 100 }}>
-      <div className="box">Box</div>
-    </FadeIn>
-
-    
-function Component() {
-  const animation = useRef();
-
-  const toggle = () => {
-    animation.current.reversed(!animation.current.reversed());
-  };
-
-  return (
-    <div className="app">
-      <div>
-        <button onClick={toggle}>Toggle</button>
-      </div>
-      <FadeIn stagger={0.1} x={100} ref={animation}>
-        <div className="box gradient-blue">Box 1</div>
-        <div className="box gradient-blue">Box 2</div>
-      </FadeIn>
-    </div>
-  );
-}*/
- // 
-
-function FadeIn({ children, stagger = 0,  ref  }) {
-  const el = useRef();
-  const animation = useRef();
-  useGSAP(() => {
-    animation.current = gsap.from(el.current.children, {
-      opacity: 0,
-      stagger,
-      // x,
-    });
-  });
-  
-  useGSAP(() => {
-    // forward the animation instance
-    if (typeof ref === "function") {
-      ref(animation.current);
-    } else if (ref) {
-      ref.current = animation.current;
+    if (!isLeaving && leaveTimeline.current) {
+      leaveTimeline.current.kill();
     }
-  }, [ref]);
 
-  return <span ref={el}>{children}</span>;
-}
-FadeIn.propTypes = {
-  children: PropTypes.node.isRequired,
-  x: PropTypes.number,
-  stagger: PropTypes.number,
-  ref: PropTypes.any,
-}
+    if (isLeaving) {
+      // --- SMOOTHLY END LOOP ANIMATIONS ---
+      // Tween each loop timeline to its end state (progress: 1)
+      loopTimelines.current.forEach(tl => {
+        if (tl) {
+          gsap.to(tl, {
+            progress: 1,
+            duration: 0.5,
+            ease: 'power2.out',
+            onComplete: () => {
+              tl.pause(); // Pause the timeline at the end to prevent it from yoyoing back
+            }
+          });
+        }
+      });
+      
+      // --- LEAVE ANIMATION ---
+      const leaveAnimations = [
+        { y: -60, rotateX: '60deg', rotateY: '0', rotateZ: '0deg', x: 0, duration: 0.5, ease:'power4.out'},         // Logo
+        { y: 710, rotateX: '0',  autoAlpha:0.95, rotateY: '0deg', rotateZ: '90deg',scale:2, x: -55,  duration: 0.85, transformOrigin: '100% 10%', ease:'power4.out' }, // Understanding
+        { y: 455, rotateX: '0deg', autoAlpha:0.35, rotateY: '0deg', rotateZ: '90deg', x: 105,scale:7, duration: 0.85, ease:'power4.out' },   // Me
+        { y: 570, rotateX: '0deg', autoAlpha:0.95, rotateY: '0', rotateZ: '90deg', x: -75,scale:2, duration: 0.85, transformOrigin: '100% 10%', ease:'power4.out' }, // Myself
+        { y: 700, rotateX: '0deg',  autoAlpha:0.1, rotateY: '0', rotateZ: '90deg', x:135, scale:12.5, duration: 0.85, transformOrigin: '100% 10%', ease:'power4.out'},// &
+        { y: 750, rotateX: '0', autoAlpha:0.15, rotateY: '0deg', rotateZ: '90deg', x:10, scale:7, duration: 0.65, transformOrigin: '100% 10%', ease:'power4.out'}// I
+      ];
+      
+      leaveTimeline.current = gsap.timeline();
 
+      leaveTimeline.current.to(aniLeaveRefs.current, {
+        duration: (i) => leaveAnimations[i].duration || 1.85,
+        autoAlpha:(i) => leaveAnimations[i].autoAlpha || 0,
+        ease:  'power4.out',
+        stagger: 0.075,
+        overwrite: 'auto',        
+        rotateX: (i) => leaveAnimations[i].rotateX,
+        scale: (i) => leaveAnimations[i].scale || 1,
+        rotateY: (i) => leaveAnimations[i].rotateY,
+        rotateZ: (i) => leaveAnimations[i].rotateZ,
+        transformOrigin: (i) => leaveAnimations[i].transformOrigin || '50% 50%',
+        x: (i) => leaveAnimations[i].x,
+        y: (i) => leaveAnimations[i].y,
+      });
+
+    } else {
+      // --- RETURN ANIMATION ---
+      gsap.killTweensOf(aniLeaveRefs.current);
+      gsap.to(aniLeaveRefs.current, {
+        duration: 0.5,
+        autoAlpha: 1,
+        y: 0,
+        rotateX: 0,
+        rotateY: 0,
+        rotateZ: 0,
+        scale: 1,
+        transformOrigin: '50% 50%',
+        x: 0,
+        ease: 'power3.out',
+        stagger: 0.05
+      });
+      
+      // --- LOOP ANIMATIONS ---
+      loopTimelines.current.forEach(tl => tl && tl.restart());
+
+      if (loopTimelines.current.length > 0) return;
+
+      const logoTl = gsap.timeline({
+          repeat: 5,
+          repeatDelay: 2,
+          yoyo: true,
+          defaults: { duration: 0.65, ease: 'power3.inOut' }
+        })
+        .fromTo(aniLoopRefs.current[0], 
+          { autoAlpha: 0, scale: 1.2 }, 
+          { autoAlpha: 1, scale: 1, duration: 0.85, ease: 'back.inOut' }
+        )
+        .to(aniLoopRefs.current[0], { autoAlpha: 1, delay: 9.4 })
+        .to(aniLoopRefs.current[0], { autoAlpha: 0, scale: 0.8, duration: 0.6 });
+      loopTimelines.current[0] = logoTl;
+      
+      const loopAnimations = [
+        null, // logo handled above
+        [ // Understanding
+          { autoAlpha: 0, rotateX: '-80deg', y: -50 },
+          { autoAlpha: 1, rotateX: 0, y: 0, ease: 'back.inOut' }, { delay: 3 },
+        ],
+        [ // Me
+          { autoAlpha: 0, rotateY: '-80deg', x: -15, delay: 0.5 },
+          { autoAlpha: 1, rotateY: '0deg', x: 0, delay: 0.7 }, { delay: 3 },
+        ],
+        [ // Myself
+          { autoAlpha: 0, scale: 0.9, rotateX: '0deg' },
+          { autoAlpha: 1, scale: 1, duration: 0.75, delay: 0.35 }, { delay: 3 },
+        ],
+        [ // &
+          { autoAlpha: 0, rotateX: '80deg', y: 30 },
+          { autoAlpha: 1, rotateX: '0deg', y: 0 }, { duration: 1.5, rotateY: '2160deg', delay: 0.65 },
+        ],
+        [ // I
+          { autoAlpha: 0, y: 30, rotateZ: '-115deg', transformOrigin: "left top" },
+          { autoAlpha: 1, y: 0, rotateZ: '0deg', delay: 0.95, duration: 1, ease: 'bounce.out', transformOrigin: "left top" }, { delay: 3 },
+        ]
+      ];
+
+      const config = {
+        repeat: -1,
+        repeatDelay: 3,
+        yoyo: true,
+        defaults: { duration: 0.5, ease: 'power3.out' }
+      };
+
+      aniLoopRefs.current.forEach((el, i) => {
+        if (i === 0) return; // Skip logo
+        const tl = gsap.timeline({ ...config, delay: 2 });
+        tl.fromTo(el, loopAnimations[i][0], loopAnimations[i][1]);
+        if(loopAnimations[i][2]) tl.to(el, loopAnimations[i][2]);
+        if(loopAnimations[i][3]) tl.to(el, loopAnimations[i][3]);
+        loopTimelines.current[i] = tl;
+      });
+    }
+  }, { dependencies: [open, isLeaving], scope: cont });
+
+  const inViewRef = useOnInView(
+    (inView) => {
+      if (isFirstCall) {
+        setIsFirstCall(false);
+        return;
+      }
+      setIsLeaving(!inView);
+    }, {
+      threshold: 0.1,
+      rootMargin: '-35% 0% -45% 0%',
+    },
+  );
 
   return (
-    <section  id='header' className={'activity header' + (open ? ' show' : ' hide')}  ref={cont}>
-      <div className="threshold"></div>
-      <div className={'group-wrap' } >
-        <div className='home-grp'  >
-          <div className='home-logo-wrap' ref={logoRef}>
-            <div className='home-logo homelogo' >
-              <Logo />
-            </div>
-          </div>
-          <div className={`wgrp ss-0`} ref={groupRef}>
-            <div >
-              <div className="logoType">
-                <div className='w0w' ref={w0Ref} >
-                  <div className='r1 w0' >Understanding</div>
+    <section id='header' className={'activity header' + (open ? ' show' : ' hide')} ref={cont}>
+      <div className="leavingWrap" ref={inViewRef}>
+        <div className={'group-wrap'}>
+          <div className='home-grp'>
+            <ErrorBoundary FallbackComponent={<>Logo had an error</>}>
+              <div className='home-logo-wrap' ref={addLeaveRef}>
+                <div className='home-logo homelogo' ref={addLoopRef}>
+                  <Logo />
                 </div>
-
-                <div className='r2'>
-                  <div className='w1w' ref={w1Ref}><div className='w1'>Me</div></div> 
-                  <div className='w2w' ref={w2Ref}><div className='w2'>Myself</div></div> 
-                  <div className='w3w' ref={w3Ref}><div className='w3'>&</div></div> 
-                  <div className='w4w' ref={w4Ref}><div className='w4'>I</div></div> 
+              </div>
+            </ErrorBoundary>
+            <div className={`wgrp ss-0`} ref={groupRef}>
+              <div>
+                <div className="logoType">
+                  <ErrorBoundary FallbackComponent={<>W0 had an error</>}>
+                    <div className='w0w' ref={addLeaveRef}>
+                      <div className={'r1 w0'+(isLeaving ? ' leaving' : '')} ref={addLoopRef}>Understanding</div>
+                    </div>
+                  </ErrorBoundary>
+                  <div className='r2'>
+                    <ErrorBoundary FallbackComponent={<>W1 had an error</>}>
+                      <div className='w1w' ref={addLeaveRef}>
+                        <div className={'w1'+(isLeaving ? ' leaving' : '')} ref={addLoopRef}>Me</div>
+                      </div>
+                    </ErrorBoundary>
+                    <ErrorBoundary FallbackComponent={<>W2 had an error</>}>
+                      <div className='w2w' ref={addLeaveRef}>
+                        <div className={'w2'+(isLeaving ? ' leaving' : '')} ref={addLoopRef}>Myself</div>
+                      </div>
+                    </ErrorBoundary>
+                    <ErrorBoundary FallbackComponent={<>W3 had an error</>}>
+                      <div className='w3w' ref={addLeaveRef}>
+                        <div className='w3' ref={addLoopRef}>&</div>
+                      </div>
+                    </ErrorBoundary>
+                    <ErrorBoundary FallbackComponent={<>W4 had an error</>}>
+                      <div className='w4w' ref={addLeaveRef}>
+                        <div className='w4' ref={addLoopRef}>I</div>
+                      </div>
+                    </ErrorBoundary>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className='arrow-grp-1' ref={arrowsCont}>
-            <div className='arrow-cont a1'>
-              <ArrowDownwardOutlinedIcon className='arrow' />
+            <div className='arrow-grp-1' ref={arrowsCont}>
+              <div className='arrow-cont a1'>
+                <ArrowDownwardOutlinedIcon className='arrow' />
+              </div>
             </div>
           </div>
-         </div>
+        </div>
       </div>
     </section>
   );
 };
-Header.PropTypes = {
-  
-};
+
+Header.propTypes = {};
+
 export default Header;
