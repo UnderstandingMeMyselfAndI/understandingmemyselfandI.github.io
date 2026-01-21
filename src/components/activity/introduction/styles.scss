@@ -69,6 +69,11 @@ section.intro {
 
     position: relative;
 
+    h2 {
+      text-align: left;
+      padding: 0 1.5rem;
+    }
+
     p {
       width: 100%;
     }
@@ -205,7 +210,7 @@ section.intro {
     -webkit-text-stroke: 1px;
     -webkit-text-stroke-color: var(--primary);
     -webkit-text-fill-color: var(--primary);
-    
+
   }
 
   h2 {
