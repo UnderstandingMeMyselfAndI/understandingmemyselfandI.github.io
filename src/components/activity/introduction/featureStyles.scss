@@ -9,7 +9,7 @@
 section.intro .feature {
 
     position: relative;
-    min-height: 50dvh;
+    min-height: 35dvh;
     width: 100%;
     max-width: 500px;
     margin: 0 auto;
@@ -44,17 +44,22 @@ section.intro .feature {
     //     font-size: variables.$h2_size;
 
     // }
+    h2 {
+        max-width: 100%;
+        margin: 0 0.5rem;
+        text-align: left;
+    }
 
     p {
-        line-height: 0.7;
         line-height: 0.95;
         text-transform: uppercase;
-        font-size: 13.5dvw;
+        font-size: 10.5dvw;
         text-align: left;
         padding: 0 0.5rem;
-        -webkit-text-stroke: 1px;
+        color: var(--greyLight);
+        -webkit-text-stroke: 0.5px;
         -webkit-text-stroke-color: var(--primary);
-        -webkit-text-fill-color: var(--primary);
+        -webkit-text-fill-color: transparent;
 
         u {
             text-decoration: none;
@@ -66,6 +71,21 @@ section.intro .feature {
         }
     }
 
+    &:first-child {
+        p {
+            text-transform: none;
+            -webkit-text-stroke: 0px;
+            color: var(--primary);
+            font-size: 10.5dvw;
+            -webkit-text-fill-color: var(--primary);
+
+            span {
+                color: var(--blue);
+                -webkit-text-fill-color: var(--lightBlue);
+            }
+        }
+    }
+
     .icon {
         position: absolute;
         left: 50%;
@@ -73,7 +93,7 @@ section.intro .feature {
         top: 50%;
         bottom: 50%;
         width: 80%;
-        max-width: 300px;
+        max-width: 240px;
         height: 100%;
         z-index: 100;
         opacity: 0.35;
