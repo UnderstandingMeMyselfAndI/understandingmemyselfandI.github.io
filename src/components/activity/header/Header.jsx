@@ -56,7 +56,6 @@ const Header = () => {
 
     if (isLeaving) {
       // --- SMOOTHLY END LOOP ANIMATIONS ---
-      // Tween each loop timeline to its end state (progress: 1)
       loopTimelines.current.forEach(tl => {
         if (tl) {
           gsap.to(tl, {
@@ -64,7 +63,7 @@ const Header = () => {
             duration: 0.5,
             ease: 'power2.out',
             onComplete: () => {
-              tl.pause(); // Pause the timeline at the end to prevent it from yoyoing back
+              tl.pause();
             }
           });
         }
@@ -73,11 +72,11 @@ const Header = () => {
       // --- LEAVE ANIMATION ---
       const leaveAnimations = [
         { y: -60, rotateX: '60deg', rotateY: '0', rotateZ: '0deg', x: 0, duration: 0.5, ease:'power4.out'},         // Logo
-        { y: 710, rotateX: '0',  autoAlpha:0.95, rotateY: '0deg', rotateZ: '90deg',scale:2, x: -55,  duration: 0.85, transformOrigin: '100% 10%', ease:'power4.out' }, // Understanding
-        { y: 455, rotateX: '0deg', autoAlpha:0.35, rotateY: '0deg', rotateZ: '90deg', x: 105,scale:7, duration: 0.85, ease:'power4.out' },   // Me
-        { y: 570, rotateX: '0deg', autoAlpha:0.95, rotateY: '0', rotateZ: '90deg', x: -75,scale:2, duration: 0.85, transformOrigin: '100% 10%', ease:'power4.out' }, // Myself
-        { y: 700, rotateX: '0deg',  autoAlpha:0.1, rotateY: '0', rotateZ: '90deg', x:135, scale:12.5, duration: 0.85, transformOrigin: '100% 10%', ease:'power4.out'},// &
-        { y: 750, rotateX: '0', autoAlpha:0.15, rotateY: '0deg', rotateZ: '90deg', x:10, scale:7, duration: 0.65, transformOrigin: '100% 10%', ease:'power4.out'}// I
+        { y: 710, rotateX: '0',  autoAlpha:0.95, rotateY: '0deg', rotateZ: '90deg', scale:2, x: -55,  duration: 0.85, transformOrigin: '100% 10%', ease:'power4.out' }, // Understanding
+        { y: 0, rotateX: '0deg', autoAlpha:0, rotateY: '0deg', rotateZ: '0deg', x: 0, duration: 0.25, ease:'power4.out' },   // Me
+        { y: 570, rotateX: '0deg', autoAlpha:0.95, rotateY: '0', rotateZ: '90deg', scale:2, x: -75, duration: 0.85, transformOrigin: '100% 10%', ease:'power4.out' }, // Myself
+        { y: 0, rotateX: '0deg',  autoAlpha:0, rotateY: '0', rotateZ: '0deg', x:0, duration: 0.25, transformOrigin: '100% 10%', ease:'power4.out'},// &
+        { y: 0, rotateX: '0', autoAlpha:0, rotateY: '0deg', rotateZ: '0deg', x:0, duration: 0.25, transformOrigin: '100% 10%', ease:'power4.out'}// I
       ];
       
       leaveTimeline.current = gsap.timeline();
@@ -87,7 +86,8 @@ const Header = () => {
         autoAlpha:(i) => leaveAnimations[i].autoAlpha || 0,
         ease:  'power4.out',
         stagger: 0.075,
-        overwrite: 'auto',        
+        overwrite: 'auto',
+        force3D: 'auto',
         rotateX: (i) => leaveAnimations[i].rotateX,
         scale: (i) => leaveAnimations[i].scale || 1,
         rotateY: (i) => leaveAnimations[i].rotateY,
@@ -111,7 +111,8 @@ const Header = () => {
         transformOrigin: '50% 50%',
         x: 0,
         ease: 'power3.out',
-        stagger: 0.05
+        stagger: 0.05,
+        force3D: 'auto'
       });
       
       // --- LOOP ANIMATIONS ---
@@ -161,7 +162,7 @@ const Header = () => {
         repeat: -1,
         repeatDelay: 3,
         yoyo: true,
-        defaults: { duration: 0.5, ease: 'power3.out' }
+        defaults: { duration: 0.5, ease: 'power3.out', force3D: 'auto' }
       };
 
       aniLoopRefs.current.forEach((el, i) => {

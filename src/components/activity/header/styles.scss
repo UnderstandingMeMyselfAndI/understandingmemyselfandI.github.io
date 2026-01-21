@@ -67,6 +67,15 @@ section.header#header {
 		text-decoration-thickness: 4px;
 	}
 
+	.home-logo-wrap,
+	.w0w,
+	.w1w,
+	.w2w,
+	.w3w,
+	.w4w {
+		will-change: transform, opacity;
+	}
+
 	.w0,
 	.w1,
 	.w2 {
