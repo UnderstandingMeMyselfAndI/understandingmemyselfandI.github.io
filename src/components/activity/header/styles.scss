@@ -76,12 +76,12 @@ section.header#header {
 	.w0.leaving,
 	.w2.leaving {
 		color: var(--orange);
-		transition: color 0.35d ease-in-out;
+		// transition: color 0.35d ease-in-out;
 	}
 
 	.w1.leaving {
 		color: var(--lightBlue);
-		transition: color 0.35d ease-in-out;
+		// transition: color 0.35d ease-in-out;
 	}
 
 	.w0w {
