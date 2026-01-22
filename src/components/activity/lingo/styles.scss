@@ -19,7 +19,7 @@ body .search-list>div:not(.no-results) {
     font-size: 3vh;
     border: none;
     outline: none;
-    display: none;
+    // display: none;
 
     &::after {
         display: none;
@@ -49,11 +49,12 @@ div.search-lingo-wrap {
     div.SearchItem {
         background: none;
         border: none;
-        border-radius: 0;
+        border-radius: var(--border-radius);
         font-size: 3vh;
-        border: none;
+        border: 1px solid var(--greyLight);
         outline: none;
-        display: none;
+
+        padding: 0.25rem 0.5rem;
 
         &::after {
             display: none;
@@ -66,6 +67,7 @@ div.search-lingo-wrap {
         mask-mode: unset;
         transition: height 1.35s cubic-bezier(0.75, 0, 0.5, 1);
 
+
         div.lingo-list-btn {
             margin-top: -60px;
         }
@@ -77,6 +79,7 @@ div.search-lingo-wrap {
         mask-mode: alpha;
         position: relative;
         transition: height 1.05s cubic-bezier(0.75, 0, 0.5, 1);
+        // border: 1px solid #ccc;
 
         div.lingo-list-btn {
             margin-top: -50px;

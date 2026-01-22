@@ -176,6 +176,9 @@ const Header = () => {
     }
   }, { dependencies: [open, isLeaving], scope: cont });
 
+
+  // TODO #25 Maybe use ScrollTrigger isInViewport and drop thei library
+  //https://gsap.com/docs/v3/Plugins/ScrollTrigger/static.positionInViewport()
   const inViewRef = useOnInView(
     (inView) => {
       if (isFirstCall) {

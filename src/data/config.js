@@ -256,7 +256,7 @@ const strings = {
           title: '',
           classes: 'ummi-blue',
           content: [
-            '<b><span class="ummi-blue">U</span>nderstanding <span class="ummi-blue">M</span>e, <span class="ummi-blue">M</span>yself, and <span class="ummi-blue">I</span></b><br /> <span class="ummi-blue">(U.M.M.I)</span><br /> is your <b><u class="yellow">FREE</u></b> <br />companion app.',
+            '<span class="ummi">U</span>nderstanding <span class="ummi">M</span>e, <span class="ummi">M</span>yself, and <span class="ummi">I</span> <span class="ummi">(U.M.M.I)</span> is your <u class="yellow">FREE</u> companion app.',
           ],
         },
 
@@ -265,22 +265,22 @@ const strings = {
           icon: HandymanIcon,
           content: [
             '<span>Addiction <u>Recovery tools explained</u>.</span>',
-            '<span>Find tools<br /> <u>that work for you</u>.</span>',
-            '<span>Create<br /> <u>your own toolbox</u>.</span>',
-            '<span>Easily explained with <br /><u>Text &amp; videos</u>.</span>',
-            '<span>Scenarios describing<br /> <u>when tools could be useful</u>.</span>',
-            '<span>Private <u>Days Counter</u> <br />to track recovery.</span>',
-            '<span>Quick Exit button. <br /><u>Leave quick to Google.com</u><br /></span>',
-            '<span><u>Complete privacy</u><br /> you control.</span>',
-            '<span>Erase all data,<br /> <u>instantly</u>, <u>at anytime</u>.</span>',
+            '<span>Find tools <u>that work for you</u>.</span>',
+            '<span>Create <u>your own toolbox</u>.</span>',
+            '<span>Easily to understand descriptions.</span>',
+            '<span>Scenarios describing <u>when tools could be useful</u>.</span>',
+            '<span>Private <u>Days Counter</u> to track recovery.</span>',
+            '<span>Quick Exit button. <u>Leave quick to Google.com</u><br /></span>',
+            '<span><u>Complete privacy</u> you control.</span>',
+            '<span>Erase all data, <u>instantly</u>, <u>at anytime</u>.</span>',
           ],
         },
         {
           title: 'Who is Ummi for?',
           content: [
-            'Learning recovery tools <br />at groups using <br />ACT, CBT, DBT, REBT, or SMART therapies?<br /><b class="lrg">this app is for you.</b>',
-            '<u>The tools are ace. <br /><b>But remembering them<br /> can be hard</u>.</b> ',
-            '<b>Ummi helps you find and use <br /><u>tools that work for you, <br />and your journey</u>.</b> ',
+            'If you\'re learning recovery tools <br />at groups using <br />ACT, CBT, DBT, REBT, or SMART therapies?<br /><br /><b class="lrg">this app is for you.</b>',
+            '<u>The tools are ace. <b>But remembering them<br /> can be hard</u>.</b> ',
+            '<b>Ummi helps you find and use <u>tools that work for you, <br />and your journey</u>.</b> ',
           ],
         },
       ],
@@ -340,7 +340,7 @@ const strings = {
     {
       name: 'tools',
       slug: '#recovery-tools',
-      title: 'The Tools',
+      title: 'The<br />Tools',
       description: [
         "These tools don't <br />work for <u>everbody</u>.",
         'They might work for <br /><u>one person</u> <br />but not the <u>next</u>.',

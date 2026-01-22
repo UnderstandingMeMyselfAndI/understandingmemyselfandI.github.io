@@ -93,9 +93,7 @@ const Tools = () => {
       className={'activity activity-tools tools ' + (open ? ' show' : ' hide')}  
     >
 
-        <h2>
-          <u>{content?.title}</u>
-        </h2>
+        <h2>{parse(content?.title)}</h2>
 
         <MenuCarousel
           handleClick={handleClick}

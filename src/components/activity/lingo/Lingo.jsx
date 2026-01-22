@@ -37,21 +37,24 @@ const Lingo = () => {
     return node ?  node.getBoundingClientRect().height : 0;
   }
 
-  
+
   useEffect(() => {
+    
     if (!showAll && listRef.current) {
-      
-      if(getElementHeight(listRef.current) === 0) {
-        const int = setInterval(()=>{
+      if(getElementHeight(listRef.current) !== 0) {
+        const interval = setInterval(()=>{
+         
             const height = getElementHeight(listRef.current)
-            if(height === 0) return; 
-              clearInterval(int)
-              setElExpandedHeight(height + 140);
+            if(height !== 0){
+            clearInterval(interval)
+            setElExpandedHeight(height + 140);
+            }
+             
         }, 300);
       }
     }
     
-  }, [ listRef, showAll]);
+  }, [ listRef, showAll,elHeightExpanded, initialHeight]);
 
   useEffect(() => {
     if (!showDialog) window.history.pushState({ page: '' }, '', '');
@@ -88,6 +91,9 @@ const Lingo = () => {
      
     }
   }, [content,setPhrase, gae]);
+
+  const listHeight = showAll ? elHeightExpanded : elHeight;
+ 
   return (
     <section
     id='lingo'
@@ -107,9 +113,9 @@ const Lingo = () => {
         <h3>Lingo &amp; Phrases</h3>
         <div
           className={
-            'lingo-list-wrapper' + (showAll ? ' expand' : '  collapse')
+            'lingo-list-wrapper' + (showAll ? ' expand' : '  collapse') + (showAll ? ' elHeightExpanded' : ' elHeight')
           }
-          style={{ height: `${showAll ? elHeightExpanded : elHeight}px` }}
+          style={{ height: listHeight+'px' }}
         >
           <SearchField
             handleClick={handleClick}

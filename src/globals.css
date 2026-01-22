@@ -1,4 +1,7 @@
 :root {
+ --breakpoint-desktop: 1200px;
+  --breakpoint-tablet: 900px;
+  --breakpoint-mobile: 600px;
   --max-width: 600px;
   --appMaxWidth: 600px;
   --border-radius: 6px;

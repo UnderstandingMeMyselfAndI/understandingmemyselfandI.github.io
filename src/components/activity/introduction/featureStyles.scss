@@ -9,7 +9,7 @@
 section.intro .feature {
 
     position: relative;
-    min-height: 55dvh;
+    min-height: 30dvh;
     width: 100%;
     max-width: 500px;
     margin: 0 auto;
@@ -19,7 +19,6 @@ section.intro .feature {
     flex-flow: row nowrap;
     align-items: center;
     justify-content: center;
-    // outline: 1px solid #666;
 
     text-align: center;
     text-shadow: var(--textShadowDarkValue);
@@ -37,7 +36,6 @@ section.intro .feature {
 
     .inner {
         max-width: 90%;
-        // outline: 1px solid #773a3a;
         display: flex;
         column-gap: 0.25rem;
         flex-flow: row nowrap;
@@ -47,56 +45,6 @@ section.intro .feature {
         padding: 0;
         margin: 0;
         height: auto;
-    }
-
-    // p {
-    //     font-weight: 900;
-    //     font-variation-settings: 'wght' 900;
-    //     font-size: variables.$h2_size;
-
-    // }
-    h2 {
-        max-width: 100%;
-        margin: 0 0.5rem;
-        text-align: left;
-    }
-
-    p {
-        line-height: 0.95;
-        text-transform: uppercase;
-        font-size: 10.5dvw;
-        text-align: left;
-        padding: 0 0.5rem;
-        color: var(--greyLight);
-        -webkit-text-stroke: 1.5px;
-        -webkit-text-stroke-color: var(--primary);
-        -webkit-text-fill-color: rgba(142, 142, 218, 0.6);
-
-
-
-        u {
-            text-decoration: none;
-            font-weight: 900;
-            font-variation-settings: 'wght' 900;
-
-
-
-        }
-    }
-
-    &:first-child {
-        p {
-            text-transform: none;
-            -webkit-text-stroke: 0px;
-            color: var(--primary);
-            font-size: 10.5dvw;
-            -webkit-text-fill-color: var(--primary);
-
-            span {
-                color: var(--blue);
-                -webkit-text-fill-color: var(--lightBlue);
-            }
-        }
     }
 
     .icon {
@@ -116,20 +64,6 @@ section.intro .feature {
         margin-top: 0;
     }
 
-    p {
-        width: fit-content;
-        position: relative;
-        font-weight: 900;
-        font-variation-settings: 'wght' 900;
-        // font-size: variables.$h2_size;
-
-        u {
-            text-decoration-color: var(--primary);
-            text-decoration-thickness: 6px;
-            font-weight: 900;
-            font-variation-settings: 'wght' 900;
-        }
-    }
 }
 
 section.intro.feature.out {
