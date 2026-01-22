@@ -7,7 +7,7 @@ import "./styles.scss";
 
 
 const Template = () => {
-	const name = 'lingo'
+	const name = 'name-to-go-here'
 	const [open, setOpen] = useState(false)
 	const activity = useAppStore((s) => s.activity)
 	const activityID = activities.find((activity) => (activity.url === name ? activity.id : null))
@@ -19,7 +19,7 @@ const Template = () => {
 	// const handleClose = () => setOpen(false);
 
 	return (
-		<div id="idname" className={'activity' + (open ? ' show' : ' hide')}>
+		<div id={name} className={'activity ' + 'activity-' + name + (open ? ' show' : ' hide')}>
 			<section className={name}></section>
 		</div>
 	)

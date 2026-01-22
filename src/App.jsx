@@ -17,7 +17,7 @@ import PrivacyPolicy from './components/activity/privacy/PrivacyPolicy';
 import Introduction from '@/components/activity/introduction/Introduction';
 import YourPrivacyCTA from './components/ui/privacy/YourPrivacyCTA';
 import Tools from 'components/activity/tools/Tools.jsx';
-
+import RecoveryTimelineParent from './components/activity/recoveryTimeline/RecoveryTimelineParent';
 // import Backdrop from "ui/backdrop/Backdrop";
 import BackdropParallax from 'ui/backdrop/BackdropParallax';
 
@@ -73,7 +73,7 @@ function App() {
           </div>
         <div className='dev-version'>Development Version.</div>
         <AppMenu />
-
+        <RecoveryTimelineParent />
         <Header />
         <Introduction />        
         <Tools />
