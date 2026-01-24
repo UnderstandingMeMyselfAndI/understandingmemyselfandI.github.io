@@ -8,6 +8,13 @@ html {
   padding: 0;
   margin: 0;
   background: #000;
+
+}
+
+html,
+body {
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
 }
 
 :target {

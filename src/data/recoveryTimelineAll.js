@@ -8,212 +8,187 @@ export const timelineData = {
   timeline: [
     {
       id: "24-hours",
-      numDays:1,
       timePeriod: "First 24 Hours",
       phaseTitle: "Acute Withdrawal Onset Phase",
       offset: 0,
       physical: [
-        "Withdrawal begins",
-        // "Anxiety",
-        // "Tremors",
-        // "Nausea & sweating",
-        // "Increased heart rate",
-        "Sleep is disrupted"
+        "Withdrawal symptoms typically begin 6-12 hours after last drink",
+        "Early signs: anxiety, tremors, nausea, sweating, increased heart rate",
+        "Sleep architecture is severely disrupted; falling/staying asleep is difficult"
       ],
       lifestyle: [
-        // "Medical supervision",
-        // "Focus on hydration"
+        "Medical supervision is strongly recommended during this phase",
+        "Focus on hydration and finding a safe, quiet environment"
       ],
       mentalEmotional: [
-        "Heightened anxiety",
-        // "Agitation",
-        // "Brain fog",
-        "Difficulty concentrating",
-        "Strong cravings"
+        "Heightened anxiety and agitation",
+        "Brain fog and difficulty concentrating",
+        "Intense cravings as neurochemistry adjusts"
       ]
     },
     {
       id: "3-days",
-      numDays:3,
       timePeriod: "First 3 Days",
       phaseTitle: "Peak Withdrawal Phase",
       offset: 300,
       physical: [
-        // "Highest risk period ",
-        "Physical symptoms peak",
-        "Appetite remains suppressed",
-        "Blood pressure may be higher",
-        "Heart rate may increase"
+        "Highest risk period for severe complications (seizures, delirium tremens)",
+        "Physical symptoms peak around 48-72 hours",
+        "Appetite remains suppressed; hydration is crucial",
+        "Blood pressure and heart rate may be elevated"
       ],
       lifestyle: [
-        // "Continue medical monitoring",
-        // "Avoid triggers and high-stress situations",
-        // "Focus on self-care: hydration, rest, safe environment"
+        "Continue medical monitoring if possible",
+        "Avoid triggers and high-stress situations",
+        "Focus on basic self-care: hydration, rest, safe environment"
       ],
       mentalEmotional: [
-        "Cognitive function impaired",
-        "Emotional volatility common",
-        "Cravings intense & persistent"
+        "Cognitive function is significantly impaired",
+        "Emotional volatility is common",
+        "Cravings remain intense and persistent"
       ]
     },
     {
       id: "first-week",
-      daysSpeed:"1",
-      timePeriod: "Days 4-7",
+      timePeriod: "First Week (Days 4-7)",
       phaseTitle: "Acute Symptoms Subside",
       offset: 600,
       physical: [
-        "Acute physical symptoms diminish",
-        "Sleep may normalize",
-        "Appetite starts to return",
-        "Possible sugar cravings",
-        "Nausea symptoms improve"
+        "Acute physical symptoms (tremors, sweating) begin to diminish",
+        "Sleep may begin to normalize but remains fragmented",
+        "Appetite starts to return, often with sugar cravings",
+        "Gastrointestinal symptoms (nausea) improve"
       ],
       lifestyle: [
-        // "Simple daily routines re-establish",
-        // "Consider connecting with support groups or counseling",
-        // "Financial savings noticeable"
+        "Begin establishing simple daily routines",
+        "Consider connecting with support groups or counseling",
+        "Notice financial savings from not purchasing alcohol"
       ],
       mentalEmotional: [
-        "Initial brain fog lifts",
-        "Anxiety levels decrease",
-        "Brief periods of clarity",
-        "Fewer Cravings"
+        "Initial brain fog begins to lift",
+        "Anxiety levels start to decrease",
+        "Some experience brief periods of clarity",
+        "Cravings become more situational rather than constant"
       ]
     },
     {
       id: "7-10-days",
-     numDays:10,
       timePeriod: "Days 7-10",
       phaseTitle: "Early Stabilization Phase",
       offset: 900,
       physical: [
-        "Sleep patterns improve",
-        "Energy levels increase",
-        "Appetite normalizes",
-        "Nutritional deficiencies may surface",
-        "Skin hydration improves",
-        "Eyes appear clearer"
+        "Sleep patterns show noticeable improvement",
+        "Energy levels begin to increase from baseline",
+        "Appetite normalizes; nutritional deficiencies may surface",
+        "Physical markers: skin hydration improves, eyes appear clearer"
       ],
       lifestyle: [
-        // "Appetite returns",
-        // "Gentle physical activity possible",
-        // "Structure daily schedule around recovery priorities"
+        "Nutrition becomes more important as appetite returns",
+        "Begin gentle physical activity if medically cleared",
+        "Structure daily schedule around recovery priorities"
       ],
       mentalEmotional: [
-        "Cognitive function improves",
+        "Cognitive function improves significantly",
         "Ability to concentrate returns",
-        "Some experience pink cloud phenomenon",
-        "Emotional regulation stabilizes"
+        "Some experience the pink cloud phenomenon (temporary euphoria)",
+        "Emotional regulation begins to stabilize"
       ]
     },
     {
       id: "2-4-weeks",
-      numDays:"28",
       timePeriod: "Weeks 2-4",
       phaseTitle: "Post-Acute Withdrawal Begins",
       offset: 1200,
       physical: [
-        "Sleep patterns continue to improve",
+        "Sleep architecture continues to restore (REM rebound may occur)",
         "Natural energy rhythms reestablish",
-        // "Exercise tolerance improves",
+        "Exercise tolerance improves",
         "Physical cravings diminish in frequency"
       ],
       lifestyle: [
-        // "Exercise capacity increases",
-        // "Improved mood regulation",
-        // "Social confidence in sober situations begins to rebuild",
-        // "Hobbies and interests may start to re-emerge"
+        "Exercise capacity increases, supporting mood regulation",
+        "Social confidence in sober situations begins to rebuild",
+        "Hobbies and interests may start to re-emerge"
       ],
       mentalEmotional: [
-        "PAWS (Post-Acute Withdrawal Syndrome)",
-        "Mood swings, anxiety waves, low energy periods",
-        "Mental clarity more consistent",
-        "Negative thought patterns reduce",
-        "Genuine positive emotions return"
+        "PAWS (Post-Acute Withdrawal Syndrome) symptoms may emerge: mood swings, anxiety waves, low energy periods",
+        "Mental clarity becomes more consistent",
+        "Negative thought patterns begin to diminish",
+        "Genuine positive emotions return between PAWS episodes"
       ]
     },
     {
       id: "1-3-months",
-      numDays:"90",
       timePeriod: "Months 1-3",
       phaseTitle: "Neurological Rebalancing",
       offset: 1500,
       physical: [
-        "Liver enzymes begin to normalize",
-        // "Cardiovascular improvements: ",
-        "Reduced blood pressure",
-        "Reduced heart rate",
+        "Liver enzymes begin to normalize (with medical confirmation)",
+        "Cardiovascular improvements: reduced blood pressure, heart rate",
         "Energy levels stabilize",
-        "Exercise capacity increases"
+        "Exercise capacity increases significantly"
       ],
       lifestyle: [
-        // "Daily routines become established",
-        // "Social confidence in sober situations increases",
-        // "Return to work/regular activities feels sustainable",
-        // "Financial benefits become more noticeable"
+        "Daily routines become established",
+        "Social confidence in sober situations increases",
+        "Return to work/regular activities feels sustainable",
+        "Financial benefits become more noticeable"
       ],
       mentalEmotional: [
-        "PAWS symptoms occur, gradually diminishing",
-        // "Neuroplasticity allows new neural pathways to form",
-        "Cravings manageable",
-        "Cravings less frequent",
-        "Emotional regulation improves",
-        "Self-efficacy grows",
-        "Better confidence"
+        "PAWS symptoms occur in waves, gradually diminishing",
+        "Neuroplasticity allows new neural pathways to form",
+        "Cravings become manageable and less frequent",
+        "Emotional regulation improves noticeably",
+        "Self-efficacy and confidence begin to grow"
       ]
     },
     {
       id: "3-6-months",
-      numDays:"186",
       timePeriod: "Months 3-6",
       phaseTitle: "Consolidation Phase",
       offset: 1800,
       physical: [
-        "Physical health continues improving",
-        "Sleep becomes much better",
-        "Appetite normalizes fully",
-        // "Metabolism stabilize",
-        "Feeling healthy regularly"
+        "Physical health markers continue improving",
+        "Sleep becomes consistently restorative",
+        "Appetite and metabolism stabilize",
+        "Feeling healthy becomes a regular experience"
       ],
       lifestyle: [
-        // "Sober social activities feel more natural",
-        // "Hobbies and interests expand",
-        // "Life management skills rebuild",
-        // "Healthier lifestyle choices become habitual"
+        "Sober social activities feel more natural",
+        "Hobbies and interests expand",
+        "Life management skills rebuild",
+        "Healthier lifestyle choices become habitual"
       ],
       mentalEmotional: [
-        "Thinking patterns shift ",
-        "Negative thoughts diminish",
+        "Thinking patterns shift fundamentally",
+        "Automatic negative thoughts diminish significantly",
         "Resilience to stress improves",
-        "Confidence grows",
+        "Self-efficacy and confidence grow",
         "Sense of identity begins to shift"
       ]
     },
     {
       id: "6-12-months",
-      numDays:"365",
       timePeriod: "Months 6-12",
       phaseTitle: "Sustained Recovery",
       offset: 2100,
       physical: [
-        "Physical healing reaches completion",
+        "Most physical healing reaches substantial completion",
         "Body fully adapts to alcohol-free state",
-        "Exercise fully possible",
-        "Benefits of nutrition clear"
+        "Exercise and nutrition become integrated lifestyle components"
       ],
       lifestyle: [
-        // "Relationships repair and deepen",
-        // "Future planning is clear and motivated",
-        // "New sober identity feels authentic",
-        // "Social circles may shift to support recovery"
+        "Relationships repair and deepen",
+        "Future planning becomes clear and motivated",
+        "New sober identity feels integrated and authentic",
+        "Social circles may shift to support recovery"
       ],
       mentalEmotional: [
         "Emotional baseline stabilizes",
-        "Cravings rare and easily managed",
-        "Strong Positive outlook",
-        "Identity shifts -> new self",
-        "Purpose and meaning solidify"
+        "Cravings are rare and easily managed",
+        "Positive outlook becomes predominant",
+        "Identity shifts toward recovered self",
+        "Purpose and meaning in recovery solidify"
       ]
     }
   ],

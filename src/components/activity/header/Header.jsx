@@ -4,10 +4,9 @@ import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined
 import useAppStore from '@/store/useAppStore';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useGSAP } from '@gsap/react';
-import gsap from "https://esm.sh/gsap";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useOnInView } from 'react-intersection-observer';
-
+import { gsap } from "gsap";  
 import './styles.scss';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
