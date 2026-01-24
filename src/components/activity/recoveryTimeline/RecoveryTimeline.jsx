@@ -4,9 +4,23 @@ import CloseBtn from '@/components/ui/buttons/close/CloseBtn';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
+import RecoveryDayCount from './RecoveryDayCount';
 import { useGSAP } from '@gsap/react';
+// import { debounce } from '@/js/utils.js';
 import './styles.scss';
+function debounce(func, delay) {
+  let timeoutId;
 
+  return function (...args) {
+    // Clear the previous timeout
+    clearTimeout(timeoutId);
+
+    // Set a new timeout
+    timeoutId = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+}
 const RecoveryTimeline = ({ data, config, onClose }) => {
   gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother);
 
@@ -15,11 +29,13 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
   const [enableScrollEffects, setEnableScrollEffects] = useState(false);
   const [error, setError] = useState(null);
   const componentRef = useRef(null);
+  const [groupMaxDays, setGroupMaxDays] = useState(1);
+  const [currentDay, setCurrentDay] = useState(-1);
   const scrollContainerRef = useRef();
   const containerRef = useRef();
   // const layerOneRef = useRef(null);
   // const layerTwoRef = useRef(null);
-  const articleRefs = useRef([]);
+  const scrollerRef = useRef();
   // const mainTimeline = useRef(null);
   const timePeriodRefs = useRef([]);
   const categoryRefs = useRef([[]]);
@@ -45,110 +61,65 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
     }
   }, [isLoading, timelineData, config, error]);
 
-  //  useLayoutEffect(() => {
-  //     if (!isLoading && timelineData && config) {
-  //         const scrollEl = scrollContainerRef.current;
-  //         const layerOneEl = layerOneRef.current;
-  //         const layerTwoEl = layerTwoRef.current;
+  const setGroup = (i) => {
+    const groups = gsap.utils.toArray('.change-group-wrap');
+    if (!groups[i]) return;
+    const maxDays = parseInt(groups[i].getAttribute('data-day-range'));
+    maxDays ? setGroupMaxDays(maxDays) : null;
+  };
 
-  //         if(!scrollEl || !layerOneEl || !layerTwoEl) return;
+  const scrollContainer = document.querySelector('.box-scroller');
+  scrollContainer?.addEventListener('scroll', () => {
+    console.log('scrollTop ');
+  });
 
-  //         const { slowLayerSpeed, fastLayerSpeed } = config.parallax;
+  const calculateDay = () => {
+    const computedStyle = window.getComputedStyle(scrollContainer);
 
-  //         // Restore scroll position
-  //         const savedScrollPosition = sessionStorage.getItem("timelineScroll");
-  //         if (savedScrollPosition) {
-  //             scrollEl.scrollTop = Number(savedScrollPosition);
-  //         }
+    const transform = computedStyle.transform || computedStyle.webkitTransform;
 
-  //         const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (transform && transform !== 'none') {
+      const matrix = transform.match(/matrix\(([^)]+)\)/);
 
-  //         if (prefersReducedMotion) {
-  //             return;
-  //         }
+      // Split the matrix values
+      const values = matrix[1].split(',').map(Number);
+      // // In matrix, the Y translation is at index 5 (0-based)
 
-  //         mainTimeline.current = gsap.timeline({
-  //             scrollTrigger: {
-  //                 trigger: scrollEl,
-  //                 scrub: true,
-  //                 start: "top top",
-  //                 end: "bottom bottom",
-  //                 onUpdate: (self) => {
-  //                     sessionStorage.setItem("timelineScroll", self.scroll());
-  //                 }
-  //             }
-  //         });
+      const yTranslation = values[5];
+      // // The scroll position (top) would be the negative of this value
+      const scrollTop = -yTranslation;
 
-  //         mainTimeline.current
-  //             .to(layerOneEl, { y: `${-50 * slowLayerSpeed}%`, ease: "none" }, 0)
-  //             .to(layerTwoEl, { y: `${-15 * fastLayerSpeed}%`, ease: "none" }, 0);
+      if (!scrollTop) return;
 
-  //         const articleTriggers = [];
-  //         const articles = gsap.utils.toArray(".change-category");
-  //         articles.forEach(article => {
-  //             const trigger = ScrollTrigger.create({
-  //                 trigger: article,
-  //                 scroller: scrollEl,
-  //                 start: "top 80%",
-  //                 end: "bottom 20%",
-  //                 toggleClass: {targets: article, className: "active"},
-  //                 onEnter: () => article.classList.add("entering"),
-  //                 onLeave: () => article.classList.add("exiting"),
-  //                 onEnterBack: () => article.classList.add("entering"),
-  //                 onLeaveBack: () => article.classList.add("exiting"),
-  //             });
-  //             articleTriggers.push(trigger);
-  //         });
+      console.log('scrollTop ', scrollTop);
 
-  //         // Recalculate on resize
-  //         let resizeObserver;
-  //         if (scrollEl) {
-  //             resizeObserver = new ResizeObserver(() => {
-  //                  ScrollTrigger.refresh();
-  //             });
-  //             resizeObserver.observe(scrollEl);
-  //         }
-
-  //         return () => {
-  //             mainTimeline.current.kill();
-  //             articleTriggers.forEach(trigger => trigger.kill());
-  //             if (resizeObserver) {
-  //                 resizeObserver.disconnect();
-  //             }
-  //         }
-  //     }
-  //  }, [isLoading, timelineData, config]);
-
-  // Focus management
-  // useEffect(() => {
-  //     if (!isLoading && timelineData) {
-  //         const focusableElements = articleRefs.current.filter(el => el);
-  //         const container = componentRef.current;
-  //         const handleKeyDown = (e) => {
-  //             if (e.key === "ArrowDown" || e.key === "ArrowRight") {
-  //                 e.preventDefault();
-  //                 const currentFocus = document.activeElement;
-  //                 const currentIndex = focusableElements.indexOf(currentFocus);
-  //                 const nextIndex = (currentIndex + 1) % focusableElements.length;
-  //                 focusableElements[nextIndex].focus();
-  //             } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
-  //                 e.preventDefault();
-  //                 const currentFocus = document.activeElement;
-  //                 const currentIndex = focusableElements.indexOf(currentFocus);
-  //                 const nextIndex = (currentIndex - 1 + focusableElements.length) % focusableElements.length;
-  //                 focusableElements[nextIndex].focus();
-  //             }
-  //         };
-  //         if(container){
-  //             container.addEventListener("keydown", handleKeyDown);
-  //             return () => container.removeEventListener("keydown", handleKeyDown);
-  //         }
-  //     }
-  // }, [isLoading, timelineData]);
+      const pos =
+        scrollTop / (scrollContainer.scrollHeight - window.innerHeight);
+      const day = Math.ceil(groupMaxDays * pos);
+      day !== currentDay && setCurrentDay(day);
+      console.log('day', day, ' pos ', pos);
+      // console.log(
+      //   'scrollTop ',
+      //   scrollTop,
+      //   'scrollContainer.scrollHeight ',
+      //   scrollContainer.scrollHeight,
+      // );
+    }
+  };
 
   useGSAP(
     () => {
       if (!enableScrollEffects) return;
+
+      ScrollSmoother.create({
+        smooth: 0.2, // how long (in seconds) it takes to "catch up" to the native scroll position
+        effects: true, // looks for data-speed and data-lag attributes on elements
+        smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+
+        onUpdate: () => {
+          // debounce(calculateDay(), 750);
+        },
+      });
 
       /*************************************
        * Boxes for triggers
@@ -156,22 +127,22 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
       setTimeout(() => {
         const boxes = gsap.utils.toArray('.box');
         const changeItems = gsap.utils.toArray('.change-item');
-        console.log('changeItems ', changeItems);
+        // console.log('changeItems ', changeItems);
 
-        changeItems.forEach((item, i) => {
-          item.classList.add('entering');
-          item.addEventListener('transitionend', function h() {
-            item.classList.remove('entering');
-            item.removeEventListener('transitionend', h);
-          });
-        });
+        // changeItems.forEach((item, i) => {
+        //   item.classList.add('entering');
+        //   item.addEventListener('transitionend', function h() {
+        //     item.classList.remove('entering');
+        //     item.removeEventListener('transitionend', h);
+        //   });
+        // });
 
         boxes.forEach((box, i) => {
           const parent = box.parentNode;
 
           const endPos =
             (parent.offsetHeight / boxes.length) * (boxes.length - (i + 1));
-          console.log('changeItems[i].parentNode ', changeItems[i].parentNode);
+          // console.log('changeItems[i].parentNode ', changeItems[i].parentNode);
           const tl = gsap
             .timeline({})
             .fromTo(
@@ -185,12 +156,13 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
               duration: 2,
               scrollTrigger: {
                 trigger: box,
-                scroller: '.timeline-scroll-container',
+                scroller: '#smooth-wrapper',
                 start: 'top bottom',
                 end: () => `+=${endPos}px`,
                 pinSpacing: false,
                 pin: false,
                 scrub: false,
+                onEnter: () => (self) => {},
               },
             });
           // .to(changeItems[i], {
@@ -222,19 +194,19 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
           const tl = gsap.timeline({
             scrollTrigger: {
               trigger: group,
-              scroller: '.timeline-scroll-container',
+              scroller: '#smooth-wrapper',
               start: `top top`,
-              end: () => `+=${group.offsetHeight}px`,
+              end: () => `+=${group.offsetHeight + window.innerHeight * 2}px`,
               pinSpacing: false,
               anticipatePin: true,
               pin: true,
               id: i,
               scrub: false,
-              onEnter: () => (self) => {
-                //   console.log('onEnter group self.id ', self);
+              onEnter: () => {
+                // setGroup(i);
               },
-              onLeave: (self) => {
-                console.log('onLeave group self.id ', self);
+              onEnterBack: () => {
+                // setGroup(i);
               },
             },
           });
@@ -242,7 +214,7 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
       });
     },
     {
-      dependencies: [enableScrollEffects],
+      dependencies: [enableScrollEffects, groupMaxDays, currentDay],
       /* scope: scrollContainerRef,*/
     },
   );
@@ -280,12 +252,10 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
     timelineData.timePeriods.length === 0
   ) {
     return <div className='timeline-empty'>No timeline data available.</div>;
+  } else {
+    // console.log('timelineData', timelineData);
   }
 
-  const speed = 2;
-  const variationSpeed = 0.1;
-  const lag = 1;
-  const variationLag = 0.1;
   return (
     <div
       className='timeline-container'
@@ -303,15 +273,18 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
       </header>
 
       {/* Scrollable Content */}
-      <div id='TMPsmooth-wrapper' ref={containerRef}>
-        <div id='TMPsmooth-content'>
-          <div className='timeline-scroll-container'>
-            <div className='count'>
-              <div>day</div>
-              <div>10</div>
-            </div>
-            {/* Layer One: Time Period Headers */}
-            <div className='box-scroller' ref={scrollContainerRef}>
+
+      <div>
+        <div className='timeline-scroll-container' ref={scrollerRef}>
+          <RecoveryDayCount currentDay={currentDay} startDay={-1} />
+
+          {/* Layer One: Time Period Headers */}
+          <div id='smooth-wrapper'>
+            <div
+              id='smooth-content'
+              className='box-scroller'
+              ref={scrollContainerRef}
+            >
               {timelineData.timePeriods.map((period, periodIndex) => (
                 <div
                   className={`box-group group-${periodIndex}`}
@@ -335,86 +308,90 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
                   })}
                 </div>
               ))}
-            </div>
 
-            <div className='change-group-column'>
-              {timelineData.timePeriods.map((period, periodIndex) => (
-                <div
-                  key={period.id}
-                  className='change-group-wrap'
-                  ref={addTimePeriodRef}
-                >
-                  <div className='change-time-period-wrap'>
-                    <div className='change-time-period' data-lag='0.5'>
-                      <h2>{period.header}</h2>
+              <div className='change-group-column'>
+                {timelineData.timePeriods.map((period, periodIndex) => {
+                  // console.log('period', period);
+                  return (
+                    <div
+                      data-day-range={period.numDays}
+                      key={period.id}
+                      className='change-group-wrap'
+                      ref={addTimePeriodRef}
+                    >
+                      <div className='change-time-period-wrap'>
+                        <div className='change-time-period' data-lag='0.5'>
+                          <h2>{period.header}</h2>
+                        </div>
+                      </div>
+                      <div
+                        key={'cat-' + period.id}
+                        className='change-group'
+                        data-lag='2'
+                      >
+                        <div className='change-group-inner'>
+                          {period.categories
+                            .filter((c) => c.type === 'physical')
+                            .map((category, categoryIndex) => {
+                              const articleIndex =
+                                periodIndex * 100 + categoryIndex; // Create a unique index
+                              return (
+                                <article
+                                  // data-lag='0.5'
+                                  key={category.id}
+                                  // articleRefs.current[articleIndex] = el}
+                                  tabIndex='0'
+                                  role='article'
+                                  aria-labelledby={`change-title-${category.id}`}
+                                  className={`change-item ${category.type}`}
+                                ></article>
+                              );
+                            })}
+                          {/* </div> */}
+                          {/* <div className="category-column" data-lag={speed + (variationSpeed * periodIndex)}   > */}
+                          {period.categories
+                            .filter((c) => c.type === 'lifestyle')
+                            .map((category, categoryIndex) => {
+                              const articleIndex =
+                                periodIndex * 100 + 10 + categoryIndex; // Create a unique index
+                              return (
+                                <article
+                                  // data-lag='2'
+                                  key={category.id}
+                                  // articleRefs.current[articleIndex] = el}
+                                  tabIndex='0'
+                                  role='article'
+                                  aria-labelledby={`change-title-${category.id}`}
+                                  className={`change-item ${category.type}`}
+                                ></article>
+                              );
+                            })}
+                          {/* </div> */}
+                          {/* <div className="category-column" data-lag={speed + (variationSpeed * periodIndex)}   > */}
+                          {period.categories
+                            .filter((c) => c.type === 'mental')
+                            .map((category, categoryIndex) => {
+                              const articleIndex =
+                                periodIndex * 100 + 20 + categoryIndex; // Create a unique index
+                              return (
+                                <article
+                                  //  data-lag={2 }
+                                  key={category.id}
+                                  // articleRefs.current[articleIndex] = el}
+                                  tabIndex='0'
+                                  role='article'
+                                  aria-labelledby={`change-title-${category.id}`}
+                                  className={`change-item ${category.type}`}
+                                ></article>
+                              );
+                            })}{' '}
+                        </div>
+                      </div>
+                      <div className='change-category-spacer'></div>
                     </div>
-                  </div>
-                  <div
-                    key={'cat-' + period.id}
-                    className='change-group'
-                    data-lag='2'
-                  >
-                    <div className='change-group-inner'>
-                      {period.categories
-                        .filter((c) => c.type === 'physical')
-                        .map((category, categoryIndex) => {
-                          const articleIndex =
-                            periodIndex * 100 + categoryIndex; // Create a unique index
-                          return (
-                            <article
-                              //  data-lag={2 }
-                              key={category.id}
-                              // articleRefs.current[articleIndex] = el}
-                              tabIndex='0'
-                              role='article'
-                              aria-labelledby={`change-title-${category.id}`}
-                              className={`change-item ${category.type}`}
-                            ></article>
-                          );
-                        })}
-                      {/* </div> */}
-                      {/* <div className="category-column" data-lag={speed + (variationSpeed * periodIndex)}   > */}
-                      {period.categories
-                        .filter((c) => c.type === 'lifestyle')
-                        .map((category, categoryIndex) => {
-                          const articleIndex =
-                            periodIndex * 100 + 10 + categoryIndex; // Create a unique index
-                          return (
-                            <article
-                              //  data-lag={2 }
-                              key={category.id}
-                              // articleRefs.current[articleIndex] = el}
-                              tabIndex='0'
-                              role='article'
-                              aria-labelledby={`change-title-${category.id}`}
-                              className={`change-item ${category.type}`}
-                            ></article>
-                          );
-                        })}
-                      {/* </div> */}
-                      {/* <div className="category-column" data-lag={speed + (variationSpeed * periodIndex)}   > */}
-                      {period.categories
-                        .filter((c) => c.type === 'mental')
-                        .map((category, categoryIndex) => {
-                          const articleIndex =
-                            periodIndex * 100 + 20 + categoryIndex; // Create a unique index
-                          return (
-                            <article
-                              //  data-lag={2 }
-                              key={category.id}
-                              // articleRefs.current[articleIndex] = el}
-                              tabIndex='0'
-                              role='article'
-                              aria-labelledby={`change-title-${category.id}`}
-                              className={`change-item ${category.type}`}
-                            ></article>
-                          );
-                        })}{' '}
-                    </div>
-                  </div>
-                  <div className='change-category-spacer'></div>
-                </div>
-              ))}
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
@@ -493,6 +470,7 @@ RecoveryTimeline.propTypes = {
       PropTypes.shape({
         id: PropTypes.string.isRequired,
         header: PropTypes.string.isRequired,
+        numDays: PropTypes.number.isRequired,
         offset: PropTypes.number.isRequired,
         categories: PropTypes.arrayOf(
           PropTypes.shape({

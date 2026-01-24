@@ -6,12 +6,14 @@ export const transformTimelineData = (originalData) => {
     }
 
     const transformed = {
-        title: "Your Recovery Journey", // You can customize this or pass it from config
-        description: "A timeline of the positive changes you can expect.", // You can customize this
+        title: "Recovery Timeline", // You can customize this or pass it from config
+        description: "A timeline of the changes someone may experience.", // You can customize this
         timePeriods: originalData.timeline.map(period => ({
             id: period.id,
             header: period.timePeriod,
             offset: period.offset,
+            numDays: period.numDays,
+            phaseTitle: period.phaseTitle,
             categories: [
                 ...period.physical.map(item => ({ id: `${period.id}-phys-${item.slice(0, 10)}`, type: "physical", title: item, description: "" })),
                 ...period.lifestyle.map(item => ({ id: `${period.id}-life-${item.slice(0, 10)}`, type: "lifestyle", title: item, description: "" })),

@@ -58,8 +58,9 @@ export const timelineData = {
     },
     {
       id: "first-week",
-      daysSpeed:"1",
+      daysSpeed:1,
       timePeriod: "Days 4-7",
+      numDays:4,
       phaseTitle: "Acute Symptoms Subside",
       offset: 600,
       physical: [
@@ -83,7 +84,7 @@ export const timelineData = {
     },
     {
       id: "7-10-days",
-     numDays:10,
+     numDays:3,
       timePeriod: "Days 7-10",
       phaseTitle: "Early Stabilization Phase",
       offset: 900,
@@ -109,7 +110,7 @@ export const timelineData = {
     },
     {
       id: "2-4-weeks",
-      numDays:"28",
+      numDays:14,
       timePeriod: "Weeks 2-4",
       phaseTitle: "Post-Acute Withdrawal Begins",
       offset: 1200,
@@ -135,7 +136,7 @@ export const timelineData = {
     },
     {
       id: "1-3-months",
-      numDays:"90",
+      numDays:76,
       timePeriod: "Months 1-3",
       phaseTitle: "Neurological Rebalancing",
       offset: 1500,
@@ -165,7 +166,7 @@ export const timelineData = {
     },
     {
       id: "3-6-months",
-      numDays:"186",
+      numDays:110,
       timePeriod: "Months 3-6",
       phaseTitle: "Consolidation Phase",
       offset: 1800,
@@ -192,7 +193,7 @@ export const timelineData = {
     },
     {
       id: "6-12-months",
-      numDays:"365",
+      numDays:255,
       timePeriod: "Months 6-12",
       phaseTitle: "Sustained Recovery",
       offset: 2100,
@@ -251,8 +252,8 @@ export const timelineData = {
 };
 
 export const timelineConfig = {
-  title: "Alcohol Recovery Timeline",
-  description: "Stages of healing after stopping alcohol use",
+  title: "Recovery Timeline",
+  description: "What someone might expect after stopping use",
   
   // Parallax configuration
   parallax: {

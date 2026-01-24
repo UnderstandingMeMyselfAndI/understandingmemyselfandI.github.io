@@ -226,7 +226,7 @@ export const timelineData = {
 };
 
 export const timelineConfig = {
-  title: "Alcohol Recovery Timeline",
+  title: " Recovery Timeline",
   description: "Stages of healing after stopping alcohol use",
   
   // Parallax configuration
