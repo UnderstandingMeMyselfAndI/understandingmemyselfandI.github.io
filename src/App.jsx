@@ -67,11 +67,11 @@ function App() {
       <div className='main'>
         <UmmiAgeGate />
 
-        <div id='centers'>
+        {/* <div id='centers'>
           <div className='vertical'></div>
           <div className='horizontal'></div>
-        </div>
-        <div className='dev-version'>Development Version.</div>
+        </div> */}
+        {/* <div className='dev-version'>Development Version.</div> */}
         <AppMenu />
         {/* <RecoveryTimelineParent /> */}
         <Header />
