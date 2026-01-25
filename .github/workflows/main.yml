@@ -1,4 +1,4 @@
-name: Publish Branch To Server
+name: Publish Branch To Dev
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   web-deploy:
-    name: Deploy to Server
+    name: Deploy to Staging server
     runs-on: ubuntu-latest
     steps:
       - name: 🚚 Get Latest Commit
@@ -18,14 +18,14 @@ jobs:
       - name: 📂 Sync Files with hosting server
         uses: easingthemes/ssh-deploy@main
         with:
-          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_DEV_KEY }}
           ARGS:
             '-rlgoDzvc -i -av --delete --recursive --force --compress
             --human-readable'
           SOURCE: 'docs/'
-          REMOTE_HOST: ${{ secrets.DEPLOY_SERVER }}
-          REMOTE_USER: ${{ secrets.DEPLOY_USER }}
-          TARGET: ${{ secrets.DEPLOY_REMOTE_DIR }}
+          REMOTE_HOST: ${{ secrets.DEPLOY_DEV_SERVER }}
+          REMOTE_USER: ${{ secrets.DEPLOY_DEV_USER }}
+          TARGET: ${{ secrets.DEPLOY_REMOTE_DEV_DIR }}
           EXCLUDE: 'cms, data, playwright-report,cms,tmp, /node_modules/'
           SCRIPT_BEFORE: |
             whoami

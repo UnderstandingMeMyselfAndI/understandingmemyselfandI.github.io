@@ -5,7 +5,7 @@
     <title>DevUmmi - Understanding Me, Myself, and I</title>
     <meta
       name="description"
-      content="DevUmmi is a companion app that provides quick and easy access to essential support information, helping people apply therapy tools from Cognitive Behavioural Therapy (CBT), Dialectical Behaviour Therapy (DBT), and other approaches to support their mental health, wellbeing, and addiction recovery."
+      content="Ummi is a companion app that provides quick and easy access to essential support information, helping people apply therapy tools from Cognitive Behavioural Therapy (CBT), Dialectical Behaviour Therapy (DBT), and other approaches to support their mental health, wellbeing, and addiction recovery."
     />
     <meta name="theme-color" content="#819ec9" />
 
@@ -16,11 +16,7 @@
       href="/icons/UmmiIcon.svg"
     />
     <link rel="mask-icon" href="/icons/UmmiIcon.svg" color="#FFFFFF" />
-    <link
-      rel="apple-touch-icon"
-      href="/icons/UmmiIcon.svg"
-      sizes="any"
-    />
+    <link rel="apple-touch-icon" href="/icons/UmmiIcon.svg" sizes="any" />
 
     <link rel="manifest" href="manifest.json?cache=sadsad" />
 
@@ -29,8 +25,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <link rel="preconnect" href="https://dev.ummi.now" />
-    
+    <link rel="preconnect" href="https://www.ummi.now" />
 
     <link
       rel="preload"
@@ -46,22 +41,19 @@
       name="google-site-verification"
       content="z1GZV3sgoFTPrtQLwT4cYGE4cMFm58x1oQO_OB7w464"
     />
-    <script type="module" crossorigin src="./assets/index-BsDCbl1y.js"></script>
-    <link rel="modulepreload" crossorigin href="./assets/react-dom-DmnVtGYe.js">
-    <link rel="modulepreload" crossorigin href="./assets/mui-icons-a3A1DoEg.js">
-    <link rel="modulepreload" crossorigin href="./assets/gsap-qnFhCEKp.js">
-    <link rel="modulepreload" crossorigin href="./assets/@gsap/react-BVtb0rxW.js">
-    <link rel="modulepreload" crossorigin href="./assets/mui-material-BNd5A8oG.js">
-    <link rel="modulepreload" crossorigin href="./assets/react-lite-youtube-embed-CxrBg0bn.js">
-    <link rel="modulepreload" crossorigin href="./assets/@jmeirinkmarimed/age-gate-B0KCbMMY.js">
-    
+    <script type="module" crossorigin src="/assets/index-BXQzadGM.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/gsap-qnFhCEKp.js">
+    <link rel="modulepreload" crossorigin href="/assets/@gsap/react-DtPUcoCo.js">
+    <link rel="modulepreload" crossorigin href="/assets/react-lite-youtube-embed-DRtxbxCx.js">
+    <link rel="modulepreload" crossorigin href="/assets/@jmeirinkmarimed/age-gate-Bxd0q0jt.js">
+    <link rel="modulepreload" crossorigin href="/assets/mui-icons-Cc8qs-U1.js">
+    <link rel="modulepreload" crossorigin href="/assets/mui-material-FmToxSlX.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-OJDYiLeK.css">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
   </head>
 
   <body>
-    <div id="root"></div>
-
-    <script type="module" src="./sw-registration.js"></script>
+    <div id="root"></div>
     <script>
       window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
       window.LOCALE = 'en';
@@ -80,18 +72,18 @@
       };
       var AUTOHIDE = Boolean(1);
 
-      function reCaptchaOnload() {
-        grecaptcha.execute();
-      }
+      // function reCaptchaOnload() {
+      //   grecaptcha.execute();
+      // }
       var onSubmit = function (token) {
-        console.log('success! ', token);
+        // console.log('success! ', token);
       };
-      var onloadCallback = function () {
-        grecaptcha.render('submit', {
-          sitekey: 'your_site_key',
-          callback: onSubmit,
-        });
-      };
+      // var onloadCallback = function () {
+      //   grecaptcha.render('submit', {
+      //     sitekey: 'your_site_key',
+      //     callback: onSubmit,
+      //   });
+      // };
     </script>
   </body>
 </html>
