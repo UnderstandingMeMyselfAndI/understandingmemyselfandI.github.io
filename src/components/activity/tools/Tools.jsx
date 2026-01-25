@@ -18,10 +18,10 @@ const Tools = () => {
   const setToolsInView = useAppStore((s) => s.setToolsInView);
 
   const [open, setOpen] = useState(true);
-  // const activity = useAppStore((s) => s.activity);
-  // const activityID = activities.find((activity) =>
-  //   activity.url === name ? activity.id : null,
-  // );
+  const activity = useAppStore((s) => s.activity);
+  const activityID = activities.find((activity) =>
+    activity.url === name ? activity.id : null,
+  );
   const content =
     strings.activity.find((activity) => activity.name === name) || null;
 
@@ -32,6 +32,7 @@ const Tools = () => {
   const showToolsOnly = useAppStore((s) => s.showToolsOnly);
   const getActiveToolIDs = useAppStore((state) => state.getActiveToolIDs);
   const yourToolsEnabled = useAppStore((s) => s.yourToolsEnabled);
+  const setActivityInView = useAppStore((s) => s.setActivityInView);
   const activeIDs = getActiveToolIDs();
   const positiveIDsSet = useMemo(() => new Set(activeIDs), [activeIDs]);
 
@@ -54,7 +55,7 @@ const Tools = () => {
 
   useEffect(() => {
     setOpen(activity == -1);
-  }, [activity, activityID]);
+  }, []);
 
   useEffect(() => {
     setOpen(true);
