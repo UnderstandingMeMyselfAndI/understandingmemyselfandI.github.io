@@ -1,36 +1,51 @@
 @use '@/scss/_variables.scss';
 @import '@/globals.css';
 
-div.days-counter-activity {
-  outline: 10px solid yellow;
-  display: none;
-
-  &.open {
-    display: flex;
-    position: fixed;
+body .main section.days-counter-activity {
+  &.fixed {
+    top: 0;
+    translate: unset;
   }
 
-
-  width: 101dvw;
-  height: 100dvh;
-  background: transparent;
-  text-align: center;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 7500;
+  height: 100vh;
+  max-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+
+
+
+  .days-counter-wrap {
+    margin: 0 auto;
+  }
+
+  .days-counter-close-btn {
+    display: none;
+  }
+
+  &.open,
+  &.show {
+    display: flex;
+    position: fixed;
+
+    .days-counter-close-btn {
+      display: block;
+    }
+
+  }
 
   flex-flow: column nowrap;
   justify-content: center;
   align-content: center;
   gap: 0.5rem;
-
-  min-height: 100vh;
-
   padding: 2rem 1rem;
+  background: transparent;
+  text-align: center;
 
-  position:relative;
 
   &::after {
     content: '';
@@ -39,48 +54,34 @@ div.days-counter-activity {
     left: 0;
     right: 0;
     bottom: 0;
-    // width: 100%;
-    // height: 100%;
-    z-index: 7400;
-    background: rgba(10, 10, 10, 0.35);
+    width: 100%;
+    height: 100%;
+    background: var(--backgroundActivity);
+    z-index: -1;
+
   }
 }
 
 .days-counter-container {
-  // max-width: 64rem;
+
   margin-left: auto;
   margin-right: auto;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   row-gap: 2rem;
-  transform: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
   position: relative;
-  z-index: 5500;
-  max-width: 600px;
+  height: 80vh;
+
+  width: 100%;
+  height: 100%;
+
 
   &.full {
     justify-content: space-evenly;
-    height: 100%;
-    transform: all 0.35s ease-in-out;
+    transition: all 0.35s ease-in-out;
   }
-}
-
-body #root .app .days-counter-header {
-  margin: 0 auto 0 auto;
-  width: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-content: center;
-  position: absolute;
-  transform: translateY(-50%);
-  top: 50%;
-  left: 0;
-  word-break: break-all;
-  opacity: 0.1;
-  filter: blur(2px);
-  z-index: -1;
 }
 
 .title::placeholder {
@@ -93,7 +94,7 @@ body #root .app .days-counter-header {
   font-weight: 900;
   color: white;
   margin-bottom: 0.5rem;
-  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-shadow: var(--textShadowDarkValue);
 }
 
 .days-counter-subtitle {
@@ -105,7 +106,6 @@ body #root .app .days-counter-header {
   display: flex;
   flex-flow: column row;
   row-gap: 2rem;
-  // box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   padding: 3rem;
   text-align: center;
 }
@@ -127,6 +127,7 @@ body #root .app .days-counter-header {
   color: var(--greyDark);
   margin-bottom: 1.5rem;
   font-size: 1.125rem;
+  overflow: hidden;
 }
 
 .days-counter-empty-state,
@@ -136,18 +137,19 @@ body #root .app .days-counter-header {
   justify-content: center;
   align-items: center;
   row-gap: 2.5rem;
+
 }
 
 .days-counter-add-first-icon {
   background: rgba(164, 120, 245, 0.5);
-  outline: 1px solid rgba(255, 255, 255, 0.35);
   border: none;
   border-radius: 50%;
 
   background: rgba(31, 31, 31, 0.5);
-  box-shadow: 0px 0px 6px 3px rgba(197, 197, 197, 0.5);
+  box-shadow: var(--box-ShadowDarkValue);
   width: 80px;
   height: 80px;
+  cursor: pointer;
 
   svg {
     width: 100%;
@@ -155,14 +157,13 @@ body #root .app .days-counter-header {
   }
 }
 
-.days-counter-add-first-btn {
+button.days-counter-add-first-btn {
   margin: 1.5rem auto;
 
   background: rgba(164, 120, 245, 0.5);
   border: none;
   padding: 0.75rem 2rem;
-  outline: 1px solid rgba(150, 150, 150, 0.25);
-  box-shadow: 0px 0px 12px 3px rgba(10, 10, 10, 0.25);
+  box-shadow: var(--box-ShadowDarkValue);
   display: flex;
   font-size: 1.25rem;
   font-weight: 400;
@@ -177,7 +178,8 @@ body #root .app .days-counter-header {
 }
 
 .days-counter-add-first-btn:hover {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--box-ShadowLightValue);
+  background: rgba(10, 10, 10, 0.25);
 }
 
 .days-counter-add-icon {
@@ -191,6 +193,9 @@ body #root .app .days-counter-header {
   justify-content: center;
   gap: 0.5rem;
   height: 100%;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 
   &.full {
     justify-content: space-evenly;
@@ -201,6 +206,11 @@ body #root .app .days-counter-header {
   padding: 0.25rem;
   transition: all 0.3s;
   position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 1rem;
 }
 
 .days-counter-card-header {
@@ -210,6 +220,7 @@ body #root .app .days-counter-header {
   margin-bottom: 0.5rem;
   flex-wrap: wrap;
   gap: 0.5rem;
+  max-width: 50%;
 }
 
 /* **********************************************
@@ -225,7 +236,7 @@ body #root .app .days-counter-header {
   color: var(--lightBlue);
   width: 100%;
   text-align: center;
-  margin: 0.5rem 0;
+  margin: 0;
 
   &::placeholder {
     color: var(--grey);
@@ -247,6 +258,7 @@ input.days-counter-title-input:focus {
   flex: 1;
   min-width: 0;
   width: 100%;
+  max-width: 100%;
 }
 
 .days-counter-label-input {
@@ -275,6 +287,19 @@ input.days-counter-title-input:focus {
   color: var(--grey);
 }
 
+.days-counter-date-display {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  row-gap: 0.25rem;
+
+  span:last-child {
+    font-size: 0.9rem;
+    color: var(--grey);
+  }
+}
+
 .days-counter-selected-date {
   font-size: 1rem;
   color: var(--grey);
@@ -284,6 +309,8 @@ input.days-counter-title-input:focus {
   justify-content: center;
   align-items: center;
   row-gap: 0.5rem;
+  max-width: 70%;
+  text-shadow: var(--textShadowDarkValue);
 
   span {
     // width:70%;
@@ -293,12 +320,12 @@ input.days-counter-title-input:focus {
   }
 }
 
-.new-date {
+.days-counter-card-date {
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  row-gap: 0.5rem;
+  row-gap: 0.75rem;
 }
 
 input.days-counter-date-input {
@@ -314,6 +341,7 @@ input.days-counter-date-input {
   padding: .75rem;
   position: relative;
   width: 100%;
+  min-width: 220px;
 
   &::-webkit-calendar-picker-indicator {
     background: transparent;
@@ -330,43 +358,44 @@ input.days-counter-date-input {
 }
 
 .days-counter-date-input:focus {
-  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.5);
+  box-shadow: var(--box-ShadowBluekValue);
 }
 
 .days-counter-card-actions {
   display: flex;
   gap: 0.5rem;
-  top: 30%;
-  right: 10%;
+  top: 0%;
+  right: 0%;
   position: absolute;
-  // outline:1px solid yellow;
+
 }
 
-// .days-counter-stat-group-new{
+// .days-counter-stat-new {
+//   .value {
+//     padding: 0;
+//     margin: 0;
+//     font-weight: 900;
+//     font-size: 5.0rem;
+//     line-height: 1;
+//     letter-spacing: -0.5px;
+//     color: white;
+//     position: relative;
 
+//     &::after {
+//       content: 'days';
+//       position: absolute;
+//       font-size: 1.0rem;
+//       color: #999;
+//       font-weight: 600;
+//       font-variation-settings: 'wght' 600;
+//       // bottom: 50%;
+//       bottom: -0.8rem;
+//       left: 50%;
+//       transform: translate(-50%, 0);
+//       margin: 0 0 -0.9rem 0;
+//     }
+//   }
 // }
-.days-counter-stat-new {
-  .value {
-    padding: 0;
-    margin: 0;
-    font-weight: 900;
-    font-size: 5.0rem;
-    line-height: 1;
-    letter-spacing: -0.5px;
-    color: white;
-
-    position: relative;
-
-    &::after {
-      content: 'days';
-      position: absolute;
-      font-size: 1.5rem;
-      color: #999;
-      color: #999;
-      bottom: 50%;
-    }
-  }
-}
 
 /* **********************************************
 * Values and Labels
@@ -379,7 +408,6 @@ input.days-counter-date-input {
   line-height: 1;
   letter-spacing: -2.5px;
   justify-content: center;
-  // outline:1px solid green;
 }
 
 .days-counter-stat {
@@ -389,37 +417,37 @@ input.days-counter-date-input {
   justify-content: center;
   align-items: center;
 
+
+
   .value {
     padding: 0;
     margin: 0;
     font-weight: 900;
+    font-variation-settings: 'wght' 900;
     font-size: 4.75rem;
     line-height: 1;
     letter-spacing: -0.5px;
     color: white;
     position: relative;
-    // outline: 1px solid #ccc;
 
     &::after {
       content: 'days';
       position: absolute;
-      font-size: 1.0rem;
-      color: #999;
+      font-weight: 400;
+      font-variation-settings: 'wght' 400;
+      font-size: 1.25rem;
+      // color: #999;
       font-weight: 600;
       font-variation-settings: 'wght' 600;
-      // bottom: 50%;
-      bottom: -0.8rem;
-
+      bottom: 0;
       left: 50%;
-
       transform: translate(-50%, 0);
-      margin: 0 0 0 0.25rem;
+      margin: 0 0 -1.2rem 0;
     }
   }
 
   .label {
     letter-spacing: -0.25px;
-
     margin-bottom: 10px;
     z-index: 1;
     font-weight: 900;
@@ -430,10 +458,11 @@ input.days-counter-date-input {
   }
 }
 
-.days-counter-stat:nth-child(2),
-.days-counter-stat:nth-child(3) {
-  height: 60px;
-}
+// .days-counter-stat:nth-child(2),
+// .days-counter-stat:nth-child(3) {
+//   height: 60px;
+
+// }
 
 .days-counter-stat-group {
   width: 100%;
@@ -444,6 +473,7 @@ input.days-counter-date-input {
   column-gap: 2rem;
   opacity: 0.5;
   display: none;
+
 
   .value {
     font-size: 2.125rem;
@@ -500,34 +530,23 @@ input.days-counter-date-input {
 /* **********************************************
 * Buttons
 ********************************************** */
+
 .days-counter-card-actions {
-  // margin-top:-76px;
   position: relative;
   width: 100%;
-}
-
-.days-counter-activity {
-  .close-btn {
-    right: 0.65rem;
-    top: 0.7rem;
-
-    svg {
-      width: 64px;
-      height: 64px;
-    }
-  }
+  max-width: 100%;
 }
 
 .days-counter-reset-btn,
 .days-counter-delete-btn {
   padding: 0.5rem;
   border: none;
+  outline: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   background: transparent;
-  // outline:1px solid yellow;
 }
 
 .days-counter-reset-btn {
@@ -539,8 +558,9 @@ input.days-counter-date-input {
   width: 45px;
   height: 45px;
   position: absolute;
-  left: 10%;
-  top: 10%;
+  left: 50px;
+  bottom: 3%;
+  box-shadow: none;
 
   svg {
     width: 100%;
@@ -570,7 +590,7 @@ input.days-counter-date-input {
   width: 80px;
   height: 80px;
 
-  background-color: transparent;
+  background-color: var(--blue);
   color: #ffffff;
   padding: 1.5rem;
 
@@ -586,12 +606,14 @@ input.days-counter-date-input {
 }
 
 .days-counter-add-another-btn:hover {
-  background-color: #faf5ff;
+  background-color: transparent;
+  box-shadow: var(--textShadowDarkValue);
+  background: rgba(10, 10, 10, 0.25);
 }
 
 .days-counter-note-container {
   position: relative;
-  z-index: 5601;
+  // z-index: 5601;
   margin: 1.5vh auto 0 auto;
 }
 
@@ -607,10 +629,4 @@ input.days-counter-date-input {
     margin: 0.25rem 0;
     font-style: italic;
   }
-}
-
-.days-counter-backdrop {
-  opacity: 0.75;
-  position: absolute;
-  z-index: 5400;
 }

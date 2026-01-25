@@ -8,6 +8,17 @@ html {
   padding: 0;
   margin: 0;
   background: #000;
+
+}
+
+html,
+body {
+  // -webkit-overflow-scrolling: touch;
+  // overflow-scrolling: touch;
+}
+
+:target {
+  // scroll-margin-top: 30vh;
 }
 
 .dev-version {
@@ -15,8 +26,8 @@ html {
   z-index: 99999;
   top: 0;
   left: 0;
-  background-color: rgba(10, 10, 10, 0.5);
-  color: #b3b3b3;
+  background-color: var(--orange);
+  color: var(--greyDark);
   padding: 0.5rem;
   font-size: 0.8rem;
   text-align: left;
@@ -29,17 +40,16 @@ html {
 
 body {
   scroll-behavior: smooth;
+  overscroll-behavior: none;
   // overscroll-behavior-y: contain;
   background: #000 !important;
   width: 100%;
+  max-width: 100dvw;
   height: 100%;
-  // overflow-x: clip;
-  // overflow-x: hidden;
   color: var(--primary);
   padding: 0;
   margin: 0;
   user-select: none;
-  scroll-behavior: smooth;
 
   h1,
   h2,
@@ -60,6 +70,32 @@ body {
 
   .backdrop {
     width: 102%;
+  }
+
+  button {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    width: fit-content;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    background: rgba(164, 120, 245, 0.35);
+    border: none;
+    color: var(--primary);
+    outline: 1px solid var(--blue);
+    box-shadow: 0px 0px 12px 3px rgba(10, 10, 10, 0.25);
+    padding: 0.75rem 2.25rem 0.75rem 1.5rem;
+
+
+    &:focus,
+    &:focus-within,
+    &:hover,
+    &:active {
+      outline: none;
+      border: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
   }
 
   .new,
@@ -116,22 +152,95 @@ body {
     position: relative;
     top: 0;
     left: 0;
-    z-index: 10000;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    // z-index: 10000;
     width: 100%;
+    // max-width: 100dvw;
     display: flex;
     flex-flow: column nowrap;
   }
 
   .main {
     scrollbar-width: 0;
-    width: 90%;
-    max-width: var(--appMaxWidth);
+
+    width: 100%;
     margin: 0 auto;
     padding: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    row-gap: 6rem;
+    overflow-x: hidden;
+    overflow-y: auto;
 
     .activities {
       position: relative;
       z-index: 6000;
+    }
+
+    section.activity,
+    div.activity {
+      position: relative;
+      visibility: hidden;
+      // outline: 1px solid #ccc;
+      pointer-events: none;
+
+
+      z-index: -10;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      min-height: 60dvh;
+
+      // max-width: var(--max-width);
+      margin: 0 auto;
+
+      flex-flow: column wrap;
+      align-content: center;
+      align-items: center;
+      justify-content: center;
+      // outline: 1px solid yellow;
+      // display: none;
+
+      button.close-btn {
+        position: absolute;
+        right: 1.5rem;
+        top: 1.5rem;
+        left: auto;
+        z-index: 6005;
+      }
+
+      &.hide,
+      &.close {
+        visibility: hidden;
+        z-index: -10;
+        pointer-events: none;
+
+      }
+
+      &.fixed {
+        position: fixed;
+        // left: 50%;
+        // top: 50%;
+        // transform: translate(-50%, -50%);
+      }
+
+
+      &.open,
+      &.show {
+        visibility: visible;
+        pointer-events: auto;
+        z-index: 6000;
+        display: flex;
+        align-content: center;
+        // outline: 1px solid #ccc;
+
+      }
+
+
     }
 
     >.inner {
@@ -174,15 +283,15 @@ body {
   }
 
   .ummi {
-    font-weight: 800;
-    font-variation-settings: 'wght' 800;
+    // font-weight: 800;
+    // font-variation-settings: 'wght' 800;
     color: var(--lightBlue);
-    font-size: variables.$ummi_size;
+    // font-size: variables.$ummi_size;
   }
 
   .ummi-blue {
-    font-weight: 800;
-    font-variation-settings: 'wght' 800;
+    // font-weight: 800;
+    // font-variation-settings: 'wght' 800;
     color: var(--lightBlue);
   }
 
@@ -226,27 +335,6 @@ body {
     }
   }
 
-  button.btn {
-    padding: 1.25rem 2rem;
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
-    position: relative;
-    background-color: transparent;
-
-    &::after {
-      outline: 1px solid var(--lightBlue);
-      position: absolute;
-      content: '';
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: -1;
-
-      background-color: var(--blue);
-      opacity: 0.5;
-      border-radius: var(--border-radius);
-    }
-  }
 
   .orange {
     color: var(--orange);
@@ -296,6 +384,41 @@ button:focus-visible {
 section {
   margin: 1.5rem 0;
   text-shadow: 0 0px 6px rgba(0, 0, 0, 0.4);
+}
+
+div#centers {
+  position: fixed;
+  user-select: 0;
+  pointer-events: none;
+
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999999999;
+  opacity: 0.2;
+
+  .horizontal {
+    width: 100%;
+    height: 1px;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+  }
+
+  .vertical {
+    width: 1px;
+    height: 100%;
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
 }
 
 .bgImgs {

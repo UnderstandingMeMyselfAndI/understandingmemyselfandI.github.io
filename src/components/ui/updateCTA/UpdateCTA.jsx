@@ -14,7 +14,7 @@ function getDateToday() {
 }
 const UpdateCTA = () => {
   const activity = useAppStore((state) => state.activity);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   useEffect(() => {
     setOpen(activity === -1);
@@ -109,8 +109,8 @@ const UpdateCTA = () => {
       setVersion(versionRemoteString);
     }
   };
-  return open ? (
-    <div className='update-cta'>
+  return (
+    <div className={'update-cta' + (open ? ' open' : '')}>
       <div>{updateMessage}</div>
       <div className={updating ? ' updating' : upToDate ? ' disabled' : ''}>
         <ButtonUpdate
@@ -120,8 +120,6 @@ const UpdateCTA = () => {
         />
       </div>
     </div>
-  ) : (
-    null 
   );
 };
 

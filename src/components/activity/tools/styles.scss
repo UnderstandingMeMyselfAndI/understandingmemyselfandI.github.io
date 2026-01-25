@@ -1,65 +1,63 @@
 @use '@/scss/variables';
 @import '@/globals.css';
 
-#tools {
-  scroll-margin-top: 40vh;
-  margin: 0 0 160px 0;
+#the-tools {
+  scroll-margin-top: 20vh;
+  margin: 0;
 }
 
-section.tools {
-  color: var(--primary);
-  max-width: 100vw;
-  display: flex;
-  flex-flow: column nowrap;
-  z-index: 4000;
+// .activity-tools {
+//   visibility: visible;
+//   user-select: auto;
+//   opacity: 1;
+//   transition: opacity 0.15s cubic-bezier(0.5, 0, 0.9, 1);
+//   max-width: 100%;
+
+//   &.hide {
+//     user-select: none;
+//     visibility: hidden;
+//     opacity: 0;
+//     transition: opacity 0.15s cubic-bezier(0.5, 0, 0.9, 1);
+//   }
+// }
+
+section.activity-tools {
+  position: relative;
+  padding-top: 130px;
+
   h2 {
     font-size: variables.$h2_size;
-    u {
-      text-decoration: underline solid 6px var(--yellow);
-      position: relative;
-      display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 1rem;
 
-      &::after {
-        content: ' ';
-        width: 145%;
-        height: 60%;
-        background-color: var(--yellow);
-        opacity: 0.4;
-        position: absolute;
-        top: 20%;
-        left: -15%;
-        z-index: -1;
+    // display: inline-block;
+    color: #fff;
+    font-size: variables.$section_title_size_min;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-variation-settings: 'wght' 900;
+    text-align: left;
+    width: fit-content;
+    text-decoration: underline;
+    text-decoration-color: rgba(1, 245, 41, 0.65);
+    text-decoration-thickness: 40%;
+    text-underline-offset: -15.5%;
+    text-decoration-skip-ink: none;
+    line-height: 0.9;
 
-        margin-top: 5%;
-        margin-left: -5.5%;
-      }
-    }
   }
+
   p u {
-    // text-decoration: none;
     position: relative;
     display: inline-block;
+    text-decoration: underline;
     text-decoration-color: var(--yellow);
     text-decoration-thickness: 4px;
-    // &::after {
-    // 	content: " ";
-    // 	width: 145%;
-    // 	height: 60%;
-    // 	background-color: var(--yellow);
-    // 	opacity: 0.4;
-    // 	position: absolute;
-    // 	top: 20%;
-    // 	left:-15%;
-    // 	z-index: -1;
-
-    // 	margin-top: 5%;
-    // 	margin-left: -5.5%;
-
-    // }
   }
-  .description {
+
+  .tools-description {
     width: 90%;
-    margin: 0 auto;
 
     p {
       color: var(--primary);
@@ -67,9 +65,9 @@ section.tools {
       font-weight: 800;
       font-variation-settings: 'wght' 800;
       line-height: 1.2;
+
       u {
         text-decoration-color: var(--orange);
-        // color: var(--orange);
       }
     }
   }

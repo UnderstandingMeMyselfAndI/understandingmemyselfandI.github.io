@@ -20,7 +20,7 @@ const DaysCounterCTA = () => {
   }
 
   return open ? (
-    <div className='daysCounterCTA cta '>
+    <div className={'activity activity-days-counter-cta ' + (open ? ' show' : '')}>
       <div className='title'>
         <h3>
           <u>

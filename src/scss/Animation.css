@@ -169,6 +169,24 @@
 		transform: translateY(200%);
 	}
 }
+@keyframes move-out-down-300 {
+	0% {
+		transform: translateY(0%);
+	}
+
+	100% {
+		transform: translateY(300%);
+	}
+}
+@keyframes move-out-down-400 {
+	0% {
+		transform: translateY(0%);
+	}
+
+	100% {
+		transform: translateY(400%);
+	}
+}
 @keyframes move-in-left-100 {
 	0% {
 		transform: translateX(-100%);
@@ -370,6 +388,259 @@
 		transform: scaleY(-100%);
 	}
 }
+@keyframes rotate-x-5-pos {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('5deg');
+	}
+}
+@keyframes rotate-x-10-pos {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('10deg');
+	}
+}
+@keyframes rotate-x-15-pos {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('15deg');
+	}
+}
+@keyframes rotate-x-20-pos {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('20deg');
+	}
+}
+@keyframes rotate-x-25-pos {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('25deg');
+	}
+}
+@keyframes rotate-x-30-pos {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('30deg');
+	}
+}
+@keyframes rotate-x-35-pos {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('35deg');
+	}
+}
+@keyframes rotate-x-40-pos {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('40deg');
+	}
+}
+@keyframes rotate-x-45-pos {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('45deg');
+	}
+}
+
+@keyframes rotate-x-5-neg {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('-5deg');
+	}
+}
+@keyframes rotate-x-10-neg {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('-10deg');
+	}
+}
+@keyframes rotate-x-15-neg {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('-15deg');
+	}
+}
+@keyframes rotate-x-20-neg {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('-20deg');
+	}
+}
+@keyframes rotate-x-25-neg {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('-25deg');
+	}
+}
+@keyframes rotate-x-30-neg {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('-30deg');
+	}
+}
+@keyframes rotate-x-35-neg {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('-35deg');
+	}
+}
+@keyframes rotate-x-40-neg {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('-40deg');
+	}
+}
+@keyframes rotate-x-45-neg {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('-45deg');
+	}
+}
+@keyframes rotate-x-50-neg {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('-50deg');
+	}
+}
+
+@keyframes rotate-x-55-neg {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('-55deg');
+	}
+}
+
+@keyframes rotate-x-60-neg {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('-60deg');
+	}
+}
+
+@keyframes rotate-x-65-neg {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('-65deg');
+	}
+}
+
+@keyframes rotate-x-70-neg {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('-70deg');
+	}
+}
+
+@keyframes rotate-x-75-neg {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('-75deg');
+	}
+}
+
+@keyframes rotate-x-80-neg {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('-80deg');
+	}
+}
+
+@keyframes rotate-x-85-neg {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('-85deg');
+	}
+}
+@keyframes rotate-x-90-neg {
+	0% {
+		transform: rotateX('0deg');
+	}
+
+	100% {
+		transform: rotateX('-490deg');
+	}
+}
+
+
 @keyframes bounce-in {
 	0% {
 		transform: scale(100%);

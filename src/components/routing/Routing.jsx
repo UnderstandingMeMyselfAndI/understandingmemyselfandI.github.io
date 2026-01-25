@@ -5,8 +5,8 @@ import toolsData from '@/data/tools.js';
 import { sanitizeStringForUrl } from '@/js/utils.js';
 // import PropTypes from 'prop-types'
 
-// TODO: Ga event names need to be changed phrase_viewed - > [name of phrase]_viewed
-// TODO: Ga event names need to be changed acronym_viewed - > [name of acronym]_tool_viewed
+// TODO: #14 Ga event names need to be changed phrase_viewed - > [name of phrase]_viewed
+// TODO: #15 Ga event names need to be changed acronym_viewed - > [name of acronym]_tool_viewed
 
 const appURL =
   window.location.protocol +
@@ -16,34 +16,25 @@ const appURL =
 
 // TODO: Look at URLPattern API https://developer.mozilla.org/docs/Web/API/URL_Pattern_API
 function setBrowserHistory(slug, title) {
-  if (slug) history.pushState({ page: title }, '', slug);
+  // if (slug) history.pushState({ page: title }, '', slug);
 }
-// function getAcronymID(slug) {
-// 	return toolsData.tools.nodes.find((tool) => {
-// 		if (tool.slug === slug) {
-// 			return tool.id
-// 		}
-// 	})
-// }
+function getAcronymID(slug) {
+	return toolsData.tools.nodes.find((tool) => {
+		if (tool.slug === slug) {
+			return tool.id
+		}
+	})
+}
 
 const Routing = () => {
   const activity = useAppStore((s) => s.activity);
   const acronymID = useAppStore((s) => s.acronymID);
-  // const setActivity = useAppStore((s) => s.setActivity)
-  // const setAcronymID = useAppStore((s) => s.setAcronymID)
-  // const setShowAccCard = useAppStore((s) => s.setShowAccCard)
-  const phrase = useAppStore((s) => s.phrase);
 
-  // const showTool = (id) => {
-  // 	if (!id) {
-  // 		console.log('invalid tool slug id: ', id)
-  // 		return
-  // 	}
-  // 	setAcronymID(id)
-  // 	setShowAccCard(true)
-  // 	setActivity(1)
-  // }
+  const phrase = useAppStore((s) => s.phrase);
+  const route = useAppStore((s) => s.route);
+
   useEffect(() => {
+
     setTimeout(() => {
       phrase[0] &&
         phrase[1] &&
@@ -59,11 +50,14 @@ const Routing = () => {
   }, [phrase]);
 
   useEffect(() => {
+
     const tool = toolsData.tools.nodes.find((tool) => {
       if (tool.id === acronymID) return tool;
     });
 
     if (tool) {
+      // console.log("tool: ", tool);
+
       setTimeout(() => {
         setBrowserHistory(
           appURL + '/recovery-tool/' + tool?.slug,
@@ -71,26 +65,36 @@ const Routing = () => {
         );
       }, 100);
     }
-    // if (!tool) {
-    //     console.log('tool base: ', tool)
-    //     setBrowserHistory(appURL, 'Ummi')
-    // }
+    if (!tool) {
+        // console.log('tool base: ')
+        // setBrowserHistory(appURL, 'Ummi')
+    }
   }, [acronymID]);
 
-  useEffect(() => {
-    const activityObj = activities.find((a) =>
-      parseInt(a.id) === parseInt(activity) ? activity : null,
-    );
+    useEffect(() => {
+      const obj = activities.find((a) =>
+        parseInt(a.id) === parseInt(activity) ? activity : null,
+      );
 
-    if (activityObj)
+
+    if (obj)
       setBrowserHistory(
-        appURL + '/' + activityObj?.url,
-        'Ummi - ' + activityObj?.title,
+        appURL + '/' + obj?.url,
+        'Ummi - ' + obj?.title,
       );
     if (activity === -1) {
       setBrowserHistory(appURL, 'Ummi');
     }
   }, [activity]);
+
+  useEffect(() => {
+    if( route === null)  return;
+    setBrowserHistory(
+      appURL + '/' + route?.url,
+      'Ummi - ' + route?.title,
+    );
+    
+  }, [route]);
 
   // const loadContentFromSlug = () => {
   // 	const path = window.location.pathname

@@ -7,29 +7,29 @@
   padding: 60px 20px;
   background-color: transparent;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--boxShadowDarkValue);
   margin: 40px auto;
-  width:100%;
-  display:flex;
-  flex-flow:column nowrap;
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
   justify-content: center;
-  align-items:center;
+  align-items: center;
 }
 
 .quiz-start h1 {
   font-size: 2.5rem;
-  margin:0;
+  margin: 0;
   color: #333;
-  color:var(--orange);
-  width:100%;
+  color: var(--orange);
+  width: 100%;
 }
 
 .level-selection {
   margin-bottom: 40px;
-  display:flex;
-  flex-flow:column nowrap;
+  display: flex;
+  flex-flow: column nowrap;
   justify-content: center;
-  align-items:center;
+  align-items: center;
 
 }
 
@@ -37,8 +37,8 @@
   font-size: 1.25rem;
   margin-bottom: 20px;
   color: #495057;
-  color:var(--primary);
-  font-weight:400;
+  color: var(--primary);
+  font-weight: 400;
 }
 
 .radio-group {
@@ -46,8 +46,8 @@
   flex-direction: column;
   gap: 2rem;
   align-items: flex-start;
-  margin:2rem 0;
-  min-width:200px;
+  margin: 2rem 0;
+  min-width: 200px;
 }
 
 .radio-option {
@@ -55,58 +55,64 @@
   align-items: center;
   gap: 12px;
   font-size: 1.2rem;
-  font-weight:400;
+  font-weight: 400;
   cursor: pointer;
   padding: 16px 20px;
   border-radius: 4px;
-  width:100%;
-  background-color:rgba(0,0,0,0.25);
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
   transition: all 0.2s ease;
-  position:relative;
-    &::after{
-        content:"";
-        position:absolute;
-        top:0;
-        left:0;
-        width:100%;
-        height:100%;
-        border:1px solid var(--orange);
-        border-radius:4px;
-        opacity:0;
-        transition: all 0.2s ease;
-    }
-    .radio-text {
-        font-weight:400;
-    }
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--orange);
+    border-radius: 4px;
+    opacity: 0;
+    transition: all 0.2s ease;
+  }
+
+  .radio-text {
+    font-weight: 400;
+  }
 }
 
-.radio-option:has(input:checked){
-    color:var(--orange);
-    .radio-text {
-        color:var(--orange);
-        font-weight:600;
-    }
+.radio-option:has(input:checked) {
+  color: var(--orange);
+
+  .radio-text {
+    color: var(--orange);
+    font-weight: 600;
+  }
 }
+
 .radio-option:has(input:checked) {
 
-    font-weight:600;
-    color:var(--orange);
-    transition: all 0.2s ease;
-   
-    background:transparent;
-    &::after{
-        box-shadow:0px 0px 12px rgb(200, 200, 200,0.35);
-        color:var(--blue);
-        transition: all 0.5s ease;
-        background:var(--mainBackground);
+  font-weight: 600;
+  color: var(--orange);
+  transition: all 0.2s ease;
 
-        opacity:0.9;
-        z-index:-1;
-    }
-    .radio-text {
-        color:var(--primary);
-        font-weight:600;
-    }
+  background: transparent;
+
+  &::after {
+    box-shadow: var(--boxShadowLightValue);
+    color: var(--blue);
+    transition: all 0.5s ease;
+    background: var(--mainBackground);
+
+    opacity: 0.9;
+    z-index: -1;
+  }
+
+  .radio-text {
+    color: var(--primary);
+    font-weight: 600;
+  }
 }
 
 .radio-option input {
@@ -126,27 +132,29 @@
   flex-shrink: 0;
 }
 
-.radio-option input:checked + .radio-custom {
+.radio-option input:checked+.radio-custom {
   border-color: #007bff;
   background-color: #007bff;
   outline-color: var(--primary);
-  outline-width:4px;  
+  outline-width: 4px;
   background-color: transparent;
-  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2);
+  box-shadow: var(--boxShadowDarkValue);
 }
-.radio-option input + .radio-custom::after {
-   content: '';
+
+.radio-option input+.radio-custom::after {
+  content: '';
   display: block;
   width: 6px;
   height: 6px;
-  background-color:var(--orange);
+  background-color: var(--orange);
   border-radius: 50%;
   margin: 4px auto;
-  margin-top:9px;
-  opacity:0;
+  margin-top: 9px;
+  opacity: 0;
   transition: all 0.2s ease;
 }
-.radio-option input:checked + .radio-custom::after {
+
+.radio-option input:checked+.radio-custom::after {
   content: '';
   display: block;
   width: 12px;
@@ -155,38 +163,41 @@
   border-radius: 50%;
   margin: 4px auto;
   transition: all 0.2s ease;
-  margin-top:6px;
-  opacity:1;
+  margin-top: 6px;
+  opacity: 1;
 
 }
 
 .radio-text {
   color: #333;
-  color:var(--primary);
+  color: var(--primary);
   font-weight: 500;
 }
 
 .opt-in {
-  margin:1rem 0;
+  margin: 1rem 0;
   font-size: 1rem;
   display: flex;
   align-items: center;
-  justify-content:  flex-start;
-  gap:0.5rem;
-  text-align:left;
-    
-  width:fit-content;
-  label{
-    width:fit-content;
-    color:var(--greyDark);
+  justify-content: flex-start;
+  gap: 0.5rem;
+  text-align: left;
+
+  width: fit-content;
+
+  label {
+    width: fit-content;
+    color: var(--greyDark);
   }
 }
-.opt-in-info{
-    width:100%;
-    font-size:0.75rem;
-    margin:2rem 0;
-    color:var(--grey)
+
+.opt-in-info {
+  width: 100%;
+  font-size: 0.75rem;
+  margin: 2rem 0;
+  color: var(--grey)
 }
+
 .opt-in input {
   width: 20px;
   height: 20px;
@@ -195,39 +206,39 @@
 
 .opt-in label {
   color: #495057;
-  color:var(--s);
+  color: var(--s);
   cursor: pointer;
 }
 
 .start-button {
-  padding: 14px 32px;  
-  color:var(--primary);
-  text-shadow: 0px 0px 6px rgba(0,0,0,0.5);
+  padding: 14px 32px;
+  color: var(--primary);
+  text-shadow: var(--textShadowDarkValue);
   font-size: 1.5rem;
   font-weight: 600;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  background-color: rgba(10,10,10,0.25);
+  background-color: rgba(10, 10, 10, 0.25);
   position: relative;
-  &::after{
-    position: absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    content:'';
-    border-radius:8px;
-    border:2px solid var(--orange);
-    // box-shadow:0px 0px 12px rgb(200, 200, 200,0.35);
-    color:var(--blue);
-    transition: all 0.5s ease;
-    background:var(--orange);
 
-    opacity:0.85;
-    z-index:-1;
-    }
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    border-radius: 8px;
+    border: 2px solid var(--orange);
+    color: var(--blue);
+    transition: all 0.5s ease;
+    background: var(--orange);
+
+    opacity: 0.85;
+    z-index: -1;
+  }
 }
 
 .start-button:hover {

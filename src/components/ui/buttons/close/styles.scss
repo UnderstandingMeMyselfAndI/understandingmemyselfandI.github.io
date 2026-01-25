@@ -1,24 +1,46 @@
-.close-btn {
+button.close-btn {
   position: fixed;
-  right: 1rem;
-  top: 1rem;
-  width: 60px;
-  height: 60px;
+  right: 0;
+  top: 0;
+  width: 55px;
+  height: 55px;
   background: none;
   border: none;
+  outline: none;
   cursor: pointer;
   z-index: 15501;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-shadow: none;
+  transform: translate(13%, -20%);
+  // outline: 1px solid red;
 
-  transform: rotate(45deg);
 
-  >div>div {
+
+  .close-btn-wrap {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: translate(-22%, 40%)
+  }
+
+  .close-btn-inner {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform-origin: 50% 50%;
+    transform: rotate(45deg);
+  }
+
+  .close-btn-inner>div {
     width: 40px;
     height: 3px;
     background-color: #fff;
     position: absolute;
   }
 
-  >div>div:first-child {
+  .close-btn-inner>div:first-child {
     transform: rotateZ(90deg);
   }
 

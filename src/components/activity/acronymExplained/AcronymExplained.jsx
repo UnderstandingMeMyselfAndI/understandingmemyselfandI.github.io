@@ -1,28 +1,23 @@
-// import * as React from "react";
 import { useState, useEffect, useRef } from 'react';
 import useAppStore from '@/store/useAppStore';
 import ButtonToolbox from 'buttons/toolbox/ButtonToolbox';
-import Backdrop from 'ui/backdrop/Backdrop';
-
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 import HandymanIcon from '@mui/icons-material/Handyman';
+import CloseBtn from 'buttons/close/CloseBtn';
 import parse from 'html-react-parser';
 import data from '@/data/tools.js';
 import videos from '@/data/videosNew.js';
-// import scenarios from '@/data/scenarios'
-// import {storeKeys, localStore} from "@/data/localStore.js";
 import OndemandVideoOutlinedIcon from '@mui/icons-material/OndemandVideoOutlined';
 import HdrAutoOutlinedIcon from '@mui/icons-material/HdrAutoOutlined';
 import Skeleton from '@mui/material/Skeleton';
-import KeyboardReturnOutlinedIcon from '@mui/icons-material/KeyboardReturnOutlined';
 import { extractYouTubeId } from '@/js/utils.js';
 import './styles.scss';
 import { sanitizeStringForUrl } from '@/js/utils.js';
 // TODO [x]: Show hide favourites
 // TODO [x]: Add videos
 
-// TODO: Implement sharing
+// TODO [ ]: Implement sharing
 function getAccData(id) {
   return data.tools.nodes.find((acc) => acc.id === id);
 }
@@ -34,7 +29,6 @@ const AcronymExplained = () => {
   const getActiveToolIDs = useAppStore((state) => state.getActiveToolIDs);
   const userToolIDs = useAppStore((state) => state.userToolIDs);
   const yourToolsEnabled = useAppStore((state) => state.yourToolsEnabled);
-  // const activeIDs = getActiveToolIDs()
   const acronymID = useAppStore((s) => s.acronymID);
   const showAccCard = useAppStore((s) => s.showAccCard);
   const setShowAccCard = useAppStore((s) => s.setShowAccCard);
@@ -92,8 +86,8 @@ const AcronymExplained = () => {
   };
 
   return (
-    <div
-      className={'AcronymExplained' + (open ? ' open' : '')}
+    <section
+      className={'activity acronym-explained-activity fixed' + (open ? ' show' : '')}
       key='acronym-card'
     >
       <div className='inner'>
@@ -222,21 +216,10 @@ const AcronymExplained = () => {
               )}
             </div>
           )}
-          {/* 
-					{acronymData?.cats.length > 0 && (
-						<div className='tags'>
-							<div className='title'>TAGS</div>
-							<div className='tags-list'>
-								{acronymData?.cats.map((cat, index) => (
-									<div key={'cat-' + index}>{cat}</div>
-								))}
-							</div>
-						</div>
-					)} */}
+          
         </section>
-        <div className='footer' key='acronym-card-footer'>
-          {/* <ButtonEmergencyToolbox id={accData?.id} />
-           */}
+        <div className='footer acronym-card-footer' key='acronym-card-footer'>
+
           <ButtonToolbox
             id={acronymData?.id}
             key={`toolbox-btn-${acronymData?.id}`}
@@ -263,11 +246,11 @@ const AcronymExplained = () => {
           )}
 
           <div className='btn close' onClick={handleClose}>
-            <KeyboardReturnOutlinedIcon />
+            <CloseBtn width={30} thickness={3}/>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 AcronymExplained.displayName = 'AcronymExplained';

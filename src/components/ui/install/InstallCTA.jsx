@@ -12,7 +12,7 @@ import { strings } from '@/data/config';
 import './styles.scss';
 
 const InstallCTA = () => {
-  //TODO: Check this is working - don't show if already installed
+  //TODO: #16 Check this is working - don't show if already installed
   const content =
     strings.activity.find((activity) => activity.name === 'install') || null;
   if (content === null) {
@@ -43,7 +43,6 @@ const InstallCTA = () => {
   function handleBeforeInstallPrompt(event) {
     event.preventDefault(); // Prevent automatic prompt
     // app is installable
-    console.log('isInstallable');
     setDeferredPrompt(event); // Store the event
 
     //  Show the install button
@@ -51,6 +50,10 @@ const InstallCTA = () => {
     setShowInstalCTA(true);
     setIsInstallable(true);
   }
+
+  useEffect(() => {
+    setIsInstallable(showInstallCTA);
+  },[showInstallCTA,setIsInstallable])
 
   function handleAppInstalled() {
     // isInstallable = false; // Hide the install button
@@ -74,8 +77,7 @@ const InstallCTA = () => {
   });
 
   const handleClick = async () => {
-    console.log('handleClick');
-    console.log('deferredPrompt', deferredPrompt);
+
     if (!deferredPrompt) return;
 
     // pwaInstallRef.current?.showDialog(true)
@@ -97,7 +99,12 @@ const InstallCTA = () => {
     //TODO: Send anayltics event
   };
 
-  //TODO: Install process not working
+  useEffect(() => {
+    setOpen(activity === -1);
+  },[activity]);
+
+  //TODO: #17 Check install process is working for all platform
+  //TODO: #18 Create wide screen screenshots for install prompt
   // console.log('isInstalled', isInstalled)
   // console.log('isInstallable', isInstallable)
   // console.log('showInstallBtn', showInstallBtn)
@@ -106,11 +113,11 @@ const InstallCTA = () => {
   // 	console.log('handleOnPwaInstallAvailableEvent', e)
   // }
 
-  return open ? (
-    <div>
-      {!isInstalled && isInstallable && showInstallCTA && (
-        <section>
-          <div className='installCTA cta' id='install'>
+  return open ? 
+   
+      !isInstalled && isInstallable && showInstallCTA && (
+        <section className={'activity activity-installCTA ' + (open ? ' show' : ' hide')}>
+          <div id='install'>
             <h3>
               <u>
                 <span>
@@ -157,11 +164,14 @@ const InstallCTA = () => {
             )}
           </div>
         </section>
-      )}
-      {/* https://github.com/khmyznikov/pwa-install */}
-      {/* <PWAInstall ref={pwaInstallRef} name='ummi' icon={UmmiIcon} externalPromptEvent={deferredPrompt} onPwaInstallAvailableEvent={handleOnPwaInstallAvailableEvent}></PWAInstall> */}
-    </div>
-  ) : null;
+      ) : (null)
+
 };
 
 export default InstallCTA;
+
+/* 
+https://github.com/khmyznikov/pwa-install       
+<PWAInstall ref={pwaInstallRef} name='ummi' icon={UmmiIcon} externalPromptEvent={deferredPrompt} onPwaInstallAvailableEvent={handleOnPwaInstallAvailableEvent}></PWAInstall> 
+*/
+    

@@ -1,35 +1,92 @@
 @use "@/scss/_variables.scss";
 @import "@/globals.css";
-section div.installCTA {
-	scroll-margin-top: 30vh;
-	margin:160px 0 160px 0;
-	scroll-snap-align: center;
+
+
+#install {
+	scroll-margin-top: 25vh;
+}
+
+section.activity-installCTA {
+
 	.homescreenIcon,
-	.shareIcon{
-		display:inline-block;
-		margin-bottom:-13px;
+	.shareIcon {
+		display: inline-block;
+		margin-bottom: -13px;
 	}
-	.shareIcon{
+
+	.shareIcon {
 		transform: scale(0.9);
 	}
-	p{
-		line-height:1.6;
+
+	p {
+		line-height: 1.6;
 	}
-    .title{
-		margin-top:2rem;
-		font-size:variables.$h4_size;
-        font-weight: 600;
-		font-variation-settings: "wght" 600;
-        text-decoration-color: var(--yellow);
-		text-decoration-thickness: 5px;
-        text-decoration-style: solid;
-        text-decoration-line: underline;
-		span{
+
+	h3 u {
+		text-decoration-thickness: 4px;
+		text-decoration-color: var(--yellow);
+
+		span {
+
+			width: fit-content;
 			position: relative;
-			display:block;
-            width:fit-content;
-            margin:0 auto;
-			
+			display: inline-block;
+			font-weight: variables.$lrg_weight;
+
+
+
+			&::after {
+				content: " ";
+				width: 85%;
+				height: 60%;
+				background-color: var(--blue);
+				opacity: 0.3;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: -1;
+
+				margin-top: 5%;
+				margin-left: -5.5%;
+			}
+		}
+	}
+
+	button.install {
+		border-radius: var(--border-radius);
+		background-color: var(--blue);
+		display: flex;
+		align-items: center;
+		align-content: center;
+		justify-content: center;
+		width: 170px;
+
+		.ummi-logo.small {
+			min-width: 50px;
+
+			img {
+				width: 50px;
+
+			}
+		}
+	}
+
+	.title {
+		margin-top: 2rem;
+		font-size: variables.$h4_size;
+		font-weight: 600;
+		font-variation-settings: "wght" 600;
+		text-decoration-color: var(--yellow);
+		text-decoration-thickness: 5px;
+		text-decoration-style: solid;
+		text-decoration-line: underline;
+
+		span {
+			position: relative;
+			display: block;
+			width: fit-content;
+			margin: 0 auto;
+
 			&::after {
 				content: " ";
 				width: 115%;
@@ -38,12 +95,12 @@ section div.installCTA {
 				opacity: 0.2;
 				position: absolute;
 				top: 20%;
-				left:-15%;
+				left: -15%;
 				z-index: -1;
 
 				margin-top: -5%;
 				margin-left: 7.5%;
-				transform:rotate(-4deg);
+				transform: rotate(-4deg);
 			}
 		}
 	}

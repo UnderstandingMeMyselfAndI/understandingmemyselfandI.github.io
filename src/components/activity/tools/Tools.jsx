@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from 'react';
 import useAppStore from '@/store/useAppStore';
 import { activities } from '@/data/config';
-import MenuCarousel from '@/components/ui/menuCarousel/MenuCarousel';
+import MenuCarousel from '@/components/activity/tools/menuCarousel/MenuCarousel.jsx';
 import toolsData from '../../../data/tools.js';
 
 // import { useInView, useOnInView } from 'react-intersection-observer';
@@ -52,9 +52,13 @@ const Tools = () => {
     setActivity(1);
   };
 
-  // useEffect(() => {
-  //   setOpen(activityID === activity);
-  // }, [activity, activityID]);
+  useEffect(() => {
+    setOpen(activity == -1);
+  }, [activity, activityID]);
+
+  useEffect(() => {
+    setOpen(true);
+  }, [setToolsInView]);
 
   // useEffect(() => {
   //   setOpen(activity === -1);
@@ -67,6 +71,7 @@ const Tools = () => {
         // Do something with the element that came into view
         // console.log('Element is in view', entry.target)
         setToolsInView(true);
+        setActivityInView(true);
       } else {
         // console.log('Element left view', entry.target)
         setToolsInView(false);
