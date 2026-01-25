@@ -6,18 +6,6 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 
 const ExitButton = ({ handleClick }) => {
-  const nodeRef = useRef(null);
-  const [buttonPosition, setButtonPosition] = useState({ x: 0, y: 0 });
-  const [touchCount, setTouchCount] = useState(0);
-  const exitButtonPosition = useAppStore((s) => s.exitButtonPosition);
-  const setExitButtonPosition = useAppStore((s) => s.setExitButtonPosition);
-
-  const isMobile = window.innerWidth < 600;
-
-  useEffect(() => {
-    setButtonPosition(exitButtonPosition);
-  }, [exitButtonPosition]);
-
   const restrictPos = (data) => {
     const maxX = 65;
     const minX = 15;
@@ -38,6 +26,20 @@ const ExitButton = ({ handleClick }) => {
     return data;
   };
 
+  const nodeRef = useRef(null);
+  const [buttonPosition, setButtonPosition] = useState(
+    restrictPos({ x: 0, y: window.innerHeight * 0.5 }),
+  );
+  const [touchCount, setTouchCount] = useState(0);
+  const exitButtonPosition = useAppStore((s) => s.exitButtonPosition);
+  const setExitButtonPosition = useAppStore((s) => s.setExitButtonPosition);
+
+  const isMobile = window.innerWidth < 600;
+
+  useEffect(() => {
+    setButtonPosition(exitButtonPosition);
+  }, [exitButtonPosition]);
+
   const handleDragStop = (e, data) => {
     data = restrictPos(data);
     setExitButtonPosition({ x: data.x, y: data.y });
@@ -57,7 +59,7 @@ const ExitButton = ({ handleClick }) => {
           setTouchCount(0);
         }
         s;
-        setTimeout(() => setTouchCount(0), 2000);
+        setTimeout(() => setTouchCount(0), 1000);
       } else if (!isMobile && event.type === 'click') {
         cb(event);
       }
