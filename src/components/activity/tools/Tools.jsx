@@ -55,7 +55,7 @@ const Tools = () => {
 
   useEffect(() => {
     setOpen(activity == -1);
-  }, []);
+  }, [activity]);
 
   useEffect(() => {
     setOpen(true);
@@ -87,22 +87,23 @@ const Tools = () => {
 
   return (
     <div ref={inViewRef} className={'activity' + (open ? ' show' : ' ')}>
-      <section className='tools' id='tools'>
+      <section className='tools' id='the-tools'>
         <h2>
           <u>{parse(content?.title)}</u>
         </h2>
-        <div className='description'>
-          {content.description &&
-            content.description.map((html, i) => {
-              return <p key={i}>{parse(html)}</p>;
-            })}
-        </div>
+
         <MenuCarousel
           handleClick={handleClick}
           data={carouselData}
           filterIDs={positiveIDsSet}
           showFavourites={yourToolsEnabled}
         />
+        <div className='description'>
+          {content.description &&
+            content.description.map((html, i) => {
+              return <p key={i}>{parse(html)}</p>;
+            })}
+        </div>
       </section>
     </div>
   );

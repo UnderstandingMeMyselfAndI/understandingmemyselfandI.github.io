@@ -27,7 +27,9 @@ div.AccordionRoot {
 			border-radius: var(--border-radius);
 			margin: 0.5rem auto;
 			width: fit-content;
-			max-width: 390px;
+			// width: 390px;
+			// max-width: 390px;
+			min-width: 340px;
 			position: relative;
 			cursor: pointer;
 
