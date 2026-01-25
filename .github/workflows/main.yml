@@ -1,30 +1,31 @@
-name: Publish Branch To Dev
+name: Publish Branch To Server
 
 on:
   push:
     branches:
-      - unitsCalculator
+      - main
 
 jobs:
   web-deploy:
-    name: Deploy to Staging server
+    name: Deploy to Server
     runs-on: ubuntu-latest
     steps:
       - name: 🚚 Get Latest Commit
         uses: actions/checkout@v4
         with:
-           ref: unitsCalculator
+          ref: main
 
       - name: 📂 Sync Files with hosting server
         uses: easingthemes/ssh-deploy@main
         with:
-          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_DEV_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
           ARGS:
-            '-rlgoDzvc -i -av --delete --recursive --force --compress --human-readable'
+            '-rlgoDzvc -i -av --delete --recursive --force --compress
+            --human-readable'
           SOURCE: 'docs/'
-          REMOTE_HOST: ${{ secrets.DEPLOY_DEV_SERVER }}
-          REMOTE_USER: ${{ secrets.DEPLOY_DEV_USER }}
-          TARGET: ${{ secrets.DEPLOY_REMOTE_DEV_DIR }}
+          REMOTE_HOST: ${{ secrets.DEPLOY_SERVER }}
+          REMOTE_USER: ${{ secrets.DEPLOY_USER }}
+          TARGET: ${{ secrets.DEPLOY_REMOTE_DIR }}
           EXCLUDE: 'cms, data, playwright-report,cms,tmp, /node_modules/'
           SCRIPT_BEFORE: |
             whoami
