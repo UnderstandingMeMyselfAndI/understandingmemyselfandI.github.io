@@ -4,33 +4,41 @@ export const timelineData = {
     title: "Medical Disclaimer",
     content: "Important: Alcohol withdrawal can be medically serious. The first 72 hours carry risk of severe symptoms including seizures and delirium tremens. Always seek professional medical guidance when stopping alcohol use. This timeline describes common recovery patterns but individual experiences may vary."
   },
+  header:{
+      title: "Recovery Timeline",
+  description: "What someone might expect after stopping use",
+  },
   
   timeline: [
+    {
+      id: "7-days-before",
+      numDays:1,
+      timePeriod: "7 days before",
+      phaseTitle: "Preparing for Withdrawal",
+      offset: 0,
+       symptoms:[
+        "1 slowly reducing intake",
+        "2 Anxiety over the future",
+        "3 Heightened anxiety",
+        "4 Symptom 7-days-before",
+        "5 Symptom 7-days-before"
+       ],
+
+    },
     {
       id: "24-hours",
       numDays:1,
       timePeriod: "First 24 Hours",
       phaseTitle: "Acute Withdrawal Onset Phase",
       offset: 0,
-      physical: [
-        "Withdrawal begins",
-        // "Anxiety",
-        // "Tremors",
-        // "Nausea & sweating",
-        // "Increased heart rate",
-        "Sleep is disrupted"
-      ],
-      lifestyle: [
-        // "Medical supervision",
-        // "Focus on hydration"
-      ],
-      mentalEmotional: [
-        "Heightened anxiety",
-        // "Agitation",
-        // "Brain fog",
-        "Difficulty concentrating",
-        "Strong cravings"
-      ]
+       symptoms:[
+        "6 Withdrawal begins",
+        "7 Sleep is disrupted",
+        "8 Heightened anxiety",
+        "9 Difficulty concentrating",
+        "10 Strong cravings"
+       ],
+      
     },
     {
       id: "3-days",
@@ -38,49 +46,36 @@ export const timelineData = {
       timePeriod: "First 3 Days",
       phaseTitle: "Peak Withdrawal Phase",
       offset: 300,
-      physical: [
-        // "Highest risk period ",
-        "Physical symptoms peak",
-        "Appetite remains suppressed",
-        "Blood pressure may be higher",
-        "Heart rate may increase"
+      symptoms:[
+        "11 Physical symptoms peak",
+        "12 Appetite remains suppressed",
+        "13 Blood pressure may be higher",
+        "14 Heart rate may increase",
+        "15 Cognitive function impaired",
+        "16 Emotional volatility common",
+        "17 Cravings intense & persistent"
       ],
-      lifestyle: [
-        // "Continue medical monitoring",
-        // "Avoid triggers and high-stress situations",
-        // "Focus on self-care: hydration, rest, safe environment"
-      ],
-      mentalEmotional: [
-        "Cognitive function impaired",
-        "Emotional volatility common",
-        "Cravings intense & persistent"
-      ]
+     
     },
     {
-      id: "first-week",
+      id: "days-4-7",
       daysSpeed:1,
       timePeriod: "Days 4-7",
       numDays:4,
       phaseTitle: "Acute Symptoms Subside",
       offset: 600,
-      physical: [
+      symptoms:[
         "Acute physical symptoms diminish",
         "Sleep may normalize",
         "Appetite starts to return",
         "Possible sugar cravings",
-        "Nausea symptoms improve"
-      ],
-      lifestyle: [
-        // "Simple daily routines re-establish",
-        // "Consider connecting with support groups or counseling",
-        // "Financial savings noticeable"
-      ],
-      mentalEmotional: [
+        "Nausea symptoms improve",
         "Initial brain fog lifts",
         "Anxiety levels decrease",
         "Brief periods of clarity",
         "Fewer Cravings"
       ]
+      
     },
     {
       id: "7-10-days",
@@ -88,25 +83,19 @@ export const timelineData = {
       timePeriod: "Days 7-10",
       phaseTitle: "Early Stabilization Phase",
       offset: 900,
-      physical: [
+      symptoms:[
         "Sleep patterns improve",
         "Energy levels increase",
         "Appetite normalizes",
         "Nutritional deficiencies may surface",
         "Skin hydration improves",
-        "Eyes appear clearer"
-      ],
-      lifestyle: [
-        // "Appetite returns",
-        // "Gentle physical activity possible",
-        // "Structure daily schedule around recovery priorities"
-      ],
-      mentalEmotional: [
+        "Eyes appear clearer",
         "Cognitive function improves",
         "Ability to concentrate returns",
         "Some experience pink cloud phenomenon",
         "Emotional regulation stabilizes"
-      ]
+      ],
+      
     },
     {
       id: "2-4-weeks",
@@ -114,25 +103,18 @@ export const timelineData = {
       timePeriod: "Weeks 2-4",
       phaseTitle: "Post-Acute Withdrawal Begins",
       offset: 1200,
-      physical: [
+       symptoms:[
         "Sleep patterns continue to improve",
         "Natural energy rhythms reestablish",
         // "Exercise tolerance improves",
-        "Physical cravings diminish in frequency"
-      ],
-      lifestyle: [
-        // "Exercise capacity increases",
-        // "Improved mood regulation",
-        // "Social confidence in sober situations begins to rebuild",
-        // "Hobbies and interests may start to re-emerge"
-      ],
-      mentalEmotional: [
+        "Physical cravings diminish in frequency",
         "PAWS (Post-Acute Withdrawal Syndrome)",
         "Mood swings, anxiety waves, low energy periods",
         "Mental clarity more consistent",
         "Negative thought patterns reduce",
         "Genuine positive emotions return"
-      ]
+       ],
+      
     },
     {
       id: "1-3-months",
@@ -140,21 +122,13 @@ export const timelineData = {
       timePeriod: "Months 1-3",
       phaseTitle: "Neurological Rebalancing",
       offset: 1500,
-      physical: [
-        "Liver enzymes begin to normalize",
+      symptoms:[
+         "Liver enzymes begin to normalize",
         // "Cardiovascular improvements: ",
         "Reduced blood pressure",
         "Reduced heart rate",
         "Energy levels stabilize",
-        "Exercise capacity increases"
-      ],
-      lifestyle: [
-        // "Daily routines become established",
-        // "Social confidence in sober situations increases",
-        // "Return to work/regular activities feels sustainable",
-        // "Financial benefits become more noticeable"
-      ],
-      mentalEmotional: [
+        "Exercise capacity increases",
         "PAWS symptoms occur, gradually diminishing",
         // "Neuroplasticity allows new neural pathways to form",
         "Cravings manageable",
@@ -162,7 +136,8 @@ export const timelineData = {
         "Emotional regulation improves",
         "Self-efficacy grows",
         "Better confidence"
-      ]
+      ],
+      
     },
     {
       id: "3-6-months",
@@ -170,26 +145,19 @@ export const timelineData = {
       timePeriod: "Months 3-6",
       phaseTitle: "Consolidation Phase",
       offset: 1800,
-      physical: [
+      symptoms:[
         "Physical health continues improving",
         "Sleep becomes much better",
         "Appetite normalizes fully",
         // "Metabolism stabilize",
-        "Feeling healthy regularly"
-      ],
-      lifestyle: [
-        // "Sober social activities feel more natural",
-        // "Hobbies and interests expand",
-        // "Life management skills rebuild",
-        // "Healthier lifestyle choices become habitual"
-      ],
-      mentalEmotional: [
+        "Feeling healthy regularly",
         "Thinking patterns shift ",
         "Negative thoughts diminish",
         "Resilience to stress improves",
         "Confidence grows",
         "Sense of identity begins to shift"
-      ]
+      ],
+      
     },
     {
       id: "6-12-months",
@@ -197,25 +165,17 @@ export const timelineData = {
       timePeriod: "Months 6-12",
       phaseTitle: "Sustained Recovery",
       offset: 2100,
-      physical: [
+      symptoms:[
         "Physical healing reaches completion",
         "Body fully adapts to alcohol-free state",
         "Exercise fully possible",
-        "Benefits of nutrition clear"
-      ],
-      lifestyle: [
-        // "Relationships repair and deepen",
-        // "Future planning is clear and motivated",
-        // "New sober identity feels authentic",
-        // "Social circles may shift to support recovery"
-      ],
-      mentalEmotional: [
-        "Emotional baseline stabilizes",
+        "Benefits of nutrition clear", "Emotional baseline stabilizes",
         "Cravings rare and easily managed",
         "Strong Positive outlook",
         "Identity shifts -> new self",
         "Purpose and meaning solidify"
-      ]
+      ],
+      
     }
   ],
   
@@ -252,8 +212,7 @@ export const timelineData = {
 };
 
 export const timelineConfig = {
-  title: "Recovery Timeline",
-  description: "What someone might expect after stopping use",
+
   
   // Parallax configuration
   parallax: {
@@ -263,23 +222,7 @@ export const timelineConfig = {
   },
   
   // Responsive offsets (pixels)
-  offsets: {
-    mobile: {
-      headerHeight: 120,
-      periodSpacing: 400,
-      categorySpacing: 200
-    },
-    tablet: {
-      headerHeight: 100,
-      periodSpacing: 450,
-      categorySpacing: 220
-    },
-    desktop: {
-      headerHeight: 80,
-      periodSpacing: 500,
-      categorySpacing: 250
-    }
-  },
+
   
   // Animation states (CSS class hooks)
   animationStates: {
@@ -289,23 +232,7 @@ export const timelineConfig = {
   },
   
   // Category types and colors (for CSS theming)
-  categories: {
-    physical: {
-      label: "Physical Changes",
-      color: "#4CAF50", // Green
-      icon: "🩺"
-    },
-    lifestyle: {
-      label: "Lifestyle Changes",
-      color: "#2196F3", // Blue
-      icon: "🌟"
-    },
-    mentalEmotional: {
-      label: "Mental/Emotional Changes",
-      color: "#9C27B0", // Purple
-      icon: "🧠"
-    }
-  }
+
 };
 
 // Helper function to get timeline data with consistent structure

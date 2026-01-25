@@ -15,9 +15,12 @@ export const transformTimelineData = (originalData) => {
             numDays: period.numDays,
             phaseTitle: period.phaseTitle,
             categories: [
-                ...period.physical.map(item => ({ id: `${period.id}-phys-${item.slice(0, 10)}`, type: "physical", title: item, description: "" })),
-                ...period.lifestyle.map(item => ({ id: `${period.id}-life-${item.slice(0, 10)}`, type: "lifestyle", title: item, description: "" })),
-                ...period.mentalEmotional.map(item => ({ id: `${period.id}-ment-${item.slice(0, 10)}`, type: "mental", title: item, description: "" })),
+                ...period.physical,
+                // ...period.lifestyle,
+                ...period.mentalEmotional,
+                // ...period.physical.map(item => ({ id: `${period.id}-phys-${item.slice(0, 10)}`, type: "physical", title: item, description: "" })),
+                // ...period.lifestyle.map(item => ({ id: `${period.id}-life-${item.slice(0, 10)}`, type: "lifestyle", title: item, description: "" })),
+                // ...period.mentalEmotional.map(item => ({ id: `${period.id}-ment-${item.slice(0, 10)}`, type: "mental", title: item, description: "" })),
             ]
         }))
     };

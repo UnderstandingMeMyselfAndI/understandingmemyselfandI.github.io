@@ -22,8 +22,8 @@ const RecoveryDayCount = ({ startDay = 0, currentDay = 0, classes = '' }) => {
 
   return (
     <div className={'day-count' + (classes ? ' ' + classes : '')}>
-      <div>day</div>
       <div>{displayDay}</div>
+      <div>days</div>
     </div>
   );
 };

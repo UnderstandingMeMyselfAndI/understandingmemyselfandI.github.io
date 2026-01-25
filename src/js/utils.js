@@ -57,7 +57,22 @@ export const isSet = o => {
 	if (o === 0) return true;
 	return !!o;
 };
-
+export const  isEmpty = (value) => {
+    return value === null || value === undefined || value === '';
+}
+export function isOdd(number) {
+    // Handle non-numeric input
+    if (typeof number !== 'number' || isNaN(number)) {
+        return false;
+    }
+    
+    // Handle floating point numbers
+    if (!Number.isInteger(number)) {
+        return false;
+    }
+    
+    return number % 2 !== 0;
+}
 export const getElementPageOffsetTop = element => {
 	return window.pageYOffset + element.getBoundingClientRect().top;
 };
@@ -120,6 +135,8 @@ export default {
 	hashCode,
 	inRange,
 	isNumeric,
+	isEmpty,
+	isOdd,
 	arrowSVG,
 	debounce,
 	isColorLight,

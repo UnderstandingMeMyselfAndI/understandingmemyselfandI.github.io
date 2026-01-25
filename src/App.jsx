@@ -17,7 +17,7 @@ import PrivacyPolicy from './components/activity/privacy/PrivacyPolicy';
 import Introduction from '@/components/activity/introduction/Introduction';
 import YourPrivacyCTA from './components/ui/privacy/YourPrivacyCTA';
 import Tools from 'components/activity/tools/Tools.jsx';
-import RecoveryTimelineParent from './components/activity/recoveryTimeline/RecoveryTimelineParent';
+// import RecoveryTimelineParent from './components/activity/recoveryTimeline/RecoveryTimelineParent';
 // import Backdrop from "ui/backdrop/Backdrop";
 import BackdropParallax from 'ui/backdrop/BackdropParallax';
 
@@ -66,19 +66,19 @@ function App() {
     <div>
       <div className='main'>
         <UmmiAgeGate />
-       
-        <div id="centers">
-          <div className="vertical"></div>
-          <div className="horizontal"></div>
-          </div>
+
+        <div id='centers'>
+          <div className='vertical'></div>
+          <div className='horizontal'></div>
+        </div>
         <div className='dev-version'>Development Version.</div>
         <AppMenu />
-        <RecoveryTimelineParent />
+        {/* <RecoveryTimelineParent /> */}
         <Header />
-        <Introduction />        
+        <Introduction />
         <Tools />
-        <YourPrivacyCTA />          
-        <Lingo />       
+        <YourPrivacyCTA />
+        <Lingo />
         <PrivacyPolicy />
         <NewsletterSignUp />
         <InstallCTA />
@@ -105,7 +105,7 @@ function App() {
       />
       <Routing />
       <Vcn />
-       <CookieConsent />
+      <CookieConsent />
     </div>
   );
 }
