@@ -17,13 +17,11 @@ const Tools = () => {
 
   const setToolsInView = useAppStore((s) => s.setToolsInView);
 
-  const [open, setOpen] = useState(false);
-  const [activityInView, setActivityInView] = useState(false);
-
-  const activity = useAppStore((s) => s.activity);
-  const activityID = activities.find((activity) =>
-    activity.url === name ? activity.id : null,
-  );
+  const [open, setOpen] = useState(true);
+  // const activity = useAppStore((s) => s.activity);
+  // const activityID = activities.find((activity) =>
+  //   activity.url === name ? activity.id : null,
+  // );
   const content =
     strings.activity.find((activity) => activity.name === name) || null;
 
@@ -62,9 +60,9 @@ const Tools = () => {
     setOpen(true);
   }, [setToolsInView]);
 
-  useEffect(() => {
-    setOpen(activity === -1);
-  }, [activityInView, activity]);
+  // useEffect(() => {
+  //   setOpen(activity === -1);
+  // }, [activity]);
 
   const inViewRef = useOnInView(
     // (inView, entry) => {
@@ -87,28 +85,25 @@ const Tools = () => {
   );
 
   return (
-    <section
-      ref={inViewRef}
-      id='the-tools'
-      className={'activity activity-tools tools ' + (open ? ' show' : ' hide')}  
-    >
-
-        <h2>{parse(content?.title)}</h2>
-
+    <div ref={inViewRef} className={'activity' + (open ? ' show' : ' ')}>
+      <section className='tools' id='tools'>
+        <h2>
+          <u>{content?.title}</u>
+        </h2>
+        <div className='description'>
+          {content.description &&
+            content.description.map((html, i) => {
+              return <p key={i}>{parse(html)}</p>;
+            })}
+        </div>
         <MenuCarousel
           handleClick={handleClick}
           data={carouselData}
           filterIDs={positiveIDsSet}
           showFavourites={yourToolsEnabled}
         />
-        <div className='tools-description'>
-          {content.description &&
-            content.description.map((html, i) => {
-              return <p key={i}>{parse(html)}</p>;
-            })}
-        </div>
       </section>
-
+    </div>
   );
 };
 Tools.propTypes = {

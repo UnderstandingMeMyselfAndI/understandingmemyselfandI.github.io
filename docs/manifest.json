@@ -9,7 +9,7 @@
   "capture_links": "existing_client_event",
   "url_handlers": [
     {
-      "origin": "https://dev.ummi.now"
+      "origin": "https://www.ummi.now"
     }
   ],
   "handle_links": ["preferred", "auto"],

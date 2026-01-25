@@ -66,6 +66,11 @@ function App() {
     <div>
       <div className='main'>
         <UmmiAgeGate />
+        <CookieConsent />
+        {/* <div className='dev-version'>Development Version.</div> */}
+        <AppMenu />
+
+        {quickExitEnabled && <Exit />}
 
         {/* <div id='centers'>
           <div className='vertical'></div>
