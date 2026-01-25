@@ -89,7 +89,7 @@ const Tools = () => {
     <div ref={inViewRef} className={'activity' + (open ? ' show' : ' ')}>
       <section className='tools' id='tools'>
         <h2>
-          <u>{content?.title}</u>
+          <u>{parse(content?.title)}</u>
         </h2>
         <div className='description'>
           {content.description &&
