@@ -156,7 +156,7 @@ const UnitsCalculator = () => {
             {' '}
             <header>
               {' '}
-              <h2>Units calculator</h2>
+              <h2>Units Calculator</h2>
               {/* <div className='intro'>
                 Calculate the total units of alcohol in common measures.
               </div> */}
