@@ -22,13 +22,15 @@ const UnitsCalculatorCTA = () => {
 
   return open ? (
     <div
-      className={'activity activity-units-counter-cta ' + (open ? ' show' : '')}
+      className={
+        'activity activity-units-calculator-cta ' + (open ? ' show' : '')
+      }
     >
       <div className='title'>
         <h3>
-          <u>
-            <span>{content?.cta?.title}</span>
-          </u>
+          <b>
+            <u>{content?.cta?.title}</u>
+          </b>
         </h3>
       </div>
       {content?.cta?.content?.map((html, i) => {

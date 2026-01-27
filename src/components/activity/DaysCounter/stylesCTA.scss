@@ -1,16 +1,18 @@
 @use "@/scss/_variables.scss";
 @import "@/globals.css";
 
-.daysCounterCTA {
+.activity-days-counter-cta {
 	position: relative;
+	margin: 10dvh 0;
 
-	margin: 0 0 160px 0;
 	user-select: none;
 	visibility: hidden;
 	opacity: 0;
 	transition: opacity 0.15s cubic-bezier(0.5, 0, 0.9, 1);
 	position: relative;
 	z-index: -1;
+	text-align: left;
+	;
 
 	&.show {
 		visibility: visible;
@@ -22,13 +24,41 @@
 	}
 
 	.title {
-		font-size: variables.$h4_size;
-		font-weight: 600;
-		font-variation-settings: "wght" 600;
-		text-decoration-color: var(--yellow);
-		text-decoration-thickness: 5px;
-		text-decoration-style: solid;
-		text-decoration-line: underline;
+		font-size: variables.$h3_size;
+
+		// text-decoration-color: var(--yellow);
+		// text-decoration-thickness: 5px;
+		// text-decoration-style: solid;
+		// text-decoration-line: underline;
+		// outline: 1px solid #ccc;
+		text-transform: uppercase;
+
+		;
+		width: 100%;
+
+		h3 {
+			width: fit-content;
+			padding: 0.25rem 0.45rem;
+			text-align: left;
+			color: var(--yellow);
+			font-weight: 500;
+			font-variation-settings: "wght" 500;
+			position: relative;
+			// background-color: var(--blueDark40Trans);
+
+			&::after {
+				content: "";
+				width: 98%;
+				height: 110%;
+
+				// outline: 1px solid var(--primary);
+				opacity: 1;
+				position: absolute;
+				top: 0%;
+				left: 0;
+				z-index: -1;
+			}
+		}
 
 		span {
 			position: relative;
@@ -53,5 +83,20 @@
 				transform: rotate(3.5deg);
 			}
 		}
+	}
+}
+
+button.days-counter.btn {
+	font-size: 1.25rem;
+	font-weight: 600;
+	width: fit-content;
+	margin: 1.5rem auto;
+	padding: 1.25rem 1.5rem;
+	outline: 1px solid rgba(150, 150, 150, 0.25);
+	box-shadow: var(--boxShadowDarkValue);
+
+	.icon {
+		width: 40px;
+		height: 40px
 	}
 }

@@ -1,57 +1,57 @@
-import { useState, useRef, useEffect } from 'react';
-import Logo from 'ui/logo/Logo.jsx';
-import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined';
-import useAppStore from '@/store/useAppStore';
-import { ErrorBoundary } from 'react-error-boundary';
-import { useGSAP } from '@gsap/react';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useOnInView } from 'react-intersection-observer';
-import { gsap } from 'gsap';
-import './styles.scss';
+import { useState, useRef, useEffect } from 'react'
+import Logo from 'ui/logo/Logo.jsx'
+import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined'
+import useAppStore from '@/store/useAppStore'
+import { ErrorBoundary } from 'react-error-boundary'
+import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useOnInView } from 'react-intersection-observer'
+import { gsap } from 'gsap'
+import './styles.scss'
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 const Header = () => {
-  const [open, setOpen] = useState(false);
-  const [isLeaving, setIsLeaving] = useState(false);
-  const [isFirstCall, setIsFirstCall] = useState(true);
+  const [open, setOpen] = useState(false)
+  const [isLeaving, setIsLeaving] = useState(false)
+  const [isFirstCall, setIsFirstCall] = useState(true)
 
-  const cont = useRef();
-  const groupRef = useRef();
-  const arrowsCont = useRef();
+  const cont = useRef()
+  const groupRef = useRef()
+  const arrowsCont = useRef()
 
-  const aniLoopRefs = useRef([]);
-  const aniLeaveRefs = useRef([]);
-  const loopTimelines = useRef([]);
-  const leaveTimeline = useRef();
+  const aniLoopRefs = useRef([])
+  const aniLeaveRefs = useRef([])
+  const loopTimelines = useRef([])
+  const leaveTimeline = useRef()
 
-  aniLoopRefs.current = [];
-  aniLeaveRefs.current = [];
+  aniLoopRefs.current = []
+  aniLeaveRefs.current = []
 
   const addLeaveRef = (el) => {
     if (el && !aniLeaveRefs.current.includes(el)) {
-      aniLeaveRefs.current.push(el);
+      aniLeaveRefs.current.push(el)
     }
-  };
+  }
 
   const addLoopRef = (el) => {
     if (el && !aniLoopRefs.current.includes(el)) {
-      aniLoopRefs.current.push(el);
+      aniLoopRefs.current.push(el)
     }
-  };
+  }
 
-  const activity = useAppStore((s) => s.activity);
+  const activity = useAppStore((s) => s.activity)
 
   useEffect(() => {
-    setOpen(activity === -1);
-  }, [activity]);
+    setOpen(activity === -1)
+  }, [activity])
 
   useGSAP(
     () => {
-      if (!open) return;
+      if (!open) return
 
       if (!isLeaving && leaveTimeline.current) {
-        leaveTimeline.current.kill();
+        leaveTimeline.current.kill()
       }
 
       if (isLeaving) {
@@ -63,11 +63,11 @@ const Header = () => {
               duration: 0.5,
               ease: 'power2.out',
               onComplete: () => {
-                tl.pause();
+                tl.pause()
               },
-            });
+            })
           }
-        });
+        })
 
         // --- LEAVE ANIMATION ---
         const leaveAnimations = [
@@ -136,9 +136,9 @@ const Header = () => {
             transformOrigin: '100% 10%',
             ease: 'power4.out',
           }, // I
-        ];
+        ]
 
-        leaveTimeline.current = gsap.timeline();
+        leaveTimeline.current = gsap.timeline()
 
         leaveTimeline.current.to(aniLeaveRefs.current, {
           duration: (i) => leaveAnimations[i].duration || 1.85,
@@ -155,10 +155,10 @@ const Header = () => {
             leaveAnimations[i].transformOrigin || '50% 50%',
           x: (i) => leaveAnimations[i].x,
           y: (i) => leaveAnimations[i].y,
-        });
+        })
       } else {
         // --- RETURN ANIMATION ---
-        gsap.killTweensOf(aniLeaveRefs.current);
+        gsap.killTweensOf(aniLeaveRefs.current)
         gsap.to(aniLeaveRefs.current, {
           duration: 0.5,
           autoAlpha: 1,
@@ -172,12 +172,12 @@ const Header = () => {
           ease: 'power3.out',
           stagger: 0.05,
           force3D: 'auto',
-        });
+        })
 
         // --- LOOP ANIMATIONS ---
-        loopTimelines.current.forEach((tl) => tl && tl.restart());
+        loopTimelines.current.forEach((tl) => tl && tl.restart())
 
-        if (loopTimelines.current.length > 0) return;
+        if (loopTimelines.current.length > 0) return
 
         const logoTl = gsap
           .timeline({
@@ -196,8 +196,8 @@ const Header = () => {
             autoAlpha: 0,
             scale: 0.8,
             duration: 0.6,
-          });
-        loopTimelines.current[0] = logoTl;
+          })
+        loopTimelines.current[0] = logoTl
 
         const loopAnimations = [
           null, // logo handled above
@@ -244,46 +244,43 @@ const Header = () => {
             },
             { delay: 3 },
           ],
-        ];
+        ]
 
         const config = {
           repeat: -1,
           repeatDelay: 3,
           yoyo: true,
           defaults: { duration: 0.5, ease: 'power3.out', force3D: 'auto' },
-        };
+        }
 
         aniLoopRefs.current.forEach((el, i) => {
-          if (i === 0) return; // Skip logo
-          const tl = gsap.timeline({ ...config, delay: 2 });
-          tl.fromTo(el, loopAnimations[i][0], loopAnimations[i][1]);
-          if (loopAnimations[i][2]) tl.to(el, loopAnimations[i][2]);
-          if (loopAnimations[i][3]) tl.to(el, loopAnimations[i][3]);
-          loopTimelines.current[i] = tl;
-        });
+          if (i === 0) return // Skip logo
+          const tl = gsap.timeline({ ...config, delay: 2 })
+          tl.fromTo(el, loopAnimations[i][0], loopAnimations[i][1])
+          if (loopAnimations[i][2]) tl.to(el, loopAnimations[i][2])
+          if (loopAnimations[i][3]) tl.to(el, loopAnimations[i][3])
+          loopTimelines.current[i] = tl
+        })
       }
     },
     { dependencies: [open, isLeaving], scope: cont },
-  );
+  )
 
   // TODO #25 Maybe use ScrollTrigger isInViewport and drop thei library
   //https://gsap.com/docs/v3/Plugins/ScrollTrigger/static.positionInViewport()
   const inViewRef = useOnInView(
     (inView) => {
-      console.log('leaving', inView);
-
       if (isFirstCall) {
-        setIsFirstCall(false);
-        return;
+        setIsFirstCall(false)
+        return
       }
-      console.log('leaving', inView);
-      setIsLeaving(!inView);
+      setIsLeaving(!inView)
     },
     {
       threshold: 0.1,
       rootMargin: '-35% 0% -45% 0%',
     },
-  );
+  )
 
   return (
     <section
@@ -362,9 +359,9 @@ const Header = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-Header.propTypes = {};
+Header.propTypes = {}
 
-export default Header;
+export default Header

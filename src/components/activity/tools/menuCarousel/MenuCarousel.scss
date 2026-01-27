@@ -6,43 +6,41 @@
 }
 
 div.AccordionRoot {
-	// background-color: transparent;
-	// margin: 0 auto;
-	position: static;
-	// position: relative;
-	// top: 0;
-	// left: 0;
-	transition: all var(--transition);
-
-	// display: flex;
-	// flex-flow: column nowrap;
-	// justify-content: center;
-	// align-items: center;
-	// z-index: 3000;
+	position: relative;
 	width: 100%;
+	height: 100%;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
 
-	div.accronym-menu {
-		div.list-item {
+	.accronym-menu {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+
+		div.list-item.carousel-item-wrapper {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			margin: 0.5rem 0;
 			transition: all var(--transition);
-			border-radius: var(--border-radius);
-			margin: 0.5rem auto;
-			width: fit-content;
-			// width: 390px;
-			// max-width: 390px;
-			min-width: 340px;
-			position: relative;
-			cursor: pointer;
-
-			.active {
-				position: relative;
-				transition: all var(--transition);
-			}
 
 			.carousel-item {
-				width: 100%;
-				padding: 0.75rem 2rem;
-				// outline: 1px solid #ccc;
+				width: 90%;
+				max-width: 390px;
+				min-width: 340px;
+				padding: 0.5rem 0.25rem;
 				position: relative;
+				cursor: pointer;
+				min-height: 80px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				.inner.item {
+					width: 100%;
+					// outline: 1px solid #ccc;
+				}
 
 				.title {
 					word-break: break-all;
@@ -53,8 +51,11 @@ div.AccordionRoot {
 					font-size: variables.$acc_title_size;
 					width: 100%;
 					min-height: 60px;
-					height: 60px;
-
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					position: relative;
+					text-decoration: none;
 
 					.letters-cont {
 						display: flex;
@@ -62,41 +63,19 @@ div.AccordionRoot {
 						line-height: variables.$acc_title_line_height;
 						font-weight: variables.$acc_title_weight;
 						text-align: center;
-						column-gap: 0.65rem;
+						column-gap: 0.25rem;
 						justify-content: center;
 						align-items: center;
-
 						height: 100%;
 						width: 100%;
 
-						position: absolute;
-						left: 0;
-						top: 0;
-						z-index: 10;
-
 						div.letter {
 							position: relative;
-							// outline: 1px solid #ccc;
 							height: fit-content;
 							width: fit-content;
 							color: #fff;
-							position: relative;
 							margin-right: 2px;
 
-							&::after {
-								content: "";
-								position: absolute;
-								z-index: -1;
-								bottom: 0px;
-								right: 0;
-								width: 7px;
-								height: 7px;
-								border-radius: 50%;
-								opacity: 0.75;
-								background-color: var(--primary);
-								// outline: 2px solid var(--primary);
-								transform: translate(140%, -80%);
-							}
 
 						}
 					}
@@ -110,29 +89,76 @@ div.AccordionRoot {
 						height: 20px;
 						fill: var(--orange);
 						stroke: var(--orange);
-					}
 
-					.icon.active {
-						opacity: 1;
+						&.active {
+							opacity: 1;
+						}
 					}
+				}
+
+				&::after {
+					content: "";
+					width: 100%;
+					height: 100%;
+					position: absolute;
+					top: 0;
+					left: 0;
+					z-index: -1;
+					opacity: 0.7;
+					background-color: var(--blue);
+					border-radius: var(--border-radius);
+					outline: 1px solid rgba(126, 126, 126, 0.7);
+					box-shadow: 0px 0px 6px rgba(20, 20, 20, 0.9),
+						0px 0px 9px rgba(20, 20, 20, 0.9),
+						0px 0px 20px rgba(30, 30, 30, 0.4);
 				}
 			}
 
-			&::after {
-				content: "";
-				width: 100%;
-				height: 100%;
-				position: absolute;
-				top: 0;
-				left: 0;
-				z-index: -1;
-				opacity: 0.7;
-				background-color: var(--blue);
-				border-radius: var(--border-radius);
-				outline: 1px solid rgba(126, 126, 126, 0.7);
-				box-shadow: 0px 0px 6px rgba(20, 20, 20, 0.9), 0px 0px 9px rgba(20, 20, 20, 0.9), 0px 0px 20px rgba(30, 30, 30, 0.4);
+			&:hover {
+				transform: scale(1.02);
 			}
 		}
+	}
 
+	// Description container
+	.description-container {
+		width: 100%;
+
+		.content {
+			padding: 10vh 0 10vh 0;
+		}
+
+		.tools-description {
+			width: 90%;
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 2rem;
+			// background: var(--backgroundActivity);
+			border-radius: var(--border-radius);
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+			p {
+				color: var(--primary);
+				font-size: variables.$h3_size;
+				font-weight: 500;
+				font-variation-settings: 'wght' 500;
+				line-height: 1.6;
+				margin-bottom: 1.5rem;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+
+	// Expanded state if needed
+	&.expanded {
+		.accronym-menu {
+			.list-item {
+				opacity: 1 !important;
+				transform: none !important;
+			}
+		}
 	}
 }

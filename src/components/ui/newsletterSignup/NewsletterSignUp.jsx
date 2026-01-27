@@ -1,86 +1,81 @@
-import useAppStore from '@/store/useAppStore';
-import { useState, useEffect } from 'react';
-import useLoadScript from '@/hooks/useLoadScript';
-import './styles.scss';
+import useAppStore from '@/store/useAppStore'
+import { useState, useEffect } from 'react'
+import useLoadScript from '@/hooks/useLoadScript'
+import './styles.scss'
 
 const NewsletterSignUp = () => {
-  const setActivity = useAppStore((state) => state.setActivity);
-  const [checked, setChecked] = useState(false);
-  const nss = useAppStore((s) => s.nss); // subscribed to newsletter
-  const setNss = useAppStore((s) => s.setNSS);
-
+  const setActivity = useAppStore((state) => state.setActivity)
+  const [checked, setChecked] = useState(false)
+  const nss = useAppStore((s) => s.nss) // subscribed to newsletter
+  const setNss = useAppStore((s) => s.setNSS)
 
   // TODO #22 [ ]: Ensure that Newsletter menu item is removed after user sign up. Should also be recorded in the store
-  // TODO #23 : Check form validation and UX 
-  const [open, setOpen] = useState(true);
-  const activity = useAppStore((s) => s.activity);
+  // TODO #23 : Check form validation and UX
+  const [open, setOpen] = useState(true)
+  const activity = useAppStore((s) => s.activity)
 
   useEffect(() => {
-    console.log("show newsletter sign up activity ",activity);
-    setOpen(activity === -1);
-  }, [activity]);
+    setOpen(activity === -1)
+  }, [activity])
 
   useLoadScript('https://sibforms.com/forms/end-form/build/main.js', {
-    onLoad: () => console.log('Script loaded'),
-    onError: () => console.error('Script failed to load'),
+    // onLoad: () => console.log('Script loaded'),
+    // onError: () => console.error('Script failed to load'),
     async: true,
     defer: true,
-  });
+  })
 
   const onSuccess = () => {
-    setNss(true);
-  };
-  const onError = () => {};
+    setNss(true)
+  }
+  const onError = () => {}
   const [formData, setFormData] = useState({
     email: '',
-  });
+  })
   const [status, setStatus] = useState({
     loading: false,
     success: false,
     error: null,
-  });
+  })
 
   // Your form ID from the embed code
   const formId =
-    'MUIFALc6BdLxDTN5bUt_Nxxf8w9uI6rUsNhO6T04esvA31bm_6DpC7pGj934CpQpqqUWO48PcndNrWhtNl1tThdGiLUq_9ug9YeW73EJRJEUyt2pBT0QszFGXW6MlGDojXDwwPATPsUn1QHNh6MVO7kXp4J5AEWQSWarZtSIMx68uxLTeUn7Ho56eeY-v6dp4jtFSkGL8E3dBf6wQQ==';
+    'MUIFALc6BdLxDTN5bUt_Nxxf8w9uI6rUsNhO6T04esvA31bm_6DpC7pGj934CpQpqqUWO48PcndNrWhtNl1tThdGiLUq_9ug9YeW73EJRJEUyt2pBT0QszFGXW6MlGDojXDwwPATPsUn1QHNh6MVO7kXp4J5AEWQSWarZtSIMx68uxLTeUn7Ho56eeY-v6dp4jtFSkGL8E3dBf6wQQ=='
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
-    });
-  };
+    })
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus({ loading: true, success: false, error: null });
+    e.preventDefault()
+    setStatus({ loading: true, success: false, error: null })
 
     try {
       // Create form data for submission
-      const submitData = new FormData();
-      submitData.append('EMAIL', formData.email);
-      submitData.append('email_address_check', ''); // Honeypot field
-      submitData.append('locale', 'en');
+      const submitData = new FormData()
+      submitData.append('EMAIL', formData.email)
+      submitData.append('email_address_check', '') // Honeypot field
+      submitData.append('locale', 'en')
 
-      await fetch(
-        `https://d44b221a.sibforms.com/serve/${formId}`,
-        {
-          method: 'POST',
-          body: submitData,
-          mode: 'no-cors', // Required for cross-origin requests
-        },
-      );
+      await fetch(`https://d44b221a.sibforms.com/serve/${formId}`, {
+        method: 'POST',
+        body: submitData,
+        mode: 'no-cors', // Required for cross-origin requests
+      })
 
       // Since we're using no-cors, we can't read the response
       // We'll assume success if no error is thrown
-      setStatus({ loading: false, success: true, error: null });
-      setFormData({ email: '' });
-      onSuccess && onSuccess({ email: formData.email });
+      setStatus({ loading: false, success: true, error: null })
+      setFormData({ email: '' })
+      onSuccess && onSuccess({ email: formData.email })
     } catch (error) {
-      setStatus({ loading: false, success: false, error: error.message });
-      onError && onError(error.message);
+      setStatus({ loading: false, success: false, error: error.message })
+      onError && onError(error.message)
     }
-  };
+  }
   //TODO: #24 Check this is being fisplayed following sign up - it wasn't wahen tested
   if (status.success) {
     return (
@@ -98,23 +93,24 @@ const NewsletterSignUp = () => {
           <p>Check your inbox to confirm your email address.</p>
         </div>
       </div>
-    );
+    )
   }
 
   const handlePrivacyClick = (e) => {
-    e.preventDefault();
-    setActivity(10);
-  };
+    e.preventDefault()
+    setActivity(10)
+  }
 
   const handleCheckboxChange = (e) => {
-    setChecked(e.target.checked);
-  };
+    setChecked(e.target.checked)
+  }
   //Only show if the user hasn't subscribed from this device
   return !nss ? (
     <div
-    id='newsletter'
-      className={'activity activity-newsletter-signup-form' + (open ? ' show' : '')}
-      
+      id='newsletter'
+      className={
+        'activity activity-newsletter-signup-form' + (open ? ' show' : '')
+      }
     >
       <div className='sib-form'>
         <div id='sib-form-container' className='sib-form-container'>
@@ -163,7 +159,10 @@ const NewsletterSignUp = () => {
                   // disabled={status.loading}
                   className='email-input input'
                 />
-                <label htmlFor="email" className='entry__error entry__error--primary'></label>
+                <label
+                  htmlFor='email'
+                  className='entry__error entry__error--primary'
+                ></label>
               </div>
               <div className='form-row '>
                 <div>
@@ -187,7 +186,10 @@ const NewsletterSignUp = () => {
                     </label>
                     <div className='consent'></div>
                   </div>
-                  <label htmlFor="error"className='entry__error entry__error--primary'></label>
+                  <label
+                    htmlFor='error'
+                    className='entry__error entry__error--primary'
+                  ></label>
                 </div>
               </div>
               <div className='form-row privacy'>
@@ -247,7 +249,7 @@ const NewsletterSignUp = () => {
         </div>
       </div>
     </div>
-  ) : null;
-};
+  ) : null
+}
 
-export default NewsletterSignUp;
+export default NewsletterSignUp

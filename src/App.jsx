@@ -25,7 +25,6 @@ import SnackBars from 'ui/snackbars/SnackBars.jsx'
 import InstallCTA from 'ui/install/InstallCTA'
 // import AcronymCard from "ui/cards/AcronymCard.jsx";
 import AcronymExplained from './components/activity/acronymExplained/AcronymExplained'
-import BadgeToolbox from 'ui/badges/BadgeToolbox'
 
 import DaysCounter from './components/activity/daysCounter/DaysCounter'
 import DaysCounterCTA from './components/activity/daysCounter/DaysCounterCTA'
@@ -45,14 +44,11 @@ import UnitsCalculatorCTA from './components/activity/unitsCalculator/UnitsCalcu
 import './App.scss'
 // TODO: #21 "Clear Local Data" functionality
 function App() {
-  const toolboxFilterEnabled = useAppStore((s) => s.toolboxFilterEnabled)
   const daysCounterEnabled = useAppStore((s) => s.daysCounterEnabled)
   // const enableYourTools = useAppStore((s) => s.enableYourTools)
   const quickExitEnabled = useAppStore((s) => s.quickExitEnabled)
   const unitsCalculatorEnabled = useAppStore((s) => s.unitsCalculatorEnabled)
-  const setActivity = useAppStore((s) => s.setActivity)
 
-  setActivity(-1)
   smoothScroll()
   const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme)
 
@@ -84,8 +80,9 @@ function App() {
         <Introduction />
         <Tools />
         <YourPrivacyCTA />
-        {unitsCalculatorEnabled && <UnitsCalculatorCTA />}
+
         {daysCounterEnabled && <DaysCounterCTA />}
+        {unitsCalculatorEnabled && <UnitsCalculatorCTA />}
         <Lingo />
         <PrivacyPolicy />
         <NewsletterSignUp />
@@ -94,7 +91,6 @@ function App() {
 
         {/* <Motivation /> */}
         {/* {quickExitEnabled && <Exit />} */}
-        {toolboxFilterEnabled && <BadgeToolbox />}
         {unitsCalculatorEnabled && <UnitsCalculator />}
         {daysCounterEnabled && <DaysCounter />}
         <AcronymExplained />

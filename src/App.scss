@@ -195,7 +195,7 @@ body {
       max-width: var(--max-width);
       padding: 0 var(--gutters);
       width: 100dvw;
-      min-height: 60dvh;
+      // min-height: 60dvh;
 
 
 
@@ -241,7 +241,26 @@ body {
       }
 
 
+      header {
+        // flex: 0;
 
+        width: 100%;
+
+
+        h2 {
+          margin: 0;
+          font-size: variables.$h2_size;
+          line-height: 1;
+          width: 100%;
+          text-align: center;
+        }
+
+        .intro {
+          padding: 0;
+          margin: 0;
+          font-size: variables.$med_size;
+        }
+      }
 
 
     }
@@ -388,12 +407,20 @@ body {
     color: var(--blue);
   }
 
+  .light-blue,
   .lightBlue {
     color: var(--lightBlue);
   }
 
   .grey {
     color: var(--greyDark);
+  }
+
+  strong,
+  b,
+  p b {
+    font-weight: 900;
+    font-variation-settings: 'wght' 900;
   }
 }
 

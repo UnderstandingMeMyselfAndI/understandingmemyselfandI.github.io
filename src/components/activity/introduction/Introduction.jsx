@@ -126,19 +126,18 @@ const Introduction = () => {
                 >
                   {cnt?.title && (
                     <div className='subsection-title'>
-                      <h2 className='title2'>
-                        <u>{parse(cnt?.title)}</u>
-                      </h2>
+                      <h2 className='title2'>{parse(cnt?.title)}</h2>
                     </div>
                   )}
                   {cnt?.content?.map((para, k) => {
-                    return (
+                    return para ? (
                       <Feature classes={'feature'} key={'p-' + k}>
-                        {i === 1 && <DoneOutlineIcon className='icon' />}
                         <p key={k} className='st'>
                           {parse(para)}
                         </p>
                       </Feature>
+                    ) : (
+                      <></>
                     )
                   })}
                 </div>

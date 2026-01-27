@@ -45,199 +45,115 @@ const cnf = {
 // ---------------------------------------------------------------
 // Icon ids are fixed and should not be mutated as they are used as reference
 //
-const icons = [
-  {
-    id: 0,
-    title: 'ummi',
-    icon: UmmiIcon,
-  },
-  {
-    id: 1,
-    title: 'welcome',
-    icon: HandymanIcon,
-  },
-  {
-    id: 2,
-    title: 'tools',
-    icon: HandymanIcon,
-  },
-  {
-    id: 3,
-    title: 'techniques',
-    icon: AutoAwesomeOutlinedIcon,
-  },
-  {
-    id: 4,
-    title: 'motivation',
-    icon: AutoGraphOutlinedIcon,
-  },
-  {
-    id: 5,
-    title: 'inspiration',
-    icon: LightbulbOutlinedIcon,
-  },
-  {
-    id: 6,
-    title: 'meditation',
-    icon: SpaOutlinedIcon,
-  },
-  {
-    id: 7,
-    title: 'videos',
-    icon: PlayCircleOutlineOutlinedIcon,
-  },
-  {
-    id: 8,
-    title: 'about',
-    icon: InfoOutlinedIcon,
-  },
-  {
-    id: 9,
-    title: 'tour',
-    icon: TourOutlinedIcon,
-  },
-  {
-    id: 10,
-    title: 'search',
-    icon: SavedSearchIcon,
-  },
-  {
-    id: 11,
-    title: 'account',
-    icon: BlurOnOutlinedIcon,
-  },
-  {
-    id: 12,
-    title: 'back',
-    icon: ArrowBackOutlinedIcon,
-  },
-  {
-    id: 13,
-    title: 'back',
-    icon: ArrowBackOutlinedIcon,
-  },
-];
-
 const baseActivities = [
   {
     id: 0,
     url: 'introduction',
     title: 'Introduction',
-
     menu: true,
-    speedDial: true,
   },
   {
     id: 1,
     url: 'tools',
     title: 'Tools',
     menu: true,
-    speedDial: true,
   },
   {
     id: 2,
     url: 'days-counter',
     title: 'Days Counter',
     menu: true,
-    speedDial: true,
   },
   {
     id: 3,
     url: 'motivation',
     title: 'Motivation',
     menu: true,
-    speedDial: true,
   },
   {
     id: 4,
     url: 'inspiration',
     title: 'Inspiration',
     menu: true,
-    speedDial: true,
   },
   {
     id: 5,
     url: 'units-calculator',
     title: 'Units Calculator',
     menu: true,
-    speedDial: true,
   },
   {
     id: 6,
     url: 'videos',
     title: 'Videos',
     menu: true,
-    speedDial: true,
   },
   {
     id: 7,
     url: 'about',
     title: 'About',
     menu: true,
-    speedDial: true,
   },
   {
     id: 8,
     url: 'tour',
     title: 'Tour',
     menu: true,
-    speedDial: true,
   },
   {
     id: 9,
     url: 'search',
     title: 'Search',
     menu: true,
-    speedDial: true,
   },
   {
     id: 10,
     url: 'privacy',
     title: 'Your Privacy & Privacy Policy',
     menu: true,
-    speedDial: true,
   },
   {
     id: 11,
     url: 'ccpaprivacy',
     title: 'CCPA Privacy Policy',
     menu: true,
-    speedDial: true,
   },
   {
     id: 12,
     url: 'settings',
     title: 'Settings',
     menu: true,
-    speedDial: true,
   },
   {
     id: 13,
     url: 'lingo-and-phrases',
     title: 'Lingo & Phrases',
     menu: true,
-    speedDial: true,
   },
   {
     id: 14,
     url: 'share',
     title: 'Share',
     menu: true,
-    speedDial: true,
   },
   {
     id: 15,
     url: 'newsletter',
     title: 'Newsletter',
     menu: true,
-    speedDial: true,
   },
   {
     id: 16,
     url: 'install',
     title: 'Install Ummi',
     menu: true,
-    speedDial: true,
+  },
+
+  {
+    id: 17,
+    url: 'AcronymExlpained',
+    title: 'Acronym Exlpained',
+    menu: false,
   },
 ];
 const activities = baseActivities.map((item) => ({
@@ -257,35 +173,35 @@ const strings = {
           title: '',
           classes: 'ummi-blue',
           content: [
-            '<span class="ummi">U</span>nderstanding <span class="ummi">M</span>e, <span class="ummi">M</span>yself, and <span class="ummi">I</span> <span class="ummi">(U.M.M.I)</span> is your <u class="yellow">FREE</u> companion app.',
+            '<b><span class="ummi">U</span>nderstanding <span class="ummi">M</span>e, <span class="ummi">M</span>yself, and <span class="ummi">I</span> <u class="yellow-ul"><span class="ummi">(U.M.M.I)</span></u></b> is your <b><u class="yellow">FREE</u> companion app.</b>',
           ],
         },
       {
-          title: 'Who is Ummi for?',
+          title: 'Who is <span class="ummi">Ummi</span> for?',
           content: [
-             'If you\'re looking for information about <b><u class="orange-ul">Alcohol Recovery </u></b> <br /><br /><u class="yellow-ul lrg">this app is for you.</u>',
-            'If you\'re learning <b><u class="orange-ul">recovery tools</u></b> <br />at groups using <br /><b><u class="blue-ul">ACT, CBT, DBT, REBT, or SMART therapies?</u></b><br /><br /><u class="yellow-ul lrg">this app is for you.</u>.',
-            '<u class="white-ul"><b><span class="ummi">Ummi</span></b></u> was created because <u class="yellow-ul lrg">the tools are great</u>.',
-            ' But remembering them<br /> <u><b>can be hard</u></b>.',
-            '<u class="white-ul"><b><span class="ummi">Ummi</span></b></u> helps you <u class="blue-ul">find  tools</u> that work <b><u class="yellow-ul">for you,</u></b> and <b><u>your journey</u>.</b> ',
-            'Completely <b><u class="yellow-ul lrg">for free</b></u>'
+             'If you\'re <b>looking</b> for <u class="yellow-ul lrg yellow">information</u> about <b><u class="orange-ul">Alcohol Recovery </u></b> <br /><br /<br /><b><u class="yellow-ul lrg yellow">this app is for you.</u></b>',
+            'If you\'re <b>learning</b> <b><u class="orange-ul">recovery tools</u></b> <br />at groups using <br /><u class="blue-ul"><b>ACT, CBT, DBT, REBT,</b> or <b>SMART</b> therapies?</u><br /><br /><br /<b><u class="yellow-ul lrg yellow">this app is for you.</u>.</b>',
+            '<u class="white-ul"><b><span class="ummi">Ummi</span></b></u> was created because <u class="yellow-ul lrg"><b>the tools are great</b></u>.',
+            'But <b class="yellow">remembering</b> them<br /> <u><b>can be hard</u></b>.',
+            '<u class="white-ul"><b><span class="ummi">Ummi</span></b></u> helps you <b><u class="blue-ul">find  tools</u></b> that work <b><u class="yellow">for you,</u></b> and <b><u>your journey</u>.</b> ',
+            '<u class="light-blue">Completely</u> <b><u class="yellow-ul lrg">for free</b></u>'
           ],
         },
         {
-          title: 'Ummi provides:',
+          title: 'FEATURES:',
           icon: HandymanIcon,
           content: [
-            'Explanations of <u>Addiction Recovery tools </u>.',
-            'Scenarios describing <u>when tools could be useful</u>.',
+            'Explanations of <b><u class="yellow-ul">Addiction Recovery</u> <u>tools </u></b>.',
+            '<u class="yellow-ul"><b>Scenarios</b></u> describing <u>when tools <b>could be useful</b></u>.',
             // 'Find tools <u>that work for you</u>.',
-            'Favourites feature to save tools to <u class="yellow-ul">your own toolbox</u>.',
+            '<u><b>Favourites</b></u> to <b>save tools</b> to <b><u class="yellow-ul light-blue">your own toolbox</u></b>.',
             // 'Easily to understand descriptions.',
             
-            '<u class="yellow-ul">Private Days Counter</u> to <u>track recovery</u>.',
-            '<u>Alcohol Units Calculator</u>.',
-            '<u class="yellow-ul">Recovery <b>lingo &amp; Phrases</b> explained.</u>.',
-            '<b>Quick Exit button.</b> <u>Leave fast</u> to Google.com<br />Just in case it\'s needed.',
-            '<b>Complete privacy</b> <u>you control</u>. Erase <u class="yellow-ul">all data</u>, <u >instantly</u>, <u class="yellow-ul">at anytime</u>.',
+            '<u class="yellow-ul"><b>Private Days Counter</b></u> to <u><b>track recovery</b></u>.',
+            '<u><b class="yellow">Alcohol Units Calculator</b></u>.',
+            '<u class="yellow-ul">Recovery <b>Lingo &amp; Phrases</b> explained.</u>.',
+            '<b class="yellow">Quick Exit button.</b> <b><u class="yellow-ul">Leave fast</u></b> to Google.com<br /><b><u>Just in case it\'s needed.</b></u>',
+            '<b>Complete privacy</b> <u>you control</u>. <b class="light-blue">Erase <u class="yellow-ul">all data</u></b>, <b><u >instantly</u>, <u class="yellow-ul yellow">at anytime</u></b>.',
             '',
           ],
         },
@@ -347,13 +263,13 @@ const strings = {
     {
       name: 'tools',
       slug: '#recovery-tools',
-      title: 'The<br />Tools',
+      title: 'The Tools',
       introduction: (isTouchDevice() ? "Tap" : "Click") + ' on a tool to learn more about it',
       description: [
-        "These tools don't <br />work for <u>everbody</u>.",
-        'They might work for <br /><u>one person</u> <br />but not the <u>next</u>.',
-        'They have worked for <br /><u>somebody</u>.',
-        "<u><span class='yellow-ul'>Everbody's journey <br />is different.</span></u>",
+        'These tools <br /><u class="yellow-ul"><b>might not </b></u>work <br />for<u><b class="yellow"> everbody.</b></u>',
+        'They <u>could work</u><br /> for <b><u class="yellow">one person</u></b> <br />and <u class="yellow-ul">not the next</u>.',
+        'But they <br /><u><b>have worked</b></u><br /> for <b><u class="yellow-ul">somebody</u></b>.',
+        // "<u>Everbody's<br /> journey <br /></u><u><b class='yellow'>is different.</b></u>",
       ],
       content: [],
       btnLabel: '',
@@ -377,7 +293,8 @@ const strings = {
       cta: {
         title: 'Days Counter',
         content: [
-          'Track your progress and remind yourself  how far you have come.',
+          'Track your progress and remind yourself how far you have come.',
+          'Click the button below to start tracking your days.',
         ],
       },
     },

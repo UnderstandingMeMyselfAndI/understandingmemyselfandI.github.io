@@ -1,23 +1,21 @@
 import { useEffect, useState, useMemo } from 'react'
 import useAppStore from '@/store/useAppStore'
 import { activities } from '@/data/config'
-import MenuCarousel from '@/components/activity/tools/menuCarousel/MenuCarousel.jsx'
-import toolsData from '../../../data/tools.js'
-
-// import { useInView, useOnInView } from 'react-intersection-observer';
-import { useOnInView } from 'react-intersection-observer'
+import MenuCarousel from '@/components/activity/tools/menuCarousel/MenuCarousel'
+import BadgeToolbox from 'ui/badges/BadgeToolbox'
 import parse from 'html-react-parser'
+import CloseBtn from '@/components/ui/buttons/close/CloseBtn.jsx'
+import toolsData from '../../../data/tools.js'
 import { strings } from '@/data/config'
-import './styles.scss'
 import PropTypes from 'prop-types'
+import './styles.scss'
 
 const Tools = () => {
   const data = toolsData.tools.nodes
   const name = 'tools'
+  const toolboxFilterEnabled = useAppStore((s) => s.toolboxFilterEnabled)
 
-  const setToolsInView = useAppStore((s) => s.setToolsInView)
-
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
   const activity = useAppStore((s) => s.activity)
   const activityID = activities.find((activity) =>
     activity.url === name ? activity.id : null,
@@ -32,14 +30,13 @@ const Tools = () => {
   const showToolsOnly = useAppStore((s) => s.showToolsOnly)
   const getActiveToolIDs = useAppStore((state) => state.getActiveToolIDs)
   const yourToolsEnabled = useAppStore((s) => s.yourToolsEnabled)
-  const setActivityInView = useAppStore((s) => s.setActivityInView)
+
   const activeIDs = getActiveToolIDs()
   const positiveIDsSet = useMemo(() => new Set(activeIDs), [activeIDs])
 
   // Memoize the final carouselData
   const carouselData = useMemo(() => {
     const filteredData = data.filter((obj) => activeIDs.includes(obj.id))
-    //setAccData(filteredData)
     return showToolsOnly ? filteredData : data
   }, [showToolsOnly, activeIDs, data])
 
@@ -49,60 +46,47 @@ const Tools = () => {
 
   const handleClick = (id) => () => {
     setAcronymID(id)
-    setShowAccCard(true)
-    setActivity(1)
+    // setShowAccCard(true)
+    setOpen(false)
+    setActivity(17)
   }
 
   useEffect(() => {
-    setOpen(activity == -1)
+    setOpen(activity == 1)
   }, [activity])
 
-  useEffect(() => {
-    setOpen(true)
-  }, [setToolsInView])
+  const handleClose = () => {
+    console.log('handleClose')
+    setOpen(false)
+    setActivity(-1)
+  }
 
-  // useEffect(() => {
-  //   setOpen(activity === -1);
-  // }, [activity]);
-
-  const inViewRef = useOnInView(
-    // (inView, entry) => {
-    (inView) => {
-      if (inView) {
-        // Do something with the element that came into view
-        // console.log('Element is in view', entry.target)
-        setToolsInView(true)
-        setActivityInView(true)
-      } else {
-        // console.log('Element left view', entry.target)
-        setToolsInView(false)
-      }
-    },
-    {
-      /* Optional options */
-      threshold: 0,
-      rootMargin: '-15% 0% -50% 0%',
-    }, // Optional IntersectionObserver options
+  // Render description content
+  const descriptionContent = content?.description && (
+    <div className='tools-description'>
+      {content.description.map((html, i) => (
+        <p key={i}>{parse(html)}</p>
+      ))}
+    </div>
   )
 
   return (
-    <div ref={inViewRef} className={'activity' + (open ? ' show' : ' ')}>
+    <div className={'activity acronym-tools fixed' + (open ? ' show' : ' ')}>
+      {toolboxFilterEnabled && <BadgeToolbox />}
+      <CloseBtn handleClick={handleClose} />
       <section className='tools' id='the-tools'>
         <header>
           <h2>{parse(content?.title)}</h2>
-          <div>{parse(content?.introduction)}</div>
+          <div className='intro'>{parse(content?.introduction)}</div>
         </header>
-        <MenuCarousel
-          handleClick={handleClick}
-          data={carouselData}
-          filterIDs={positiveIDsSet}
-          showFavourites={yourToolsEnabled}
-        />
-        <div className='tools-description'>
-          {content.description &&
-            content.description.map((html, i) => {
-              return <p key={i}>{parse(html)}</p>
-            })}
+        <div className='tools-wrapper'>
+          <MenuCarousel
+            handleClick={handleClick}
+            data={carouselData}
+            filterIDs={positiveIDsSet}
+            showFavourites={yourToolsEnabled}
+            description={descriptionContent}
+          />
         </div>
       </section>
     </div>

@@ -286,7 +286,7 @@ const useAppStore = create(
       setShowSnackbar: (v) => set(() => ({ showSnackbar: v })),
       // ----------------------------------------
       // Activity ID
-      activity: 0,
+      activity: -1,
       setActivity: (v) => {
         // console.trace(`setActivity called with value: ${v}`);
         set(() => ({ activity: v }));

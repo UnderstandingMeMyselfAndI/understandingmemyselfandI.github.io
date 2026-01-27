@@ -7,10 +7,12 @@
 	width: fit-content;
 	padding: 0;
 }
+
 .MuiSnackbar-anchorOriginTopCenter,
 .MuiSnackbar-anchorOriginBottomLeft {
-	> div {
+	>div {
 		background: var(--mainBackground) !important;
+
 		.MuiSnackbarContent-message {
 			color: var(--primary);
 			font-weight: variables.$p_weight;
@@ -19,7 +21,12 @@
 		}
 	}
 }
-.snackBar.alert ,
+
+.snackBar.alert,
 .snackbars {
 	z-index: 15500;
+
+	button {
+		box-shadow: none;
+	}
 }

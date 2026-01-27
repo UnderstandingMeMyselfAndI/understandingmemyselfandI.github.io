@@ -1,16 +1,17 @@
 @use "@/scss/_variables.scss";
 @import "@/globals.css";
 
-.daysCounterCTA {
+.activity-units-calculator-cta {
 	position: relative;
+	margin: 10dvh 0;
 
-	margin: 0 0 160px 0;
 	user-select: none;
 	visibility: hidden;
 	opacity: 0;
 	transition: opacity 0.15s cubic-bezier(0.5, 0, 0.9, 1);
 	position: relative;
 	z-index: -1;
+	text-align: left;
 
 	&.show {
 		visibility: visible;
@@ -23,36 +24,64 @@
 
 	.title {
 		font-size: variables.$h4_size;
-		font-weight: 600;
-		font-variation-settings: "wght" 600;
-		text-decoration-color: var(--yellow);
-		text-decoration-thickness: 5px;
-		text-decoration-style: solid;
-		text-decoration-line: underline;
+		font-weight: 500;
+		font-variation-settings: "wght" 500;
+		// text-decoration-color: var(--primary);
+		// text-decoration-thickness: 5px;
+		// text-decoration-style: solid;
+		// text-decoration-line: underline;
+		text-transform: uppercase;
 
-		span {
-			position: relative;
-			display: block;
+
+		width: 100%;
+
+		h3 {
 			width: fit-content;
-			margin: 0 auto;
+			padding: 0.25rem 0.45rem;
+			text-align: left;
+			color: var(--yellow);
+			font-weight: 500;
+			font-variation-settings: "wght" 500;
+			position: relative;
+			// background-color: var(--blueDark40Trans);
 
 			&::after {
-				content: " ";
-				width: 115%;
+				content: "";
+				width: 98%;
 				height: 110%;
-				background-color: var(--yellow);
-				outline: 1px solid var(--primary);
-				opacity: 0.2;
+				// background-color: var(--blue50Trans);
+				// outline: 1px solid var(--primary);
+				opacity: 1;
 				position: absolute;
-				top: 20%;
-				left: -15%;
+				top: 0%;
+				left: 0;
 				z-index: -1;
-
-				margin-top: -5%;
-				margin-left: 7.5%;
-				transform: rotate(3.5deg);
 			}
 		}
+
+		// span {
+		// 	position: relative;
+		// 	display: block;
+		// 	width: fit-content;
+		// 	margin: 0 auto;
+
+		// 	&::after {
+		// 		content: " ";
+		// 		width: 115%;
+		// 		height: 110%;
+		// 		background-color: var(--yellow);
+		// 		outline: 1px solid var(--primary);
+		// 		opacity: 0.2;
+		// 		position: absolute;
+		// 		top: 20%;
+		// 		left: -15%;
+		// 		z-index: -1;
+
+		// 		margin-top: -5%;
+		// 		margin-left: 7.5%;
+		// 		transform: rotate(3.5deg);
+		// 	}
+		// }
 	}
 
 

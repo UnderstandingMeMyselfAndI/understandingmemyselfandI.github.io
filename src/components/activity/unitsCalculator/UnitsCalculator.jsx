@@ -3,6 +3,7 @@ import { useShallow } from 'zustand/react/shallow'
 import useAppStore from '@/store/useAppStore'
 import BackdropParallax from '@/components/ui/backdrop/BackdropParallax'
 import CloseBtn from '../../ui/buttons/close/CloseBtn'
+import parse from 'html-react-parser'
 import './styles.scss'
 
 const calcUnits = (ml, abv) => (ml * abv) / 1000
@@ -50,6 +51,9 @@ const DRINK_PRESETS = [
   },
 ]
 
+const noDrinksMessage =
+  'No measures selected.<br /><br /> Add a drink with the <b>Measures</b> button<br /> or use <br /><b>Add Custom Drink</b>.'
+
 const UnitsCalculator = () => {
   const setActivity = useAppStore((state) => state.setActivity)
   const [type, setType] = useState('custom')
@@ -75,6 +79,7 @@ const UnitsCalculator = () => {
   }, [activity])
 
   const handleClose = () => {
+    console.log('handleClose')
     if (isMeasuresVisible) {
       setIsMeasuresVisible(false)
     } else {
@@ -147,10 +152,10 @@ const UnitsCalculator = () => {
       id='ummi-units-calculator'
       className={'activity ummi-units-calculator fixed' + (open ? ' open' : '')}
     >
-      {!isMeasuresVisible && (
-        <CloseBtn className='close-btn' handleClick={handleClose} />
-      )}
       <div className='inner'>
+        {!isMeasuresVisible && (
+          <CloseBtn className='close-btn' handleClick={handleClose} />
+        )}
         <div className='content'>
           <div className='wrap'>
             {' '}
@@ -164,50 +169,54 @@ const UnitsCalculator = () => {
             <section className='calculator-core'>
               <div className='selected-measures'>
                 <div className='instruction'>Tap row to remove</div>
-                <ul
-                  className={'measures ' + (drinks.length === 0 ? ' none' : '')}
-                >
-                  {[...drinks]
-                    .sort(
-                      (a, b) =>
-                        calcUnits(a.volume, a.abv) - calcUnits(b.volume, b.abv),
-                    )
-                    .map((d) => (
-                      <li
-                        key={d.id}
-                        className='drinks-entry'
-                        onClick={() => removeDrink(d.id)}
-                      >
-                        {/* <input
-                  type='number'
-                  value={d.volume}
-                  onChange={(e) => updateDrink(d.id, 'volume', e.target.value)}
-                />{' '} */}
-                        <div className='desc'>
-                          <div className='row-1'>
-                            <div className='multiplier'>{d.count}x</div>{' '}
-                            <div className='label'>
-                              {d.label} <span>({d.type})</span>{' '}
-                            </div>
-                          </div>{' '}
-                          <div className='row-2'>
-                            <div className='vol'>
-                              {d.volume} {d.unit}
+                {drinks.length === 0 ? (
+                  <div className='no-measures'>
+                    {' '}
+                    <div className='no-drinks-selected '>
+                      {parse(noDrinksMessage)}
+                    </div>
+                  </div>
+                ) : (
+                  <ul
+                    className={
+                      'measures ' + (drinks.length === 0 ? ' none' : '')
+                    }
+                  >
+                    {[...drinks]
+                      .sort(
+                        (a, b) =>
+                          calcUnits(a.volume, a.abv) -
+                          calcUnits(b.volume, b.abv),
+                      )
+                      .map((d) => (
+                        <li
+                          key={d.id}
+                          className='drinks-entry'
+                          onClick={() => removeDrink(d.id)}
+                        >
+                          <div className='desc'>
+                            <div className='row-1'>
+                              <div className='multiplier'>{d.count}x</div>{' '}
+                              <div className='label'>
+                                {d.label} <span>({d.type})</span>{' '}
+                              </div>
                             </div>{' '}
-                            <div className='pct-abv'>{d.abv} % ABV</div>
+                            <div className='row-2'>
+                              <div className='vol'>
+                                {d.volume} {d.unit}
+                              </div>{' '}
+                              <div className='pct-abv'>{d.abv} % ABV</div>
+                            </div>
                           </div>
-                        </div>
-                        <div className='equals'>=</div>
-                        <div className='units'>
-                          {(calcUnits(d.volume, d.abv) * d.count).toFixed(2)}{' '}
-                          units
-                        </div>
-                        {/* <button className='measure-action'>
-                          {d.count > 1 ? '-' : '✕'}
-                        </button> */}
-                      </li>
-                    ))}
-                </ul>
+                          <div className='equals'>=</div>
+                          <div className='units'>
+                            {(calcUnits(d.volume, d.abv) * d.count).toFixed(2)}{' '}
+                            units
+                          </div>
+                        </li>
+                      ))}
+                  </ul>
+                )}
                 <div className='drinks-total'>
                   <div className='drinks-total-wrap'>
                     <h3>

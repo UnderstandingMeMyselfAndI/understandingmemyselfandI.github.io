@@ -213,7 +213,7 @@ $h1_line_height: 1.2;
 // H2 font size
 // ------------------------------------------
 
-$h2_size_min: 56px;
+$h2_size_min: 50px;
 $h2_size_max: 88px;
 $h2_size: responsiveFontSize($h2_size_min,
     $h2_size_max,
@@ -317,8 +317,8 @@ $small_style: normal;
 // Medium font size
 // ------------------------------------------
 
-$med_size_min: 26px;
-$med_size_max: 58px;
+$med_size_min: 14px;
+$med_size_max: 20px;
 $med_size: responsiveFontSize($med_size_min,
     $med_size_max,
     $minDeviceWidth,

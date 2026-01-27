@@ -35,8 +35,8 @@ export const MenuCloseIcon = () => (
 export default function AppMenu() {
   // const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false)
-  const [showComponent, setOpenComponent] = useState(true)
-  const [show, setShow] = useState(true)
+  const [showMenu, setShowMenu] = useState(true)
+  const [openMenu, setOpenMenu] = useState(false)
 
   const daysCounterEnabled = useAppStore((state) => state.daysCounterEnabled)
   const unitsCalculatorEnabled = useAppStore((s) => s.unitsCalculatorEnabled)
@@ -51,20 +51,21 @@ export default function AppMenu() {
   const nss = useAppStore((s) => s.nss) // subscribed to newsletter
   const setRoute = useAppStore((s) => s.setRoute) // subscribed to newsletter
 
-  useEffect(() => {
-    setOpenComponent(activity === -1)
-  }, [activity])
+  // useEffect(() => {
+  //   // setOpen(activity === -1)
+  // }, [activity])
 
   const toggleOpen = () => {
     setOpen(!open)
   }
   const handleClose = (obj) => {
     // setActivity(-1);
-    setOpen(false)
+    if (!obj) return
     setRoute({
       url: obj.url,
       title: obj.title,
     })
+    setOpen(false)
   }
 
   function findObj(id) {
@@ -78,14 +79,14 @@ export default function AppMenu() {
     const obj = activities.find((a) =>
       parseInt(a.id) === parseInt(activity) ? activity : null,
     )
-
+    setShowMenu(activity === -1)
     if (obj) {
-      setShow(obj.menu)
+      setOpenMenu(obj.menu)
     }
   }, [activity])
 
-  return showComponent ? (
-    <div className={'AppMenu' + (show ? ' ' : ' hide')}>
+  return showMenu ? (
+    <div className={'AppMenu' + (openMenu ? ' ' : ' hide')}>
       <div className='burger-stack' id='burger-button'>
         <input
           type='checkbox'
@@ -118,17 +119,17 @@ export default function AppMenu() {
               })
             }
 
-            requestAnimationFrame(() => {
-              const el = document.getElementById('the-tools')
-              el.scrollIntoView(true)
-            })
+            // requestAnimationFrame(() => {
+            //   const el = document.getElementById('the-tools')
+            //   el.scrollIntoView(true)
+            // })
 
-            const activityObj = findObj(12)
+            const activityObj = findObj(1)
             handleClose({
               url: activityObj.url,
               title: activityObj.url,
             })
-            setActivity(-1) // temp solution
+            setActivity(1) // temp solution
           }}
         >
           Tools

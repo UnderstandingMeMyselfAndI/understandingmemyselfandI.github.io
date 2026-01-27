@@ -23,7 +23,7 @@
   --backgroundGrayTrans85: rgba(10, 10, 10, 0.85);
   --backgroundGrayTrans90: rgba(10, 10, 10, 0.9);
   --backgroundGrayTrans95: rgba(10, 10, 10, 0.95);
-  --backgroundActivity: rgba(10, 10, 10, 0.65);
+  --backgroundActivity: rgba(57, 51, 104, 0.5);
   --mainBackground: linear-gradient(
     140deg,
     rgba(27, 134, 158, 1) 0%,
@@ -31,7 +31,7 @@
   );
   --background: rgba(27, 134, 158, 1);
   --foreground: oklch(0.985 0 0);
-  --yellow: #92dc41;
+  --yellow: #e4e021;
   --yellow2: #7dbd38;
   --yellow90Trans: rgba(255, 255, 0, 0.9);
   --yellow80Trans: rgba(255, 255, 0, 0.8);
@@ -89,15 +89,15 @@
   --red: #e83737;
   --green: #257e94;
   --greyDark: #0a0a0a;
-  --greyDark90Tran: rgba(10, 10, 10, 0.9);
-  --greyDark80Tran: rgba(10, 10, 10, 0.8);
-  --greyDark70Tran: rgba(10, 10, 10, 0.7);
-  --greyDark60Tran: rgba(10, 10, 10, 0.6);
-  --greyDark50Tran: rgba(10, 10, 10, 0.5);
-  --greyDark40Tran: rgba(10, 10, 10, 0.4);
-  --greyDark30Tran: rgba(10, 10, 10, 0.3);
-  --greyDark20Tran: rgba(10, 10, 10, 0.2);
-  --greyDark10Tran: rgba(10, 10, 10, 0.1);
+  --greyDark90Trans: rgba(10, 10, 10, 0.9);
+  --greyDark80Trans: rgba(10, 10, 10, 0.8);
+  --greyDark70Trans: rgba(10, 10, 10, 0.7);
+  --greyDark60Trans: rgba(10, 10, 10, 0.6);
+  --greyDark50Trans: rgba(10, 10, 10, 0.5);
+  --greyDark40Trans: rgba(10, 10, 10, 0.4);
+  --greyDark30Trans: rgba(10, 10, 10, 0.3);
+  --greyDark20Trans: rgba(10, 10, 10, 0.2);
+  --greyDark10Trans: rgba(10, 10, 10, 0.1);
   --greyLight: #7a7a7a;
   --greyLight2: #535353;
   --greyMid: #535353;

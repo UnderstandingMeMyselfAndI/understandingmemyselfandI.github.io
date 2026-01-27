@@ -1,252 +1,327 @@
-import React from "react";
-import {useRef, useEffect, useCallback, useMemo, useState} from "react";
-import Skeleton from "@mui/material/Skeleton";
+import React from 'react'
+import { useRef, useEffect, useCallback, useMemo, useState } from 'react'
+import Skeleton from '@mui/material/Skeleton'
 import HandymanIcon from '@mui/icons-material/Handyman'
-import PropTypes from "prop-types";
-// import useAppStore from '@/store/useAppStore'
-// import toolsData from "../../../data/tools.js";
-// const data = toolsData.tools.nodes
-import "./MenuCarousel.scss";
+import PropTypes from 'prop-types'
+import './MenuCarousel.scss'
+
 // Default configuration
 const DEFAULT_CONFIG = {
-	minOpacity: 0.2,
-	minScale: 0.5,
-	fadeBoundary: 0.2,
-	centerZoneHeight: 0.4,
-	transitionSpeed: "0.2s",
-};
+  minOpacity: 0.2,
+  minScale: 0.5,
+  fadeBoundary: 0.2,
+  centerZoneHeight: 0.4,
+  transitionSpeed: '0.2s',
+}
 
 // Custom hook for scroll effects
-const useScrollEffects = (config = DEFAULT_CONFIG) => {
-	const itemsRef = useRef([]);
-	const rafId = useRef(null);
-	const isActive = useRef(true);
+const useScrollEffects = (config = DEFAULT_CONFIG, scrollContainer = null) => {
+  const itemsRef = useRef([])
+  const rafId = useRef(null)
+  const isActive = useRef(true)
 
-	const calculateEffects = useCallback(() => {
-		if (!isActive.current) return;
+  const calculateEffects = useCallback(() => {
+    if (!isActive.current) return
 
-		const viewportHeight = window.innerHeight;
-		const viewportCenter = viewportHeight / 2;
+    // Use provided container or window
+    const container = scrollContainer?.current || window
+    const viewportHeight =
+      container === window ? window.innerHeight : container.clientHeight
 
-		// Calculate boundaries
-		const fadeBoundaryPixels = viewportHeight * config.fadeBoundary;
-		const centerZonePixels = viewportHeight * config.centerZoneHeight;
-		const centerZoneTop = viewportCenter - centerZonePixels / 2;
-		const centerZoneBottom = viewportCenter + centerZonePixels / 2;
+    itemsRef.current.forEach((item) => {
+      if (!item?.element || !item.isCarouselItem) return
 
-		itemsRef.current.forEach(item => {
-			if (!item?.element) return;
+      const rect = item.element.getBoundingClientRect()
 
-			const rect = item.element.getBoundingClientRect();
-			const elementCenter = rect.top + rect.height / 2;
+      // Get element position relative to container
+      let elementTop, elementHeight
+      if (container === window) {
+        elementTop = rect.top
+        elementHeight = rect.height
+      } else {
+        const containerRect = container.getBoundingClientRect()
+        elementTop = rect.top - containerRect.top
+        elementHeight = rect.height
+      }
 
-			let opacity = 1;
-			let scale = 1;
+      const elementCenter = elementTop + elementHeight / 2
+      const viewportCenter = viewportHeight / 2
 
-			// Check if element is outside center zone
-			if (elementCenter < centerZoneTop || elementCenter > centerZoneBottom) {
-				let distance = 0;
+      // Calculate boundaries
+      const fadeBoundaryPixels = viewportHeight * config.fadeBoundary
+      const centerZonePixels = viewportHeight * config.centerZoneHeight
+      const centerZoneTop = viewportCenter - centerZonePixels / 2
+      const centerZoneBottom = viewportCenter + centerZonePixels / 2
 
-				if (elementCenter < centerZoneTop) {
-					distance = (centerZoneTop - elementCenter) / fadeBoundaryPixels;
-				} else {
-					distance = (elementCenter - centerZoneBottom) / fadeBoundaryPixels;
-				}
+      let opacity = 1
+      let scale = 1
 
-				// Exponential falloff
-				const progress = Math.min(1, Math.max(0, distance));
-				const exponentialProgress = progress * progress;
+      // Check if element is outside center zone
+      if (elementCenter < centerZoneTop || elementCenter > centerZoneBottom) {
+        let distance = 0
 
-				opacity = 1 - (1 - config.minOpacity) * exponentialProgress;
-				scale = 1 - (1 - config.minScale) * exponentialProgress;
-			}
+        if (elementCenter < centerZoneTop) {
+          distance = (centerZoneTop - elementCenter) / fadeBoundaryPixels
+        } else {
+          distance = (elementCenter - centerZoneBottom) / fadeBoundaryPixels
+        }
 
-			// Apply styles with transition
-			item.element.style.opacity = opacity;
-			item.element.style.transform = `scale(${scale})`;
-		});
+        // Exponential falloff
+        const progress = Math.min(1, Math.max(0, distance))
+        const exponentialProgress = progress * progress
 
-		rafId.current = requestAnimationFrame(calculateEffects);
-	}, [config]);
+        opacity = 1 - (1 - config.minOpacity) * exponentialProgress
+        scale = 1 - (1 - config.minScale) * exponentialProgress
+      }
 
-	const start = useCallback(() => {
-		if (isActive.current) return;
-		isActive.current = true;
-		rafId.current = requestAnimationFrame(calculateEffects);
-	}, [calculateEffects]);
+      // Apply styles with transition
+      item.element.style.opacity = opacity
+      item.element.style.transform = `scale(${scale})`
+    })
 
-	const stop = useCallback(() => {
-		isActive.current = false;
-		if (rafId.current) {
-			cancelAnimationFrame(rafId.current);
-			rafId.current = null;
-		}
-	}, []);
+    rafId.current = requestAnimationFrame(calculateEffects)
+  }, [config, scrollContainer])
 
-	const registerItem = useCallback((index, element) => {
-		itemsRef.current[index] = {element};
-	}, []);
+  const start = useCallback(() => {
+    if (isActive.current) return
+    isActive.current = true
+    rafId.current = requestAnimationFrame(calculateEffects)
+  }, [calculateEffects])
 
-	const unregisterItem = useCallback(index => {
-		itemsRef.current[index] = null;
-	}, []);
+  const stop = useCallback(() => {
+    isActive.current = false
+    if (rafId.current) {
+      cancelAnimationFrame(rafId.current)
+      rafId.current = null
+    }
+  }, [])
 
-	useEffect(() => {
-		start();
-		return () => stop();
-	}, [start, stop]);
+  const registerItem = useCallback((index, element, isCarouselItem = true) => {
+    itemsRef.current[index] = { element, isCarouselItem }
+  }, [])
 
-	return {
-		start,
-		stop,
-		registerItem,
-		unregisterItem,
-	};
-};
+  const unregisterItem = useCallback((index) => {
+    itemsRef.current[index] = null
+  }, [])
 
-// Individual list item component
-const VerticalListItem = ({children, index, registerItem, unregisterItem, style = {}}) => {
-	const elementRef = useRef(null);
+  useEffect(() => {
+    start()
+    return () => stop()
+  }, [start, stop])
 
-	useEffect(() => {
-		if (elementRef.current) {
-			registerItem(index, elementRef.current);
-		}
-
-		return () => unregisterItem(index);
-	}, [index, registerItem, unregisterItem]);
-
-	return (
-		<div
-			ref={elementRef}
-			className={"list-item"}
-			style={{
-				width: "100%",
-				// height: "100px",
-				transition: "opacity 0.2s, transform 0.2s",
-				transformOrigin: "center center",
-				...style,
-			}}
-		>
-			{children}
-		</div>
-	);
-};
-
-VerticalListItem.propTypes = {
-	children: PropTypes.node,
-	index: PropTypes.number.isRequired,
-	registerItem: PropTypes.func.isRequired,
-	unregisterItem: PropTypes.func.isRequired,
-	style: PropTypes.object,
-};
-
-// Main vertical list component
-const VerticalList = ({children, config = DEFAULT_CONFIG, isActive = true, itemStyle = {}, className = ""}) => {
-	const {start, stop, registerItem, unregisterItem} = useScrollEffects(config);
-
-	// Control scroll listener
-	useEffect(() => {
-		if (isActive) {
-			start();
-		} else {
-			stop();
-		}
-	}, [isActive, start, stop]);
-
-	const items = useMemo(() => {
-		return React.Children.map(children, (child, index) => (
-			<VerticalListItem
-				className={"list-item"}
-				key={index}
-				index={index}
-				registerItem={registerItem}
-				unregisterItem={unregisterItem}
-				style={itemStyle}
-			>
-				{child}
-			</VerticalListItem>
-		));
-	}, [children, registerItem, unregisterItem, itemStyle]);
-
-	return (
-		<div
-			className={`accronym-menu ${className}`}
-			style={{width: "100%"}}
-		>
-			{items}
-		</div>
-	);
-};
-
-VerticalList.propTypes = {
-	children: PropTypes.node.isRequired,
-	config: PropTypes.shape({
-		minOpacity: PropTypes.number,
-		minScale: PropTypes.number,
-		fadeBoundary: PropTypes.number,
-		centerZoneHeight: PropTypes.number,
-		transitionSpeed: PropTypes.string,
-	}),
-	isActive: PropTypes.bool,
-	itemStyle: PropTypes.object,
-	className: PropTypes.string,
-};
-
-
-
-const MenuCarousel = ({ data, filterIDs, showFavourites, handleClick }) => {
-	const [open, setOpen] = useState(false)
-
-	const customConfig = {
-		minOpacity: 0.35,
-		minScale: 0.35,
-		fadeBoundary: 0.35,
-		centerZoneHeight: 0.025,
-		transitionSpeed: '0.25s',
-	}
-
-	const items = data.map((item, index) => {
-		const isSelected = filterIDs.has(item.id) // O(1) lookup
-
-		if (!item) {
-			return <Skeleton key={`skeleton-${index}`} variant='rounded' width='100%' height={200} animation='wave' />
-		}
-
-		return (
-			<div key={`AccordionItem-cont-${item.id ?? index}`} className={'carousel-item' + (isSelected ? ' selected' : '')} onClick={handleClick(item.id)}>
-				<div className='AccordionItem inner item' key={`AccordionItem-${item.id ?? index}`} style={{ cursor: 'pointer' }}>
-					<div className='title' aria-controls={`Accronym-${index}-content`} id={`panel${item?.id}-header`}>
-						{showFavourites && <HandymanIcon className={'icon' + (isSelected ? ' active' : '')} key={`AccordionItem-icon-${item.id ?? index}`} />}
-
-						<div className='letters-cont'>
-							{item.title.split('.').map(
-								(subItem, i) =>
-									subItem && (
-										<div key={i} className='letter' data-content={subItem}>
-											{subItem}
-										</div>
-									),
-							)}
-						</div>
-					</div>
-				</div>
-			</div>
-		)
-	})
-
-	return (
-		<div className={'AccordionRoot' + (open ? ' expanded' : '')}>
-			<VerticalList config={customConfig} isActive={true} itemStyle={{ marginBottom: '10px' }}>
-				{items}
-			</VerticalList>
-		</div>
-	)
+  return {
+    start,
+    stop,
+    registerItem,
+    unregisterItem,
+  }
 }
+
+// Individual list item component for carousel items
+const CarouselListItem = ({
+  children,
+  index,
+  registerItem,
+  unregisterItem,
+  style = {},
+}) => {
+  const elementRef = useRef(null)
+
+  useEffect(() => {
+    if (elementRef.current) {
+      registerItem(index, elementRef.current, true)
+    }
+
+    return () => unregisterItem(index)
+  }, [index, registerItem, unregisterItem])
+
+  return (
+    <div
+      ref={elementRef}
+      className={'list-item carousel-item-wrapper'}
+      style={{
+        width: '100%',
+        transition: 'opacity 0.2s, transform 0.2s',
+        transformOrigin: 'center center',
+        ...style,
+      }}
+    >
+      {children}
+    </div>
+  )
+}
+
+CarouselListItem.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  registerItem: PropTypes.func.isRequired,
+  unregisterItem: PropTypes.func.isRequired,
+  style: PropTypes.object,
+}
+
+// Description component (no scroll effects applied)
+const DescriptionItem = ({ children, registerItem, unregisterItem, index }) => {
+  const elementRef = useRef(null)
+
+  useEffect(() => {
+    if (elementRef.current) {
+      registerItem(index, elementRef.current, false)
+    }
+
+    return () => unregisterItem(index)
+  }, [index, registerItem, unregisterItem])
+
+  return (
+    <div ref={elementRef} className='description-container'>
+      {children}
+    </div>
+  )
+}
+
+DescriptionItem.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  registerItem: PropTypes.func.isRequired,
+  unregisterItem: PropTypes.func.isRequired,
+}
+
+// Main carousel component
+const MenuCarousel = ({
+  data,
+  filterIDs,
+  showFavourites,
+  handleClick,
+  description,
+}) => {
+  const [open, setOpen] = useState(false)
+  const scrollContainerRef = useRef(null)
+
+  const customConfig = {
+    minOpacity: 0.35,
+    minScale: 0.35,
+    fadeBoundary: 0.35,
+    centerZoneHeight: 0.025,
+    transitionSpeed: '0.25s',
+  }
+
+  const { start, stop, registerItem, unregisterItem } = useScrollEffects(
+    customConfig,
+    scrollContainerRef,
+  )
+
+  // Control scroll listener
+  useEffect(() => {
+    start()
+    return () => stop()
+  }, [start, stop])
+
+  const carouselItems = useMemo(() => {
+    return data.map((item, index) => {
+      const isSelected = filterIDs.has(item.id)
+
+      if (!item) {
+        return (
+          <Skeleton
+            key={`skeleton-${index}`}
+            variant='rounded'
+            width='100%'
+            height={200}
+            animation='wave'
+          />
+        )
+      }
+
+      return (
+        <CarouselListItem
+          key={`carousel-item-${item.id ?? index}`}
+          index={index}
+          registerItem={registerItem}
+          unregisterItem={unregisterItem}
+          style={{ marginBottom: '4px' }}
+        >
+          <div
+            className={'carousel-item' + (isSelected ? ' selected' : '')}
+            onClick={handleClick(item.id)}
+          >
+            <div
+              className='AccordionItem inner item'
+              style={{ cursor: 'pointer' }}
+            >
+              <div
+                className='title'
+                aria-controls={`Accronym-${index}-content`}
+                id={`panel${item?.id}-header`}
+              >
+                {showFavourites && (
+                  <HandymanIcon
+                    className={'icon' + (isSelected ? ' active' : '')}
+                  />
+                )}
+
+                <div className='letters-cont'>
+                  {item.title.split('.').map(
+                    (subItem, i) =>
+                      subItem && (
+                        <div key={i} className='letter' data-content={subItem}>
+                          {subItem}
+                        </div>
+                      ),
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </CarouselListItem>
+      )
+    })
+  }, [
+    data,
+    filterIDs,
+    showFavourites,
+    handleClick,
+    registerItem,
+    unregisterItem,
+  ])
+
+  return (
+    <div
+      className={'AccordionRoot' + (open ? ' expanded' : '')}
+      ref={scrollContainerRef}
+      style={{
+        height: '100%',
+        overflowY: 'auto',
+        position: 'relative',
+        WebkitOverflowScrolling: 'touch',
+      }}
+    >
+      {/* Top padding to center first items */}
+      <div style={{ paddingTop: '40vh' }} />
+
+      <div className='accronym-menu'>{carouselItems}</div>
+
+      {/* Add description at the bottom with its own padding */}
+      {description && (
+        <DescriptionItem
+          index={data.length} // Use data length as index to avoid conflicts
+          registerItem={registerItem}
+          unregisterItem={unregisterItem}
+        >
+          <div className='content'>{description}</div>
+        </DescriptionItem>
+      )}
+
+      {/* Bottom padding for scrolling space */}
+      <div style={{ paddingBottom: '20vh' }} />
+    </div>
+  )
+}
+
 MenuCarousel.propTypes = {
-	data: PropTypes.array.isRequired,
-	filterIDs: PropTypes.array.isRequired,
-	showFavourites: PropTypes.bool,
-	handleClick: PropTypes.func,
+  data: PropTypes.array.isRequired,
+  filterIDs: PropTypes.object.isRequired,
+  showFavourites: PropTypes.bool,
+  handleClick: PropTypes.func,
+  description: PropTypes.node,
 }
-export default MenuCarousel;
+
+export default MenuCarousel

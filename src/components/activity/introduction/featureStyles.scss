@@ -9,7 +9,7 @@
 section.intro .feature {
 
     position: relative;
-    min-height: 30dvh;
+    margin: 10dvh 0;
     width: 100%;
     max-width: var(--max-width);
     // margin: 0 auto;
@@ -27,23 +27,23 @@ section.intro .feature {
         justify-content: center;
         row-gap: 0;
         padding: 0;
-        margin: 0;
+        margin: 0 0 0;
         height: auto;
     }
 
     .icon {
         position: absolute;
-        left: 50%;
-        right: 50%;
-        top: 50%;
-        bottom: 50%;
-        width: 80%;
+        left: auto; // right: 50%;
+        top: 20px;
+        left: 0;
+        // bottom: 50%;
+        width: 60px;
         max-width: 240px;
-        height: 100%;
+        height: auto;
         z-index: 100;
-        opacity: 0.2;
+        opacity: 0.6;
         fill: var(--yellow);
-        transform: translate(-50%, -50%) scale(1);
+        transform: translate(-0%, -50%) scale(1);
         transition: all 0.5s ease-in-out;
         margin-top: 0;
     }
