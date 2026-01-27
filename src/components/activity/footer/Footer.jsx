@@ -1,43 +1,44 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
-import QRCode from 'ui/QRCode/QRCode.jsx';
-import FooterMetadata from '@/components/activity/footer/FooterMetadata.jsx';
-import UpdateCTA from '../../ui/updateCTA/updateCTA';
-import useAppStore from '@/store/useAppStore';
+import QRCode from 'ui/QRCode/QRCode.jsx'
+import FooterMetadata from '@/components/activity/footer/FooterMetadata.jsx'
+import UpdateCTA from '../../ui/updateCTA/updateCTA'
+import useAppStore from '@/store/useAppStore'
 
-import './styles.scss';
+import './styles.scss'
 function Footer() {
-  const activity = useAppStore((state) => state.activity);
-  const [open, setOpen] = useState(false);
+  const activity = useAppStore((state) => state.activity)
+  const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    setOpen(activity === -1);
-  }, [activity]);
+    setOpen(activity === -1)
+  }, [activity])
 
   return (
-    <div id='footer' className={'activity activity-footer' + (open ? ' show' : '')}>
+    <div
+      id='footer'
+      className={'activity activity-footer' + (open ? ' show' : '')}
+    >
       <section className='qr' id='share'>
         <h3>
-          <u>Spread the love</u>
+          <u className='yellow-ul'>Spread the love</u>
         </h3>
         <p>
-          <u>Share the app,</u> <br />
-          <u>scan the QR Code</u>
-        </p>
-        <QRCode label='' />
-        <p>
           <b>
-            <u>www.ummi.now</u>
+            {' '}
+            <u>Share the app,</u> <br />
+            <u>scan the QR Code</u>
           </b>
         </p>
+        <QRCode label='' />
+        <p>www.ummi.now</p>
       </section>
 
       <section id='gratitude'>
-        <div className='big2'>
-           <h3>
+        <h3>
           <u>Gratitude &amp; Inspiration</u>
-          </h3>
-        </div>
+        </h3>
+
         <p>
           This app was inspired by the amazing people who facilitate groups and
           meetings at
@@ -152,12 +153,13 @@ function Footer() {
           </span>
         </p>
       </section>
+      <section>
+        <UpdateCTA />
 
-      <UpdateCTA />
-
-      <FooterMetadata />
+        <FooterMetadata />
+      </section>
     </div>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

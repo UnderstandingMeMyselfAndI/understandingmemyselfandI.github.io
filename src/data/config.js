@@ -10,6 +10,7 @@ import AutoGraphOutlinedIcon from '@mui/icons-material/AutoGraphOutlined';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import UmmiIcon from '@/components/ui/icons/UmmiIcon';
 import BlurOnOutlinedIcon from '@mui/icons-material/BlurOnOutlined';
+import {isTouchDevice} from '@/js/utils.js';
 // import { title } from "process";
 const cnf = {
   appName: 'Ummi',
@@ -259,30 +260,36 @@ const strings = {
             '<span class="ummi">U</span>nderstanding <span class="ummi">M</span>e, <span class="ummi">M</span>yself, and <span class="ummi">I</span> <span class="ummi">(U.M.M.I)</span> is your <u class="yellow">FREE</u> companion app.',
           ],
         },
-
-        {
-          title: 'Your Recovery Toolbox',
-          icon: HandymanIcon,
-          content: [
-            '<span>Addiction <u>Recovery tools explained</u>.</span>',
-            '<span>Find tools <u>that work for you</u>.</span>',
-            '<span>Create <u>your own toolbox</u>.</span>',
-            '<span>Easily to understand descriptions.</span>',
-            '<span>Scenarios describing <u>when tools could be useful</u>.</span>',
-            '<span>Private <u>Days Counter</u> to track recovery.</span>',
-            '<span>Quick Exit button. <u>Leave quick to Google.com</u><br /></span>',
-            '<span><u>Complete privacy</u> you control.</span>',
-            '<span>Erase all data, <u>instantly</u>, <u>at anytime</u>.</span>',
-          ],
-        },
-        {
+      {
           title: 'Who is Ummi for?',
           content: [
-            'If you\'re learning recovery tools <br />at groups using <br />ACT, CBT, DBT, REBT, or SMART therapies?<br /><br /><b class="lrg">this app is for you.</b>',
-            '<u>The tools are ace. <b>But remembering them<br /> can be hard</u>.</b> ',
-            '<b>Ummi helps you find and use <u>tools that work for you, <br />and your journey</u>.</b> ',
+             'If you\'re looking for information about <b><u class="orange-ul">Alcohol Recovery </u></b> <br /><br /><u class="yellow-ul lrg">this app is for you.</u>',
+            'If you\'re learning <b><u class="orange-ul">recovery tools</u></b> <br />at groups using <br /><b><u class="blue-ul">ACT, CBT, DBT, REBT, or SMART therapies?</u></b><br /><br /><u class="yellow-ul lrg">this app is for you.</u>.',
+            '<u class="white-ul"><b><span class="ummi">Ummi</span></b></u> was created because <u class="yellow-ul lrg">the tools are great</u>.',
+            ' But remembering them<br /> <u><b>can be hard</u></b>.',
+            '<u class="white-ul"><b><span class="ummi">Ummi</span></b></u> helps you <u class="blue-ul">find  tools</u> that work <b><u class="yellow-ul">for you,</u></b> and <b><u>your journey</u>.</b> ',
+            'Completely <b><u class="yellow-ul lrg">for free</b></u>'
           ],
         },
+        {
+          title: 'Ummi provides:',
+          icon: HandymanIcon,
+          content: [
+            'Explanations of <u>Addiction Recovery tools </u>.',
+            'Scenarios describing <u>when tools could be useful</u>.',
+            // 'Find tools <u>that work for you</u>.',
+            'Favourites feature to save tools to <u class="yellow-ul">your own toolbox</u>.',
+            // 'Easily to understand descriptions.',
+            
+            '<u class="yellow-ul">Private Days Counter</u> to <u>track recovery</u>.',
+            '<u>Alcohol Units Calculator</u>.',
+            '<u class="yellow-ul">Recovery <b>lingo &amp; Phrases</b> explained.</u>.',
+            '<b>Quick Exit button.</b> <u>Leave fast</u> to Google.com<br />Just in case it\'s needed.',
+            '<b>Complete privacy</b> <u>you control</u>. Erase <u class="yellow-ul">all data</u>, <u >instantly</u>, <u class="yellow-ul">at anytime</u>.',
+            '',
+          ],
+        },
+       
       ],
       installed: {
         content: [
@@ -341,12 +348,12 @@ const strings = {
       name: 'tools',
       slug: '#recovery-tools',
       title: 'The<br />Tools',
+      introduction: (isTouchDevice() ? "Tap" : "Click") + ' on a tool to learn more about it',
       description: [
         "These tools don't <br />work for <u>everbody</u>.",
         'They might work for <br /><u>one person</u> <br />but not the <u>next</u>.',
         'They have worked for <br /><u>somebody</u>.',
-        "<u><span class='orange'>Everbody's journey <br />is different.</span></u>",
-        // "Some tools also include videos that help to explain them."
+        "<u><span class='yellow-ul'>Everbody's journey <br />is different.</span></u>",
       ],
       content: [],
       btnLabel: '',
@@ -370,7 +377,20 @@ const strings = {
       cta: {
         title: 'Days Counter',
         content: [
-          'Track your progress and remind yourself<br /> how far you have come.',
+          'Track your progress and remind yourself  how far you have come.',
+        ],
+      },
+    },
+    {
+      name: 'UnitsCalculator',
+      title: 'Units Calculator',
+      slug: 'units-calculator',
+      btnLabel: 'Units Calculator',
+      content: [],
+      cta: {
+        title: 'Units Calculator',
+        content: [
+          'Calculate the Alcholic Units for standard measures and custom drink sizes and ABV.',
         ],
       },
     },

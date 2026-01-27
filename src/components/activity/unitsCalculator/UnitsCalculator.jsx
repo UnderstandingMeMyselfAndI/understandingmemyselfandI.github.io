@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
-import { useShallow } from 'zustand/react/shallow';
-import useAppStore from '@/store/useAppStore';
-import BackdropParallax from '@/components/ui/backdrop/BackdropParallax';
-import CloseBtn from '../../ui/buttons/close/CloseBtn';
-import './styles.scss';
+import { useState, useEffect } from 'react'
+import { useShallow } from 'zustand/react/shallow'
+import useAppStore from '@/store/useAppStore'
+import BackdropParallax from '@/components/ui/backdrop/BackdropParallax'
+import CloseBtn from '../../ui/buttons/close/CloseBtn'
+import './styles.scss'
 
-const calcUnits = (ml, abv) => (ml * abv) / 1000;
+const calcUnits = (ml, abv) => (ml * abv) / 1000
 
 const DRINK_PRESETS = [
   {
@@ -48,40 +48,40 @@ const DRINK_PRESETS = [
     type: 'custom',
     drinks: [],
   },
-];
+]
 
 const UnitsCalculator = () => {
-  const setActivity = useAppStore((state) => state.setActivity);
-  const [type, setType] = useState('custom');
-  const [isMeasuresVisible, setIsMeasuresVisible] = useState(false);
-  const [multiplier, setMultiplier] = useState(1);
+  const setActivity = useAppStore((state) => state.setActivity)
+  const [type, setType] = useState('custom')
+  const [isMeasuresVisible, setIsMeasuresVisible] = useState(false)
+  const [multiplier, setMultiplier] = useState(1)
   const [customDrink, setCustomDrink] = useState({
     label: 'Custom Drink',
     volume: 440,
     unit: 'ml',
     abv: 5,
     count: 1,
-  });
+  })
 
-  const [open, setOpen] = useState(false);
-  const [drinks, setDrinks] = useState([]);
+  const [open, setOpen] = useState(false)
+  const [drinks, setDrinks] = useState([])
 
   const { activity } = useAppStore(
     useShallow((state) => ({ activity: state.activity })),
-  );
+  )
 
   useEffect(() => {
-    setOpen(activity === 5);
-  }, [activity]);
+    setOpen(activity === 5)
+  }, [activity])
 
   const handleClose = () => {
     if (isMeasuresVisible) {
-      setIsMeasuresVisible(false);
+      setIsMeasuresVisible(false)
     } else {
-      setOpen(false);
-      setActivity(-1);
+      setOpen(false)
+      setActivity(-1)
     }
-  };
+  }
 
   const addDrink = (preset, countToAdd = 1) => {
     const existingDrink = drinks.find(
@@ -89,34 +89,34 @@ const UnitsCalculator = () => {
         d.label === preset.label &&
         d.volume === preset.volume &&
         d.abv === preset.abv,
-    );
+    )
 
     if (existingDrink) {
       setDrinks(
         drinks.map((d) =>
           d.id === existingDrink.id ? { ...d, count: d.count + countToAdd } : d,
         ),
-      );
+      )
     } else {
       setDrinks([
         ...drinks,
         { ...preset, id: crypto.randomUUID(), count: countToAdd },
-      ]);
+      ])
     }
-  };
+  }
 
   const handleCustomDrinkChange = (e) => {
-    const { name, value } = e.target;
-    setCustomDrink((prev) => ({ ...prev, [name]: value }));
-  };
+    const { name, value } = e.target
+    setCustomDrink((prev) => ({ ...prev, [name]: value }))
+  }
 
   const handleCustomDrinkSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     addDrink(
       { ...customDrink, type: 'custom' },
       parseInt(customDrink.count, 10) || 1,
-    );
-  };
+    )
+  }
 
   // const updateDrink = (id, field, value) => {
   //   setDrinks(
@@ -125,30 +125,31 @@ const UnitsCalculator = () => {
   // };
 
   const removeDrink = (id) => {
-    const drinkToRemove = drinks.find((d) => d.id === id);
+    const drinkToRemove = drinks.find((d) => d.id === id)
     if (drinkToRemove.count > 1) {
       setDrinks(
         drinks.map((d) => (d.id === id ? { ...d, count: d.count - 1 } : d)),
-      );
+      )
     } else {
-      setDrinks(drinks.filter((d) => d.id !== id));
+      setDrinks(drinks.filter((d) => d.id !== id))
     }
-  };
+  }
 
   const totalUnits = drinks.reduce(
     (sum, d) => sum + calcUnits(d.volume, d.abv) * d.count,
     0,
-  );
+  )
 
-  const totalDrinkCount = drinks.reduce((sum, d) => sum + d.count, 0);
+  const totalDrinkCount = drinks.reduce((sum, d) => sum + d.count, 0)
 
   return open ? (
     <section
-     id='ummi-units-calculator'
+      id='ummi-units-calculator'
       className={'activity ummi-units-calculator fixed' + (open ? ' open' : '')}
-     
     >
-     {!isMeasuresVisible && ( <CloseBtn className='close-btn' handleClick={handleClose} />)}
+      {!isMeasuresVisible && (
+        <CloseBtn className='close-btn' handleClick={handleClose} />
+      )}
       <div className='inner'>
         <div className='content'>
           <div className='wrap'>
@@ -162,20 +163,7 @@ const UnitsCalculator = () => {
             </header>
             <section className='calculator-core'>
               <div className='selected-measures'>
-                <div
-                  style={{
-                    textAlign: 'center',
-                    fontSize: '0.7rem',
-                    paddingRight: '0.8rem',
-                    padding: '0 0 0.0rem 0',
-                    margin: '0 0 0.0rem 0',
-                    textTransform: 'uppercase',
-                    color: 'var(--greyLight)',
-                    fontWeight: 600,
-                  }}
-                >
-                  Tap row to remove
-                </div>
+                <div className='instruction'>Tap row to remove</div>
                 <ul
                   className={'measures ' + (drinks.length === 0 ? ' none' : '')}
                 >
@@ -236,8 +224,8 @@ const UnitsCalculator = () => {
                   <div className='buttons'>
                     <button
                       onClick={() => {
-                        setType('custom');
-                        setIsMeasuresVisible(false);
+                        setType('custom')
+                        setIsMeasuresVisible(false)
                       }}
                       className={
                         'group' + (type === 'custom' ? ' selected' : ' ')
@@ -253,7 +241,7 @@ const UnitsCalculator = () => {
                     </button>
                   </div>
                 </div>
-                
+
                 <div className='measures-container'>
                   {type === 'custom' && (
                     <form
@@ -317,68 +305,67 @@ const UnitsCalculator = () => {
               </div>
             </section>
             {isMeasuresVisible && (
-                  <div
-                    className='measures-scroll-list'
-                    onClick={() => setIsMeasuresVisible(false)}
-                  >
-                     <CloseBtn
-                        className='close-btn-measures'
-                        handleClick={() => setIsMeasuresVisible(false)}
-                      />
-                    <div
-                      className='measures-scroll-list-inner'
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                     
-                      <div className='multiplier-input'>
-                        <label htmlFor='multiplier'>No of:</label>
-                        <input
-                          type='number'
-                          id='multiplier'
-                          name='multiplier'
-                          value={multiplier}
-                          onChange={(e) =>
-                            setMultiplier(parseInt(e.target.value, 10) || 1)
-                          }
-                          min={1}
-                        />
-                      </div>
-                      {DRINK_PRESETS.map((group) =>
-                        group.type !== 'custom' ? (
-                          <div key={group.label} className='measures-group'>
-                            {/* <div className='measures-group-title'>
+              <div
+                className='measures-scroll-list'
+                onClick={() => setIsMeasuresVisible(false)}
+              >
+                <CloseBtn
+                  className='close-btn-measures'
+                  handleClick={() => setIsMeasuresVisible(false)}
+                />
+                <div
+                  className='measures-scroll-list-inner'
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className='multiplier-input'>
+                    <label htmlFor='multiplier'>No of:</label>
+                    <input
+                      type='number'
+                      id='multiplier'
+                      name='multiplier'
+                      value={multiplier}
+                      onChange={(e) =>
+                        setMultiplier(parseInt(e.target.value, 10) || 1)
+                      }
+                      min={1}
+                    />
+                  </div>
+                  {DRINK_PRESETS.map((group) =>
+                    group.type !== 'custom' ? (
+                      <div key={group.label} className='measures-group'>
+                        {/* <div className='measures-group-title'>
                               {group.label}
                             </div> */}
-                            <div className='measures-group-buttons'>
-                              {group.drinks.map((preset) => (
-                                <button
-                                  key={preset.label}
-                                  onClick={() => {
-                                    addDrink(
-                                      { ...preset, type: group.type },
-                                      multiplier,
-                                    );
-                                    setIsMeasuresVisible(false);
-                                  }}
-                                  className='measure'
-                                >
-                                  <span className='measure-title'>
-                                    {preset.label}
-                                  </span>
-                                  <span className='spec'>
-                                    <span className='volume'>
-                                      {preset.volume} {preset.unit}
-                                    </span>
-                                    <span className='abv'>{preset.abv} %</span>
-                                  </span>
-                                </button>
-                              ))}
-                            </div>
-                          </div>
-                        ) : null,
-                      )}
-                    </div>
-                  </div>
+                        <div className='measures-group-buttons'>
+                          {group.drinks.map((preset) => (
+                            <button
+                              key={preset.label}
+                              onClick={() => {
+                                addDrink(
+                                  { ...preset, type: group.type },
+                                  multiplier,
+                                )
+                                setIsMeasuresVisible(false)
+                              }}
+                              className='measure'
+                            >
+                              <span className='measure-title'>
+                                {preset.label}
+                              </span>
+                              <span className='spec'>
+                                <span className='volume'>
+                                  {preset.volume} {preset.unit}
+                                </span>
+                                <span className='abv'>{preset.abv} %</span>
+                              </span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    ) : null,
+                  )}
+                </div>
+              </div>
             )}
             <div className='calculation-information'>
               <div>
@@ -399,7 +386,7 @@ const UnitsCalculator = () => {
     </section>
   ) : (
     <></>
-  );
-};
+  )
+}
 
-export default UnitsCalculator;
+export default UnitsCalculator

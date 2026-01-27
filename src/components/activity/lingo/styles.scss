@@ -16,10 +16,8 @@ body .search-list>div:not(.no-results) {
     background: none;
     border: none;
     border-radius: 0;
-    font-size: 3vh;
     border: none;
     outline: none;
-    // display: none;
 
     &::after {
         display: none;
@@ -50,7 +48,6 @@ div.search-lingo-wrap {
         background: none;
         border: none;
         border-radius: var(--border-radius);
-        font-size: 3vh;
         border: 1px solid var(--greyLight);
         outline: none;
 
@@ -79,7 +76,6 @@ div.search-lingo-wrap {
         mask-mode: alpha;
         position: relative;
         transition: height 1.05s cubic-bezier(0.75, 0, 0.5, 1);
-        // border: 1px solid #ccc;
 
         div.lingo-list-btn {
             margin-top: -50px;

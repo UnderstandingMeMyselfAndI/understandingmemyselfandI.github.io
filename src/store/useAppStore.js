@@ -331,7 +331,7 @@ const useAppStore = create(
       },
       // ----------------------------------------
       // Exit Button Position
-      exitButtonPosition: { x: 0, y: 0 },
+      exitButtonPosition: { x: 60, y: window.innerHeight - 60 },
       setExitButtonPosition: (v) => set(() => ({ exitButtonPosition: v })),
       // ----------------------------------------
     }),

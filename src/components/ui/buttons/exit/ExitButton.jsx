@@ -6,14 +6,14 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 
 const ExitButton = ({ handleClick }) => {
-  const restrictPos = (data) => {
-    const maxX = 65;
-    const minX = 15;
-    const maxY = 90;
-    const minY = 15;
-    const menuBoundsX = 120;
-    const menuBoundsY = 60;
+  const maxX = 65;
+  const minX = 15;
+  const maxY = 90;
+  const minY = 15;
+  const menuBoundsX = 120;
+  const menuBoundsY = 60;
 
+  const restrictPos = (data) => {
     if (data.x < minX) data.x = minX;
     if (data.x > window.innerWidth - maxX) data.x = window.innerWidth - maxX;
     if (data.y < minY) data.y = minY;
@@ -28,7 +28,7 @@ const ExitButton = ({ handleClick }) => {
 
   const nodeRef = useRef(null);
   const [buttonPosition, setButtonPosition] = useState(
-    restrictPos({ x: 0, y: window.innerHeight * 0.5 }),
+    restrictPos({ x: minX, y: window.innerHeight * 0.5 }),
   );
   const [touchCount, setTouchCount] = useState(0);
   const exitButtonPosition = useAppStore((s) => s.exitButtonPosition);
@@ -58,7 +58,7 @@ const ExitButton = ({ handleClick }) => {
           cb(event);
           setTouchCount(0);
         }
-        s;
+
         setTimeout(() => setTouchCount(0), 1000);
       } else if (!isMobile && event.type === 'click') {
         cb(event);

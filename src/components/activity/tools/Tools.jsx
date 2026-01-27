@@ -1,65 +1,65 @@
-import { useEffect, useState, useMemo } from 'react';
-import useAppStore from '@/store/useAppStore';
-import { activities } from '@/data/config';
-import MenuCarousel from '@/components/activity/tools/menuCarousel/MenuCarousel.jsx';
-import toolsData from '../../../data/tools.js';
+import { useEffect, useState, useMemo } from 'react'
+import useAppStore from '@/store/useAppStore'
+import { activities } from '@/data/config'
+import MenuCarousel from '@/components/activity/tools/menuCarousel/MenuCarousel.jsx'
+import toolsData from '../../../data/tools.js'
 
 // import { useInView, useOnInView } from 'react-intersection-observer';
-import { useOnInView } from 'react-intersection-observer';
-import parse from 'html-react-parser';
-import { strings } from '@/data/config';
-import './styles.scss';
-import PropTypes from 'prop-types';
+import { useOnInView } from 'react-intersection-observer'
+import parse from 'html-react-parser'
+import { strings } from '@/data/config'
+import './styles.scss'
+import PropTypes from 'prop-types'
 
 const Tools = () => {
-  const data = toolsData.tools.nodes;
-  const name = 'tools';
+  const data = toolsData.tools.nodes
+  const name = 'tools'
 
-  const setToolsInView = useAppStore((s) => s.setToolsInView);
+  const setToolsInView = useAppStore((s) => s.setToolsInView)
 
-  const [open, setOpen] = useState(true);
-  const activity = useAppStore((s) => s.activity);
+  const [open, setOpen] = useState(true)
+  const activity = useAppStore((s) => s.activity)
   const activityID = activities.find((activity) =>
     activity.url === name ? activity.id : null,
-  );
+  )
   const content =
-    strings.activity.find((activity) => activity.name === name) || null;
+    strings.activity.find((activity) => activity.name === name) || null
 
   if (content === null) {
-    console.warn(`No content found for activity "${name}"`);
+    console.warn(`No content found for activity "${name}"`)
   }
 
-  const showToolsOnly = useAppStore((s) => s.showToolsOnly);
-  const getActiveToolIDs = useAppStore((state) => state.getActiveToolIDs);
-  const yourToolsEnabled = useAppStore((s) => s.yourToolsEnabled);
-  const setActivityInView = useAppStore((s) => s.setActivityInView);
-  const activeIDs = getActiveToolIDs();
-  const positiveIDsSet = useMemo(() => new Set(activeIDs), [activeIDs]);
+  const showToolsOnly = useAppStore((s) => s.showToolsOnly)
+  const getActiveToolIDs = useAppStore((state) => state.getActiveToolIDs)
+  const yourToolsEnabled = useAppStore((s) => s.yourToolsEnabled)
+  const setActivityInView = useAppStore((s) => s.setActivityInView)
+  const activeIDs = getActiveToolIDs()
+  const positiveIDsSet = useMemo(() => new Set(activeIDs), [activeIDs])
 
   // Memoize the final carouselData
   const carouselData = useMemo(() => {
-    const filteredData = data.filter((obj) => activeIDs.includes(obj.id));
+    const filteredData = data.filter((obj) => activeIDs.includes(obj.id))
     //setAccData(filteredData)
-    return showToolsOnly ? filteredData : data;
-  }, [showToolsOnly, activeIDs, data]);
+    return showToolsOnly ? filteredData : data
+  }, [showToolsOnly, activeIDs, data])
 
-  const setActivity = useAppStore((s) => s.setActivity);
-  const setAcronymID = useAppStore((s) => s.setAcronymID);
-  const setShowAccCard = useAppStore((s) => s.setShowAccCard);
+  const setActivity = useAppStore((s) => s.setActivity)
+  const setAcronymID = useAppStore((s) => s.setAcronymID)
+  const setShowAccCard = useAppStore((s) => s.setShowAccCard)
 
   const handleClick = (id) => () => {
-    setAcronymID(id);
-    setShowAccCard(true);
-    setActivity(1);
-  };
+    setAcronymID(id)
+    setShowAccCard(true)
+    setActivity(1)
+  }
 
   useEffect(() => {
-    setOpen(activity == -1);
-  }, [activity]);
+    setOpen(activity == -1)
+  }, [activity])
 
   useEffect(() => {
-    setOpen(true);
-  }, [setToolsInView]);
+    setOpen(true)
+  }, [setToolsInView])
 
   // useEffect(() => {
   //   setOpen(activity === -1);
@@ -71,44 +71,44 @@ const Tools = () => {
       if (inView) {
         // Do something with the element that came into view
         // console.log('Element is in view', entry.target)
-        setToolsInView(true);
-        setActivityInView(true);
+        setToolsInView(true)
+        setActivityInView(true)
       } else {
         // console.log('Element left view', entry.target)
-        setToolsInView(false);
+        setToolsInView(false)
       }
     },
     {
       /* Optional options */
       threshold: 0,
-      rootMargin: '-15% 0% -30% 0%',
+      rootMargin: '-15% 0% -50% 0%',
     }, // Optional IntersectionObserver options
-  );
+  )
 
   return (
     <div ref={inViewRef} className={'activity' + (open ? ' show' : ' ')}>
       <section className='tools' id='the-tools'>
-        <h2>
-          <u>{parse(content?.title)}</u>
-        </h2>
-
+        <header>
+          <h2>{parse(content?.title)}</h2>
+          <div>{parse(content?.introduction)}</div>
+        </header>
         <MenuCarousel
           handleClick={handleClick}
           data={carouselData}
           filterIDs={positiveIDsSet}
           showFavourites={yourToolsEnabled}
         />
-        <div className='description'>
+        <div className='tools-description'>
           {content.description &&
             content.description.map((html, i) => {
-              return <p key={i}>{parse(html)}</p>;
+              return <p key={i}>{parse(html)}</p>
             })}
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 Tools.propTypes = {
   handleMenuClick: PropTypes.func,
-};
-export default Tools;
+}
+export default Tools

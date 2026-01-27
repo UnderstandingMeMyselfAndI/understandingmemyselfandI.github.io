@@ -87,8 +87,9 @@
     }
 
     .dialog-title {
-        font-size: variables.$h4_size;
-        font-weight: 700;
+        font-size: variables.$h3_size;
+        font-weight: 600;
+        font-variation-settings: 'wght' 600;
         color: var(--primary);
         width: 100%;
     }
@@ -111,6 +112,8 @@
         width: 50%;
         text-align: center;
         justify-content: center;
+        background-color: var(--blue);
+        box-shadow: none;
     }
 
     button.btn.cancel {

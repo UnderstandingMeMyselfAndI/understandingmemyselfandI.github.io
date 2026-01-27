@@ -36,6 +36,8 @@ div.activity-footer {
 	max-width: var(--max-width);
 	background-color: transparent;
 	line-height: 1.5;
+	word-wrap: wrap;
+	;
 
 	section {
 		max-width: 80%;
@@ -167,10 +169,7 @@ div.activity-footer {
 		margin-left: -5.5%;
 	}
 
-	u {
-		text-decoration-color: var(--yellow);
-		text-decoration-thickness: 4px;
-	}
+
 
 	.logo.apple svg path {
 		fill: var(--primary);
@@ -185,8 +184,8 @@ div.activity-footer {
 	}
 
 	.big2 {
-		font-size: variables.$h3_size;
-		font-weight: 800;
+		font-size: variables.$lrg_size;
+		font-weight: 900;
 	}
 
 	span.big4.r90 {
@@ -208,13 +207,11 @@ div.activity-footer {
 	}
 
 	h3 {
-		width: max-content;
-		max-width: 400px;
+
 		margin: 0 auto;
-		// outline: 1px solid blue;
 
 		u {
-			text-decoration-thickness: 11px;
+			// text-decoration-thickness: 11px;
 			width: fit-content;
 		}
 	}
@@ -223,15 +220,19 @@ div.activity-footer {
 		text-shadow: none;
 
 		u {
-			text-decoration-thickness: 6px;
-			text-decoration-color: var(--blue);
+			// text-decoration-thickness: 6px;
+			// text-decoration-color: var(--blue);
+		}
+
+		a {
+			word-break: break-word;
 		}
 	}
 
 	section#feedback {
 		p u {
-			text-decoration-thickness: 4px;
-			text-decoration-color: var(--yellow);
+			// text-decoration-thickness: 4px;
+			// text-decoration-color: var(--yellow);
 		}
 	}
 
@@ -241,6 +242,7 @@ div.activity-footer {
 		position: relative;
 		display: inline-block;
 		font-weight: variables.$lrg_weight;
+		font-size: variables.$med_size;
 
 		&::after {
 			content: " ";
@@ -252,7 +254,6 @@ div.activity-footer {
 			top: 0;
 			left: 0;
 			z-index: -1;
-
 			margin-top: 5%;
 			margin-left: -5.5%;
 		}

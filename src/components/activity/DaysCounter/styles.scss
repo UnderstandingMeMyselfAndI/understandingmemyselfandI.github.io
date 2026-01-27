@@ -1,7 +1,7 @@
 @use '@/scss/_variables.scss';
 @import '@/globals.css';
 
-body .main section.days-counter-activity {
+body #root .main section.days-counter-activity.fixed {
   &.fixed {
     top: 0;
     translate: unset;
@@ -16,11 +16,34 @@ body .main section.days-counter-activity {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
+  display:flex;
+  flex-flow:column nowrap;
+  align-items: stretch;
 
+  // flex-flow: column nowrap;
+  justify-content: space-evenly;
+  // align-content: center;
+  gap: 0.5rem;
+  padding: 2rem 1rem;
+  background: transparent;
+  text-align: center;
 
+  .days-counter-wrapper {
+    margin: 0 auto;
+    flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    justify-content: space-evenly;
+  }
 
   .days-counter-wrap {
     margin: 0 auto;
+    flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    justify-content: space-evenly;
   }
 
   .days-counter-close-btn {
@@ -38,13 +61,7 @@ body .main section.days-counter-activity {
 
   }
 
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-content: center;
-  gap: 0.5rem;
-  padding: 2rem 1rem;
-  background: transparent;
-  text-align: center;
+
 
 
   &::after {
@@ -191,7 +208,7 @@ button.days-counter-add-first-btn {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 2.5rem;
   height: 100%;
   width: 100%;
   max-width: 100%;
@@ -558,7 +575,7 @@ input.days-counter-date-input {
   width: 45px;
   height: 45px;
   position: absolute;
-  left: 50px;
+  left: 30px;
   bottom: 3%;
   box-shadow: none;
 

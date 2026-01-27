@@ -64,9 +64,7 @@ body {
     margin: 0.75rem 0 1.5rem 0;
   }
 
-  // .activity.hide {
-  //   display: none;
-  // }
+
 
   .backdrop {
     width: 102%;
@@ -191,12 +189,15 @@ body {
       z-index: -10;
       top: 0;
       left: 0;
-      right: 0;
+      // right: 0;
+
+      // margin: 0 var(--gutters);
+      max-width: var(--max-width);
+      padding: 0 var(--gutters);
       width: 100%;
       min-height: 60dvh;
 
-      // max-width: var(--max-width);
-      margin: 0 auto;
+
 
       flex-flow: column wrap;
       align-content: center;
@@ -207,7 +208,7 @@ body {
 
       button.close-btn {
         position: absolute;
-        right: 1.5rem;
+        right: 1.3rem;
         top: 1.5rem;
         left: auto;
         z-index: 6005;
@@ -237,8 +238,10 @@ body {
         display: flex;
         align-content: center;
         // outline: 1px solid #ccc;
-
       }
+
+
+
 
 
     }
@@ -293,6 +296,39 @@ body {
     // font-weight: 800;
     // font-variation-settings: 'wght' 800;
     color: var(--lightBlue);
+  }
+
+  u,
+  .yellow-ul,
+  .blue-ul,
+  .orange-ul,
+  .white-ul {
+
+    width: auto;
+    text-decoration-color: var(--lightBlue50Trans);
+    text-decoration-thickness: 45%;
+    text-underline-offset: -25.5%;
+    text-decoration-skip-ink: none;
+
+  }
+
+  .yellow-ul {
+    text-decoration-color: var(--yellow40Trans);
+  }
+
+  .blue-ul {
+    text-decoration-color: var(--lightBlue50Trans);
+  }
+
+  .orange-ul {
+
+    text-decoration-color: var(--orange40Trans);
+  }
+
+  .white-ul {
+    text-decoration-color: var(--primary);
+    text-decoration-thickness: 10%;
+    text-underline-offset: 5.5%;
   }
 
   *.MuiTypography-root {
@@ -382,7 +418,7 @@ button:focus-visible {
 }
 
 section {
-  margin: 1.5rem 0;
+
   text-shadow: 0 0px 6px rgba(0, 0, 0, 0.4);
 }
 

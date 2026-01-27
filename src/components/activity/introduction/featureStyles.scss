@@ -11,33 +11,17 @@ section.intro .feature {
     position: relative;
     min-height: 30dvh;
     width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
+    max-width: var(--max-width);
+    // margin: 0 auto;
     padding: 0;
     display: flex;
-    column-gap: 0.25rem;
     flex-flow: row nowrap;
     align-items: center;
-    justify-content: center;
-
     text-align: center;
     text-shadow: var(--textShadowDarkValue);
 
-    opacity: 0;
-    transform-origin: 50% 80%;
-    transform: scale(0.87) rotateX(-45deg);
-    transition: all 0.35s cubic-bezier(0.55, 0, 0.5, 0.99);
-
-    &.in {
-        opacity: 1;
-        transform: scale(1) rotateX(0deg);
-        transition: all 0.35s cubic-bezier(0.55, 0, 0.5, 0.99);
-    }
-
-    .inner {
-        max-width: 90%;
+    .feature-inner {
         display: flex;
-        column-gap: 0.25rem;
         flex-flow: row nowrap;
         align-items: center;
         justify-content: center;

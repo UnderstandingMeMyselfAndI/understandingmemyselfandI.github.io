@@ -94,7 +94,12 @@ export function extractYouTubeId(url) {
 export function isYouTubeUrl(url) {
   return /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)/.test(url);
 }
-
+export function isTouchDevice() {
+	return ('ontouchstart' in window) || 
+		(navigator.maxTouchPoints > 0) || 
+		(navigator.msMaxTouchPoints > 0) ||
+		(window.matchMedia?.("(pointer: coarse)").matches);
+}
 export function smoothScroll(){
     let x = document.querySelectorAll('a[href*="#"]');
 	for (let i = 0; i < x.length; i++){
@@ -125,22 +130,23 @@ export function sanitizeStringForUrl(input) {
 	return trimmed.toLowerCase()
 }
 
-export default {
-	sanitizeStringForUrl,
-	smoothScroll,
+export default {	
 	clamp,
 	isSet,
 	isUndefined,
-	isNull,
-	hashCode,
+	isNull,	
 	inRange,
 	isNumeric,
 	isEmpty,
 	isOdd,
+	isTouchDevice,
+	isColorLight,
 	arrowSVG,
 	debounce,
-	isColorLight,
+	hashCode,	
 	getElementPageOffsetTop,
 	extractYouTubeId,
 	isYouTubeUrl,
+	sanitizeStringForUrl,
+	smoothScroll,
 }

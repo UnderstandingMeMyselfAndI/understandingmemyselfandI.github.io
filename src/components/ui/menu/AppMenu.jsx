@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 // import Button from '@mui/material/Button';
 // import Menu from '@mui/material/Menu';
 // import MenuItem from '@mui/material/MenuItem';
-import useAppStore from '@/store/useAppStore';
+import useAppStore from '@/store/useAppStore'
 // import { getPWADisplayMode } from '@/utils/isAppInstalled';
-import { activities } from '@/data/config';
+import { activities } from '@/data/config'
 // import driverObj from '@/js/tour.js'
 // import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 // import Slide from '@mui/material/Slide';
-import './styles.scss';
+import './styles.scss'
 export const MenuOpenIcon = () => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
@@ -19,7 +19,7 @@ export const MenuOpenIcon = () => (
   >
     <path d='M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z' />
   </svg>
-);
+)
 export const MenuCloseIcon = () => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
@@ -30,62 +30,62 @@ export const MenuCloseIcon = () => (
   >
     <path d='m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z' />
   </svg>
-);
+)
 // TODO: #19 Implement URLS and routing
 export default function AppMenu() {
   // const [anchorEl, setAnchorEl] = useState(null);
-  const [open, setOpen] = useState(false);
-  const [showComponent, setOpenComponent] = useState(true);
-  const [show, setShow] = useState(true);
+  const [open, setOpen] = useState(false)
+  const [showComponent, setOpenComponent] = useState(true)
+  const [show, setShow] = useState(true)
 
-  const daysCounterEnabled = useAppStore((state) => state.daysCounterEnabled);
-  const unitsCalculatorEnabled = useAppStore((s) => s.unitsCalculatorEnabled);
+  const daysCounterEnabled = useAppStore((state) => state.daysCounterEnabled)
+  const unitsCalculatorEnabled = useAppStore((s) => s.unitsCalculatorEnabled)
 
-  const setActivity = useAppStore((state) => state.setActivity);
-  const activity = useAppStore((state) => state.activity);
+  const setActivity = useAppStore((state) => state.setActivity)
+  const activity = useAppStore((state) => state.activity)
 
-  const isInstalled = useAppStore((state) => state.isInstalled);
-  const isInstallable = useAppStore((state) => state.isInstallable);
+  const isInstalled = useAppStore((state) => state.isInstalled)
+  const isInstallable = useAppStore((state) => state.isInstallable)
 
-  const gae = useAppStore((s) => s.gae); // Google analytics enabled
-  const nss = useAppStore((s) => s.nss); // subscribed to newsletter
-  const setRoute = useAppStore((s) => s.setRoute); // subscribed to newsletter
+  const gae = useAppStore((s) => s.gae) // Google analytics enabled
+  const nss = useAppStore((s) => s.nss) // subscribed to newsletter
+  const setRoute = useAppStore((s) => s.setRoute) // subscribed to newsletter
 
   useEffect(() => {
-    setOpenComponent(activity === -1);
-  }, [activity]);
+    setOpenComponent(activity === -1)
+  }, [activity])
 
   const toggleOpen = () => {
-    setOpen(!open);
-  };
+    setOpen(!open)
+  }
   const handleClose = (obj) => {
     // setActivity(-1);
-    setOpen(false);
+    setOpen(false)
     setRoute({
-      url:obj.url,
-      title:obj.title,
-    })       
+      url: obj.url,
+      title: obj.title,
+    })
   }
 
-  function findObj(id){
+  function findObj(id) {
     const obj = activities.find((a) =>
       parseInt(a.id) === parseInt(id) ? id : null,
-    );
+    )
     return obj
   }
-   
+
   useEffect(() => {
     const obj = activities.find((a) =>
       parseInt(a.id) === parseInt(activity) ? activity : null,
-    );
+    )
 
     if (obj) {
-      setShow(obj.menu);     
+      setShow(obj.menu)
     }
-  }, [activity]);
+  }, [activity])
 
   return showComponent ? (
-    <div className={'AppMenu' + (show ? ' ' : ' hide')} >
+    <div className={'AppMenu' + (show ? ' ' : ' hide')}>
       <div className='burger-stack' id='burger-button'>
         <input
           type='checkbox'
@@ -104,28 +104,31 @@ export default function AppMenu() {
           </div>
         </label>
       </div>
-      <ul className={open ? ' open' : ' closed'} id='app-menu'  onClick={handleClose}>
+      <ul
+        className={open ? ' open' : ' closed'}
+        id='app-menu'
+        onClick={handleClose}
+      >
         <li
           onClick={() => {
             if (gae && window.gtag) {
               window.gtag('event', 'tools', {
                 app_name: 'Ummi',
                 screen_name: 'Tools',
-              });
+              })
             }
-            
+
             requestAnimationFrame(() => {
-              const el = document.getElementById('the-tools');
-              el.scrollIntoView(true);
-            });
+              const el = document.getElementById('the-tools')
+              el.scrollIntoView(true)
+            })
 
-
-              const activityObj = findObj(12);
-              handleClose({
-                url: activityObj.url,
-                title: activityObj.url,
-              });
-              setActivity(-1); // temp solution
+            const activityObj = findObj(12)
+            handleClose({
+              url: activityObj.url,
+              title: activityObj.url,
+            })
+            setActivity(-1) // temp solution
           }}
         >
           Tools
@@ -133,28 +136,25 @@ export default function AppMenu() {
         <li
           className=''
           onClick={() => {
-            
             if (gae && window.gtag) {
               window.gtag('event', 'lingo_and_phrases', {
                 app_name: 'Ummi',
                 screen_name: 'Lingo & Phrases',
-              });
+              })
             }
 
             requestAnimationFrame(() => {
-              const el = document.getElementById('lingo');
-              el.scrollIntoView(true);
-            });
+              const el = document.getElementById('lingo')
+              el.scrollIntoView(true)
+            })
 
-            const activityObj = findObj(13);
-              handleClose({
-                url: activityObj.url,
-                title: activityObj.url,
-              });
+            const activityObj = findObj(13)
+            handleClose({
+              url: activityObj.url,
+              title: activityObj.url,
+            })
 
-            setActivity(-1);
-
-
+            setActivity(-1)
           }}
         >
           Lingo &amp; Phrases
@@ -190,15 +190,14 @@ export default function AppMenu() {
                 window.gtag('event', 'days_counter', {
                   app_name: 'Ummi',
                   screen_name: 'Days Counter',
-                });
+                })
               }
-              const activityObj = findObj(2);
+              const activityObj = findObj(2)
               handleClose({
                 url: activityObj.url,
                 title: activityObj.url,
-              });
-              setActivity(2);
-              
+              })
+              setActivity(2)
             }}
           >
             Days Counter
@@ -212,15 +211,15 @@ export default function AppMenu() {
                 window.gtag('event', 'units_calculator', {
                   app_name: 'Ummi',
                   screen_name: 'Units Calculator',
-                });
+                })
               }
-               const activityObj = findObj(5);
+              const activityObj = findObj(5)
               handleClose({
                 url: activityObj.url,
                 title: activityObj.url,
-              });
-              setActivity(5);
-              handleClose();
+              })
+              setActivity(5)
+              handleClose()
             }}
           >
             Units Calculator
@@ -235,20 +234,18 @@ export default function AppMenu() {
                 window.gtag('event', 'install', {
                   app_name: 'Ummi',
                   screen_name: 'Install',
-                });
+                })
               }
               requestAnimationFrame(() => {
-                const el = document.getElementById('install');
-                el.scrollIntoView(true);
-                
+                const el = document.getElementById('install')
+                el.scrollIntoView(true)
               })
-              const activityObj = findObj(16);
+              const activityObj = findObj(16)
               handleClose({
                 url: activityObj.url,
                 title: activityObj.url,
-              });
-              setActivity(-1);
-
+              })
+              setActivity(-1)
             }}
           >
             Install
@@ -260,19 +257,18 @@ export default function AppMenu() {
               window.gtag('event', 'share', {
                 app_name: 'Ummi',
                 screen_name: 'Share',
-              });
+              })
             }
             requestAnimationFrame(() => {
-              const el = document.getElementById('share');
-              el.scrollIntoView(true);
+              const el = document.getElementById('share')
+              el.scrollIntoView(true)
             })
-             const activityObj = findObj(14);
-              handleClose({
-                url: activityObj.url,
-                title: activityObj.url,
-              });
-            setActivity(-1);
-            
+            const activityObj = findObj(14)
+            handleClose({
+              url: activityObj.url,
+              title: activityObj.url,
+            })
+            setActivity(-1)
           }}
         >
           Share
@@ -280,28 +276,28 @@ export default function AppMenu() {
 
         {!nss && (
           <li
-          onClick={() => {
-            if (gae && window.gtag) {
-              window.gtag('event', 'newsletter', {
-                app_name: 'Ummi',
-                screen_name: 'Newsletter',
-              });
-            }
-            requestAnimationFrame(() => {
-              const el = document.getElementById('newsletter');
-              el.scrollIntoView(true);
-            });
-            const activityObj = findObj(15);
+            onClick={() => {
+              if (gae && window.gtag) {
+                window.gtag('event', 'newsletter', {
+                  app_name: 'Ummi',
+                  screen_name: 'Newsletter',
+                })
+              }
+              requestAnimationFrame(() => {
+                const el = document.getElementById('newsletter')
+                el.scrollIntoView(true)
+              })
+              const activityObj = findObj(15)
               handleClose({
                 url: activityObj.url,
                 title: activityObj.url,
-              });
-            // setActivity(15);
-             setActivity(-1);
-          }}
-        >
-          Newsletter
-        </li>
+              })
+              // setActivity(15);
+              setActivity(-1)
+            }}
+          >
+            Newsletter
+          </li>
         )}
         <li
           onClick={() => {
@@ -309,14 +305,14 @@ export default function AppMenu() {
               window.gtag('event', 'privacy_policy', {
                 app_name: 'Ummi',
                 screen_name: 'Privacy Policy',
-              });
+              })
             }
-            const activityObj = findObj(10);
+            const activityObj = findObj(10)
             handleClose({
               url: activityObj.url,
               title: activityObj.url,
-            });
-            setActivity(10);
+            })
+            setActivity(10)
           }}
         >
           Your privacy
@@ -350,16 +346,15 @@ export default function AppMenu() {
               window.gtag('event', 'settings', {
                 app_name: 'Ummi',
                 screen_name: 'Settings',
-              });
+              })
             }
-             const activityObj = findObj(12);
+            const activityObj = findObj(12)
             handleClose({
               url: activityObj.url,
               title: activityObj.url,
-            });
+            })
 
-            setActivity(12);
-            
+            setActivity(12)
           }}
         >
           Settings
@@ -367,7 +362,7 @@ export default function AppMenu() {
         {/* <li onClick={handleClose}>Tour</li> */}
         {/* <li onClick={handleClose}>Settings</li> */}
       </ul>
-      <div className="app-nemu-bg" onClick={handleClose}></div>
+      <div className='app-nemu-bg' onClick={handleClose}></div>
     </div>
-  ) : null;
+  ) : null
 }

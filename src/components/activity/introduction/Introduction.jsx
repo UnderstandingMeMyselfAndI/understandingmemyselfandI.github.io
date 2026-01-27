@@ -1,150 +1,150 @@
-import { useEffect, useState, useRef } from 'react';
-import useAppStore from '@/store/useAppStore';
-import parse from 'html-react-parser';
-import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
-import {  strings } from '@/data/config';
-import Feature from './Feature';
-import gsap from 'gsap'; // <-- import GSAP
-import { useGSAP } from '@gsap/react'; // <-- import the hook from our React package
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-gsap.registerPlugin(useGSAP); // register the hook to avoid React version discrepancies
-gsap.registerPlugin(ScrollTrigger);
-import '@/utils/IsMobile.js';
-import './styles.scss';
+import { useEffect, useState, useRef } from 'react'
+import useAppStore from '@/store/useAppStore'
+import parse from 'html-react-parser'
+import DoneOutlineIcon from '@mui/icons-material/DoneOutline'
+import { strings } from '@/data/config'
+import Feature from './Feature'
+import gsap from 'gsap' // <-- import GSAP
+import { useGSAP } from '@gsap/react' // <-- import the hook from our React package
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { SplitText } from 'gsap/SplitText'
+gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText)
+import '@/utils/IsMobile.js'
+import './styles.scss'
 
 const Introduction = () => {
-  const name = 'introduction';
-  const [open, setOpen] = useState(true);
-  const activity = useAppStore((s) => s.activity);
+  const name = 'introduction'
+  const [open, setOpen] = useState(true)
+  const activity = useAppStore((s) => s.activity)
 
-  const sectionRefs = useRef([]);
+  const sectionRefs = useRef([])
 
   const addToRefs = (el) => {
     if (el && !sectionRefs.current.includes(el)) {
-      sectionRefs.current.push(el);
+      sectionRefs.current.push(el)
     }
-  };
+  }
 
-  sectionRefs.current = [];
-
+  sectionRefs.current = []
 
   const content =
-    strings.activity.find((activity) => activity.name === name) || null;
+    strings.activity.find((activity) => activity.name === name) || null
   if (content === null) {
-    console.warn(`No content found for activity "${name}"`);
+    console.warn(`No content found for activity "${name}"`)
   }
 
-  const isInstalled = useAppStore((state) => state.isInstalled);
-  const vc = useAppStore((state) => state.vc); // visit count
+  const isInstalled = useAppStore((state) => state.isInstalled)
+  const vc = useAppStore((state) => state.vc) // visit count
 
   useEffect(() => {
-    setOpen(activity === -1);
-  }, [activity]);
+    setOpen(activity === -1)
+  }, [activity])
 
   function getRand(max) {
-    return Math.floor(Math.random() * (max - 1 + 1)) + 1;
+    return Math.floor(Math.random() * (max - 1 + 1)) + 1
   }
 
-  useGSAP(
-    () => {
+  useGSAP(() => {}, { scope: sectionRefs, revertOnUpdate: true })
 
-    },
-    { scope:sectionRefs,revertOnUpdate: true },
-  );
-
-     
+  // let split = SplitText.create('.headline');
 
   return (
     <section
-    id='intro'
+      id='intro'
       className={'activity intro' + (open ? ' show' : ' hide')}
-      
-      
     >
       <div className='introduction-inner'>
-      <div className='inner'>
-        <h1>
-          {(!isInstalled || (isInstalled && vc < 3)) && <u>{content.title}</u>}
+        <div className='inner'>
+          <h1>
+            {(!isInstalled || (isInstalled && vc < 3)) && (
+              <u>{content.title}</u>
+            )}
 
-          {isInstalled && vc >= 3 && (
-            <u>
-              {parse(
-                content?.returning?.content?.titles[
-                  getRand(content?.returning?.content?.titles?.length - 1)
-                ],
-              )}
-            </u>
-          )}
-        </h1>
-        
-        {isInstalled &&
-          vc > 20 &&
-          vc < 33 && // if app is installed show different content
-          content?.installed.content?.map((cnt, i) => {
-            return (
-              <div
-                key={`intro-${i}`}
-                className={'subsection installed'}
-                ref={addToRefs}
-              >
-                {cnt?.title && (
-                  <div className='subsection-title'>
-                    <h2>{parse(cnt?.title)}</h2>
-                  </div>
+            {isInstalled && vc >= 3 && (
+              <u>
+                {parse(
+                  content?.returning?.content?.titles[
+                    getRand(content?.returning?.content?.titles?.length - 1)
+                  ],
                 )}
-                
-                {cnt?.content?.map((para, k) => {
-                  return (
-                    <Feature key={'p-' + k}>                 
-                      {i === 1 && <DoneOutlineIcon className='icon' />}
-                      <p key={k}>{parse(para)}</p>
-                    </Feature>
-                  );
-                })}
-              </div>
-            );
-          })}
+              </u>
+            )}
+          </h1>
 
-        {isInstalled && vc >= 20 && (
-          <div key={`intro`} className={'subsection'}>
-            <div className=' returning'>
-              {parse(
-                content?.returning?.content?.contents[
-                  getRand(content?.returning?.content?.contents?.length - 1)
-                ],
-              )}
+          {isInstalled &&
+            vc > 20 &&
+            vc < 33 && // if app is installed show different content
+            content?.installed.content?.map((cnt, i) => {
+              return (
+                <div
+                  key={`intro-${i}`}
+                  className={'subsection installed'}
+                  ref={addToRefs}
+                >
+                  {cnt?.title && (
+                    <div className='subsection-title'>
+                      <h2>{parse(cnt?.title)}</h2>
+                    </div>
+                  )}
+
+                  {cnt?.content?.map((para, k) => {
+                    return (
+                      <Feature key={'p-' + k}>
+                        {i === 1 && <DoneOutlineIcon className='icon' />}
+                        <p key={k}>{parse(para)}</p>
+                      </Feature>
+                    )
+                  })}
+                </div>
+              )
+            })}
+
+          {isInstalled && vc >= 20 && (
+            <div key={`intro`} className={'subsection'}>
+              <div className=' returning'>
+                <h1>
+                  {parse(
+                    content?.returning?.content?.contents[
+                      getRand(content?.returning?.content?.contents?.length - 1)
+                    ],
+                  )}
+                </h1>
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {(!isInstalled || (isInstalled && vc < 20)) &&
-          content?.content?.map((cnt, i) => {
-            return (
-              <div
-                key={`intro-${i}`}
-                className={'subsection notinstalled ' }
-                ref={addToRefs}
-              >
-                {cnt?.title && (
-                  <div className='subsection-title'>
-                    <h2 className='title2'><u>{parse(cnt?.title)}</u></h2>
-                  </div>
-                )}
-                {cnt?.content?.map((para, k) => {
-                  return (
-                    <Feature classes={'feature' } key={'p-' + k}>                 
-                      {i === 1 && <DoneOutlineIcon className='icon' />}
-                      <p key={k}>{parse(para)}</p>
-                    </Feature>
-                  );
-                })}
-              </div>
-            );
-          })}
-      </div>
+          {(!isInstalled || (isInstalled && vc < 20)) &&
+            content?.content?.map((cnt, i) => {
+              return (
+                <div
+                  key={`intro-${i}`}
+                  className={'subsection notinstalled '}
+                  ref={addToRefs}
+                >
+                  {cnt?.title && (
+                    <div className='subsection-title'>
+                      <h2 className='title2'>
+                        <u>{parse(cnt?.title)}</u>
+                      </h2>
+                    </div>
+                  )}
+                  {cnt?.content?.map((para, k) => {
+                    return (
+                      <Feature classes={'feature'} key={'p-' + k}>
+                        {i === 1 && <DoneOutlineIcon className='icon' />}
+                        <p key={k} className='st'>
+                          {parse(para)}
+                        </p>
+                      </Feature>
+                    )
+                  })}
+                </div>
+              )
+            })}
+        </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Introduction;
+export default Introduction
