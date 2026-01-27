@@ -55,9 +55,12 @@ const Introduction = () => {
     >
       <div className='introduction-inner'>
         <div className='inner'>
-          <h1>
+          <h1 style={{ fontSize: '68px' }}>
             {(!isInstalled || (isInstalled && vc < 3)) && (
-              <u>{content.title}</u>
+              <b>
+                {' '}
+                <u>{content.title}</u>
+              </b>
             )}
 
             {isInstalled && vc >= 3 && (

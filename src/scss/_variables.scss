@@ -332,7 +332,7 @@ $med_line_height: 1.2;
 // Large font size
 // ------------------------------------------
 
-$lrg_size_min: 48px;
+$lrg_size_min: 36px;
 $lrg_size_max: 158px;
 $lrg_size: responsiveFontSize($lrg_size_min,
     $lrg_size_max,
@@ -348,7 +348,7 @@ $lrg_line_height: 1.2;
 // Large font size
 // ------------------------------------------
 
-$lrg_title_size_min: 58px;
+$lrg_title_size_min: 40px;
 $lrg_title_size_max: 158px;
 $lrg_title_size: responsiveFontSize($lrg_title_size_min,
     $lrg_title_size_max,
