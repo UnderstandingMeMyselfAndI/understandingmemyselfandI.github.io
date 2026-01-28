@@ -12,8 +12,8 @@
     transform: none;
 }
 
-div.activity-privacy,
-section.activity-privacy {
+body div#privacy.activity-privacy,
+body section.activity-privacy {
     position: fixed;
     top: 0;
     left: 0;
@@ -26,7 +26,7 @@ section.activity-privacy {
     text-align: left;
     line-height: 1.4;
     padding: 6rem 0;
-
+    max-width: none;
 
     .inner {
         position: relative;
@@ -88,22 +88,6 @@ section.activity-privacy {
             font-size: 1rem;
             min-height: 44px;
         }
-    }
-
-    .close-btn {
-        position: absolute;
-        right: 2rem;
-        top: 0.35rem;
-
-        svg {
-            width: 70px;
-            height: 70px;
-            stroke: 0;
-        }
-    }
-
-    .backdrop {
-        opacity: 0.6;
     }
 }
 

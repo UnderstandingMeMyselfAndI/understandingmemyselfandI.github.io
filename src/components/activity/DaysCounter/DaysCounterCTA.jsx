@@ -22,17 +22,20 @@ const DaysCounterCTA = () => {
     <div
       className={'activity activity-days-counter-cta ' + (open ? ' show' : '')}
     >
-      <div className='title'>
-        <h3>
-          <b>
-            <u>{content?.cta?.title}</u>
-          </b>
-        </h3>
-      </div>
-      {content?.cta?.content?.map((html, i) => {
-        return <p key={i}>{parse(html)}</p>
-      })}
-      <DaysCounterBtn />
+      {' '}
+      <div className='inner'>
+        <div className='title'>
+          <h3>
+            <b>
+              <u>{content?.cta?.title}</u>
+            </b>
+          </h3>
+        </div>
+        {content?.cta?.content?.map((html, i) => {
+          return <p key={i}>{parse(html)}</p>
+        })}
+        <DaysCounterBtn />
+      </div>{' '}
     </div>
   ) : (
     <> </>

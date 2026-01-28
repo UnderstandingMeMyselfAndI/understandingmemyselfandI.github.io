@@ -1,7 +1,7 @@
 @use "@/scss/variables";
 @import "@/globals.css";
 
-div.activity-settings {
+body div#settings.activity-settings {
     position: fixed;
     top: 0;
     left: 0;
@@ -9,6 +9,7 @@ div.activity-settings {
     width: 100%;
     min-height: 100vh;
     height: 100%;
+    max-width: none;
     // padding:2rem 0;
     background: var(--greyDark);
     text-align: right;

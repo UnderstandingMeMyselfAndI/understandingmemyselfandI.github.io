@@ -23,8 +23,17 @@ body .main section.activity.activity-privacy-cta {
     row-gap: 1.75rem;
     // max-width: var(--max-width);
     margin: 0 auto;
-    // min-height: 80dvh;
 
+    // min-height: 80dvh;
+    .inner {
+        padding: 2rem 1.5rem;
+        width: 100%;
+        ;
+        outline: 1px solid var(--greyLight2);
+        box-shadow: 0px 0px 12px rgba(10, 0, 10, 0.5);
+        // background: var(--backgroundGrayTrans25);
+        border-radius: var(--border-radius);
+    }
 
     &.show {
         display: flex;
@@ -72,9 +81,28 @@ body .main section.activity.activity-privacy-cta {
         }
     }
 
+    .buttons-wrapper {
+        width: 100%;
+        display: flex;
+        margin: 2rem 0 0 0;
+        column-gap: 1rem;
+
+        button {
+            display: flex;
+            font-size: 1.25rem;
+            align-items: center;
+            align-content: center;
+            text-align: center;
+            justify-content: center;
+            box-shadow: var(--boxShadowDarkValue);
+        }
+    }
+
     .privacy-cta-btn {
-        width: fit-content;
+        width: 45%;
         margin: 0 auto;
+        text-align: center;
+        padding: 1rem 0.75rem;
 
         .btn {
             margin: 0 auto;

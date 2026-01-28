@@ -3,7 +3,7 @@
 
 .activity-units-calculator-cta {
 	position: relative;
-	margin: 10dvh 0;
+	margin: 10dvh auto;
 
 	user-select: none;
 	visibility: hidden;
@@ -12,6 +12,15 @@
 	position: relative;
 	z-index: -1;
 	text-align: left;
+
+	.inner {
+		padding: 2rem 1.5rem;
+		width: 100%;
+		;
+		outline: 1px solid var(--greyLight2);
+		box-shadow: 0px 0px 12px rgba(10, 0, 10, 0.5);
+		border-radius: var(--border-radius);
+	}
 
 	&.show {
 		visibility: visible;
