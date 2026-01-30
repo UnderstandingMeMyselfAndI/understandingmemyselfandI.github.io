@@ -129,7 +129,7 @@ const InstallCTA = () => {
 
                 <InstallPWA
                   handleClick={handleClick}
-                  label={content?.cta?.btn?.label}
+                  label={content?.cta?.btn?.label.unused}
                 />
                 <div className='title'>Apple users:</div>
                 <p>

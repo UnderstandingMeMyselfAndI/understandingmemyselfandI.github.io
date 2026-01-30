@@ -15,8 +15,9 @@ import Footer from '@/components/activity/footer/Footer'
 // import Podcasts from "./components/activity/podcasts/Podcasts";
 import PrivacyPolicy from './components/activity/privacy/PrivacyPolicy'
 import Introduction from '@/components/activity/introduction/Introduction'
-import YourPrivacyCTA from './components/ui/privacy/YourPrivacyCTA'
+import YourPrivacyCTA from './components/activity/privacy/YourPrivacyCTA'
 import Tools from 'components/activity/tools/Tools.jsx'
+import ToolsCTA from 'components/activity/tools/ToolsCTA.jsx'
 // import RecoveryTimelineParent from './components/activity/recoveryTimeline/RecoveryTimelineParent';
 // import Backdrop from "ui/backdrop/Backdrop";
 import BackdropParallax from 'ui/backdrop/BackdropParallax'
@@ -40,6 +41,7 @@ import Lingo from './components/activity/lingo/Lingo'
 // import Quiz from './components/activity/quiz/Quiz';
 import UnitsCalculator from './components/activity/unitsCalculator/UnitsCalculator'
 import UnitsCalculatorCTA from './components/activity/unitsCalculator/UnitsCalculatorCTA'
+import WallpaperGallery from './components/activity/wallpapers/WallpaperGallery'
 // import Motivation from './components/activity/motivation/Motivation';
 import './App.scss'
 // TODO: #21 "Clear Local Data" functionality
@@ -78,11 +80,12 @@ function App() {
         {/* <RecoveryTimelineParent /> */}
         <Header />
         <Introduction />
+        <WallpaperGallery />
         <Tools />
-        <YourPrivacyCTA />
-
+        <ToolsCTA />
         {daysCounterEnabled && <DaysCounterCTA />}
         {unitsCalculatorEnabled && <UnitsCalculatorCTA />}
+        <YourPrivacyCTA />
         <Lingo />
         <PrivacyPolicy />
         <NewsletterSignUp />

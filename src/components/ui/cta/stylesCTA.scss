@@ -1,0 +1,135 @@
+@use "@/scss/_variables.scss";
+@import "@/globals.css";
+
+div.cta {
+    position: relative;
+    margin: 5dvh auto;
+    user-select: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.15s cubic-bezier(0.5, 0, 0.9, 1);
+    position: relative;
+    z-index: -1;
+    text-align: left;
+    width: 100%;
+    font-size: 1rem;
+
+    &.show {
+        visibility: visible;
+        user-select: auto;
+        opacity: 1;
+        transition: opacity 0.15s cubic-bezier(0.5, 0, 0.9, 1);
+        position: relative;
+        z-index: 5500;
+    }
+
+    .inner {
+        padding: 1rem 1.0rem;
+        width: 100%;
+        height: 100%;
+        // outline: 1px solid var(--greyMed);
+
+        border-radius: var(--border-radius);
+
+        // background: var(--backgroundGrayTrans30);
+
+        // background-color: var(--greyDark);
+        // outline: var(--card-outline);
+        // box-shadow: var(--boxShadowDarkValue);
+        background-color: var(--greyDark20Trans);
+        outline: var(--card-outline-med);
+        box-shadow: var(--boxShadowDarkValue);
+        border-radius: var(--border-radius);
+
+        position: relative;
+
+        &::after {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            z-index: 1;
+            opacity: 1;
+            background-color: var(--greyDark);
+            outline: var(--card-outline);
+            box-shadow: var(--boxShadowDarkValue);
+            border-radius: var(--border-radius);
+
+        }
+
+        // .cta-icon {
+        //     position: absolute;
+        //     top: -70px;
+        //     right: -70px;
+        //     top: -10px;
+        //     right: -10px;
+        //     transform-origin: top right;
+        //     transform: scale(2.8);
+
+        //     fill: transparent;
+        //     stroke: var(--orange);
+        //     stroke-width: 0.2px;
+        //     z-index: -1;
+        //     opacity: 0.75;
+        // }
+
+        u {
+            text-decoration-color: var(--lightBlue50Trans);
+        }
+
+        h3.title {
+            font-size: variables.$h3_size;
+            font-weight: 700;
+            font-variation-settings: "wght" 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--orange);
+
+        }
+
+        .cta-content {
+            margin-left: 0.5rem;
+        }
+
+        .cta-buttons-wrapper {
+            width: 100%;
+            display: flex;
+            margin: 2rem 0 0 0;
+            column-gap: 0.75rem;
+
+            button {
+                display: flex;
+                font-size: 1.2rem;
+                ;
+                padding: 1.25rem 0.5rem;
+                align-items: center;
+                align-content: center;
+                text-align: center;
+                justify-content: center;
+                box-shadow: var(--boxShadowDarkValue);
+                width: 100%;
+            }
+        }
+
+    }
+
+    &::after {
+        content: "\2959"; // \21E9 \21E3 \21E3 \21D3 \290B \2925 \2926 \2938 \2965 \2952 \2953
+        position: absolute;
+        left: 50%;
+        bottom: -100px;
+        color: var(--primary);
+        opacity: 0.25;
+        font-size: 100px;
+        transform: translate(-50%, 40px);
+
+        z-index: -1;
+    }
+
+    &::nth-child(odd) {
+        &::after {
+            content: "\2955";
+        }
+    }
+}

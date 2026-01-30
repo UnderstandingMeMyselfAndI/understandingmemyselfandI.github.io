@@ -227,6 +227,32 @@ export default function AppMenu() {
           </li>
         )}
 
+        <li
+          className='new'
+          onClick={() => {
+            if (gae && window.gtag) {
+              window.gtag('event', 'wallpapers', {
+                app_name: 'Ummi',
+                screen_name: 'Wallpapers',
+              })
+            }
+
+            // requestAnimationFrame(() => {
+            //   const el = document.getElementById('the-tools')
+            //   el.scrollIntoView(true)
+            // })
+
+            const activityObj = findObj(6)
+            handleClose({
+              url: activityObj.url,
+              title: activityObj.url,
+            })
+            setActivity(6)
+          }}
+        >
+          Wallpapers
+        </li>
+
         {!isInstalled && isInstallable && (
           <li
             className=''

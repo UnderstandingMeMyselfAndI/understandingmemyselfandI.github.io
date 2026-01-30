@@ -1,29 +1,35 @@
-import {useEffect, useState} from "react";
-import useAppStore from "@/store/useAppStore";
+import { useEffect, useState } from 'react'
+import useAppStore from '@/store/useAppStore'
 import { activities } from '@/data/config'
+import CloseBtn from '@/components/ui/buttons/close/CloseBtn'
 import { strings } from '@/data/config'
 import PropTypes from 'prop-types'
-import "./styles.scss";
-
+import './styles.scss'
 
 const Template = () => {
-	const name = 'name-to-go-here'
-	const [open, setOpen] = useState(false)
-	const activity = useAppStore((s) => s.activity)
-	const activityID = activities.find((activity) => (activity.url === name ? activity.id : null))
+  const name = 'name-to-go-here'
+  const [open, setOpen] = useState(false)
+  const activity = useAppStore((s) => s.activity)
+  const activityID = activities.find((activity) =>
+    activity.url === name ? activity.id : null,
+  )
 
-	useEffect(() => {
-		setOpen(activityID === activity)
-	}, [activity, activityID])
+  useEffect(() => {
+    setOpen(activityID === activity)
+  }, [activity, activityID])
 
-	// const handleClose = () => setOpen(false);
+  const handleClose = () => setOpen(false)
 
-	return (
-		<div id={name} className={'activity ' + 'activity-' + name + (open ? ' show' : ' hide')}>
-			<section className={name}></section>
-		</div>
-	)
-};
+  return (
+    <div
+      id={name}
+      className={'activity ' + 'activity-' + name + (open ? ' show' : ' hide')}
+    >
+      <CloseBtn onClick={handleClose} />
+      <section className={name}></section>
+    </div>
+  )
+}
 Template.propTypes = {}
 
-export default Template;
+export default Template

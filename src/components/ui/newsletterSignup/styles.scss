@@ -110,7 +110,7 @@
                 font-size: 1rem;
                 text-align: left;
                 color: #661d1d;
-                background-color: rgba(10, 10, 10, 0.4);
+                background-color: var(--backgroundGrayTrans45);
                 border-radius: 6px;
                 border-color: var(--orange);
                 max-width: 540px;
@@ -120,7 +120,7 @@
                 font-size: 1rem;
                 text-align: left;
                 color: #085229;
-                background-color: rgba(10, 10, 10, 0.4);
+                background-color: var(--backgroundGrayTrans45);
                 border-radius: 6px;
                 border-color: var(--yellow);
                 max-width: 540px;
@@ -197,9 +197,10 @@
                     border-radius: 6px;
                     position: absolute;
                     z-index: -1;
-                    background-color: var(--greyDark);
+
                     opacity: 0.3;
-                    outline: 1px solid rgba(200, 200, 200, 0.5);
+                    background-color: var(--greyDark);
+                    outline: var(--card-outline);
                     box-shadow: var(--boxShadowDarkValue);
 
                 }

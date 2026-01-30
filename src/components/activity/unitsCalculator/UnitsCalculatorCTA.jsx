@@ -1,47 +1,41 @@
 import { useState, useEffect } from 'react'
-
 import UnitsCalculatorBtn from './UnitsCalculatorBtn'
-import parse from 'html-react-parser'
 import { strings } from '@/data/config'
 import useAppStore from '@/store/useAppStore'
-import './stylesCTA.scss'
+import CTA from '@/components/ui/cta/CTA'
+// import './stylesCTA.scss'
+
 const UnitsCalculatorCTA = () => {
+  const activityName = 'UnitsCalculator'
+  const activityUrl = 'units-calculator'
+  const activityID = -1
+
+  const activity = useAppStore((state) => state.activity)
   const [open, setOpen] = useState(false)
-  const activity = useAppStore((s) => s.activity)
 
   useEffect(() => {
-    setOpen(activity === -1)
-  }, [activity])
+    setOpen(activity === activityID)
+  }, [activity, activityID])
 
   const content =
-    strings.activity.find((activity) => activity.name === 'UnitsCalculator') ||
-    null
+    strings.activity.find((activity) => activity.url === activityUrl) || null
   if (content === null) {
-    console.warn('No content found for activity "UnitsCalculator"')
+    console.warn('No content found for activity "' + activityName + '"')
   }
 
-  return open ? (
-    <div
-      className={
-        'activity activity-units-calculator-cta ' + (open ? ' show' : '')
-      }
+  return (
+    <section
+      className={`activity activity-${activityUrl}-cta` + (open ? ' show' : '')}
     >
-      <div className='inner'>
-        <div className='title'>
-          <h3>
-            <b>
-              <u>{content?.cta?.title}</u>
-            </b>
-          </h3>
-        </div>
-        {content?.cta?.content?.map((html, i) => {
-          return <p key={i}>{parse(html)}</p>
-        })}
-        <UnitsCalculatorBtn />
-      </div>
-    </div>
-  ) : (
-    <> </>
+      <CTA
+        name={activityName}
+        title={content.title}
+        open={open}
+        content={content.cta.content}
+      >
+        <UnitsCalculatorBtn label={content?.cta.btn?.label.unused} />
+      </CTA>
+    </section>
   )
 }
 

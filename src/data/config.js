@@ -1,15 +1,4 @@
 import HandymanIcon from '@mui/icons-material/Handyman';
-import SavedSearchIcon from '@mui/icons-material/SavedSearch';
-import TourOutlinedIcon from '@mui/icons-material/TourOutlined';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import PlayCircleOutlineOutlinedIcon from '@mui/icons-material/PlayCircleOutlineOutlined';
-import SpaOutlinedIcon from '@mui/icons-material/SpaOutlined';
-import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
-import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
-import AutoGraphOutlinedIcon from '@mui/icons-material/AutoGraphOutlined';
-import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
-import UmmiIcon from '@/components/ui/icons/UmmiIcon';
-import BlurOnOutlinedIcon from '@mui/icons-material/BlurOnOutlined';
 import {isTouchDevice} from '@/js/utils.js';
 // import { title } from "process";
 const cnf = {
@@ -84,8 +73,8 @@ const baseActivities = [
   },
   {
     id: 6,
-    url: 'videos',
-    title: 'Videos',
+    url: 'wallpaper-gallery',
+    title: 'Wallpapers',
     menu: true,
   },
   {
@@ -155,6 +144,7 @@ const baseActivities = [
     title: 'Acronym Exlpained',
     menu: false,
   },
+
 ];
 const activities = baseActivities.map((item) => ({
   ...item,
@@ -165,7 +155,8 @@ const strings = {
   activity: [
     {
       name: 'introduction',
-
+      url: 'introduction',
+      slug: 'introduction',
       title: 'Hey',
 
       content: [
@@ -173,17 +164,17 @@ const strings = {
           title: '',
           classes: 'ummi-blue',
           content: [
-            '<b><span class="ummi">U</span>nderstanding <span class="ummi">M</span>e, <span class="ummi">M</span>yself, and <span class="ummi">I</span> <u class="yellow-ul"><span class="ummi">(U.M.M.I)</span></u></b> is your <b><u class="yellow">FREE</u> companion app.</b>',
+           '<b><span class="ummi">U</span></b>nderstanding <b><span class="ummi">M</span></b>e, <b><span class="ummi">M</span></b>yself, and <b><span class="ummi">I</span></b> <b><u class="yellow-ul ummi">(U.M.M.I)</u></b>, is your <b><u class="yellow">FREE</u> companion app.</b>',
           ],
         },
       {
-          title: 'Who is <span class="ummi">Ummi</span> for?',
+          title: '',
           content: [
-             'If you\'re <b>looking</b> for <u class="yellow-ul lrg yellow">information</u> about <b><u class="orange-ul">Alcohol Recovery </u></b> <br /><br /<br /><b><u class="yellow-ul lrg yellow">this app is for you.</u></b>',
-            'If you\'re <b>learning</b> <b><u class="orange-ul">recovery tools</u></b> <br />at groups using <br /><u class="blue-ul"><b>ACT, CBT, DBT, REBT,</b> or <b>SMART</b> therapies?</u><br /><br /><br /<b><u class="yellow-ul lrg yellow">this app is for you.</u>.</b>',
+            'If you\'re <b>looking</b> for <u class="yellow-ul lrg yellow">information</u> about <b><u class="orange-ul">Alcohol Recovery </u></b> <br /><br /><br /><b><u class="yellow-ul lrg yellow">this app is for you.</u></b>',
+            'If you\'re <b>learning</b> <b><u class="orange-ul">recovery tools</u></b> <br />at groups using <br /><u class="blue-ul"><b>ACT, CBT, DBT, REBT,</b> or <b>SMART</b> therapists?</u><br /><br /><br /><b><u class="yellow-ul lrg yellow">this app is for you.</u>.</b>',
             '<u class="white-ul"><b><span class="ummi">Ummi</span></b></u> was created because <u class="yellow-ul lrg"><b>the tools are great</b></u>.',
-            'But <b class="yellow">remembering</b> them<br /> <u><b>can be hard</u></b>.',
-            '<u class="white-ul"><b><span class="ummi">Ummi</span></b></u> helps you <b><u class="blue-ul">find  tools</u></b> that work <b><u class="yellow">for you,</u></b> and <b><u>your journey</u>.</b> ',
+            'But <b class="yellow">remembering</b> them <u><b>can be hard</b></u>',
+            '<u class="white-ul"><b><span class="ummi">Ummi</span></b></u> helps you <b><u class="blue-ul">find  tools</u></b> that work <b><u class="yellow">for you,</u></b> and <b><u>your journey</u></b>.',
             '<u class="light-blue">Completely</u> <b><u class="yellow-ul lrg">for free</b></u>'
           ],
         },
@@ -241,7 +232,7 @@ const strings = {
           classes: 'ummi-blue',
           content: [],
           contents: [
-            "🔎Looking for Recovery tools?👀 <br/><br />👍 You're in the right place.✔<br /><br /> 👊🏾👇Check them out below👇👊",
+            "🔎Looking for Recovery tools?👀 <br /><br />👍 You're in the right place.✔<br /><br /> 👊🏾👇Check them out below👇👊",
             "👋It's great to see you again😎🫵",
             "👋You're in good Company😎🫵",
             "👋You're back, that's ace👋 <br />All the solid ones do👊",
@@ -263,6 +254,7 @@ const strings = {
     {
       name: 'tools',
       slug: '#recovery-tools',
+      url: 'recovery-tools',
       title: 'The Tools',
       introduction: (isTouchDevice() ? "Tap" : "Click") + ' on a tool to learn more about it',
       description: [
@@ -272,10 +264,19 @@ const strings = {
         // "<u>Everbody's<br /> journey <br /></u><u><b class='yellow'>is different.</b></u>",
       ],
       content: [],
-      btnLabel: '',
       cta: {
-        title: '',
-        content: [],
+        title: 'The Tools',
+        content: [
+          'Find tools that are used in Recovery groups and classes.',
+          'Save the ones that work for you to your toolbox.',
+          'Try them out to see if they work for you.'],
+           btn: {
+            
+            label: {
+              unused:'See the tools',
+              used:'See the tools',
+            },
+          },
       },
     },
     {
@@ -285,23 +286,32 @@ const strings = {
     },
 
     {
-      name: 'daysCounter',
+      name: 'DaysCounter',
       title: 'Days Counter',
       slug: 'days-counter',
+      url: 'days-counter',
       btnLabel: 'Days Counter',
       content: [],
       cta: {
         title: 'Days Counter',
         content: [
           'Track your progress and remind yourself how far you have come.',
-          'Click the button below to start tracking your days.',
+          'Click the button below to start counting days.',
         ],
+        btn: {
+          label: {
+            unused:'Set Dates',
+            used:'View Dates',
+          }
+        }        
+        
       },
     },
     {
       name: 'UnitsCalculator',
       title: 'Units Calculator',
       slug: 'units-calculator',
+      url: 'units-calculator',
       btnLabel: 'Units Calculator',
       content: [],
       cta: {
@@ -309,19 +319,31 @@ const strings = {
         content: [
           'Calculate the Alcholic Units for standard measures and custom drink sizes and ABV.',
         ],
+         btn: {
+        
+          label: {
+            unused:'Use the Calculator',
+            used:'View your Calculation',
+          }
+        },
       },
     },
     {
       name: 'install',
       title: 'Install',
       slug: '#install',
+      url: '#install',
       htmlContent: [],
 
       cta: {
         title: 'Install Ummi',
         content: ['Install Ummi for quick access'],
         btn: {
-          label: 'Install',
+
+          label: {
+            unused:'Install ',
+            used:'Install',
+          }
         },
         postInstall: {
           title: 'Thanks!',
@@ -334,6 +356,7 @@ const strings = {
     {
       name: 'privacy',
       slug: 'privacy',
+      url: 'privacy',
       title: 'We respect you<br />and your privacy',
       content: [
         'Any personal data you provide to us is stored <b><u>only on your device.</u></b>',
@@ -350,7 +373,11 @@ const strings = {
           'Visit Settings in the menu<br /> to remove it at any time',
         ],
         btnLabel: 'Privacy Policy',
-        route: '/privacy',
+        label: {
+            unused:'Privacy Policy',
+            used:'Privacy Policy',
+          },
+        
       },
     },
     {
@@ -370,12 +397,17 @@ const strings = {
       name: 'settings',
       title: 'Settings',
       slug: 'settings',
+      url: 'settings',
       id: 14,
       content: [],
       btnLabel: 'Settings',
       cta: {
         title: '',
         content: [''],
+        label: {
+            unused:'Settings',
+            used:'',
+          },
       },
     },
   ],

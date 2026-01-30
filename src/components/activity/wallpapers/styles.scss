@@ -1,0 +1,672 @@
+body div#wallpaper-gallery.activity-wallpaper-gallery {
+    position: fixed;
+    top: 0;
+    left: 0;
+    // bottom: 0;
+    width: 100%;
+    height: 100dvh;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #fff;
+    z-index: 6000;
+    // overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+
+
+    &.show {
+        animation: fadeIn 0.3s ease forwards;
+    }
+
+    &.hide {
+        animation: fadeOut 0.3s ease forwards;
+    }
+
+    &.preview-mode {
+        background: #000 !important;
+
+        .preview-close-btn {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 2001;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.2);
+                transform: scale(1.1);
+            }
+
+            svg {
+                width: 24px;
+                height: 24px;
+                fill: white;
+            }
+        }
+
+        .preview-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+
+            .preview-loading {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background: rgba(0, 0, 0, 0.8);
+                z-index: 100;
+
+                .preview-spinner {
+                    width: 60px;
+                    height: 60px;
+                    border: 3px solid rgba(255, 255, 255, 0.1);
+                    border-radius: 50%;
+                    border-top-color: #3b82f6;
+                    animation: spin 1s linear infinite;
+                    margin-bottom: 1rem;
+                }
+
+                p {
+                    color: #94a3b8;
+                    font-size: 1rem;
+                }
+            }
+
+            .preview-error {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background: rgba(0, 0, 0, 0.9);
+                z-index: 100;
+
+                p {
+                    color: #ef4444;
+                    margin-bottom: 1rem;
+                    font-size: 1.1rem;
+                }
+
+                button {
+                    background: #3b82f6;
+                    color: white;
+                    border: none;
+                    padding: 0.5rem 1.5rem;
+                    border-radius: 0.5rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        background: #2563eb;
+                    }
+                }
+            }
+
+            .preview-image {
+                max-width: 100%;
+                max-height: 100%;
+                width: auto;
+                height: auto;
+                object-fit: contain;
+                transition: opacity 0.3s ease;
+                opacity: 0;
+
+                &.loaded {
+                    opacity: 1;
+                    animation: imageFadeIn 0.5s ease forwards;
+                }
+            }
+
+            .preview-overlay {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+                padding: 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                z-index: 101;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+
+                &:hover {
+                    opacity: 1;
+                }
+
+                .preview-info {
+                    h3 {
+                        font-size: 1.5rem;
+                        font-weight: 600;
+                        margin-bottom: 0.5rem;
+                    }
+
+                    p {
+                        color: #cbd5e1;
+                        font-size: 0.9rem;
+                    }
+                }
+
+                .preview-download-btn {
+                    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+                    color: white;
+                    border: none;
+                    padding: 0.75rem 2rem;
+                    border-radius: 0.5rem;
+                    font-weight: 600;
+                    font-size: 1rem;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+                    }
+                }
+            }
+        }
+    }
+
+    .gallery-header {
+        text-align: center;
+        padding: 1rem 1rem;
+        // flex-shrink: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        text-align: left;
+        z-index: 1;
+        text-shadow: none;
+        mix-blend-mode: difference;
+
+        h1 {
+
+            font-weight: 700;
+            margin: 0;
+            width: 100%;
+            color: #fff;
+
+        }
+
+        .instruction {
+            // color: #94a3b8;
+            font-size: 0.9rem;
+            max-width: 600px;
+            margin: 0.25rem 0 auto;
+            line-height: 1.5;
+            // color: #fff;
+            align-items: center;
+            border-bottom: 1px solid var(--greyLight);
+            display: flex;
+            text-shadow: none;
+            // background: var(--backgroundGrayTrans40);
+            color: #fff;
+            background: transparent;
+            justify-content: space-between;
+            margin-right: 0.5rem;
+            padding-bottom: 0.25rem;
+        }
+
+        .size-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+
+            .size-badge {
+                background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+                padding: 0.25rem 0.75rem;
+                border-radius: 1rem;
+                font-weight: 600;
+                font-size: 0.875rem;
+                letter-spacing: 0.5px;
+            }
+
+            .size-label {
+                color: #cbd5e1;
+                font-size: 0.875rem;
+            }
+        }
+    }
+
+    .carousel-container {
+        flex: 1;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        width: 100dvw;
+        height: 100dvh;
+        min-height: 100dvh;
+        background: var(--primary);
+
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent; //var(--backgroundGrayTrans20);
+            backdrop-filter: blur(6px);
+            outline: none;
+            color: white;
+            width: 48px;
+            height: 48px;
+            // border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100000;
+            padding: 0;
+
+
+
+            &.prev {
+                left: 0rem;
+            }
+
+            &.next {
+                right: 0rem;
+            }
+
+            &.disabled {
+                opacity: 0.3;
+                cursor: not-allowed;
+            }
+
+            svg {
+                width: 36px;
+                height: 36px;
+            }
+        }
+
+        .carousel-track {
+            width: 100%;
+            height: 100%;
+            // max-width: 480px;
+            // max-height: 854px;
+            overflow: hidden;
+            background: var(--primary);
+
+            .carousel-slides {
+                display: flex;
+                height: 100%;
+                width: 100%;
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+                .slide {
+                    flex: 0 0 100%;
+                    height: 100%;
+                    width: 100%;
+                    // padding: 1rem;
+
+                    .wallpaper-card {
+                        height: 100%;
+                        width: 100%;
+                        overflow: hidden;
+                        position: relative;
+                        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+                        cursor: pointer;
+                        transition: transform 0.3s ease;
+
+                        &:hover {
+                            transform: scale(1.02);
+
+                            .wallpaper-overlay {
+                                transform: translateY(0);
+                            }
+                        }
+
+                        .image-container {
+                            width: 100%;
+                            height: 100%;
+                            position: relative;
+
+                            .wallpaper-thumbnail {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                transition: opacity 0.3s ease;
+                            }
+
+                            .wallpaper-placeholder {
+                                width: 100%;
+                                height: 100%;
+                                background: linear-gradient(135deg, #1e3a8a 0%, #4c1d95 100%);
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+
+                                .placeholder-content {
+                                    text-align: center;
+                                    color: white;
+
+                                    .wallpaper-title {
+                                        display: block;
+                                        font-size: 1.5rem;
+                                        font-weight: 600;
+                                        margin-bottom: 0.5rem;
+                                    }
+
+                                    .wallpaper-id {
+                                        display: block;
+                                        font-size: 0.875rem;
+                                        opacity: 0.8;
+                                    }
+                                }
+                            }
+
+                            .wallpaper-overlay {
+                                position: absolute;
+                                bottom: 0;
+                                left: 0;
+                                right: 0;
+                                background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+                                padding: 2rem;
+                                transform: translateY(100%);
+                                transition: transform 0.3s ease;
+
+                                .wallpaper-meta {
+                                    h3 {
+                                        font-size: 1.25rem;
+                                        font-weight: 600;
+                                        margin-bottom: 0.25rem;
+                                    }
+
+                                    .wallpaper-category {
+                                        color: #cbd5e1;
+                                        font-size: 0.875rem;
+                                        text-transform: uppercase;
+                                        letter-spacing: 1px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .gallery-footer {
+        flex-shrink: 0;
+        padding: 0.5rem;
+        text-align: center;
+        position: absolute;
+        bottom: 0rem;
+        left: 0;
+        width: 100%;
+        // mix-blend-mode: difference;
+
+        .counter {
+            font-size: 0.875rem;
+
+
+            margin-bottom: 0.5rem;
+
+            width: fit-content;
+            padding: 0.25rem;
+            margin: 0 auto 0.4rem auto;
+
+            text-shadow: none;
+            background: var(--backgroundGrayTrans40);
+            color: var(--primary);
+            // mix-blend-mode: difference;
+
+        }
+
+        .actions {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.5rem 1rem 0.5rem;
+            width: fit-content;
+            mix-blend-mode: difference;
+            border-top-right-radius: 50px;
+            border-top-left-radius: 50px;
+            background: transparent; //var(--backgroundGrayTrans20);
+            backdrop-filter: blur(2px);
+            position: absolute;
+            z-index: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 0);
+            // outline: 1px solid #ccc;
+
+            .download-icon {
+                fill: #fff;
+                width: 60px;
+                height: 60px;
+                margin: 0 auto;
+            }
+        }
+    }
+
+    .device-info {
+        background: rgba(255, 255, 255, 0.05);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 1rem 0.5rem;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        gap: 0.35rem;
+        // flex-shrink: 0;
+
+        .info-item {
+            display: flex;
+            align-content: center;
+            align-items: stretch;
+            flex-flow: row nowrap;
+            flex: 1;
+            width: 40%;
+            justify-content: center;
+            font-size: 0.875rem;
+
+            .label {
+
+                color: #94a3b8;
+                text-transform: uppercase;
+            }
+
+            .value {
+                font-weight: 600;
+                color: #e2e8f0;
+            }
+        }
+    }
+
+    .loading-screen {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #0f172a;
+
+        .loading-spinner {
+            width: 48px;
+            height: 48px;
+            border: 3px solid rgba(59, 130, 246, 0.3);
+            border-radius: 50%;
+            border-top-color: #3b82f6;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+    }
+}
+
+// Keyframe animations
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes imageFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+    .activity-wallpaper-gallery {
+        .carousel-container {
+            .nav-btn {
+                width: 40px;
+                height: 40px;
+
+                &.prev {
+                    left: 0.5rem;
+                }
+
+                &.next {
+                    right: 0.5rem;
+                }
+            }
+        }
+
+        .gallery-header {
+            padding: 1.5rem 1rem 0.5rem;
+
+            h1 {
+                // font-size: 1.5rem;
+            }
+
+            .instruction {
+                font-size: 0.8rem;
+            }
+        }
+
+        .gallery-footer {
+            .actions {
+                flex-direction: column;
+                align-items: center;
+
+                button {
+                    width: 200px;
+                    justify-content: center;
+                }
+            }
+
+            .hint {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+        }
+
+        .device-info {
+            flex-direction: column;
+            gap: 0.75rem;
+            padding: 0.75rem;
+        }
+    }
+}
+
+// Ensure full-screen on mobile devices
+@media (max-width: 768px) and (orientation: portrait) {
+    .activity-wallpaper-gallery {
+        .carousel-container {
+            .carousel-track {
+                height: 60vh;
+            }
+        }
+
+        &.preview-mode {
+            .preview-overlay {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                padding: 1rem;
+
+                .preview-info {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+// PWA specific styles for install prompts
+@media (display-mode: standalone) {
+    .activity-wallpaper-gallery {
+
+        // Adjust for standalone PWA mode if needed
+        &.preview-mode {
+            .preview-close-btn {
+                top: env(safe-area-inset-top, 1rem);
+            }
+        }
+    }
+}

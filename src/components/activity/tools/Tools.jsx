@@ -1,6 +1,5 @@
 import { useEffect, useState, useMemo } from 'react'
 import useAppStore from '@/store/useAppStore'
-import { activities } from '@/data/config'
 import MenuCarousel from '@/components/activity/tools/menuCarousel/MenuCarousel'
 import BadgeToolbox from 'ui/badges/BadgeToolbox'
 import parse from 'html-react-parser'
@@ -17,9 +16,7 @@ const Tools = () => {
 
   const [open, setOpen] = useState(false)
   const activity = useAppStore((s) => s.activity)
-  const activityID = activities.find((activity) =>
-    activity.url === name ? activity.id : null,
-  )
+
   const content =
     strings.activity.find((activity) => activity.name === name) || null
 
@@ -42,7 +39,6 @@ const Tools = () => {
 
   const setActivity = useAppStore((s) => s.setActivity)
   const setAcronymID = useAppStore((s) => s.setAcronymID)
-  const setShowAccCard = useAppStore((s) => s.setShowAccCard)
 
   const handleClick = (id) => () => {
     setAcronymID(id)

@@ -1,4 +1,7 @@
 :root {
+  --card-outline: 1px solid rgba(200, 200, 200, 0.5);
+  --card-outline-med: 1px solid rgba(100, 100, 100, 0.5);
+  --card-outline-dark: 1px solid rgba(50, 50, 50, 0.5);
   --breakpoint-desktop: 1200px;
   --breakpoint-tablet: 900px;
   --breakpoint-mobile: 600px;
@@ -6,6 +9,7 @@
   --gutters: 1.25rem;
   --appMaxWidth: 430px;
   --border-radius: 6px;
+  --border-radius-lrg: 12px;
   --blueBackground: #036075;
   --backgroundGrayTrans5: rgba(10, 10, 10, 0.05);
   --backgroundGrayTrans10: rgba(10, 10, 10, 0.1);
@@ -16,7 +20,6 @@
   --backgroundGrayTrans35: rgba(10, 10, 10, 0.35);
   --backgroundGrayTrans40: rgba(10, 10, 10, 0.4);
 
-  --backgroundGrayTrans45: rgba(10, 10, 10, 0.45);
   --backgroundGrayTrans45: rgba(10, 10, 10, 0.45);
   --backgroundGrayTrans50: rgba(10, 10, 10, 0.5);
   --backgroundGrayTrans75: rgba(10, 10, 10, 0.75);
@@ -84,6 +87,17 @@
   --blueDark30Trans: rgba(30, 24, 75, 0.3);
   --blueDark20Trans: rgba(30, 24, 75, 0.2);
   --blueDark10Trans: rgba(30, 24, 75, 0.1);
+
+  --blueDarkDark90Trans: rgba(20, 14, 45, 0.9);
+  --blueDarkDark90Trans: rgba(20, 14, 45, 0.8);
+  --blueDarkDark70Trans: rgba(20, 14, 45, 0.7);
+  --blueDarkDark60Trans: rgba(20, 14, 45, 0.6);
+  --blueDarkDark50Trans: rgba(20, 14, 45, 0.5);
+  --blueDarkDark40Trans: rgba(20, 14, 45, 0.4);
+  --blueDarkDark30Trans: rgba(20, 14, 45, 0.3);
+  --blueDarkDark20Trans: rgba(20, 14, 45, 0.2);
+  --blueDarkDark10Trans: rgba(20, 14, 45, 0.1);
+
   --lightGrey: #ccc;
   --lighGreyBg: #819ec9;
   --red: #e83737;
@@ -137,6 +151,7 @@
   --textShadowDarkValue: 0px 0px 6px rgba(10, 10, 10, 0.5);
   --textShadowLightValue: 0px 0px 6px rgba(200, 200, 200, 0.5);
   --boxShadowDarkValue: 0px 0px 6px rgba(10, 10, 10, 0.5);
+  --boxShadowDark: 0px 0px 6px rgba(10, 10, 10, 0.5);
   --boxShadowLightValue: 0px 0px 6px rgba(200, 200, 200, 0.5);
   --boxShadowBlueValue: 0px 0px 6px rgba(10, 10, 200, 0.5);
   --boxShadowOrangeValue: 0px 0px 6px rgba(255, 187, 0, 0.781);

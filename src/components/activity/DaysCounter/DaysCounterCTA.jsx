@@ -1,44 +1,41 @@
 import { useState, useEffect } from 'react'
-
-import DaysCounterBtn from 'ui/buttons/daysCounter/daysCounterBtn'
-import parse from 'html-react-parser'
+import DaysCounterBtn from './DaysCounterBtn'
 import { strings } from '@/data/config'
 import useAppStore from '@/store/useAppStore'
-import './stylesCTA.scss'
+import CTA from '@/components/ui/cta/CTA'
+
 const DaysCounterCTA = () => {
+  const activityName = 'DaysCounter'
+  const activityUrl = 'days-counter'
+  const activityID = -1
+
+  const activity = useAppStore((state) => state.activity)
   const [open, setOpen] = useState(false)
-  const activity = useAppStore((s) => s.activity)
 
   useEffect(() => {
-    setOpen(activity === -1)
-  }, [activity])
+    setOpen(activity === activityID)
+  }, [activity, activityID])
+
   const content =
-    strings.activity.find((activity) => activity.name === 'daysCounter') || null
+    strings.activity.find((activity) => activity.url === activityUrl) || null
   if (content === null) {
-    console.warn('No content found for activity "daysCounter"')
+    console.warn('No content found for activity "' + activityName + '"')
   }
 
-  return open ? (
-    <div
-      className={'activity activity-days-counter-cta ' + (open ? ' show' : '')}
+  return (
+    <section
+      className={`activity activity-${activityUrl}-cta` + (open ? ' show' : '')}
     >
-      {' '}
-      <div className='inner'>
-        <div className='title'>
-          <h3>
-            <b>
-              <u>{content?.cta?.title}</u>
-            </b>
-          </h3>
-        </div>
-        {content?.cta?.content?.map((html, i) => {
-          return <p key={i}>{parse(html)}</p>
-        })}
-        <DaysCounterBtn />
-      </div>{' '}
-    </div>
-  ) : (
-    <> </>
+      <CTA
+        name={activityName}
+        open={open}
+        content={content.cta.content ? content.cta.content : null}
+        title={content?.cta?.title}
+        label={content?.cta.btn?.label}
+      >
+        <DaysCounterBtn label={content?.cta.btn?.label.unused} />
+      </CTA>
+    </section>
   )
 }
 

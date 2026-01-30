@@ -2,7 +2,6 @@ import AddchartOutlinedIcon from '@mui/icons-material/AddchartOutlined'
 import useAppStore from '@/store/useAppStore'
 import PropTypes from 'prop-types'
 
-import './stylesCTA.scss'
 const UnitsCalculatorBtn = ({ label = 'Units Calculator' }) => {
   const setActivity = useAppStore((state) => state.setActivity)
 

@@ -46,8 +46,6 @@ const Introduction = () => {
 
   useGSAP(() => {}, { scope: sectionRefs, revertOnUpdate: true })
 
-  // let split = SplitText.create('.headline');
-
   return (
     <section
       id='intro'
@@ -59,7 +57,7 @@ const Introduction = () => {
             {(!isInstalled || (isInstalled && vc < 3)) && (
               <b>
                 {' '}
-                <u>{content.title}</u>
+                <u>{content?.title}</u>
               </b>
             )}
 
@@ -117,6 +115,7 @@ const Introduction = () => {
           )}
 
           {(!isInstalled || (isInstalled && vc < 20)) &&
+            content?.content &&
             content?.content?.map((cnt, i) => {
               return (
                 <div
@@ -131,14 +130,12 @@ const Introduction = () => {
                   )}
                   {cnt?.content?.map((para, k) => {
                     return para ? (
-                      <Feature classes={'feature'} key={'p-' + k}>
-                        <p key={k} className='st'>
+                      <Feature classes={'feature'} key={'feat-' + k}>
+                        <p key={'p-' + k} className='st'>
                           {parse(para)}
                         </p>
                       </Feature>
-                    ) : (
-                      <></>
-                    )
+                    ) : null
                   })}
                 </div>
               )
