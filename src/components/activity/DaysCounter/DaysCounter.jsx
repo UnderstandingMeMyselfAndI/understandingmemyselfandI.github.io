@@ -137,7 +137,7 @@ const DaysCounter = () => {
           (open ? ' open' : '')
         }
       >
-        <CloseBtn classes='days-counter-close-btn' handleClick={handleClose} />
+        <CloseBtn classes='days-counter-close-btn' onClick={handleClose} />
         <div className='days-counter-wrap'>
           {showDialog && (
             <Dialog

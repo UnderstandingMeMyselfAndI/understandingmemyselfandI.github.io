@@ -154,7 +154,7 @@ const UnitsCalculator = () => {
     >
       <div className='inner'>
         {!isMeasuresVisible && (
-          <CloseBtn className='close-btn' handleClick={handleClose} />
+          <CloseBtn className='close-btn' onClick={handleClose} />
         )}
         <div className='content'>
           <div className='wrap'>

@@ -69,7 +69,7 @@ const Tools = () => {
   return (
     <div className={'activity acronym-tools fixed' + (open ? ' show' : ' ')}>
       {toolboxFilterEnabled && <BadgeToolbox />}
-      <CloseBtn handleClick={handleClose} />
+      <CloseBtn onClick={handleClose} />
       <section className='tools' id='the-tools'>
         <header>
           <h2>{parse(content?.title)}</h2>
