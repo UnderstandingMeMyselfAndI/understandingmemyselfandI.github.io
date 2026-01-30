@@ -151,9 +151,9 @@ const WallpaperGallery = () => {
       initializedRef.current = true
 
       // Prevent body scroll when gallery is open
-      document.body.style.overflow = 'hidden'
-      document.body.style.height = '100%'
-      document.documentElement.style.overflow = 'hidden'
+      // document.body.style.overflow = 'hidden'
+      // document.body.style.height = '100%'
+      // document.documentElement.style.overflow = 'hidden'
 
       // Detect optimal size
       detectOptimalSize()
@@ -164,9 +164,9 @@ const WallpaperGallery = () => {
       initializedRef.current = false
 
       // Restore scroll
-      document.body.style.overflow = 'auto'
-      document.body.style.height = 'auto'
-      document.documentElement.style.overflow = 'auto'
+      // document.body.style.overflow = 'auto'
+      // document.body.style.height = 'auto'
+      // document.documentElement.style.overflow = 'auto'
     }
   }, [activity, activityID, open, detectOptimalSize])
 
