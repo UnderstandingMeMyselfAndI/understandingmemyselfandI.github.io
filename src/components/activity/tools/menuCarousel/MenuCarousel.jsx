@@ -4,6 +4,7 @@ import Skeleton from '@mui/material/Skeleton'
 import HandymanIcon from '@mui/icons-material/Handyman'
 import PropTypes from 'prop-types'
 import './MenuCarousel.scss'
+import parse from 'html-react-parser'
 
 // Default configuration
 const DEFAULT_CONFIG = {
@@ -263,7 +264,7 @@ const MenuCarousel = ({
                     (subItem, i) =>
                       subItem && (
                         <div key={i} className='letter' data-content={subItem}>
-                          {subItem}
+                          {parse(subItem)}
                         </div>
                       ),
                   )}

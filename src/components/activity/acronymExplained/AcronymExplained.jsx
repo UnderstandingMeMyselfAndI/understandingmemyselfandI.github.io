@@ -99,7 +99,7 @@ const AcronymExplained = () => {
       <div className='inner'>
         <div className='header'>
           <div className='title cont'>
-            {acronymData ? (
+            {acronymData && acronymData?.toolFieldGroup?.isAcronym ? (
               acronymData?.title.split('.').map(
                 (letter, index) =>
                   letter && (
@@ -109,7 +109,7 @@ const AcronymExplained = () => {
                   ),
               )
             ) : (
-              <Skeleton animation='wave' />
+              <div>{acronymData?.title && parse(acronymData?.title)}</div>
             )}
           </div>
           {isUserTool && yourToolsEnabled && <HandymanIcon className='icon' />}
@@ -124,22 +124,23 @@ const AcronymExplained = () => {
               )}
             </div>
 
-            {acronymData?.toolFieldGroup.letters.map((acronym, index) => (
-              <div key={'acronymn-' + index} className='AccDetails'>
-                <div className='Acc-letter-group' key={'t-' + index}>
-                  <div
-                    className='Acc-word'
-                    data-len={acronym.meaning.length}
-                    key={'m-' + index}
-                  >
-                    {acronym.meaning}
+            {acronymData?.toolFieldGroup?.isAcronym &&
+              acronymData?.toolFieldGroup.letters.map((acronym, index) => (
+                <div key={'acronymn-' + index} className='AccDetails'>
+                  <div className='Acc-letter-group' key={'t-' + index}>
+                    <div
+                      className='Acc-word'
+                      data-len={acronym?.meaning?.length}
+                      key={'m-' + index}
+                    >
+                      {acronym?.meaning}
+                    </div>
+                  </div>
+                  <div key={'d-' + index} className='Acc-definition'>
+                    {acronym?.definition && parse(acronym?.definition)}
                   </div>
                 </div>
-                <div key={'d-' + index} className='Acc-definition'>
-                  {parse(acronym.definition)}
-                </div>
-              </div>
-            ))}
+              ))}
           </div>
           {acronymData?.toolFieldGroup?.scenariosField?.nodes?.length > 0 &&
             acronymData?.toolFieldGroup?.scenariosField?.nodes[0]
@@ -167,13 +168,15 @@ const AcronymExplained = () => {
             <div className='videos' id='videos' key='videos'>
               {acronymData?.toolFieldGroup?.videosField?.nodes.map(
                 (linkedVideo, index) => {
-                  const video = videos.data.videos.nodes.find(
+                  const video = videos?.data?.videos?.nodes.find(
                     (v) => v.id === linkedVideo.id,
                   )
                   return (
                     <div className='video' key={'video-' + index}>
-                      <div className='title'>{parse(video.title)}</div>
-                      {video.videosFieldGroup?.duration && (
+                      <div className='title'>
+                        {video?.title && parse(video?.title)}
+                      </div>
+                      {video?.videosFieldGroup?.duration && (
                         <div className='duration'>
                           {video.videosFieldGroup?.duration?.hours && (
                             <div className='hours'>
@@ -211,7 +214,7 @@ const AcronymExplained = () => {
                           />
                         )}
                       </div>
-                      {video.videosFieldGroup?.description && (
+                      {video?.videosFieldGroup?.description && (
                         <div className='description'>
                           {parse(video.videosFieldGroup?.description)}
                         </div>

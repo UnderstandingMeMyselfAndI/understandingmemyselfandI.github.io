@@ -8,6 +8,7 @@ query tools {
       ... on WithAcfToolFieldGroup {
         toolFieldGroup {
           description
+          isAcronym
           letters {
             letter
             meaning

@@ -69,8 +69,10 @@ section#ummi-units-calculator {
 
           h2 {
             margin: 1rem auto 0.5rem auto;
-            font-size: variables.$h2_size;
+            font-size: variables.$h1_size;
             line-height: 1;
+            text-align: left;
+            margin: 0rem;
             max-width: 290px;
             // outline: 1px solid #ccc;
           }
@@ -222,7 +224,7 @@ section#ummi-units-calculator {
           font-size: 0.7rem;
 
           padding: 0;
-          margin: 0 0 0.5rem 0;
+          margin: 0.5rem 0;
           text-transform: uppercase;
           color: var(--greyLight);
           font-weight: 600;
@@ -528,7 +530,9 @@ section#ummi-units-calculator {
           transition: all 0.35s ease-in-out;
         }
 
-        cursor:pointer &:hover {
+
+
+        &:hover {
           background-color: var(--blueDark);
           transition: all 0.35s ease-in-out;
         }
@@ -619,7 +623,7 @@ section#ummi-units-calculator {
           box-shadow: var(--boxShadowDarkValue);
         }
 
-        cursor:pointer &:hover {
+        &:hover {
           background-color: var(--blueDark);
           transition: all 0.2s ease-in-out;
         }

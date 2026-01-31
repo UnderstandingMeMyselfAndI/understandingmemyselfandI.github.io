@@ -7,7 +7,7 @@
   max-width: none;
 }
 
-section.tools {
+body section#the-tools.tools {
   position: fixed;
   top: 0;
   left: 0;
@@ -46,7 +46,7 @@ section.tools {
     top: 0;
     left: 0;
     width: 100%;
-    height: 120px;
+    // height: 120px;
     z-index: 100;
     display: flex;
     flex-direction: column;
@@ -55,14 +55,22 @@ section.tools {
     // background: var(--blue20Trans);
     padding: 1rem 0;
     row-gap: 0.5rem;
+    text-align: left;
+    margin-left: 1.0rem;
 
     h2 {
       margin: 0;
       width: auto;
+      text-align: left;
+      width: 100%;
+      font-size: variables.$h1_size;
+
     }
 
     div.intro {
-      margin: 0.5rem 0;
+      margin: 0;
+      text-align: left;
+      width: 100%;
     }
   }
 
