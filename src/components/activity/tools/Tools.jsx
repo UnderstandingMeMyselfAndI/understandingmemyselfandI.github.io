@@ -7,6 +7,7 @@ import CloseBtn from '@/components/ui/buttons/close/CloseBtn.jsx'
 import toolsData from '../../../data/tools.js'
 import { strings } from '@/data/config'
 import PropTypes from 'prop-types'
+
 import './styles.scss'
 
 const Tools = () => {
@@ -69,20 +70,23 @@ const Tools = () => {
   return (
     <div className={'activity acronym-tools fixed' + (open ? ' show' : ' ')}>
       {toolboxFilterEnabled && <BadgeToolbox />}
-      <CloseBtn onClick={handleClose} />
+
       <section className='tools' id='the-tools'>
-        <header>
-          <h2>{parse(content?.title)}</h2>
-          <div className='intro'>{parse(content?.introduction)}</div>
-        </header>
-        <div className='tools-wrapper'>
-          <MenuCarousel
-            handleClick={handleClick}
-            data={carouselData}
-            filterIDs={positiveIDsSet}
-            showFavourites={yourToolsEnabled}
-            description={descriptionContent}
-          />
+        <div className='tools-inner'>
+          <CloseBtn onClick={handleClose} />
+          <header>
+            <h2>{parse(content?.title)}</h2>
+            <div className='intro'>{parse(content?.introduction)}</div>
+          </header>
+          <div className='tools-wrapper'>
+            <MenuCarousel
+              handleClick={handleClick}
+              data={carouselData}
+              filterIDs={positiveIDsSet}
+              showFavourites={yourToolsEnabled}
+              description={descriptionContent}
+            />
+          </div>
         </div>
       </section>
     </div>

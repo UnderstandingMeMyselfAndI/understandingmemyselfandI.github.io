@@ -12,8 +12,9 @@ import OndemandVideoOutlinedIcon from '@mui/icons-material/OndemandVideoOutlined
 import HdrAutoOutlinedIcon from '@mui/icons-material/HdrAutoOutlined'
 import Skeleton from '@mui/material/Skeleton'
 import { extractYouTubeId } from '@/js/utils.js'
+
 import './styles.scss'
-import { sanitizeStringForUrl } from '@/js/utils.js'
+
 // TODO [x]: Show hide favourites
 // TODO [x]: Add videos
 
@@ -48,14 +49,15 @@ const AcronymExplained = () => {
     setAcronymData(acronymData)
 
     contentRef.current.scrollTop = 0
+
     // TODO[x]: Ga event names need to be changed acronym_viewed - > tool_viewed_[name of acronym]
-    const event_name = 'tool_viewed_' + sanitizeStringForUrl(acronymData?.title)
-    if (gae && window.gtag) {
-      window.gtag('event', event_name ? event_name : 'tool_viewed', {
-        acronym_name: acronymData?.title,
-        app_name: 'Ummi',
-      })
-    }
+    // const event_name = sanitizeStringForUrl(acronymData?.title) + '_tool_viewed'
+    // if (gae && window.gtag) {
+    //   window.gtag('event', event_name ? event_name : 'tool_viewed', {
+    //     acronym_name: acronymData?.title,
+    //     app_name: 'Ummi',
+    //   })
+    // }
   }, [acronymID, gae])
 
   // useEffect(() => {
@@ -90,174 +92,174 @@ const AcronymExplained = () => {
   }
 
   return (
-    <section
-      className={
-        'activity acronym-explained-activity fixed' + (open ? ' show' : '')
-      }
-      key='acronym-card'
-    >
-      <div className='inner'>
-        <div className='header'>
-          <div className='title cont'>
-            {acronymData && acronymData?.toolFieldGroup?.isAcronym ? (
-              acronymData?.title.split('.').map(
-                (letter, index) =>
-                  letter && (
-                    <div className='active' key={index} data-content={letter}>
-                      {letter}
-                    </div>
-                  ),
-              )
-            ) : (
-              <div>{acronymData?.title && parse(acronymData?.title)}</div>
-            )}
-          </div>
-          {isUserTool && yourToolsEnabled && <HandymanIcon className='icon' />}
-        </div>
-        <section className='AccContent' id='AccContent' ref={contentRef}>
-          <div className='AccGroup'>
-            <div className='AccExplanation'>
-              {acronymData?.toolFieldGroup ? (
-                parse(acronymData.toolFieldGroup.description)
+    <div className='activity-explained-bg'>
+      <section
+        className={
+          'activity acronym-explained-activity fixed' + (open ? ' show' : '')
+        }
+        key='acronym-card'>
+        <div className='inner'>
+          <div className='header'>
+            <div className='title cont'>
+              {acronymData && acronymData?.toolFieldGroup?.isAcronym ? (
+                acronymData?.title.split('.').map(
+                  (letter, index) =>
+                    letter && (
+                      <div className='active' key={index} data-content={letter}>
+                        {letter}
+                      </div>
+                    ),
+                )
               ) : (
-                <Skeleton animation='wave' />
+                <div>{acronymData?.title && parse(acronymData?.title)}</div>
               )}
             </div>
+            {isUserTool && yourToolsEnabled && (
+              <HandymanIcon className='icon' />
+            )}
+          </div>
+          <section className='AccContent' id='AccContent' ref={contentRef}>
+            <div className='AccGroup'>
+              <div className='AccExplanation'>
+                {acronymData?.toolFieldGroup ? (
+                  parse(acronymData.toolFieldGroup.description)
+                ) : (
+                  <Skeleton animation='wave' />
+                )}
+              </div>
 
-            {acronymData?.toolFieldGroup?.isAcronym &&
-              acronymData?.toolFieldGroup.letters.map((acronym, index) => (
-                <div key={'acronymn-' + index} className='AccDetails'>
-                  <div className='Acc-letter-group' key={'t-' + index}>
-                    <div
-                      className='Acc-word'
-                      data-len={acronym?.meaning?.length}
-                      key={'m-' + index}
-                    >
-                      {acronym?.meaning}
+              {acronymData?.toolFieldGroup?.isAcronym &&
+                acronymData?.toolFieldGroup.letters.map((acronym, index) => (
+                  <div key={'acronymn-' + index} className='AccDetails'>
+                    <div className='Acc-letter-group' key={'t-' + index}>
+                      <div
+                        className='Acc-word'
+                        data-len={acronym?.meaning?.length}
+                        key={'m-' + index}>
+                        {acronym?.meaning}
+                      </div>
+                    </div>
+                    <div key={'d-' + index} className='Acc-definition'>
+                      {acronym?.definition && parse(acronym?.definition)}
                     </div>
                   </div>
-                  <div key={'d-' + index} className='Acc-definition'>
-                    {acronym?.definition && parse(acronym?.definition)}
+                ))}
+            </div>
+            {acronymData?.toolFieldGroup?.scenariosField?.nodes?.length > 0 &&
+              acronymData?.toolFieldGroup?.scenariosField?.nodes[0]
+                .scenariosFieldGroup && (
+                <div className='scenarios'>
+                  <div className='title'>Scenarios</div>
+                  <div className='scenarios-inner'>
+                    {acronymData?.toolFieldGroup?.scenariosField?.nodes?.map(
+                      (scenario, index) => (
+                        <div className='scenario' key={`scenario-${index}`}>
+                          <div className='title'>{scenario.title}</div>
+                          {scenario.scenariosFieldGroup?.description && (
+                            <div className='content'>
+                              {parse(scenario.scenariosFieldGroup?.description)}
+                            </div>
+                          )}
+                        </div>
+                      ),
+                    )}
                   </div>
                 </div>
-              ))}
-          </div>
-          {acronymData?.toolFieldGroup?.scenariosField?.nodes?.length > 0 &&
-            acronymData?.toolFieldGroup?.scenariosField?.nodes[0]
-              .scenariosFieldGroup && (
-              <div className='scenarios'>
-                <div className='title'>Scenarios</div>
-                <div className='scenarios-inner'>
-                  {acronymData?.toolFieldGroup?.scenariosField?.nodes?.map(
-                    (scenario, index) => (
-                      <div className='scenario' key={`scenario-${index}`}>
-                        <div className='title'>{scenario.title}</div>
-                        {scenario.scenariosFieldGroup?.description && (
-                          <div className='content'>
-                            {parse(scenario.scenariosFieldGroup?.description)}
+              )}
+
+            {acronymData?.toolFieldGroup?.videosField?.nodes.length > 0 && (
+              <div className='videos' id='videos' key='videos'>
+                {acronymData?.toolFieldGroup?.videosField?.nodes.map(
+                  (linkedVideo, index) => {
+                    const video = videos?.data?.videos?.nodes.find(
+                      (v) => v.id === linkedVideo.id,
+                    )
+                    return (
+                      <div className='video' key={'video-' + index}>
+                        <div className='title'>
+                          {video?.title && parse(video?.title)}
+                        </div>
+                        {video?.videosFieldGroup?.duration && (
+                          <div className='duration'>
+                            {video.videosFieldGroup?.duration?.hours && (
+                              <div className='hours'>
+                                {video.videosFieldGroup?.duration?.hours}
+                              </div>
+                            )}
+                            {video.videosFieldGroup?.duration?.minutes && (
+                              <div className='mins'>
+                                {video.videosFieldGroup?.duration?.minutes}
+                              </div>
+                            )}
+                            {video.videosFieldGroup?.duration?.seconds && (
+                              <div className='secs'>
+                                {video.videosFieldGroup?.duration?.seconds < 10
+                                  ? '0' +
+                                    video.videosFieldGroup?.duration?.seconds
+                                  : video.videosFieldGroup?.duration?.seconds}
+                              </div>
+                            )}
+                          </div>
+                        )}
+
+                        <div className='player'>
+                          {video ? (
+                            <LiteYouTubeEmbed
+                              id={extractYouTubeId(video.videosFieldGroup.url)}
+                              title={video.title}
+                              key={'video-' + index}
+                              poster='hqdefault'
+                            />
+                          ) : (
+                            <Skeleton
+                              animation='wave'
+                              className='video-skeleton'
+                            />
+                          )}
+                        </div>
+                        {video?.videosFieldGroup?.description && (
+                          <div className='description'>
+                            {parse(video.videosFieldGroup?.description)}
                           </div>
                         )}
                       </div>
-                    ),
-                  )}
-                </div>
+                    )
+                  },
+                )}
               </div>
             )}
+          </section>
+          <div className='footer acronym-card-footer' key='acronym-card-footer'>
+            <ButtonToolbox
+              id={acronymData?.id}
+              key={`toolbox-btn-${acronymData?.id}`}
+            />
+            {acronymData?.toolFieldGroup?.videosField?.nodes.length > 0 && (
+              <button
+                onClick={smoothScrollTo}
+                className='btn video'
+                key={`video-btn-${acronymData?.id}`}>
+                <OndemandVideoOutlinedIcon
+                  key={`video-icon-${acronymData?.id}`}
+                />
+              </button>
+            )}
+            {acronymData?.toolFieldGroup?.videosField?.nodes.length > 0 && (
+              <button
+                onClick={smoothToAccronym}
+                className='btn top'
+                key={`goto-top-btn-${acronymData?.id}`}>
+                <HdrAutoOutlinedIcon key={`goto-top-icon-${acronymData?.id}`} />
+              </button>
+            )}
 
-          {acronymData?.toolFieldGroup?.videosField?.nodes.length > 0 && (
-            <div className='videos' id='videos' key='videos'>
-              {acronymData?.toolFieldGroup?.videosField?.nodes.map(
-                (linkedVideo, index) => {
-                  const video = videos?.data?.videos?.nodes.find(
-                    (v) => v.id === linkedVideo.id,
-                  )
-                  return (
-                    <div className='video' key={'video-' + index}>
-                      <div className='title'>
-                        {video?.title && parse(video?.title)}
-                      </div>
-                      {video?.videosFieldGroup?.duration && (
-                        <div className='duration'>
-                          {video.videosFieldGroup?.duration?.hours && (
-                            <div className='hours'>
-                              {video.videosFieldGroup?.duration?.hours}
-                            </div>
-                          )}
-                          {video.videosFieldGroup?.duration?.minutes && (
-                            <div className='mins'>
-                              {video.videosFieldGroup?.duration?.minutes}
-                            </div>
-                          )}
-                          {video.videosFieldGroup?.duration?.seconds && (
-                            <div className='secs'>
-                              {video.videosFieldGroup?.duration?.seconds < 10
-                                ? '0' +
-                                  video.videosFieldGroup?.duration?.seconds
-                                : video.videosFieldGroup?.duration?.seconds}
-                            </div>
-                          )}
-                        </div>
-                      )}
-
-                      <div className='player'>
-                        {video ? (
-                          <LiteYouTubeEmbed
-                            id={extractYouTubeId(video.videosFieldGroup.url)}
-                            title={video.title}
-                            key={'video-' + index}
-                            poster='hqdefault'
-                          />
-                        ) : (
-                          <Skeleton
-                            animation='wave'
-                            className='video-skeleton'
-                          />
-                        )}
-                      </div>
-                      {video?.videosFieldGroup?.description && (
-                        <div className='description'>
-                          {parse(video.videosFieldGroup?.description)}
-                        </div>
-                      )}
-                    </div>
-                  )
-                },
-              )}
+            <div className='btn close' onClick={handleClose}>
+              <CloseBtn width={30} thickness={3} />
             </div>
-          )}
-        </section>
-        <div className='footer acronym-card-footer' key='acronym-card-footer'>
-          <ButtonToolbox
-            id={acronymData?.id}
-            key={`toolbox-btn-${acronymData?.id}`}
-          />
-          {acronymData?.toolFieldGroup?.videosField?.nodes.length > 0 && (
-            <button
-              onClick={smoothScrollTo}
-              className='btn video'
-              key={`video-btn-${acronymData?.id}`}
-            >
-              <OndemandVideoOutlinedIcon
-                key={`video-icon-${acronymData?.id}`}
-              />
-            </button>
-          )}
-          {acronymData?.toolFieldGroup?.videosField?.nodes.length > 0 && (
-            <button
-              onClick={smoothToAccronym}
-              className='btn top'
-              key={`goto-top-btn-${acronymData?.id}`}
-            >
-              <HdrAutoOutlinedIcon key={`goto-top-icon-${acronymData?.id}`} />
-            </button>
-          )}
-
-          <div className='btn close' onClick={handleClose}>
-            <CloseBtn width={30} thickness={3} />
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   )
 }
 AcronymExplained.displayName = 'AcronymExplained'

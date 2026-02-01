@@ -1,43 +1,46 @@
-import { useState, useEffect } from 'react';
-import { activities } from '@/data/config';
-import useAppStore from '@/store/useAppStore';
-import CloseBtn from 'buttons/close/CloseBtn';
-import Backdrop from 'components/ui/backdrop/Backdrop';
-import './styles.scss';
+import { useState, useEffect } from 'react'
+import { activities } from '@/data/config'
+import useAppStore from '@/store/useAppStore'
+import CloseBtn from 'buttons/close/CloseBtn'
+import Backdrop from 'components/ui/backdrop/Backdrop'
+import './styles.scss'
 // TODO: #13 Add in newsletter supplier privacy
 const PrivacyPolicy = () => {
-  const name = 'privacy';
+  const name = 'privacy'
 
-  const [open, setOpen] = useState(false);
-  const activity = useAppStore((s) => s.activity);
-  const setActivity = useAppStore((s) => s.setActivity);
+  const [open, setOpen] = useState(false)
+  const activity = useAppStore((s) => s.activity)
+  const setActivity = useAppStore((s) => s.setActivity)
 
   const activityObj = activities.find((activity) =>
     activity.url === name ? activity.id : null,
-  );
-  const el = document.getElementById('privacy');
+  )
+  const el = document.getElementById('privacy')
 
   useEffect(() => {
-    setOpen(activityObj.id === activity);
-  }, [activity, activityObj, el]);
+    setOpen(activityObj.id === activity)
+  }, [activity, activityObj, el])
 
   // const handleCCPAClick = () => {
   // 	setActivity(12)
   // }
   const handleClose = () => {
-    handleScrollTop();
-    setOpen(false);
-    setActivity(-1);
-  };
+    console.log('handleClose')
+    handleScrollTop()
+    setOpen(false)
+    setActivity(-1)
+  }
 
   const handleScrollTop = () => {
-    const el = document.getElementById('privacy');
-    el.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+    const el = document.getElementById('privacy')
+    el.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
-    <div id='privacy' className={'activity activity-privacy fixed' + (open ? ' show' : '')} >
-      <CloseBtn handleClick={handleClose} className='close-btn' />
+    <div
+      id='privacy'
+      className={'activity activity-privacy fixed' + (open ? ' show' : '')}>
+      <CloseBtn onClick={handleClose} className='close-btn' />
       <div className='inner'>
         <h1>Privacy Policy</h1>
         <h2>Your data and privacy</h2>
@@ -47,12 +50,12 @@ const PrivacyPolicy = () => {
           <h2>1. Introduction</h2>
           <p>
             Welcome to the <strong>Ummi</strong> Progressive Web Application
-            (the &quot;App&quot;). This Privacy Policy explains how we collect, use,
-            disclose, and safeguard your information when you use our App, which
-            provides informational resources and tools related to Cognitive
-            Behavioral Therapy (CBT), Acceptance and Commitment Therapy (ACT),
-            Dialectical Behavior Therapy (DBT), Rational Emotive Behavior
-            Therapy (REBT), SMART Recovery and others. The App operates
+            (the &quot;App&quot;). This Privacy Policy explains how we collect,
+            use, disclose, and safeguard your information when you use our App,
+            which provides informational resources and tools related to
+            Cognitive Behavioral Therapy (CBT), Acceptance and Commitment
+            Therapy (ACT), Dialectical Behavior Therapy (DBT), Rational Emotive
+            Behavior Therapy (REBT), SMART Recovery and others. The App operates
             worldwide and offers support information only.
           </p>
           <p>
@@ -172,7 +175,8 @@ const PrivacyPolicy = () => {
           <p>We use the information we collect to:</p>
           <ul>
             <li>
-              Provide, operate, improve and maintain the App&apos;s functionality.
+              Provide, operate, improve and maintain the App&apos;s
+              functionality.
             </li>
             <li>Authenticate your account and secure access.</li>
             <li>
@@ -181,8 +185,8 @@ const PrivacyPolicy = () => {
               this consent at any time.
             </li>
             <li>
-              Improve the App&apos;s content and user experience based on anonymous,
-              aggregated analytics (subject to consent).
+              Improve the App&apos;s content and user experience based on
+              anonymous, aggregated analytics (subject to consent).
             </li>
             <li>
               Understand user needs through anonymized and aggregated analysis
@@ -225,9 +229,9 @@ const PrivacyPolicy = () => {
           <ul>
             <li>
               <strong>Local Storage:</strong> Favourites and Days Counter data
-              are stored locally in your browser&apos;s IndexedDB. You can clear this
-              data at any time via browser settings or the App&apos;s &quot;Clear Local
-              Data&quot; function.
+              are stored locally in your browser&apos;s IndexedDB. You can clear
+              this data at any time via browser settings or the App&apos;s
+              &quot;Clear Local Data&quot; function.
             </li>
 
             <li>
@@ -308,9 +312,8 @@ const PrivacyPolicy = () => {
                 <u>
                   <span
                     onClick={() => {
-                      setActivity(12);
-                    }}
-                  >
+                      setActivity(12)
+                    }}>
                     &quot;Clear Your Data&quot;
                   </span>
                 </u>
@@ -380,8 +383,9 @@ const PrivacyPolicy = () => {
         <section>
           <h2>11. Changes to This Privacy Policy</h2>
           <p>
-            We may update this policy. We&apos;ll notify registered users of material
-            changes via email or in-App notice. Continued use accepts changes.
+            We may update this policy. We&apos;ll notify registered users of
+            material changes via email or in-App notice. Continued use accepts
+            changes.
           </p>
           {/* <ul>
 						<li>
@@ -405,6 +409,6 @@ const PrivacyPolicy = () => {
       </div>
       <Backdrop className='backdrop' />
     </div>
-  );
-};
-export default PrivacyPolicy;
+  )
+}
+export default PrivacyPolicy

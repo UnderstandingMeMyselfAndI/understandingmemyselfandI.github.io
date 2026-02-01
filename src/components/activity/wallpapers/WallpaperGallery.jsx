@@ -146,7 +146,7 @@ const WallpaperGallery = () => {
     const shouldOpen = activityID === activity
 
     if (shouldOpen && !open && !initializedRef.current) {
-      console.log('open')
+      // console.log('open')
       setOpen(true)
       initializedRef.current = true
 
@@ -263,9 +263,9 @@ const WallpaperGallery = () => {
     }
   }, [detectedSize, getPreviewUrl])
 
-  useEffect(() => {
-    console.trace('currentIndex', currentIndex)
-  }, [currentIndex])
+  // useEffect(() => {
+  //   // console.trace('currentIndex', currentIndex)
+  // }, [currentIndex])
 
   const handleExitPreview = useCallback(() => {
     setPreviewMode(false)
@@ -367,7 +367,7 @@ const WallpaperGallery = () => {
   }, [detectedSize, getDownloadUrl, currentWallpaper])
 
   const handleClose = useCallback(() => {
-    console.log('handleClose')
+    // console.log('handleClose')
     // Use the store directly to avoid import issues
     setOpen(false)
     setActivity(-1)
@@ -426,8 +426,7 @@ const WallpaperGallery = () => {
         id={name}
         className={
           'activity ' + 'activity-' + name + (open ? ' show' : ' hide')
-        }
-      >
+        }>
         <div className='loading-screen'>
           <div className='loading-spinner'></div>
           <p>Detecting your device...</p>
@@ -441,13 +440,11 @@ const WallpaperGallery = () => {
     return (
       <div
         id={name}
-        className={'activity ' + 'activity-' + name + ' preview-mode'}
-      >
+        className={'activity ' + 'activity-' + name + ' preview-mode'}>
         <button
           className='preview-close-btn'
           onClick={handleExitPreview}
-          aria-label='Exit preview'
-        >
+          aria-label='Exit preview'>
           <CloseIcon />
         </button>
 
@@ -497,8 +494,7 @@ const WallpaperGallery = () => {
   return (
     <div
       id={name}
-      className={'activity ' + 'activity-' + name + (open ? ' show' : ' hide')}
-    >
+      className={'activity ' + 'activity-' + name + (open ? ' show' : ' hide')}>
       <CloseBtn className='close-btn' onClick={handleClose} />
 
       <section className={name}>
@@ -517,8 +513,7 @@ const WallpaperGallery = () => {
           ref={carouselRef}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-        >
+          onTouchEnd={handleTouchEnd}>
           <button
             className={`nav-btn prev ${currentIndex === 0 ? 'disabled' : ''}`}
             onClick={handlePrevious}
@@ -533,8 +528,7 @@ const WallpaperGallery = () => {
           <div className='carousel-track'>
             <div
               className='carousel-slides'
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-            >
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
               {wallpapers.map((wallpaper, index) => {
                 const isLoaded = thumbnailsLoaded[wallpaper.id]
                 const hasError = thumbnailsError[wallpaper.id]
@@ -542,8 +536,7 @@ const WallpaperGallery = () => {
                 return (
                   <div
                     key={wallpaper.id}
-                    className={`slide ${index === currentIndex ? 'active' : ''}`}
-                  >
+                    className={`slide ${index === currentIndex ? 'active' : ''}`}>
                     <div className='wallpaper-card'>
                       <div className='image-container'>
                         {!hasError ? (

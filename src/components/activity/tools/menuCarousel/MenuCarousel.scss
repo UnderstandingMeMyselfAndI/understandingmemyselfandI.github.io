@@ -11,6 +11,17 @@ div.AccordionRoot {
 	height: 100%;
 	overflow-y: auto;
 	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none;
+	/* Firefox */
+	-ms-overflow-style: none;
+	/* IE and Edge */
+
+	&::-webkit-scrollbar {
+		display: none;
+		width: 0;
+		height: 0;
+		background: transparent;
+	}
 
 	.accronym-menu {
 		display: flex;
@@ -29,6 +40,7 @@ div.AccordionRoot {
 				width: 90%;
 				max-width: 390px;
 				min-width: 340px;
+
 				padding: 0.5rem 0.25rem;
 				position: relative;
 				cursor: pointer;

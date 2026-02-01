@@ -1,34 +1,36 @@
-import { useState, forwardRef } from 'react';
-import lingo from '@/data/lingo.js';
-import { useOnInView } from 'react-intersection-observer';
-import SearchItem from './SearchItem';
-import PropTypes from 'prop-types';
-import './styles.scss';
+import { useState, forwardRef } from 'react'
+import lingo from '@/data/lingo.js'
+import { useOnInView } from 'react-intersection-observer'
+import SearchItem from './SearchItem'
+// import { strings } from '@/data/config'
+// import { sanitizeStringForUrl } from '@/js/utils.js'
+import PropTypes from 'prop-types'
+import './styles.scss'
 function searchLingo(query) {
   if (!query || query.trim() === '') {
-    return lingo;
+    return lingo
   }
 
-  const lowerQuery = query.toLowerCase().trim();
+  const lowerQuery = query.toLowerCase().trim()
 
   return lingo
     .filter((item) => item.title.toLowerCase().includes(lowerQuery))
     .sort((a, b) => {
-      const aTitle = a.title.toLowerCase();
-      const bTitle = b.title.toLowerCase();
+      const aTitle = a.title.toLowerCase()
+      const bTitle = b.title.toLowerCase()
       if (aTitle.startsWith(lowerQuery) && !bTitle.startsWith(lowerQuery))
-        return -1;
+        return -1
       if (!aTitle.startsWith(lowerQuery) && bTitle.startsWith(lowerQuery))
-        return 1;
-      return 0;
-    });
+        return 1
+      return 0
+    })
 }
 
 const SearchField = forwardRef(({ classes, handleClick }, ref) => {
-  const el = document.getElementById('search');
-  const [searchTerm, setSearchTerm] = useState('');
+  const el = document.getElementById('search')
+  const [searchTerm, setSearchTerm] = useState('')
 
-  const filteredLingo = searchLingo(searchTerm);
+  const filteredLingo = searchLingo(searchTerm)
 
   const inViewRef = useOnInView(
     (inView) => {
@@ -44,24 +46,33 @@ const SearchField = forwardRef(({ classes, handleClick }, ref) => {
       threshold: 0,
       rootMargin: '-23% 0% -78% 0%',
     }, // Optional IntersectionObserver options
-  );
+  )
   const handleChange = (e) => {
-    setSearchTerm(e.target.value);
-    if (e.target.value !== '') {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
+    setSearchTerm(e.target.value)
+    console.log('handleChange', e.target.value)
 
+    if (e.target.value !== '') {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+  // const handleClick = (id) => {
+  //   const appURL = `${window.location.protocol}//${window.location.host}`
+  //   console.log('handleClick lingo[id].title ', lingo[id].title)
+  //   setBrowserHistory(
+  //     `${appURL}/lingo-phrases/${sanitizeStringForUrl(lingo[id].title.toLowerCase())}`,
+  //     `${strings.app.appName} Phrase: - ${lingo[id].title}`,
+  //   )
+  // }
   return (
-    <div  id='search' className='search-field' ref={inViewRef}>
+    <div id='search' className='search-field' ref={inViewRef}>
       <input
         className={'search-input-field' + (classes ? ' ' + classes : '')}
         type='text'
         placeholder='Search Lingo & Phrases...'
         value={searchTerm}
         onChange={handleChange}
-        id="lingo-search"
-        name="lingo-search"
+        id='lingo-search'
+        name='lingo-search'
       />
       <div className='search-list' ref={ref}>
         {filteredLingo.map((item) => (
@@ -77,13 +88,13 @@ const SearchField = forwardRef(({ classes, handleClick }, ref) => {
         )}
       </div>
     </div>
-  );
-});
+  )
+})
 
 SearchField.propTypes = {
   handleClick: PropTypes.func.isRequired,
   classes: PropTypes.string,
-};
+}
 
-SearchField.displayName = 'SearchField';
-export default SearchField;
+SearchField.displayName = 'SearchField'
+export default SearchField

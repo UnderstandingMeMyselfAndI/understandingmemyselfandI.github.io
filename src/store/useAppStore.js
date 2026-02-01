@@ -293,6 +293,10 @@ const useAppStore = create(
       },
       // ----------------------------------------
       // Activity Data
+      childRoute: [],
+      setChildRoute: (v) => set(() => ({ childRoute: v })),
+      // ----------------------------------------
+      // Activity Data
       accData: [],
       setAccData: (v) => set(() => ({ accData: v })),
       // ----------------------------------------
@@ -305,7 +309,7 @@ const useAppStore = create(
         set((state) => ({ showToolsOnly: !state.showToolsOnly })),
       // ----------------------------------------
       // Acronym ID
-      acronymID: 0,
+      acronymID: -1,
       setAcronymID: (v) => set(() => ({ acronymID: v })),
       // ----------------------------------------
       // Scroll Stage
@@ -320,7 +324,7 @@ const useAppStore = create(
       },
       // ----------------------------------------
       // analytics enabled
-      gae: false,
+      gae: true,
       setGAE: (v) => set(() => ({ gae: v })),
       // ----------------------------------------
       // Clear IDB

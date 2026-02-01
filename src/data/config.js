@@ -152,6 +152,15 @@ const activities = baseActivities.map((item) => ({
 }));
 
 const strings = {
+  app:{
+   
+    appName: 'Ummi',
+    title: 'Understanding Me, Myself, and I',
+    installDescription: 'Install the Ummi App',
+    appDescription:
+      'Understanding Me Myself & I (Ummi) is a companion app and website providing support for mental health, wellbeing, and addiction recovery. It provides quick access to tools and skills learnt in SMART, Cognitive Behavioural Therapy (CBT), Acceptance Commitment Therapy (ACT), Dialectical Behaviour Therapy (DBT) and other therapies.',
+    logoURI: '/UmmiIcon2.svg',
+  },
   activity: [
     {
       name: 'introduction',

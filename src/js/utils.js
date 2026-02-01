@@ -89,7 +89,26 @@ export function extractYouTubeId(url) {
   
   return (match && match[2].length === 11) ? match[2] : null;
 }
+export const logGAEvent = 
+	(name, params = null) => {
+	  console.trace('logGAEvent called')
+	 
+	  if (typeof window.gtag === 'function' && !isEmpty(name)) {
+		window.gtag('event', name, params)
 
+		console.log('>>>>>>>>>>>>>>>>>>log ga event ', name, params)
+	  } else {
+		console.warn('gtag not available – event not sent:', name)
+	  }
+	}
+
+export function setBrowserHistory(url, title) {
+  // A console.log can be useful for debugging, but should be removed for production
+  console.log('setBrowserHistory url ', url, ' title ', title)
+  if (history.pushState) {
+    window.history.pushState({ page: title }, '', url)
+  }
+}
 // Optional: validate if it's a YouTube URL
 export function isYouTubeUrl(url) {
   return /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)/.test(url);
@@ -129,6 +148,13 @@ export function sanitizeStringForUrl(input) {
 
 	return trimmed.toLowerCase()
 }
+// Helper to get current path segments
+export function getUrlPathSegments() {
+  // Remove leading/trailing slashes and split
+  const path = location.pathname.replace(/^\/+|\/+$/g, '');
+  return path ? path.split('/') : [];
+	// return location.pathname.split('/');
+}
 
 export default {	
 	clamp,
@@ -148,5 +174,8 @@ export default {
 	extractYouTubeId,
 	isYouTubeUrl,
 	sanitizeStringForUrl,
+	logGAEvent,
+	getUrlPathSegments,
+	setBrowserHistory,
 	smoothScroll,
 }

@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
-import useAppStore from '@/store/useAppStore';
-import { activities } from '@/data/config';
-import parse from 'html-react-parser';
-import CloseBtn from '@/components/ui/buttons/close/CloseBtn';
-import Dialog from '@/components/ui/dialog/Dialog';
+import { useEffect, useState } from 'react'
+import useAppStore from '@/store/useAppStore'
+import { activities } from '@/data/config'
+import parse from 'html-react-parser'
+import CloseBtn from '@/components/ui/buttons/close/CloseBtn'
+import Dialog from '@/components/ui/dialog/Dialog'
 
-import './styles.scss';
+import './styles.scss'
 
 const Setting = (
   name,
@@ -15,29 +15,29 @@ const Setting = (
   help = '',
   classNames,
 ) => {
-  const settingName = name;
-  const appState = useAppStore(getStateSelector);
-  const setAppState = useAppStore(setStateAction);
-  const [localState, setLocalState] = useState(appState);
-  const handlers = []; // handlers of other settings
-  const classes = classNames;
+  const settingName = name
+  const appState = useAppStore(getStateSelector)
+  const setAppState = useAppStore(setStateAction)
+  const [localState, setLocalState] = useState(appState)
+  const handlers = [] // handlers of other settings
+  const classes = classNames
 
   const getClasses = (classes) => {
-    return classes.toString();
-  };
+    return classes.toString()
+  }
   const addHandler = (cb) => {
-    handlers.push(cb);
-  };
+    handlers.push(cb)
+  }
   const handler = (e) => {
-    setLocalState(e.target.checked);
+    setLocalState(e.target.checked)
     handlers.forEach((cb) => {
-      cb(e);
-    });
-  };
+      cb(e)
+    })
+  }
 
   const update = () => {
-    setAppState(localState);
-  };
+    setAppState(localState)
+  }
   return {
     name: settingName,
     instruction,
@@ -51,33 +51,33 @@ const Setting = (
     set: setLocalState,
     handler,
     update,
-  };
-};
+  }
+}
 
 const Settings = () => {
-  const name = 'settings';
-  const [open, setOpen] = useState(false);
+  const name = 'settings'
+  const [open, setOpen] = useState(false)
   // const [showDeleteDialog, setShowDeleteDialog] = useState(false);
-  const [showDeleteIDBDialog, setShowDeleteIDBDialog] = useState(false);
-  const [showConfirmDeleteDialog, setShowConfirmDeleteDialog] = useState(false);
-  const setActivity = useAppStore((s) => s.setActivity);
+  const [showDeleteIDBDialog, setShowDeleteIDBDialog] = useState(false)
+  const [showConfirmDeleteDialog, setShowConfirmDeleteDialog] = useState(false)
+  const setActivity = useAppStore((s) => s.setActivity)
   // const showToolsOnly = useAppStore((s) => s.showToolsOnly)
-  const setShowToolsOnly = useAppStore((s) => s.setShowToolsOnly);
-  const activity = useAppStore((s) => s.activity);
-  const clearIDB = useAppStore((s) => s.clearIDB);
+  const setShowToolsOnly = useAppStore((s) => s.setShowToolsOnly)
+  const activity = useAppStore((s) => s.activity)
+  const clearIDB = useAppStore((s) => s.clearIDB)
   const activityID = activities.find((activity) =>
     activity.url === name ? activity.id : null,
-  );
+  )
 
   useEffect(() => {
-    setOpen(activityID.id === activity);
-  }, [activity, activityID]);
+    setOpen(activityID.id === activity)
+  }, [activity, activityID])
 
   //--------------------------------------------------------------------------
   // Settings
   //--------------------------------------------------------------------------
 
-  const settings = [];
+  const settings = []
 
   const YourToolboxSettings = Setting(
     'YourToolbox',
@@ -86,8 +86,8 @@ const Settings = () => {
     'Enable "Your Toolbox" filter',
     'Shows a button that filters "the tools" so you see only the tools you favourited.',
     '',
-  );
-  settings.push(YourToolboxSettings);
+  )
+  settings.push(YourToolboxSettings)
   const YourToolsSettings = Setting(
     'YourTools',
     (state) => state.yourToolsEnabled,
@@ -95,9 +95,9 @@ const Settings = () => {
     'Enable "Your Tools"',
     'Favourite tools you like, and add them to your "toolbox" for quick access.',
     '',
-  );
-  YourToolsSettings.addHandler(YourToolboxSettings.handler);
-  settings.push(YourToolsSettings);
+  )
+  YourToolsSettings.addHandler(YourToolboxSettings.handler)
+  settings.push(YourToolsSettings)
 
   const DaysCounterSettings = Setting(
     'DaysCounter',
@@ -106,8 +106,8 @@ const Settings = () => {
     'Enable Days Counter',
     'Set up to two dates and see how many days since the dates.',
     'new',
-  );
-  settings.push(DaysCounterSettings);
+  )
+  settings.push(DaysCounterSettings)
 
   const unitsCalculatorSettings = Setting(
     'UnitsCalculator',
@@ -116,8 +116,8 @@ const Settings = () => {
     'Enable Units Calculator',
     'Calculate the total amount of units for different types and measures of alcoholic drinks.',
     'new',
-  );
-  settings.push(unitsCalculatorSettings);
+  )
+  settings.push(unitsCalculatorSettings)
 
   const QuickExitSettings = Setting(
     'QuickExit',
@@ -126,8 +126,8 @@ const Settings = () => {
     'Enable Quick Exit',
     'Lets you leave the app immediately and open a website whenever you need to',
     'new',
-  );
-  settings.push(QuickExitSettings);
+  )
+  settings.push(QuickExitSettings)
 
   const QuickExitMessageSettings = Setting(
     'QuickExitMessage',
@@ -136,9 +136,9 @@ const Settings = () => {
     'Show info before Quick Exit',
     '',
     '',
-  );
-  QuickExitSettings.addHandler(QuickExitMessageSettings.handler);
-  settings.push(QuickExitMessageSettings);
+  )
+  QuickExitSettings.addHandler(QuickExitMessageSettings.handler)
+  settings.push(QuickExitMessageSettings)
 
   const ShowPhraseViewsSettings = Setting(
     'PhraseViews',
@@ -147,8 +147,8 @@ const Settings = () => {
     'Show Lingo & Phrase Views',
     'Changes the buttons when Lingo & Phrases are viewed so that view history can be seen.',
     '',
-  );
-  settings.push(ShowPhraseViewsSettings);
+  )
+  settings.push(ShowPhraseViewsSettings)
   const PINLockSettings = Setting(
     'PINLock',
     (state) => state.PINLockEnabled,
@@ -156,8 +156,8 @@ const Settings = () => {
     'Use Pin Lock for personal data',
     '*Coming Soon** PIN Lock enables a valid PIN number to access personal data.',
     'soon',
-  );
-  settings.push(PINLockSettings);
+  )
+  settings.push(PINLockSettings)
 
   const AnalyticsCookiesSettings = Setting(
     'AnalyticsCookies',
@@ -165,40 +165,40 @@ const Settings = () => {
     (state) => state.setAllowCookies,
     'Allow cookies',
     'Accepts the use of anayltics cookies to improve your experience.',
-  );
-  settings.push(AnalyticsCookiesSettings);
+  )
+  settings.push(AnalyticsCookiesSettings)
 
   // const handleClearUserData = () => {
   //   setShowDeleteDialog(true);
   // };
 
   const handleClearIDB = () => {
-    setShowDeleteIDBDialog(true);
-  };
+    setShowDeleteIDBDialog(true)
+  }
 
   const resetAll = () => {
-    YourToolboxSettings.set(true);
-    YourToolsSettings.set(true);
-    DaysCounterSettings.set(true);
-    QuickExitSettings.set(true);
-    QuickExitMessageSettings.set(true);
-    PINLockSettings.set(true);
-    AnalyticsCookiesSettings.set(true);
-    unitsCalculatorSettings.set(true);
-  };
+    YourToolboxSettings.set(true)
+    YourToolsSettings.set(true)
+    DaysCounterSettings.set(true)
+    QuickExitSettings.set(true)
+    QuickExitMessageSettings.set(true)
+    PINLockSettings.set(true)
+    AnalyticsCookiesSettings.set(true)
+    unitsCalculatorSettings.set(true)
+  }
   const handleClose = () => {
     if (!YourToolsSettings.state) {
-      setShowToolsOnly(false);
+      setShowToolsOnly(false)
     }
     // Set all state here to avoid repaint when changin individual settings
-    settings.forEach((setting) => setting.update());
+    settings.forEach((setting) => setting.update())
 
-    setOpen(false);
-    setActivity(-1);
-  };
+    setOpen(false)
+    setActivity(-1)
+  }
   const handleCloseConfirmDeleteDialog = () => {
-    setShowConfirmDeleteDialog(false);
-  };
+    setShowConfirmDeleteDialog(false)
+  }
   // const handleConfirmDeleteData = () => {
   //   localStorage.clear();
   //   resetAll();
@@ -210,18 +210,25 @@ const Settings = () => {
   //   // }, 200);
   // };
   const handleConfirmDeleteIDB = () => {
-    clearIDB();
-    setShowDeleteIDBDialog(false);
-  };
+    clearIDB()
+    setShowDeleteIDBDialog(false)
+  }
   // const handleCloseDeleteData = () => {
   //   setShowDeleteDialog(false);
   // };
   const handleCloseDeleteIDB = () => {
-    setShowDeleteIDBDialog(false);
-  };
+    setShowDeleteIDBDialog(false)
+  }
 
   return (
-    <div id="settings" className={'activity activity-settings fixed' + ' ' + name + (open ? ' show' : ' hide')}>
+    <div
+      id='settings'
+      className={
+        'activity activity-settings fixed' +
+        ' ' +
+        name +
+        (open ? ' show' : ' hide')
+      }>
       {/* <Dialog
         show={showDeleteDialog}
         title='Confirm Clear All Data'
@@ -272,15 +279,14 @@ const Settings = () => {
             <br /> at the bottom.
           </p>
         </div>
-        <CloseBtn handleClick={handleClose} />
+        <CloseBtn onClick={handleClose} />
         <div className='section'>
           <div className='title'>Your Tools</div>
           <div className={'row ' + YourToolsSettings.classes}>
             <div className={'checkBox-row '}>
               <label
                 htmlFor={YourToolsSettings.name}
-                className={YourToolsSettings.state ? 'checked' : ''}
-              >
+                className={YourToolsSettings.state ? 'checked' : ''}>
                 {parse(YourToolsSettings.instruction)}
               </label>
               <input
@@ -299,8 +305,7 @@ const Settings = () => {
             <div className={'checkBox-row '}>
               <label
                 htmlFor={YourToolboxSettings.name}
-                className={YourToolboxSettings.state ? 'checked' : ''}
-              >
+                className={YourToolboxSettings.state ? 'checked' : ''}>
                 {parse(YourToolboxSettings.instruction)}
               </label>
               <input
@@ -322,8 +327,7 @@ const Settings = () => {
             <div className={'checkBox-row '}>
               <label
                 htmlFor={DaysCounterSettings.name}
-                className={DaysCounterSettings.state ? 'checked' : ''}
-              >
+                className={DaysCounterSettings.state ? 'checked' : ''}>
                 {parse(DaysCounterSettings.instruction)}
               </label>
               <input
@@ -345,8 +349,7 @@ const Settings = () => {
             <div className={'checkBox-row '}>
               <label
                 htmlFor={unitsCalculatorSettings.name}
-                className={unitsCalculatorSettings.state ? 'checked' : ''}
-              >
+                className={unitsCalculatorSettings.state ? 'checked' : ''}>
                 {parse(unitsCalculatorSettings.instruction)}
               </label>
               <input
@@ -369,8 +372,7 @@ const Settings = () => {
             <div className={'checkBox-row '}>
               <label
                 htmlFor={QuickExitSettings.name}
-                className={QuickExitSettings.state ? 'checked' : ''}
-              >
+                className={QuickExitSettings.state ? 'checked' : ''}>
                 {parse(QuickExitSettings.instruction)}
               </label>
               <input
@@ -405,8 +407,7 @@ const Settings = () => {
             <div className={'checkBox-row '}>
               <label
                 htmlFor={QuickExitMessageSettings.name}
-                className={QuickExitMessageSettings.state ? 'checked' : ''}
-              >
+                className={QuickExitMessageSettings.state ? 'checked' : ''}>
                 {parse(QuickExitMessageSettings.instruction)}
               </label>
               <input
@@ -434,8 +435,7 @@ const Settings = () => {
                   PINLockSettings.state
                     ? 'strikethrough checked'
                     : 'strikethrough'
-                }
-              >
+                }>
                 {parse(PINLockSettings.instruction)}
               </label>
               <input
@@ -455,8 +455,7 @@ const Settings = () => {
             <div className={'checkBox-row '}>
               <label
                 htmlFor={AnalyticsCookiesSettings.name}
-                className={AnalyticsCookiesSettings.state ? 'checked' : ''}
-              >
+                className={AnalyticsCookiesSettings.state ? 'checked' : ''}>
                 {parse(AnalyticsCookiesSettings.instruction)}
               </label>
               <input
@@ -476,8 +475,7 @@ const Settings = () => {
             <div className={'checkBox-row '}>
               <label
                 htmlFor={ShowPhraseViewsSettings.name}
-                className={ShowPhraseViewsSettings.state ? 'checked' : ''}
-              >
+                className={ShowPhraseViewsSettings.state ? 'checked' : ''}>
                 {parse(ShowPhraseViewsSettings.instruction)}
               </label>
               <input
@@ -514,7 +512,7 @@ const Settings = () => {
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Settings;
+export default Settings

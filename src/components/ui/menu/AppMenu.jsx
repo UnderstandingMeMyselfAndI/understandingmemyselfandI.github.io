@@ -1,13 +1,8 @@
 import { useEffect, useState } from 'react'
-// import Button from '@mui/material/Button';
-// import Menu from '@mui/material/Menu';
-// import MenuItem from '@mui/material/MenuItem';
 import useAppStore from '@/store/useAppStore'
-// import { getPWADisplayMode } from '@/utils/isAppInstalled';
 import { activities } from '@/data/config'
-// import driverObj from '@/js/tour.js'
-// import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
-// import Slide from '@mui/material/Slide';
+import { strings } from '@/data/config'
+import { sanitizeStringForUrl, setBrowserHistory } from '@/js/utils.js'
 import './styles.scss'
 export const MenuOpenIcon = () => (
   <svg
@@ -15,8 +10,7 @@ export const MenuOpenIcon = () => (
     height='40px'
     width='40px'
     viewBox='0 -960 960 960'
-    fill='#ffffff'
-  >
+    fill='#ffffff'>
     <path d='M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z' />
   </svg>
 )
@@ -26,8 +20,7 @@ export const MenuCloseIcon = () => (
     height='40px'
     viewBox='0 -960 960 960'
     width='40px'
-    fill='#ffffff'
-  >
+    fill='#ffffff'>
     <path d='m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z' />
   </svg>
 )
@@ -108,8 +101,7 @@ export default function AppMenu() {
       <ul
         className={open ? ' open' : ' closed'}
         id='app-menu'
-        onClick={handleClose}
-      >
+        onClick={handleClose}>
         <li
           onClick={() => {
             if (gae && window.gtag) {
@@ -130,34 +122,37 @@ export default function AppMenu() {
               title: activityObj.url,
             })
             setActivity(1) // temp solution
-          }}
-        >
+          }}>
           Tools
         </li>
         <li
           className=''
           onClick={() => {
-            if (gae && window.gtag) {
-              window.gtag('event', 'lingo_and_phrases', {
-                app_name: 'Ummi',
-                screen_name: 'Lingo & Phrases',
-              })
-            }
+            // if (gae && window.gtag) {
+            //   window.gtag('event', 'lingo_and_phrases', {
+            //     app_name: 'Ummi',
+            //     screen_name: 'Lingo & Phrases',
+            //   })
+            // }
+            const activityObj = findObj(13)
 
+            const appURL = `${window.location.protocol}//${window.location.host}`
+            setBrowserHistory(
+              `${appURL}/${sanitizeStringForUrl(activityObj.title.toLowerCase())}`,
+              `${strings.app.appName} Tool - ${activityObj.title}`,
+            )
             requestAnimationFrame(() => {
               const el = document.getElementById('lingo')
               el.scrollIntoView(true)
             })
 
-            const activityObj = findObj(13)
             handleClose({
               url: activityObj.url,
               title: activityObj.url,
             })
 
             setActivity(-1)
-          }}
-        >
+          }}>
           Lingo &amp; Phrases
         </li>
         {/* <li
@@ -199,8 +194,7 @@ export default function AppMenu() {
                 title: activityObj.url,
               })
               setActivity(2)
-            }}
-          >
+            }}>
             Days Counter
           </li>
         )}
@@ -221,8 +215,7 @@ export default function AppMenu() {
               })
               setActivity(5)
               handleClose()
-            }}
-          >
+            }}>
             Units Calculator
           </li>
         )}
@@ -248,8 +241,7 @@ export default function AppMenu() {
               title: activityObj.url,
             })
             setActivity(6)
-          }}
-        >
+          }}>
           Wallpapers
         </li>
 
@@ -268,13 +260,20 @@ export default function AppMenu() {
                 el.scrollIntoView(true)
               })
               const activityObj = findObj(16)
+              //------------------------------------------
+              // Set URL
+              //------------------------------------------
+              const appURL = `${window.location.protocol}//${window.location.host}`
+              setBrowserHistory(
+                `${appURL}/${sanitizeStringForUrl(activityObj.title.toLowerCase())}`,
+                `${strings.app.appName} Tool - ${activityObj.title}`,
+              )
               handleClose({
                 url: activityObj.url,
                 title: activityObj.url,
               })
               setActivity(-1)
-            }}
-          >
+            }}>
             Install
           </li>
         )}
@@ -291,13 +290,21 @@ export default function AppMenu() {
               el.scrollIntoView(true)
             })
             const activityObj = findObj(14)
+            //------------------------------------------
+            // Set URL
+            //------------------------------------------
+            const appURL = `${window.location.protocol}//${window.location.host}`
+            setBrowserHistory(
+              `${appURL}/${sanitizeStringForUrl(activityObj.title.toLowerCase())}`,
+              `${strings.app.appName} Tool - ${activityObj.title}`,
+            )
+
             handleClose({
               url: activityObj.url,
               title: activityObj.url,
             })
             setActivity(-1)
-          }}
-        >
+          }}>
           Share
         </li>
 
@@ -315,14 +322,21 @@ export default function AppMenu() {
                 el.scrollIntoView(true)
               })
               const activityObj = findObj(15)
+              //------------------------------------------
+              // Set URL
+              //------------------------------------------
+              const appURL = `${window.location.protocol}//${window.location.host}`
+              setBrowserHistory(
+                `${appURL}/${sanitizeStringForUrl(activityObj.title.toLowerCase())}`,
+                `${strings.app.appName} Tool - ${activityObj.title}`,
+              )
               handleClose({
                 url: activityObj.url,
                 title: activityObj.url,
               })
               // setActivity(15);
               setActivity(-1)
-            }}
-          >
+            }}>
             Newsletter
           </li>
         )}
@@ -340,8 +354,7 @@ export default function AppMenu() {
               title: activityObj.url,
             })
             setActivity(10)
-          }}
-        >
+          }}>
           Your privacy
         </li>
         {/* <li className='strikethrough'>
@@ -382,8 +395,7 @@ export default function AppMenu() {
             })
 
             setActivity(12)
-          }}
-        >
+          }}>
           Settings
         </li>
         {/* <li onClick={handleClose}>Tour</li> */}
