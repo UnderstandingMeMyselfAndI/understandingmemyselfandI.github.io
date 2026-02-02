@@ -204,27 +204,33 @@ body div#wallpaper-gallery.activity-wallpaper-gallery {
     section.wallpaper-gallery {
         width: var(--max-width);
         position: absolute;
-
+        padding: 0;
         height: 100dvh;
+        width: 100dvw;
         margin: 0 auto;
-        // border: 10px solid yellow;
         overflow: hidden;
     }
 
     .gallery-header {
         text-align: center;
-        padding: 1rem 1rem;
-        // flex-shrink: 0;
-        position: absolute;
-        top: 0;
-        left: 0;
+        padding: 0;
+        margin: 0;
         width: 100%;
         text-align: left;
         z-index: 1;
         text-shadow: none;
         mix-blend-mode: difference;
+        padding: 0.75rem 1.5rem;
+        // height: calc(100dvh - 1.5rem);
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        // border: 1px solid #ccc;
+        z-index: 1000;
 
-        h1 {
+        h3 {
 
             font-weight: 700;
             margin: 0;
@@ -234,21 +240,17 @@ body div#wallpaper-gallery.activity-wallpaper-gallery {
         }
 
         .instruction {
-            // color: #94a3b8;
             font-size: 0.9rem;
-            max-width: 600px;
-            margin: 0.25rem 0 auto;
+            width: 100%;
+            margin: 0.25rem 0 0 0;
             line-height: 1.5;
-            // color: #fff;
             align-items: center;
             border-bottom: 1px solid var(--greyLight);
             display: flex;
             text-shadow: none;
-            // background: var(--backgroundGrayTrans40);
             color: #fff;
             background: transparent;
             justify-content: space-between;
-            margin-right: 0.5rem;
             padding-bottom: 0.25rem;
         }
 
@@ -284,8 +286,6 @@ body div#wallpaper-gallery.activity-wallpaper-gallery {
         margin: 0 auto;
         width: 100%;
         height: 100%;
-        min-height: 100dvh;
-        background: var(--primary);
 
         .nav-btn {
             position: absolute;
@@ -330,10 +330,7 @@ body div#wallpaper-gallery.activity-wallpaper-gallery {
         .carousel-track {
             width: 100%;
             height: 100%;
-            // max-width: 480px;
-            // max-height: 854px;
             overflow: hidden;
-            background: var(--primary);
 
             .carousel-slides {
                 display: flex;
@@ -345,7 +342,6 @@ body div#wallpaper-gallery.activity-wallpaper-gallery {
                     flex: 0 0 100%;
                     height: 100%;
                     width: 100%;
-                    // padding: 1rem;
 
                     .wallpaper-card {
                         height: 100%;
@@ -443,22 +439,16 @@ body div#wallpaper-gallery.activity-wallpaper-gallery {
         bottom: 0rem;
         left: 0;
         width: 100%;
-        // mix-blend-mode: difference;
 
         .counter {
             font-size: 0.875rem;
-
-
             margin-bottom: 0.5rem;
-
             width: fit-content;
             padding: 0.25rem;
             margin: 0 auto 0.4rem auto;
-
             text-shadow: none;
             background: var(--backgroundGrayTrans40);
             color: var(--primary);
-            // mix-blend-mode: difference;
 
         }
 
@@ -472,14 +462,13 @@ body div#wallpaper-gallery.activity-wallpaper-gallery {
             mix-blend-mode: difference;
             border-top-right-radius: 50px;
             border-top-left-radius: 50px;
-            background: transparent; //var(--backgroundGrayTrans20);
+            background: transparent;
             backdrop-filter: blur(2px);
             position: absolute;
             z-index: 0;
             bottom: 0;
             left: 50%;
             transform: translate(-50%, 0);
-            // outline: 1px solid #ccc;
 
             .download-icon {
                 fill: #fff;
@@ -498,7 +487,6 @@ body div#wallpaper-gallery.activity-wallpaper-gallery {
         flex-flow: row nowrap;
         justify-content: space-between;
         gap: 0.35rem;
-        // flex-shrink: 0;
 
         .info-item {
             display: flex;
@@ -614,9 +602,6 @@ body div#wallpaper-gallery.activity-wallpaper-gallery {
         .gallery-header {
             padding: 1.5rem 1rem 0.5rem;
 
-            h1 {
-                // font-size: 1.5rem;
-            }
 
             .instruction {
                 font-size: 0.8rem;

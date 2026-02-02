@@ -44,7 +44,7 @@ const WallpaperGallery = () => {
 
   useEffect(() => {
     setOpen(activity === id)
-  }, [activity])
+  }, [activity, id])
 
   // NEW: Prevent multiple navigation triggers
 
@@ -504,11 +504,10 @@ const WallpaperGallery = () => {
     <div
       id={name}
       className={'activity ' + 'activity-' + name + (open ? ' show' : ' hide')}>
-      <CloseBtn className='close-btn' onClick={handleClose} />
-
       <section className={name}>
         <header className='gallery-header'>
-          <h1>Wallpapers</h1>
+          <CloseBtn className='close-btn' onClick={handleClose} />
+          <h3>Wallpapers</h3>
           <div className='instruction'>
             <div>Download for Free</div>
             <div className='counter'>

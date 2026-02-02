@@ -1,6 +1,17 @@
+@use '@/scss/variables';
+@import '@/globals.css';
+
 #lingo {
     scroll-margin-top: 25vh;
     margin: 0 auto;
+}
+
+#lingo.show {
+    z-index: 7500;
+
+    .dialog {
+        width: var(--max-width);
+    }
 }
 
 div.lingo-list-wrapper {

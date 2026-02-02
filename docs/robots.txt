@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dev.ummi.now/sitemap.xml
+Sitemap: https://www.ummi.now/sitemap.xml

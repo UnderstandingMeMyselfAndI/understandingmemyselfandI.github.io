@@ -43,8 +43,7 @@ const DaysCounter = () => {
 
   useEffect(() => {
     setOpen(activity === id)
-  }, [activity])
-
+  }, [activity, isModal, id, setOpen])
   const getInitialDates = () => {
     try {
       const saved = localStorage.getItem('daysCounterDates')
@@ -148,159 +147,170 @@ const DaysCounter = () => {
           (dates.length === 2 ? ' full' : '') +
           (open ? ' open' : '')
         }>
-        <CloseBtn classes='days-counter-close-btn' onClick={handleClose} />
         <div className='days-counter-wrap'>
-          {showDialog && (
-            <Dialog
-              show={showDialog}
-              title='Delete Date'
-              instruction='Are you sure you want to delete this date?'
-              onConfirm={() => deleteDate(dialogIndex)}
-              onCancel={() => handleCloseDialog()}
-            />
-          )}
-          <div
-            className={
-              'days-counter-container' + (dates.length === 2 ? ' full' : '')
-            }>
-            {dates.length === 0 && (
-              <div className='days-counter-empty-state'>
-                <div className='days-counter-empty-title'></div>
-                <div
-                  className='days-counter-add-first-icon'
-                  onClick={() => addDate()}>
-                  <AddIcon />
-                </div>
-                <button
-                  onClick={() => addDate()}
-                  className='days-counter-add-first-btn'>
-                  Add Date
-                </button>
-              </div>
+          <div className='days-counter-inner'>
+            <CloseBtn classes='days-counter-close-btn' onClick={handleClose} />
+            {dates.length > 0 && (
+              <header>
+                <h3>Days Counter</h3>
+              </header>
             )}
-
+            {showDialog && (
+              <Dialog
+                show={showDialog}
+                title='Delete Date'
+                instruction='Are you sure you want to delete this date?'
+                onConfirm={() => deleteDate(dialogIndex)}
+                onCancel={() => handleCloseDialog()}
+              />
+            )}
             <div
               className={
-                'days-counter-list' + (dates.length === 2 ? ' full' : '')
+                'days-counter-container' + (dates.length === 2 ? ' full' : '')
               }>
-              {dates.map((date, index) => (
-                <div key={date.id} className='days-counter-card'>
-                  <button
-                    onClick={() => {
-                      setDialogIndex(index)
-                      setShowDialog(true)
-                    }}
-                    className='days-counter-delete-btn'
-                    title='Delete'>
-                    <DeleteForeverIcon />
-                  </button>
-
-                  {date.selectedDate ? (
-                    <div className='days-counter-values'>
-                      <div className='days-counter-stat'>
-                        <span className='value'>
-                          {currentTimes[index] &&
-                          currentTimes[index].days !== undefined
-                            ? currentTimes[index].days.toLocaleString()
-                            : 0}
-                        </span>
-                        <span className='label'>days</span>
-                      </div>
-                      <div className='days-counter-stat-group'>
-                        <div className='days-counter-stat'>
-                          <span className='value'>
-                            {currentTimes[index] &&
-                            currentTimes[index].hours !== undefined
-                              ? currentTimes[index].hours.toLocaleString()
-                              : 0}
-                          </span>
-                          <span className='label'>hours</span>
-                        </div>
-                        <div className='days-counter-stat'>
-                          <span className='value'>
-                            {currentTimes[index] &&
-                            currentTimes[index].minutes !== undefined
-                              ? currentTimes[index].minutes.toLocaleString()
-                              : 0}
-                          </span>
-                          <span className='label'>minutes</span>
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className='days-counter-stat-group-new'>
-                      <div className='days-counter-stat'>
-                        <span className='value'>0</span>
-                      </div>
-                    </div>
-                  )}
-                  <div className='days-counter-card-date'>
-                    <div className='title'>
-                      <input
-                        id={`Days-Counter-Title-${index}`}
-                        type='text'
-                        placeholder='Tap to set a title'
-                        value={date.label}
-                        onChange={(e) =>
-                          updateDate(index, date.selectedDate, e.target.value)
-                        }
-                        className='days-counter-title-input'
-                      />
-                    </div>
-                    <div className='days-counter-selected-date'>
-                      {date.selectedDate && editingDateIndex !== index ? (
-                        <span
-                          className='days-counter-date-display'
-                          onClick={() => handleDateClick(index)}
-                          style={{ cursor: 'pointer' }}>
-                          {parse(formatDate(date.selectedDate))}
-                        </span>
-                      ) : (
-                        <></>
-                      )}
-                      {!date.selectedDate || editingDateIndex === index ? (
-                        <input
-                          type='datetime-local'
-                          value={date.selectedDate || ''}
-                          onChange={(e) =>
-                            updateDate(index, e.target.value, date.label)
-                          }
-                          onBlur={() => setEditingDateIndex(-1)}
-                          min={getTenYearsAgo()}
-                          max={getToday()}
-                          className='days-counter-date-input'
-                          autoFocus={editingDateIndex === index}
-                        />
-                      ) : (
-                        <> </>
-                      )}
-                    </div>
+              {dates.length === 0 && (
+                <div className='days-counter-empty-state'>
+                  <h3>Days Counter</h3>
+                  <div className='days-counter-empty-title'>
+                    Tap to add a date
                   </div>
+
+                  <button
+                    onClick={() => addDate()}
+                    className='days-counter-add-another-btn'>
+                    ({dates.length}/2)
+                  </button>
                 </div>
-              ))}
-            </div>
+              )}
+              {dates.length > 0 && (
+                <div
+                  className={
+                    'days-counter-list' + (dates.length === 2 ? ' full' : '')
+                  }>
+                  {dates.map((date, index) => (
+                    <div key={date.id} className='days-counter-card'>
+                      <button
+                        onClick={() => {
+                          setDialogIndex(index)
+                          setShowDialog(true)
+                        }}
+                        className='days-counter-delete-btn'
+                        title='Delete'>
+                        <DeleteForeverIcon />
+                      </button>
 
-            {dates.length > 0 && dates.length < 2 && (
-              <button
-                onClick={() => addDate()}
-                className='days-counter-add-another-btn'>
-                ({dates.length}/2)
-              </button>
-            )}
-          </div>
-          <div className='days-counter-note-container'>
-            <div className='days-counter-note'>
-              <p>
-                * All dates are saved <u>only on your device</u> to ensure your
-                privacy.
-              </p>
+                      {date.selectedDate ? (
+                        <div className='days-counter-values'>
+                          <div className='days-counter-stat'>
+                            <span className='value'>
+                              {currentTimes[index] &&
+                              currentTimes[index].days !== undefined
+                                ? currentTimes[index].days.toLocaleString()
+                                : 0}
+                            </span>
+                            <span className='label'>days</span>
+                          </div>
+                          <div className='days-counter-stat-group'>
+                            <div className='days-counter-stat'>
+                              <span className='value'>
+                                {currentTimes[index] &&
+                                currentTimes[index].hours !== undefined
+                                  ? currentTimes[index].hours.toLocaleString()
+                                  : 0}
+                              </span>
+                              <span className='label'>hours</span>
+                            </div>
+                            <div className='days-counter-stat'>
+                              <span className='value'>
+                                {currentTimes[index] &&
+                                currentTimes[index].minutes !== undefined
+                                  ? currentTimes[index].minutes.toLocaleString()
+                                  : 0}
+                              </span>
+                              <span className='label'>minutes</span>
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className='days-counter-stat-group-new'>
+                          <div className='days-counter-stat'>
+                            <span className='value'>0</span>
+                          </div>
+                        </div>
+                      )}
+                      <div className='days-counter-card-date'>
+                        <div className='title'>
+                          <input
+                            id={`Days-Counter-Title-${index}`}
+                            type='text'
+                            placeholder='Tap to set a title'
+                            value={date.label}
+                            onChange={(e) =>
+                              updateDate(
+                                index,
+                                date.selectedDate,
+                                e.target.value,
+                              )
+                            }
+                            className='days-counter-title-input'
+                          />
+                        </div>
+                        <div className='days-counter-selected-date'>
+                          {date.selectedDate && editingDateIndex !== index ? (
+                            <span
+                              className='days-counter-date-display'
+                              onClick={() => handleDateClick(index)}
+                              style={{ cursor: 'pointer' }}>
+                              {parse(formatDate(date.selectedDate))}
+                            </span>
+                          ) : (
+                            <></>
+                          )}
+                          {!date.selectedDate || editingDateIndex === index ? (
+                            <input
+                              type='datetime-local'
+                              value={date.selectedDate || ''}
+                              onChange={(e) =>
+                                updateDate(index, e.target.value, date.label)
+                              }
+                              onBlur={() => setEditingDateIndex(-1)}
+                              min={getTenYearsAgo()}
+                              max={getToday()}
+                              className='days-counter-date-input'
+                              autoFocus={editingDateIndex === index}
+                            />
+                          ) : (
+                            <> </>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
 
-              <p>Disble controls available in settings.</p>
+              {dates.length > 0 && dates.length < 2 && (
+                <button
+                  onClick={() => addDate()}
+                  className='days-counter-add-another-btn'>
+                  ({dates.length}/2)
+                </button>
+              )}
             </div>
-          </div>
-          {/* <div className='days-counter-backdrop'>
+            <div className='days-counter-note-container'>
+              <div className='days-counter-note'>
+                <p>
+                  * All dates are saved <u>only on your device</u> to ensure
+                  your privacy.
+                </p>
+
+                <p>Disble controls available in settings.</p>
+              </div>
+            </div>
+            {/* <div className='days-counter-backdrop'>
           {/* <BackdropParallax initialImageId={4} initialDelay={0} interval={6000} parallaxStrength={0} /> 
         </div> */}
+          </div>
         </div>
       </div>
     </section>

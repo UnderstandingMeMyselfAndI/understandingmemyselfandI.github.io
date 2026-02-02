@@ -20,8 +20,7 @@ function Footer() {
 
   useEffect(() => {
     setOpen(activity === id || !isModal)
-  }, [activity, isModal])
-
+  }, [activity, isModal, id, setOpen])
   return (
     <div
       id='footer'

@@ -44,6 +44,11 @@ const Routing = () => {
   const activity = useAppStore((s) => s.activity)
   const phrase = useAppStore((s) => s.phrase)
   const setIsModal = useAppStore((s) => s.setIsModal)
+  const isModal = useAppStore((s) => s.isModal)
+
+  // useEffect(() => {
+  //   console.trace('isModal', isModal)
+  // }, [isModal])
 
   // --- Readability & Maintainability ---
   // Centralized function for logging Google Analytics events.
@@ -64,13 +69,13 @@ const Routing = () => {
 
         return
       }
-      console.log('logGAEvent setTimeout ', name, params)
+      // console.log('logGAEvent setTimeout ', name, params)
       setTimeout(
         () => {
           //console.groupCollapsed('logGAEvent called')
-          console.log('logGAEvent')
+          // console.log('logGAEvent')
           window.gtag('event', name, params)
-          console.log('>>>>>>>>>>>>>> log ga event ', name, params)
+          // console.log('>>>>>>>>>>>>>> log ga event ', name, params)
 
           //console.groupEnd()
         },
@@ -93,16 +98,16 @@ const Routing = () => {
   useEffect(() => {
     if (typeof phrase !== 'string' || isEmpty(phrase)) return
 
-    console.groupCollapsed('prep log phrase view ')
-    console.log('phrase changed phrase:', phrase, '| type , ', typeof phrase)
+    // console.groupCollapsed('prep log phrase view ')
+    // console.log('phrase changed phrase:', phrase, '| type , ', typeof phrase)
 
-    console.dir(phrase)
+    // console.dir(phrase)
     const urlSafePhrase = sanitizeStringForUrl(phrase)
     const lingoAndPhrasesID = 13
     const activityObj = activitiesById[lingoAndPhrasesID]
-    console.log('phrase', phrase)
-    console.log('v', urlSafePhrase)
-    console.log('activityObj', activityObj)
+    // console.log('phrase', phrase)
+    // console.log('v', urlSafePhrase)
+    // console.log('activityObj', activityObj)
 
     // Set the browser history
 
@@ -116,21 +121,21 @@ const Routing = () => {
 
     logGAEvent(event_name)
 
-    console.groupEnd()
+    // console.groupEnd()
   }, [phrase])
   //-------------------------------------------------------------
   // Activity view and close
   //-------------------------------------------------------------
   useEffect(() => {
-    console.log('activity changed ', activity)
+    // console.log('activity changed ', activity)
     if (activity === -1) setIsModal(false)
     // ----------------------------------------
     // Get the Activity object.
     // ----------------------------------------
     const activityObj = activitiesById[activity]
-    console.groupCollapsed('log activity view ')
-    console.log('activity', activity)
-    console.log('isFirstPageLoad.current', isFirstPageLoad.current)
+    // console.groupCollapsed('log activity view ')
+    // console.log('activity', activity)
+    // console.log('isFirstPageLoad.current', isFirstPageLoad.current)
 
     if (
       activity !== -1 &&
@@ -142,9 +147,7 @@ const Routing = () => {
       doSetBrowserHistory(activityObj, activityObj.title)
       logGAEvent(`${activityObj.url}_viewed`)
     } else if (activity !== -1 && !isFirstPageLoad.current) {
-      console.log(
-        `activityObj is either missing title: ${activityObj?.title} | or url: ${activityObj?.url} |`,
-      )
+      // console.log( `activityObj is either missing title: ${activityObj?.title} | or url: ${activityObj?.url} |`)
     }
     if (activity === -1 && !isFirstPageLoad.current) {
       // home view
@@ -153,7 +156,7 @@ const Routing = () => {
         logGAEvent('Ummi_home_viewed')
       }
     }
-    console.groupEnd()
+    // console.groupEnd()
     isFirstPageLoad.current = false
   }, [activity])
 
@@ -164,9 +167,9 @@ const Routing = () => {
     const acronym = acronyms[acronymID]
     const activityObjTools = activitiesById[1]
 
-    console.groupCollapsed('log acronym view ')
-    console.log('acronymID  ', acronymID)
-    console.log('activityObjTools  ', activityObjTools)
+    // console.groupCollapsed('log acronym view ')
+    // console.log('acronymID  ', acronymID)
+    // console.log('activityObjTools  ', activityObjTools)
     if (acronym?.title) {
       setBrowserHistory(
         `${appURL}/${activityObjTools.url.toLowerCase()}/${sanitizeStringForUrl(acronym.title.toLowerCase())}`,
@@ -175,7 +178,7 @@ const Routing = () => {
 
       logGAEvent(`${acronym.title}_tool_viewed`)
     }
-    console.groupEnd()
+    // console.groupEnd()
   }, [acronymID])
 
   const logChildRoute = useCallback(
@@ -198,7 +201,7 @@ const Routing = () => {
   // --- Best Practices: useCallback for Memoization ---
   // Memoize handleUrlChange to prevent it from being recreated on every render.
   const handleUrlChange = useCallback(() => {
-    console.log('handleUrlChange')
+    // console.log('handleUrlChange')
     const segments = getUrlPathSegments()
 
     if (segments.length === 0) return
@@ -212,10 +215,10 @@ const Routing = () => {
 
     console.log('segments', segments)
 
-    console.log('setActivity id:', activityObj?.id)
+    // console.log('setActivity id:', activityObj?.id)
     setActivity(activityObj.id ?? -1)
     if (!activityObj.modal) {
-      console.log('scroll to ', activityObj?.anchorID)
+      // console.log('scroll to ', activityObj?.anchorID)
 
       requestAnimationFrame(() => {
         const el = document.getElementById(activityObj?.anchorID)

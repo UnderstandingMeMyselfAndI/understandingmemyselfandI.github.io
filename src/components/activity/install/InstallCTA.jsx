@@ -31,13 +31,12 @@ const InstallCTA = () => {
 
   useEffect(() => {
     setOpen(activity === id || !isModal)
-  }, [activity, isModal])
+  }, [activity, isModal, id, setOpen])
 
   const inViewRef = useOnInView(
     (inView) => {
       if (!inView) {
         setActivity(-1)
-        setIsModal(false)
       }
     },
     {

@@ -38,12 +38,11 @@
     .dialog-inner {
         position: relative;
         width: 100%;
-        max-width: 360px;
-        height: 100%;
+        height: calc(100% - 5rem);
         display: flex;
         flex-flow: column wrap;
         row-gap: 1.5rem;
-        padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+        padding: 2.5rem 1.5rem;
         background-color: rgba(10, 10, 10, 0.15);
 
         &::after {

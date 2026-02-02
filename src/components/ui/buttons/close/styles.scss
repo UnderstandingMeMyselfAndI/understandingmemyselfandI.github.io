@@ -2,8 +2,8 @@ button.close-btn {
   position: fixed;
   right: 0;
   top: 0;
-  width: 55px;
-  height: 55px;
+  width: 60px;
+  height: 60px;
   background: none;
   border: none;
   outline: none;
@@ -11,47 +11,52 @@ button.close-btn {
   z-index: 15501;
   margin: 0;
   padding: 0;
-  outline: none;
   box-shadow: none;
-  transform: translate(13%, -20%);
-  // outline: 1px solid red;
-
-
 
   .close-btn-wrap {
-    display: block;
+    position: relative;
     width: 100%;
     height: 100%;
-    transform: translate(-22%, 40%)
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .close-btn-inner {
-    display: block;
+    transform-origin: 50% 50%;
     width: 100%;
     height: 100%;
-    transform-origin: 50% 50%;
-    transform: rotate(45deg);
-  }
+    position: relative;
+    transform: rotate(45deg) scale(50%);
 
-  .close-btn-inner>div {
-    width: 40px;
-    height: 3px;
-    background-color: #fff;
-    position: absolute;
-  }
+    div {
+      background-color: #fff;
+      position: absolute;
+      transform-origin: 50% 50%;
 
-  .close-btn-inner>div:first-child {
-    transform: rotateZ(90deg);
+    }
+
+    div:first-child {
+      transform: translate(0%, 0%);
+      width: 100%;
+      height: 4px;
+      top: calc(50% - 2px);
+    }
+
+    div:last-child {
+      width: 4px;
+      height: 100%;
+      left: calc(50% - 2px);
+      transform: translate(0%, 0%);
+
+    }
   }
 
   svg {
     width: 100%;
     height: 100%;
 
-    // stroke:#fff;
-    // fill:#fff;
     path {
-      // stroke:#fff;
       fill: #fff;
     }
   }

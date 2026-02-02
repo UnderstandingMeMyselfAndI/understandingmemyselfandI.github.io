@@ -25,11 +25,11 @@ const PrivacyPolicy = () => {
 
   useEffect(() => {
     open && setIsModal(activitiesById[id]?.modal)
-  }, [open])
+  }, [open, setIsModal, activitiesById, id])
 
   useEffect(() => {
     setOpen(activity === id)
-  }, [activity])
+  }, [activity, id, setOpen])
 
   // const handleCCPAClick = () => {
   // 	setActivity(12)

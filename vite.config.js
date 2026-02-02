@@ -73,7 +73,7 @@ export default defineConfig({
     analyzer() /*, analyzer() uncomment for bundle analyzer*/,
     Sitemap({
       outDir: 'docs',
-      hostname: 'https://dev.ummi.now',
+      hostname: 'https://www.ummi.now',
       dynamicRoutes: getDynamicRoutes(),
       changefreq: 'weekly',
       priority: 0.8,
@@ -115,7 +115,7 @@ export default defineConfig({
         "capture_links": "existing_client_event",
         "url_handlers": [
           {
-            "origin": "https://www.ummi.now"
+            "origin": "https://www.ummi.now",
           }
         ],
         "handle_links": ["preferred", "auto"],
@@ -243,7 +243,7 @@ export default defineConfig({
             "src": "/screenshots/screenshot-3.webp",
             "sizes": "412x915",
             "type": "image/webp",
-            "label": "Recovery tools explained with test content and videos."
+            "label": "Recovery tools explained."
           },
           {
             "src": "/screenshots/screenshot-4.webp",

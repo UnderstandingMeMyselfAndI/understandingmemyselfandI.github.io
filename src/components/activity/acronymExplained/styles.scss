@@ -35,11 +35,15 @@ body .main section.acronym-explained-activity {
 		background: var(--backgroundActivity);
 		min-width: 100%;
 
-		.inner {
-			left: 50%;
-			transform: translate(-50%, 0);
-		}
 
+
+	}
+
+	.inner {
+		left: 50%;
+		transform: translate(-50%, 0);
+		background: var(--backgroundGrayTrans20);
+		padding: 0 1rem;
 	}
 
 	// background: var(--backgroundActivity);
@@ -161,7 +165,7 @@ body .main section.acronym-explained-activity {
 			flex-flow: row nowrap;
 			opacity: 1;
 
-			font-size: variables.$h3_size;
+			font-size: variables.$h2_size;
 			color: var(--primary);
 			// -webkit-text-stroke: 1px var(--primary);
 			line-height: 1;
@@ -180,6 +184,11 @@ body .main section.acronym-explained-activity {
 			// letter-spacing: 4px;
 			margin-top: 0.75rem;
 			margin-bottom: 0.75rem;
+
+			&.long {
+				//reduce font-size as we have a long title
+				font-size: variables.$h3_size;
+			}
 
 			>div {
 				position: relative;
@@ -234,8 +243,16 @@ body .main section.acronym-explained-activity {
 			height: fit-content;
 			text-align: left;
 
-			padding: 0 0.5rem;
+			padding: 0 1.25rem;
 			margin: 0 auto;
+
+			blockquote {
+				font-style: italic;
+			}
+
+			hr {
+				margin: 2rem 0;
+			}
 
 			>div div {
 				margin: 1.25rem 0;
@@ -244,6 +261,40 @@ body .main section.acronym-explained-activity {
 			p {
 				padding-right: 0;
 				padding-left: 0;
+			}
+
+			b,
+			p b,
+			strong,
+			p strong {
+				color: var(--yellow);
+				position: relative;
+				text-decoration: underline;
+				text-decoration-color: var(--lightBlue40Trans);
+				text-decoration-thickness: 45%;
+				text-underline-offset: -25.5%;
+				text-decoration-skip-ink: none;
+
+
+			}
+
+			h2,
+			h3,
+			h4 {
+				color: var(--primary);
+
+			}
+
+			ul {
+				margin: 3rem 0;
+
+				li {
+					padding: 0;
+					margin: 0 inherit;
+					font-weight: 600;
+					font-variation-settings: "wght" 600;
+					color: var(--lightBlue);
+				}
 			}
 		}
 
@@ -737,31 +788,6 @@ body .main section.acronym-explained-activity {
 			height: 100%;
 		}
 
-		button.close-btn {
-			// outline: 1px solid red;
-			width: 100%;
-			height: 100%;
-			left: 50%;
-			top: 50%;
-			position: static;
-			transform: translate(-30%, -10%);
-
-
-		}
-
-		// &::after {
-		// 	border-top: 1px solid rgba(20, 20, 20, 0.5);
-		// 	content: "";
-		// 	width: 100%;
-		// 	height: 100%;
-		// 	background-color: var(--backgroundGrayTrans50);
-		// 	position: absolute;
-		// 	top: 0px;
-		// 	left: 0;
-		// 	z-index: -1;
-		// 	opacity: 1;
-		// 	// transform:rotate(2deg) translateY(-5%);
-		// }
 	}
 
 }

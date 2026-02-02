@@ -77,11 +77,11 @@ const Settings = () => {
 
   useEffect(() => {
     open && setIsModal(activitiesById[id]?.modal)
-  }, [open])
+  }, [open, setIsModal, activitiesById, id])
 
   useEffect(() => {
     setOpen(id === activity)
-  }, [activity, isModal])
+  }, [activity, id])
 
   //--------------------------------------------------------------------------
   // Settings

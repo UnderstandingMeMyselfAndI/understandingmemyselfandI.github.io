@@ -145,8 +145,7 @@ const CarouselListItem = ({
         transition: 'opacity 0.2s, transform 0.2s',
         transformOrigin: 'center center',
         ...style,
-      }}
-    >
+      }}>
       {children}
     </div>
   )
@@ -238,28 +237,27 @@ const MenuCarousel = ({
           index={index}
           registerItem={registerItem}
           unregisterItem={unregisterItem}
-          style={{ marginBottom: '4px' }}
-        >
+          style={{ marginBottom: '4px' }}>
           <div
             className={'carousel-item' + (isSelected ? ' selected' : '')}
-            onClick={handleClick(item.id)}
-          >
+            onClick={handleClick(item.id)}>
             <div
               className='AccordionItem inner item'
-              style={{ cursor: 'pointer' }}
-            >
+              style={{ cursor: 'pointer' }}>
               <div
                 className='title'
                 aria-controls={`Accronym-${index}-content`}
-                id={`panel${item?.id}-header`}
-              >
+                id={`panel${item?.id}-header`}>
                 {showFavourites && (
                   <HandymanIcon
                     className={'icon' + (isSelected ? ' active' : '')}
                   />
                 )}
 
-                <div className='letters-cont'>
+                <div
+                  className={
+                    'letters-cont' + (item.title.length > 12 ? ' long' : '')
+                  }>
                   {item.title.split('.').map(
                     (subItem, i) =>
                       subItem && (
@@ -293,10 +291,9 @@ const MenuCarousel = ({
         overflowY: 'auto',
         position: 'relative',
         WebkitOverflowScrolling: 'touch',
-      }}
-    >
+      }}>
       {/* Top padding to center first items */}
-      <div style={{ paddingTop: '40vh' }} />
+      <div style={{ paddingTop: '40vh', scrollTop: '40vh' }} />
 
       <div className='accronym-menu'>{carouselItems}</div>
 
@@ -305,8 +302,7 @@ const MenuCarousel = ({
         <DescriptionItem
           index={data.length} // Use data length as index to avoid conflicts
           registerItem={registerItem}
-          unregisterItem={unregisterItem}
-        >
+          unregisterItem={unregisterItem}>
           <div className='content'>{description}</div>
         </DescriptionItem>
       )}

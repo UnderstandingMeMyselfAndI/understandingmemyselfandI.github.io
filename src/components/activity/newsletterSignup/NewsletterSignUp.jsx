@@ -24,7 +24,7 @@ const NewsletterSignUp = () => {
 
   useEffect(() => {
     !nss && setOpen(activity === id || !isModal)
-  }, [activity, isModal, nss])
+  }, [activity, isModal, nss, id, setOpen])
 
   useEffect(() => {
     window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code'

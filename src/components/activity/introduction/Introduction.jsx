@@ -28,7 +28,7 @@ const Introduction = () => {
   const sectionRefs = useRef([])
   useEffect(() => {
     setOpen(activity === id || !isModal)
-  }, [activity, isModal])
+  }, [activity, isModal, id, setOpen])
 
   const addToRefs = (el) => {
     if (el && !sectionRefs.current.includes(el)) {

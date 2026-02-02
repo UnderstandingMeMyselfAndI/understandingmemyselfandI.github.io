@@ -84,11 +84,11 @@ const UnitsCalculator = () => {
   const setIsModal = useAppStore((s) => s.setIsModal)
   useEffect(() => {
     open && setIsModal(activitiesById[id]?.modal)
-  }, [open])
+  }, [open, activitiesById, id, setIsModal])
 
   useEffect(() => {
     setOpen(activity === id)
-  }, [activity, isModal])
+  }, [activity, id])
 
   const handleClose = () => {
     console.log('handleClose')
@@ -171,17 +171,14 @@ const UnitsCalculator = () => {
         )}
         <div className='content'>
           <div className='wrap'>
-            {' '}
             <header>
-              {' '}
-              <h2>Units Calculator</h2>
-              {/* <div className='intro'>
-                Calculate the total units of alcohol in common measures.
-              </div> */}
+              <h3>Units Calculator</h3>
             </header>
             <section className='calculator-core'>
               <div className='selected-measures'>
-                <div className='instruction'>Tap row to remove</div>
+                {drinks.length > 0 ? (
+                  <div className='instruction'>Tap row to remove</div>
+                ) : null}
                 {drinks.length === 0 ? (
                   <div className='no-measures'>
                     {' '}

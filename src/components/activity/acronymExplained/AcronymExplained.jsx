@@ -48,11 +48,11 @@ const AcronymExplained = () => {
   const gae = useAppStore((s) => s.gae) // Google analytics enabled
   useEffect(() => {
     open && setIsModal(activitiesById[id]?.modal)
-  }, [open])
+  }, [open, activitiesById, id])
 
   useEffect(() => {
     setOpen(activity === id)
-  }, [activity])
+  }, [activity, id, setOpen])
 
   useEffect(() => {
     setIsUserTool(userToolIDs.includes(acronymID))
@@ -88,6 +88,10 @@ const AcronymExplained = () => {
     })
   }
 
+  const isAcronym = acronymData?.toolFieldGroup?.isAcronym
+
+  const titleLength = acronymData?.title.length
+
   return (
     <section
       className={
@@ -96,8 +100,8 @@ const AcronymExplained = () => {
       key='acronym-card'>
       <div className='inner'>
         <div className='header'>
-          <div className='title cont'>
-            {acronymData && acronymData?.toolFieldGroup?.isAcronym ? (
+          <div className={'title cont' + (titleLength >= 14 ? ' long' : '')}>
+            {acronymData && isAcronym ? (
               acronymData?.title.split('.').map(
                 (letter, index) =>
                   letter && (
@@ -248,7 +252,7 @@ const AcronymExplained = () => {
           )}
 
           <div className='btn close' onClick={handleClose}>
-            <CloseBtn width={30} thickness={3} />
+            <CloseBtn />
           </div>
         </div>
       </div>

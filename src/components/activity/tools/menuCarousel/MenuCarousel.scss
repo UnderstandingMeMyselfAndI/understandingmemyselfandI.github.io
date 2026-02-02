@@ -81,6 +81,10 @@ div.AccordionRoot {
 						height: 100%;
 						width: 100%;
 
+						&.long {
+							font-size: variables.$acc_title_size_sml;
+						}
+
 						div.letter {
 							position: relative;
 							height: fit-content;

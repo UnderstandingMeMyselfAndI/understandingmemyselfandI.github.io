@@ -41,14 +41,16 @@ const Lingo = () => {
   const listRef = useRef(null)
 
   const activityObj = activitiesById[id]
-
+  useEffect(() => {
+    // setIsModal(showDialog)
+  })
   useEffect(() => {
     setOpen(activity === id || !isModal)
-  }, [activity, isModal])
+  }, [activity, isModal, id, setOpen])
 
   useEffect(() => {
     open && setIsModal(activitiesById[id].modal)
-  }, [open])
+  }, [open, setIsModal, id, activitiesById])
 
   function getContent(id) {
     if (!id) return
@@ -99,9 +101,9 @@ const Lingo = () => {
   const handleDialogClick = () => {
     setActivity(id)
     setShowDialog(false)
-
+    const appURL = `${window.location.protocol}//${window.location.host}`
     setBrowserHistory(
-      `${window.location.protocol}/${window.location.host}/${sanitizeStringForUrl(activityObj.url)}`,
+      `${appURL}/${sanitizeStringForUrl(activityObj.url)}`,
       activityObj.name,
     )
   }

@@ -19,10 +19,6 @@ const YourPrivacyCTA = () => {
     setOpen(activity === id || !isModal)
   }, [activity, isModal])
 
-  useEffect(() => {
-    setIsModal(false)
-  }, [open])
-
   const setActivity = useAppStore((s) => s.setActivity)
 
   const content =

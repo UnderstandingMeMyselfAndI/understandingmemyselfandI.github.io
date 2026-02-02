@@ -7,7 +7,7 @@ import CTA from '@/components/ui/cta/CTA'
 // import './stylesCTA.scss'
 
 const ToolsCTA = () => {
-  const activityName = 'Tools'
+  const name = 'Tools CTA'
   const activityUrl = 'recovery-tools'
   const activityID = -1
   const id = -1
@@ -19,12 +19,12 @@ const ToolsCTA = () => {
 
   useEffect(() => {
     setOpen(activity === id || !isModal)
-  }, [activity, isModal])
+  }, [activity, isModal, id, setOpen])
 
   const content =
     strings.activity.find((activity) => activity.url === activityUrl) || null
   if (content === null) {
-    console.warn('No content found for activity "' + activityName + '"')
+    console.warn('No content found for activity "' + name + '"')
   }
 
   const handleClick = () => {
@@ -37,7 +37,7 @@ const ToolsCTA = () => {
         `activity activity-${activityUrl}-cta` + (open ? ' show' : '')
       }>
       <CTA
-        name={activityName}
+        name={name}
         open={open}
         title={content?.cta?.title}
         content={content?.cta?.content}>
