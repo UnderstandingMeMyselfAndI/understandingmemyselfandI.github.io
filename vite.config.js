@@ -82,7 +82,11 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: 'script',
-      filename: "./sw.js",
+      filename: "sw.js",
+      devOptions: {
+        enabled: true,
+        type: 'module',
+      },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       strategies: 'injectManifest', // Required for custom push logic
       srcDir: 'src',                // Where your custom sw.js lives
