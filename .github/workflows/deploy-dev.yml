@@ -1,4 +1,4 @@
-name: Publish Branch To Dev2
+name: Publish Branch To Live & Dev
 
 on:
   push:
