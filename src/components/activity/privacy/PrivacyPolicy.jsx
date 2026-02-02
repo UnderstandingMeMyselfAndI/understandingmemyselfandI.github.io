@@ -23,7 +23,7 @@ const PrivacyPolicy = () => {
   const el = document.getElementById('privacy')
 
   useEffect(() => {
-    open && setIsModal(activitiesById[id]?.modal)
+    setIsModal(activitiesById[id]?.modal)
   }, [open])
 
   useEffect(() => {

@@ -46,7 +46,7 @@ const AcronymExplained = () => {
 
   const gae = useAppStore((s) => s.gae) // Google analytics enabled
   useEffect(() => {
-    open && setIsModal(activitiesById[id]?.modal)
+    setIsModal(activitiesById[id]?.modal)
   }, [open])
 
   useEffect(() => {

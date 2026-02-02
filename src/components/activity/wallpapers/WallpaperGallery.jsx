@@ -38,7 +38,7 @@ const WallpaperGallery = () => {
   const activityID = activityData?.id
 
   useEffect(() => {
-    open && setIsModal(activitiesById[id]?.modal)
+    setIsModal(activitiesById[id]?.modal)
   }, [open])
 
   useEffect(() => {

@@ -47,7 +47,7 @@ const Tools = () => {
   const setAcronymID = useAppStore((s) => s.setAcronymID)
   const setIsModal = useAppStore((s) => s.setIsModal)
   useEffect(() => {
-    open && setIsModal(activitiesById[id]?.modal)
+    setIsModal(activitiesById[id]?.modal)
   }, [open])
 
   useEffect(() => {
