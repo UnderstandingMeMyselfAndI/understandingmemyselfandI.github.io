@@ -3,19 +3,28 @@ import { activities } from '@/data/config'
 import useAppStore from '@/store/useAppStore'
 import CloseBtn from 'buttons/close/CloseBtn'
 import Backdrop from 'components/ui/backdrop/Backdrop'
+const activitiesById = activities.reduce((acc, activity) => {
+  acc[activity.id] = activity
+  return acc
+}, {})
 import './styles.scss'
 // TODO: #13 Add in newsletter supplier privacy
 const PrivacyPolicy = () => {
   const name = 'privacy-policy'
+  const id = 10
 
   const [open, setOpen] = useState(false)
   const activity = useAppStore((s) => s.activity)
   const setActivity = useAppStore((s) => s.setActivity)
-
+  const setIsModal = useAppStore((s) => s.setIsModal)
   const activityObj = activities.find((activity) =>
     activity.url === name ? activity.id : null,
   )
   const el = document.getElementById('privacy')
+
+  useEffect(() => {
+    open && setIsModal(activitiesById[id]?.modal)
+  }, [open])
 
   useEffect(() => {
     if (!activityObj) return

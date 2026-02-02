@@ -9,6 +9,11 @@ import { useGSAP } from '@gsap/react' // <-- import the hook from our React pack
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
 gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText)
+import { activities } from '@/data/config'
+const activitiesById = activities.reduce((acc, activity) => {
+  acc[activity.id] = activity
+  return acc
+}, {})
 import '@/utils/IsMobile.js'
 import './styles.scss'
 
@@ -18,7 +23,13 @@ const Introduction = () => {
   const [open, setOpen] = useState(true)
   const activity = useAppStore((s) => s.activity)
   const isModal = useAppStore((state) => state.isModal)
+  const setIsModal = useAppStore((s) => s.setIsModal)
+
   const sectionRefs = useRef([])
+  useEffect(() => {
+    console.log('isMOdal', isModal)
+    setOpen(activity === id || !isModal)
+  }, [activity, isModal])
 
   const addToRefs = (el) => {
     if (el && !sectionRefs.current.includes(el)) {
@@ -36,12 +47,6 @@ const Introduction = () => {
 
   const isInstalled = useAppStore((state) => state.isInstalled)
   const vc = useAppStore((state) => state.vc) // visit count
-
-  useEffect(() => {
-    console.log('activity', activity)
-    console.log('isModal', isModal)
-    setOpen(activity === id && !isModal)
-  }, [activity, isModal])
 
   function getRand(max) {
     return Math.floor(Math.random() * (max - 1 + 1)) + 1

@@ -37,6 +37,14 @@ const cnf = {
 //
 const baseActivities = [
   {
+    id: -1,
+    url: '',
+    title: 'Home',
+    menu: false,
+    modal: false,
+    conditions:[],
+  },
+  {
     id: 0,
     url: 'introduction',
     title: 'Introduction',
@@ -242,6 +250,41 @@ const baseActivities = [
     conditions:[],
   },
 
+  {
+    id: 18,
+    url: 'footer',
+    title: 'Footer',
+    menuPosition: 20,
+    menu: false,
+    modal: false,
+    classes: '',
+    anchorID:'footer',
+    conditions:[],
+  },
+
+  {
+    id: 19,
+    url: 'header',
+    title: 'Header',
+    menuPosition: 20,
+    menu: false,
+    modal: false,
+    classes: '',
+    anchorID:'header',
+    conditions:[],
+  },
+
+   {
+    id: 20,
+    url: 'your-privacy-cta',
+    title: 'Yoyr Privacy',
+    menuPosition: 20,
+    menu: false,
+    modal: false,
+    classes: '',
+    anchorID:'your-privacy-cta',
+    conditions:[],
+  },
 ];
 const activities = baseActivities.map((item) => ({
   ...item,

@@ -43,6 +43,7 @@ const Routing = () => {
   const isFirstPageLoad = useRef(true)
   const activity = useAppStore((s) => s.activity)
   const phrase = useAppStore((s) => s.phrase)
+  const setIsModal = useAppStore((s) => s.setIsModal)
 
   // --- Readability & Maintainability ---
   // Centralized function for logging Google Analytics events.
@@ -79,7 +80,7 @@ const Routing = () => {
     [gae],
   )
   const doSetBrowserHistory = (activityObj, title, segments = []) => {
-    const urlExtra = segments.length > 0 ? '/' + segments.join('/') : '/'
+    const urlExtra = segments.length > 0 ? '/' + segments.join('/') : ''
     setBrowserHistory(
       `${appURL}/${activityObj.url.toLowerCase()}${urlExtra}`,
       `${strings.app.appName} - ${title}`,
@@ -121,6 +122,8 @@ const Routing = () => {
   // Activity view and close
   //-------------------------------------------------------------
   useEffect(() => {
+    console.log('activity changed ', activity)
+    if (activity === -1) setIsModal(false)
     // ----------------------------------------
     // Get the Activity object.
     // ----------------------------------------

@@ -7,7 +7,11 @@ import CloseBtn from '@/components/ui/buttons/close/CloseBtn.jsx'
 import toolsData from '../../../data/tools.js'
 import { strings } from '@/data/config'
 import PropTypes from 'prop-types'
-
+import { activities } from '@/data/config'
+const activitiesById = activities.reduce((acc, activity) => {
+  acc[activity.id] = activity
+  return acc
+}, {})
 import './styles.scss'
 
 const Tools = () => {
@@ -41,6 +45,14 @@ const Tools = () => {
 
   const setActivity = useAppStore((s) => s.setActivity)
   const setAcronymID = useAppStore((s) => s.setAcronymID)
+  const setIsModal = useAppStore((s) => s.setIsModal)
+  useEffect(() => {
+    open && setIsModal(activitiesById[id]?.modal)
+  }, [open])
+
+  useEffect(() => {
+    setOpen(activity === id)
+  }, [activity])
 
   const handleClick = (id) => () => {
     setActivity(17)
@@ -48,10 +60,6 @@ const Tools = () => {
     // setShowAccCard(true)
     setOpen(false)
   }
-
-  useEffect(() => {
-    setOpen(activity === id)
-  }, [activity])
 
   const handleClose = () => {
     setOpen(false)

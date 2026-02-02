@@ -4,17 +4,23 @@ import QRCode from 'ui/QRCode/QRCode.jsx'
 import FooterMetadata from '@/components/activity/footer/FooterMetadata.jsx'
 import UpdateCTA from '../../ui/updateCTA/updateCTA'
 import useAppStore from '@/store/useAppStore'
-
+import { activities } from '@/data/config'
+const activitiesById = activities.reduce((acc, activity) => {
+  acc[activity.id] = activity
+  return acc
+}, {})
 import './styles.scss'
 function Footer() {
   const name = 'footer'
-  const id = -1
+  const id = 18
   const activity = useAppStore((state) => state.activity)
   const [open, setOpen] = useState(false)
   const isModal = useAppStore((state) => state.isModal)
+  const setIsModal = useAppStore((s) => s.setIsModal)
+
   useEffect(() => {
     setOpen(activity === id || !isModal)
-  }, [activity])
+  }, [activity, isModal])
 
   return (
     <div

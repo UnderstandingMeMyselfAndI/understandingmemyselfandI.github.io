@@ -2,13 +2,15 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import SearchField from '@/components/ui/search/SearchField'
 import Dialog from '@/components/ui/dialog/Dialog'
 import lingo from '@/data/lingo.js'
-import { activities } from '@/data/config'
+import { useOnInView } from 'react-intersection-observer'
+
 import { sanitizeStringForUrl, setBrowserHistory, isEmpty } from '@/js/utils.js'
 import { strings } from '@/data/config'
 // import UnfoldMoreDoubleIcon from '@mui/icons-material/UnfoldMoreDouble';
 import './styles.scss'
 import useAppStore from '@/store/useAppStore'
 import { set } from 'idb-keyval'
+import { activities } from '@/data/config'
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc
@@ -35,14 +37,18 @@ const Lingo = () => {
   const setPhrase = useAppStore((state) => state.setPhrase)
   const phrase = useAppStore((state) => state.phrase)
   const isModal = useAppStore((state) => state.isModal)
+  const setIsModal = useAppStore((state) => state.setIsModal)
   const listRef = useRef(null)
 
   const activityObj = activitiesById[id]
 
   useEffect(() => {
-    console.log('activity', activity)
-    setOpen(activity === -1 || activity === id || !isModal)
+    setOpen(activity === id || !isModal)
   }, [activity])
+
+  useEffect(() => {
+    open && setIsModal(activitiesById[id].modal)
+  }, [open])
 
   function getContent(id) {
     if (!id) return
@@ -69,19 +75,8 @@ const Lingo = () => {
     }
   }, [listRef, showAll, elHeightExpanded, initialHeight])
 
-  // useEffect(() => {
-  //   if (!showDialog && !isFirstLoad) {
-  //     const appURL = `${window.location.protocol}//${window.location.host}`
-
-  //     setBrowserHistory(
-  //       `${appURL}/lingo-and-phrases/`,
-  //       `${strings.app.appName} Lingo & Phrases`,
-  //     )
-  //   }
-  // }, [showDialog])
-
   useEffect(() => {
-    console.log('phrase ', phrase)
+    if (isEmpty(phrase)) return
     phrasesByURL[sanitizeStringForUrl(phrase)] &&
       setContent(phrasesByURL[sanitizeStringForUrl(phrase)])
     setShowDialog(true)
@@ -102,27 +97,36 @@ const Lingo = () => {
     setShowAll((prevState) => !prevState)
   }
   const handleDialogClick = () => {
-    console.log('handleDialogClick ', id)
     setActivity(id)
     setShowDialog(false)
 
     setBrowserHistory(
-      `${window.location.protocol}//${window.location.host}/${sanitizeStringForUrl(activityObj.url)}`,
+      `${window.location.protocol}/${window.location.host}/${sanitizeStringForUrl(activityObj.url)}`,
       activityObj.name,
     )
   }
-  // useEffect(() => {
-  //   if (content?.title && content.id) {
-  //     setPhrase([content.id, content?.title])
-  //   }
-  // }, [content, setPhrase, gae])
+
+  const inViewRef = useOnInView(
+    (inView) => {
+      if (!inView) {
+        setActivity(-1)
+        setIsModal(false)
+      }
+      console.log('inView', inView)
+    },
+    {
+      threshold: 0.1,
+      rootMargin: '0% 0% 0% 0%',
+    },
+  )
 
   const listHeight = showAll ? elHeightExpanded : elHeight
 
   return (
     <section
       id='lingo'
-      className={'activity activity-search-lingo' + (open ? ' show' : ' hide')}>
+      className={'activity activity-search-lingo' + (open ? ' show' : ' hide')}
+      ref={inViewRef}>
       <div className='search-lingo-wrap'>
         <Dialog
           show={showDialog}

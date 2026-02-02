@@ -7,18 +7,23 @@ import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useOnInView } from 'react-intersection-observer'
 import { gsap } from 'gsap'
+import { activities } from '@/data/config'
+const activitiesById = activities.reduce((acc, activity) => {
+  acc[activity.id] = activity
+  return acc
+}, {})
 import './styles.scss'
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 const Header = () => {
   const name = 'header'
-  const id = -1
+  const id = 19
   const [open, setOpen] = useState(false)
   const [isLeaving, setIsLeaving] = useState(false)
   const [isFirstCall, setIsFirstCall] = useState(true)
   const isModal = useAppStore((state) => state.isModal)
-
+  const setIsModal = useAppStore((s) => s.setIsModal)
   const cont = useRef()
   const groupRef = useRef()
   const arrowsCont = useRef()
@@ -45,7 +50,7 @@ const Header = () => {
 
   useEffect(() => {
     setOpen(activity === id || !isModal)
-  }, [activity])
+  }, [activity, isModal])
 
   useGSAP(
     () => {

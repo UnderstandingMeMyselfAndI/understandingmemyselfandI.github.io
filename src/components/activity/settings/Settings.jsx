@@ -6,7 +6,10 @@ import CloseBtn from '@/components/ui/buttons/close/CloseBtn'
 import Dialog from '@/components/ui/dialog/Dialog'
 
 import './styles.scss'
-
+const activitiesById = activities.reduce((acc, activity) => {
+  acc[activity.id] = activity
+  return acc
+}, {})
 const Setting = (
   name,
   getStateSelector,
@@ -56,6 +59,7 @@ const Setting = (
 
 const Settings = () => {
   const name = 'settings'
+  const id = 12
   const [open, setOpen] = useState(false)
   // const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [showDeleteIDBDialog, setShowDeleteIDBDialog] = useState(false)
@@ -68,6 +72,11 @@ const Settings = () => {
   const activityID = activities.find((activity) =>
     activity.url === name ? activity.id : null,
   )
+  const setIsModal = useAppStore((s) => s.setIsModal)
+
+  useEffect(() => {
+    setIsModal(activitiesById[id]?.modal)
+  }, [open])
 
   useEffect(() => {
     setOpen(activityID.id === activity)
@@ -168,10 +177,6 @@ const Settings = () => {
   )
   settings.push(AnalyticsCookiesSettings)
 
-  // const handleClearUserData = () => {
-  //   setShowDeleteDialog(true);
-  // };
-
   const handleClearIDB = () => {
     setShowDeleteIDBDialog(true)
   }
@@ -199,23 +204,12 @@ const Settings = () => {
   const handleCloseConfirmDeleteDialog = () => {
     setShowConfirmDeleteDialog(false)
   }
-  // const handleConfirmDeleteData = () => {
-  //   localStorage.clear();
-  //   resetAll();
-  //   setShowConfirmDeleteDialog(true);
-  //   setShowDeleteDialog(false);
-  //   // force reload url
-  //   // setTimeout(() => {
-  //   //   setActivity(activityID.id);
-  //   // }, 200);
-  // };
+
   const handleConfirmDeleteIDB = () => {
     clearIDB()
     setShowDeleteIDBDialog(false)
   }
-  // const handleCloseDeleteData = () => {
-  //   setShowDeleteDialog(false);
-  // };
+
   const handleCloseDeleteIDB = () => {
     setShowDeleteIDBDialog(false)
   }

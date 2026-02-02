@@ -9,7 +9,14 @@ import parse from 'html-react-parser'
 import useAppStore from '@/store/useAppStore'
 
 import Dialog from 'components/ui/dialog/Dialog'
+import { activities } from '@/data/config'
+const activitiesById = activities.reduce((acc, activity) => {
+  acc[activity.id] = activity
+  return acc
+}, {})
 const DaysCounter = () => {
+  const name = 'Days Counter'
+  const id = 2
   // const activity = useAppStore(state => state.activity);
   const setActivity = useAppStore((state) => state.setActivity)
 
@@ -21,7 +28,7 @@ const DaysCounter = () => {
   const [showDialog, setShowDialog] = useState(false)
   const [dialogIndex, setDialogIndex] = useState(-1)
   const [editingDateIndex, setEditingDateIndex] = useState(-1)
-
+  const setIsModal = useAppStore((s) => s.setIsModal)
   const handleClose = () => {
     setOpen(false)
     setActivity(-1)
@@ -29,9 +36,12 @@ const DaysCounter = () => {
   const handleCloseDialog = () => {
     setShowDialog(false)
   }
+  useEffect(() => {
+    open && setIsModal(activitiesById[id]?.modal)
+  }, [open])
 
   useEffect(() => {
-    setOpen(activity === 2)
+    setOpen(activity === id)
   }, [activity])
 
   const getInitialDates = () => {
@@ -128,15 +138,15 @@ const DaysCounter = () => {
   // }
   return (
     <section
-      className={'activity days-counter-activity fixed' + (open ? ' show' : '')}
-    >
+      className={
+        'activity days-counter-activity fixed' + (open ? ' show' : '')
+      }>
       <div
         className={
           'days-counter-wrapper ' +
           (dates.length === 2 ? ' full' : '') +
           (open ? ' open' : '')
-        }
-      >
+        }>
         <CloseBtn classes='days-counter-close-btn' onClick={handleClose} />
         <div className='days-counter-wrap'>
           {showDialog && (
@@ -151,21 +161,18 @@ const DaysCounter = () => {
           <div
             className={
               'days-counter-container' + (dates.length === 2 ? ' full' : '')
-            }
-          >
+            }>
             {dates.length === 0 && (
               <div className='days-counter-empty-state'>
                 <div className='days-counter-empty-title'></div>
                 <div
                   className='days-counter-add-first-icon'
-                  onClick={() => addDate()}
-                >
+                  onClick={() => addDate()}>
                   <AddIcon />
                 </div>
                 <button
                   onClick={() => addDate()}
-                  className='days-counter-add-first-btn'
-                >
+                  className='days-counter-add-first-btn'>
                   Add Date
                 </button>
               </div>
@@ -174,8 +181,7 @@ const DaysCounter = () => {
             <div
               className={
                 'days-counter-list' + (dates.length === 2 ? ' full' : '')
-              }
-            >
+              }>
               {dates.map((date, index) => (
                 <div key={date.id} className='days-counter-card'>
                   <button
@@ -184,8 +190,7 @@ const DaysCounter = () => {
                       setShowDialog(true)
                     }}
                     className='days-counter-delete-btn'
-                    title='Delete'
-                  >
+                    title='Delete'>
                     <DeleteForeverIcon />
                   </button>
 
@@ -246,8 +251,7 @@ const DaysCounter = () => {
                         <span
                           className='days-counter-date-display'
                           onClick={() => handleDateClick(index)}
-                          style={{ cursor: 'pointer' }}
-                        >
+                          style={{ cursor: 'pointer' }}>
                           {parse(formatDate(date.selectedDate))}
                         </span>
                       ) : (
@@ -278,8 +282,7 @@ const DaysCounter = () => {
             {dates.length > 0 && dates.length < 2 && (
               <button
                 onClick={() => addDate()}
-                className='days-counter-add-another-btn'
-              >
+                className='days-counter-add-another-btn'>
                 ({dates.length}/2)
               </button>
             )}

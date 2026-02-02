@@ -10,13 +10,15 @@ const ToolsCTA = () => {
   const activityName = 'Tools'
   const activityUrl = 'recovery-tools'
   const activityID = -1
+  const id = -1
   const targetActivityID = 1
   const [open, setOpen] = useState(false)
   const setActivity = useAppStore((state) => state.setActivity)
   const activity = useAppStore((state) => state.activity)
+  const isModal = useAppStore((state) => state.isModal)
 
   useEffect(() => {
-    setOpen(activity === activityID)
+    setOpen(activity === id || !isModal)
   }, [activity, activityID])
 
   const content =

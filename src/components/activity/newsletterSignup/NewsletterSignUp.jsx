@@ -1,24 +1,34 @@
 import useAppStore from '@/store/useAppStore'
 import { useState, useEffect } from 'react'
 import useLoadScript from '@/hooks/useLoadScript'
+import { activities } from '@/data/config'
+const activitiesById = activities.reduce((acc, activity) => {
+  acc[activity.id] = activity
+  return acc
+}, {})
 import './styles.scss'
 
 const NewsletterSignUp = () => {
   const name = 'newsletter'
-  const id = -1
+  const id = 15
   const setActivity = useAppStore((state) => state.setActivity)
   const [checked, setChecked] = useState(false)
   const nss = useAppStore((s) => s.nss) // subscribed to newsletter
   const setNss = useAppStore((s) => s.setNSS)
-
+  const setIsModal = useAppStore((s) => s.setIsModal)
+  const isModal = useAppStore((s) => s.isModal)
   // TODO #22 [ ]: Ensure that Newsletter menu item is removed after user sign up. Should also be recorded in the store
   // TODO #23 : Check form validation and UX
   const [open, setOpen] = useState(true)
   const activity = useAppStore((s) => s.activity)
 
   useEffect(() => {
-    setOpen(activity === id)
+    !nss && setOpen(activity === id || !isModal)
   }, [activity])
+
+  useEffect(() => {
+    setIsModal(false)
+  }, [open])
 
   useEffect(() => {
     window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code'

@@ -7,10 +7,15 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import CloseIcon from '@mui/icons-material/Close'
 import DownloadForOfflineOutlinedIcon from '@mui/icons-material/DownloadForOfflineOutlined'
 import wallpapers from '@/data/wallpapers'
+const activitiesById = activities.reduce((acc, activity) => {
+  acc[activity.id] = activity
+  return acc
+}, {})
 import './styles.scss'
 
 const WallpaperGallery = () => {
   const name = 'wallpaper-gallery'
+  const id = 6
   const [open, setOpen] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [detectedSize, setDetectedSize] = useState(null)
@@ -21,8 +26,7 @@ const WallpaperGallery = () => {
   const [imageLoaded, setImageLoaded] = useState(false)
   const [thumbnailsLoaded, setThumbnailsLoaded] = useState({})
   const [thumbnailsError, setThumbnailsError] = useState({})
-
-  // Get activity from store
+  const setIsModal = useAppStore((s) => s.setIsModal) // Get activity from store
   const activity = useAppStore((s) => s.activity)
   const setActivity = useAppStore((s) => s.setActivity)
 
@@ -34,7 +38,11 @@ const WallpaperGallery = () => {
   const activityID = activityData?.id
 
   useEffect(() => {
-    setOpen(activityID === activity)
+    open && setIsModal(activitiesById[id]?.modal)
+  }, [open])
+
+  useEffect(() => {
+    setOpen(activityID === id)
   }, [activity, activityID])
 
   // NEW: Prevent multiple navigation triggers

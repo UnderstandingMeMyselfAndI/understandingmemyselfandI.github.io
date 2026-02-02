@@ -4,6 +4,11 @@ import useAppStore from '@/store/useAppStore'
 import BackdropParallax from '@/components/ui/backdrop/BackdropParallax'
 import CloseBtn from '../../ui/buttons/close/CloseBtn'
 import parse from 'html-react-parser'
+import { activities } from '@/data/config'
+const activitiesById = activities.reduce((acc, activity) => {
+  acc[activity.id] = activity
+  return acc
+}, {})
 import './styles.scss'
 
 const calcUnits = (ml, abv) => (ml * abv) / 1000
@@ -55,6 +60,8 @@ const noDrinksMessage =
   'No measures selected.<br /><br /> Add a drink with the <b>Measures</b> button<br /> or use <br /><b>Add Custom Drink</b>.'
 
 const UnitsCalculator = () => {
+  const name = 'unitsCalculator'
+  const id = 5
   const setActivity = useAppStore((state) => state.setActivity)
   const [type, setType] = useState('custom')
   const [isMeasuresVisible, setIsMeasuresVisible] = useState(false)
@@ -73,9 +80,13 @@ const UnitsCalculator = () => {
   const { activity } = useAppStore(
     useShallow((state) => ({ activity: state.activity })),
   )
+  const setIsModal = useAppStore((s) => s.setIsModal)
+  useEffect(() => {
+    open && setIsModal(activitiesById[id]?.modal)
+  }, [open])
 
   useEffect(() => {
-    setOpen(activity === 5)
+    setOpen(activity === id)
   }, [activity])
 
   const handleClose = () => {
@@ -150,8 +161,9 @@ const UnitsCalculator = () => {
   return open ? (
     <section
       id='ummi-units-calculator'
-      className={'activity ummi-units-calculator fixed' + (open ? ' open' : '')}
-    >
+      className={
+        'activity ummi-units-calculator fixed' + (open ? ' open' : '')
+      }>
       <div className='inner'>
         {!isMeasuresVisible && (
           <CloseBtn className='close-btn' onClick={handleClose} />
@@ -180,8 +192,7 @@ const UnitsCalculator = () => {
                   <ul
                     className={
                       'measures ' + (drinks.length === 0 ? ' none' : '')
-                    }
-                  >
+                    }>
                     {[...drinks]
                       .sort(
                         (a, b) =>
@@ -192,8 +203,7 @@ const UnitsCalculator = () => {
                         <li
                           key={d.id}
                           className='drinks-entry'
-                          onClick={() => removeDrink(d.id)}
-                        >
+                          onClick={() => removeDrink(d.id)}>
                           <div className='desc'>
                             <div className='row-1'>
                               <div className='multiplier'>{d.count}x</div>{' '}
@@ -238,14 +248,12 @@ const UnitsCalculator = () => {
                       }}
                       className={
                         'group' + (type === 'custom' ? ' selected' : ' ')
-                      }
-                    >
+                      }>
                       Custom
                     </button>
                     <button
                       onClick={() => setIsMeasuresVisible(true)}
-                      className='group'
-                    >
+                      className='group'>
                       Measures
                     </button>
                   </div>
@@ -255,8 +263,7 @@ const UnitsCalculator = () => {
                   {type === 'custom' && (
                     <form
                       onSubmit={handleCustomDrinkSubmit}
-                      className='custom-drink-form'
-                    >
+                      className='custom-drink-form'>
                       <div className='row'>
                         {/* <div>Name</div> */}
                         <label htmlFor='custom-drink-name'>
@@ -316,16 +323,14 @@ const UnitsCalculator = () => {
             {isMeasuresVisible && (
               <div
                 className='measures-scroll-list'
-                onClick={() => setIsMeasuresVisible(false)}
-              >
+                onClick={() => setIsMeasuresVisible(false)}>
                 <CloseBtn
                   className='close-btn-measures'
                   handleClick={() => setIsMeasuresVisible(false)}
                 />
                 <div
                   className='measures-scroll-list-inner'
-                  onClick={(e) => e.stopPropagation()}
-                >
+                  onClick={(e) => e.stopPropagation()}>
                   <div className='multiplier-input'>
                     <label htmlFor='multiplier'>No of:</label>
                     <input
@@ -356,8 +361,7 @@ const UnitsCalculator = () => {
                                 )
                                 setIsMeasuresVisible(false)
                               }}
-                              className='measure'
-                            >
+                              className='measure'>
                               <span className='measure-title'>
                                 {preset.label}
                               </span>

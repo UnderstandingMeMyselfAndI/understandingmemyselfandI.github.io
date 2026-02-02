@@ -5,6 +5,8 @@ import appleAddToHomescreen from '/icons/apple-add-to-homescreen-white-40x40.png
 import parse from 'html-react-parser'
 import useAppStore from '@/store/useAppStore'
 import { strings } from '@/data/config'
+import { useOnInView } from 'react-intersection-observer'
+
 // import PWAInstall from '@khmyznikov/pwa-install/react-legacy'
 // import { PWAInstallElement } from '@khmyznikov/pwa-install'
 // import UmmiIcon from 'components/icons/UmmiIcon2.svg'
@@ -13,7 +15,7 @@ import './styles.scss'
 
 const InstallCTA = () => {
   const name = 'install'
-  const id = -1
+  const id = 16
 
   //TODO: #16 Check this is working - don't show if already installed
   const content =
@@ -22,11 +24,28 @@ const InstallCTA = () => {
     console.warn('No content found for activity "Install"')
   }
   const activity = useAppStore((state) => state.activity)
+  const isModal = useAppStore((state) => state.isModal)
+  const setActivity = useAppStore((state) => state.setActivity)
+  const setIsModal = useAppStore((state) => state.setIsModal)
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    setOpen(activity === id)
+    setOpen(activity === id || !isModal)
   }, [activity])
+
+  const inViewRef = useOnInView(
+    (inView) => {
+      if (!inView) {
+        setActivity(-1)
+        setIsModal(false)
+      }
+      console.log('inView', inView)
+    },
+    {
+      threshold: 0.1,
+      rootMargin: '0% 0% 0% 0%',
+    },
+  )
 
   const appleUsersContent = 'Tap the <b><u>Share icon</u></b></b>'
   const appleUsersContent2 =
@@ -109,7 +128,8 @@ const InstallCTA = () => {
         <section
           className={
             'activity activity-installCTA ' + (open ? ' show' : ' hide')
-          }>
+          }
+          ref={inViewRef}>
           <div id='install'>
             <h3>
               <u className='yellow-ul'>

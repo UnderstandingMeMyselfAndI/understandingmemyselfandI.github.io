@@ -12,7 +12,11 @@ import OndemandVideoOutlinedIcon from '@mui/icons-material/OndemandVideoOutlined
 import HdrAutoOutlinedIcon from '@mui/icons-material/HdrAutoOutlined'
 import Skeleton from '@mui/material/Skeleton'
 import { extractYouTubeId } from '@/js/utils.js'
-
+import { activities } from '@/data/config'
+const activitiesById = activities.reduce((acc, activity) => {
+  acc[activity.id] = activity
+  return acc
+}, {})
 import './styles.scss'
 
 // TODO [x]: Show hide favourites
@@ -37,9 +41,13 @@ const AcronymExplained = () => {
   const showAccCard = useAppStore((s) => s.showAccCard)
   const setShowAccCard = useAppStore((s) => s.setShowAccCard)
   const setActivity = useAppStore((s) => s.setActivity)
+  const setIsModal = useAppStore((s) => s.setIsModal)
   const [isUserTool, setIsUserTool] = useState(userToolIDs.includes(acronymID))
 
   const gae = useAppStore((s) => s.gae) // Google analytics enabled
+  useEffect(() => {
+    open && setIsModal(activitiesById[id]?.modal)
+  }, [open])
 
   useEffect(() => {
     setIsUserTool(userToolIDs.includes(acronymID))
@@ -49,9 +57,6 @@ const AcronymExplained = () => {
   useEffect(() => {
     const acronymData = getAccData(acronymID)
     setAcronymData(acronymData)
-
-    console.log('acronymData', acronymData)
-
     contentRef.current.scrollTop = 0
   }, [acronymID, gae])
 

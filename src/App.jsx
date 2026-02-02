@@ -23,7 +23,7 @@ import ToolsCTA from 'components/activity/tools/ToolsCTA.jsx'
 import BackdropParallax from 'ui/backdrop/BackdropParallax'
 
 import SnackBars from 'ui/snackbars/SnackBars.jsx'
-import InstallCTA from 'ui/install/InstallCTA'
+import InstallCTA from '@/components/activity/install/InstallCTA'
 // import AcronymCard from "ui/cards/AcronymCard.jsx";
 import AcronymExplained from './components/activity/acronymExplained/AcronymExplained'
 
