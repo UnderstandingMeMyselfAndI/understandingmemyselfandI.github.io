@@ -57,7 +57,7 @@ const DRINK_PRESETS = [
 ]
 
 const noDrinksMessage =
-  'No measures selected.<br /><br /> Add a drink with the <b>Measures</b> button<br /> or use <br /><b>Add Custom Drink</b>.'
+  ' <h5 class="yellow"><b>No measures selected. </b> </h5><br /><br /> Add a <br /><b>Measure</b> <br /> or <br /><b>Custom Drink</b>.'
 
 const UnitsCalculator = () => {
   const name = 'unitsCalculator'
