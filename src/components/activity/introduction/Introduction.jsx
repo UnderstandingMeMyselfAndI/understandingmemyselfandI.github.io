@@ -14,9 +14,10 @@ import './styles.scss'
 
 const Introduction = () => {
   const name = 'introduction'
+  const id = 0
   const [open, setOpen] = useState(true)
   const activity = useAppStore((s) => s.activity)
-
+  const isModal = useAppStore((state) => state.isModal)
   const sectionRefs = useRef([])
 
   const addToRefs = (el) => {
@@ -37,8 +38,10 @@ const Introduction = () => {
   const vc = useAppStore((state) => state.vc) // visit count
 
   useEffect(() => {
-    setOpen(activity === -1)
-  }, [activity])
+    console.log('activity', activity)
+    console.log('isModal', isModal)
+    setOpen(activity === id && !isModal)
+  }, [activity, isModal])
 
   function getRand(max) {
     return Math.floor(Math.random() * (max - 1 + 1)) + 1
@@ -49,8 +52,7 @@ const Introduction = () => {
   return (
     <section
       id='intro'
-      className={'activity intro' + (open ? ' show' : ' hide')}
-    >
+      className={'activity intro' + (open ? ' show' : ' hide')}>
       <div className='introduction-inner'>
         <div className='inner'>
           <h1 style={{ fontSize: '68px' }}>
@@ -80,8 +82,7 @@ const Introduction = () => {
                 <div
                   key={`intro-${i}`}
                   className={'subsection installed'}
-                  ref={addToRefs}
-                >
+                  ref={addToRefs}>
                   {cnt?.title && (
                     <div className='subsection-title'>
                       <h2>{parse(cnt?.title)}</h2>
@@ -121,8 +122,7 @@ const Introduction = () => {
                 <div
                   key={`intro-${i}`}
                   className={'subsection notinstalled '}
-                  ref={addToRefs}
-                >
+                  ref={addToRefs}>
                   {cnt?.title && (
                     <div className='subsection-title'>
                       <h2 className='title2'>{parse(cnt?.title)}</h2>

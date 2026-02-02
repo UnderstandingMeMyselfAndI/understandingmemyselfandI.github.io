@@ -12,9 +12,12 @@ import { strings } from '@/data/config'
 import './styles.scss'
 
 const InstallCTA = () => {
+  const name = 'install'
+  const id = -1
+
   //TODO: #16 Check this is working - don't show if already installed
   const content =
-    strings.activity.find((activity) => activity.name === 'install') || null
+    strings.activity.find((activity) => activity.name === name) || null
   if (content === null) {
     console.warn('No content found for activity "Install"')
   }
@@ -22,7 +25,7 @@ const InstallCTA = () => {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    setOpen(activity === -1)
+    setOpen(activity === id)
   }, [activity])
 
   const appleUsersContent = 'Tap the <b><u>Share icon</u></b></b>'
@@ -98,10 +101,6 @@ const InstallCTA = () => {
     //TODO: Send anayltics event
   }
 
-  useEffect(() => {
-    setOpen(activity === -1)
-  }, [activity])
-
   //TODO: #17 Check install process is working for all platform
   //TODO: #18 Create wide screen screenshots for install prompt
 
@@ -110,8 +109,7 @@ const InstallCTA = () => {
         <section
           className={
             'activity activity-installCTA ' + (open ? ' show' : ' hide')
-          }
-        >
+          }>
           <div id='install'>
             <h3>
               <u className='yellow-ul'>

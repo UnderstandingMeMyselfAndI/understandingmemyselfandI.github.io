@@ -1,4 +1,4 @@
-const data ={
+export const data ={
 		"tools": {
 			"nodes": [
 				{
@@ -136,7 +136,57 @@ const data ={
 						"podcastsField": null
 					}
 				},
-
+				{
+					"id": "cG9zdDozMzQ=",
+					"databaseId": 334,
+					"title": "D.E.A.D.S.",
+					"toolFieldGroup": {
+						"description": "<p dir=\"auto\">The DEADS tool from SMART Recovery is a solid, no-BS strategy for handling those sneaky urges and cravings that pop up when you&#8217;re kicking addictions or bad habits to the curb. It&#8217;s all about outsmarting them instead of letting them run the show — science-backed moves to ride out the storm without giving in.</p>\n<p dir=\"auto\">Bottom line? DEADS is your secret weapon to turn urges from bosses into background noise. They get weaker and rarer the more you use this—practice when you&#8217;re calm so it&#8217;s automatic in the heat. If you&#8217;re pushing through recovery, tap into SMART meetings or a pro for extra backup.</p>\n<p dir=\"auto\">Like door-to-door salesmen — if you stop answering, they eventually leave.</p>\n<p dir=\"auto\">You&#8217;ve got the power; keep at it.</p>\n",
+						"isAcronym": true,
+						"letters": [
+							{
+								"letter": "D",
+								"meaning": "Deny or Delay",
+								"definition": "<p dir=\"auto\">Hit the brakes and create a road block. Urges ain&#8217;t forever—they peak and fade if you don&#8217;t feed them attention. Tell yourself, &#8220;Chill for 10-15 minutes,&#8221; and watch them weaken. The more you deny them, the less they bug you over time. It&#8217;s like starving out a pest; eventually, they bounce.</p>\n"
+							},
+							{
+								"letter": "E",
+								"meaning": "Escape",
+								"definition": "<p dir=\"auto\">Bounce your scenery quick smart. If you&#8217;re in a spot that&#8217;s triggering you—like a bar, a shop with your vice, or even scrolling past ads — dip and pivot. Change the channel, leave the room, or straight-up walk away. Shifting your scene flips the script and kills the vibe of the urge fast.</p>\n"
+							},
+							{
+								"letter": "A",
+								"meaning": "Avoid / Accept / Attack",
+								"definition": "<p dir=\"auto\">Own it without fighting it.</p>\n<p dir=\"auto\">Yeah, it&#8217;s annoying and pretty crap right now, but it&#8217;s normal and it won&#8217;t wreck you. Remind yourself, &#8220;This discomfort is temporary—I&#8217;ve got this.&#8221; Accepting it puts it in perspective, turns it into a win, and helps it pass quicker without the drama.</p>\n"
+							},
+							{
+								"letter": "D",
+								"meaning": "Dispute / Distract",
+								"definition": "<p dir=\"auto\">Who&#8217;s Boss here? You are. S0 put your brain in it&#8217;s place for all this BS it&#8217;s pushing your way.  Use logic to roast those irrational thoughts, like &#8220;Nope, that &#8216;one won&#8217;t hurt&#8217; it&#8217;s a lie—it&#8217;s always led to places you don&#8217;t want to go back to.&#8221;</p>\n<p dir=\"auto\">Pull a combo with tools like ABCDEs or DISARM to build counter-punches that shut down the craving before it builds steam.</p>\n"
+							},
+							{
+								"letter": "S",
+								"meaning": "Substitute",
+								"definition": "<p dir=\"auto\">Swap it out with something better. When the urge hits, jump into a distraction that&#8217;s fun or productive — hit the pavement for a walk, blast some music, grab a book, or crush a workout. Make a list of go-tos ahead of time so you&#8217;re ready to pivot quick and make that craving ghost.</p>\n"
+							}
+						],
+						"scenariosField": {
+							"nodes": [
+								{
+									"id": "cG9zdDox"
+								}
+							]
+						},
+						"videosField": {
+							"nodes": [
+								{
+									"id": "cG9zdDoxNDY="
+								}
+							]
+						},
+						"podcastsField": null
+					}
+				},
 				{
 					"id": "cG9zdDo5OA==",
 					"databaseId": 98,
@@ -1001,4 +1051,3 @@ const data ={
 			]
 		}
 	}
-export default data;

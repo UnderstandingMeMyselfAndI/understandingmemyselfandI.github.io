@@ -12,9 +12,12 @@ import './styles.scss'
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 const Header = () => {
+  const name = 'header'
+  const id = -1
   const [open, setOpen] = useState(false)
   const [isLeaving, setIsLeaving] = useState(false)
   const [isFirstCall, setIsFirstCall] = useState(true)
+  const isModal = useAppStore((state) => state.isModal)
 
   const cont = useRef()
   const groupRef = useRef()
@@ -24,7 +27,7 @@ const Header = () => {
   const aniLeaveRefs = useRef([])
   const loopTimelines = useRef([])
   const leaveTimeline = useRef()
-
+  const activity = useAppStore((s) => s.activity)
   aniLoopRefs.current = []
   aniLeaveRefs.current = []
 
@@ -40,10 +43,8 @@ const Header = () => {
     }
   }
 
-  const activity = useAppStore((s) => s.activity)
-
   useEffect(() => {
-    setOpen(activity === -1)
+    setOpen(activity === id || !isModal)
   }, [activity])
 
   useGSAP(
@@ -286,8 +287,7 @@ const Header = () => {
     <section
       id='header'
       className={'activity header' + (open ? ' show' : ' hide')}
-      ref={cont}
-    >
+      ref={cont}>
       <div className='leavingWrap' ref={inViewRef}>
         <div className={'group-wrap'}>
           <div className='home-grp'>
@@ -305,8 +305,7 @@ const Header = () => {
                     <div className='w0w' ref={addLeaveRef}>
                       <div
                         className={'r1 w0' + (isLeaving ? ' leaving' : '')}
-                        ref={addLoopRef}
-                      >
+                        ref={addLoopRef}>
                         Understanding
                       </div>
                     </div>
@@ -316,8 +315,7 @@ const Header = () => {
                       <div className='w1w' ref={addLeaveRef}>
                         <div
                           className={'w1' + (isLeaving ? ' leaving' : '')}
-                          ref={addLoopRef}
-                        >
+                          ref={addLoopRef}>
                           Me
                         </div>
                       </div>
@@ -326,8 +324,7 @@ const Header = () => {
                       <div className='w2w' ref={addLeaveRef}>
                         <div
                           className={'w2' + (isLeaving ? ' leaving' : '')}
-                          ref={addLoopRef}
-                        >
+                          ref={addLoopRef}>
                           Myself
                         </div>
                       </div>

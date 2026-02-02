@@ -31,7 +31,7 @@ export default defineConfig({
     emptyOutDir: true,
     commonjsOptions: { transformMixedEsModules: true },
     cssCodeSplit: true,
-    sourcemap: false, // Disabled for production
+    sourcemap: false,
     rollupOptions: {
       treeshake: 'smallest',
       output: {
@@ -280,6 +280,7 @@ export default defineConfig({
     }),
   ],
   server: {
+    sourcemap: false,
     port: 5174,
     hmr: {
       host: 'localhost',

@@ -1,6 +1,11 @@
 @use '@/scss/_variables.scss';
 @import '@/globals.css';
 
+body .activity-days-counter-cta {
+
+  margin: 0 auto;
+}
+
 body #root .main section.days-counter-activity.fixed {
   &.fixed {
     top: 0;

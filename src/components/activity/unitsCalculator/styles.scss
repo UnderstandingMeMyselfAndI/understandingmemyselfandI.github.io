@@ -1,6 +1,11 @@
 @use '@/scss/_variables.scss';
 @import '@/globals.css';
 
+body .activity-units-calculator-cta {
+
+  margin: 0 auto;
+}
+
 section#ummi-units-calculator {
 
   position: fixed;

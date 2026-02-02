@@ -6,7 +6,7 @@ import Backdrop from 'components/ui/backdrop/Backdrop'
 import './styles.scss'
 // TODO: #13 Add in newsletter supplier privacy
 const PrivacyPolicy = () => {
-  const name = 'privacy'
+  const name = 'privacy-policy'
 
   const [open, setOpen] = useState(false)
   const activity = useAppStore((s) => s.activity)
@@ -18,6 +18,7 @@ const PrivacyPolicy = () => {
   const el = document.getElementById('privacy')
 
   useEffect(() => {
+    if (!activityObj) return
     setOpen(activityObj.id === activity)
   }, [activity, activityObj, el])
 
@@ -25,7 +26,6 @@ const PrivacyPolicy = () => {
   // 	setActivity(12)
   // }
   const handleClose = () => {
-    console.log('handleClose')
     handleScrollTop()
     setOpen(false)
     setActivity(-1)

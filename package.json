@@ -4,7 +4,7 @@
   "version": "0.5.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host",
+    "dev": "vite --host --mode development",
     "dev:https": "vite --host --https",
     "build": "node generate-buildno.js && vite build",
     "build:clean": "rm -rf docs && vite build --mode production",

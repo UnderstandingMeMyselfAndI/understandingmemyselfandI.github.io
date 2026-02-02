@@ -4,6 +4,8 @@ import useLoadScript from '@/hooks/useLoadScript'
 import './styles.scss'
 
 const NewsletterSignUp = () => {
+  const name = 'newsletter'
+  const id = -1
   const setActivity = useAppStore((state) => state.setActivity)
   const [checked, setChecked] = useState(false)
   const nss = useAppStore((s) => s.nss) // subscribed to newsletter
@@ -15,8 +17,27 @@ const NewsletterSignUp = () => {
   const activity = useAppStore((s) => s.activity)
 
   useEffect(() => {
-    setOpen(activity === -1)
+    setOpen(activity === id)
   }, [activity])
+
+  useEffect(() => {
+    window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code'
+    window.LOCALE = 'en'
+    window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE =
+      'The information provided is invalid. Please review the field format and try again.'
+    window.REQUIRED_ERROR_MESSAGE = 'This field cannot be left blank. '
+    window.GENERIC_INVALID_MESSAGE =
+      'The information provided is invalid. Please review the field format and try again.'
+    window.translation = {
+      common: {
+        selectedList: '{quantity} list selected',
+        selectedLists: '{quantity} lists selected',
+        selectedOption: '{quantity} selected',
+        selectedOptions: '{quantity} selected',
+      },
+    }
+    var AUTOHIDE = Boolean(1)
+  }, [])
 
   useLoadScript('https://sibforms.com/forms/end-form/build/main.js', {
     // onLoad: () => console.log('Script loaded'),
@@ -110,14 +131,12 @@ const NewsletterSignUp = () => {
       id='newsletter'
       className={
         'activity activity-newsletter-signup-form' + (open ? ' show' : '')
-      }
-    >
+      }>
       <div className='sib-form'>
         <div id='sib-form-container' className='sib-form-container'>
           <div
             id='sib-container'
-            className='sib-container--large sib-container--vertical'
-          >
+            className='sib-container--large sib-container--vertical'>
             <form
               onSubmit={handleSubmit}
               className='signup-form'
@@ -161,8 +180,7 @@ const NewsletterSignUp = () => {
                 />
                 <label
                   htmlFor='email'
-                  className='entry__error entry__error--primary'
-                ></label>
+                  className='entry__error entry__error--primary'></label>
               </div>
               <div className='form-row '>
                 <div>
@@ -188,8 +206,7 @@ const NewsletterSignUp = () => {
                   </div>
                   <label
                     htmlFor='error'
-                    className='entry__error entry__error--primary'
-                  ></label>
+                    className='entry__error entry__error--primary'></label>
                 </div>
               </div>
               <div className='form-row privacy'>
@@ -201,8 +218,7 @@ const NewsletterSignUp = () => {
                     <a
                       href='https://www.brevo.com/en/legal/privacypolicy/'
                       target='_blank'
-                      rel='noreferrer'
-                    >
+                      rel='noreferrer'>
                       Brevo&apos;s Privacy Policy.
                     </a>
                   </p>
@@ -214,8 +230,7 @@ const NewsletterSignUp = () => {
                   type='submit'
                   className='signup-button btn'
                   aria-label='Sign Up'
-                  disabled={status.loading || !formData.email}
-                >
+                  disabled={status.loading || !formData.email}>
                   {status.loading ? (
                     <>
                       <span className='loading-spinner'></span>

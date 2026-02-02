@@ -7,18 +7,19 @@ import useAppStore from '@/store/useAppStore'
 
 import './styles.scss'
 function Footer() {
+  const name = 'footer'
+  const id = -1
   const activity = useAppStore((state) => state.activity)
   const [open, setOpen] = useState(false)
-
+  const isModal = useAppStore((state) => state.isModal)
   useEffect(() => {
-    setOpen(activity === -1)
+    setOpen(activity === id || !isModal)
   }, [activity])
 
   return (
     <div
       id='footer'
-      className={'activity activity-footer' + (open ? ' show' : '')}
-    >
+      className={'activity activity-footer' + (open ? ' show' : '')}>
       <section className='qr' id='share'>
         <h3>
           <u className='yellow-ul'>Spread the love</u>
@@ -45,8 +46,7 @@ function Footer() {
           <a
             href='https://www.nottinghamrecoverynetwork.com/'
             target='_blank'
-            rel='noopener noreferrer'
-          >
+            rel='noopener noreferrer'>
             Nottingham Recovery Network (NRN)
           </a>
           <br />
@@ -58,8 +58,7 @@ function Footer() {
           <a
             href='https://www.nottinghamrecoverynetwork.com/'
             target='_blank'
-            rel='noopener noreferrer'
-          >
+            rel='noopener noreferrer'>
             nottinghamrecoverynetwork.com
           </a>
         </p>
@@ -102,8 +101,7 @@ function Footer() {
           <a
             href='mailto:hello@ummi.now?subject=UMMI%20App%20Feedback'
             target='_blank'
-            rel='noopener noreferrer'
-          >
+            rel='noopener noreferrer'>
             hello@ummi.now
           </a>
         </p>
@@ -141,8 +139,7 @@ function Footer() {
           <a
             href='https://www.buymeacoffee.com/ummi'
             target='_blank'
-            rel='noopener noreferrer'
-          >
+            rel='noopener noreferrer'>
             Click here to buy us a coffee or give a small donation
           </a>
           <br />

@@ -13,6 +13,7 @@ import './styles.scss'
 const Tools = () => {
   const data = toolsData.tools.nodes
   const name = 'tools'
+  const id = 1
   const toolboxFilterEnabled = useAppStore((s) => s.toolboxFilterEnabled)
 
   const [open, setOpen] = useState(false)
@@ -42,18 +43,17 @@ const Tools = () => {
   const setAcronymID = useAppStore((s) => s.setAcronymID)
 
   const handleClick = (id) => () => {
+    setActivity(17)
     setAcronymID(id)
     // setShowAccCard(true)
     setOpen(false)
-    setActivity(17)
   }
 
   useEffect(() => {
-    setOpen(activity == 1)
+    setOpen(activity === id)
   }, [activity])
 
   const handleClose = () => {
-    console.log('handleClose')
     setOpen(false)
     setActivity(-1)
   }

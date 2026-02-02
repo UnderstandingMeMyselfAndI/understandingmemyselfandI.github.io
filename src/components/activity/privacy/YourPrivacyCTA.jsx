@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { strings } from '@/data/config'
 import useAppStore from '@/store/useAppStore'
 import CTA from '@/components/ui/cta/CTA'
+import './styles.scss'
 
 const YourPrivacyCTA = () => {
   const activityName = 'privacy'

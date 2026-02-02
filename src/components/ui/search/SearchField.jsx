@@ -59,7 +59,7 @@ const SearchField = forwardRef(({ classes, handleClick }, ref) => {
   //   const appURL = `${window.location.protocol}//${window.location.host}`
   //   console.log('handleClick lingo[id].title ', lingo[id].title)
   //   setBrowserHistory(
-  //     `${appURL}/lingo-phrases/${sanitizeStringForUrl(lingo[id].title.toLowerCase())}`,
+  //     `${appURL}/lingo-and-phrases/${sanitizeStringForUrl(lingo[id].title.toLowerCase())}`,
   //     `${strings.app.appName} Phrase: - ${lingo[id].title}`,
   //   )
   // }

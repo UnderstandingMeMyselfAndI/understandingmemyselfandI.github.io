@@ -23,13 +23,24 @@ div.activity-explained-bg {
 	}
 }
 
-section.acronym-explained-activity {
+body .main section.acronym-explained-activity {
 	width: 100%;
 	// max-width: var(--appMaxWidth);
 	height: 100vh;
 	max-height: 100vh;
 	padding: 0;
 	margin: 0 auto;
+
+	&.show {
+		background: var(--backgroundActivity);
+		min-width: 100%;
+
+		.inner {
+			left: 50%;
+			transform: translate(-50%, 0);
+		}
+
+	}
 
 	// background: var(--backgroundActivity);
 
@@ -83,7 +94,7 @@ section.acronym-explained-activity {
 
 
 	.inner {
-		position: relative;
+		position: absolute;
 		height: 100dvh;
 		width: 100%;
 

@@ -89,25 +89,30 @@ export function extractYouTubeId(url) {
   
   return (match && match[2].length === 11) ? match[2] : null;
 }
-export const logGAEvent = 
-	(name, params = null) => {
-	  console.trace('logGAEvent called')
-	 
-	  if (typeof window.gtag === 'function' && !isEmpty(name)) {
-		window.gtag('event', name, params)
+// export const logGAEvent = (name, params = null) => {
+// 	console.trace('logGAEvent called')
+	
+// 	if (typeof window.gtag === 'function' && !isEmpty(name)) {
+// 	window.gtag('event', name, params)
 
-		console.log('>>>>>>>>>>>>>>>>>>log ga event ', name, params)
-	  } else {
-		console.warn('gtag not available – event not sent:', name)
-	  }
-	}
+// 	console.log('>>>>>>>>>>>>>>>>>>log ga event ', name, params)
+// 	} else {
+// 	console.warn('gtag not available – event not sent:', name)
+// 	}
+// }
 
 export function setBrowserHistory(url, title) {
   // A console.log can be useful for debugging, but should be removed for production
-  console.log('setBrowserHistory url ', url, ' title ', title)
+  console.trace('setBrowserHistory url ', url, ' title ', title)
+   if(title && typeof title === 'string' && !isEmpty(title.length)){
+	document.title = title
+  } 
+  
   if (history.pushState) {
     window.history.pushState({ page: title }, '', url)
   }
+
+  
 }
 // Optional: validate if it's a YouTube URL
 export function isYouTubeUrl(url) {
@@ -136,17 +141,17 @@ export function smoothScroll(){
 }
 
 export function sanitizeStringForUrl(input) {
-	// Remove non-alphanumeric characters and replace with hyphen
-	if (!input) return
-	const sanitized = input?.replace(/[^\w]/g, '-')
+  // Remove non-alphanumeric characters and replace with hyphen
+  if (!input || isEmpty(input)) return;
+  const sanitized = input.replace(/[^\w]/g, '-');
 
-	// Replace consecutive hyphens with a single hyphen
-	const singleHyphen = sanitized.replace(/-{2,}/g, '-')
+  // Replace consecutive hyphens with a single hyphen
+  const singleHyphen = sanitized.replace(/-{2,}/g, '-');
 
-	// Remove leading and trailing hyphens
-	const trimmed = singleHyphen.trim()
+  // Remove leading and trailing hyphens
+  const trimmed = singleHyphen.trim();
 
-	return trimmed.toLowerCase()
+  return trimmed.toLowerCase();
 }
 // Helper to get current path segments
 export function getUrlPathSegments() {
@@ -173,8 +178,7 @@ export default {
 	getElementPageOffsetTop,
 	extractYouTubeId,
 	isYouTubeUrl,
-	sanitizeStringForUrl,
-	logGAEvent,
+	sanitizeStringForUrl,	
 	getUrlPathSegments,
 	setBrowserHistory,
 	smoothScroll,

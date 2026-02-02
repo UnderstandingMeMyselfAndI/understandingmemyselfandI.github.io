@@ -6,7 +6,7 @@
  */
 
 .pika-single {
-    z-index: 9999;
+    z-index: 1000;
     display: block;
     position: relative;
     color: #333;
@@ -50,7 +50,7 @@ http://nicolasgallagher.com/micro-clearfix-hack/
 .pika-label {
     display: inline-block;
     position: relative;
-    z-index: 9999;
+    z-index: 1000;
     overflow: hidden;
     margin: 0;
     padding: 5px 3px;
@@ -62,7 +62,7 @@ http://nicolasgallagher.com/micro-clearfix-hack/
 .pika-title select {
     cursor: pointer;
     position: absolute;
-    z-index: 9998;
+    z-index: 998;
     margin: 0;
     left: 0;
     top: 5px;

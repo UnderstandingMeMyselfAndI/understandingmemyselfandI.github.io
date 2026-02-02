@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import useAppStore from '@/store/useAppStore'
 import { activities } from '@/data/config'
 import { strings } from '@/data/config'
@@ -37,31 +37,22 @@ export default function AppMenu() {
   const setActivity = useAppStore((state) => state.setActivity)
   const activity = useAppStore((state) => state.activity)
 
+  const setIsModal = useAppStore((state) => state.setIsModal)
+
   const isInstalled = useAppStore((state) => state.isInstalled)
   const isInstallable = useAppStore((state) => state.isInstallable)
 
   const gae = useAppStore((s) => s.gae) // Google analytics enabled
   const nss = useAppStore((s) => s.nss) // subscribed to newsletter
-  const setRoute = useAppStore((s) => s.setRoute) // subscribed to newsletter
-
-  // useEffect(() => {
-  //   // setOpen(activity === -1)
-  // }, [activity])
 
   const toggleOpen = () => {
     setOpen(!open)
   }
   const handleClose = (obj) => {
-    // setActivity(-1);
-    if (!obj) return
-    setRoute({
-      url: obj.url,
-      title: obj.title,
-    })
     setOpen(false)
   }
 
-  function findObj(id) {
+  function findActivityObj(id) {
     const obj = activities.find((a) =>
       parseInt(a.id) === parseInt(id) ? id : null,
     )
@@ -72,11 +63,45 @@ export default function AppMenu() {
     const obj = activities.find((a) =>
       parseInt(a.id) === parseInt(activity) ? activity : null,
     )
-    setShowMenu(activity === -1)
+    const showMenu = activity === -1 ? true : obj.modal ? false : true
+    setShowMenu(showMenu)
     if (obj) {
       setOpenMenu(obj.menu)
     }
   }, [activity])
+
+  const filteredActivities = useMemo(() => {
+    const stateMap = {
+      daysCounterEnabled,
+      unitsCalculatorEnabled,
+      isInstalled,
+      isInstallable,
+      gae,
+      nss,
+    }
+
+    return activities
+      .filter((activity) => {
+        if (!activity.conditions || activity.conditions.length === 0) {
+          return true // Always show items without conditions
+        }
+        return activity.conditions.every((condition) => {
+          return stateMap[condition.state] === condition.value
+        })
+      })
+      .sort((a, b) => {
+        const posA = a.menuPosition ?? Infinity
+        const posB = b.menuPosition ?? Infinity
+        return posA - posB
+      })
+  }, [
+    daysCounterEnabled,
+    unitsCalculatorEnabled,
+    isInstalled,
+    isInstallable,
+    gae,
+    nss,
+  ])
 
   return showMenu ? (
     <div className={'AppMenu' + (openMenu ? ' ' : ' hide')}>
@@ -102,304 +127,26 @@ export default function AppMenu() {
         className={open ? ' open' : ' closed'}
         id='app-menu'
         onClick={handleClose}>
-        <li
-          onClick={() => {
-            if (gae && window.gtag) {
-              window.gtag('event', 'tools', {
-                app_name: 'Ummi',
-                screen_name: 'Tools',
-              })
-            }
-
-            // requestAnimationFrame(() => {
-            //   const el = document.getElementById('the-tools')
-            //   el.scrollIntoView(true)
-            // })
-
-            const activityObj = findObj(1)
-            handleClose({
-              url: activityObj.url,
-              title: activityObj.url,
-            })
-            setActivity(1) // temp solution
-          }}>
-          Tools
-        </li>
-        <li
-          className=''
-          onClick={() => {
-            // if (gae && window.gtag) {
-            //   window.gtag('event', 'lingo_and_phrases', {
-            //     app_name: 'Ummi',
-            //     screen_name: 'Lingo & Phrases',
-            //   })
-            // }
-            const activityObj = findObj(13)
-
-            const appURL = `${window.location.protocol}//${window.location.host}`
-            setBrowserHistory(
-              `${appURL}/${sanitizeStringForUrl(activityObj.title.toLowerCase())}`,
-              `${strings.app.appName} Tool - ${activityObj.title}`,
-            )
-            requestAnimationFrame(() => {
-              const el = document.getElementById('lingo')
-              el.scrollIntoView(true)
-            })
-
-            handleClose({
-              url: activityObj.url,
-              title: activityObj.url,
-            })
-
-            setActivity(-1)
-          }}>
-          Lingo &amp; Phrases
-        </li>
-        {/* <li
-					className='strikethrough'
-					// onClick={() => {
-					// 	handleClose()
-					// 	setActivity(-1)
-					// 	// position element ready for tour
-					// 	// const el = document.getElementById('gratitude')
-
-					// 	// el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-
-					// 	window.scrollTo({
-					// 		top: 0,
-					// 		left: 0,
-					// 		behavior: 'smooth',
-					// 	})
-
-					// 	// driverObj.drive()
-					// }}
-				>
-					Tour
-				</li> */}
-        {/** Only show if days counter is enabled	 */}
-
-        {daysCounterEnabled && (
-          <li
-            className='new'
-            onClick={() => {
-              if (gae && window.gtag) {
-                window.gtag('event', 'days_counter', {
-                  app_name: 'Ummi',
-                  screen_name: 'Days Counter',
-                })
-              }
-              const activityObj = findObj(2)
-              handleClose({
-                url: activityObj.url,
-                title: activityObj.url,
-              })
-              setActivity(2)
-            }}>
-            Days Counter
-          </li>
-        )}
-        {unitsCalculatorEnabled && (
-          <li
-            className='new'
-            onClick={() => {
-              if (gae && window.gtag) {
-                window.gtag('event', 'units_calculator', {
-                  app_name: 'Ummi',
-                  screen_name: 'Units Calculator',
-                })
-              }
-              const activityObj = findObj(5)
-              handleClose({
-                url: activityObj.url,
-                title: activityObj.url,
-              })
-              setActivity(5)
-              handleClose()
-            }}>
-            Units Calculator
-          </li>
-        )}
-
-        <li
-          className='new'
-          onClick={() => {
-            if (gae && window.gtag) {
-              window.gtag('event', 'wallpapers', {
-                app_name: 'Ummi',
-                screen_name: 'Wallpapers',
-              })
-            }
-
-            // requestAnimationFrame(() => {
-            //   const el = document.getElementById('the-tools')
-            //   el.scrollIntoView(true)
-            // })
-
-            const activityObj = findObj(6)
-            handleClose({
-              url: activityObj.url,
-              title: activityObj.url,
-            })
-            setActivity(6)
-          }}>
-          Wallpapers
-        </li>
-
-        {!isInstalled && isInstallable && (
-          <li
-            className=''
-            onClick={() => {
-              if (gae && window.gtag) {
-                window.gtag('event', 'install', {
-                  app_name: 'Ummi',
-                  screen_name: 'Install',
-                })
-              }
-              requestAnimationFrame(() => {
-                const el = document.getElementById('install')
-                el.scrollIntoView(true)
-              })
-              const activityObj = findObj(16)
-              //------------------------------------------
-              // Set URL
-              //------------------------------------------
-              const appURL = `${window.location.protocol}//${window.location.host}`
-              setBrowserHistory(
-                `${appURL}/${sanitizeStringForUrl(activityObj.title.toLowerCase())}`,
-                `${strings.app.appName} Tool - ${activityObj.title}`,
-              )
-              handleClose({
-                url: activityObj.url,
-                title: activityObj.url,
-              })
-              setActivity(-1)
-            }}>
-            Install
-          </li>
-        )}
-        <li
-          onClick={() => {
-            if (gae && window.gtag) {
-              window.gtag('event', 'share', {
-                app_name: 'Ummi',
-                screen_name: 'Share',
-              })
-            }
-            requestAnimationFrame(() => {
-              const el = document.getElementById('share')
-              el.scrollIntoView(true)
-            })
-            const activityObj = findObj(14)
-            //------------------------------------------
-            // Set URL
-            //------------------------------------------
-            const appURL = `${window.location.protocol}//${window.location.host}`
-            setBrowserHistory(
-              `${appURL}/${sanitizeStringForUrl(activityObj.title.toLowerCase())}`,
-              `${strings.app.appName} Tool - ${activityObj.title}`,
-            )
-
-            handleClose({
-              url: activityObj.url,
-              title: activityObj.url,
-            })
-            setActivity(-1)
-          }}>
-          Share
-        </li>
-
-        {!nss && (
-          <li
-            onClick={() => {
-              if (gae && window.gtag) {
-                window.gtag('event', 'newsletter', {
-                  app_name: 'Ummi',
-                  screen_name: 'Newsletter',
-                })
-              }
-              requestAnimationFrame(() => {
-                const el = document.getElementById('newsletter')
-                el.scrollIntoView(true)
-              })
-              const activityObj = findObj(15)
-              //------------------------------------------
-              // Set URL
-              //------------------------------------------
-              const appURL = `${window.location.protocol}//${window.location.host}`
-              setBrowserHistory(
-                `${appURL}/${sanitizeStringForUrl(activityObj.title.toLowerCase())}`,
-                `${strings.app.appName} Tool - ${activityObj.title}`,
-              )
-              handleClose({
-                url: activityObj.url,
-                title: activityObj.url,
-              })
-              // setActivity(15);
-              setActivity(-1)
-            }}>
-            Newsletter
-          </li>
-        )}
-        <li
-          onClick={() => {
-            if (gae && window.gtag) {
-              window.gtag('event', 'privacy_policy', {
-                app_name: 'Ummi',
-                screen_name: 'Privacy Policy',
-              })
-            }
-            const activityObj = findObj(10)
-            handleClose({
-              url: activityObj.url,
-              title: activityObj.url,
-            })
-            setActivity(10)
-          }}>
-          Your privacy
-        </li>
-        {/* <li className='strikethrough'>
-					<div className='loginRegister'>
-						<div
-							className='register'
-							// onClick={() => {
-							// 	handleClose()
-							// 	setActivity(-1)
-							// }}
-						>
-							Register
-						</div>
-						<div
-							className=''
-							// onClick={() => {
-							// 	handleClose()
-							// 	setActivity(-1)
-							// }}
-						>
-							Login
-						</div>
-					</div> 
-				</li>*/}
-        <li
-          className=''
-          onClick={() => {
-            if (gae && window.gtag) {
-              window.gtag('event', 'settings', {
-                app_name: 'Ummi',
-                screen_name: 'Settings',
-              })
-            }
-            const activityObj = findObj(12)
-            handleClose({
-              url: activityObj.url,
-              title: activityObj.url,
-            })
-
-            setActivity(12)
-          }}>
-          Settings
-        </li>
-        {/* <li onClick={handleClose}>Tour</li> */}
-        {/* <li onClick={handleClose}>Settings</li> */}
+        {filteredActivities.map((activityForMenu, i) => {
+          return activityForMenu.menu ? (
+            <li
+              className={activityForMenu?.classes}
+              key={i}
+              onClick={() => {
+                if (!activityForMenu.modal) {
+                  requestAnimationFrame(() => {
+                    const el = document.getElementById(activityForMenu.anchorID)
+                    el.scrollIntoView(true)
+                  })
+                }
+                setIsModal(activityForMenu.modal)
+                handleClose()
+                setActivity(activityForMenu.id)
+              }}>
+              {activityForMenu.title}
+            </li>
+          ) : null
+        })}
       </ul>
       <div className='app-nemu-bg' onClick={handleClose}></div>
     </div>

@@ -179,7 +179,7 @@
   ul#app-menu {
     position: fixed;
 
-    top: calc(50% + 32px);
+    top: 50%;
     transform: translateY(-50%);
 
     margin: 0;
@@ -252,7 +252,7 @@
       font-variation-settings: 'wght' variables.$menu_weight;
       text-align: right;
       color: #313131;
-      padding: 0.65rem 6vw 0.65rem 6vw;
+      padding: 0.65rem 1.5rem 0.65rem 1.5rem;
 
       margin: 0;
       width: fit-content;

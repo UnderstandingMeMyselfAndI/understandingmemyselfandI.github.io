@@ -35,16 +35,14 @@ const useAppStore = create(
         set(() => ({ lastVersionCheck: v }));
         set(() => ({ lvc: v }));
       },
+       // ----------------------------------------
+      // Version
+      isModal: false,
+      setIsModal: (v) => set(() => ({ isModal: v })), 
       // ----------------------------------------
       // Version
       version: '',
-      setVersion: (v) => set(() => ({ version: v })),
-      // ----------------------------------------
-      // Route
-      route: { url: '/', title: '' },
-      setRoute: (route) => {
-        set(() => ({ route: route }));
-      },
+      setVersion: (v) => set(() => ({ version: v })),     
 
       // ----------------------------------------
       // Subscribed to Newsletter
@@ -119,7 +117,7 @@ const useAppStore = create(
         set(() => ({ p: v }));
       },
 
-      phrase: [],
+      phrase: '',
       setPhrase: (v) => {
         set(() => ({ phrase: v }));
         set(() => ({ p: v }));
@@ -307,6 +305,7 @@ const useAppStore = create(
       // Toggles showToolsOnly
       toggleShowToolsOnly: () =>
         set((state) => ({ showToolsOnly: !state.showToolsOnly })),
+     
       // ----------------------------------------
       // Acronym ID
       acronymID: -1,
