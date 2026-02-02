@@ -23,7 +23,7 @@ const UnitsCalculatorCTA = () => {
 
   useEffect(() => {
     setOpen(activity === id || !isModal)
-  }, [activity, activityID])
+  }, [activity, isModal])
 
   const content =
     strings.activity.find((activity) => activity.url === activityUrl) || null

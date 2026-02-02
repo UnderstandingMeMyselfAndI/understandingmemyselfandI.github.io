@@ -42,12 +42,17 @@ const AcronymExplained = () => {
   const setShowAccCard = useAppStore((s) => s.setShowAccCard)
   const setActivity = useAppStore((s) => s.setActivity)
   const setIsModal = useAppStore((s) => s.setIsModal)
+  const isModal = useAppStore((s) => s.isModal)
   const [isUserTool, setIsUserTool] = useState(userToolIDs.includes(acronymID))
 
   const gae = useAppStore((s) => s.gae) // Google analytics enabled
   useEffect(() => {
-    setIsModal(activitiesById[id]?.modal)
+    open && setIsModal(activitiesById[id]?.modal)
   }, [open])
+
+  useEffect(() => {
+    setOpen(activity === id)
+  }, [activity])
 
   useEffect(() => {
     setIsUserTool(userToolIDs.includes(acronymID))
@@ -59,10 +64,6 @@ const AcronymExplained = () => {
     setAcronymData(acronymData)
     contentRef.current.scrollTop = 0
   }, [acronymID, gae])
-
-  useEffect(() => {
-    setOpen(activity === id)
-  }, [activity])
 
   const handleClose = () => {
     setShowAccCard(false)

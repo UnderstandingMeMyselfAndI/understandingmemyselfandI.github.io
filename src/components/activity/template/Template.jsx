@@ -11,12 +11,14 @@ const activitiesById = activities.reduce((acc, activity) => {
 }, {})
 
 import './styles.scss'
+import { is } from 'zod/v4/locales'
 
 const Template = () => {
   const name = 'name-to-go-here'
   const id = 999999
   const [open, setOpen] = useState(false)
   const activity = useAppStore((s) => s.activity)
+  const isModal = useAppStore((s) => s.isModal)
   const activityID = activities.find((activity) =>
     activity.url === name ? activity.id : null,
   )
@@ -26,8 +28,8 @@ const Template = () => {
     open && setIsModal(activitiesById[id]?.modal)
   }, [open])
   useEffect(() => {
-    setOpen(activityID === activity)
-  }, [activity, activityID])
+    setOpen(id === activity || !isModal)
+  }, [activity, isModal])
 
   const handleClose = () => setOpen(false)
 

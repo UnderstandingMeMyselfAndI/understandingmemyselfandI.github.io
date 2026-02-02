@@ -29,6 +29,7 @@ const DaysCounter = () => {
   const [dialogIndex, setDialogIndex] = useState(-1)
   const [editingDateIndex, setEditingDateIndex] = useState(-1)
   const setIsModal = useAppStore((s) => s.setIsModal)
+  const isModal = useAppStore((s) => s.isModal)
   const handleClose = () => {
     setOpen(false)
     setActivity(-1)
@@ -37,7 +38,7 @@ const DaysCounter = () => {
     setShowDialog(false)
   }
   useEffect(() => {
-    setIsModal(activitiesById[id]?.modal)
+    open && setIsModal(activitiesById[id]?.modal)
   }, [open])
 
   useEffect(() => {

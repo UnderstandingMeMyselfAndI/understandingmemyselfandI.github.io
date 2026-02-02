@@ -44,7 +44,7 @@ const Lingo = () => {
 
   useEffect(() => {
     setOpen(activity === id || !isModal)
-  }, [activity])
+  }, [activity, isModal])
 
   useEffect(() => {
     open && setIsModal(activitiesById[id].modal)

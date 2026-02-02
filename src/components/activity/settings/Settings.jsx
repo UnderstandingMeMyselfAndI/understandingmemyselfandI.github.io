@@ -69,18 +69,19 @@ const Settings = () => {
   const setShowToolsOnly = useAppStore((s) => s.setShowToolsOnly)
   const activity = useAppStore((s) => s.activity)
   const clearIDB = useAppStore((s) => s.clearIDB)
+  const isModal = useAppStore((s) => s.isModal)
   const activityID = activities.find((activity) =>
     activity.url === name ? activity.id : null,
   )
   const setIsModal = useAppStore((s) => s.setIsModal)
 
   useEffect(() => {
-    setIsModal(activitiesById[id]?.modal)
+    open && setIsModal(activitiesById[id]?.modal)
   }, [open])
 
   useEffect(() => {
-    setOpen(activityID.id === activity)
-  }, [activity, activityID])
+    setOpen(id === activity)
+  }, [activity, isModal])
 
   //--------------------------------------------------------------------------
   // Settings

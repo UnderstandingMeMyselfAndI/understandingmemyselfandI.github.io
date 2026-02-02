@@ -31,7 +31,7 @@ const InstallCTA = () => {
 
   useEffect(() => {
     setOpen(activity === id || !isModal)
-  }, [activity])
+  }, [activity, isModal])
 
   const inViewRef = useOnInView(
     (inView) => {
@@ -39,7 +39,6 @@ const InstallCTA = () => {
         setActivity(-1)
         setIsModal(false)
       }
-      console.log('inView', inView)
     },
     {
       threshold: 0.1,

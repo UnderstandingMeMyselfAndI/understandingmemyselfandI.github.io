@@ -17,7 +17,7 @@ const YourPrivacyCTA = () => {
 
   useEffect(() => {
     setOpen(activity === id || !isModal)
-  }, [activity, activityID])
+  }, [activity, isModal])
 
   useEffect(() => {
     setIsModal(false)

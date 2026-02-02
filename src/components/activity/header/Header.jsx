@@ -271,7 +271,19 @@ const Header = () => {
     },
     { dependencies: [open, isLeaving], scope: cont },
   )
-
+  ScrollTrigger.create({
+    start: 0,
+    end: 'max',
+    onUpdate: () => {
+      const isInViewport = ScrollTrigger.isInViewport('.activity.header')
+      const percentInviewport = ScrollTrigger.positionInViewport(
+        '.activity.header',
+        'center',
+      ).toFixed(2)
+      console.log('percentInviewport', percentInviewport)
+      console.log('isInViewport', isInViewport)
+    },
+  })
   // TODO #25 Maybe use ScrollTrigger isInViewport and drop thei library
   //https://gsap.com/docs/v3/Plugins/ScrollTrigger/static.positionInViewport()
   const inViewRef = useOnInView(

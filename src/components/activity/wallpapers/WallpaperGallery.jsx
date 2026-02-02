@@ -29,6 +29,7 @@ const WallpaperGallery = () => {
   const setIsModal = useAppStore((s) => s.setIsModal) // Get activity from store
   const activity = useAppStore((s) => s.activity)
   const setActivity = useAppStore((s) => s.setActivity)
+  const isModal = useAppStore((s) => s.isModal)
 
   // Find the correct activity ID from config
   const activityData = useMemo(
@@ -38,12 +39,12 @@ const WallpaperGallery = () => {
   const activityID = activityData?.id
 
   useEffect(() => {
-    setIsModal(activitiesById[id]?.modal)
+    open && setIsModal(activitiesById[id]?.modal)
   }, [open])
 
   useEffect(() => {
-    setOpen(activityID === id)
-  }, [activity, activityID])
+    setOpen(activity === id)
+  }, [activity])
 
   // NEW: Prevent multiple navigation triggers
 

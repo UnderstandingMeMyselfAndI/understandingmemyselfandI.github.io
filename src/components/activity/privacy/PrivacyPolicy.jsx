@@ -17,19 +17,19 @@ const PrivacyPolicy = () => {
   const activity = useAppStore((s) => s.activity)
   const setActivity = useAppStore((s) => s.setActivity)
   const setIsModal = useAppStore((s) => s.setIsModal)
+  const isModal = useAppStore((s) => s.isModal)
   const activityObj = activities.find((activity) =>
     activity.url === name ? activity.id : null,
   )
   const el = document.getElementById('privacy')
 
   useEffect(() => {
-    setIsModal(activitiesById[id]?.modal)
+    open && setIsModal(activitiesById[id]?.modal)
   }, [open])
 
   useEffect(() => {
-    if (!activityObj) return
-    setOpen(activityObj.id === activity)
-  }, [activity, activityObj, el])
+    setOpen(activity === id)
+  }, [activity])
 
   // const handleCCPAClick = () => {
   // 	setActivity(12)

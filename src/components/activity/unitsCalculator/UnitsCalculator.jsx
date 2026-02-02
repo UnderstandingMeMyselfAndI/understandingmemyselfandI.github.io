@@ -62,7 +62,8 @@ const noDrinksMessage =
 const UnitsCalculator = () => {
   const name = 'unitsCalculator'
   const id = 5
-  const setActivity = useAppStore((state) => state.setActivity)
+  const setActivity = useAppStore((s) => s.setActivity)
+  const isModal = useAppStore((s) => s.isModal)
   const [type, setType] = useState('custom')
   const [isMeasuresVisible, setIsMeasuresVisible] = useState(false)
   const [multiplier, setMultiplier] = useState(1)
@@ -78,16 +79,16 @@ const UnitsCalculator = () => {
   const [drinks, setDrinks] = useState([])
 
   const { activity } = useAppStore(
-    useShallow((state) => ({ activity: state.activity })),
+    useShallow((s) => ({ activity: s.activity })),
   )
   const setIsModal = useAppStore((s) => s.setIsModal)
   useEffect(() => {
-    setIsModal(activitiesById[id]?.modal)
+    open && setIsModal(activitiesById[id]?.modal)
   }, [open])
 
   useEffect(() => {
     setOpen(activity === id)
-  }, [activity])
+  }, [activity, isModal])
 
   const handleClose = () => {
     console.log('handleClose')

@@ -85,13 +85,23 @@ export default defineConfig({
       filename: "sw.js",
       devOptions: {
         enabled: true,
+        type: 'module',
       },
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
+      includeAssets: [
+        'favicon.ico',
+        'apple-touch-icon.png',
+        'masked-icon.svg',
+        'bgs/*.avif',
+        'icons/**/*.png',
+        'icons/**/*.svg',
+        'icons/**/*.avif'
+      ],
       strategies: 'injectManifest', // Required for custom push logic
       srcDir: 'src',                // Where your custom sw.js lives
       injectManifest: {
         // This is crucial for offline support and background images
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,avif,webp}'],
+        globPatterns: ['index.html', '**/*.{js,css}'],
+        globIgnores: ['**/dev/**'],
       },
       manifest: {
         "name": "Ummi",

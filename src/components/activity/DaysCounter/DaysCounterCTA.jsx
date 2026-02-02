@@ -15,8 +15,8 @@ const DaysCounterCTA = () => {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    setOpen(activity === id || !isModal)
-  }, [activity, activityID])
+    setOpen(activity === id)
+  }, [activity])
 
   const content =
     strings.activity.find((activity) => activity.url === activityUrl) || null

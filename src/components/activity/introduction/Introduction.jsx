@@ -27,7 +27,6 @@ const Introduction = () => {
 
   const sectionRefs = useRef([])
   useEffect(() => {
-    console.log('isMOdal', isModal)
     setOpen(activity === id || !isModal)
   }, [activity, isModal])
 
