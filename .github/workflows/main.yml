@@ -20,8 +20,8 @@ jobs:
         with:
           SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_DEV_KEY }}
           ARGS:
-            '-rlgoDzvc -i -av --delete --recursive --force --compress
-            --human-readable --no-t'
+            '-rlgoDzvc -i -rlpgoDvc --delete --recursive --force --compress
+            --human-readable '
           SOURCE: 'docs/'
           REMOTE_HOST: ${{ secrets.DEPLOY_DEV_SERVER }}
           REMOTE_USER: ${{ secrets.DEPLOY_DEV_USER }}
