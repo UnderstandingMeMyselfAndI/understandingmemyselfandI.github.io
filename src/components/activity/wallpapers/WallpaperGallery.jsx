@@ -428,75 +428,75 @@ const WallpaperGallery = () => {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [open, handleKeyDown])
 
-  if (loading && open) {
-    return (
-      <div
-        id={name}
-        className={
-          'activity ' + 'activity-' + name + (open ? ' show' : ' hide')
-        }>
-        <div className='loading-screen'>
-          <div className='loading-spinner'></div>
-          <p>Detecting your device...</p>
-        </div>
-      </div>
-    )
-  }
+  // if (loading && open) {
+  //   return (
+  //     <div
+  //       id={name}
+  //       className={
+  //         'activity ' + 'activity-' + name + (open ? ' show' : ' hide')
+  //       }>
+  //       <div className='loading-screen'>
+  //         <div className='loading-spinner'></div>
+  //         <p>Detecting your device...</p>
+  //       </div>
+  //     </div>
+  //   )
+  // }
 
   // Fullscreen Preview Mode
-  if (previewMode && open) {
-    return (
-      <div
-        id={name}
-        className={'activity ' + 'activity-' + name + ' preview-mode'}>
-        <button
-          className='preview-close-btn'
-          onClick={handleExitPreview}
-          aria-label='Exit preview'>
-          <CloseIcon />
-        </button>
+  // if (previewMode && open) {
+  //   return (
+  //     <div
+  //       id={name}
+  //       className={'activity ' + 'activity-' + name + ' preview-mode'}>
+  //       <button
+  //         className='preview-close-btn'
+  //         onClick={handleExitPreview}
+  //         aria-label='Exit preview'>
+  //         <CloseIcon />
+  //       </button>
 
-        <div className='preview-container'>
-          {previewLoading && (
-            <div className='preview-loading'>
-              <div className='preview-spinner'></div>
-              <p>Loading wallpaper...</p>
-            </div>
-          )}
+  //       <div className='preview-container'>
+  //         {previewLoading && (
+  //           <div className='preview-loading'>
+  //             <div className='preview-spinner'></div>
+  //             <p>Loading wallpaper...</p>
+  //           </div>
+  //         )}
 
-          {previewError && (
-            <div className='preview-error'>
-              <p>Failed to load preview</p>
-              <button onClick={handlePreview}>Retry</button>
-            </div>
-          )}
+  //         {previewError && (
+  //           <div className='preview-error'>
+  //             <p>Failed to load preview</p>
+  //             <button onClick={handlePreview}>Retry</button>
+  //           </div>
+  //         )}
 
-          <img
-            ref={previewRef}
-            src={getPreviewUrl()}
-            alt={currentWallpaper.title}
-            className={`preview-image ${imageLoaded ? 'loaded' : ''}`}
-            onLoad={handlePreviewImageLoad}
-            onError={handlePreviewImageError}
-            loading='eager'
-            style={{ display: imageLoaded && !previewError ? 'block' : 'none' }}
-          />
+  //         <img
+  //           ref={previewRef}
+  //           src={getPreviewUrl()}
+  //           alt={currentWallpaper.title}
+  //           className={`preview-image ${imageLoaded ? 'loaded' : ''}`}
+  //           onLoad={handlePreviewImageLoad}
+  //           onError={handlePreviewImageError}
+  //           loading='eager'
+  //           style={{ display: imageLoaded && !previewError ? 'block' : 'none' }}
+  //         />
 
-          <div className='preview-overlay'>
-            <div className='preview-info'>
-              <h3>{currentWallpaper.title}</h3>
-              <p>
-                {detectedSize?.width} × {detectedSize?.height}
-              </p>
-            </div>
-            <button className='preview-download-btn' onClick={handleDownload}>
-              Download
-            </button>
-          </div>
-        </div>
-      </div>
-    )
-  }
+  //         <div className='preview-overlay'>
+  //           <div className='preview-info'>
+  //             <h3>{currentWallpaper.title}</h3>
+  //             <p>
+  //               {detectedSize?.width} × {detectedSize?.height}
+  //             </p>
+  //           </div>
+  //           <button className='preview-download-btn' onClick={handleDownload}>
+  //             Download
+  //           </button>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   )
+  // }
 
   // Main Gallery Mode
   return (
