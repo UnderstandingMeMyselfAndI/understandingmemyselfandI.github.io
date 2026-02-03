@@ -13,12 +13,18 @@ import HdrAutoOutlinedIcon from '@mui/icons-material/HdrAutoOutlined'
 import Skeleton from '@mui/material/Skeleton'
 import { extractYouTubeId } from '@/js/utils.js'
 import { activities } from '@/data/config'
+
+import './styles.scss'
+
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc
 }, {})
-import './styles.scss'
 
+const videosByDatabaseID = videos?.data?.videos?.nodes?.reduce((obj, video) => {
+  obj[video.databaseId] = video
+  return obj
+}, {})
 // TODO [x]: Show hide favourites
 // TODO [x]: Add videos
 
@@ -169,9 +175,13 @@ const AcronymExplained = () => {
             <div className='videos' id='videos' key='videos'>
               {acronymData?.toolFieldGroup?.videosField?.nodes.map(
                 (linkedVideo, index) => {
-                  const video = videos?.data?.videos?.nodes.find(
-                    (v) => v.id === linkedVideo.id,
-                  )
+                  // const video = videos?.data?.videos?.nodes.find(
+                  //   (v) => v.id === linkedVideo.id,
+                  // )
+                  console.log('linkedVideo.id id ', linkedVideo.id)
+                  console.log('linkedVideo ', linkedVideo)
+                  const video = videosByDatabaseID[linkedVideo.id]
+
                   return (
                     <div className='video' key={'video-' + index}>
                       <div className='title'>
