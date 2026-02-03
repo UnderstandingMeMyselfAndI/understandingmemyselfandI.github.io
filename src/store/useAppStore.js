@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { del, get, set, clear } from 'idb-keyval';
+//TODO #39 Integrate persistent storage - https://whatpwacando.today/storage
 
 const indexedDBStorage = {
   getItem: async (name) => {

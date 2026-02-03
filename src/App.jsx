@@ -1,49 +1,40 @@
 'use client'
 // import React from "react";
 
-// import "components/utils/activities.js";
 import Routing from './components/routing/Routing'
 import { useThemeStore } from '@/store/useThemeStore'
-// import { useShallow } from 'zustand/react/shallow';
 import useAppStore from './store/useAppStore'
-// import DaysCounter from "./components/ui/DaysCounter/DaysCounter";
 import applyTheme from 'components/theme/applyTheme'
 import ScrollPosition from 'components/utils/ScrollPosition'
-// import LogoFloating from "ui/logo/LogoFloating";
 import Header from '@/components/activity/header/Header.jsx'
 import Footer from '@/components/activity/footer/Footer'
-// import Podcasts from "./components/activity/podcasts/Podcasts";
 import PrivacyPolicy from './components/activity/privacy/PrivacyPolicy'
 import Introduction from '@/components/activity/introduction/Introduction'
 import YourPrivacyCTA from './components/activity/privacy/YourPrivacyCTA'
 import Tools from 'components/activity/tools/Tools.jsx'
 import ToolsCTA from 'components/activity/tools/ToolsCTA.jsx'
 import WallpapersCTA from './components/activity/wallpapers/WallpapersCTA'
-// import RecoveryTimelineParent from './components/activity/recoveryTimeline/RecoveryTimelineParent';
-// import Backdrop from "ui/backdrop/Backdrop";
-import BackdropParallax from 'ui/backdrop/BackdropParallax'
+import Backdrop from '@/components/backdrop/Backdrop'
 
 import SnackBars from 'ui/snackbars/SnackBars.jsx'
 import InstallCTA from '@/components/activity/install/InstallCTA'
 // import AcronymCard from "ui/cards/AcronymCard.jsx";
 import AcronymExplained from './components/activity/acronymExplained/AcronymExplained'
-
 import DaysCounter from './components/activity/daysCounter/DaysCounter'
 import DaysCounterCTA from './components/activity/daysCounter/DaysCounterCTA'
 import AppMenu from './components/ui/menu/AppMenu'
 import CookieConsent from './components/activity/cookieConsent/CookieConsent'
-import UmmiAgeGate from './components/ui/ageGate/UmmiAgeGate'
+import UmmiAgeGate from './components/ageGate/UmmiAgeGate'
 import { smoothScroll } from './js/utils.js'
 import NewsletterSignUp from './components/activity/newsletterSignup/NewsletterSignUp'
 import Exit from './components/ui/exit/Exit'
 import Settings from './components/activity/settings/Settings'
 import Vcn from './components/visits/Vcn.jsx'
 import Lingo from './components/activity/lingo/Lingo'
-// import Quiz from './components/activity/quiz/Quiz';
 import UnitsCalculator from './components/activity/unitsCalculator/UnitsCalculator'
 import UnitsCalculatorCTA from './components/activity/unitsCalculator/UnitsCalculatorCTA'
 import WallpaperGallery from './components/activity/wallpapers/WallpaperGallery'
-// import Motivation from './components/activity/motivation/Motivation';
+import { runPersistentStorageTests } from './js/utils.js'
 import './App.scss'
 // TODO: #21 "Clear Local Data" functionality
 function App() {
@@ -61,6 +52,8 @@ function App() {
       theme: theme,
     })
   }
+
+  runPersistentStorageTests()
 
   return (
     <div>
@@ -106,7 +99,7 @@ function App() {
         <SnackBars />
         <ScrollPosition />
       </div>
-      <BackdropParallax
+      <Backdrop
         initialImageId={2}
         initialDelay={3000}
         interval={6000}

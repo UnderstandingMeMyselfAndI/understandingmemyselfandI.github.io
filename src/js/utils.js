@@ -114,6 +114,40 @@ export function setBrowserHistory(url, title) {
 
   
 }
+/**
+ * Run tests for persistent storage API
+ * 
+ * This function checks if the Storage API is supported, if persistent storage is supported, 
+ * if the app has already been granted persistent storage, and retrieves usage statistics.
+ * 
+ * It logs the results to the console.
+ * 
+ * @returns {Promise<void>} - A promise that resolves when the tests are done.
+ */
+ export async function  runPersistentStorageTests() {
+    // check if Storage API is supported
+    const supported = 'storage' in navigator;
+
+    // check if persistent storage is supported
+    const persistentStorageSupported = navigator.storage && navigator.storage.persist;
+
+    // request persistent storage
+    const persist = await navigator.storage.persist();
+
+    // check if app already has persistent storage
+    const hasPersistentStorage = await navigator.storage.persisted();
+
+    // get usage statistics
+    const {quota, usage, usageDetails} = await navigator.storage.estimate();
+
+    console.log("Storage API supported:", supported);
+    console.log("Persistent storage supported:", persistentStorageSupported);
+    console.log("Persistent storage granted:", persist);
+    console.log("Has persistent storage:", hasPersistentStorage);
+    console.log("Storage quota (bytes):", quota);
+    console.log("Storage usage (bytes):", usage);
+    console.log("Storage usage details:", usageDetails);
+}
 // Optional: validate if it's a YouTube URL
 export function isYouTubeUrl(url) {
   return /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)/.test(url);
@@ -182,4 +216,5 @@ export default {
 	getUrlPathSegments,
 	setBrowserHistory,
 	smoothScroll,
+	runPersistentStorageTests,
 }

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import useAppStore from '@/store/useAppStore'
-import BackdropParallax from '@/components/ui/backdrop/BackdropParallax'
 import CloseBtn from '../../ui/buttons/close/CloseBtn'
 import parse from 'html-react-parser'
 import { activities } from '@/data/config'
@@ -386,13 +385,6 @@ const UnitsCalculator = () => {
             </div>
           </div>
         </div>
-        <BackdropParallax
-          className='backdrop'
-          initialImageId={2}
-          initialDelay={3000}
-          interval={6000}
-          parallaxStrength={0}
-        />
       </div>
     </section>
   ) : (

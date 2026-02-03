@@ -4,7 +4,6 @@ import './styles.scss'
 import AddIcon from '@mui/icons-material/Add'
 import CloseBtn from '../../ui/buttons/close/CloseBtn'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
-// import BackdropParallax from '../../ui/backdrop/Backdrop';
 import parse from 'html-react-parser'
 import useAppStore from '@/store/useAppStore'
 
@@ -307,9 +306,6 @@ const DaysCounter = () => {
                 <p>Disble controls available in settings.</p>
               </div>
             </div>
-            {/* <div className='days-counter-backdrop'>
-          {/* <BackdropParallax initialImageId={4} initialDelay={0} interval={6000} parallaxStrength={0} /> 
-        </div> */}
           </div>
         </div>
       </div>

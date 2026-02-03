@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { activities } from '@/data/config'
 import useAppStore from '@/store/useAppStore'
 import CloseBtn from 'buttons/close/CloseBtn'
-import Backdrop from 'components/ui/backdrop/Backdrop'
+import Backdrop from '@/components/backdrop/Backdrop'
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc

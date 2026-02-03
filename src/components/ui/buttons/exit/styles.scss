@@ -3,14 +3,34 @@
 
 div.exit-wrap {
 
-    width: 50px;
+    width: 80px;
+    height: 80px;
     margin: 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+
 
     div.label {
         text-align: center;
         margin: 0.5rem 0;
         font-size: 0.85rem;
         color: var(--grey);
+
+    }
+
+
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: -15px;
+        right: -15px;
+        bottom: -15px;
+        left: -15px;
+
     }
 }
 
