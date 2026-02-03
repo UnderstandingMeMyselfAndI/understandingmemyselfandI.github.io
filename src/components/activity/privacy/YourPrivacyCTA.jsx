@@ -3,6 +3,7 @@ import { strings } from '@/data/config'
 import useAppStore from '@/store/useAppStore'
 import CTA from '@/components/ui/cta/CTA'
 import './styles.scss'
+import './stylesCTA.scss'
 
 const YourPrivacyCTA = () => {
   const id = 20
@@ -14,6 +15,11 @@ const YourPrivacyCTA = () => {
   const setIsModal = useAppStore((state) => state.setIsModal)
   const activity = useAppStore((state) => state.activity)
   const [open, setOpen] = useState(false)
+
+  const bgImg = {
+    src: '/ui/bg-privacy.avif',
+    alt: 'Picture of a martial arts master bowing before pupil',
+  }
 
   useEffect(() => {
     setOpen(activity === id || !isModal)
@@ -56,6 +62,9 @@ const YourPrivacyCTA = () => {
           onClick={() => handleSettingsClick()}>
           Settings
         </button>
+        <div className='bg-img'>
+          <img className='bg' src={bgImg.src} alt={bgImg.alt} />
+        </div>
       </CTA>
     </section>
   )

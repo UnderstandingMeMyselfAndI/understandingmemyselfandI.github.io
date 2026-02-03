@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reddit Search</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Reddit Search</h1>
+    <input type="text" id="searchInput" placeholder="Enter search term..." />
+    <input
+      type="text"
+      id="subredditInput"
+      placeholder="Enter subreddit (optional)"
+    />
+    <select id="timeFilter">
+      <option value="all">All Time</option>
+      <option value="year">Past Year</option>
+      <option value="month">Past Month</option>
+      <option value="week">Past Week</option>
+      <option value="day">Past 24 Hours</option>
+      <option value="hour">Past Hour</option>
+    </select>
+    <button id="searchButton">Search</button>
+    <div id="loader" class="hidden">Loading...</div>
+    <div id="error" class="hidden"></div>
+    <div id="stats" class="hidden">
+      <span id="resultsCount"></span>
+      <span id="pageInfo"></span>
+    </div>
+    <div id="results"></div>
+    <div id="pagination" class="hidden">
+      <button id="prevButton">Previous</button>
+      <button id="nextButton">Next</button>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

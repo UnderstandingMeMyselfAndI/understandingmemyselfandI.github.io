@@ -18,6 +18,7 @@ import Introduction from '@/components/activity/introduction/Introduction'
 import YourPrivacyCTA from './components/activity/privacy/YourPrivacyCTA'
 import Tools from 'components/activity/tools/Tools.jsx'
 import ToolsCTA from 'components/activity/tools/ToolsCTA.jsx'
+import WallpapersCTA from './components/activity/wallpapers/WallpapersCTA'
 // import RecoveryTimelineParent from './components/activity/recoveryTimeline/RecoveryTimelineParent';
 // import Backdrop from "ui/backdrop/Backdrop";
 import BackdropParallax from 'ui/backdrop/BackdropParallax'
@@ -86,6 +87,7 @@ function App() {
         {daysCounterEnabled && <DaysCounterCTA />}
         {unitsCalculatorEnabled && <UnitsCalculatorCTA />}
         <YourPrivacyCTA />
+        <WallpapersCTA />
         <Lingo />
         <PrivacyPolicy />
         <NewsletterSignUp />

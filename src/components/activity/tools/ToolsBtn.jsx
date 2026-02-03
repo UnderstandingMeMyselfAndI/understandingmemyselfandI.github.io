@@ -8,8 +8,7 @@ const ToolsBtn = ({ label = 'Tools', clickHandler }) => {
     <button
       onClick={clickHandler}
       className={`${label.toLowerCase()}-btn btn`}
-      aria-label={label}
-    >
+      aria-label={label}>
       <MoreTimeIcon className='icon' />
       <div>{label}</div>
     </button>

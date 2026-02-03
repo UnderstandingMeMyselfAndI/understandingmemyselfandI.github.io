@@ -1,0 +1,41 @@
+@use '@/scss/variables';
+@import '@/globals.css';
+
+.activity-days-counter-cta {
+    position: relative;
+
+    border-radius: var(--border-radius);
+
+    .bg-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.75;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--yellow);
+            border-radius: var(--border-radius);
+            opacity: 0.6;
+            z-index: -1;
+        }
+
+        background-color:var(--lightBlue)
+    }
+}

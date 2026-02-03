@@ -1,0 +1,66 @@
+body {
+  font-family: sans-serif;
+  margin: 20px;
+}
+
+#searchInput,
+#timeFilter,
+#subredditInput {
+  padding: 10px;
+}
+
+#searchInput {
+  width: 300px;
+}
+
+#searchButton {
+  padding: 10px;
+}
+
+#results {
+  margin-top: 20px;
+}
+
+#results div {
+  margin-bottom: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+#error {
+  color: red;
+}
+
+#pagination {
+  margin-top: 20px;
+}
+
+#stats {
+  margin-bottom: 10px;
+  font-size: 0.9em;
+  color: #555;
+}
+
+#pageInfo {
+  margin-left: 10px;
+}
+
+.highlight {
+  background-color: yellow;
+}
+
+.subreddit {
+  font-size: 0.8em;
+  color: #888;
+  margin-bottom: 5px;
+}
+
+.selftext {
+  font-size: 0.9em;
+  color: #333;
+  margin-top: 5px;
+  border-left: 2px solid #ddd;
+  padding-left: 10px;
+}

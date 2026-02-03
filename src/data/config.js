@@ -320,7 +320,7 @@ const strings = {
           title: '',
           content: [
             'If you\'re <b>looking</b> for <u class="yellow-ul lrg yellow">information</u> about <b><u class="orange-ul">Alcohol Recovery </u></b> <br /><br /><br /><b><u class="yellow-ul lrg yellow">this app is for you.</u></b>',
-            'If you\'re <b>learning</b> <b><u class="orange-ul">recovery tools</u></b> <br />at groups using <br /><u class="blue-ul"><b>ACT, CBT, DBT, REBT,</b> or <b>SMART</b> therapists?</u><br /><br /><br /><b><u class="yellow-ul lrg yellow">this app is for you.</u>.</b>',
+            'If you\'re <b>learning</b> <b><u class="orange-ul">recovery tools</u></b> <br />at groups using <br /><u class="blue-ul"><b>ACT, CBT, DBT, REBT,</b> or <b>SMART</b> therapies?</u><br /><br /><br /><b><u class="yellow-ul lrg yellow">this app is for you.</u>.</b>',
             '<u class="white-ul"><b><span class="ummi">Ummi</span></b></u> was created because <u class="yellow-ul lrg"><b>the tools are great</b></u>.',
             'But <b class="yellow">remembering</b> them <u><b>can be hard</b></u>',
             '<u class="white-ul"><b><span class="ummi">Ummi</span></b></u> helps you <b><u class="blue-ul">find  tools</u></b> that work <b><u class="yellow">for you,</u></b> and <b><u>your journey</u></b>.',
@@ -480,8 +480,9 @@ const strings = {
     {
       name: 'install',
       title: 'Install',
-      slug: '#install',
+      slug: 'install',
       url: '#install',
+      anchorID: '#install',
       htmlContent: [],
 
       cta: {
@@ -509,17 +510,16 @@ const strings = {
       title: 'We respect you<br />and your privacy',
       content: [
         'Any personal data you provide to us is stored <b><u>only on your device.</u></b>',
-
         'You can remove the data at anytime.',
-        'Any data we send to our servers is encrypted and anonymised so it cannot be used to identify you and is used to improve the app.',
+        'Any data sent externally of your device is encrypted and anonymised so it cannot be used to identify you. This data is for analytics and is used to improve the app.',
         '<b><u>We will never sell your data.</u></b>',
       ],
       btnLabel: '',
       cta: {
         title: 'We respect you<br />and your privacy',
         content: [
-          'You are fully in control<br />of any data you provide.',
-          'Visit Settings in the menu<br /> to remove it at any time',
+          'You are fully in control<br />of any data you provide whilst using Ummi and it\'s features.',
+          'Visit Settings in the menu<br /> to remove your data at any time',
         ],
         btnLabel: 'Privacy Policy',
         label: {
@@ -528,6 +528,27 @@ const strings = {
           },
         
       },
+    },
+    {
+      name: 'wallpapers',
+      title: 'Motivational Wallpapers',
+      slug: 'wallpapers',
+      url: 'wallpapers',
+      anchorID: '',
+      htmlContent:  ['Download for free'],
+     
+      cta: {
+         btnLabel: 'Wallpapers',
+        title: 'Motivational Wallpapers',
+        content: [          
+          'View our <b>gallery of motivational wallpapers</b> and <b class="yellow">download them for free</b> straight to your device.'],
+        btn: {
+          label: {
+            unused:'View wallpapers ',
+            used:'Install',
+          }
+        },
+      }
     },
     {
       name: 'yourData',
