@@ -150,7 +150,7 @@
   --transition2: 0.35s cubic-bezier(0.3, 0, 0.74, 1);
   --textShadowDarkValue: 0px 0px 6px rgba(10, 10, 10, 0.5);
   --textShadowDarkStrong: 0px 0px 4px rgba(10, 10, 10, 1);
-  --textShadowLightValue: 0px 0px 6px rgba(200, 200, 200, 0.5);
+  --textShadowLightValue: 0px 0px 6px rgba(200, 200, 200, 0.25);
   --boxShadowDarkValue: 0px 0px 6px rgba(10, 10, 10, 0.5);
   --boxShadowDark: 0px 0px 6px rgba(10, 10, 10, 0.5);
   --boxShadowLightValue: 0px 0px 6px rgba(200, 200, 200, 0.5);

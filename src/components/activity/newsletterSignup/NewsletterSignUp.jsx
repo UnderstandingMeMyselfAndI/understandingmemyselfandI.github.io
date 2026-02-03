@@ -165,7 +165,7 @@ const NewsletterSignUp = () => {
   // if (nss && !status.success) return null
   //
   const bgImg = {
-    src: '/ui/signup-thanks.avif',
+    src: '/ui/signup-thanks-4.avif',
     alt: 'Picture of man saluting',
   }
   return (
@@ -188,7 +188,11 @@ const NewsletterSignUp = () => {
                     <br />
                     signing up
                   </h3>
-                  <p>Check your inbox to confirm your email address.</p>
+                  <div className='blue-bg'>
+                    <u className='blue-ul'>
+                      Check your inbox to confirm your email address.
+                    </u>
+                  </div>
                 </div>
                 <div className='bg-img'>
                   <img className='bg' src={bgImg.src} alt={bgImg.alt} />

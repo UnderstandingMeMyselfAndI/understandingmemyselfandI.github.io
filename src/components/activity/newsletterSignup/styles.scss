@@ -16,12 +16,7 @@
     max-width: 540px;
     margin: 2rem auto;
     position: relative;
-    // border-radius: 6px;
-    // border-width: 1px;
-    // border-color: transparent;
-    // border-style: solid;
 
-    // text-shadow: var(--boxShadowDarkValue);
 
     padding: 2rem 0;
 
@@ -88,9 +83,79 @@
     scroll-margin-top: 5vh;
 }
 
-body .activity-newsletter-signup-form .sib-form #sib-form-container .signup-success,
-body .activity-newsletter-signup-form .sib-form #sib-form-container #sib-container {
-    padding: 0 0;
+body div.activity-newsletter-signup-form div.sib-form div#sib-form-container div#sib-container {
+
+
+    // 
+
+    &:has(.signup-success) {
+        // margin: 0;
+        padding: 0;
+    }
+
+    .signup-success {
+        padding: 0 0;
+        position: relative;
+        padding: 1rem 0 3rem 0;
+        margin: 0;
+        box-shadow: var(--boxShadowDark);
+
+        div.wrap {
+            row-gap: 4rem;
+
+            h3,
+            p,
+            p u {
+                text-shadow: var(--textShadowDarkValue);
+                box-shadow: none;
+                color: var(--orange);
+            }
+
+            h3 {
+                color: var(--orange);
+                font-size: variables.$h2_size;
+            }
+        }
+
+        .bg-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            border-radius: var(--border-radius);
+            border-color: transparent;
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+            opacity: 0.5;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                opacity: 1;
+                padding: 0;
+                margin: 0;
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: var(--blue);
+                border-radius: var(--border-radius);
+                opacity: 0.75;
+                z-index: -2;
+            }
+
+            background-color:var(--lightBlue)
+        }
+    }
 }
 
 .activity-newsletter-signup-form {
@@ -334,7 +399,7 @@ body .activity-newsletter-signup-form .sib-form #sib-form-container #sib-contain
                 input.email-input {
                     outline: 1px solid #616161;
                     background-color: rgba(10, 10, 10, 0.4);
-
+                    text-align: center;
                     border-radius: 4px;
                     padding: 0.5rem 0.75rem;
                     max-width: 100%;
