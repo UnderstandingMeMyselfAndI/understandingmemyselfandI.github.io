@@ -52,11 +52,11 @@ const NewsletterSignUp = () => {
     const code = 'generic' // We might parse msg if it has a standardized format
     trackEvent(`NLTR_Brevo_Fail_${code}`, { message: msg }, gae)
   }
-  
+
   const [formData, setFormData] = useState({
     email: '',
   })
-  
+
   const [status, setStatus] = useState({
     loading: false,
     success: false,
@@ -78,19 +78,19 @@ const NewsletterSignUp = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
     if (!formData.email) {
-        newErrors.email = 'Email address is required.'
-        trackEvent('NLTR_sub_email_fail', { reason: 'empty' }, gae)
-        isValid = false
+      newErrors.email = 'Email address is required.'
+      trackEvent('NLTR_sub_email_fail', { reason: 'empty' }, gae)
+      isValid = false
     } else if (!emailRegex.test(formData.email)) {
-        newErrors.email = 'Please enter a valid email address.'
-        trackEvent('NLTR_sub_email_fail', { reason: 'invalid_format' }, gae)
-        isValid = false
+      newErrors.email = 'Please enter a valid email address.'
+      trackEvent('NLTR_sub_email_fail', { reason: 'invalid_format' }, gae)
+      isValid = false
     }
 
     if (!checked) {
-        newErrors.checkbox = 'You must agree to the terms.'
-        trackEvent('NLTR_sub_terms_fail', {}, gae)
-        isValid = false
+      newErrors.checkbox = 'You must agree to the terms.'
+      trackEvent('NLTR_sub_terms_fail', {}, gae)
+      isValid = false
     }
 
     setErrors(newErrors)
@@ -110,7 +110,7 @@ const NewsletterSignUp = () => {
     e.preventDefault()
 
     if (!validateForm()) {
-        return
+      return
     }
 
     if (!navigator.onLine) {
@@ -120,7 +120,7 @@ const NewsletterSignUp = () => {
       })
       return
     }
-    
+
     setStatus({ loading: true, success: false, error: null })
 
     try {
@@ -163,7 +163,11 @@ const NewsletterSignUp = () => {
 
   // Don't render if user has already subscribed (unless showing success message)
   // if (nss && !status.success) return null
-
+  //
+  const bgImg = {
+    src: '/ui/signup-thanks.avif',
+    alt: 'Picture of man saluting',
+  }
   return (
     <div
       id='newsletter'
@@ -175,22 +179,21 @@ const NewsletterSignUp = () => {
           <div
             id='sib-container'
             className='sib-container--large sib-container--vertical'>
-            
             {status.success ? (
               <div className='signup-success'>
-                
-                  <div className='wrap'>
-                    {/* <div className='success-icon'>👍🏼</div> */}
-                    <h3>
-                      Thanks for
-                      <br />
-                      signing up
-                    </h3>
-                     <p>Check your inbox to confirm your email address.</p>
-                  </div>
-                 
+                <div className='wrap'>
+                  {/* <div className='success-icon'>👍🏼</div> */}
+                  <h3>
+                    Thanks for
+                    <br />
+                    signing up
+                  </h3>
+                  <p>Check your inbox to confirm your email address.</p>
                 </div>
-             
+                <div className='bg-img'>
+                  <img className='bg' src={bgImg.src} alt={bgImg.alt} />
+                </div>
+              </div>
             ) : (
               <form
                 onSubmit={handleSubmit}
@@ -198,8 +201,7 @@ const NewsletterSignUp = () => {
                 id='sib-form'
                 method='POST'
                 data-type='subscription'
-                noValidate={true} 
-              >
+                noValidate={true}>
                 <div className='form-row'>
                   <div className='title'>
                     Bigger things are coming.
@@ -209,8 +211,8 @@ const NewsletterSignUp = () => {
                 </div>
                 <div className='form-row'>
                   <p>
-                    Get useful updates &amp; exclusive invites delivered direct to
-                    your inbox.
+                    Get useful updates &amp; exclusive invites delivered direct
+                    to your inbox.
                   </p>
                 </div>
                 {status.error && (
@@ -236,8 +238,7 @@ const NewsletterSignUp = () => {
                     <span
                       id='email-error'
                       className='entry__error entry__error--primary'
-                      role='alert'
-                    >
+                      role='alert'>
                       {errors.email}
                     </span>
                   )}
@@ -252,7 +253,9 @@ const NewsletterSignUp = () => {
                           id='OPT_IN'
                           name='OPT_IN'
                           aria-invalid={errors.checkbox ? 'true' : 'false'}
-                          aria-describedby={errors.checkbox ? 'checkbox-error' : undefined}
+                          aria-describedby={
+                            errors.checkbox ? 'checkbox-error' : undefined
+                          }
                           onChange={handleCheckboxChange}
                         />
                         I agree to receive emails from Ummi and accept the terms
@@ -267,8 +270,7 @@ const NewsletterSignUp = () => {
                       <span
                         id='checkbox-error'
                         className='entry__error entry__error--primary'
-                        role='alert'
-                      >
+                        role='alert'>
                         {errors.checkbox}
                       </span>
                     )}
@@ -295,8 +297,7 @@ const NewsletterSignUp = () => {
                     type='submit'
                     className='signup-button btn'
                     aria-label='Sign Up'
-                    disabled={status.loading}
-                  >
+                    disabled={status.loading}>
                     {status.loading ? (
                       <>
                         <span className='loading-spinner'></span>
@@ -327,7 +328,6 @@ const NewsletterSignUp = () => {
                 <input type='hidden' name='locale' value='en' />
               </form>
             )}
-
           </div>
         </div>
       </div>
