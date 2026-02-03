@@ -220,7 +220,7 @@ const baseActivities = [
     classes: '',
     anchorID:'newsletter',
     conditions:[ 
-      { state: 'nss', value: false }
+      
     ],
   },
   {

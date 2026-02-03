@@ -40,7 +40,6 @@ export default defineConfig({
           'mui-icons': ['@mui/icons-material'],
           'mui-material': ['@mui/material'],
           '@gsap/react': ['@gsap/react'],
-          '@jmeirinkmarimed/age-gate': ['@jmeirinkmarimed/age-gate'],
           'react-lite-youtube-embed': ['react-lite-youtube-embed'],
           'tools':['src/components/activity/tools/Tools.jsx'],
           'lingo':['src/components/activity/lingo/Lingo.jsx'],
@@ -61,16 +60,13 @@ export default defineConfig({
         chunkFileNames: 'assets/js/[hash].js',
       },
     },
-    watch: {
-      include: ['src/**'],
-      exclude: ['node_modules/**', 'dist/**'],
-      clearScreen: false,
-      skipWrite: false,
-    },
   },
   plugins: [
     react(),
-    analyzer() /*, analyzer() uncomment for bundle analyzer*/,
+    analyzer({
+      analyzerMode: 'static',
+      open: false,
+    }),
     Sitemap({
       outDir: 'docs',
       hostname: 'https://www.ummi.now',
@@ -294,11 +290,7 @@ export default defineConfig({
   ],
   server: {
     sourcemap: false,
-    port: 5174,
-    hmr: {
-      host: 'localhost',
-      clientPort: 5174,
-    },
+    host: true, // Listen on all addresses, including LAN
   },
   resolve: {
     alias: {

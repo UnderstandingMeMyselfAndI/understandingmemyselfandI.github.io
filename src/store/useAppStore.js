@@ -338,12 +338,23 @@ const useAppStore = create(
       exitButtonPosition: { x: 60, y: window.innerHeight - 60 },
       setExitButtonPosition: (v) => set(() => ({ exitButtonPosition: v })),
       // ----------------------------------------
+      // ----------------------------------------
+      // Age Verified
+      ageVerified: false,
+      setAgeVerified: (v) => set(() => ({ ageVerified: v })),
+      // ----------------------------------------
+      // ----------------------------------------
+      // Hydration Status (Internal)
+      _hasHydrated: false,
+      setHasHydrated: (v) => set(() => ({ _hasHydrated: v })),
+      // ----------------------------------------
     }),
     {
       name: 'ummi',
       storage: createJSONStorage(() => indexedDBStorage),
       // Keys to persist in localStorage
       partialize: (state) => ({
+        ageVerified: state.ageVerified,
         dc: state.dc,
         daysCounterEnabled: state.daysCounterEnabled,
         uc: state.uc,
@@ -380,6 +391,9 @@ const useAppStore = create(
         spv: state.spv,
         gae: state.gae,
       }),
+      onRehydrateStorage: () => (state) => {
+        state.setHasHydrated(true)
+      },
     },
   ),
 );

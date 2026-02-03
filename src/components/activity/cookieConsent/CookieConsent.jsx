@@ -18,6 +18,7 @@ const CookieConsent = () => {
     if (savedConsent) {
       const parsed = JSON.parse(savedConsent)
       setConsent(parsed)
+      setGae(parsed.analytics) // Sync gae with saved analytics consent
       loadScripts(parsed)
     } else {
       setShow(true)
@@ -89,10 +90,12 @@ const CookieConsent = () => {
       preferences: false,
     }
     saveConsent(minimalConsent)
+    setGae(false) // Explicitly disable analytics tracking
   }
 
   const handleSaveSettings = () => {
     saveConsent(consent)
+    setGae(consent.analytics) // Sync gae with analytics setting
   }
 
   const handleToggle = (key) => {

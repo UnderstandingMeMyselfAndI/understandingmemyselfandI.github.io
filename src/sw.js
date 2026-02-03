@@ -14,7 +14,7 @@ try {
   const navigationRoute = new NavigationRoute(handler);
   registerRoute(navigationRoute);
 } catch (error) {
-  console.error('Navigation route registration failed:', error);
+  console.warn('Navigation route registration failed (this is normal in development if index.html is not precached):', error);
 }
 
 // 2. The Daily Image Alarm logic (Background Push)

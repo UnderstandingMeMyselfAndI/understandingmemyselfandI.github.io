@@ -25,6 +25,7 @@ import DaysCounterCTA from './components/activity/daysCounter/DaysCounterCTA'
 import AppMenu from './components/ui/menu/AppMenu'
 import CookieConsent from './components/activity/cookieConsent/CookieConsent'
 import UmmiAgeGate from './components/ageGate/UmmiAgeGate'
+import AppLoading from '@/components/ui/loading/AppLoading'
 import { smoothScroll } from './js/utils.js'
 import NewsletterSignUp from './components/activity/newsletterSignup/NewsletterSignUp'
 import Exit from './components/ui/exit/Exit'
@@ -43,6 +44,9 @@ function App() {
   const quickExitEnabled = useAppStore((s) => s.quickExitEnabled)
   const unitsCalculatorEnabled = useAppStore((s) => s.unitsCalculatorEnabled)
 
+  const ageVerified = useAppStore((s) => s.ageVerified)
+  const hasHydrated = useAppStore((s) => s._hasHydrated)
+
   smoothScroll()
   const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme)
 
@@ -53,12 +57,19 @@ function App() {
     })
   }
 
-  runPersistentStorageTests()
+
+
+  if (!hasHydrated) {
+      return <AppLoading />
+  }
+
+  if (!ageVerified) {
+    return <UmmiAgeGate />
+  }
 
   return (
     <div>
       <div className='main'>
-        <UmmiAgeGate />
 
         {/* <div className='dev-version'>Development Version.</div> */}
         <AppMenu />
