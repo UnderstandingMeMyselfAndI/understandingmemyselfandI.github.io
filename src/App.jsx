@@ -83,13 +83,15 @@ function App() {
         <Introduction />
         <WallpaperGallery />
         <Tools />
+        <PrivacyPolicy />
+
         <ToolsCTA />
         {daysCounterEnabled && <DaysCounterCTA />}
         {unitsCalculatorEnabled && <UnitsCalculatorCTA />}
-        <YourPrivacyCTA />
-        <WallpapersCTA />
         <Lingo />
-        <PrivacyPolicy />
+        <WallpapersCTA />
+        <YourPrivacyCTA />
+
         <NewsletterSignUp />
         <InstallCTA />
         <Footer />

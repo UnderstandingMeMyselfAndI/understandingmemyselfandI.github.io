@@ -103,7 +103,9 @@ const NewsletterSignUp = () => {
       onError && onError(error.message)
     }
   }
-  //TODO: #24 Check this is being fisplayed following sign up - it wasn't wahen tested
+  //TODO: #24 Check this is being displayed following sign up - it wasn't when tested
+
+  //TODO: #28 Confirmantion and validation of checkbox not working as of 03.02.2026
   if (status.success) {
     return (
       <div className='signup-success'>

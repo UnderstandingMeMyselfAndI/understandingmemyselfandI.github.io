@@ -519,7 +519,8 @@ const strings = {
         title: 'We respect you<br />and your privacy',
         content: [
           'You are fully in control<br />of any data you provide whilst using Ummi and it\'s features.',
-          'Visit Settings in the menu<br /> to remove your data at any time',
+          'Some features can be hidden and shown to suit your needs.',
+          'Visit Settings to see the features or to remove your data at any time',
         ],
         btnLabel: 'Privacy Policy',
         label: {
