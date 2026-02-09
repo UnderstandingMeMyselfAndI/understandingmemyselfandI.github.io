@@ -171,6 +171,11 @@ $minimap-w: 50px;
     // Optional: Fade out at very top and bottom for smoothness
     -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
     mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+
+    @media (width >768px) {
+        transform: translateX(calc(-50% - 30px));
+
+    }
 }
 
 // --- SCROLL CONTAINER ---
@@ -201,8 +206,6 @@ $minimap-w: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-
-
     display: flex;
     flex-flow: column nowrap;
 
@@ -309,25 +312,6 @@ $minimap-w: 50px;
     gap: 30vh; // Space out events widely
     padding: 50vh 0; // Padding ensures background is visible before first event
 }
-
-// .event-card:nth-child(even) {
-//     text-align: right;
-//     margin-left: 0px;
-//     margin-right: 100px;
-
-//     &:before {
-//         content: '';
-//         position: absolute;
-//         top: 3.5rem;
-//         right: 0;
-//         left: auto;
-//         width: 20px;
-//         height: 20px;
-//         border-radius: 50%;
-//         outline: 3px solid #fff;
-//         margin-right: -3rem;
-//     }
-// }
 
 .event-card {
     background: $card-bg;

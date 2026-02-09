@@ -110,11 +110,11 @@ const VerticalTimeline = () => {
 
       {/* 2. NEW: CENTRAL DOTTED LINE */}
       {/* Positioned absolute/fixed behind the scroll container */}
-      <div className='central-dotted-line'></div>
 
       {/* SCROLL AREA */}
       <div className='main-scroll-container' ref={containerRef}>
         <div className='content-wrapper'>
+          <div className='central-dotted-line'></div>
           <div className='global-spacer'>
             <div>Detox &amp; Recovery Timeline</div>
             <div>
