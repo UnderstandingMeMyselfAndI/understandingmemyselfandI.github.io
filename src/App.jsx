@@ -35,8 +35,12 @@ import Lingo from './components/activity/lingo/Lingo'
 import UnitsCalculator from './components/activity/unitsCalculator/UnitsCalculator'
 import UnitsCalculatorCTA from './components/activity/unitsCalculator/UnitsCalculatorCTA'
 import WallpaperGallery from './components/activity/wallpapers/WallpaperGallery'
+
+import VerticalTimeline from './components/activity/timeline/VerticalTimeline'
 import { runPersistentStorageTests } from './js/utils.js'
 import './App.scss'
+//TODO #41 Add Pop up confirm box with disclaimer. with timely reminder.
+//TODO #42 Add setting to remove reminder in settings
 // TODO: #21 "Clear Local Data" functionality
 function App() {
   const daysCounterEnabled = useAppStore((s) => s.daysCounterEnabled)
@@ -57,10 +61,8 @@ function App() {
     })
   }
 
-
-
   if (!hasHydrated) {
-      return <AppLoading />
+    return <AppLoading />
   }
 
   if (!ageVerified) {
@@ -70,7 +72,6 @@ function App() {
   return (
     <div>
       <div className='main'>
-
         {/* <div className='dev-version'>Development Version.</div> */}
         <AppMenu />
 
@@ -83,11 +84,12 @@ function App() {
         {/* <div className='dev-version'>Development Version.</div> */}
 
         {/* <RecoveryTimelineParent /> */}
-        <Header />
-        <Introduction />
-        <WallpaperGallery />
-        <Tools />
-        <PrivacyPolicy />
+        {/* <Header /> */}
+        {/* <Introduction /> */}
+        {/* <WallpaperGallery /> */}
+        <VerticalTimeline />
+        {/* <Tools /> */}
+        {/* <PrivacyPolicy />
 
         <ToolsCTA />
         {daysCounterEnabled && <DaysCounterCTA />}
@@ -98,7 +100,7 @@ function App() {
 
         <NewsletterSignUp />
         <InstallCTA />
-        <Footer />
+        <Footer /> */}
 
         {/* <Motivation /> */}
         {/* {quickExitEnabled && <Exit />} */}

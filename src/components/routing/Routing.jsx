@@ -1,6 +1,7 @@
 import { useEffect, useCallback, useRef } from 'react'
 import useAppStore from '@/store/useAppStore'
 import { activities } from '@/data/config'
+import { trackEvent } from '@/js/analytics/analytics'
 import data from '@/data/tools'
 import {
   getUrlPathSegments,
@@ -9,7 +10,6 @@ import {
   setBrowserHistory,
 } from '@/js/utils.js'
 import { strings } from '@/data/config'
-import { is } from 'zod/v4/locales'
 
 // TODO: #14 Ga event names need to be changed phrase_viewed - > [name of phrase]_viewed
 // TODO: #15 Ga event names need to be changed acronym_viewed - > [name of acronym]_tool_viewed
@@ -52,38 +52,39 @@ const Routing = () => {
 
   // --- Readability & Maintainability ---
   // Centralized function for logging Google Analytics events.
-  const logGAEvent = useCallback(
-    (name, params = null) => {
-      if (!gae) {
-        console.log('Google analytics not enabled')
-        return
-      }
+  // const logGAEvent = useCallback(
+  //   (name, params = null) => {
+  //     if (!gae) {
+  //       console.log('Google analytics not enabled')
+  //       return
+  //     }
 
-      if (typeof window.gtag !== 'function' || isEmpty(name)) {
-        console.log(
-          '>>>>> invalid typeof window.gtag  ',
-          typeof window.gtag,
-          ' or empty name ',
-          name,
-        )
+  //     if (typeof window.gtag !== 'function' || isEmpty(name)) {
+  //       console.log(
+  //         '>>>>> invalid typeof window.gtag  ',
+  //         typeof window.gtag,
+  //         ' or empty name ',
+  //         name,
+  //       )
 
-        return
-      }
-      // console.log('logGAEvent setTimeout ', name, params)
-      setTimeout(
-        () => {
-          //console.groupCollapsed('logGAEvent called')
-          // console.log('logGAEvent')
-          window.gtag('event', name, params)
-          // console.log('>>>>>>>>>>>>>> log ga event ', name, params)
+  //       return
+  //     }
+  //     // console.log('logGAEvent setTimeout ', name, params)
+  //     setTimeout(
+  //       () => {
+  //         //console.groupCollapsed('logGAEvent called')
+  //         // console.log('logGAEvent')
+  //         // window.gtag('event', name, params)
+  //          trackEvent(name, {}, gae)
+  //         // console.log('>>>>>>>>>>>>>> log ga event ', name, params)
 
-          //console.groupEnd()
-        },
-        !isFirstPageLoad.current ? 1000 : 0,
-      )
-    },
-    [gae],
-  )
+  //         //console.groupEnd()
+  //       },
+  //       !isFirstPageLoad.current ? 1000 : 0,
+  //     )
+  //   },
+  //   [gae],
+  // )
   const doSetBrowserHistory = (activityObj, title, segments = []) => {
     const urlExtra = segments.length > 0 ? '/' + segments.join('/') : ''
     setBrowserHistory(
@@ -119,10 +120,9 @@ const Routing = () => {
     const event_name =
       sanitizeStringForUrl(phrase.toLowerCase()) + '_phrase_viewed'
 
-    logGAEvent(event_name)
-
+    trackEvent(event_name, {}, gae)
     // console.groupEnd()
-  }, [phrase])
+  }, [phrase, gae])
   //-------------------------------------------------------------
   // Activity view and close
   //-------------------------------------------------------------
@@ -145,20 +145,22 @@ const Routing = () => {
     ) {
       // console.log('activitiesById', activitiesById)
       doSetBrowserHistory(activityObj, activityObj.title)
-      logGAEvent(`${activityObj.url}_viewed`)
+     
+      trackEvent(`${activityObj.url}_viewed`, {}, gae)
     } else if (activity !== -1 && !isFirstPageLoad.current) {
       // console.log( `activityObj is either missing title: ${activityObj?.title} | or url: ${activityObj?.url} |`)
     }
     if (activity === -1 && !isFirstPageLoad.current) {
       // home view
-      if (activityObj && activityObj?.title) {
-        doSetBrowserHistory(activityObj, activityObj.title)
-        logGAEvent('Ummi_home_viewed')
-      }
+      setBrowserHistory(
+        `${appURL}/`,
+        `${strings.app.appName} - Home`,
+      )
+      trackEvent('Ummi_home_viewed', {}, gae)
     }
     // console.groupEnd()
     isFirstPageLoad.current = false
-  }, [activity])
+  }, [activity, gae])
 
   // --- Best Practices: useEffect for Side Effects ---
   // This effect handles setting the URL when a tool/acronym is selected.
@@ -175,27 +177,29 @@ const Routing = () => {
         `${appURL}/${activityObjTools.url.toLowerCase()}/${sanitizeStringForUrl(acronym.title.toLowerCase())}`,
         `${strings.app.appName} Tool - ${acronym.title}`,
       )
+      trackEvent(`${acronym.title}_tool_viewed`, {}, gae)
 
-      logGAEvent(`${acronym.title}_tool_viewed`)
     }
     // console.groupEnd()
-  }, [acronymID])
+  }, [acronymID, gae])
 
   const logChildRoute = useCallback(
     (segments) => {
       console.groupCollapsed('logChildRoute called')
       const [mainRoute, childRoute] = segments
       if (mainRoute === 'lingo-and-phrases' && childRoute) {
-        logGAEvent(`${childRoute}_phrase_viewed`)
+       
+         trackEvent(`${childRoute}_phrase_viewed`, {}, gae)
         console.log('logGAEvent ', `${childRoute}_phrase_viewed`)
       } else if (mainRoute === 'tools' && childRoute) {
         // Assuming childRoute is the tool title/slug
-        logGAEvent(`${childRoute}_tool_viewed`)
+       
+        trackEvent(`${childRoute}_tool_viewed`, {}, gae)
         console.log('logGAEvent ', `${childRoute}_tool_viewed`)
       }
       console.groupEnd()
     },
-    [logGAEvent],
+    [gae],
   )
 
   // --- Best Practices: useCallback for Memoization ---
@@ -230,7 +234,7 @@ const Routing = () => {
     }
 
     isFirstPageLoad.current = false
-  }, [logGAEvent, setActivity, logChildRoute])
+  }, [setActivity, logChildRoute])
 
   // --- Best Practices: Centralized Effect for Event Listeners ---
   // Manages all history/navigation event listeners in one place.
