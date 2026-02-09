@@ -50,7 +50,7 @@ div#activity-timeline {
 
 }
 
-
+$dot-color: rgba(255, 255, 255, 0.86); // Adjust opacity as needed
 $bg-color: #0b0b0b;
 $card-bg: var(--blue30Trans);
 $accent: #64ffda;
@@ -148,6 +148,30 @@ $minimap-w: 50px;
 
 }
 
+// --- NEW DOTTED LINE ---
+.central-dotted-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px; // Width of the column
+    height: 100%; // Spans full viewport height
+    z-index: -1; // Above background (0), Below events (10)
+    pointer-events: none;
+    // margin-left: -30px;
+    // Create the dots using a repeating gradient
+    // This creates a 2px circle every 20px of height
+    background-image: radial-gradient(circle,
+            $dot-color 1px,
+            transparent 1.5px);
+    background-size: 100% 20px; // 20px is the gap between dots
+    background-repeat: repeat-y;
+    background-position: center top;
+
+    // Optional: Fade out at very top and bottom for smoothness
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+}
 
 // --- SCROLL CONTAINER ---
 .main-scroll-container {
@@ -286,16 +310,36 @@ $minimap-w: 50px;
     padding: 50vh 0; // Padding ensures background is visible before first event
 }
 
+// .event-card:nth-child(even) {
+//     text-align: right;
+//     margin-left: 0px;
+//     margin-right: 100px;
+
+//     &:before {
+//         content: '';
+//         position: absolute;
+//         top: 3.5rem;
+//         right: 0;
+//         left: auto;
+//         width: 20px;
+//         height: 20px;
+//         border-radius: 50%;
+//         outline: 3px solid #fff;
+//         margin-right: -3rem;
+//     }
+// }
+
 .event-card {
     background: $card-bg;
-    padding: 3rem 1rem;
-    max-width: 500px;
-    width: 90%;
+    padding: 2rem 1rem;
+    max-width: 325px;
+    width: 100%;
     border-radius: var(--border-radius);
-    border: 1px solid #333;
-    box-shadow: 0 0px 16px rgba(0, 0, 0, 0.5);
+    // border: 1px solid #333;
+    // box-shadow: 0 0px 16px rgba(0, 0, 0, 0.5);
     position: relative;
-    margin-left: -1rem;
+    // margin-left: 100px;
+    // text-align: left;
 
     h3 {
         color: $accent;
@@ -308,6 +352,18 @@ $minimap-w: 50px;
         line-height: 1.6;
         font-size: 1.1rem;
         margin: 0;
+    }
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 20px;
+        transform: translate(-50%, -50%);
+        height: 20px;
+        border-radius: 50%;
+        outline: 2px solid var(--lightBlue80Trans);
     }
 
     &:after {

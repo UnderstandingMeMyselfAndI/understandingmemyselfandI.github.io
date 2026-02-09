@@ -11,7 +11,6 @@ gsap.registerPlugin(ScrollTrigger, useGSAP)
 // REMOVED: ScrollTrigger.normalizeScroll(true) -> This was breaking your scroll
 
 const VerticalTimeline = () => {
-  
   const containerRef = useRef(null)
   const minimapRef = useRef(null)
   const markerRef = useRef(null)
@@ -109,6 +108,10 @@ const VerticalTimeline = () => {
         </div>
       </div>
 
+      {/* 2. NEW: CENTRAL DOTTED LINE */}
+      {/* Positioned absolute/fixed behind the scroll container */}
+      <div className='central-dotted-line'></div>
+
       {/* SCROLL AREA */}
       <div className='main-scroll-container' ref={containerRef}>
         <div className='content-wrapper'>
@@ -146,7 +149,9 @@ const VerticalTimeline = () => {
             </div>
           ))}
 
-          <div className='global-spacer'>End</div>
+          <div className='global-spacer'>
+            Continue to enjoy Alcohol-free life
+          </div>
         </div>
       </div>
     </div>
