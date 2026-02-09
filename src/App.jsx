@@ -42,6 +42,8 @@ import './App.scss'
 //TODO #41 Add Pop up confirm box with disclaimer. with timely reminder.
 //TODO #42 Add setting to remove reminder in settings
 // TODO: #21 "Clear Local Data" functionality
+//TODO #43 Styling of cookie consent
+
 function App() {
   const daysCounterEnabled = useAppStore((s) => s.daysCounterEnabled)
   // const enableYourTools = useAppStore((s) => s.enableYourTools)
