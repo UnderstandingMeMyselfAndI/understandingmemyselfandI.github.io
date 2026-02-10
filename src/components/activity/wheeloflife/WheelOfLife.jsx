@@ -594,7 +594,7 @@ const WheelCanvas = React.forwardRef(
           fill='url(#scoreGradient)'
           fillOpacity='0.2'
           stroke='url(#scoreGradient)'
-          strokeWidth='4'
+          strokeWidth='8'
           className='score-line-animated'
         />
       )
