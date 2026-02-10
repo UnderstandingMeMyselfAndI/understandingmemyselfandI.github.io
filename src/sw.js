@@ -21,6 +21,15 @@ precacheAndRoute(self.__WB_MANIFEST);
 //       },
 cleanupOutdatedCaches();
 
+// Catch-all navigation handler
+const navigationHandler = async ({ event }) => {
+  // Use matchPrecache to find the version of index.html Vite injected
+  const response = await matchPrecache('/index.html');
+  return response || fetch(event.request);
+};
+
+
+
 // Handle images (bgs, icons) that are not precached
 registerRoute(
   ({ request }) => request.destination === 'image',
@@ -34,6 +43,28 @@ registerRoute(
     ],
   })
 );
+// Simplified Catch-All Navigation
+registerRoute(
+  ({ request }) => request.mode === 'navigate', 
+  async ({ event }) => {
+    try {
+      // Attempt to serve the precached index.html
+      const precachedResponse = await matchPrecache('/index.html');
+      if (precachedResponse) {
+        return precachedResponse;
+      }
+      // Fallback to network if precache fails
+      return await fetch(event.request);
+    } catch (error) {
+      // Final fallback to the network for the specific request
+      return fetch(event.request);
+    }
+  }
+);
+
+// Register the route for all navigation requests
+const navigationRoute = new NavigationRoute(navigationHandler);
+registerRoute(navigationRoute);
 
 // This allows the SPA to work offline by serving index.html for navigation
 try {

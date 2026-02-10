@@ -3,6 +3,7 @@ import { useShallow } from 'zustand/react/shallow'
 import useAppStore from '@/store/useAppStore'
 import CloseBtn from '../../ui/buttons/close/CloseBtn'
 import parse from 'html-react-parser'
+import DOMPurify from 'dompurify'
 import { activities } from '@/data/config'
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
@@ -182,7 +183,7 @@ const UnitsCalculator = () => {
                   <div className='no-measures'>
                     {' '}
                     <div className='no-drinks-selected '>
-                      {parse(noDrinksMessage)}
+                      {parse(DOMPurify.sanitize(noDrinksMessage))}
                     </div>
                   </div>
                 ) : (

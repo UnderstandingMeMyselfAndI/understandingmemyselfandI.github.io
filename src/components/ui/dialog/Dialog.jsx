@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import ButtonSimple from '../buttons/ButtonSimple'
 import parse from 'html-react-parser'
+import DOMPurify from 'dompurify'
 import './styles.scss'
 
 const Dialog = ({
@@ -48,7 +49,7 @@ const Dialog = ({
         <div className='dialog-inner'>
           <div className='dialog-title'>{title}</div>
           <div className='dialog-instruction' id='dialog-instruction'>
-            {parse(instruction)}
+            {parse(DOMPurify.sanitize(instruction))}
           </div>
           <div className='dialog-content'>{children}</div>
           <div className='dialog-actions'>

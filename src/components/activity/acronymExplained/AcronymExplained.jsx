@@ -6,6 +6,7 @@ import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 import HandymanIcon from '@mui/icons-material/Handyman'
 import CloseBtn from 'buttons/close/CloseBtn'
 import parse from 'html-react-parser'
+import DOMPurify from 'dompurify'
 import data from '@/data/tools.js'
 import videos from '@/data/videosNew.js'
 import OndemandVideoOutlinedIcon from '@mui/icons-material/OndemandVideoOutlined'
@@ -117,7 +118,10 @@ const AcronymExplained = () => {
                   ),
               )
             ) : (
-              <div>{acronymData?.title && parse(acronymData?.title)}</div>
+              <div>
+                {acronymData?.title &&
+                  parse(DOMPurify.sanitize(acronymData?.title))}
+              </div>
             )}
           </div>
           {isUserTool && yourToolsEnabled && <HandymanIcon className='icon' />}
@@ -126,7 +130,9 @@ const AcronymExplained = () => {
           <div className='AccGroup'>
             <div className='AccExplanation'>
               {acronymData?.toolFieldGroup ? (
-                parse(acronymData.toolFieldGroup.description)
+                parse(
+                  DOMPurify.sanitize(acronymData.toolFieldGroup.description),
+                )
               ) : (
                 <Skeleton animation='wave' />
               )}
@@ -144,7 +150,8 @@ const AcronymExplained = () => {
                     </div>
                   </div>
                   <div key={'d-' + index} className='Acc-definition'>
-                    {acronym?.definition && parse(acronym?.definition)}
+                    {acronym?.definition &&
+                      parse(DOMPurify.sanitize(acronym?.definition))}
                   </div>
                 </div>
               ))}
@@ -161,7 +168,11 @@ const AcronymExplained = () => {
                         <div className='title'>{scenario.title}</div>
                         {scenario.scenariosFieldGroup?.description && (
                           <div className='content'>
-                            {parse(scenario.scenariosFieldGroup?.description)}
+                            {parse(
+                              DOMPurify.sanitize(
+                                scenario.scenariosFieldGroup?.description,
+                              ),
+                            )}
                           </div>
                         )}
                       </div>
@@ -185,7 +196,8 @@ const AcronymExplained = () => {
                   return (
                     <div className='video' key={'video-' + index}>
                       <div className='title'>
-                        {video?.title && parse(video?.title)}
+                        {video?.title &&
+                          parse(DOMPurify.sanitize(video?.title))}
                       </div>
                       {video?.videosFieldGroup?.duration && (
                         <div className='duration'>
@@ -227,7 +239,11 @@ const AcronymExplained = () => {
                       </div>
                       {video?.videosFieldGroup?.description && (
                         <div className='description'>
-                          {parse(video.videosFieldGroup?.description)}
+                          {parse(
+                            DOMPurify.sanitize(
+                              video.videosFieldGroup?.description,
+                            ),
+                          )}
                         </div>
                       )}
                     </div>

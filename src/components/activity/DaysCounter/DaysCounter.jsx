@@ -5,6 +5,7 @@ import AddIcon from '@mui/icons-material/Add'
 import CloseBtn from '../../ui/buttons/close/CloseBtn'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import parse from 'html-react-parser'
+import DOMPurify from 'dompurify'
 import useAppStore from '@/store/useAppStore'
 
 import Dialog from 'components/ui/dialog/Dialog'
@@ -260,7 +261,11 @@ const DaysCounter = () => {
                               className='days-counter-date-display'
                               onClick={() => handleDateClick(index)}
                               style={{ cursor: 'pointer' }}>
-                              {parse(formatDate(date.selectedDate))}
+                              {parse(
+                                formatDate(
+                                  DOMPurify.sanitize(date.selectedDate),
+                                ),
+                              )}
                             </span>
                           ) : (
                             <></>

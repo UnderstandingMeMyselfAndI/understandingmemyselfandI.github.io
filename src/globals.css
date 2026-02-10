@@ -158,13 +158,18 @@
   --transition: 0.35s cubic-bezier(0.53, 0, 0.54, 1);
   --transition2: 0.35s cubic-bezier(0.3, 0, 0.74, 1);
   --textShadowDarkValue: 0px 0px 6px rgba(10, 10, 10, 0.5);
+  --textShadowDark: 0px 0px 6px rgba(10, 10, 10, 0.5);
   --textShadowDarkStrong: 0px 0px 4px rgba(10, 10, 10, 1);
   --textShadowLightValue: 0px 0px 6px rgba(200, 200, 200, 0.25);
+  --textShadowLight: 0px 0px 6px rgba(200, 200, 200, 0.25);
   --boxShadowDarkValue: 0px 0px 6px rgba(10, 10, 10, 0.5);
   --boxShadowDark: 0px 0px 6px rgba(10, 10, 10, 0.5);
   --boxShadowLightValue: 0px 0px 6px rgba(200, 200, 200, 0.5);
+  --boxShadowLight: 0px 0px 6px rgba(200, 200, 200, 0.5);
   --boxShadowBlueValue: 0px 0px 6px rgba(10, 10, 200, 0.5);
+  --boxShadowBlue: 0px 0px 6px rgba(10, 10, 200, 0.5);
   --boxShadowOrangeValue: 0px 0px 6px rgba(255, 187, 0, 0.781);
+  --boxShadowOrange: 0px 0px 6px rgba(255, 187, 0, 0.781);
 }
 .light {
   --blueBackground: oklch(0.985 0 0);

@@ -41,31 +41,44 @@
       name="google-site-verification"
       content="z1GZV3sgoFTPrtQLwT4cYGE4cMFm58x1oQO_OB7w464"
     />
-  </head>
-
-  <body>
-    <div id="root"></div>
     <script>
       window.GA_INITIALIZED = false
     </script>
+  </head>
+
+  <body>
+    <div id="root">
+      <style>
+        .loading-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          background-color: #000000; /* Matches your manifest theme_color */
+          color: white;
+          font-family: sans-serif;
+        }
+        .spinner {
+          width: 40px;
+          height: 40px;
+          border: 4px solid rgba(255, 255, 255, 0.1);
+          border-left-color: #ffffff;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+          to {
+            transform: rotate(360deg);
+          }
+        }
+      </style>
+      <div class="loading-container">
+        <div class="spinner"></div>
+        <p>Loading Ummi...</p>
+      </div>
+    </div>
+
     <script type="module" src="/src/main.jsx"></script>
-    <script>
-      // window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code'
-      // window.LOCALE = 'en'
-      // window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE =
-      //   'The information provided is invalid. Please review the field format and try again.'
-      // window.REQUIRED_ERROR_MESSAGE = 'This field cannot be left blank. '
-      // window.GENERIC_INVALID_MESSAGE =
-      //   'The information provided is invalid. Please review the field format and try again.'
-      // window.translation = {
-      //   common: {
-      //     selectedList: '{quantity} list selected',
-      //     selectedLists: '{quantity} lists selected',
-      //     selectedOption: '{quantity} selected',
-      //     selectedOptions: '{quantity} selected',
-      //   },
-      // }
-      // var AUTOHIDE = Boolean(1)
-    </script>
   </body>
 </html>

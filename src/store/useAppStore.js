@@ -362,12 +362,23 @@ const useAppStore = create(
       _hasHydrated: false,
       setHasHydrated: (v) => set(() => ({ _hasHydrated: v })),
       // ----------------------------------------
+      // ----------------------------------------
+      theme: 'system', // 'light', 'dark', 'system', 'high-contrast'
+      textScale: 100,  // Percentage (e.g., 100 = 16px, 125 = 20px)
+      
+      setTheme: (theme) => set({ theme }),
+      setTextScale: (scale) => set({ textScale: scale }),
+      // ----------------------------------------
+      // ----------------------------------------
+
     }),
     {
       name: 'ummi',
       storage: createJSONStorage(() => indexedDBStorage),
       // Keys to persist in localStorage
       partialize: (state) => ({
+        theme: state.theme,
+        textScale: state.textScale,
         ageVerified: state.ageVerified,
         dc: state.dc,
         daysCounterEnabled: state.daysCounterEnabled,

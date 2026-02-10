@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import useAppStore from '@/store/useAppStore'
 import { activities } from '@/data/config'
+import requestWakeLock from '@/js/utils/WakeLock'
 import { strings } from '@/data/config'
 import { sanitizeStringForUrl, setBrowserHistory } from '@/js/utils.js'
 import './styles.scss'
@@ -47,13 +48,12 @@ export default function AppMenu() {
 
   const toggleOpen = () => {
     setOpen(!open)
+    requestWakeLock()
   }
   const handleClose = (obj) => {
     setOpen(false)
   }
-  useEffect(() => {
-    console.log('menu showMenu', showMenu)
-  }, [showMenu])
+
   function findActivityObj(id) {
     const obj = activities.find((a) =>
       parseInt(a.id) === parseInt(id) ? id : null,
@@ -67,7 +67,6 @@ export default function AppMenu() {
     )
     const showMenu = activity === -1 ? true : obj.modal ? false : true
     setShowMenu(showMenu)
-    console.log('useEffect activity ', activity)
     if (obj) {
       setOpenMenu(obj.menu)
     }

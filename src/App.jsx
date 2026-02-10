@@ -74,7 +74,7 @@ function App() {
   return (
     <div>
       <div className='main'>
-        <div className='dev-version'>Development Version.</div>
+        {/* <div className='dev-version'>Development Version.</div> */}
         <AppMenu />
 
         {quickExitEnabled && <Exit />}

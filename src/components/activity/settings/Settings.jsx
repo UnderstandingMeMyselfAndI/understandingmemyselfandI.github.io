@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import useAppStore from '@/store/useAppStore'
 import { activities } from '@/data/config'
 import parse from 'html-react-parser'
+import DOMPurify from 'dompurify'
 import CloseBtn from '@/components/ui/buttons/close/CloseBtn'
 import Dialog from '@/components/ui/dialog/Dialog'
 
@@ -282,7 +283,7 @@ const Settings = () => {
               <label
                 htmlFor={YourToolsSettings.name}
                 className={YourToolsSettings.state ? 'checked' : ''}>
-                {parse(YourToolsSettings.instruction)}
+                {parse(DOMPurify.sanitize(YourToolsSettings.instruction))}
               </label>
               <input
                 type='checkbox'
@@ -293,7 +294,9 @@ const Settings = () => {
               />
             </div>
             {YourToolsSettings.help && (
-              <div className='help'>{parse(YourToolsSettings.help)}</div>
+              <div className='help'>
+                {parse(DOMPurify.sanitize(YourToolsSettings.help))}
+              </div>
             )}
           </div>
           <div className={'row ' + YourToolboxSettings.classes}>
@@ -301,7 +304,7 @@ const Settings = () => {
               <label
                 htmlFor={YourToolboxSettings.name}
                 className={YourToolboxSettings.state ? 'checked' : ''}>
-                {parse(YourToolboxSettings.instruction)}
+                {parse(DOMPurify.sanitize(YourToolboxSettings.instruction))}
               </label>
               <input
                 type='checkbox'
@@ -312,7 +315,9 @@ const Settings = () => {
               />
             </div>
             {YourToolboxSettings.help && (
-              <div className='help'>{parse(YourToolboxSettings.help)}</div>
+              <div className='help'>
+                {parse(DOMPurify.sanitize(YourToolboxSettings.help))}
+              </div>
             )}
           </div>
         </div>
@@ -323,7 +328,7 @@ const Settings = () => {
               <label
                 htmlFor={DaysCounterSettings.name}
                 className={DaysCounterSettings.state ? 'checked' : ''}>
-                {parse(DaysCounterSettings.instruction)}
+                {parse(DOMPurify.sanitize(DaysCounterSettings.instruction))}
               </label>
               <input
                 type='checkbox'
@@ -334,7 +339,9 @@ const Settings = () => {
               />
             </div>
             {DaysCounterSettings.help && (
-              <div className='help'>{parse(DaysCounterSettings.help)}</div>
+              <div className='help'>
+                {parse(DOMPurify.sanitize(DaysCounterSettings.help))}
+              </div>
             )}
           </div>
         </div>
@@ -356,7 +363,9 @@ const Settings = () => {
               />
             </div>
             {unitsCalculatorSettings.help && (
-              <div className='help'>{parse(unitsCalculatorSettings.help)}</div>
+              <div className='help'>
+                {parse(DOMPurify.sanitize(unitsCalculatorSettings.help))}
+              </div>
             )}
           </div>
         </div>
@@ -368,7 +377,7 @@ const Settings = () => {
               <label
                 htmlFor={QuickExitSettings.name}
                 className={QuickExitSettings.state ? 'checked' : ''}>
-                {parse(QuickExitSettings.instruction)}
+                {parse(DOMPurify.sanitize(QuickExitSettings.instruction))}
               </label>
               <input
                 type='checkbox'
@@ -379,7 +388,9 @@ const Settings = () => {
               />
             </div>
             {QuickExitSettings.help && (
-              <div className='help'>{parse(QuickExitSettings.help)}</div>
+              <div className='help'>
+                {parse(DOMPurify.sanitize(QuickExitSettings.help))}
+              </div>
             )}
           </div>
           {/* <div className='row'>
@@ -403,7 +414,9 @@ const Settings = () => {
               <label
                 htmlFor={QuickExitMessageSettings.name}
                 className={QuickExitMessageSettings.state ? 'checked' : ''}>
-                {parse(QuickExitMessageSettings.instruction)}
+                {parse(
+                  DOMPurify.sanitize(QuickExitMessageSettings.instruction),
+                )}
               </label>
               <input
                 type='checkbox'
@@ -414,7 +427,9 @@ const Settings = () => {
               />
             </div>
             {QuickExitMessageSettings.help && (
-              <div className='help'>{parse(QuickExitMessageSettings.help)}</div>
+              <div className='help'>
+                {parse(DOMPurify.sanitize(QuickExitMessageSettings.help))}
+              </div>
             )}
           </div>
         </div>
@@ -431,7 +446,7 @@ const Settings = () => {
                     ? 'strikethrough checked'
                     : 'strikethrough'
                 }>
-                {parse(PINLockSettings.instruction)}
+                {parse(DOMPurify.sanitize(PINLockSettings.instruction))}
               </label>
               <input
                 type='checkbox'
@@ -442,7 +457,9 @@ const Settings = () => {
               />
             </div>
             {PINLockSettings.help && (
-              <div className='help'>{parse(PINLockSettings.help)}</div>
+              <div className='help'>
+                {parse(DOMPurify.sanitize(PINLockSettings.help))}
+              </div>
             )}
           </div>
 
@@ -451,7 +468,9 @@ const Settings = () => {
               <label
                 htmlFor={AnalyticsCookiesSettings.name}
                 className={AnalyticsCookiesSettings.state ? 'checked' : ''}>
-                {parse(AnalyticsCookiesSettings.instruction)}
+                {parse(
+                  DOMPurify.sanitize(AnalyticsCookiesSettings.instruction),
+                )}
               </label>
               <input
                 type='checkbox'
@@ -462,7 +481,9 @@ const Settings = () => {
               />
             </div>
             {AnalyticsCookiesSettings.help && (
-              <div className='help'>{parse(AnalyticsCookiesSettings.help)}</div>
+              <div className='help'>
+                {parse(DOMPurify.sanitize(AnalyticsCookiesSettings.help))}
+              </div>
             )}
           </div>
 
@@ -471,7 +492,7 @@ const Settings = () => {
               <label
                 htmlFor={ShowPhraseViewsSettings.name}
                 className={ShowPhraseViewsSettings.state ? 'checked' : ''}>
-                {parse(ShowPhraseViewsSettings.instruction)}
+                {parse(DOMPurify.sanitize(ShowPhraseViewsSettings.instruction))}
               </label>
               <input
                 type='checkbox'
@@ -482,7 +503,9 @@ const Settings = () => {
               />
             </div>
             {ShowPhraseViewsSettings.help && (
-              <div className='help'>{parse(ShowPhraseViewsSettings.help)}</div>
+              <div className='help'>
+                {parse(DOMPurify.sanitize(ShowPhraseViewsSettings.help))}
+              </div>
             )}
           </div>
 

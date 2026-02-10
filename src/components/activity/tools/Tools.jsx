@@ -3,6 +3,7 @@ import useAppStore from '@/store/useAppStore'
 import MenuCarousel from '@/components/activity/tools/menuCarousel/MenuCarousel'
 import BadgeToolbox from 'ui/badges/BadgeToolbox'
 import parse from 'html-react-parser'
+import DOMPurify from 'dompurify'
 import CloseBtn from '@/components/ui/buttons/close/CloseBtn.jsx'
 import toolsData from '../../../data/tools.js'
 import { strings } from '@/data/config'
@@ -71,7 +72,7 @@ const Tools = () => {
   const descriptionContent = content?.description && (
     <div className='tools-description'>
       {content.description.map((html, i) => (
-        <p key={i}>{parse(html)}</p>
+        <p key={i}>{parse(DOMPurify.sanitize(html))}</p>
       ))}
     </div>
   )
@@ -84,8 +85,10 @@ const Tools = () => {
         <div className='tools-inner'>
           <CloseBtn onClick={handleClose} />
           <header>
-            <h2>{parse(content?.title)}</h2>
-            <div className='intro'>{parse(content?.introduction)}</div>
+            <h2>{parse(DOMPurify.sanitize(content?.title))}</h2>
+            <div className='intro'>
+              {parse(DOMPurify.sanitize(content?.introduction))}
+            </div>
           </header>
           <div className='tools-wrapper'>
             <MenuCarousel

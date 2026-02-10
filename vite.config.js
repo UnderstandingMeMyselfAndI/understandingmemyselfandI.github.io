@@ -78,6 +78,8 @@ export default defineConfig({
       robots: [{ userAgent: '*', allow: '/' }],
     }),
     VitePWA({
+      strategies: 'injectManifest', // Required for custom push logic
+      srcDir: 'src',    
       registerType: 'autoUpdate',
       injectRegister: 'script',
       filename: "sw.js",
@@ -94,12 +96,12 @@ export default defineConfig({
         'icons/**/*.svg',
         'icons/**/*.avif'
       ],
-      strategies: 'injectManifest', // Required for custom push logic
-      srcDir: 'src',                // Where your custom sw.js lives
+                  // Where your custom sw.js lives
       injectManifest: {
         // This is crucial for offline support and background images
         globPatterns: ['index.html', '**/*.{js,css}'],
         globIgnores: ['**/dev/**'],
+        
       },
       manifest: {
         "name": "Ummi",
@@ -307,3 +309,18 @@ export default defineConfig({
     },
   },
 });
+export function createSpaFallback(outputDir) {
+    const indexPath = path.join(outputDir, 'index.html');
+    const fallbackPath = path.join(outputDir, '404.html');
+
+    try {
+        if (fs.existsSync(indexPath)) {
+            fs.copyFileSync(indexPath, fallbackPath);
+            console.log('✅ Created 404.html fallback from index.html');
+        } else {
+            console.log('❌ Could not find index.html to create fallback');
+        }
+    } catch (error) {
+        console.log('❌ Failed to create fallback:', error.message);
+    }
+}

@@ -1,21 +1,22 @@
 // QuizQuestion.jsx
-import React, { useState, useEffect } from 'react';
-import parse from 'html-react-parser';
-import QuizProgress from '../quizProgress/QuizProgress';
-import PropTypes from 'prop-types';
-import './styles.scss';
+import React, { useState, useEffect } from 'react'
+import parse from 'html-react-parser'
+import DOMPurify from 'dompurify'
+import QuizProgress from '../quizProgress/QuizProgress'
+import PropTypes from 'prop-types'
+import './styles.scss'
 
 const answerShape = PropTypes.shape({
   text: PropTypes.string.isRequired,
   isCorrect: PropTypes.bool.isRequired,
-});
+})
 
 const questionShape = PropTypes.shape({
   question: PropTypes.string.isRequired,
   correctMessage: PropTypes.string.isRequired,
   incorrectMessage: PropTypes.string.isRequired,
   answers: PropTypes.arrayOf(answerShape).isRequired,
-});
+})
 
 const QuizQuestion = ({
   data,
@@ -25,52 +26,52 @@ const QuizQuestion = ({
   score,
   totalAnswered,
 }) => {
-  const { question, correctMessage, incorrectMessage, answers } = data;
+  const { question, correctMessage, incorrectMessage, answers } = data
 
   // Reset state whenever the question (data) changes
-  const [selected, setSelected] = useState(null);
-  const [submitted, setSubmitted] = useState(false);
-  const [isCorrect, setIsCorrect] = useState(false);
-  const [isNew, setIsNew] = useState(false);
-  const [lastMessage, setLastMessage] = useState('');
+  const [selected, setSelected] = useState(null)
+  const [submitted, setSubmitted] = useState(false)
+  const [isCorrect, setIsCorrect] = useState(false)
+  const [isNew, setIsNew] = useState(false)
+  const [lastMessage, setLastMessage] = useState('')
 
   useEffect(() => {
-    setSelected(null);
-    setSubmitted(false);
-    setIsCorrect(false);
-  }, [data]);
+    setSelected(null)
+    setSubmitted(false)
+    setIsCorrect(false)
+  }, [data])
 
   useEffect(() => {
-    setIsNew(false);
+    setIsNew(false)
     setTimeout(() => {
-      setIsNew(true);
-    }, 250);
-  }, [question]);
+      setIsNew(true)
+    }, 250)
+  }, [question])
 
   const handleSelect = (index) => {
     if (!submitted) {
-      setSelected(index);
+      setSelected(index)
       //   setLastMessage(isCorrect ? correctMessage : incorrectMessage);
     }
-  };
+  }
 
   const handleSubmit = () => {
     if (selected !== null && !submitted) {
-      setIsCorrect(answers[selected].isCorrect);
-      setSubmitted(true);
+      setIsCorrect(answers[selected].isCorrect)
+      setSubmitted(true)
     }
-  };
+  }
   const wrapSpan = (text) => {
-    const split = text.split(' ');
-    return split.map((word) => `<span>${word}</span>`).join(' ');
-  };
+    const split = text.split(' ')
+    return split.map((word) => `<span>${word}</span>`).join(' ')
+  }
 
   const handleNext = () => {
-    setIsNew(false);
+    setIsNew(false)
     if (submitted) {
-      onNext(isCorrect);
+      onNext(isCorrect)
     }
-  };
+  }
 
   return (
     <div className='quiz-container'>
@@ -85,8 +86,8 @@ const QuizQuestion = ({
         {submitted && (
           <p>
             {isCorrect
-              ? parse(wrapSpan(correctMessage))
-              : parse(wrapSpan(incorrectMessage))}
+              ? parse(wrapSpan(DOMPurify.sanitize(correctMessage)))
+              : parse(wrapSpan(DOMPurify.sanitize(incorrectMessage)))}
           </p>
         )}
       </div>
@@ -96,19 +97,19 @@ const QuizQuestion = ({
 
       <form className='answers-form'>
         {answers.map((answer, index) => {
-          const isSelected = selected === index;
-          const isThisCorrect = answer.isCorrect;
+          const isSelected = selected === index
+          const isThisCorrect = answer.isCorrect
 
-          let optionClass = 'option';
+          let optionClass = 'option'
           if (submitted) {
-            if (isThisCorrect) optionClass += ' correct-answer';
+            if (isThisCorrect) optionClass += ' correct-answer'
             if (isSelected) {
               optionClass += isCorrect
                 ? ' selected-correct'
-                : ' selected-incorrect';
+                : ' selected-incorrect'
             }
           } else if (isSelected) {
-            optionClass += ' selected-pending';
+            optionClass += ' selected-pending'
           }
 
           return (
@@ -122,7 +123,7 @@ const QuizQuestion = ({
               />
               <span className='answer-text'>{answer.text}</span>
             </label>
-          );
+          )
         })}
       </form>
 
@@ -130,21 +131,19 @@ const QuizQuestion = ({
         <button
           className='submit-button'
           disabled={selected === null || submitted}
-          onClick={handleSubmit}
-        >
+          onClick={handleSubmit}>
           Submit
         </button>
         <button
           className='next-button'
           disabled={!submitted}
-          onClick={handleNext}
-        >
+          onClick={handleNext}>
           Next
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
 QuizQuestion.propTypes = {
   data: questionShape.isRequired,
@@ -153,6 +152,6 @@ QuizQuestion.propTypes = {
   totalQuestions: PropTypes.number.isRequired,
   score: PropTypes.number.isRequired,
   totalAnswered: PropTypes.number.isRequired,
-};
+}
 
-export default QuizQuestion;
+export default QuizQuestion

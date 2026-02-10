@@ -4,6 +4,7 @@ import { activities } from '@/data/config'
 import CloseBtn from '@/components/ui/buttons/close/CloseBtn'
 import { strings } from '@/data/config'
 import parse from 'html-react-parser'
+import DOMPurify from 'dompurify'
 import Confirm from 'ui/confirm/Confirm'
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
@@ -23,7 +24,7 @@ import './styles.scss'
 
 // --- CONFIGURATION ---
 const LINE_CONFIG = {
-  strokeWidth: 22,
+  strokeWidth: 2,
   tension: 0.45,
 }
 
@@ -94,7 +95,7 @@ const CATEGORIES = [
 
 const NUM_CATEGORIES = CATEGORIES.length
 const MAX_SCORE = 10
-const SVG_SIZE = 750
+const SVG_SIZE = 710
 const CENTER = SVG_SIZE / 2
 const MAX_RADIUS = 350
 
@@ -148,6 +149,16 @@ const WheelOfLife = () => {
   const activity = useAppStore((s) => s.activity)
   const setActivity = useAppStore((s) => s.setActivity)
 
+  const [showConfirm, setShowConfirm] = useState(false)
+  const [confirmConfig, setConfirmConfig] = useState({
+    title: '',
+    instruction: '',
+    message: '',
+    onConfirm: () => {},
+    onCancel: () => {},
+    showConfirm: false,
+  })
+
   const svgRef = useRef(null)
 
   // Modal State
@@ -170,9 +181,7 @@ const WheelOfLife = () => {
   const saveWheelEntry = useAppStore((state) => state.saveWheelEntry)
   const wheelHistory = useAppStore((state) => state.wheelHistory)
   const clearWheelHistory = useAppStore((state) => state.clearWheelHistory)
-  useEffect(() => {
-    console.log('wheelofhistory show', show)
-  }, [show])
+
   useEffect(() => {
     show && setIsModal(activitiesById[id]?.modal)
   }, [show, activitiesById, id, setIsModal])
@@ -185,17 +194,67 @@ const WheelOfLife = () => {
     setShow(false)
     setActivity(-1)
   }
+  const handleDoIsCompareMode = (mode) => {
+    if (!rememberWheels) {
+      openModal(
+        'Remember wheels',
+        'Remember wheels must be enabled to compare wheels.',
+      )
+      return
+    }
+    if (wheelHistory.length === 0) {
+      openModal(
+        'Saved wheels',
+        'You only have one saved wheel so there is nothing to compare. Save another wheel and try again.',
+      )
+      return
+    }
+    if (wheelHistory.length === 1) {
+      openModal('Saved wheels', "You haven't saved any wheels yet.")
+      return
+    }
+    if (!rememberWheels || wheelHistory.length === 0) {
+      return
+    }
+    setIsCompareMode(mode)
+  }
 
   const handleScoreUpdate = (categoryId, score) => {
     setScores((prev) => ({ ...prev, [categoryId]: score }))
   }
 
   const handleReset = () => {
-    setScores(CATEGORIES.reduce((acc, cat) => ({ ...acc, [cat.id]: null }), {}))
-    setUserNotes('')
-    setIsCompareMode(false)
-  }
+    if (!isWheelComplete()) return
 
+    setConfirmConfig({
+      title: 'Clear current wheel?',
+      message: 'Are you sure you want to clear the current wheel?',
+      showConfirm: true,
+      onConfirm: () => {
+        setScores(
+          CATEGORIES.reduce((acc, cat) => ({ ...acc, [cat.id]: null }), {}),
+        )
+        setUserNotes('')
+        setIsCompareMode(false)
+        setShowConfirm(false)
+      },
+      onCancel: () => {
+        setShowConfirm(false)
+      },
+    })
+    setShowConfirm(true)
+  }
+  const closeConfirm = () => {
+    setShowConfirm(false)
+    setConfirmConfig({
+      title: '',
+      instruction: '',
+      message: '',
+      showConfirm: false,
+      onConfirm: () => {},
+      onCancel: () => {},
+    })
+  }
   const openModal = (title, message) => {
     setModal({ isOpen: true, title, message })
   }
@@ -214,14 +273,37 @@ const WheelOfLife = () => {
       )
       return
     }
+    if (!rememberWheels) {
+      openModal(
+        'Unable to save',
+        'Please check remember wheels to enable saving to history.',
+      )
+      return
+    }
     saveWheelEntry({ scores, notes: userNotes })
     openModal('Success', 'Wheel saved to history!')
   }
 
   const handleDeleteAll = () => {
-    if (confirm('Are you sure you want to delete all saved wheels?')) {
-      clearWheelHistory()
+    if (wheelHistory.length <= 1) {
+      openModal('No saved wheels', 'There are no saved wheels to delete.')
+      return
     }
+
+    setConfirmConfig({
+      title: 'Delete all saved wheels?',
+      message:
+        'Are you sure you want to delete all saved wheels? This cannot be undone.',
+      showConfirm: true,
+      onConfirm: () => {
+        clearWheelHistory()
+        closeConfirm()
+      },
+      onCancel: () => {
+        closeConfirm()
+      },
+    })
+    setShowConfirm(true)
   }
 
   const handleExportImage = useCallback(() => {
@@ -258,19 +340,21 @@ const WheelOfLife = () => {
   const compareBtn = (isCompareMode) => {
     const btn = isCompareMode ? (
       <div
-        className={'btn' + (wheelHistory.length > 0 ? '' : ' inactive')}
+        className={
+          'btn' + (rememberWheels && wheelHistory.length > 1 ? '' : ' inactive')
+        }
         onClick={() =>
-          wheelHistory.length > 0 ? setIsCompareMode(!isCompareMode) : null
+          wheelHistory.length > 0 ? handleDoIsCompareMode(!isCompareMode) : null
         }>
         <RestoreOutlinedIcon />
       </div>
     ) : (
       <div
         className={
-          'btn' + (rememberWheels && wheelHistory.length > 0 ? '' : ' inactive')
+          'btn' + (rememberWheels && wheelHistory.length > 1 ? '' : ' inactive')
         }
         onClick={() =>
-          wheelHistory.length > 0 ? setIsCompareMode(!isCompareMode) : null
+          wheelHistory.length > 0 ? handleDoIsCompareMode(!isCompareMode) : null
         }>
         <LayersIcon />
       </div>
@@ -284,6 +368,19 @@ const WheelOfLife = () => {
       className={
         'activity activity-' + name + (show ? ' show' : ' hide') + ' fixed'
       }>
+      {showConfirm && (
+        <Confirm
+          title={confirmConfig.title}
+          message={confirmConfig.message}
+          instruction={confirmConfig.instruction}
+          onClose={closeConfirm}
+          onConfirm={confirmConfig.onConfirm}
+          onCancel={confirmConfig.onCancel}
+          isfullscreen={false}
+          fitContent={true}
+        />
+      )}
+
       <CloseBtn onClick={handleClose} />
       <div className={`wheel-layout ${isCompareMode ? 'mode-compare' : ''}`}>
         <header className='wheel-header'>
@@ -298,6 +395,10 @@ const WheelOfLife = () => {
           </div>
 
           <div className='wheel-preferences'>
+            <div className='wheel-count'>
+              <div>{wheelHistory.length}</div>
+              <div>Saved Wheels</div>
+            </div>
             <label className='checkbox-label'>
               <input
                 type='checkbox'
@@ -333,7 +434,7 @@ const WheelOfLife = () => {
             <div
               className={
                 'btn' +
-                (rememberWheels && wheelHistory.length > 0 ? '' : ' inactive')
+                (rememberWheels && wheelHistory.length > 1 ? '' : ' inactive')
               }
               onClick={() =>
                 wheelHistory.length > 0 ? handleDeleteAll() : null
@@ -353,7 +454,9 @@ const WheelOfLife = () => {
               onClick={handleSaveEntry}>
               <DoneIcon />
             </div>
-            <div className={'btn'} onClick={handleReset}>
+            <div
+              className={'btn' + (isWheelComplete() ? '' : ' inactive')}
+              onClick={handleReset}>
               <RestartAltOutlinedIcon />
             </div>
           </div>
@@ -363,7 +466,7 @@ const WheelOfLife = () => {
       {modal.isOpen && (
         <div className='modal-overlay'>
           <div className='modal-content'>
-            <h3>{modal.title}</h3>
+            <h4>{modal.title}</h4>
             <p>{modal.message}</p>
             <button className='btn-primary' onClick={closeModal}>
               OK
@@ -600,7 +703,7 @@ const WheelCanvas = React.forwardRef(
           rotation += 180
         }
 
-        const scale = 1.5 + Math.abs(delta) / 0.35
+        const scale = 1.5 + Math.abs(delta) / 0.65
         const arrowColor = delta > 0 ? '#846eff' : '#ebb608'
 
         const arrowPath = `
@@ -659,7 +762,7 @@ const WheelCanvas = React.forwardRef(
                 d={d}
                 fill='none'
                 stroke='url(#scoreGradient)'
-                strokeWidth='14'
+                strokeWidth='4'
                 strokeOpacity='0.65'
                 className='history-line'
               />
@@ -827,7 +930,7 @@ const WheelCanvas = React.forwardRef(
         const angle = baseAngle + (cat.angleAdjust || 0)
 
         // 2. Position on the Rim
-        const r = MAX_RADIUS - 10
+        const r = MAX_RADIUS - 14
         const pos = polarToCartesian(CENTER, CENTER, r, angle)
 
         // 3. Text Rotation (Align with spoke)

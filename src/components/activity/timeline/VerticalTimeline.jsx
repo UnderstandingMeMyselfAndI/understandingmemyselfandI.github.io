@@ -8,6 +8,7 @@ import { activities } from '@/data/config'
 import CloseBtn from '@/components/ui/buttons/close/CloseBtn'
 import { strings } from '@/data/config'
 import parse from 'html-react-parser'
+import DOMPurify from 'dompurify'
 import Confirm from 'ui/confirm/Confirm'
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
@@ -142,7 +143,6 @@ const VerticalTimeline = () => {
           onCancel={handleConfirmCancel}
           showCancel={true}
           cancelLabel={strings.confirm.cancelBtnLabel}
-          showConfirm={true}
         />
       ) : (
         <>
@@ -187,9 +187,9 @@ const VerticalTimeline = () => {
               {/* --- NEW: INTRO SECTION --- */}
               <div className='intro-section'>
                 <div className='intro-content'>
-                  <h1>{parse(strings.title)}</h1>
+                  <h1>{parse(DOMPurify.sanitize(strings.title))}</h1>
                   {strings.content.map((content, i) => (
-                    <p key={i}>{parse(content)}</p>
+                    <p key={i}>{parse(DOMPurify.sanitize(content))}</p>
                   ))}
 
                   <div className='scroll-indicator'>↓</div>
@@ -206,8 +206,12 @@ const VerticalTimeline = () => {
                         {section.startLabel}
                       </div>
                       <div>
-                        <h1 className='huge-year'>{parse(section.period)}</h1>
-                        <h2 className='huge-title'>{parse(section.title)}</h2>
+                        <h1 className='huge-year'>
+                          {parse(DOMPurify.sanitize(section.period))}
+                        </h1>
+                        <h2 className='huge-title'>
+                          {parse(DOMPurify.sanitize(section.title))}
+                        </h2>
                       </div>
                       <div className='marker-label end'>{section.endLabel}</div>
                     </div>
@@ -215,8 +219,8 @@ const VerticalTimeline = () => {
                   <div className='events-grid'>
                     {section.events.map((event) => (
                       <div key={event.id} className='event-card'>
-                        <h3>{parse(event.title)}</h3>
-                        <p>{parse(event.description)}</p>
+                        <h3>{parse(DOMPurify.sanitize(event.title))}</h3>
+                        <p>{parse(DOMPurify.sanitize(event.description))}</p>
                       </div>
                     ))}
                   </div>

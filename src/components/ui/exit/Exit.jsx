@@ -1,43 +1,44 @@
-import { useState } from 'react';
-import useAppStore from '@/store/useAppStore';
-import ExitButton from 'buttons/exit/ExitButton';
-import Dialog from 'components/ui/dialog/Dialog';
-import parse from 'html-react-parser';
-import PropTypes from 'prop-types';
-import './styles.scss';
+import { useState } from 'react'
+import useAppStore from '@/store/useAppStore'
+import ExitButton from 'buttons/exit/ExitButton'
+import Dialog from 'components/ui/dialog/Dialog'
+import parse from 'html-react-parser'
+import DOMPurify from 'dompurify'
+import PropTypes from 'prop-types'
+import './styles.scss'
 const Exit = () => {
   const quickExitMessageEnabled = useAppStore(
     (state) => state.quickExitMessageEnabled,
-  );
-  const [showDialog, setShowDialog] = useState(false);
+  )
+  const [showDialog, setShowDialog] = useState(false)
 
   const enableQuickExitMessage = useAppStore(
     (state) => state.enableQuickExitMessage,
-  );
+  )
 
   const message =
-    '<p>Your privacy matters.</p><p>This button lets you leave the app immediately and open a neutral website if you need to.</p><p>Use it whenever that feels helpful.</p>';
+    '<p>Your privacy matters.</p><p>This button lets you leave the app immediately and open a neutral website if you need to.</p><p>Use it whenever that feels helpful.</p>'
 
-  const checkBoxInstruction = '<p>Show this message again</p>';
+  const checkBoxInstruction = '<p>Show this message again</p>'
 
   const handleClick = () => {
     if (quickExitMessageEnabled || quickExitMessageEnabled === undefined) {
-      setShowDialog(true);
+      setShowDialog(true)
     } else {
-      doExit();
+      doExit()
     }
-  };
+  }
   const exitFullscreen = () => {
     if (document.exitFullscreen) {
-      document.exitFullscreen();
+      document.exitFullscreen()
     } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
+      document.webkitExitFullscreen()
     } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen();
+      document.mozCancelFullScreen()
     } else if (document.msExitFullscreen) {
-      document.msExitFullscreen();
+      document.msExitFullscreen()
     }
-  };
+  }
   const doExit = () => {
     // window.open(
     //   'https://google.com',
@@ -45,24 +46,24 @@ const Exit = () => {
     //   'noopener,noreferrer,resizable',
     // );
     // remove the app url from history then navigate away
-    const url = 'https://google.com';
-    window.location.replace(url);
-    window.location = url;
-    exitFullscreen();
-    window.close();
-  };
+    const url = 'https://google.com'
+    window.location.replace(url)
+    window.location = url
+    exitFullscreen()
+    window.close()
+  }
   const handleDialogueCancel = () => {
-    setShowDialog(false);
-  };
+    setShowDialog(false)
+  }
   const handleDialogueConfirm = () => {
-    setShowDialog(false);
-    enableQuickExitMessage(false);
-    doExit();
-  };
+    setShowDialog(false)
+    enableQuickExitMessage(false)
+    doExit()
+  }
   const handleCheckboxChange = (e) => {
-    setShowDialog(e.target.checked);
-    enableQuickExitMessage(e.target.checked);
-  };
+    setShowDialog(e.target.checked)
+    enableQuickExitMessage(e.target.checked)
+  }
 
   return (
     <div className={'quick-exit ' + (showDialog ? ' exit-dialog-open' : ' ')}>
@@ -75,8 +76,7 @@ const Exit = () => {
           onCancel={handleDialogueCancel}
           confirmLabel='Continue'
           cancelLabel='Back'
-          classes={['exit-dialog']}
-        >
+          classes={['exit-dialog']}>
           <div className='checkBox-row'>
             <input
               type='checkbox'
@@ -85,15 +85,17 @@ const Exit = () => {
               checked={showDialog}
               onChange={handleCheckboxChange}
             />
-            <label htmlFor='showAgain'>{parse(checkBoxInstruction)}</label>
+            <label htmlFor='showAgain'>
+              {parse(DOMPurify.sanitize(checkBoxInstruction))}
+            </label>
           </div>
         </Dialog>
       )}
 
       <ExitButton handleClick={handleClick} />
     </div>
-  );
-};
-Exit.propTypes = {};
-Exit.displayName = 'Exit';
-export default Exit;
+  )
+}
+Exit.propTypes = {}
+Exit.displayName = 'Exit'
+export default Exit

@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import useAppStore from '@/store/useAppStore'
 import parse from 'html-react-parser'
+import DOMPurify from 'dompurify'
 import DoneOutlineIcon from '@mui/icons-material/DoneOutline'
 import { strings } from '@/data/config'
 import Feature from './Feature'
@@ -70,9 +71,11 @@ const Introduction = () => {
             {isInstalled && vc >= 3 && (
               <u>
                 {parse(
-                  content?.returning?.content?.titles[
-                    getRand(content?.returning?.content?.titles?.length - 1)
-                  ],
+                  DOMPurify.sanitize(
+                    content?.returning?.content?.titles[
+                      getRand(content?.returning?.content?.titles?.length - 1)
+                    ],
+                  ),
                 )}
               </u>
             )}
@@ -89,7 +92,7 @@ const Introduction = () => {
                   ref={addToRefs}>
                   {cnt?.title && (
                     <div className='subsection-title'>
-                      <h2>{parse(cnt?.title)}</h2>
+                      <h2>{parse(DOMPurify.sanitize(cnt?.title))}</h2>
                     </div>
                   )}
 
@@ -97,7 +100,7 @@ const Introduction = () => {
                     return (
                       <Feature key={'p-' + k}>
                         {i === 1 && <DoneOutlineIcon className='icon' />}
-                        <p key={k}>{parse(para)}</p>
+                        <p key={k}>{parse(DOMPurify.sanitize(para))}</p>
                       </Feature>
                     )
                   })}
@@ -110,9 +113,13 @@ const Introduction = () => {
               <div className=' returning'>
                 <h1>
                   {parse(
-                    content?.returning?.content?.contents[
-                      getRand(content?.returning?.content?.contents?.length - 1)
-                    ],
+                    DOMPurify.sanitize(
+                      content?.returning?.content?.contents[
+                        getRand(
+                          content?.returning?.content?.contents?.length - 1,
+                        )
+                      ],
+                    ),
                   )}
                 </h1>
               </div>
@@ -129,14 +136,16 @@ const Introduction = () => {
                   ref={addToRefs}>
                   {cnt?.title && (
                     <div className='subsection-title'>
-                      <h2 className='title2'>{parse(cnt?.title)}</h2>
+                      <h2 className='title2'>
+                        {parse(DOMPurify.sanitize(cnt?.title))}
+                      </h2>
                     </div>
                   )}
                   {cnt?.content?.map((para, k) => {
                     return para ? (
                       <Feature classes={'feature'} key={'feat-' + k}>
                         <p key={'p-' + k} className='st'>
-                          {parse(para)}
+                          {parse(DOMPurify.sanitize(para))}
                         </p>
                       </Feature>
                     ) : null

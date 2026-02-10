@@ -3,6 +3,7 @@ import InstallPWA from 'ui/buttons/InstallPWA/InstallPWA'
 import appleShareIcon from '/icons/apple-share-white-40x40.png'
 import appleAddToHomescreen from '/icons/apple-add-to-homescreen-white-40x40.png'
 import parse from 'html-react-parser'
+import DOMPurify from 'dompurify'
 import useAppStore from '@/store/useAppStore'
 import { strings } from '@/data/config'
 import { useOnInView } from 'react-intersection-observer'
@@ -140,7 +141,7 @@ const InstallCTA = () => {
             {showInstallBtn && (
               <div>
                 {content?.cta?.content?.map((html, i) => {
-                  return <p key={i}>{parse(html)}</p>
+                  return <p key={i}>{parse(DOMPurify.sanitize(html))}</p>
                 })}
 
                 <InstallPWA
@@ -149,13 +150,13 @@ const InstallCTA = () => {
                 />
                 <div className='title'>Apple users:</div>
                 <p>
-                  <span>{parse(appleUsersContent)}</span>
+                  <span>{parse(DOMPurify.sanitize(appleUsersContent))}</span>
                   <img
                     src={appleShareIcon}
                     className='shareIcon'
                     alt='apple share icon'
                   />
-                  <span>{parse(appleUsersContent2)}</span>
+                  <span>{parse(DOMPurify.sanitize(appleUsersContent2))}</span>
                   <img
                     src={appleAddToHomescreen}
                     className='homescreenIcon'
@@ -167,7 +168,7 @@ const InstallCTA = () => {
             {!showInstallBtn && (
               <div>
                 {content?.cta?.postInstall?.content?.map((html, i) => {
-                  return <p key={i}>{parse(html)}</p>
+                  return <p key={i}>{parse(DOMPurify.sanitize(html))}</p>
                 })}
               </div>
             )}

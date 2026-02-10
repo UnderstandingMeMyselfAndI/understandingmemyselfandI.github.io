@@ -1,3 +1,15 @@
+// Helper to apply changes to the DOM
+export const applyAccessibilitySettings = (theme, scale) => {
+  const root = document.documentElement;
+  
+  // 1. Apply Theme Class
+  root.classList.remove('light', 'dark', 'system', 'high-contrast');
+  root.classList.add(theme);
+
+  // 2. Apply Font Scaling
+  // 100% scale = 16px (default)
+  root.style.fontSize = `${(scale / 100) * 16}px`;
+};
 export const hashCode = str => {
 	let hash = 0;
 	// const length = outputLength < 5 ? 5 : outputLength
@@ -217,4 +229,5 @@ export default {
 	setBrowserHistory,
 	smoothScroll,
 	runPersistentStorageTests,
+	applyAccessibilitySettings
 }
