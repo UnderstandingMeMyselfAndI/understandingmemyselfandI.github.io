@@ -297,6 +297,17 @@ const baseActivities = [
     anchorID:'',
     conditions:[],
   },
+   {
+    id: 22,
+    url: 'wheel-of-life',
+    title: 'Wheel of Life',
+    menuPosition: 3,
+    menu: true,
+    modal: true,
+    classes: 'new',
+    anchorID:'',
+    conditions:[],
+  },
 ];
 const activities = baseActivities.map((item) => ({
   ...item,

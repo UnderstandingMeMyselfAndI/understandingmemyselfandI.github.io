@@ -86,7 +86,7 @@ function App() {
 
         <WheelOfLife />
 
-        {/* <Header />
+        <Header />
         <Introduction />
         <WallpaperGallery />
         <VerticalTimeline />
@@ -102,17 +102,17 @@ function App() {
 
         <NewsletterSignUp />
         <InstallCTA />
-        <Footer /> */}
+        <Footer />
 
         {/* <Motivation /> */}
-        {/* {quickExitEnabled && <Exit />}
+        {quickExitEnabled && <Exit />}
         {unitsCalculatorEnabled && <UnitsCalculator />}
         {daysCounterEnabled && <DaysCounter />}
         <AcronymExplained />
         <Settings />
 
         <SnackBars />
-        <ScrollPosition /> */}
+        <ScrollPosition />
       </div>
       <Backdrop
         initialImageId={2}

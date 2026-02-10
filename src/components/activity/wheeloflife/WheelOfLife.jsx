@@ -1,39 +1,100 @@
-import React, { useState, useRef, useCallback, useMemo } from 'react'
+import React, { useState, useRef, useCallback, useMemo, useEffect } from 'react'
 import useAppStore from '@/store/useAppStore'
+import { activities } from '@/data/config'
+import CloseBtn from '@/components/ui/buttons/close/CloseBtn'
+import { strings } from '@/data/config'
+import parse from 'html-react-parser'
+import Confirm from 'ui/confirm/Confirm'
+const activitiesById = activities.reduce((acc, activity) => {
+  acc[activity.id] = activity
+  return acc
+}, {})
+const activityStringsByName = strings.activity.reduce((acc, activity) => {
+  acc[activity.name] = activity
+  return acc
+}, {})
 import DoneIcon from '@mui/icons-material/Done'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
-import DifferenceIcon from '@mui/icons-material/Difference'
-import CompareArrowsIcon from '@mui/icons-material/CompareArrows'
 import LayersIcon from '@mui/icons-material/Layers'
-import TimelineIcon from '@mui/icons-material/Timeline'
-import DownloadOutlinedIcon from '@mui/icons-material/DownloadOutlined'
 import RestartAltOutlinedIcon from '@mui/icons-material/RestartAltOutlined'
 import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined'
-import ScheduleOutlinedIcon from '@mui/icons-material/ScheduleOutlined'
-import HistoryOutlinedIcon from '@mui/icons-material/HistoryOutlined'
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined'
 import './styles.scss'
 
 // --- CONFIGURATION ---
 const LINE_CONFIG = {
-  strokeWidth: 2,
-  tension: 0.35,
+  strokeWidth: 22,
+  tension: 0.45,
 }
 
+// NOTE: Use 'offset' (pixels) to push text away from the divider line
+// NOTE: Use 'angleAdjust' (degrees) to rotate the label around the wheel
+// NOTE: Use 'edge' ('top', 'middle', 'bottom') to choose which part of the text aligns with the offset
+
 const CATEGORIES = [
-  { id: 'recovery', label: 'Recovery' },
-  { id: 'family', label: 'Family' },
-  { id: 'education', label: 'Education, Training, Employment' },
-  { id: 'health', label: 'Health &, Fitness' },
-  { id: 'social', label: 'Social Fun' },
-  { id: 'friends', label: 'Friends &, Relationships' },
-  { id: 'purpose', label: 'Life, Purpose' },
-  { id: 'environment', label: 'Physical, Environment' },
+  {
+    id: 'recovery',
+    label: 'Recovery',
+    angleAdjust: 45, // Rotates clockwise
+    edge: 'bottom',
+    offset: -16, // Pushes "up" away from line
+  },
+  {
+    id: 'family',
+    label: 'Family',
+    angleAdjust: 45,
+    edge: 'bottom',
+    offset: -16,
+  },
+  {
+    id: 'education',
+    label: 'Education Training Work',
+    angleAdjust: 45,
+    edge: 'bottom',
+    offset: -16,
+  },
+  {
+    id: 'health',
+    label: 'Health & Fitness',
+    angleAdjust: 45,
+    rotate180: true,
+    edge: 'bottom',
+    offset: -16,
+  },
+  {
+    id: 'social',
+    label: 'Social Fun',
+    angleAdjust: 45,
+    edge: 'top',
+    offset: 20,
+  },
+  {
+    id: 'friends',
+    label: 'Friends & Relationships',
+    angleAdjust: 45,
+    edge: 'top',
+    offset: 20,
+  },
+  {
+    id: 'purpose',
+    label: 'Life Purpose',
+    angleAdjust: 45,
+    edge: 'top',
+    offset: 20,
+  },
+  {
+    id: 'environment',
+    label: 'Physical Environment',
+    angleAdjust: 45,
+    rotate180: true,
+    edge: 'top',
+    offset: 20,
+  },
 ]
 
 const NUM_CATEGORIES = CATEGORIES.length
 const MAX_SCORE = 10
-const SVG_SIZE = 800
+const SVG_SIZE = 750
 const CENTER = SVG_SIZE / 2
 const MAX_RADIUS = 350
 
@@ -81,12 +142,20 @@ const describeArc = (x, y, innerRadius, outerRadius, startAngle, endAngle) => {
 }
 
 const WheelOfLife = () => {
-  const [show, setShow] = useState(true)
+  const name = 'wheel-of-life'
+  const id = 22
+  const [show, setShow] = useState(false)
+  const activity = useAppStore((s) => s.activity)
+  const setActivity = useAppStore((s) => s.setActivity)
+
   const svgRef = useRef(null)
 
   // Modal State
   const [modal, setModal] = useState({ isOpen: false, title: '', message: '' })
   const [showInstructions, setShowInstructions] = useState(false)
+
+  const strings = activityStringsByName[name]
+  const setIsModal = useAppStore((s) => s.setIsModal)
 
   // User Input State
   const [userNotes, setUserNotes] = useState('')
@@ -101,6 +170,21 @@ const WheelOfLife = () => {
   const saveWheelEntry = useAppStore((state) => state.saveWheelEntry)
   const wheelHistory = useAppStore((state) => state.wheelHistory)
   const clearWheelHistory = useAppStore((state) => state.clearWheelHistory)
+  useEffect(() => {
+    console.log('wheelofhistory show', show)
+  }, [show])
+  useEffect(() => {
+    show && setIsModal(activitiesById[id]?.modal)
+  }, [show, activitiesById, id, setIsModal])
+
+  useEffect(() => {
+    setShow(id === activity)
+  }, [activity])
+
+  const handleClose = () => {
+    setShow(false)
+    setActivity(-1)
+  }
 
   const handleScoreUpdate = (categoryId, score) => {
     setScores((prev) => ({ ...prev, [categoryId]: score }))
@@ -118,9 +202,11 @@ const WheelOfLife = () => {
   const closeModal = () => {
     setModal({ ...modal, isOpen: false })
   }
-
+  const isWheelComplete = () => {
+    return Object.values(scores).every((v) => v !== null)
+  }
   const handleSaveEntry = () => {
-    const isComplete = Object.values(scores).every((v) => v !== null)
+    const isComplete = isWheelComplete() //Object.values(scores).every((v) => v !== null)
     if (!isComplete) {
       openModal(
         'Incomplete Wheel',
@@ -170,22 +256,23 @@ const WheelOfLife = () => {
   }, [isCompareMode])
 
   const compareBtn = (isCompareMode) => {
-    console.log('compareBtn isCompareMode', isCompareMode)
     const btn = isCompareMode ? (
-      <div className={wheelHistory.length > 0 ? 'active' : 'inactive'}>
-        <RestoreOutlinedIcon
-          onClick={() =>
-            wheelHistory.length > 0 ? setIsCompareMode(!isCompareMode) : null
-          }
-        />
+      <div
+        className={'btn' + (wheelHistory.length > 0 ? '' : ' inactive')}
+        onClick={() =>
+          wheelHistory.length > 0 ? setIsCompareMode(!isCompareMode) : null
+        }>
+        <RestoreOutlinedIcon />
       </div>
     ) : (
-      <div className={wheelHistory.length > 0 ? 'active' : 'inactive'}>
-        <LayersIcon
-          onClick={() =>
-            wheelHistory.length > 0 ? setIsCompareMode(!isCompareMode) : null
-          }
-        />
+      <div
+        className={
+          'btn' + (rememberWheels && wheelHistory.length > 0 ? '' : ' inactive')
+        }
+        onClick={() =>
+          wheelHistory.length > 0 ? setIsCompareMode(!isCompareMode) : null
+        }>
+        <LayersIcon />
       </div>
     )
     return btn
@@ -193,8 +280,11 @@ const WheelOfLife = () => {
 
   return (
     <div
-      id='wheel-oflife'
-      className={`activity ${show ? 'show' : 'hide'} fixed`}>
+      id={name}
+      className={
+        'activity activity-' + name + (show ? ' show' : ' hide') + ' fixed'
+      }>
+      <CloseBtn onClick={handleClose} />
       <div className={`wheel-layout ${isCompareMode ? 'mode-compare' : ''}`}>
         <header className='wheel-header'>
           <div className='header-top'>
@@ -203,7 +293,7 @@ const WheelOfLife = () => {
 
           <div className='wheel-instruction'>
             Score the areas of your life on a scale of 1-10 to see your life
-            balance. Click <span class='circled-help'>?</span> to view more
+            balance. Click <span className='circled-help'>?</span> to view more
             instructions.
           </div>
 
@@ -242,22 +332,30 @@ const WheelOfLife = () => {
 
             <div
               className={
-                rememberWheels && wheelHistory.length > 0
-                  ? 'active'
-                  : 'inactive'
+                'btn' +
+                (rememberWheels && wheelHistory.length > 0 ? '' : ' inactive')
+              }
+              onClick={() =>
+                wheelHistory.length > 0 ? handleDeleteAll() : null
               }>
-              <DeleteForeverIcon
-                onClick={() =>
-                  wheelHistory.length > 0 ? handleDeleteAll() : null
-                }
-              />
+              <DeleteForeverIcon />
             </div>
 
-            <div className={rememberWheels ? 'active' : 'inactive'}>
-              <DoneIcon onClick={handleSaveEntry} />
+            <div
+              className={
+                'btn' +
+                (isWheelComplete()
+                  ? rememberWheels
+                    ? ''
+                    : ' inactive'
+                  : ' inactive')
+              }
+              onClick={handleSaveEntry}>
+              <DoneIcon />
             </div>
-
-            <RestartAltOutlinedIcon onClick={handleReset} />
+            <div className={'btn'} onClick={handleReset}>
+              <RestartAltOutlinedIcon />
+            </div>
           </div>
         </footer>
       </div>
@@ -279,49 +377,116 @@ const WheelOfLife = () => {
           <div className='modal-content large'>
             <h3>Instructions</h3>
             <div className='scrollable-text'>
+              <h4>Scoring</h4>
               <p>
-                <strong>1. Scoring:</strong> Click on any segment to rate that
-                area of your life from 0 (center) to 10 (outer edge). 10 being
-                teh highest score.
+                Click on any segment to rate that area of your life from 0
+                (center) to 10 (outer edge).
+              </p>
+              <h4>Visualising</h4>
+              <p>
+                Once all areas are scored, a shape will connect them,
+                visualizing your current life balance.
+              </p>
+              <h4>Balance</h4>
+              <p>The wheel is a visual "heads-up" of your life balance.</p>
+              <p>
+                The wheel (and if you save wheels over time) allows you to
+                visually see your life balance, and consider all aspects of your
+                life instead of rummaging around in your head for it.
               </p>
               <p>
-                <strong>2. Visualizing:</strong> Once all areas are scored, a
-                shape will connect them, visualizing your current life balance.
+                If areas of your life have a low score this is where your life
+                balance may do with a little help, if that's possible.
+              </p>
+              <p>If it isn't, that's cool - you're aware of it.</p>
+              <p>
+                If you score high on a few areas but low in the others it maybe
+                that you need a re-balance.
               </p>
               <p>
-                <strong>3. Saving:</strong> Check "Remember wheels" to save your
-                progress over time. <br /> <br />
-                Add wheels at different days and times to lg how you are doing
+                The wheel will change shape from time to time and that's
+                natural.{' '}
+              </p>
+              <h4>Saving</h4>
+              <p>
+                Check "Remember wheels" to save your progress over time. <br />{' '}
+                <br />
+                Add wheels at different days and times to log how you are doing
                 with your life balance.
               </p>
+              <h4>Comparison Mode</h4>
               <p>
-                <strong>4. Comparison Mode:</strong> If you have saved history,
-                click the layer icon to compare your wheels over time.
+                If you have saved history, click the layer icon to compare your
+                wheels over time.
               </p>
               <ul>
                 <li>
-                  <strong>Thick Line:</strong> Your average score over time.
+                  <strong>
+                    <u className='yellow-ul'>Thick Line:</u>
+                  </strong>{' '}
+                  Your average score over time.
                 </li>
                 <li>
-                  <strong>Ghost Lines:</strong> Your past entries. Red on a line
-                  = low score, Blue on a line = high score
-                </li>
-                <li>
-                  <strong>Arrows:</strong> Indicate the your current life
-                  balance compared to your average. <br /> <br />
-                  Blue pointing out means you are doing better than usual.{' '}
-                  <br /> <br />
-                  Red pointing in means you are below your average.
+                  <strong>
+                    <u className='yellow-ul'>Ghost Lines:</u>{' '}
+                  </strong>{' '}
+                  Your past entries. Red on a line = low score, Blue on a line =
+                  high score
                 </li>
               </ul>
+              <h4>Arrows</h4>
               <p>
+                Arrows indicate the your current life balance compared to your
+                average.
+              </p>
+              <p>
+                <strong>
+                  <u className='yellow-ul'>Blue arrow pointing out:</u>
+                </strong>
+                you are doing better than usual.
+              </p>
+              <p>
+                <strong>
+                  <u className='yellow-ul'>Red arrow pointing in:</u>
+                </strong>
+                you are below your average.
+              </p>
+              <p>
+                <strong>
+                  <u className='yellow-ul'>Arrow size:</u>
+                </strong>
+                bigger arrows = bigger change. Smaller arrows = smaller change.
+              </p>
+              <h4>Buttons</h4>
+              <p>
+                <DoneIcon />
+                <strong>
+                  <u className='orange-ul'>Tick button</u>
+                </strong>
                 The tick button will save your current wheel (You will need to
                 have checked "remember wheels")
               </p>
-              <p> The refresh button will clear your current wheel.</p>
-              <p>The delete button will delete all of your data</p>
               <p>
-                The layers button will toggle comparison mode and current wheel
+                <RestoreOutlinedIcon />
+                <strong>
+                  <u className='orange-ul'>Refresh button</u>
+                </strong>{' '}
+                The refresh button will clear your current wheel.
+              </p>
+              <p>
+                <DeleteForeverIcon />
+                <strong>
+                  <u className='orange-ul'>Delete button</u>
+                </strong>{' '}
+                The delete button will delete all of your data
+              </p>
+              <p>
+                <LayersIcon />
+                <strong>
+                  <u className='orange-ul'>Layers button</u>
+                </strong>
+                The layers button will toggle between comparison mode and
+                current wheel
               </p>
             </div>
             <button
@@ -435,19 +600,17 @@ const WheelCanvas = React.forwardRef(
           rotation += 180
         }
 
-        const scale = 2.5 + Math.abs(delta) / 4
-        const arrowColor = delta > 0 ? '#2e86de' : '#ff4d4d'
+        const scale = 1.5 + Math.abs(delta) / 0.35
+        const arrowColor = delta > 0 ? '#846eff' : '#ebb608'
 
-        // CENTERED ARROW PATH (Origin at 0,0)
-        // Stem is doubled in width (now 8 wide)
         const arrowPath = `
-            M -13 -4 
+            M -12 -4 
             L 1 -4 
-            L 1 -10 
-            L 13 0 
-            L 1 10 
+            L 1 -8 
+            L 12 0 
+            L 1 8 
             L 1 4 
-            L -13 4 
+            L -12 4 
             Z
         `
 
@@ -460,7 +623,7 @@ const WheelCanvas = React.forwardRef(
               d={arrowPath}
               fill={arrowColor}
               stroke='white'
-              strokeWidth='00'
+              strokeWidth='0.0'
             />
           </g>
         )
@@ -496,8 +659,8 @@ const WheelCanvas = React.forwardRef(
                 d={d}
                 fill='none'
                 stroke='url(#scoreGradient)'
-                strokeWidth='3'
-                strokeOpacity='0.5'
+                strokeWidth='14'
+                strokeOpacity='0.65'
                 className='history-line'
               />
             )
@@ -509,8 +672,8 @@ const WheelCanvas = React.forwardRef(
                 d={generatePathString(averages)}
                 fill='none'
                 stroke='#D8B4FE'
-                strokeWidth='5'
-                strokeOpacity='0.9'
+                strokeWidth='12'
+                strokeOpacity='0.6'
                 style={{
                   filter: 'drop-shadow(0 0 4px rgba(216, 180, 254, 0.6))',
                 }}
@@ -525,7 +688,7 @@ const WheelCanvas = React.forwardRef(
                   dominantBaseline='middle'
                   fill='#D8B4FE'
                   fontWeight='bold'
-                  fontSize='1.1rem'
+                  fontSize='1.5rem'
                   filter='url(#textBackground)'
                   style={{ pointerEvents: 'none' }}>
                   AVERAGE
@@ -594,7 +757,7 @@ const WheelCanvas = React.forwardRef(
           fill='url(#scoreGradient)'
           fillOpacity='0.2'
           stroke='url(#scoreGradient)'
-          strokeWidth='12'
+          strokeWidth='14'
           className='score-line-animated'
         />
       )
@@ -647,7 +810,7 @@ const WheelCanvas = React.forwardRef(
             key={`dot-${cat.id}-${score}`}
             cx={CENTER}
             cy={CENTER}
-            r={6}
+            r={14}
             className='score-dot-animated'
             style={{ '--dx': `${dx}px`, '--dy': `${dy}px` }}
           />
@@ -655,25 +818,96 @@ const WheelCanvas = React.forwardRef(
       })
     }
 
+    // --- REPLACED RENDER LABELS FUNCTION ---
     const renderLabels = () => {
       return categories.map((cat, i) => {
-        const midAngle = i * angleStep + angleStep / 2
-        const textRadius = MAX_RADIUS * 0.82
-        const pos = polarToCartesian(CENTER, CENTER, textRadius, midAngle)
+        // 1. Base Angle + Manual Rotation (angleAdjust)
+        // angleAdjust rotates the label position around the wheel center (along the rim)
+        const baseAngle = i * angleStep
+        const angle = baseAngle + (cat.angleAdjust || 0)
+
+        // 2. Position on the Rim
+        const r = MAX_RADIUS - 10
+        const pos = polarToCartesian(CENTER, CENTER, r, angle)
+
+        // 3. Text Rotation (Align with spoke)
+        let rotation = angle - 90
+
+        // 4. Split Lines
+        const lines = cat.label.split(',')
+        const LINE_HEIGHT_PX = 16 // Approx pixel height of one line
+        const stackHeight = (lines.length - 1) * LINE_HEIGHT_PX
+
+        // 5. Orientation Defaults
+        let textAnchor = 'end'
+        let isFlipped = false
+
+        // Check Left Side (90 to 270) based on the original segment angle
+        // We use baseAngle to ensure consistent flipping behavior regardless of small adjustments
+        if (baseAngle > 90 && baseAngle <= 270) {
+          rotation += 180
+          textAnchor = 'start'
+          isFlipped = true
+        }
+
+        // 6. Manual Flip Override
+        if (cat.rotate180) {
+          rotation += 180
+          textAnchor = textAnchor === 'start' ? 'end' : 'start'
+          isFlipped = !isFlipped
+        }
+
+        // 7. Calculate Y-Offset based on "edge" and "offset" props
+        // We calculate where the text block should start (y=0) relative to the anchor point.
+        // SVG Text grows downwards (Positive Y).
+
+        let yPos = 0
+        const userOffset = cat.offset || 0
+        const edge = cat.edge || 'middle' // default to middle if not specified
+
+        if (!isFlipped) {
+          // --- RIGHT SIDE (Standard) ---
+          // Text Top is at 0. Text Bottom is at stackHeight.
+          // Positive offset moves DOWN (Clockwise).
+
+          if (edge === 'top') {
+            // Top of text is at anchor + offset
+            yPos = userOffset
+          } else if (edge === 'middle') {
+            // Middle of text is at anchor + offset
+            yPos = userOffset - stackHeight / 2
+          } else if (edge === 'bottom') {
+            // Bottom of text is at anchor + offset
+            yPos = userOffset - stackHeight
+          }
+        } else {
+          // --- LEFT SIDE (Flipped) ---
+          // Text is rotated 180.
+          // Visually: Positive Y moves UP (Clockwise).
+          // But conceptually, we just apply the same logic relative to the text block.
+
+          if (edge === 'top') {
+            yPos = userOffset
+          } else if (edge === 'middle') {
+            yPos = userOffset - stackHeight / 2
+          } else if (edge === 'bottom') {
+            yPos = userOffset - stackHeight
+          }
+        }
 
         return (
-          <g key={`label-${cat.id}`}>
+          <g
+            key={`label-${cat.id}`}
+            transform={`translate(${pos.x}, ${pos.y})`}>
             <text
-              x={pos.x}
-              y={pos.y}
+              transform={`rotate(${rotation})`}
               className='category-label'
-              textAnchor='middle'
+              textAnchor={textAnchor}
               dominantBaseline='middle'
-              //   filter='url(#textBackground)'
-            >
-              {cat.label.split(', ').map((textLine, idx) => (
-                <tspan x={pos.x} dy={idx === 0 ? 0 : '1.2em'} key={idx}>
-                  {textLine}
+              y={yPos}>
+              {lines.map((line, idx) => (
+                <tspan x='0' dy={idx === 0 ? 0 : '1.1em'} key={idx}>
+                  {line.trim()}
                 </tspan>
               ))}
             </text>
@@ -691,27 +925,39 @@ const WheelCanvas = React.forwardRef(
             y={CENTER}
             textAnchor='middle'
             dominantBaseline='middle'
-            className='score-number-center' // Class for CSS styling
+            className='score-number-center'
             dy='7'>
             0
           </text>
 
-          {/* OUTER 10s */}
+          {/* OUTER SCORES */}
           {categories.map((cat, i) => {
             const midAngle = i * angleStep + angleStep / 2
-            const r = MAX_RADIUS + 30
+            // Radius adjustment to position the number ring
+            const r = MAX_RADIUS + 28
             const pos = polarToCartesian(CENTER, CENTER, r, midAngle)
+
+            // Get current score, default to 0 if not set
+            const currentScore = scores[cat.id] || 0
+
             return (
               <text
-                key={`score-10-${cat.id}`}
+                key={`score-label-${cat.id}`}
                 x={pos.x}
                 y={pos.y}
                 textAnchor='middle'
                 dominantBaseline='middle'
-                className='score-number-outer' // Class for CSS styling
-              >
-                {' '}
-                10{' '}
+                className='score-number-outer'>
+                {/* LINE 1: User's Score (Shifted up slightly) */}
+                <tspan className='user-score' x={pos.x} dy='-0.3em'>
+                  {currentScore}
+                </tspan>
+
+                {/* LINE 2: The "/ 10" (Shifted down) */}
+                {/* Note: We reset x to pos.x to center it under the top line */}
+                <tspan className='max-score-group' x={pos.x} dy='1.2em'>
+                  / 10
+                </tspan>
               </text>
             )
           })}
@@ -729,7 +975,7 @@ const WheelCanvas = React.forwardRef(
           <style>
             {`
               .category-label, .score-numbers-layer text {
-                font-family: Plus Jakarta Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
               }
             `}
           </style>
@@ -741,9 +987,9 @@ const WheelCanvas = React.forwardRef(
             r={MAX_RADIUS}
             fx={CENTER}
             fy={CENTER}>
-            <stop offset='10%' stopColor='#b90000' />
-            <stop offset='50%' stopColor='#ffac13' />
-            <stop offset='90%' stopColor='#0300af' />
+            <stop offset='0%' stopColor='#ff0505ff' />
+            <stop offset='50%' stopColor='#ff9f43ff' />
+            <stop offset='100%' stopColor='#0f0161ff' />
           </radialGradient>
 
           <filter
@@ -753,7 +999,7 @@ const WheelCanvas = React.forwardRef(
             height='1.2'
             id='textBackground'>
             <feFlood
-              floodColor={isCompareMode ? '#b14a4a' : '#fff'}
+              floodColor={isCompareMode ? '#333' : '#fff'}
               floodOpacity='0.85'
               result='bg'
             />
@@ -781,18 +1027,13 @@ const WheelCanvas = React.forwardRef(
           </filter>
         </defs>
 
-        <rect
-          x='0'
-          y='0'
-          width={SVG_SIZE}
-          height={SVG_SIZE}
-          className='svg-bg'
-        />
+        {/* ... rect background ... */}
+
         <g className='segments-layer'>{renderInteractiveSegments()}</g>
         <g className='grid-layer' pointerEvents='none'>
           {renderGrid()}
         </g>
-        {renderScoreNumbers()}
+
         <g className='comparison-layer' pointerEvents='none'>
           {renderComparisonStack()}
         </g>
@@ -802,9 +1043,12 @@ const WheelCanvas = React.forwardRef(
         <g className='dots-layer' pointerEvents='none'>
           {renderDots()}
         </g>
+
+        {/* LABELS LAYER */}
         <g className='labels-layer' pointerEvents='none'>
           {renderLabels()}
         </g>
+        {renderScoreNumbers()}
       </svg>
     )
   },

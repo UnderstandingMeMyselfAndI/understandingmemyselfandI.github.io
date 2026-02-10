@@ -46,8 +46,6 @@ const VerticalTimeline = () => {
   }, [show, activitiesById, id, setIsModal])
 
   useEffect(() => {
-    console.log('showConfirm activity', activity)
-    console.log('showConfirm id === activity', id === activity)
     setShow(id === activity)
     setShowConfirm(id === activity)
   }, [activity])
