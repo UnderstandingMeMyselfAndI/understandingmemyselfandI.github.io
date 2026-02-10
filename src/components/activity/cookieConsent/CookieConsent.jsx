@@ -28,8 +28,8 @@ const CookieConsent = () => {
   const loadScripts = (consentData) => {
     const id = 'G-YWBEQ7E972'
 
-    console.log('loadScripts consentData ', consentData)
-    console.log('loadScripts window.GA_INITIALIZED ', window.GA_INITIALIZED)
+    // console.log('loadScripts consentData ', consentData)
+    // console.log('loadScripts window.GA_INITIALIZED ', window.GA_INITIALIZED)
 
     if (consentData.analytics && !window.GA_INITIALIZED) {
       var head = document.getElementsByTagName('head')[0]
@@ -118,7 +118,7 @@ const CookieConsent = () => {
           <div className='cookie-banner-content'>
             <div className='cookie-banner-header'>
               <div className='cookie-banner-text'>
-                <h2 className='cookie-banner-title'>Yum. Our Cookies.</h2>
+                <h2 className='cookie-banner-title'>Our Cookies. Yum. </h2>
                 <h4 className='cookie-banner-title-sml'>
                   We Value Your Privacy
                 </h4>

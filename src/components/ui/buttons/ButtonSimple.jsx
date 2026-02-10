@@ -1,12 +1,13 @@
 import './buttonStyles.css'
 import PropTypes from 'prop-types'
+import parse from 'html-react-parser'
 
 const ButtonSimple = ({ label = '', classes = [], handleClick }) => {
   return (
     <button
       className={'btn' + classes.map((c) => ' ' + c)}
       onClick={handleClick}>
-      {label}
+      {parse(label)}
     </button>
   )
 }

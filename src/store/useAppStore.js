@@ -19,8 +19,22 @@ const indexedDBStorage = {
 const useAppStore = create(
   persist(
     (set, get) => ({
-      //toolAdded: false,
-      //active: false,
+      // --- WHEEL OF LIFE HISTORY ---
+      wheelHistory: [],
+      rememberWheels: false,
+
+      setRememberWheels: (v) => set(() => ({ rememberWheels: v })),
+
+      saveWheelEntry: (entry) => set((state) => ({ 
+        wheelHistory: [...state.wheelHistory, { ...entry, date: new Date().toISOString() }] 
+      })),
+
+      removeWheelEntry: (index) => set((state) => ({
+        wheelHistory: state.wheelHistory.filter((_, i) => i !== index)
+      })),
+
+      clearWheelHistory: () => set(() => ({ wheelHistory: [] })),
+      // -----------------------------
       // ----------------------------------------
       // Last Version Check
       lvc: '',
@@ -287,7 +301,7 @@ const useAppStore = create(
       // Activity ID
       activity: -1,
       setActivity: (v) => {
-        // console.trace(`setActivity called with value: ${v}`);
+        console.trace(`setActivity called with value: ${v}`);
         set(() => ({ activity: v }));
       },
       // ----------------------------------------
@@ -390,6 +404,10 @@ const useAppStore = create(
         lastVersionCheck: state.lastVersionCheck,
         spv: state.spv,
         gae: state.gae,
+
+        
+        wheelHistory: state.wheelHistory,
+        rememberWheels: state.rememberWheels,
       }),
       onRehydrateStorage: () => (state) => {
         state.setHasHydrated(true)

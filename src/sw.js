@@ -1,12 +1,39 @@
 /* eslint-env serviceworker */
+// 1. DISABLE WORKBOX LOGS HERE (Must be before imports)
+self.__WB_DISABLE_DEV_LOGS = true;
 import { precacheAndRoute, cleanupOutdatedCaches, createHandlerBoundToURL } from 'workbox-precaching';
 import { registerRoute, NavigationRoute } from 'workbox-routing';
+import { CacheFirst } from 'workbox-strategies';
+// 1. Import setConfig
+import { ExpirationPlugin } from 'workbox-expiration'; // <--- Optional: limits cache size
 import { openDB } from 'idb';
 
-// 1. Caching & Offline Support
-// This replaces self.__WB_MANIFEST with the list of files to cache
-precacheAndRoute(self.__WB_MANIFEST);
+// Disable debug logs
+
+
+// Caching & Offline Support
+
+precacheAndRoute(self.__WB_MANIFEST); 
+//  uses these globpatterns in vite config for assets injectManifest: {
+//         // This is crucial for offline support and background images
+//         globPatterns: ['index.html', '**/*.{js,css}'],
+//         globIgnores: ['**/dev/**'],
+//       },
 cleanupOutdatedCaches();
+
+// Handle images (bgs, icons) that are not precached
+registerRoute(
+  ({ request }) => request.destination === 'image',
+  new CacheFirst({
+    cacheName: 'images-cache',
+    plugins: [
+      // new ExpirationPlugin({
+      //   maxEntries: 50,
+      //   maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+      // }),
+    ],
+  })
+);
 
 // This allows the SPA to work offline by serving index.html for navigation
 try {
@@ -14,7 +41,7 @@ try {
   const navigationRoute = new NavigationRoute(handler);
   registerRoute(navigationRoute);
 } catch (error) {
-  console.warn('Navigation route registration failed (this is normal in development if index.html is not precached):', error);
+  // console.warn('Navigation route registration failed (this is normal in development if index.html is not precached):', error);
 }
 
 // 2. The Daily Image Alarm logic (Background Push)

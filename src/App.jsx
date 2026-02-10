@@ -35,7 +35,7 @@ import Lingo from './components/activity/lingo/Lingo'
 import UnitsCalculator from './components/activity/unitsCalculator/UnitsCalculator'
 import UnitsCalculatorCTA from './components/activity/unitsCalculator/UnitsCalculatorCTA'
 import WallpaperGallery from './components/activity/wallpapers/WallpaperGallery'
-
+import WheelOfLife from './components/activity/wheeloflife/WheelOfLife'
 import VerticalTimeline from './components/activity/timeline/VerticalTimeline'
 import { runPersistentStorageTests } from './js/utils.js'
 import './App.scss'
@@ -74,7 +74,7 @@ function App() {
   return (
     <div>
       <div className='main'>
-        {/* <div className='dev-version'>Development Version.</div> */}
+        <div className='dev-version'>Development Version.</div>
         <AppMenu />
 
         {quickExitEnabled && <Exit />}
@@ -83,15 +83,15 @@ function App() {
           <div className='vertical'></div>
           <div className='horizontal'></div>
         </div> */}
-        {/* <div className='dev-version'>Development Version.</div> */}
 
-        {/* <RecoveryTimelineParent /> */}
-        {/* <Header /> */}
-        {/* <Introduction /> */}
-        {/* <WallpaperGallery /> */}
+        <WheelOfLife />
+
+        {/* <Header />
+        <Introduction />
+        <WallpaperGallery />
         <VerticalTimeline />
-        {/* <Tools /> */}
-        {/* <PrivacyPolicy />
+        <Tools />
+        <PrivacyPolicy />
 
         <ToolsCTA />
         {daysCounterEnabled && <DaysCounterCTA />}
@@ -105,14 +105,14 @@ function App() {
         <Footer /> */}
 
         {/* <Motivation /> */}
-        {/* {quickExitEnabled && <Exit />} */}
+        {/* {quickExitEnabled && <Exit />}
         {unitsCalculatorEnabled && <UnitsCalculator />}
         {daysCounterEnabled && <DaysCounter />}
         <AcronymExplained />
         <Settings />
 
         <SnackBars />
-        <ScrollPosition />
+        <ScrollPosition /> */}
       </div>
       <Backdrop
         initialImageId={2}

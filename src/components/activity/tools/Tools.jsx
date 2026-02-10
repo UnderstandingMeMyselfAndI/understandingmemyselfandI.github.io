@@ -48,7 +48,6 @@ const Tools = () => {
   const setIsModal = useAppStore((s) => s.setIsModal)
   // const isModal = useAppStore((s) => s.isModal)
   useEffect(() => {
-    console.log('tools modal ', activitiesById[id]?.modal)
     open && setIsModal(activitiesById[id]?.modal)
   }, [open, setIsModal, id, activitiesById])
 

@@ -48,16 +48,17 @@ body {
   }
 
   h2.cookie-banner-title {
-    font-size: variables.$h4_size;
+    font-size: variables.$h3_size;
     font-weight: 800;
     font-variation-settings: "wght" 800;
     color: var(--blue);
     margin-bottom: 0.5rem;
   }
 
-  h4 {
-    font-size: variables.$p_size;
-    color: var(--blue);
+  .cookie-banner-title-sml,
+  h4.cookie-banner-title-sml {
+    font-size: variables.$h5_size;
+    color: var(--greyMid);
   }
 
   .cookie-banner-description {

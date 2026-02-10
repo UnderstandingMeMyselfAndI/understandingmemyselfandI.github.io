@@ -103,7 +103,7 @@ export function extractYouTubeId(url) {
 
 export function setBrowserHistory(url, title) {
   // A console.log can be useful for debugging, but should be removed for production
-  console.trace('setBrowserHistory url ', url, ' title ', title)
+//   console.trace('setBrowserHistory url ', url, ' title ', title)
    if(title && typeof title === 'string' && !isEmpty(title.length)){
 	document.title = title
   } 

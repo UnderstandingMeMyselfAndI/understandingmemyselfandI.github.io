@@ -51,7 +51,9 @@ export default function AppMenu() {
   const handleClose = (obj) => {
     setOpen(false)
   }
-
+  useEffect(() => {
+    console.log('menu showMenu', showMenu)
+  }, [showMenu])
   function findActivityObj(id) {
     const obj = activities.find((a) =>
       parseInt(a.id) === parseInt(id) ? id : null,
@@ -65,6 +67,7 @@ export default function AppMenu() {
     )
     const showMenu = activity === -1 ? true : obj.modal ? false : true
     setShowMenu(showMenu)
+    console.log('useEffect activity ', activity)
     if (obj) {
       setOpenMenu(obj.menu)
     }

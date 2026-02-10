@@ -1,6 +1,7 @@
 import HandymanIcon from '@mui/icons-material/Handyman';
 import {isTouchDevice} from '@/js/utils.js';
 import useAppStore from '@/store/useAppStore'
+
 // import { title } from "process";
 const cnf = {
   appName: 'Ummi',
@@ -277,12 +278,23 @@ const baseActivities = [
    {
     id: 20,
     url: 'your-privacy-cta',
-    title: 'Yoyr Privacy',
+    title: 'Your Privacy',
     menuPosition: 20,
     menu: false,
     modal: false,
     classes: '',
     anchorID:'your-privacy-cta',
+    conditions:[],
+  },
+   {
+    id: 21,
+    url: 'recovery-timeline',
+    title: 'Recovery Timeline',
+    menuPosition: 3,
+    menu: true,
+    modal: true,
+    classes: 'new',
+    anchorID:'',
     conditions:[],
   },
 ];
@@ -580,6 +592,34 @@ const strings = {
             used:'',
           },
       },
+    },
+    {
+      name: 'recovery-timeline',
+      title: 'Detox &amp; Recovery Timeline',
+     
+      slug: 'recovery-timeline',
+      url: 'recovery-timeline',
+      anchorID: '',
+      content:  [
+        'The timeline provides support information describing the emotional and physical recovery process. ','Everybody is different so not everyone will experience the same symptoms during the process.','<b>Scroll down to explore the timeline</b>'],
+      confirm:{
+        title: 'Detox &amp; Recovery Timeline',
+        instruction: '<p>The information provided in the Recovery Timeline is for <u><b>support purposes only</b></u> and should not be considered as <b><u>advice</u></b>. </p><p>If you are seeking <b><u>medical or recovery advice</u></b> please consult a qualified professional such as a <b><u class="yellow-ul">key worker or medical professional</u></b>.</p>',
+        confirmBtnLabel: 'I understand <br />let\'s go',
+        cancelBtnLabel: 'Get me <br />out of here',
+      },
+     
+      cta: {       
+        title: 'Recovery Timeline',
+        content: [          
+          ''],
+        btn: {
+          label: {
+            unused:'View the Recovery Timeline ',
+            used:'View the Recovery Timeline',
+          }
+        },
+      }
     },
   ],
   toolbox: {

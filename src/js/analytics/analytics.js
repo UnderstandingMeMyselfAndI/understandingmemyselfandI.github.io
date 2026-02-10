@@ -14,7 +14,7 @@ export const trackEvent = (eventName, params = {}, shouldTrack) => {
 	if (typeof window !== 'undefined' && window.gtag) {
 		window.gtag('event', eventName, params)
 		if (process.env.NODE_ENV === 'development') {
-			console.log('[Analytics] Event sent:', eventName, params)
+			// console.log('[Analytics] Event sent:', eventName, params)
 		}
 	} else {
 		console.warn('[Analytics] gtag not available – event not sent:', eventName)

@@ -9,6 +9,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 import getDynamicRoutes from './getDynamicRoutes.js';
 import browserslist from 'browserslist';
 import { browserslistToTargets } from 'lightningcss';
+import { nodePolyfills } from 'vite-plugin-node-polyfills';
 //version meta data
 const metadata = JSON.parse(fs.readFileSync('./src/metadata.json', 'utf-8'));
 
@@ -63,6 +64,7 @@ export default defineConfig({
   },
   plugins: [
     react(),
+    nodePolyfills(),
     analyzer({
       analyzerMode: 'static',
       open: false,

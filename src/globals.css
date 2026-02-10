@@ -19,7 +19,6 @@
   --backgroundGrayTrans30: rgba(10, 10, 10, 0.3);
   --backgroundGrayTrans35: rgba(10, 10, 10, 0.35);
   --backgroundGrayTrans40: rgba(10, 10, 10, 0.4);
-
   --backgroundGrayTrans45: rgba(10, 10, 10, 0.45);
   --backgroundGrayTrans50: rgba(10, 10, 10, 0.5);
   --backgroundGrayTrans75: rgba(10, 10, 10, 0.75);
@@ -87,7 +86,6 @@
   --blueDark30Trans: rgba(30, 24, 75, 0.3);
   --blueDark20Trans: rgba(30, 24, 75, 0.2);
   --blueDark10Trans: rgba(30, 24, 75, 0.1);
-
   --blueDarkDark90Trans: rgba(20, 14, 45, 0.9);
   --blueDarkDark90Trans: rgba(20, 14, 45, 0.8);
   --blueDarkDark70Trans: rgba(20, 14, 45, 0.7);
@@ -99,6 +97,16 @@
   --blueDarkDark10Trans: rgba(20, 14, 45, 0.1);
 
   --lightGrey: #ccc;
+  --lightGrey90Trans: rgb(204, 204, 204, 0.9);
+  --lightGrey80Trans: rgb(204, 204, 204, 0.8);
+  --lightGrey70Trans: rgb(204, 204, 204, 0.7);
+  --lightGrey60Trans: rgb(204, 204, 204, 0.6);
+  --lightGrey50Trans: rgb(204, 204, 204, 0.5);
+  --lightGrey40Trans: rgb(204, 204, 204, 0.4);
+  --lightGrey30Trans: rgb(204, 204, 204, 0.3);
+  --lightGrey20Trans: rgb(204, 204, 204, 0.2);
+  --lightGrey10Trans: rgb(204, 204, 204, 0.1);
+
   --lighGreyBg: #819ec9;
   --red: #e83737;
   --green: #257e94;
@@ -115,6 +123,7 @@
   --greyLight: #7a7a7a;
   --greyLight2: #535353;
   --greyMid: #535353;
+  --greyMed: #535353;
   --grey: #999;
 
   --card: oklch(0.205 0 0);

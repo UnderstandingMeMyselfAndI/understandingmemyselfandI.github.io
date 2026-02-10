@@ -6,9 +6,8 @@
 // --- RESET & BASICS ---
 
 
-div#activity-timeline {
-    z-index: 200000;
-    visibility: visible;
+div#recovery-timeline {
+    position: fixed;
     pointer-events: all;
     background: var(--backgroundActivity);
     width: 100dvw;
@@ -17,14 +16,13 @@ div#activity-timeline {
     min-width: 100dvw;
     max-width: 100dvw;
     display: flex;
-    position: fixed;
+
     left: 0;
-    // transform: translate(-50%);
-
-
-
-
     overflow: hidden;
+
+    button.close-btn {
+        right: 2rem;
+    }
 
     &:after {
         content: '';
@@ -157,8 +155,8 @@ $minimap-w: 50px;
     width: 10px; // Width of the column
     height: 100%; // Spans full viewport height
     z-index: -1; // Above background (0), Below events (10)
+    z-index: 1;
     pointer-events: none;
-    // margin-left: -30px;
     // Create the dots using a repeating gradient
     // This creates a 2px circle every 20px of height
     background-image: radial-gradient(circle,
@@ -172,11 +170,99 @@ $minimap-w: 50px;
     -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
     mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
 
-    @media (width >768px) {
-        transform: translateX(calc(-50% - 30px));
+    @media (width <=425px) {
+        transform: translateX(calc(-50% - 15px));
 
     }
 }
+
+
+
+// ... existing styles ...
+
+// --- INTRO SECTION ---
+.intro-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    /* Fallback */
+    height: 100dvh;
+    /* Mobile Full Height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    text-align: center;
+}
+
+.intro-content {
+    opacity: 0;
+    animation: fadeIn 1.5s ease forwards;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    row-gap: 2rem;
+
+    h1 {
+        font-size: clamp(3rem, 8vw, 6rem);
+        color: var(--lightBlue80Trans);
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        text-decoration: underline;
+        text-decoration-color: var(--orange30Trans);
+        text-decoration-thickness: 65%;
+        text-underline-offset: -45.5%;
+        text-decoration-skip-ink: none;
+    }
+
+    p {
+        font-size: 1rem;
+        color: #bbb;
+        margin: 0;
+        max-width: var(--max-width);
+    }
+
+}
+
+.scroll-indicator {
+    font-size: 2.75rem;
+    color: var(--orange70Trans);
+    animation: bounce 2s infinite;
+    width: 100%;
+    font-weight: 700;
+    font-variation-settings: 'wght' 700;
+    margin-left: -4px;
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+
 
 // --- SCROLL CONTAINER ---
 .main-scroll-container {
@@ -185,11 +271,14 @@ $minimap-w: 50px;
     overflow-y: auto;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    padding-right: 60px; // Space for minimap on desktop
+    // Space for minimap on desktop
 
 
-    @media (max-width: 768px) {
-        padding-right: 0; // Full width on mobile
+
+
+    @media (width <=425px) {
+        padding-right: 30px;
+
     }
 
     // Hide Scrollbars
@@ -314,7 +403,7 @@ $minimap-w: 50px;
 }
 
 .event-card {
-    background: $card-bg;
+    background: var(--blue60Trans);
     padding: 2rem 1rem;
     max-width: 325px;
     width: 100%;
