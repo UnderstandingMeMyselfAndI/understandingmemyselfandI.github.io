@@ -1,49 +1,21 @@
 @use '@/scss/variables';
 @import '@/globals.css';
 
-.activity-wallpapers-cta {
-    position: relative;
-    border-radius: var(--border-radius);
-    margin: 0 auto;
+body div.main section.activity-wallpapers-cta div.cta {
+  .cta-content {
+    text-shadow: var(--textShadowDarkStrong);
+    font-weight: 400;
+    font-variation-settings: 'wght' 400;
+  }
 
-    .cta-content {
-        text-shadow: var(--textShadowDarkStrong);
-        font-weight: 400;
-        font-variation-settings: 'wght' 400;
+  //
+  .bg-img {
+    opacity: 0.5;
+
+    img {
+      opacity: 0.85;
     }
 
-    //
-    .bg-img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        border-radius: var(--border-radius);
-
-        overflow: hidden;
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.35;
-        }
-
-        &::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--orange);
-            border-radius: var(--border-radius);
-            opacity: 1;
-            z-index: -1;
-        }
-
-        background-color:var(--lightBlue)
-    }
+    background-color: var(--lightBlue);
+  }
 }

@@ -1,0 +1,32 @@
+@use '@/scss/variables';
+@import '@/globals.css';
+
+body div.main section.activity-wheel-of-life-cta div.cta {
+  div.inner {
+    u {
+      text-decoration-color: var(--orange50Trans);
+
+      h3.title {
+        color: var(--primary);
+        text-align: right;
+        // outline: 1px solid #ccc;
+      }
+    }
+
+    .cta-content {
+      p {
+        text-align: right;
+      }
+    }
+
+    background-color: var(--blueDark10Trans);
+  }
+
+  .bg-img {
+    opacity: 0.5;
+
+    img {
+      opacity: 0.5;
+    }
+  }
+}

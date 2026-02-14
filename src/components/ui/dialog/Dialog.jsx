@@ -44,7 +44,8 @@ const Dialog = ({
     <div
       className={
         'dialog-backdrop' + (open ? '  show' : '') + classes.map((c) => ' ' + c)
-      }>
+      }
+    >
       <div className='dialog'>
         <div className='dialog-inner'>
           <div className='dialog-title'>{title}</div>

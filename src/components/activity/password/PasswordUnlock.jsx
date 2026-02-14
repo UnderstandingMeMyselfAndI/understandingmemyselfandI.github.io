@@ -1,19 +1,19 @@
-import { useState } from 'react';
-import { setPasswordKey } from '../utils/idbEncryptedStorage';
+import { useState } from 'react'
+import { setPasswordKey } from '../utils/idbEncryptedStorage'
 
 export default function PasswordUnlock({ onSuccess }) {
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
-      await setPasswordKey(password); // will allow decryption of IndexedDB
-      onSuccess();
+      await setPasswordKey(password) // will allow decryption of IndexedDB
+      onSuccess()
     } catch {
-      setError('Incorrect password or corrupted data.');
+      setError('Incorrect password or corrupted data.')
     }
-  };
+  }
 
   return (
     <div className='password-unlock'>
@@ -33,5 +33,5 @@ export default function PasswordUnlock({ onSuccess }) {
         <button type='submit'>Unlock</button>
       </form>
     </div>
-  );
+  )
 }

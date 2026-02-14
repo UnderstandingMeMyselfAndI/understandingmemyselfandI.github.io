@@ -1,12 +1,12 @@
-import { useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
-import { clamp } from '@/js/utils.js';
-import FitText from './FitText';
-import './Motivation.css';
+import { useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useGSAP } from '@gsap/react'
+import { clamp } from '@/js/utils.js'
+import FitText from './FitText'
+import './Motivation.css'
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger)
 
 const Motivation = () => {
   const phrases = [
@@ -48,31 +48,31 @@ const Motivation = () => {
     'YOU ARE STRONG TO FACE IT',
     'THERE IS ALWAYS HOPE',
     'DONT COUNT THE DAYS, MAKE THE DAYS COUNT',
-  ].flatMap((phrase) => phrase.split(' '));
+  ].flatMap((phrase) => phrase.split(' '))
 
-  const container = useRef(null);
-  const wordsRefs = useRef([]);
-  wordsRefs.current = [];
+  const container = useRef(null)
+  const wordsRefs = useRef([])
+  wordsRefs.current = []
 
   const addToRefs = (el) => {
     if (el && !wordsRefs.current.includes(el)) {
-      wordsRefs.current.push(el);
+      wordsRefs.current.push(el)
     }
-  };
+  }
   function floatToRadians(value) {
     // Multiply the 0-1 value by 2 * PI to get radians (0 to 2*PI)
-    return value * Math.PI * 2;
+    return value * Math.PI * 2
   }
   function clamp(input, min, max) {
-    return input < min ? min : input > max ? max : input;
+    return input < min ? min : input > max ? max : input
   }
   function map(current, in_min, in_max, out_min, out_max) {
     const mapped =
-      ((current - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
-    return clamp(mapped, out_min, out_max);
+      ((current - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
+    return clamp(mapped, out_min, out_max)
   }
-  const boundingBox = document.querySelector('.motivation-trigger');
-  console.log('boundingBox', boundingBox);
+  const boundingBox = document.querySelector('.motivation-trigger')
+  console.log('boundingBox', boundingBox)
   useGSAP(
     () => {
       wordsRefs.current.forEach((word, i) => {
@@ -87,12 +87,12 @@ const Motivation = () => {
             markers: i == 0 ? true : false,
             id: 'word',
             onUpdate: (self) => {
-              const progress = self.progress;
+              const progress = self.progress
 
-              const rotation = Math.cos(floatToRadians(progress)) * -89;
-              const opacity = 1 - Math.abs(Math.cos(floatToRadians(progress)));
+              const rotation = Math.cos(floatToRadians(progress)) * -89
+              const opacity = 1 - Math.abs(Math.cos(floatToRadians(progress)))
               //map(Math.abs(progress), -1, 1, 0, 1);
-              const scale = Math.sin(floatToRadians(progress));
+              const scale = Math.sin(floatToRadians(progress))
               //map(Math.abs(progress), -1, 1, -1, 1);
               if (i == 0) {
                 // console.log(
@@ -109,7 +109,7 @@ const Motivation = () => {
                   i,
                   ' ',
                   Math.abs(Math.sin(floatToRadians(progress))),
-                );
+                )
               }
 
               // console.log('rotation ', i, ' ', rotation);
@@ -125,16 +125,16 @@ const Motivation = () => {
                 // marginTop: Math.cos(floatToRadians(progress)) * -35,
                 paddingBottom: 0,
                 paddingTop: 0,
-              });
+              })
             },
           },
           y: 0,
           ease: 'none',
-        });
-      });
+        })
+      })
     },
     { scope: container },
-  );
+  )
 
   return (
     <div id='motivation' className='activity motivation-wrapper'>
@@ -155,7 +155,7 @@ const Motivation = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Motivation;
+export default Motivation

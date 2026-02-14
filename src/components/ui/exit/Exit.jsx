@@ -17,7 +17,7 @@ const Exit = () => {
   )
 
   const message =
-    '<p>Your privacy matters.</p><p>This button lets you leave the app immediately and open a neutral website if you need to.</p><p>Use it whenever that feels helpful.</p>'
+    '<p>Your privacy matters.</p><p>This button lets you leave the app immediately and open google.com if you need to.</p><p>Use it whenever that feels helpful.</p><p>This message can be turned off below and also controlled in settings.</p>'
 
   const checkBoxInstruction = '<p>Show this message again</p>'
 
@@ -76,7 +76,8 @@ const Exit = () => {
           onCancel={handleDialogueCancel}
           confirmLabel='Continue'
           cancelLabel='Back'
-          classes={['exit-dialog']}>
+          classes={['exit-dialog']}
+        >
           <div className='checkBox-row'>
             <input
               type='checkbox'

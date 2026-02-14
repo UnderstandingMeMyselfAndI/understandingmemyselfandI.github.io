@@ -8,7 +8,7 @@ html {
   padding: 0;
   margin: 0;
   background: #000;
-
+  font-size: 16px;
 }
 
 html,
@@ -64,8 +64,6 @@ body {
     margin: 0.75rem 0 1.5rem 0;
   }
 
-
-
   .backdrop {
     width: 102%;
     position: fixed;
@@ -85,7 +83,6 @@ body {
     box-shadow: 0px 0px 12px 3px rgba(10, 10, 10, 0.25);
     padding: 0.75rem 2.25rem 0.75rem 1.5rem;
 
-
     &:focus,
     &:focus-within,
     &:hover,
@@ -94,7 +91,6 @@ body {
       border: none;
       -webkit-tap-highlight-color: transparent;
     }
-
   }
 
   .new,
@@ -186,7 +182,6 @@ body {
       // outline: 1px solid #ccc;
       pointer-events: none;
 
-
       z-index: -10;
       top: 0;
       left: 0;
@@ -198,14 +193,10 @@ body {
       width: 100dvw;
       // min-height: 60dvh;
 
-
-
       flex-flow: column wrap;
       align-content: center;
       align-items: center;
       justify-content: center;
-      // outline: 1px solid yellow;
-      // display: none;
 
       button.close-btn {
         position: absolute;
@@ -220,16 +211,11 @@ body {
         visibility: hidden;
         z-index: -10;
         pointer-events: none;
-
       }
 
       &.fixed {
         position: fixed;
-        // left: 50%;
-        // top: 50%;
-        // transform: translate(-50%, -50%);
       }
-
 
       &.open,
       &.show {
@@ -238,15 +224,10 @@ body {
         z-index: 6000;
         display: flex;
         align-content: center;
-        // outline: 1px solid #ccc;
       }
 
-
       header {
-        // flex: 0;
-
         width: 100%;
-
 
         h2 {
           margin: 0;
@@ -262,11 +243,9 @@ body {
           font-size: variables.$med_size;
         }
       }
-
-
     }
 
-    >.inner {
+    > .inner {
       width: 100%;
 
       .content {
@@ -306,15 +285,10 @@ body {
   }
 
   .ummi {
-    // font-weight: 800;
-    // font-variation-settings: 'wght' 800;
     color: var(--lightBlue);
-    // font-size: variables.$ummi_size;
   }
 
   .ummi-blue {
-    // font-weight: 800;
-    // font-variation-settings: 'wght' 800;
     color: var(--lightBlue);
   }
 
@@ -323,13 +297,11 @@ body {
   .blue-ul,
   .orange-ul,
   .white-ul {
-
     width: auto;
     text-decoration-color: var(--lightBlue50Trans);
     text-decoration-thickness: 45%;
     text-underline-offset: -25.5%;
     text-decoration-skip-ink: none;
-
   }
 
   .yellow-ul {
@@ -341,7 +313,6 @@ body {
   }
 
   .orange-ul {
-
     text-decoration-color: var(--orange40Trans);
   }
 
@@ -370,7 +341,6 @@ body {
   }
 
   section {
-
     .title,
     h4 {
       text-decoration-thickness: 4px;
@@ -390,7 +360,6 @@ body {
       font-variation-settings: 'wght' 800;
     }
   }
-
 
   .orange {
     color: var(--orange);
@@ -446,7 +415,6 @@ button:focus-visible {
 }
 
 section {
-
   text-shadow: 0 0px 6px rgba(0, 0, 0, 0.4);
 }
 

@@ -76,9 +76,11 @@
     bottom: 0;
     right: 0;
     pointer-events: none;
-    background: radial-gradient(circle,
-        rgba(0, 0, 0, 0.05) 40%,
-        rgba(0, 0, 0, 0.4) 80%);
+    background: radial-gradient(
+      circle,
+      rgba(0, 0, 0, 0.05) 40%,
+      rgba(0, 0, 0, 0.4) 80%
+    );
     z-index: 3;
   }
 }

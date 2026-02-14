@@ -1,262 +1,248 @@
-@use "@/scss/_variables.scss";
-@import "@/globals.css";
-
-
+@use '@/scss/_variables.scss';
+@import '@/globals.css';
 
 .version-footer {
-	font-size: 1rem;
-	padding: 2rem 0;
+  font-size: 1rem;
+  padding: 2rem 0;
 }
 
 .sf-footer-version {
-	font-size: variables.$small_size;
-	font-weight: 300;
-	color: var(--grey);
+  font-size: variables.$small_size;
+  font-weight: 300;
+  color: var(--grey);
 }
 
 .update {
-	color: var(--primary);
-	margin: 0 0.25rem;
-	font-weight: 600;
+  color: var(--primary);
+  margin: 0 0.25rem;
+  font-weight: 600;
 }
 
 #share {
-	scroll-margin-top: 20vh;
+  scroll-margin-top: 20vh;
 }
 
-
 div.activity-footer {
-	display: flex;
-	flex-flow: column nowrap;
-	row-gap: 8rem;
-	margin: 0 auto;
-	color: var(--primary);
-	text-align: center;
-	width: 90%;
-	max-width: var(--max-width);
-	background-color: transparent;
-	line-height: 1.5;
-	word-wrap: wrap;
-	;
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 8rem;
+  margin: 0 auto;
+  color: var(--primary);
+  text-align: center;
+  width: 90%;
+  max-width: var(--max-width);
+  background-color: transparent;
+  line-height: 1.5;
+  word-wrap: wrap;
+  section {
+    max-width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
+    row-gap: 1rem;
+  }
 
-	section {
-		max-width: 80%;
-		margin: 0 auto;
-		display: flex;
-		flex-flow: column nowrap;
-		row-gap: 1rem;
+  section#feedback,
+  section#daysCounter,
+  section#share,
+  section#installInstructions,
+  section#gratitude {
+    scroll-padding-top: 260px;
+  }
 
-	}
+  h1 {
+    font-size: variables.$h1_size;
+    font-weight: variables.$h1_weight;
+  }
 
-	section#feedback,
-	section#daysCounter,
-	section#share,
-	section#installInstructions,
-	section#gratitude {
-		scroll-padding-top: 260px;
-	}
+  h2 {
+    font-size: variables.$h2_size;
+    font-weight: variables.$h2_weight;
+  }
 
-	h1 {
-		font-size: variables.$h1_size;
-		font-weight: variables.$h1_weight;
-	}
+  h3 {
+    font-size: variables.$h3_size;
+    font-weight: variables.$h3_weight;
+  }
 
-	h2 {
-		font-size: variables.$h2_size;
-		font-weight: variables.$h2_weight;
-	}
+  h4 {
+    font-size: variables.$h4_size;
+    font-weight: variables.$h4_weight;
+  }
 
-	h3 {
-		font-size: variables.$h3_size;
-		font-weight: variables.$h3_weight;
-	}
+  h5 {
+    font-size: variables.$h5_size;
+    font-weight: variables.$h5_weight;
+  }
 
-	h4 {
-		font-size: variables.$h4_size;
-		font-weight: variables.$h4_weight;
-	}
+  h4 {
+    font-size: variables.$h4_size;
+    max-width: 80%;
+    margin: 1rem auto;
+  }
 
-	h5 {
-		font-size: variables.$h5_size;
-		font-weight: variables.$h5_weight;
-	}
+  p {
+    margin: 1rem 0;
+  }
 
-	h4 {
-		font-size: variables.$h4_size;
-		max-width: 80%;
-		margin: 1rem auto;
-	}
+  .links {
+    // margin: 1rem 0;
+    display: flex;
+    justify-content: space-evenly;
+    column-gap: 2rem;
 
-	p {
-		margin: 1rem 0;
-	}
+    a {
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+      padding: 2rem 1rem;
+      row-gap: 20rem;
+      border-radius: var(--border-radius);
+      outline: 1px solid #b6b6b6;
+      text-decoration: none;
+      font-size: variables.$h5_size;
+      width: calc(50% - 1rem);
 
-	.links {
-		// margin: 1rem 0;
-		display: flex;
-		justify-content: space-evenly;
-		column-gap: 2rem;
+      svg {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
 
-		a {
-			display: flex;
-			flex-flow: column wrap;
-			justify-content: center;
-			align-content: center;
-			align-items: center;
-			padding: 2rem 1rem;
-			row-gap: 20rem;
-			border-radius: var(--border-radius);
-			outline: 1px solid #b6b6b6;
-			text-decoration: none;
-			font-size: variables.$h5_size;
-			width: calc(50% - 1rem);
+  .links a {
+    display: flex;
+    flex-flow: column wrap;
+  }
 
-			svg {
-				width: 40px;
-				height: 40px;
-			}
-		}
-	}
+  a {
+    width: fit-content;
+    margin: 0 4px;
+    display: inline-block;
+    line-height: 1.5;
+    text-decoration: none;
+    color: var(--primary);
 
-	.links a {
-		display: flex;
-		flex-flow: column wrap;
-	}
+    text-decoration: underline;
+    text-decoration-color: var(--yellow);
+    text-decoration-thickness: 4px;
+    font-weight: 600;
 
-	a {
-		width: fit-content;
-		margin: 0 4px;
-		display: inline-block;
-		line-height: 1.5;
-		text-decoration: none;
-		color: var(--primary);
+    img {
+      // max-width: 30px;
+      // max-height: 30px;
+      // height: 30px;
+      padding: 0;
+      margin: 0;
+    }
+  }
 
-		text-decoration: underline;
-		text-decoration-color: var(--yellow);
-		text-decoration-thickness: 4px;
-		font-weight: 600;
+  a:hover {
+    color: var(--lightBlue);
+  }
 
-		img {
-			// max-width: 30px;
-			// max-height: 30px;
-			// height: 30px;
-			padding: 0;
-			margin: 0;
-		}
-	}
+  b {
+    position: relative;
+    display: inline-block;
+  }
 
-	a:hover {
-		color: var(--lightBlue);
-	}
+  b::after {
+    content: ' ';
+    width: 105%;
+    height: 60%;
+    background-color: var(--yellow);
+    opacity: 0.3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
 
-	b {
-		position: relative;
-		display: inline-block;
-	}
+    margin-top: 5%;
+    margin-left: -5.5%;
+  }
 
-	b::after {
-		content: " ";
-		width: 105%;
-		height: 60%;
-		background-color: var(--yellow);
-		opacity: 0.3;
-		position: absolute;
-		top: 0;
-		left: 0;
-		z-index: -1;
+  .logo.apple svg path {
+    fill: var(--primary);
+  }
 
-		margin-top: 5%;
-		margin-left: -5.5%;
-	}
+  .logo.android svg path {
+    fill: var(--primary);
+  }
 
+  .big {
+    font-size: variables.$h3_size;
+  }
 
+  .big2 {
+    font-size: variables.$lrg_size;
+    font-weight: 900;
+  }
 
-	.logo.apple svg path {
-		fill: var(--primary);
-	}
+  span.big4.r90 {
+    display: block;
+    font-size: variables.$h1_size;
+    transform: rotate(90deg);
+  }
 
-	.logo.android svg path {
-		fill: var(--primary);
-	}
+  section.qr p {
+    font-size: variables.$h4_size;
+    line-height: variables.$lrg_line_height;
+  }
 
-	.big {
-		font-size: variables.$h3_size;
-	}
+  b {
+    display: inline-block;
+  }
 
-	.big2 {
-		font-size: variables.$lrg_size;
-		font-weight: 900;
-	}
+  h3 {
+    margin: 0 auto;
 
-	span.big4.r90 {
-		display: block;
-		font-size: variables.$h1_size;
-		transform: rotate(90deg);
-	}
+    u {
+      // text-decoration-thickness: 11px;
+      width: fit-content;
+    }
+  }
 
-	section.qr p {
-		font-size: variables.$h4_size;
-		;
-		line-height: variables.$lrg_line_height;
+  p {
+    text-shadow: none;
 
+    u {
+      // text-decoration-thickness: 6px;
+      // text-decoration-color: var(--blue);
+    }
 
-	}
+    a {
+      word-break: break-word;
+    }
+  }
 
-	b {
-		display: inline-block;
-	}
+  section#feedback {
+    p u {
+      // text-decoration-thickness: 4px;
+      // text-decoration-color: var(--yellow);
+    }
+  }
 
-	h3 {
+  u {
+    width: fit-content;
+    position: relative;
+    display: inline-block;
+    font-weight: variables.$lrg_weight;
+    // font-size: variables.$med_size;
 
-		margin: 0 auto;
-
-		u {
-			// text-decoration-thickness: 11px;
-			width: fit-content;
-		}
-	}
-
-	p {
-		text-shadow: none;
-
-		u {
-			// text-decoration-thickness: 6px;
-			// text-decoration-color: var(--blue);
-		}
-
-		a {
-			word-break: break-word;
-		}
-	}
-
-	section#feedback {
-		p u {
-			// text-decoration-thickness: 4px;
-			// text-decoration-color: var(--yellow);
-		}
-	}
-
-	u {
-
-		width: fit-content;
-		position: relative;
-		display: inline-block;
-		font-weight: variables.$lrg_weight;
-		// font-size: variables.$med_size;
-
-		&::after {
-			content: " ";
-			width: 85%;
-			height: 60%;
-			background-color: var(--blue);
-			opacity: 0.3;
-			position: absolute;
-			top: 0;
-			left: 0;
-			z-index: -1;
-			margin-top: 5%;
-			margin-left: -5.5%;
-		}
-	}
-
+    &::after {
+      content: ' ';
+      width: 85%;
+      height: 60%;
+      background-color: var(--blue);
+      opacity: 0.3;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      margin-top: 5%;
+      margin-left: -5.5%;
+    }
+  }
 }

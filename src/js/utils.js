@@ -1,109 +1,109 @@
 // Helper to apply changes to the DOM
 export const applyAccessibilitySettings = (theme, scale) => {
-  const root = document.documentElement;
-  
+  const root = document.documentElement
+
   // 1. Apply Theme Class
-  root.classList.remove('light', 'dark', 'system', 'high-contrast');
-  root.classList.add(theme);
+  root.classList.remove('light', 'dark', 'system', 'high-contrast')
+  root.classList.add(theme)
 
   // 2. Apply Font Scaling
   // 100% scale = 16px (default)
-  root.style.fontSize = `${(scale / 100) * 16}px`;
-};
-export const hashCode = str => {
-	let hash = 0;
-	// const length = outputLength < 5 ? 5 : outputLength
+  root.style.fontSize = `${(scale / 100) * 16}px`
+}
+export const hashCode = (str) => {
+  let hash = 0
+  // const length = outputLength < 5 ? 5 : outputLength
 
-	for (let i = 0; i < str.length; i++) {
-		hash = ((hash << 5) - hash + str.charCodeAt(i)) | 0;
-	}
-	return (hash >>> 0).toString(36);
-};
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) - hash + str.charCodeAt(i)) | 0
+  }
+  return (hash >>> 0).toString(36)
+}
 
 export const inRange = (value, min, max) => {
-	return value >= min && value <= max;
-};
-export const isNumeric = value => {
-	return !isNaN(parseFloat(value)) && isFinite(value);
-};
+  return value >= min && value <= max
+}
+export const isNumeric = (value) => {
+  return !isNaN(parseFloat(value)) && isFinite(value)
+}
 export const arrowSVG = () => {
-	return '<svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 0 24 24" width="16px" fill="#ffffff"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z" /></svg>';
-};
+  return '<svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 0 24 24" width="16px" fill="#ffffff"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z" /></svg>'
+}
 
 export const debounce = (callback, delay) => {
-	let timeoutId;
-  
-  return function(...args) {
+  let timeoutId
+
+  return function (...args) {
     // Clear the previous timeout
-    clearTimeout(timeoutId);
-    
+    clearTimeout(timeoutId)
+
     // Set a new timeout
     timeoutId = setTimeout(() => {
-      callback.apply(this, args);
-    }, delay);
-  };
-};
+      callback.apply(this, args)
+    }, delay)
+  }
+}
 
-export const isColorLight = rgbString => {
-	// Extract numbers from rgb(...) or rgba(...)
-	if (rgbString) {
-		const rgb = rgbString.match(/\d+/g).map(Number);
-		const [r, g, b] = rgb;
+export const isColorLight = (rgbString) => {
+  // Extract numbers from rgb(...) or rgba(...)
+  if (rgbString) {
+    const rgb = rgbString.match(/\d+/g).map(Number)
+    const [r, g, b] = rgb
 
-		// Calculate perceived brightness (simple luminance formula)
-		const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+    // Calculate perceived brightness (simple luminance formula)
+    const brightness = (r * 299 + g * 587 + b * 114) / 1000
 
-		// You can adjust the threshold (128 is a common choice)
-		return brightness > 128;
-	} else {
-		return true;
-	}
-};
-export const isNull = o => {
-	return o === null;
-};
-export const isUndefined = o => {
-	return o === undefined;
-};
-export const isSet = o => {
-	if (o === 0) return true;
-	return !!o;
-};
-export const  isEmpty = (value) => {
-    return value === null || value === undefined || value === '';
+    // You can adjust the threshold (128 is a common choice)
+    return brightness > 128
+  } else {
+    return true
+  }
+}
+export const isNull = (o) => {
+  return o === null
+}
+export const isUndefined = (o) => {
+  return o === undefined
+}
+export const isSet = (o) => {
+  if (o === 0) return true
+  return !!o
+}
+export const isEmpty = (value) => {
+  return value === null || value === undefined || value === ''
 }
 export function isOdd(number) {
-    // Handle non-numeric input
-    if (typeof number !== 'number' || isNaN(number)) {
-        return false;
-    }
-    
-    // Handle floating point numbers
-    if (!Number.isInteger(number)) {
-        return false;
-    }
-    
-    return number % 2 !== 0;
+  // Handle non-numeric input
+  if (typeof number !== 'number' || isNaN(number)) {
+    return false
+  }
+
+  // Handle floating point numbers
+  if (!Number.isInteger(number)) {
+    return false
+  }
+
+  return number % 2 !== 0
 }
-export const getElementPageOffsetTop = element => {
-	return window.pageYOffset + element.getBoundingClientRect().top;
-};
+export const getElementPageOffsetTop = (element) => {
+  return window.pageYOffset + element.getBoundingClientRect().top
+}
 
 export function clamp(value, min, max) {
-	return Math.max(min, Math.min(value, max));
+  return Math.max(min, Math.min(value, max))
 }
 
 export function extractYouTubeId(url) {
-  if (!url) return null;
-  
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-  const match = url.match(regExp);
-  
-  return (match && match[2].length === 11) ? match[2] : null;
+  if (!url) return null
+
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
+  const match = url.match(regExp)
+
+  return match && match[2].length === 11 ? match[2] : null
 }
 // export const logGAEvent = (name, params = null) => {
 // 	console.trace('logGAEvent called')
-	
+
 // 	if (typeof window.gtag === 'function' && !isEmpty(name)) {
 // 	window.gtag('event', name, params)
 
@@ -115,119 +115,118 @@ export function extractYouTubeId(url) {
 
 export function setBrowserHistory(url, title) {
   // A console.log can be useful for debugging, but should be removed for production
-//   console.trace('setBrowserHistory url ', url, ' title ', title)
-   if(title && typeof title === 'string' && !isEmpty(title.length)){
-	document.title = title
-  } 
-  
+  //   console.trace('setBrowserHistory url ', url, ' title ', title)
+  if (title && typeof title === 'string' && !isEmpty(title.length)) {
+    document.title = title
+  }
+
   if (history.pushState) {
     window.history.pushState({ page: title }, '', url)
   }
-
-  
 }
 /**
  * Run tests for persistent storage API
- * 
- * This function checks if the Storage API is supported, if persistent storage is supported, 
+ *
+ * This function checks if the Storage API is supported, if persistent storage is supported,
  * if the app has already been granted persistent storage, and retrieves usage statistics.
- * 
+ *
  * It logs the results to the console.
- * 
+ *
  * @returns {Promise<void>} - A promise that resolves when the tests are done.
  */
- export async function  runPersistentStorageTests() {
-    // check if Storage API is supported
-    const supported = 'storage' in navigator;
+export async function runPersistentStorageTests() {
+  // check if Storage API is supported
+  const supported = 'storage' in navigator
 
-    // check if persistent storage is supported
-    const persistentStorageSupported = navigator.storage && navigator.storage.persist;
+  // check if persistent storage is supported
+  const persistentStorageSupported =
+    navigator.storage && navigator.storage.persist
 
-    // request persistent storage
-    const persist = await navigator.storage.persist();
+  // request persistent storage
+  const persist = await navigator.storage.persist()
 
-    // check if app already has persistent storage
-    const hasPersistentStorage = await navigator.storage.persisted();
+  // check if app already has persistent storage
+  const hasPersistentStorage = await navigator.storage.persisted()
 
-    // get usage statistics
-    const {quota, usage, usageDetails} = await navigator.storage.estimate();
+  // get usage statistics
+  const { quota, usage, usageDetails } = await navigator.storage.estimate()
 
-    console.log("Storage API supported:", supported);
-    console.log("Persistent storage supported:", persistentStorageSupported);
-    console.log("Persistent storage granted:", persist);
-    console.log("Has persistent storage:", hasPersistentStorage);
-    console.log("Storage quota (bytes):", quota);
-    console.log("Storage usage (bytes):", usage);
-    console.log("Storage usage details:", usageDetails);
+  console.log('Storage API supported:', supported)
+  console.log('Persistent storage supported:', persistentStorageSupported)
+  console.log('Persistent storage granted:', persist)
+  console.log('Has persistent storage:', hasPersistentStorage)
+  console.log('Storage quota (bytes):', quota)
+  console.log('Storage usage (bytes):', usage)
+  console.log('Storage usage details:', usageDetails)
 }
 // Optional: validate if it's a YouTube URL
 export function isYouTubeUrl(url) {
-  return /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)/.test(url);
+  return /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)/.test(url)
 }
 export function isTouchDevice() {
-	return ('ontouchstart' in window) || 
-		(navigator.maxTouchPoints > 0) || 
-		(navigator.msMaxTouchPoints > 0) ||
-		(window.matchMedia?.("(pointer: coarse)").matches);
+  return (
+    'ontouchstart' in window ||
+    navigator.maxTouchPoints > 0 ||
+    navigator.msMaxTouchPoints > 0 ||
+    window.matchMedia?.('(pointer: coarse)').matches
+  )
 }
-export function smoothScroll(){
-    let x = document.querySelectorAll('a[href*="#"]');
-	for (let i = 0; i < x.length; i++){
-		
-		x[i].onclick = function () {
-		  
-			let target = document.querySelector(this.hash);
-			target.scrollIntoView({
-				behavior:'smooth',
-				alignToTop:true,
-				block:'start'
-			});
-		}
-	}
+export function smoothScroll() {
+  let x = document.querySelectorAll('a[href*="#"]')
+  for (let i = 0; i < x.length; i++) {
+    x[i].onclick = function () {
+      let target = document.querySelector(this.hash)
+      target.scrollIntoView({
+        behavior: 'smooth',
+        alignToTop: true,
+        block: 'start',
+      })
+    }
+  }
 }
 
 export function sanitizeStringForUrl(input) {
   // Remove non-alphanumeric characters and replace with hyphen
-  if (!input || isEmpty(input)) return;
-  const sanitized = input.replace(/[^\w]/g, '-');
+  if (!input || isEmpty(input)) return
+  const sanitized = input.replace(/[^\w]/g, '-')
 
   // Replace consecutive hyphens with a single hyphen
-  const singleHyphen = sanitized.replace(/-{2,}/g, '-');
+  const singleHyphen = sanitized.replace(/-{2,}/g, '-')
 
   // Remove leading and trailing hyphens
-  const trimmed = singleHyphen.trim();
+  const trimmed = singleHyphen.trim()
 
-  return trimmed.toLowerCase();
+  return trimmed.toLowerCase()
 }
 // Helper to get current path segments
 export function getUrlPathSegments() {
   // Remove leading/trailing slashes and split
-  const path = location.pathname.replace(/^\/+|\/+$/g, '');
-  return path ? path.split('/') : [];
-	// return location.pathname.split('/');
+  const path = location.pathname.replace(/^\/+|\/+$/g, '')
+  return path ? path.split('/') : []
+  // return location.pathname.split('/');
 }
 
-export default {	
-	clamp,
-	isSet,
-	isUndefined,
-	isNull,	
-	inRange,
-	isNumeric,
-	isEmpty,
-	isOdd,
-	isTouchDevice,
-	isColorLight,
-	arrowSVG,
-	debounce,
-	hashCode,	
-	getElementPageOffsetTop,
-	extractYouTubeId,
-	isYouTubeUrl,
-	sanitizeStringForUrl,	
-	getUrlPathSegments,
-	setBrowserHistory,
-	smoothScroll,
-	runPersistentStorageTests,
-	applyAccessibilitySettings
+export default {
+  clamp,
+  isSet,
+  isUndefined,
+  isNull,
+  inRange,
+  isNumeric,
+  isEmpty,
+  isOdd,
+  isTouchDevice,
+  isColorLight,
+  arrowSVG,
+  debounce,
+  hashCode,
+  getElementPageOffsetTop,
+  extractYouTubeId,
+  isYouTubeUrl,
+  sanitizeStringForUrl,
+  getUrlPathSegments,
+  setBrowserHistory,
+  smoothScroll,
+  runPersistentStorageTests,
+  applyAccessibilitySettings,
 }

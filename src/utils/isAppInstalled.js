@@ -1,32 +1,26 @@
-import useAppStore from "@/store/useAppStore";
+import useAppStore from '@/store/useAppStore'
 export function getPWADisplayMode() {
-  if (document.referrer.startsWith('android-app://'))
-    return 'twa';
-  if (window.matchMedia('(display-mode: browser)').matches)
-    return 'browser';
+  if (document.referrer.startsWith('android-app://')) return 'twa'
+  if (window.matchMedia('(display-mode: browser)').matches) return 'browser'
   if (window.matchMedia('(display-mode: standalone)').matches)
-    return 'standalone';
+    return 'standalone'
   if (window.matchMedia('(display-mode: minimal-ui)').matches)
-    return 'minimal-ui';
+    return 'minimal-ui'
   if (window.matchMedia('(display-mode: fullscreen)').matches)
-    return 'fullscreen';
+    return 'fullscreen'
   if (window.matchMedia('(display-mode: window-controls-overlay)').matches)
-    return 'window-controls-overlay';
+    return 'window-controls-overlay'
 
-  return 'unknown';
+  return 'unknown'
 }
 export const isAppInstalled = () => {
+  useAppStore.setState({ isInstalled: getPWADisplayMode() === 'fullscreen' })
+  console.log(' getPWADisplayMode ', getPWADisplayMode())
 
-  useAppStore.setState({ isInstalled: getPWADisplayMode() === 'fullscreen' });
-   console.log(" getPWADisplayMode ", getPWADisplayMode());
-    
-    window.addEventListener('DOMContentLoaded', () => {
+  window.addEventListener('DOMContentLoaded', () => {
+    console.log('getPWADisplayMode ', getPWADisplayMode())
 
-        console.log("getPWADisplayMode ", getPWADisplayMode());
-        
-        useAppStore.setState({ isInstalled: getPWADisplayMode() === 'fullscreen' });
-        
-    }); 
-    
+    useAppStore.setState({ isInstalled: getPWADisplayMode() === 'fullscreen' })
+  })
 }
-export default isAppInstalled;
+export default isAppInstalled

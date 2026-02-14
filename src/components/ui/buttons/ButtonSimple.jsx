@@ -3,11 +3,13 @@ import PropTypes from 'prop-types'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
 
-const ButtonSimple = ({ label = '', classes = [], handleClick }) => {
+const ButtonSimple = ({ children, label = '', classes = [], handleClick }) => {
   return (
     <button
       className={'btn' + classes.map((c) => ' ' + c)}
-      onClick={handleClick}>
+      onClick={handleClick}
+    >
+      {children}
       {parse(DOMPurify.sanitize(label))}
     </button>
   )

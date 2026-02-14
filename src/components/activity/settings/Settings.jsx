@@ -216,7 +216,7 @@ const Settings = () => {
     setShowDeleteIDBDialog(false)
   }
 
-  return (
+  return ( open ?
     <div
       id='settings'
       className={
@@ -224,17 +224,9 @@ const Settings = () => {
         ' ' +
         name +
         (open ? ' show' : ' hide')
-      }>
-      {/* <Dialog
-        show={showDeleteDialog}
-        title='Confirm Clear All Data'
-        instruction='Do you want to clear all data?<br /><br />This will reset all settings to their default values and cannot be undone.'
-        confirmLabel='Yes'
-        cancelLabel='Cancel'
-        classes={['delete-dialog']}
-        onCancel={handleCloseDeleteData}
-        onConfirm={handleConfirmDeleteData}
-      /> */}
+      }
+    >
+
       <Dialog
         show={showDeleteIDBDialog}
         title='Confirm Clear IndexedDB'
@@ -252,7 +244,6 @@ const Settings = () => {
         confirmLabel='Close'
         cancelLabel=''
         classes={['delete-dialog']}
-        // onCancel={handleCloseDeleteData}
         showCancel={false}
         onConfirm={handleCloseConfirmDeleteDialog}
       />
@@ -282,7 +273,8 @@ const Settings = () => {
             <div className={'checkBox-row '}>
               <label
                 htmlFor={YourToolsSettings.name}
-                className={YourToolsSettings.state ? 'checked' : ''}>
+                className={YourToolsSettings.state ? 'checked' : ''}
+              >
                 {parse(DOMPurify.sanitize(YourToolsSettings.instruction))}
               </label>
               <input
@@ -303,7 +295,8 @@ const Settings = () => {
             <div className={'checkBox-row '}>
               <label
                 htmlFor={YourToolboxSettings.name}
-                className={YourToolboxSettings.state ? 'checked' : ''}>
+                className={YourToolboxSettings.state ? 'checked' : ''}
+              >
                 {parse(DOMPurify.sanitize(YourToolboxSettings.instruction))}
               </label>
               <input
@@ -327,7 +320,8 @@ const Settings = () => {
             <div className={'checkBox-row '}>
               <label
                 htmlFor={DaysCounterSettings.name}
-                className={DaysCounterSettings.state ? 'checked' : ''}>
+                className={DaysCounterSettings.state ? 'checked' : ''}
+              >
                 {parse(DOMPurify.sanitize(DaysCounterSettings.instruction))}
               </label>
               <input
@@ -351,7 +345,8 @@ const Settings = () => {
             <div className={'checkBox-row '}>
               <label
                 htmlFor={unitsCalculatorSettings.name}
-                className={unitsCalculatorSettings.state ? 'checked' : ''}>
+                className={unitsCalculatorSettings.state ? 'checked' : ''}
+              >
                 {parse(unitsCalculatorSettings.instruction)}
               </label>
               <input
@@ -376,7 +371,8 @@ const Settings = () => {
             <div className={'checkBox-row '}>
               <label
                 htmlFor={QuickExitSettings.name}
-                className={QuickExitSettings.state ? 'checked' : ''}>
+                className={QuickExitSettings.state ? 'checked' : ''}
+              >
                 {parse(DOMPurify.sanitize(QuickExitSettings.instruction))}
               </label>
               <input
@@ -413,7 +409,8 @@ const Settings = () => {
             <div className={'checkBox-row '}>
               <label
                 htmlFor={QuickExitMessageSettings.name}
-                className={QuickExitMessageSettings.state ? 'checked' : ''}>
+                className={QuickExitMessageSettings.state ? 'checked' : ''}
+              >
                 {parse(
                   DOMPurify.sanitize(QuickExitMessageSettings.instruction),
                 )}
@@ -445,7 +442,8 @@ const Settings = () => {
                   PINLockSettings.state
                     ? 'strikethrough checked'
                     : 'strikethrough'
-                }>
+                }
+              >
                 {parse(DOMPurify.sanitize(PINLockSettings.instruction))}
               </label>
               <input
@@ -467,7 +465,8 @@ const Settings = () => {
             <div className={'checkBox-row '}>
               <label
                 htmlFor={AnalyticsCookiesSettings.name}
-                className={AnalyticsCookiesSettings.state ? 'checked' : ''}>
+                className={AnalyticsCookiesSettings.state ? 'checked' : ''}
+              >
                 {parse(
                   DOMPurify.sanitize(AnalyticsCookiesSettings.instruction),
                 )}
@@ -491,7 +490,8 @@ const Settings = () => {
             <div className={'checkBox-row '}>
               <label
                 htmlFor={ShowPhraseViewsSettings.name}
-                className={ShowPhraseViewsSettings.state ? 'checked' : ''}>
+                className={ShowPhraseViewsSettings.state ? 'checked' : ''}
+              >
                 {parse(DOMPurify.sanitize(ShowPhraseViewsSettings.instruction))}
               </label>
               <input
@@ -529,7 +529,7 @@ const Settings = () => {
           </div>
         </div>
       </section>
-    </div>
+    </div> : null
   )
 }
 

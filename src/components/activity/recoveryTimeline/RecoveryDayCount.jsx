@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import './styles.scss';
+import { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
+import './styles.scss'
 
 const RecoveryDayCount = ({ startDay = 0, currentDay = 0, classes = '' }) => {
-  const [displayDay, setDisplayDay] = useState(startDay);
+  const [displayDay, setDisplayDay] = useState(startDay)
   useEffect(() => {
-    setDisplayDay(currentDay);
-  }, [currentDay]);
+    setDisplayDay(currentDay)
+  }, [currentDay])
 
   // useEffect(() => {
   // //   setMaxDays(range);
@@ -25,12 +25,12 @@ const RecoveryDayCount = ({ startDay = 0, currentDay = 0, classes = '' }) => {
       <div>{displayDay}</div>
       <div>days</div>
     </div>
-  );
-};
+  )
+}
 RecoveryDayCount.propTypes = {
   classes: PropTypes.string,
   startDay: PropTypes.number,
   currentDay: PropTypes.number,
-};
+}
 
-export default RecoveryDayCount;
+export default RecoveryDayCount

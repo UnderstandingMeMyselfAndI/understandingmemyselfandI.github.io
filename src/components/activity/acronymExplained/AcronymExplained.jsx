@@ -69,7 +69,7 @@ const AcronymExplained = () => {
   useEffect(() => {
     const acronymData = getAccData(acronymID)
     setAcronymData(acronymData)
-    contentRef.current.scrollTop = 0
+    if(contentRef && contentRef.current) contentRef.current.scrollTop = 0
   }, [acronymID, gae])
 
   const handleClose = () => {
@@ -99,12 +99,13 @@ const AcronymExplained = () => {
 
   const titleLength = acronymData?.title.length
 
-  return (
+  return ( open ?
     <section
       className={
         'activity acronym-explained-activity fixed' + (open ? ' show' : '')
       }
-      key='acronym-card'>
+      key='acronym-card'
+    >
       <div className='inner'>
         <div className='header'>
           <div className={'title cont' + (titleLength >= 14 ? ' long' : '')}>
@@ -145,7 +146,8 @@ const AcronymExplained = () => {
                     <div
                       className='Acc-word'
                       data-len={acronym?.meaning?.length}
-                      key={'m-' + index}>
+                      key={'m-' + index}
+                    >
                       {acronym?.meaning}
                     </div>
                   </div>
@@ -262,7 +264,8 @@ const AcronymExplained = () => {
             <button
               onClick={smoothScrollTo}
               className='btn video'
-              key={`video-btn-${acronymData?.id}`}>
+              key={`video-btn-${acronymData?.id}`}
+            >
               <OndemandVideoOutlinedIcon
                 key={`video-icon-${acronymData?.id}`}
               />
@@ -272,7 +275,8 @@ const AcronymExplained = () => {
             <button
               onClick={smoothToAccronym}
               className='btn top'
-              key={`goto-top-btn-${acronymData?.id}`}>
+              key={`goto-top-btn-${acronymData?.id}`}
+            >
               <HdrAutoOutlinedIcon key={`goto-top-icon-${acronymData?.id}`} />
             </button>
           )}
@@ -282,7 +286,7 @@ const AcronymExplained = () => {
           </div>
         </div>
       </div>
-    </section>
+    </section> : null
   )
 }
 AcronymExplained.displayName = 'AcronymExplained'

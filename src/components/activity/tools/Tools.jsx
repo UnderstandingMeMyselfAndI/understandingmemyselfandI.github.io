@@ -77,7 +77,7 @@ const Tools = () => {
     </div>
   )
 
-  return (
+  return (open ? 
     <div className={'activity acronym-tools fixed' + (open ? ' show' : ' ')}>
       {toolboxFilterEnabled && <BadgeToolbox />}
 
@@ -101,7 +101,7 @@ const Tools = () => {
           </div>
         </div>
       </section>
-    </div>
+    </div> : null
   )
 }
 Tools.propTypes = {

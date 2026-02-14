@@ -1,153 +1,149 @@
-@use "./scss/_variables.scss";
-@import "@/globals.css";
+@use './scss/_variables.scss';
+@import '@/globals.css';
 
 .confirm-pop-up {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  right: 2rem;
+  bottom: 2rem;
+  // width: 100dvw;
+  // height: 100dvh;
+  background-color: var(--backgroundActivity);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.fullscreen {
     position: fixed;
-    top: 2rem;
-    left: 2rem;
-    right: 2rem;
-    bottom: 2rem;
-    // width: 100dvw;
-    // height: 100dvh;
-    background-color: var(--backgroundActivity);
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100vw;
+    width: 100dvw;
+    height: 100vh;
+    height: 100dvh;
+  }
 
-    &.fullscreen {
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        width: 100vw;
-        width: 100dvw;
-        height: 100vh;
-        height: 100dvh;
-    }
-
-    &.fit-content {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        bottom: auto;
-        right: auto;
-        min-width: 350px;
-        width: fit-content;
-        height: auto;
-
-        .confirm-pop-up-inner {
-            border-radius: var(--border-radius);
-            box-shadow: var(--boxShadowDark);
-            background: var(--blue60Trans);
-
-            position: relative;
-
-            &::after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: var(--greyDark90Trans);
-                z-index: -1;
-                border-radius: var(--border-radius);
-                opacity: 1;
-            }
-        }
-    }
+  &.fit-content {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    bottom: auto;
+    right: auto;
+    min-width: 350px;
+    width: fit-content;
+    height: auto;
 
     .confirm-pop-up-inner {
-        padding: 2rem;
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: center;
-        align-items: center;
-        align-content: center;
-        row-gap: 3rem;
-        max-width: 100%;
-    }
+      border-radius: var(--border-radius);
+      box-shadow: var(--boxShadowDark);
+      background: var(--blue60Trans);
 
-    .confirm-pop-up-title {
-        font-size: variables.$h3_size;
-        font-weight: 800;
-        font-variation-settings: 'wght' 800;
-        color: var(--primary);
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
-        max-width: 400px;
+        height: 100%;
+        background: var(--greyDark90Trans);
+        z-index: -1;
+        border-radius: var(--border-radius);
+        opacity: 1;
+      }
+    }
+  }
+
+  .confirm-pop-up-inner {
+    padding: 2rem;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    row-gap: 3rem;
+    max-width: 100%;
+  }
+
+  .confirm-pop-up-title {
+    font-size: variables.$h3_size;
+    font-weight: 800;
+    font-variation-settings: 'wght' 800;
+    color: var(--primary);
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .confirm-pop-up-instruction {
+    max-width: 400px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    row-gap: 2rem;
+
+    font-size: 1rem;
+
+    p {
+      padding: 0;
+      margin: 0;
+      font-size: 1rem;
     }
 
-    .confirm-pop-up-instruction {
-        max-width: 400px;
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: center;
-        align-items: center;
-        align-content: center;
-        row-gap: 2rem;
-
-        font-size: 1rem;
-
-        p {
-            padding: 0;
-            margin: 0;
-            font-size: 1rem;
-        }
-
-        b {
-            font-weight: 600;
-            font-variation-settings: 'wght' 600;
-        }
-
-        u.yellow-ul {
-            text-decoration-color: var(--yellow30Trans);
-        }
-
-        u {
-            text-decoration-color: var(--lightBlue40Trans);
-        }
+    b {
+      font-weight: 600;
+      font-variation-settings: 'wght' 600;
     }
 
-    .confirm-pop-up-buttons {
+    u.yellow-ul {
+      text-decoration-color: var(--yellow30Trans);
+    }
 
-        display: flex;
-        gap: 2rem;
+    u {
+      text-decoration-color: var(--lightBlue40Trans);
+    }
+  }
+
+  .confirm-pop-up-buttons {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+
+    button {
+      width: 50%;
+      min-width: 40%;
+      text-align: center;
+      justify-content: center;
+      padding: 1rem 0.5rem;
+      font-weight: 400;
+    }
+
+    button.confirm {
+      // border: 1px solid var(--lightBlue50Trans)
+    }
+
+    button.cancel {
+      background-color: var(--blue60Trans);
+
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
-
-        button {
-            width: 50%;
-            min-width: 40%;
-            text-align: center;
-            justify-content: center;
-            padding: 1.0rem 0.5rem;
-            font-weight: 400;
-        }
-
-        button.confirm {
-            // border: 1px solid var(--lightBlue50Trans)
-
-        }
-
-        button.cancel {
-            background-color: var(--blue60Trans);
-
-            position: relative;
-
-
-            &::after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: var(--greyDark);
-                z-index: -1;
-                border-radius: var(--border-radius);
-
-            }
-        }
+        height: 100%;
+        background-color: var(--greyDark);
+        z-index: -1;
+        border-radius: var(--border-radius);
+      }
     }
+  }
 }

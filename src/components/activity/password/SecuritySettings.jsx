@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import ChangePin from './ChangePin';
-import PasswordHintSetup from './PasswordHintSetup';
+import { useState } from 'react'
+import ChangePin from './ChangePin'
+import PasswordHintSetup from './PasswordHintSetup'
 
 const SecuritySettings = () => {
-  const [updated, setUpdated] = useState(false);
+  const [updated, setUpdated] = useState(false)
 
   return (
     <div>
@@ -14,7 +14,7 @@ const SecuritySettings = () => {
 
       {updated && <p style={{ color: 'green' }}>Settings updated!</p>}
     </div>
-  );
-};
+  )
+}
 
-export default SecuritySettings;
+export default SecuritySettings

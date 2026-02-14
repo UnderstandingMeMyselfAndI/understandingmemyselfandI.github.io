@@ -1,11 +1,12 @@
-@use './scss/_variables.scss';
+@use '@/scss/_variables.scss';
 @import '@/globals.css';
 
-.activity-quiz {
+body div.main section.activity-quiz {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
+  height: 100dvh;
   height: 100vh;
   // background:transparent;
   text-align: center;
@@ -14,14 +15,14 @@
   justify-content: center;
   align-content: center;
   gap: 0.5rem;
-
+  max-width: 100%;
   margin: 0 auto;
   padding: 20px;
   font-family:
     -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
     Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   border-radius: 12px;
-
+  box-shadow: none;
   color: var(--primary);
 
   &:after {
@@ -34,23 +35,54 @@
     top: 0;
     z-index: -1;
     opacity: 1;
+    box-shadow: none;
   }
 
   .inner {
     position: absolute;
     z-index: 15001;
-    left: 0;
+    left: 50%;
     top: 0;
     height: 100%;
     display: flex;
-    flex-flow: column;
+    flex-flow: column nowrap;
     justify-content: center;
+
+
     width: 100%;
+    transform: translate(-50%, 0);
+    max-width: var(--max-width);
+
+  }
+
+  @media screen and (width <=768px) {
+    button.close-btn {
+      // top: 5rem;
+    }
   }
 
   .backdrop {
     opacity: 0.6;
   }
+}
+
+.quiz-container {
+  position: absolute;
+  z-index: 15001;
+  left: 0;
+  top: 0;
+  height: 100dvh;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  row-gap: 1.5rem;
+  padding: 2rem 1rem;
+
+  transition: all 0.3s ease-in-out;
+  text-shadow: var(--textShadowDarkValue);
 }
 
 .quiz-complete {
@@ -84,8 +116,6 @@
   text-align: center;
 }
 
-
-
 .status-title {
   font-size: 3rem;
   font-weight: 600;
@@ -99,45 +129,75 @@
   margin: 0 auto;
 }
 
-.final-score {
+body div.final-score {
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
-  row-gap: 0.5rem;
-  border-radius: 12px;
-  box-shadow: var(--textShadowDarkValue);
-  // margin-bottom: 40px;
+  row-gap: 0.75em;
+  box-shadow: var(--boxShadowLight);
+  padding: 1.5rem 0.5rem;
+
+  // >* {
+  //   outline: 1px solid #ccc;
+  // }
+
+  .score-details {
+    display: flex;
+    column-gap: 1rem;
+    justify-content: space-evenly;
+    align-items: center;
+    text-shadow: none;
+
+    .score-metric {
+      display: flex;
+      flex-flow: column nowrap;
+      row-gap: 0.5rem;
+      padding: 0.5rem 0.5rem;
+
+      .score-metric-label {
+        font-size: 1rem;
+        color: var(--grey);
+      }
+
+      .score-metric-value {
+        font-size: 3rem;
+        color: var(--primary);
+        font-weight: 300;
+        font-variation-settings: 'wght' 300;
+        color: var(--grey);
+        line-height: 1;
+        letter-spacing: -0.9;
+
+        span {
+          font-weight: 900;
+          font-variation-settings: 'wght' 900;
+          color: var(--orange);
+        }
+      }
+    }
+  }
+
+  h3 {
+    font-size: 2rem;
+    color: var(--lightBlue);
+    font-weight: 600;
+    font-variation-settings: 'wght' 600;
+    margin: 0;
+    text-shadow: none;
+  }
 }
 
-body div.final-score h3 {
-  font-size: 1.5rem;
-  // margin-bottom: 20px;
-  color: var(--primary);
-  font-weight: 400;
-  font-variation-settings: 'wght' 400;
-  // text-decoration: underline 3px var(--lightBlue);
-}
-
-.final-score p {
-  font-size: 1.25rem;
-  // margin: 12px 0;
-  color: var(--orange);
-  font-weight: 600;
-}
-
-.score-details {
-  display: flex;
-  column-gap: 1rem;
-  // flex-flow:column nowrap;
-  justify-content: space-evenly;
-  align-items: center;
-  background-color: rgba(10, 10, 10, 0.2);
+body #quiz button {
+  border: none;
+  outline: none;
+  // background-color: var(--primary10Trans);
 }
 
 .restart-button {
   padding: 14px 32px;
   color: var(--primary);
-  text-shadow: var(--textShadowDarkValue);
+  box-shadow: var(--box-shadow);
+  text-shadow: var(--textShadow);
   font-size: 1.5rem;
   font-weight: 600;
   border: none;
@@ -157,7 +217,7 @@ body div.final-score h3 {
   height: 100%;
   content: '';
   border-radius: 8px;
-  border: 2px solid var(--orange);
+  // border: 2px solid var(--orange);
   color: var(--blue);
   transition: all 0.5s ease;
   background: var(--orange);
@@ -167,4 +227,34 @@ body div.final-score h3 {
 
 .restart-button:hover {
   background-color: #5a6268;
+}
+
+.cancel-btn {
+  position: absolute;
+  top: 1.5rem;
+  left: 1rem;
+  z-index: 15002;
+  background: var(--greyDark30Trans);
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: none;
+
+  @media screen and (width <=768px) {
+    // top: 7.5rem;
+  }
+
+  &:hover {
+    background: var(--greyDark30Trans);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
 }

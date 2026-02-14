@@ -1,11 +1,12 @@
-import React from 'react';
-import QuestionComponent from './QuestionComponent';
-import { useOnboardingStore } from '../stores/onboardingStore';
-import './PostInteractionPhase.scss';
+import React from 'react'
+import QuestionComponent from './QuestionComponent'
+import { useOnboardingStore } from '../stores/onboardingStore'
+import './PostInteractionPhase.scss'
 
 const questions = [
   {
-    question: "If you're up for sharing, what's one thing you're focusing on most these days?",
+    question:
+      "If you're up for sharing, what's one thing you're focusing on most these days?",
     options: [
       'Managing cravings or triggers',
       'Building emotional strength',
@@ -14,7 +15,8 @@ const questions = [
       'Celebrating wins and staying motivated',
       'Something else/Not ready to say',
     ],
-    followUp: "Thanks for letting me know – you're doing amazing just by being here!",
+    followUp:
+      "Thanks for letting me know – you're doing amazing just by being here!",
   },
   {
     question: 'Are you teaming up with anyone else on this journey?',
@@ -39,17 +41,17 @@ const questions = [
     ],
     followUp: "Cool choice – I've got some great starting points for that!",
   },
-];
+]
 
 const PostInteractionPhase = () => {
-  const { currentQuestionIndex, nextPhase } = useOnboardingStore();
+  const { currentQuestionIndex, nextPhase } = useOnboardingStore()
 
   if (currentQuestionIndex >= questions.length) {
     // Auto-advance or wait for app trigger
-    return null;
+    return null
   }
 
-  return <QuestionComponent {...questions[currentQuestionIndex]} />;
-};
+  return <QuestionComponent {...questions[currentQuestionIndex]} />
+}
 
-export default PostInteractionPhase;
+export default PostInteractionPhase

@@ -2,48 +2,48 @@
 @import '@/globals.css';
 
 .activity-recovery-tools-cta {
-    position: relative;
+  position: relative;
+  border-radius: var(--border-radius);
+
+  .cta-content {
+    text-shadow: var(--textShadowDarkStrong);
+    font-weight: 400;
+    font-variation-settings: 'wght' 400;
+  }
+
+  //
+  .bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
     border-radius: var(--border-radius);
 
-    .cta-content {
-        text-shadow: var(--textShadowDarkStrong);
-        font-weight: 400;
-        font-variation-settings: 'wght' 400;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.25;
     }
 
-    //
-    .bg-img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        border-radius: var(--border-radius);
-
-        overflow: hidden;
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.25;
-        }
-
-        &::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--blue);
-            border-radius: var(--border-radius);
-            opacity: 1;
-            opacity: 1;
-            z-index: -1;
-        }
-
-        background-color:var(--lightBlue)
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--blue);
+      border-radius: var(--border-radius);
+      opacity: 1;
+      opacity: 1;
+      z-index: -1;
     }
+
+    background-color: var(--lightBlue);
+  }
 }

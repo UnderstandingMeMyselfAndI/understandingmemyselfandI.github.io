@@ -1,0 +1,113 @@
+@use 'sass:color';
+@use './scss/_variables.scss';
+@import '@/globals.css';
+// AccessibilitySettings.module.scss
+
+.container {
+  padding: 1.5rem;
+  border: var(--card-outline);
+  border-radius: var(--border-radius-lrg);
+  background: var(--backgroundGrayTrans5);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  row-gap: 1rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 500px;
+  width: 100%;
+  z-index: 9999;
+  background: var(--orange);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  h3 {
+    color: var(--blue);
+    margin: 0;
+  }
+
+  p {
+    font-size: 1rem;
+    font-weight: 500;
+    font-variation-settings: 'wght' 500;
+    margin: 0;
+    color: var(--blue);
+    text-decoration: none;
+  }
+}
+
+.buttonGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.5rem;
+}
+
+.themeButton {
+  padding: 0.5rem;
+  border: 1px solid var(--card-outline-med);
+  border-radius: var(--border-radius);
+  background: var(--backgroundGrayTrans10);
+  color: var(--foreground);
+  cursor: pointer;
+  transition: var(--transition);
+  text-transform: capitalize;
+  font-size: 1rem;
+
+  &:hover {
+    background: var(--backgroundGrayTrans20);
+  }
+
+  &.active {
+    background: var(--blue);
+    color: white;
+    border-color: var(--blue);
+  }
+}
+
+.sliderContainer {
+  .labelRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // margin-bottom: 0.5rem;
+    text-align: center;
+    border: 1px solid #000;
+  }
+
+  .rangeInput {
+    width: 100%;
+    accent-color: var(--blue);
+    cursor: pointer;
+  }
+
+  .hint {
+    font-size: 1rem;
+
+    margin-top: 0.5rem;
+    color: var(--blue);
+    font-weight: 600;
+    font-variation-settings: 'wght' 600;
+  }
+}
+
+.resetButton {
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  color: var(--blue);
+  font-size: 1.5rem;
+  font-weight: 800;
+  font-variation-settings: 'wght' 800;
+  // text-decoration: underline;
+  cursor: pointer;
+}

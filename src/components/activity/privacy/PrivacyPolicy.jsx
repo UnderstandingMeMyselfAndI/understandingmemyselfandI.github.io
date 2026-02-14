@@ -45,10 +45,11 @@ const PrivacyPolicy = () => {
     el.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  return (
+  return ( open ?
     <div
       id='privacy'
-      className={'activity activity-privacy fixed' + (open ? ' show' : '')}>
+      className={'activity activity-privacy fixed' + (open ? ' show' : '')}
+    >
       <CloseBtn onClick={handleClose} className='close-btn' />
       <div className='inner'>
         <h1>Privacy Policy</h1>
@@ -322,7 +323,8 @@ const PrivacyPolicy = () => {
                   <span
                     onClick={() => {
                       setActivity(12)
-                    }}>
+                    }}
+                  >
                     &quot;Clear Your Data&quot;
                   </span>
                 </u>
@@ -417,7 +419,7 @@ const PrivacyPolicy = () => {
         </div>
       </div>
       <Backdrop className='backdrop' />
-    </div>
+    </div> : null
   )
 }
 export default PrivacyPolicy

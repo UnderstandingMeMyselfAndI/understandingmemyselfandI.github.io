@@ -345,7 +345,8 @@ const WheelOfLife = () => {
         }
         onClick={() =>
           wheelHistory.length > 0 ? handleDoIsCompareMode(!isCompareMode) : null
-        }>
+        }
+      >
         <RestoreOutlinedIcon />
       </div>
     ) : (
@@ -355,19 +356,21 @@ const WheelOfLife = () => {
         }
         onClick={() =>
           wheelHistory.length > 0 ? handleDoIsCompareMode(!isCompareMode) : null
-        }>
+        }
+      >
         <LayersIcon />
       </div>
     )
     return btn
   }
 
-  return (
+  return (show ?
     <div
       id={name}
       className={
         'activity activity-' + name + (show ? ' show' : ' hide') + ' fixed'
-      }>
+      }
+    >
       {showConfirm && (
         <Confirm
           title={confirmConfig.title}
@@ -389,7 +392,7 @@ const WheelOfLife = () => {
           </div>
 
           <div className='wheel-instruction'>
-            Score the areas of your life on a scale of 1-10 to see your life
+            Score the areas of your life on a scale of 0-10 to see your life
             balance. Click <span className='circled-help'>?</span> to view more
             instructions.
           </div>
@@ -410,7 +413,8 @@ const WheelOfLife = () => {
             <div
               className='btn-icon'
               onClick={() => setShowInstructions(true)}
-              aria-label='Instructions'>
+              aria-label='Instructions'
+            >
               <HelpOutlineOutlinedIcon />
             </div>
           </div>
@@ -438,7 +442,8 @@ const WheelOfLife = () => {
               }
               onClick={() =>
                 wheelHistory.length > 0 ? handleDeleteAll() : null
-              }>
+              }
+            >
               <DeleteForeverIcon />
             </div>
 
@@ -451,12 +456,14 @@ const WheelOfLife = () => {
                     : ' inactive'
                   : ' inactive')
               }
-              onClick={handleSaveEntry}>
+              onClick={handleSaveEntry}
+            >
               <DoneIcon />
             </div>
             <div
               className={'btn' + (isWheelComplete() ? '' : ' inactive')}
-              onClick={handleReset}>
+              onClick={handleReset}
+            >
               <RestartAltOutlinedIcon />
             </div>
           </div>
@@ -594,13 +601,14 @@ const WheelOfLife = () => {
             </div>
             <button
               className='btn-secondary'
-              onClick={() => setShowInstructions(false)}>
+              onClick={() => setShowInstructions(false)}
+            >
               Close
             </button>
           </div>
         </div>
       )}
-    </div>
+    </div> : null
   )
 }
 
@@ -721,7 +729,8 @@ const WheelCanvas = React.forwardRef(
           <g
             key={`arrow-${cat.id}`}
             transform={`translate(${centerPos.x}, ${centerPos.y}) rotate(${rotation}) scale(${scale * 1.5})`}
-            style={{ opacity: 0.6, pointerEvents: 'none' }}>
+            style={{ opacity: 0.6, pointerEvents: 'none' }}
+          >
             <path
               d={arrowPath}
               fill={arrowColor}
@@ -762,7 +771,7 @@ const WheelCanvas = React.forwardRef(
                 d={d}
                 fill='none'
                 stroke='url(#scoreGradient)'
-                strokeWidth='4'
+                strokeWidth={index === 0 ? '12' : '4'}
                 strokeOpacity='0.65'
                 className='history-line'
               />
@@ -793,7 +802,8 @@ const WheelCanvas = React.forwardRef(
                   fontWeight='bold'
                   fontSize='1.5rem'
                   filter='url(#textBackground)'
-                  style={{ pointerEvents: 'none' }}>
+                  style={{ pointerEvents: 'none' }}
+                >
                   AVERAGE
                 </text>
               ))}
@@ -1001,13 +1011,15 @@ const WheelCanvas = React.forwardRef(
         return (
           <g
             key={`label-${cat.id}`}
-            transform={`translate(${pos.x}, ${pos.y})`}>
+            transform={`translate(${pos.x}, ${pos.y})`}
+          >
             <text
               transform={`rotate(${rotation})`}
               className='category-label'
               textAnchor={textAnchor}
               dominantBaseline='middle'
-              y={yPos}>
+              y={yPos}
+            >
               {lines.map((line, idx) => (
                 <tspan x='0' dy={idx === 0 ? 0 : '1.1em'} key={idx}>
                   {line.trim()}
@@ -1029,7 +1041,8 @@ const WheelCanvas = React.forwardRef(
             textAnchor='middle'
             dominantBaseline='middle'
             className='score-number-center'
-            dy='7'>
+            dy='7'
+          >
             0
           </text>
 
@@ -1050,7 +1063,8 @@ const WheelCanvas = React.forwardRef(
                 y={pos.y}
                 textAnchor='middle'
                 dominantBaseline='middle'
-                className='score-number-outer'>
+                className='score-number-outer'
+              >
                 {/* LINE 1: User's Score (Shifted up slightly) */}
                 <tspan className='user-score' x={pos.x} dy='-0.3em'>
                   {currentScore}
@@ -1073,7 +1087,8 @@ const WheelCanvas = React.forwardRef(
         ref={ref}
         className={`wheel-svg ${isCompareMode ? 'neon-mode' : ''}`}
         viewBox={`0 0 ${SVG_SIZE} ${SVG_SIZE}`}
-        xmlns='http://www.w3.org/2000/svg'>
+        xmlns='http://www.w3.org/2000/svg'
+      >
         <defs>
           <style>
             {`
@@ -1089,7 +1104,8 @@ const WheelCanvas = React.forwardRef(
             cy={CENTER}
             r={MAX_RADIUS}
             fx={CENTER}
-            fy={CENTER}>
+            fy={CENTER}
+          >
             <stop offset='0%' stopColor='#ff0505ff' />
             <stop offset='50%' stopColor='#ff9f43ff' />
             <stop offset='100%' stopColor='#0f0161ff' />
@@ -1100,7 +1116,8 @@ const WheelCanvas = React.forwardRef(
             y='-0.1'
             width='1.2'
             height='1.2'
-            id='textBackground'>
+            id='textBackground'
+          >
             <feFlood
               floodColor={isCompareMode ? '#333' : '#fff'}
               floodOpacity='0.85'

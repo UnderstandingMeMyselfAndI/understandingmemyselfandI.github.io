@@ -1,5 +1,5 @@
 // QuizQuestion.jsx
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo, memo } from 'react'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
 import QuizProgress from '../quizProgress/QuizProgress'
@@ -18,7 +18,7 @@ const questionShape = PropTypes.shape({
   answers: PropTypes.arrayOf(answerShape).isRequired,
 })
 
-const QuizQuestion = ({
+const QuizQuestion = memo(({
   data,
   onNext,
   currentIndex,
@@ -33,7 +33,6 @@ const QuizQuestion = ({
   const [submitted, setSubmitted] = useState(false)
   const [isCorrect, setIsCorrect] = useState(false)
   const [isNew, setIsNew] = useState(false)
-  const [lastMessage, setLastMessage] = useState('')
 
   useEffect(() => {
     setSelected(null)
@@ -51,7 +50,6 @@ const QuizQuestion = ({
   const handleSelect = (index) => {
     if (!submitted) {
       setSelected(index)
-      //   setLastMessage(isCorrect ? correctMessage : incorrectMessage);
     }
   }
 
@@ -61,40 +59,51 @@ const QuizQuestion = ({
       setSubmitted(true)
     }
   }
+
   const wrapSpan = (text) => {
     const split = text.split(' ')
     return split.map((word) => `<span>${word}</span>`).join(' ')
   }
 
+  const parsedCorrect = useMemo(() => 
+    parse(wrapSpan(DOMPurify.sanitize(correctMessage))), 
+    [correctMessage]
+  )
+  
+  const parsedIncorrect = useMemo(() => 
+    parse(wrapSpan(DOMPurify.sanitize(incorrectMessage))), 
+    [incorrectMessage]
+  )
+
   const handleNext = () => {
     setIsNew(false)
     if (submitted) {
       onNext(isCorrect)
+      setSubmitted(false)
     }
   }
 
   return (
     <div className='quiz-container'>
+     
+      <div className={'question-container'}>
+        {!submitted && (
+          <div className={'question' + (isNew ? ' in' : ' ')}>{isNew && question}</div>
+        )}
+        <div className={'feedback-message' + (submitted ? ' show' : '')}>
+          {submitted && (
+            <p>
+              {isCorrect ? parsedCorrect : parsedIncorrect}
+            </p>
+          )}
+        </div>
+      </div>
       <QuizProgress
         current={currentIndex + 1}
         total={totalQuestions}
         score={score}
         totalAnswered={totalAnswered}
       />
-      <h2 className={'question' + (isNew ? ' in' : ' ')}>{question}</h2>
-      <div className={'feedback-message' + (submitted ? ' show' : '')}>
-        {submitted && (
-          <p>
-            {isCorrect
-              ? parse(wrapSpan(DOMPurify.sanitize(correctMessage)))
-              : parse(wrapSpan(DOMPurify.sanitize(incorrectMessage)))}
-          </p>
-        )}
-      </div>
-      {/* <div className={'last-message' + (submitted ? ' show' : '')}>
-        {!isNew && <p>{lastMessage}</p>}
-      </div> */}
-
       <form className='answers-form'>
         {answers.map((answer, index) => {
           const isSelected = selected === index
@@ -131,19 +140,23 @@ const QuizQuestion = ({
         <button
           className='submit-button'
           disabled={selected === null || submitted}
-          onClick={handleSubmit}>
+          onClick={handleSubmit}
+        >
           Submit
         </button>
         <button
           className='next-button'
           disabled={!submitted}
-          onClick={handleNext}>
+          onClick={handleNext}
+        >
           Next
         </button>
       </div>
     </div>
   )
-}
+})
+
+QuizQuestion.displayName = 'QuizQuestion'
 
 QuizQuestion.propTypes = {
   data: questionShape.isRequired,

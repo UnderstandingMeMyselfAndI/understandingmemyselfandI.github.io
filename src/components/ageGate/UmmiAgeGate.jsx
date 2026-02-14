@@ -39,15 +39,15 @@ const UmmiAgeGate = () => {
   // To change the background image, update this path
   const BACKGROUND_IMAGE = '/bgs/3.avif'
 
-  return (
-    <div 
+  return ( !ageVerified ?
+    <div
       className='age-gate-container'
-      role='dialog' 
-      aria-modal='true' 
-      aria-labelledby='age-gate-title' 
+      role='dialog'
+      aria-modal='true'
+      aria-labelledby='age-gate-title'
       aria-describedby='age-gate-desc'
     >
-       <Backdrop
+      <Backdrop
         initialImageId={2} // Use specific image ID or logic for the gate background if needed, or default
         initialDelay={0}
         interval={10000} // Keep it static or slow moving if preferred
@@ -55,16 +55,23 @@ const UmmiAgeGate = () => {
         className='backdrop age-gate-backdrop'
         staticImage={BACKGROUND_IMAGE} // Force specific image for age gate if Backdrop supports it, otherwise generic backdrop
       />
-      
+
       {/* Explicit overlay to ensure it's on top and blocking */}
       <div className='age-gate-content'>
         <div className='logo-container'>
-           <img src='/icons/UmmiIcon2.svg' alt='Ummi Logo' className='age-gate-logo' />
+          <img
+            src='/icons/UmmiIcon2.svg'
+            alt='Ummi Logo'
+            className='age-gate-logo'
+          />
         </div>
-        
+
         <div className='text-container'>
           <h1 id='age-gate-title'>Age Verification</h1>
-          <p id='age-gate-desc'>Due to the sensitive nature of some topics and content, you need to be 18 or older to use this app.</p>
+          <p id='age-gate-desc'>
+            Due to the sensitive nature of some topics and content, you need to
+            be 18 or older to use this app.
+          </p>
           <p className='question'>Are you 18 years of age or older?</p>
         </div>
 
@@ -77,7 +84,7 @@ const UmmiAgeGate = () => {
           </button>
         </div>
       </div>
-    </div>
+    </div> : null
   )
 }
 

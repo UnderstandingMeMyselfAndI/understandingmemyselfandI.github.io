@@ -6,7 +6,8 @@ const CTA = ({ children, name = '', title = '', content = {}, open }) => {
   return (
     <div
       id={`${name}-cta`}
-      className={`cta-${name} cta` + (open ? ' show' : '')}>
+      className={`cta-${name} cta` + (open ? ' show' : '')}
+    >
       <div className='inner'>
         {/* <ArrowOutwardIcon className='cta-icon' /> */}
         {title && (

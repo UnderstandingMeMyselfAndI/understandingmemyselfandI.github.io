@@ -76,19 +76,19 @@ const WallpaperGallery = () => {
 
   // Get dedicated thumbnail URL
   const getThumbnailUrl = useCallback((wallpaperId) => {
-    return `/wallpapers/wallpaper-${wallpaperId}.avif`
+    return `/wallpapers/www.ummi.now-wallpaper-${wallpaperId}.avif`
   }, [])
 
   // Get preview URL (using detected size)
   const getPreviewUrl = useCallback(() => {
     if (!detectedSize || !currentWallpaper) return ''
-    return `/wallpapers/wallpaper-${currentWallpaper.id}.avif`
+    return `/wallpapers/www.ummi.now-wallpaper-${currentWallpaper.id}.avif`
   }, [detectedSize, currentWallpaper])
 
   // Get download URL (same as preview but with query parameter to force download)
   const getDownloadUrl = useCallback(() => {
     if (!detectedSize || !currentWallpaper) return ''
-    return `/wallpapers/wallpaper-${currentWallpaper.id}.avif?download=true`
+    return `/wallpapers/www.ummi.now-wallpaper-${currentWallpaper.id}.avif?download=true`
   }, [detectedSize, currentWallpaper])
 
   // Navigation handlers - memoized to prevent recreation
@@ -500,10 +500,11 @@ const WallpaperGallery = () => {
   // }
 
   // Main Gallery Mode
-  return (
+  return ( open ?
     <div
       id={name}
-      className={'activity ' + 'activity-' + name + (open ? ' show' : ' hide')}>
+      className={'activity ' + 'activity-' + name + (open ? ' show' : ' hide')}
+    >
       <section className={name}>
         <header className='gallery-header'>
           <CloseBtn className='close-btn' onClick={handleClose} />
@@ -521,7 +522,8 @@ const WallpaperGallery = () => {
           ref={carouselRef}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}>
+          onTouchEnd={handleTouchEnd}
+        >
           <button
             className={`nav-btn prev ${currentIndex === 0 ? 'disabled' : ''}`}
             onClick={handlePrevious}
@@ -536,7 +538,8 @@ const WallpaperGallery = () => {
           <div className='carousel-track'>
             <div
               className='carousel-slides'
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            >
               {wallpapers.map((wallpaper, index) => {
                 const isLoaded = thumbnailsLoaded[wallpaper.id]
                 const hasError = thumbnailsError[wallpaper.id]
@@ -544,7 +547,8 @@ const WallpaperGallery = () => {
                 return (
                   <div
                     key={wallpaper.id}
-                    className={`slide ${index === currentIndex ? 'active' : ''}`}>
+                    className={`slide ${index === currentIndex ? 'active' : ''}`}
+                  >
                     <div className='wallpaper-card'>
                       <div className='image-container'>
                         {!hasError ? (
@@ -614,7 +618,7 @@ const WallpaperGallery = () => {
           </div>
         </div>
       </section>
-    </div>
+    </div> : null
   )
 }
 

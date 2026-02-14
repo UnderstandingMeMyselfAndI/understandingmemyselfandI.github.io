@@ -1,114 +1,174 @@
-@use "@/scss/_variables.scss";
-@import "@/globals.css";
+@use '@/scss/_variables.scss';
+@import '@/globals.css';
 
-div.cta {
-    position: relative;
-    margin: 5dvh auto;
-    user-select: none;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.15s cubic-bezier(0.5, 0, 0.9, 1);
-    position: relative;
-    z-index: -1;
-    text-align: left;
-    width: 100%;
-    font-size: 1rem;
+body .activity.cta {
+  margin: 0 auto;
+}
 
-    &.show {
-        visibility: visible;
-        user-select: auto;
-        opacity: 1;
-        transition: opacity 0.15s cubic-bezier(0.5, 0, 0.9, 1);
-        position: relative;
-        z-index: 5500;
+body div.main section.activity div.cta {
+  position: relative;
+  margin: 9dvh auto;
+  margin: 10vh auto;
+  user-select: none;
+  transition: opacity 0.15s cubic-bezier(0.5, 0, 0.9, 1);
+  position: relative;
+  z-index: -1;
+  text-align: left;
+  border-radius: var(--border-radius-sml);
+  font-size: 1rem;
+
+  div.inner {
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+
+    h3.title {
+      font-weight: 900;
+      font-variation-settings: 'wght' 900;
     }
 
-    .inner {
-        padding: 1rem 1.0rem;
-        width: 100%;
-        height: 100%;
-        border-radius: var(--border-radius);
-        background-color: var(--greyDark20Trans);
-        outline: var(--card-outline-med);
-        box-shadow: var(--boxShadowDarkValue);
-        border-radius: var(--border-radius);
+    .cta-content {
+      text-shadow: var(--textShadowDarkStrong);
+      font-weight: 400;
+      font-variation-settings: 'wght' 400;
 
-        position: relative;
+      p {
+        font-size: 1.25rem;
+        text-shadow: none;
+      }
+    }
+  }
 
-        &::after {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0;
-            z-index: 1;
-            opacity: 1;
-            background-color: var(--greyDark);
-            outline: var(--card-outline);
-            box-shadow: var(--boxShadowDarkValue);
-            border-radius: var(--border-radius);
+  &.show {
+    visibility: visible;
+    user-select: auto;
+    opacity: 1;
+    transition: opacity 0.15s cubic-bezier(0.5, 0, 0.9, 1);
+    position: relative;
+    z-index: 5500;
+  }
 
-        }
+  .bg-img {
+    opacity: 0.75;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    border-radius: var(--border-radius-sml);
 
-        u {
-            text-decoration-color: var(--blue);
-            text-underline-offset: -42.5%;
-            text-decoration-thickness: 26px;
-            ;
-        }
+    overflow: hidden;
 
-        h3.title {
-            font-size: variables.$h3_size;
-            font-weight: 700;
-            font-variation-settings: "wght" 700;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: var(--orange);
-
-        }
-
-        .cta-content {
-            margin-left: 0.5rem;
-        }
-
-        .cta-buttons-wrapper {
-            width: 100%;
-            display: flex;
-            margin: 2rem 0 0 0;
-            column-gap: 0.75rem;
-
-            button {
-                display: flex;
-                font-size: 1.2rem;
-                ;
-                padding: 1.25rem 0.5rem;
-                align-items: center;
-                align-content: center;
-                text-align: center;
-                justify-content: center;
-                box-shadow: var(--boxShadowDarkValue);
-                width: 100%;
-            }
-        }
-
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.25;
     }
 
     &::after {
-        content: "\2959"; // \21E9 \21E3 \21E3 \21D3 \290B \2925 \2926 \2938 \2965 \2952 \2953
-        position: absolute;
-        left: 50%;
-        bottom: -100px;
-        color: var(--primary);
-        opacity: 0.75;
-        font-size: 100px;
-        transform: translate(-50%, 40px);
-
-        z-index: -1;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--blue);
+      border-radius: var(--border-radius-sml);
+      opacity: 1;
+      opacity: 1;
+      z-index: -1;
     }
 
-    &:nth-child(odd) {
-        &::after {
-            content: "\2955";
+    background-color: var(--lightBlue);
+  }
+
+  .inner {
+    padding: 1rem 1rem;
+    width: 100%;
+    height: 100%;
+    background-color: var(--greyDark20Trans);
+    outline: var(--card-outline-med);
+    box-shadow: var(--boxShadowDarkValue);
+    border-radius: var(--border-radius-sml);
+
+    position: relative;
+
+    &::after {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      z-index: 1;
+      opacity: 1;
+      background-color: var(--greyDark);
+      outline: var(--card-outline);
+      box-shadow: var(--boxShadowDarkValue);
+      border-radius: var(--border-radius-sml);
+    }
+
+    u {
+      text-decoration-color: var(--blue);
+      text-underline-offset: -42.5%;
+      text-decoration-thickness: 26px;
+    }
+
+    h3.title {
+      font-size: variables.$h3_size;
+      font-weight: 700;
+      font-variation-settings: 'wght' 700;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--orange);
+    }
+
+    .cta-content {
+      margin-left: 0.5rem;
+    }
+
+    .cta-buttons-wrapper {
+      width: 100%;
+      display: flex;
+      margin: 2rem 0 0 0;
+      column-gap: 0.75rem;
+
+      button {
+        display: flex;
+        font-size: 1.2rem;
+        padding: 1.25rem 1.5rem;
+        align-items: center;
+        align-content: center;
+        text-align: center;
+        justify-content: center;
+        box-shadow: var(--boxShadowDarkValue);
+        background-color: var(--blue80Trans);
+        // width: 100%;
+
+        svg {
+          width: 40px;
+          height: 40px;
         }
+      }
     }
+  }
+
+  &::after {
+    content: '\2959'; // \21E9 \21E3 \21E3 \21D3 \290B \2925 \2926 \2938 \2965 \2952 \2953
+    position: absolute;
+    left: 50%;
+    bottom: -100px;
+    color: var(--primary);
+    opacity: 0.25;
+    font-size: 100px;
+    transform: translate(-50%, 30px);
+
+    z-index: -1;
+  }
+
+  &:nth-child(odd) {
+    &::after {
+      content: '\2955';
+    }
+  }
 }

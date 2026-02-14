@@ -6,8 +6,10 @@
   --breakpoint-tablet: 900px;
   --breakpoint-mobile: 600px;
   --max-width: 430px;
+  --max-width-lrg-screen: 600px;
   --gutters: 1.25rem;
   --appMaxWidth: 430px;
+  --border-radius-sml: 4px;
   --border-radius: 6px;
   --border-radius-lrg: 12px;
   --blueBackground: #036075;
@@ -131,6 +133,15 @@
   --popover: oklch(0.269 0 0);
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(0.922 0 0);
+  --primary90Trans: rgba(255, 255, 255, 0.9);
+  --primary80Trans: rgba(255, 255, 255, 0.8);
+  --primary70Trans: rgba(255, 255, 255, 0.7);
+  --primary60Trans: rgba(255, 255, 255, 0.6);
+  --primary50Trans: rgba(255, 255, 255, 0.5);
+  --primary40Trans: rgba(255, 255, 255, 0.4);
+  --primary30Trans: rgba(255, 255, 255, 0.3);
+  --primary20Trans: rgba(255, 255, 255, 0.2);
+  --primary10Trans: rgba(255, 255, 255, 0.1);
   --primary-foreground: oklch(0.205 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
@@ -159,9 +170,12 @@
   --transition2: 0.35s cubic-bezier(0.3, 0, 0.74, 1);
   --textShadowDarkValue: 0px 0px 6px rgba(10, 10, 10, 0.5);
   --textShadowDark: 0px 0px 6px rgba(10, 10, 10, 0.5);
+  --textShadow:
+    0px 0px 24px rgba(50, 50, 50, 0.5), 0px 0px 12px rgba(50, 50, 50, 0.85);
   --textShadowDarkStrong: 0px 0px 4px rgba(10, 10, 10, 1);
   --textShadowLightValue: 0px 0px 6px rgba(200, 200, 200, 0.25);
   --textShadowLight: 0px 0px 6px rgba(200, 200, 200, 0.25);
+  --boxShadow: 0px 0px 12px rgba(10, 10, 10, 0.2);
   --boxShadowDarkValue: 0px 0px 6px rgba(10, 10, 10, 0.5);
   --boxShadowDark: 0px 0px 6px rgba(10, 10, 10, 0.5);
   --boxShadowLightValue: 0px 0px 6px rgba(200, 200, 200, 0.5);
@@ -302,4 +316,207 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.439 0 0);
+}
+/* ========================================= */
+/* HIGH CONTRAST THEME (WCAG AAA)            */
+/* Yellow/White text on Pure Black Background*/
+/* ========================================= */
+.high-contrast {
+  /* --- BORDERS & OUTLINES --- */
+  /* Increased to 2px for better definition */
+  --card-outline: 2px solid #ffffff;
+  --card-outline-med: 2px solid #ffffff;
+  --card-outline-dark: 2px solid #ffffff;
+
+  /* --- LAYOUT & SPACING (Inherited, but strictly defined if needed) --- */
+  --border-radius: 4px; /* Reduced radius for sharper corners */
+  --border-radius-lrg: 8px;
+
+  /* --- CORE BACKGROUNDS --- */
+  --blueBackground: #000000;
+  --mainBackground: #000000; /* Replaces Gradient */
+  --background: #000000;
+  --foreground: #ffff00; /* Primary Text: Yellow */
+
+  /* --- GREY TRANSPARENCIES (Mapped to Solid Black/Dark Grey) --- */
+  /* We remove transparency to avoid contrast issues with overlapping elements */
+  --backgroundGrayTrans5: #000000;
+  --backgroundGrayTrans10: #000000;
+  --backgroundGrayTrans15: #000000;
+  --backgroundGrayTrans20: #000000;
+  --backgroundGrayTrans25: #000000;
+  --backgroundGrayTrans30: #000000;
+  --backgroundGrayTrans35: #000000;
+  --backgroundGrayTrans40: #000000;
+  --backgroundGrayTrans45: #000000;
+  --backgroundGrayTrans50: #000000;
+  --backgroundGrayTrans75: #000000;
+  --backgroundGrayTrans85: #000000;
+  --backgroundGrayTrans90: #000000;
+  --backgroundGrayTrans95: #000000;
+  --backgroundActivity: #000000;
+
+  /* --- YELLOW SCALE (Mapped to Solid Yellow/Gold) --- */
+  --yellow: #ffff00;
+  --yellow2: #ffd700; /* Gold */
+  /* Transparencies removed: mapped to solid for borders/text or black for bg */
+  --yellow90Trans: #ffff00;
+  --yellow80Trans: #ffff00;
+  --yellow70Trans: #ffff00;
+  --yellow60Trans: #ffff00;
+  --yellow50Trans: #000000; /* Lower opacity backgrounds hide in HC mode */
+  --yellow40Trans: #000000;
+  --yellow30Trans: #000000;
+  --yellow20Trans: #000000;
+  --yellow10Trans: #000000;
+
+  /* --- ORANGE SCALE (Mapped to Solid Orange) --- */
+  --orange: #ffa500;
+  --orange90Trans: #ffa500;
+  --orange80Trans: #ffa500;
+  --orange70Trans: #ffa500;
+  --orange60Trans: #ffa500;
+  --orange50Trans: #000000;
+  --orange40Trans: #000000;
+  --orange30Trans: #000000;
+  --orange20Trans: #000000;
+  --orange10Trans: #000000;
+
+  /* --- LIGHT BLUE SCALE (Mapped to Cyan/White) --- */
+  --lightBlue: #00ffff; /* Cyan stands out against black */
+  --lightBlue2: #ffffff;
+  --lightBlue90Trans: #00ffff;
+  --lightBlue80Trans: #00ffff;
+  --lightBlue70Trans: #00ffff;
+  --lightBlue60Trans: #00ffff;
+  --lightBlue50Trans: #000000;
+  --lightBlue40Trans: #000000;
+  --lightBlue30Trans: #000000;
+  --lightBlue20Trans: #000000;
+  --lightBlue10Trans: #000000;
+
+  /* --- BLUE SCALE (Mapped to Bright Blue/Cyan) --- */
+  --blue: #00bfff; /* Deep Sky Blue */
+  --blue90Trans: #00bfff;
+  --blue80Trans: #00bfff;
+  --blue70Trans: #00bfff;
+  --blue60Trans: #00bfff;
+  --blue50Trans: #000000;
+  --blue40Trans: #000000;
+  --blue30Trans: #000000;
+  --blue20Trans: #000000;
+  --blue10Trans: #000000;
+
+  /* --- DARK BLUE SCALE (Mapped to Black/White) --- */
+  --blueDark: #000000;
+  --blueDark90Trans: #000000;
+  --blueDark80Trans: #000000;
+  --blueDark70Trans: #000000;
+  --blueDark60Trans: #000000;
+  --blueDark50Trans: #000000;
+  --blueDark40Trans: #000000;
+  --blueDark30Trans: #000000;
+  --blueDark20Trans: #000000;
+  --blueDark10Trans: #000000;
+
+  /* --- DARK DARK BLUE SCALE --- */
+  --blueDarkDark90Trans: #000000;
+  --blueDarkDark70Trans: #000000;
+  --blueDarkDark60Trans: #000000;
+  --blueDarkDark50Trans: #000000;
+  --blueDarkDark40Trans: #000000;
+  --blueDarkDark30Trans: #000000;
+  --blueDarkDark20Trans: #000000;
+  --blueDarkDark10Trans: #000000;
+
+  /* --- GREY SCALE (Mapped to White/Black) --- */
+  --lightGrey: #ffffff;
+  --lightGrey90Trans: #ffffff;
+  --lightGrey80Trans: #ffffff;
+  --lightGrey70Trans: #ffffff;
+  --lightGrey60Trans: #ffffff;
+  --lightGrey50Trans: #000000;
+  --lightGrey40Trans: #000000;
+  --lightGrey30Trans: #000000;
+  --lightGrey20Trans: #000000;
+  --lightGrey10Trans: #000000;
+  --lighGreyBg: #000000;
+
+  /* --- STATUS COLORS (Pure, Maximum Contrast) --- */
+  --red: #ff0000;
+  --green: #00ff00; /* Lime Green */
+
+  /* --- DARK GREYS (Mapped to Black) --- */
+  --greyDark: #000000;
+  --greyDark90Trans: #000000;
+  --greyDark80Trans: #000000;
+  --greyDark70Trans: #000000;
+  --greyDark60Trans: #000000;
+  --greyDark50Trans: #000000;
+  --greyDark40Trans: #000000;
+  --greyDark30Trans: #000000;
+  --greyDark20Trans: #000000;
+  --greyDark10Trans: #000000;
+
+  /* --- MID GREYS --- */
+  --greyLight: #ffffff;
+  --greyLight2: #ffffff;
+  --greyMid: #ffffff;
+  --greyMed: #ffffff;
+  --grey: #ffffff;
+
+  /* --- COMPONENT COLORS (Shadcn/UI tokens) --- */
+  --card: #000000;
+  --card-foreground: #ffff00;
+  --popover: #000000;
+  --popover-foreground: #ffff00;
+  --primary: #ffff00;
+  --primary-foreground: #000000;
+  --secondary: #ffffff;
+  --secondary-foreground: #000000;
+  --muted: #000000;
+  --muted-foreground: #00ff00;
+  --accent: #00ffff;
+  --accent-foreground: #000000;
+  --destructive: #ff0000;
+  --border: #ffffff;
+  --input: #ffffff;
+  --ring: #ffff00;
+
+  /* --- CHARTS (High Distinction) --- */
+  --chart-1: #ffff00; /* Yellow */
+  --chart-2: #00ffff; /* Cyan */
+  --chart-3: #ff00ff; /* Magenta */
+  --chart-4: #00ff00; /* Lime */
+  --chart-5: #ffffff; /* White */
+
+  /* --- SIDEBAR --- */
+  --sidebar: #000000;
+  --sidebar-foreground: #ffff00;
+  --sidebar-primary: #ffff00;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #000000;
+  --sidebar-accent-foreground: #ffff00;
+  --sidebar-border: #ffffff;
+  --sidebar-ring: #ffff00;
+
+  /* --- ANIMATIONS --- */
+  /* Usually disabled in accessibility modes */
+  --transition: none;
+  --transition2: none;
+
+  /* --- SHADOWS (Disabled for Clarity) --- */
+  --textShadowDarkValue: none;
+  --textShadowDark: none;
+  --textShadowDarkStrong: none;
+  --textShadowLightValue: none;
+  --textShadowLight: none;
+  --boxShadowDarkValue: none;
+  --boxShadowDark: none;
+  --boxShadowLightValue: none;
+  --boxShadowLight: none;
+  --boxShadowBlueValue: none;
+  --boxShadowBlue: none;
+  --boxShadowOrangeValue: none;
+  --boxShadowOrange: none;
 }

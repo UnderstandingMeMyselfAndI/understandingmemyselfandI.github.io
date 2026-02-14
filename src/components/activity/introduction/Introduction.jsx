@@ -57,13 +57,13 @@ const Introduction = () => {
   return (
     <section
       id='intro'
-      className={'activity intro' + (open ? ' show' : ' hide')}>
+      className={'activity intro' + (open ? ' show' : ' hide')}
+    >
       <div className='introduction-inner'>
         <div className='inner'>
           <h1 style={{ fontSize: '68px' }}>
             {(!isInstalled || (isInstalled && vc < 3)) && (
               <b>
-                {' '}
                 <u>{content?.title}</u>
               </b>
             )}
@@ -89,7 +89,8 @@ const Introduction = () => {
                 <div
                   key={`intro-${i}`}
                   className={'subsection installed'}
-                  ref={addToRefs}>
+                  ref={addToRefs}
+                >
                   {cnt?.title && (
                     <div className='subsection-title'>
                       <h2>{parse(DOMPurify.sanitize(cnt?.title))}</h2>
@@ -100,7 +101,7 @@ const Introduction = () => {
                     return (
                       <Feature key={'p-' + k}>
                         {i === 1 && <DoneOutlineIcon className='icon' />}
-                        <p key={k}>{parse(DOMPurify.sanitize(para))}</p>
+                        <div key={k}>{parse(DOMPurify.sanitize(para))}</div>
                       </Feature>
                     )
                   })}
@@ -133,10 +134,11 @@ const Introduction = () => {
                 <div
                   key={`intro-${i}`}
                   className={'subsection notinstalled '}
-                  ref={addToRefs}>
+                  ref={addToRefs}
+                >
                   {cnt?.title && (
                     <div className='subsection-title'>
-                      <h2 className='title2'>
+                      <h2 className='intro-title'>
                         {parse(DOMPurify.sanitize(cnt?.title))}
                       </h2>
                     </div>
@@ -144,9 +146,9 @@ const Introduction = () => {
                   {cnt?.content?.map((para, k) => {
                     return para ? (
                       <Feature classes={'feature'} key={'feat-' + k}>
-                        <p key={'p-' + k} className='st'>
+                        <div key={'p-' + k} className='st'>
                           {parse(DOMPurify.sanitize(para))}
-                        </p>
+                        </div>
                       </Feature>
                     ) : null
                   })}

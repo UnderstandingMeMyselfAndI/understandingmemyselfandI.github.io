@@ -43,23 +43,25 @@ const YourPrivacyCTA = () => {
 
   return (
     <section
-      className={
-        `activity activity-${activityUrl}-cta` + (open ? ' show' : '')
-      }>
+      className={`activity activity-${activityUrl}-cta` + (open ? ' show' : '')}
+    >
       <CTA
         name={activityName}
         title={content.title}
         open={open}
-        content={content.cta.content}>
+        content={content.cta.content}
+      >
         <button
           className={`${activityName}-cta-btn btn`}
-          onClick={() => handlePrivacyClick()}>
+          onClick={() => handlePrivacyClick()}
+        >
           {content?.cta?.btnLabel}
         </button>
 
         <button
           className={`${activityName}-cta-btn btn `}
-          onClick={() => handleSettingsClick()}>
+          onClick={() => handleSettingsClick()}
+        >
           Settings
         </button>
         <div className='bg-img'>

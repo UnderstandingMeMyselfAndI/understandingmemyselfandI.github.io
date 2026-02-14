@@ -1,16 +1,16 @@
-@use "buttons/buttonStyles.css";
+@use 'buttons/buttonStyles.css';
 
 button.days-counter {
-    font-size: 1.0rem;
-    font-weight: 600;
-    width: fit-content;
-    margin: 1.5rem auto;
-    padding: 1.25rem 1.5rem;
-    outline: 1px solid rgba(150, 150, 150, 0.25);
-    box-shadow: var(--boxShadowDarkValue);
+  font-size: 1rem;
+  font-weight: 600;
+  width: fit-content;
+  margin: 1.5rem auto;
+  padding: 1.25rem 1.5rem;
+  outline: 1px solid rgba(150, 150, 150, 0.25);
+  box-shadow: var(--boxShadowDarkValue);
 
-    .icon {
-        width: 40px;
-        height: 40px
-    }
+  .icon {
+    width: 40px;
+    height: 40px;
+  }
 }

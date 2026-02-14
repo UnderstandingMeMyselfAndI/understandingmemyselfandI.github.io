@@ -128,7 +128,8 @@ const InstallCTA = () => {
           className={
             'activity activity-installCTA ' + (open ? ' show' : ' hide')
           }
-          ref={inViewRef}>
+          ref={inViewRef}
+        >
           <div id='install'>
             <h3>
               <u className='yellow-ul'>

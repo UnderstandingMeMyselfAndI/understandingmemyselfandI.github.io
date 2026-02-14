@@ -1,33 +1,44 @@
-@import "@/globals.css";
-@import "../buttonStyles.css";
+@import '@/globals.css';
+@import '../buttonStyles.css';
 .update-icon.btn {
-	display: flex;
-	row-gap: 0.5rem;
-	column-gap: 0.5rem;
-	min-width: 100%;
-	flex-direction: row;
-	justify-content: center;
+  display: flex;
+  row-gap: 0.5rem;
+  column-gap: 0.5rem;
+  min-width: 100%;
+  flex-direction: row;
+  justify-content: center;
 }
 .update-icon svg {
-	path {
-		transform: scale(1.5);
-	}
+  path {
+    transform: scale(1.5);
+  }
 }
 .update-icon button {
-	border: none;
-	outline: none;
+  border: none;
+  outline: none;
 }
-.update-btn.updating{
-	user-select:none;
-	opacity:0.25;
+.update-btn.updating {
+  user-select: none;
+  opacity: 0.25;
 }
-.spin{
-	-webkit-animation:spin 1s linear infinite;
-	-moz-animation:spin 1s linear infinite;
-	animation:spin 1s linear infinite;
-	
+.spin {
+  -webkit-animation: spin 1s linear infinite;
+  -moz-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
 }
-@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
-
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

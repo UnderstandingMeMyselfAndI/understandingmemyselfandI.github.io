@@ -1,51 +1,46 @@
 @use '@/scss/_variables.scss';
 @import '@/globals.css';
 
-
-
 // --- RESET & BASICS ---
 
-
 div#recovery-timeline {
-    position: fixed;
-    pointer-events: all;
-    background: var(--backgroundActivity);
-    width: 100dvw;
-    height: 100dvh;
-    /* Mobile fix */
-    min-width: 100dvw;
-    max-width: 100dvw;
-    display: flex;
+  position: fixed;
+  pointer-events: all;
+  background: var(--backgroundActivity);
+  width: 100dvw;
+  height: 100dvh;
+  /* Mobile fix */
+  min-width: 100dvw;
+  max-width: 100dvw;
+  display: flex;
 
+  left: 0;
+  overflow: hidden;
+
+  button.close-btn {
+    right: 2rem;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
     left: 0;
-    overflow: hidden;
-
-    button.close-btn {
-        right: 2rem;
-    }
-
-    &:after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--greyDark40Trans);
-        z-index: -1;
-    }
-
+    width: 100%;
+    height: 100%;
+    background: var(--greyDark40Trans);
+    z-index: -1;
+  }
 }
 
 .timeline-wrapper,
 .main-scroll-container,
 .section-background-layer,
 .minimap-container {
-    height: 100vh;
-    /* Fallback for old browsers */
-    height: 100dvh;
-    /* Modern mobile fix */
-
+  height: 100vh;
+  /* Fallback for old browsers */
+  height: 100dvh;
+  /* Modern mobile fix */
 }
 
 $dot-color: rgba(255, 255, 255, 0.86); // Adjust opacity as needed
@@ -57,397 +52,390 @@ $minimap-w: 50px;
 
 // --- LAYOUT ---
 .timeline-wrapper {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    background: $bg-color;
-    color: $text;
-    overflow: hidden;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: $bg-color;
+  color: $text;
+  overflow: hidden;
 }
-
-
 
 // --- MINIMAP ---
 .minimap-container {
-    width: 50px;
-    height: 100%;
-    position: absolute; // Relative to the fixed overlay
-    right: 8px;
-    top: 0;
-    z-index: 100;
-    // background: rgba(0, 0, 0, 0.3);
+  width: 50px;
+  height: 100%;
+  position: absolute; // Relative to the fixed overlay
+  right: 8px;
+  top: 0;
+  z-index: 100;
+  // background: rgba(0, 0, 0, 0.3);
 
-    // /* Mobile Overlay Style */
-    // @media (max-width: 768px) {
-    //     background: linear-gradient(to left, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
-    //     pointer-events: none; // Let clicks pass through to content
-    // }
+  // /* Mobile Overlay Style */
+  // @media (max-width: 768px) {
+  //     background: linear-gradient(to left, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+  //     pointer-events: none; // Let clicks pass through to content
+  // }
 }
 
 .minimap-track {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    pointer-events: auto; // Re-enable clicks on the track itself
-    cursor: pointer;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  pointer-events: auto; // Re-enable clicks on the track itself
+  cursor: pointer;
 }
 
 .minimap-marker {
-    width: 8px;
-    height: 30px;
-    background: var(--lightBlue60Trans);
-    border-radius: 4px;
-    position: absolute;
-    right: 4px; // Stick to right edge
-    top: 0;
-    z-index: 20;
-    box-shadow: 0 0 10px $accent;
+  width: 8px;
+  height: 30px;
+  background: var(--lightBlue60Trans);
+  border-radius: 4px;
+  position: absolute;
+  right: 4px; // Stick to right edge
+  top: 0;
+  z-index: 20;
+  box-shadow: 0 0 10px $accent;
 }
 
 .minimap-ticks-layer {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    pointer-events: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
 }
 
 .mini-tick {
-    width: 10px;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.3);
-    align-self: flex-end; // Align to right
-    margin-right: 3px;
+  width: 10px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+  align-self: flex-end; // Align to right
+  margin-right: 3px;
 }
 
 .minimap-sections-layer {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    pointer-events: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
 }
 
 .section-divider-line {
-    position: absolute;
-    right: 0;
-    width: 25px; // Much wider than ticks
-    height: 2px; // Thicker
-    background-color: var(--yellow30Trans);
-    z-index: 10;
-    margin-right: -3.5px;
-
-
-
+  position: absolute;
+  right: 0;
+  width: 25px; // Much wider than ticks
+  height: 2px; // Thicker
+  background-color: var(--yellow30Trans);
+  z-index: 10;
+  margin-right: -3.5px;
 }
 
 // --- NEW DOTTED LINE ---
 .central-dotted-line {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 10px; // Width of the column
-    height: 100%; // Spans full viewport height
-    z-index: -1; // Above background (0), Below events (10)
-    z-index: 1;
-    pointer-events: none;
-    // Create the dots using a repeating gradient
-    // This creates a 2px circle every 20px of height
-    background-image: radial-gradient(circle,
-            $dot-color 1px,
-            transparent 1.5px);
-    background-size: 100% 20px; // 20px is the gap between dots
-    background-repeat: repeat-y;
-    background-position: center top;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px; // Width of the column
+  height: 100%; // Spans full viewport height
+  z-index: -1; // Above background (0), Below events (10)
+  z-index: 1;
+  pointer-events: none;
+  // Create the dots using a repeating gradient
+  // This creates a 2px circle every 20px of height
+  background-image: radial-gradient(circle, $dot-color 1px, transparent 1.5px);
+  background-size: 100% 20px; // 20px is the gap between dots
+  background-repeat: repeat-y;
+  background-position: center top;
 
-    // Optional: Fade out at very top and bottom for smoothness
-    -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
-    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  // Optional: Fade out at very top and bottom for smoothness
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
 
-    @media (width <=425px) {
-        transform: translateX(calc(-50% - 15px));
-
-    }
+  @media (width <=425px) {
+    transform: translateX(calc(-50% - 15px));
+  }
 }
-
-
 
 // ... existing styles ...
 
 // --- INTRO SECTION ---
 .intro-section {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    /* Fallback */
-    height: 100dvh;
-    /* Mobile Full Height */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-    text-align: center;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  /* Fallback */
+  height: 100dvh;
+  /* Mobile Full Height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  text-align: center;
 }
 
 .intro-content {
-    opacity: 0;
-    animation: fadeIn 1.5s ease forwards;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    row-gap: 2rem;
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  row-gap: 2rem;
 
-    h1 {
-        font-size: clamp(3rem, 8vw, 6rem);
-        color: var(--lightBlue80Trans);
-        margin: 0;
-        text-transform: uppercase;
-        letter-spacing: 4px;
-        text-decoration: underline;
-        text-decoration-color: var(--orange30Trans);
-        text-decoration-thickness: 65%;
-        text-underline-offset: -45.5%;
-        text-decoration-skip-ink: none;
-    }
+  h1 {
+    font-size: clamp(3rem, 8vw, 6rem);
+    color: var(--lightBlue80Trans);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-decoration: underline;
+    text-decoration-color: var(--orange30Trans);
+    text-decoration-thickness: 65%;
+    text-underline-offset: -45.5%;
+    text-decoration-skip-ink: none;
+  }
 
-    p {
-        font-size: 1rem;
-        color: #bbb;
-        margin: 0;
-        max-width: var(--max-width);
-    }
-
+  p {
+    font-size: 1rem;
+    color: #bbb;
+    margin: 0;
+    max-width: var(--max-width);
+  }
 }
 
 .scroll-indicator {
-    font-size: 2.75rem;
-    color: var(--orange70Trans);
-    animation: bounce 2s infinite;
-    width: 100%;
-    font-weight: 700;
-    font-variation-settings: 'wght' 700;
-    margin-left: -4px;
+  font-size: 2.75rem;
+  color: var(--orange70Trans);
+  animation: bounce 2s infinite;
+  width: 100%;
+  font-weight: 700;
+  font-variation-settings: 'wght' 700;
+  margin-left: -4px;
 }
 
 @keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
 
-    0%,
-    20%,
-    50%,
-    80%,
-    100% {
-        transform: translateY(0);
-    }
+  40% {
+    transform: translateY(-10px);
+  }
 
-    40% {
-        transform: translateY(-10px);
-    }
-
-    60% {
-        transform: translateY(-5px);
-    }
+  60% {
+    transform: translateY(-5px);
+  }
 }
 
 @keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
+  to {
+    opacity: 1;
+  }
 }
-
-
 
 // --- SCROLL CONTAINER ---
 .main-scroll-container {
-    height: 100%;
-    width: 100%;
-    overflow-y: auto;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    // Space for minimap on desktop
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  // Space for minimap on desktop
 
+  @media (width <=425px) {
+    padding-right: 30px;
+  }
 
+  // Hide Scrollbars
+  &::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
 
-
-    @media (width <=425px) {
-        padding-right: 30px;
-
-    }
-
-    // Hide Scrollbars
-    &::-webkit-scrollbar {
-        width: 0;
-        background: transparent;
-    }
-
-    scrollbar-width: none;
+  scrollbar-width: none;
 }
 
 .global-spacer {
-    height: 30vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+
+  > div p {
+    font-size: 0.8751rem;
+    width: 96%;
+  }
+
+  > div:first-child {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    width: 96%;
+    margin-left: -1rem;
+    color: #555;
+    padding: 1rem 0 0.5rem 0;
+    margin-top: 2rem;
     display: flex;
     flex-flow: column nowrap;
-
-    >div p {
-        font-size: 0.8751rem;
-        width: 96%;
-    }
-
-    >div:first-child {
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        width: 96%;
-        margin-left: -1rem;
-        color: #555;
-        padding: 1rem 0 0.5rem 0;
-        margin-top: 2rem;
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: center;
-        align-items: center;
-        align-content: center;
-        font-weight: 900;
-        font-size: 2rem;
-        line-height: 1;
-        font-variation-settings: 'wght' 900;
-    }
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    font-weight: 900;
+    font-size: 2rem;
+    line-height: 1;
+    font-variation-settings: 'wght' 900;
+  }
 }
 
 // --- SECTIONS ---
 .timeline-section {
-    position: relative;
-    // Make section tall enough to scroll through
-    min-height: 150vh;
-    width: 100%;
-
+  position: relative;
+  // Make section tall enough to scroll through
+  min-height: 150vh;
+  width: 100%;
 }
 
 // --- PINNED BACKGROUND ---
 .section-background-layer {
-    // CRITICAL: Must be full viewport height to pin correctly
-    height: 100vh;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0; // Behind events
+  // CRITICAL: Must be full viewport height to pin correctly
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0; // Behind events
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .background-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    opacity: 0.4; // Fade it back so text is readable
-    text-align: center;
-    height: 100%;
-    width: 94%;
-    margin-left: -1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 0.4; // Fade it back so text is readable
+  text-align: center;
+  height: 100%;
+  width: 94%;
+  margin-left: -1rem;
 }
 
 .huge-year {
-    /* Clamp scales linearly: min 4rem, ideal 15vw, max 12rem */
-    font-size: clamp(5.5rem, 5vw, 8rem);
-    line-height: 0.9;
-    // outline: 1px solid #ccc;
-    color: var(--orange70Trans);
-    min-width: 100%;
-    letter-spacing: -0.9;
-    font-weight: 900;
-    font-variation-settings: 'wght' 900;
+  /* Clamp scales linearly: min 4rem, ideal 15vw, max 12rem */
+  font-size: clamp(5.5rem, 5vw, 8rem);
+  line-height: 0.9;
+  // outline: 1px solid #ccc;
+  color: var(--orange70Trans);
+  min-width: 100%;
+  letter-spacing: -0.9;
+  font-weight: 900;
+  font-variation-settings: 'wght' 900;
 }
 
 .huge-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    color: var(--lightBlue60Trans);
-    letter-spacing: -0.2;
-    line-height: 1.0;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--lightBlue60Trans);
+  letter-spacing: -0.2;
+  line-height: 1;
 }
 
 .marker-label {
-    color: $accent;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 0.8rem;
-    margin: 20px 0;
-    border-top: 1px solid $accent;
-    border-bottom: 1px solid $accent;
-    padding: 5px 20px;
+  color: $accent;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.8rem;
+  margin: 20px 0;
+  border-top: 1px solid $accent;
+  border-bottom: 1px solid $accent;
+  padding: 5px 20px;
 }
 
 // --- EVENTS ---
 .events-grid {
-    position: relative;
-    z-index: 10; // In front of pinned background
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 30vh; // Space out events widely
-    padding: 50vh 0; // Padding ensures background is visible before first event
+  position: relative;
+  z-index: 10; // In front of pinned background
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30vh; // Space out events widely
+  padding: 50vh 0; // Padding ensures background is visible before first event
 }
 
 .event-card {
-    background: var(--blue60Trans);
-    padding: 2rem 1rem;
-    max-width: 325px;
+  background: var(--blue60Trans);
+  padding: 2rem 1rem;
+  max-width: 325px;
+  width: 100%;
+  border-radius: var(--border-radius);
+  // border: 1px solid #333;
+  // box-shadow: 0 0px 16px rgba(0, 0, 0, 0.5);
+  position: relative;
+  // margin-left: 100px;
+  // text-align: left;
+
+  h3 {
+    color: $accent;
+    margin-top: 0;
+    font-size: 1.5rem;
+  }
+
+  p {
+    color: #bbb;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 20px;
+    transform: translate(-50%, -50%);
+    height: 20px;
+    border-radius: 50%;
+    outline: 2px solid var(--lightBlue80Trans);
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    background: var(--greyDark60Trans);
+    z-index: -1;
     border-radius: var(--border-radius);
-    // border: 1px solid #333;
-    // box-shadow: 0 0px 16px rgba(0, 0, 0, 0.5);
-    position: relative;
-    // margin-left: 100px;
-    // text-align: left;
-
-    h3 {
-        color: $accent;
-        margin-top: 0;
-        font-size: 1.5rem;
-    }
-
-    p {
-        color: #bbb;
-        line-height: 1.6;
-        font-size: 1.1rem;
-        margin: 0;
-    }
-
-    &:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 50%;
-        width: 20px;
-        transform: translate(-50%, -50%);
-        height: 20px;
-        border-radius: 50%;
-        outline: 2px solid var(--lightBlue80Trans);
-    }
-
-    &:after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--greyDark60Trans);
-        z-index: -1;
-        border-radius: var(--border-radius);
-    }
+  }
 }

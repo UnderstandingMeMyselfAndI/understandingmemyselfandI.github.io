@@ -128,12 +128,13 @@ const VerticalTimeline = () => {
   // Generate small background ticks
   const minimapTicks = Array.from({ length: 100 }).map((_, i) => i)
 
-  return (
+  return ( show ?
     <div
       id={name}
       className={
         'activity activity-' + name + (show ? ' show' : ' hide') + ' fixed'
-      }>
+      }
+    >
       {showConfirm ? (
         <Confirm
           title={strings.confirm.title}
@@ -152,7 +153,8 @@ const VerticalTimeline = () => {
             <div
               className='minimap-track'
               ref={minimapRef}
-              onClick={handleClick}>
+              onClick={handleClick}
+            >
               {/* A. The Moving Marker */}
               <div className='minimap-marker' ref={markerRef}></div>
 
@@ -180,7 +182,8 @@ const VerticalTimeline = () => {
           {/* SCROLL AREA */}
           <div
             className='main-scroll-container scroll-container'
-            ref={containerRef}>
+            ref={containerRef}
+          >
             <div className='content-wrapper'>
               {/* 2. NEW: CENTRAL DOTTED LINE */}
               <div className='central-dotted-line'></div>
@@ -234,7 +237,7 @@ const VerticalTimeline = () => {
           </div>
         </>
       )}
-    </div>
+    </div> : null
   )
 }
 

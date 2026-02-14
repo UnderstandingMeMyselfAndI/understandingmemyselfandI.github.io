@@ -1,41 +1,30 @@
 @use '@/scss/variables';
 @import '@/globals.css';
 
-.activity-days-counter-cta {
-    position: relative;
+body div.main section.activity-days-counter-cta div.cta {
+  .inner {
+    background-color: var(--orange60Trans);
 
-    border-radius: var(--border-radius);
-
-    .bg-img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        border-radius: var(--border-radius);
-        overflow: hidden;
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.75;
-        }
-
-        &::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--yellow);
-            border-radius: var(--border-radius);
-            opacity: 0.6;
-            z-index: -1;
-        }
-
-        background-color:var(--lightBlue)
+    u {
+      text-decoration-color: var(--blue30Trans);
     }
+
+    h3.title {
+      color: var(--primary);
+      font-weight: 900;
+      font-variation-settings: 'wght' 900;
+      text-align: right;
+      text-shadow: none;
+    }
+
+    .cta-content {
+      p {
+        text-align: right;
+      }
+    }
+
+    &::after {
+      background-color: var(--greyDark20Trans);
+    }
+  }
 }

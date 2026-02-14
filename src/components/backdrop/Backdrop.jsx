@@ -7,6 +7,8 @@ const allImages = ImageData
 const DEFAULT_INTERVAL = 10000
 const FADE_DURATION = 2000
 
+import useAppStore from '@/store/useAppStore'
+
 export default function Backdrop({
   initialImageId = null,
   initialDelay = 0,
@@ -17,6 +19,7 @@ export default function Backdrop({
   const [isInitializing, setIsInitializing] = useState(true)
   const usedIds = useRef(new Set())
   const intervalRef = useRef(null)
+  const isModal = useAppStore((state) => state.isModal)
 
   // Initial image selection
   useEffect(() => {
@@ -29,7 +32,7 @@ export default function Backdrop({
 
   // Image cycling logic
   useEffect(() => {
-    if (!currentImage) return
+    if (!currentImage || isModal) return
 
     const getNextImage = () => {
       let available = allImages.filter((img) => !usedIds.current.has(img.id))
@@ -66,13 +69,24 @@ export default function Backdrop({
         clearInterval(intervalRef.current)
       }
     }
-  }, [currentImage, initialDelay, interval])
+  }, [currentImage, initialDelay, interval, isModal])
 
   // Preload next image
   useEffect(() => {
     if (nextImage) {
-      const img = new Image()
+      let img = new Image()
       img.src = nextImage.url
+      // Ensure the object is eligible for GC soon
+      img.onload = () => {
+        img = null
+      }
+      img.onerror = () => {
+        img = null
+      }
+      return () => {
+        if (img) img.src = ''
+        img = null
+      }
     }
   }, [nextImage])
 

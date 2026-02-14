@@ -3,7 +3,7 @@
   "bracketSpacing": true,
   "htmlWhitespaceSensitivity": "css",
   "insertPragma": false,
-  "jsxBracketSameLine": true,
+  "bracketSameLine": true,
   "jsxSingleQuote": true,
   "printWidth": 80,
   "proseWrap": "always",
@@ -15,3 +15,4 @@
   "trailingComma": "all",
   "useTabs": false
 }
+

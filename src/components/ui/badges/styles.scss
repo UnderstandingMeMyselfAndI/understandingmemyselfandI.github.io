@@ -1,95 +1,94 @@
-@use "@/scss/variables";
-@import "@/globals.css";
-@import "@/scss/Animation.css";
+@use '@/scss/variables';
+@import '@/globals.css';
+@import '@/scss/Animation.css';
 
 span.MuiBadge-badge.MuiBadge-standard {
-	color: #fff;
+  color: #fff;
 }
 
 $width: 28px;
 
 .badge-cont {
-	position: fixed;
-	top: 1.5rem;
-	left: 1.5rem;
-	opacity: 1;
-	transition: all 0.25s cubic-bezier(0.3, 0, 0.74, 1);
-	z-index: 6010;
-	transform: translateX(0) scale(1);
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  opacity: 1;
+  transition: all 0.25s cubic-bezier(0.3, 0, 0.74, 1);
+  z-index: 6010;
+  transform: translateX(0) scale(1);
 
-	&.stg-0,
-	&.stg-1,
-	&.stg-2,
-	&.stg-3,
-	&.hide {
-		opacity: 0;
-		transform: translateX(-30px) scale(0.7);
-		transition: all 0.25s cubic-bezier(0.3, 0, 0.74, 1);
-	}
+  &.stg-0,
+  &.stg-1,
+  &.stg-2,
+  &.stg-3,
+  &.hide {
+    opacity: 0;
+    transform: translateX(-30px) scale(0.7);
+    transition: all 0.25s cubic-bezier(0.3, 0, 0.74, 1);
+  }
 }
 
 span.tooltip {
-	font-size: 3rem;
+  font-size: 3rem;
 }
 
 .badge-toolbox {
-	user-select: none;
-	visibility: hidden;
+  user-select: none;
+  visibility: hidden;
 
-	&.open {
-
-		visibility: visible;
-		user-select: auto;
-	}
+  &.open {
+    visibility: visible;
+    user-select: auto;
+  }
 }
 
 .badge.toolbox {
-	text-shadow: var(--textShadowDarkValue);
-	opacity: 0.5;
-	transition: all var(--transition2);
-	// animation: bounce-out 0.25s ease-in-out;
-	position: relative;
-	z-index: 6001;
+  text-shadow: var(--textShadowDarkValue);
+  opacity: 0.5;
+  transition: all var(--transition2);
+  // animation: bounce-out 0.25s ease-in-out;
+  position: relative;
+  z-index: 6001;
 
-	.MuiBadge-badge {
-		background: var(--greyDark);
-	}
+  .MuiBadge-badge {
+    background: var(--greyDark);
+  }
 
-	svg {
-		width: $width;
-		height: $width;
-		margin: 0.5rem;
+  svg {
+    width: $width;
+    height: $width;
+    margin: 0.5rem;
 
-		fill: #fff;
-	}
+    fill: #fff;
+  }
 
-	.icon {
-		position: relative;
-		z-index: 4001;
-	}
+  .icon {
+    position: relative;
+    z-index: 4001;
+  }
 
-	&::after {
-		content: "";
-		position: absolute;
-		top: -12.5%;
-		left: -12.5%;
-		width: 125%;
-		height: 125%;
-		border-radius: 50%;
-		background-color: var(--lightBlue);
-	}
+  &::after {
+    content: '';
+    position: absolute;
+    top: -12.5%;
+    left: -12.5%;
+    width: 125%;
+    height: 125%;
+    border-radius: 50%;
+    background-color: var(--lightBlue);
+  }
 
-	&.active {
-		transition: all var(--transition2);
-		opacity: 1;
-		animation: bounce-in 0.25s ease-in-out;
+  &.active {
+    transition: all var(--transition2);
+    opacity: 1;
+    animation: bounce-in 0.25s ease-in-out;
 
-		&::after {
-			transition: all var(--transition2);
-			background-color: var(--orange);
-			opacity: 1;
-		}
-	}
+    &::after {
+      transition: all var(--transition2);
+      background-color: var(--orange);
+      opacity: 1;
+    }
+  }
 }
 
 // .snackBar.alert {

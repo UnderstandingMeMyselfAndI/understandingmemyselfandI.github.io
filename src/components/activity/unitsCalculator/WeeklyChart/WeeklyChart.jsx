@@ -1,11 +1,11 @@
-import { useDrinkLogStore } from '@/store/drinkLogStore';
+import { useDrinkLogStore } from '@/store/drinkLogStore'
 
 export default function WeeklyChart() {
-  const drinks = useDrinkLogStore((state) => state.drinks);
-  const isUnlocked = useDrinkLogStore((state) => state.isUnlocked);
+  const drinks = useDrinkLogStore((state) => state.drinks)
+  const isUnlocked = useDrinkLogStore((state) => state.isUnlocked)
 
   if (!isUnlocked) {
-    return <p>Please unlock to view your data</p>;
+    return <p>Please unlock to view your data</p>
   }
 
   return (
@@ -13,5 +13,5 @@ export default function WeeklyChart() {
       <h2>Weekly Drinks Chart</h2>
       {/* render chart using drinks */}
     </div>
-  );
+  )
 }

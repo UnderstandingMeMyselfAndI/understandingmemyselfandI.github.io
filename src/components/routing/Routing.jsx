@@ -145,17 +145,14 @@ const Routing = () => {
     ) {
       // console.log('activitiesById', activitiesById)
       doSetBrowserHistory(activityObj, activityObj.title)
-     
+
       trackEvent(`${activityObj.url}_viewed`, {}, gae)
     } else if (activity !== -1 && !isFirstPageLoad.current) {
       // console.log( `activityObj is either missing title: ${activityObj?.title} | or url: ${activityObj?.url} |`)
     }
     if (activity === -1 && !isFirstPageLoad.current) {
       // home view
-      setBrowserHistory(
-        `${appURL}/`,
-        `${strings.app.appName} - Home`,
-      )
+      setBrowserHistory(`${appURL}/`, `${strings.app.appName} - Home`)
       trackEvent('Ummi_home_viewed', {}, gae)
     }
     // console.groupEnd()
@@ -178,7 +175,6 @@ const Routing = () => {
         `${strings.app.appName} Tool - ${acronym.title}`,
       )
       trackEvent(`${acronym.title}_tool_viewed`, {}, gae)
-
     }
     // console.groupEnd()
   }, [acronymID, gae])
@@ -188,12 +184,11 @@ const Routing = () => {
       console.groupCollapsed('logChildRoute called')
       const [mainRoute, childRoute] = segments
       if (mainRoute === 'lingo-and-phrases' && childRoute) {
-       
-         trackEvent(`${childRoute}_phrase_viewed`, {}, gae)
+        trackEvent(`${childRoute}_phrase_viewed`, {}, gae)
         console.log('logGAEvent ', `${childRoute}_phrase_viewed`)
       } else if (mainRoute === 'tools' && childRoute) {
         // Assuming childRoute is the tool title/slug
-       
+
         trackEvent(`${childRoute}_tool_viewed`, {}, gae)
         console.log('logGAEvent ', `${childRoute}_tool_viewed`)
       }

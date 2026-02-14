@@ -1,5 +1,5 @@
-@use "@/scss/_variables.scss";
-@import "@/globals.css";
+@use '@/scss/_variables.scss';
+@import '@/globals.css';
 
 body {
   .activity-cookie-consent-overlay {
@@ -15,7 +15,9 @@ body {
 
   .cookie-banner {
     background: white;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
     max-width: 42rem;
     width: 100%;
   }
@@ -50,7 +52,7 @@ body {
   h2.cookie-banner-title {
     font-size: variables.$h3_size;
     font-weight: 800;
-    font-variation-settings: "wght" 800;
+    font-variation-settings: 'wght' 800;
     color: var(--blue);
     margin-bottom: 0.5rem;
   }
@@ -135,7 +137,9 @@ body {
   .modal {
     background: white;
     border-radius: 0.5rem;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
     max-width: 42rem;
     width: 100%;
     max-height: 90vh;
@@ -279,7 +283,7 @@ body {
 
   button.btn {
     background: var(--blue);
-    color: var(--primary)
+    color: var(--primary);
   }
 
   .demo-container {

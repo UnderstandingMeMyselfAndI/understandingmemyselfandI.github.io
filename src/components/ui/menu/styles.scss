@@ -14,7 +14,6 @@
     left: 0%;
   }
 
-
   overflow-x: clip;
 
   display: flex;
@@ -29,7 +28,7 @@
     z-index: 1;
     position: absolute;
     background-color: transparent;
-    transition: background-color 0.25s cubic-bezier(0.9, 0.0, 0.5, 1);
+    transition: background-color 0.25s cubic-bezier(0.9, 0, 0.5, 1);
   }
 
   &:has(.checkbox1:checked) {
@@ -41,12 +40,11 @@
       left: 0;
       top: 0;
       z-index: -1;
-      transition: background-color 0.25s cubic-bezier(0.9, 0.0, 0.5, 1);
+      transition: background-color 0.25s cubic-bezier(0.9, 0, 0.5, 1);
       background-color: rgba(20, 20, 20, 0.75);
       outline: 10px solid rgb(243, 243, 3, 0.7);
     }
   }
-
 
   .burger-stack {
     position: fixed;
@@ -56,14 +54,12 @@
     border: none;
     padding: 0.5rem;
 
-
     display: flex;
     flex-flow: column wrap;
     align-content: center;
     align-items: center;
     justify-content: center;
     z-index: 75001;
-
 
     svg {
       fill: #fff;
@@ -87,7 +83,6 @@
       height: 30px;
       position: relative;
       z-index: 75001;
-
     }
 
     .hamburger .bar {
@@ -120,33 +115,29 @@
     }
 
     /* HAMBURGER 1 */
-    .checkbox1+label>.hamburger1 {
+    .checkbox1 + label > .hamburger1 {
       transform: translateX(5px);
-
     }
 
-    .checkbox1:checked+label>.hamburger1>.bar1 {
+    .checkbox1:checked + label > .hamburger1 > .bar1 {
       transform: rotate(45deg) translateX(1px);
       transform-origin: 5%;
       width: 41px;
-
     }
 
-    .checkbox1:checked+label>.hamburger1>.bar2 {
+    .checkbox1:checked + label > .hamburger1 > .bar2 {
       transform: translateX(-40px);
       background-color: transparent;
       transition: all 0.35s cubic-bezier(0.5, 0, 0.25, 1);
-
-
     }
 
-    .checkbox1:checked+label>.hamburger1>.bar3 {
+    .checkbox1:checked + label > .hamburger1 > .bar3 {
       transform: translateX(40px);
       background-color: transparent;
       transition: all 0.35s cubic-bezier(0.5, 0, 0.25, 1);
     }
 
-    .checkbox1:checked+label>.hamburger1>.bar4 {
+    .checkbox1:checked + label > .hamburger1 > .bar4 {
       transform-origin: 5%;
       transform: rotate(-45deg);
       transition: all 0.35s cubic-bezier(0.5, 0, 0.25, 1);
@@ -158,7 +149,6 @@
     position: fixed;
 
     ul#app-menu {
-
       margin-right: 0;
       transition: all 0.25s cubic-bezier(0.5, 0, 0.25, 1);
 
@@ -171,7 +161,6 @@
         pointer-events: all;
         position: relative;
         z-index: 20;
-
       }
     }
   }
@@ -185,8 +174,6 @@
     margin: 0;
     margin-right: -100%;
     transition: all 0.35s cubic-bezier(0.5, 0, 0.25, 1);
-
-
 
     list-style: none;
     width: 100%;
@@ -278,6 +265,4 @@
       }
     }
   }
-
-
 }

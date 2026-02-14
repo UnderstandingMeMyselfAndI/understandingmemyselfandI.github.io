@@ -29,14 +29,6 @@ const Confirm = ({
     onCancel()
   }
 
-  useEffect(() => {
-    console.log('message', message)
-  }, [message])
-
-  useEffect(() => {
-    console.log('instruction', instruction)
-  }, [instruction])
-
   return (
     <div
       className={
@@ -45,7 +37,8 @@ const Confirm = ({
         classes.map((c) => ' ' + c) +
         ' ' +
         (isfullscreen ? ' fullscreen' : '')
-      }>
+      }
+    >
       <div className='confirm-pop-up-inner'>
         <div className='confirm-pop-up-title'>
           {parse(DOMPurify.sanitize(title))}
