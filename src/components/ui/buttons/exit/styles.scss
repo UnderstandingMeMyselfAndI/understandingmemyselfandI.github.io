@@ -16,7 +16,10 @@ div.exit-wrap {
     margin: 0.5rem 0;
     font-size: 0.85rem;
     color: var(--grey);
+    pointer-events: auto;
   }
+
+
 
   &::after {
     content: '';
@@ -42,6 +45,7 @@ div.exit-btn {
   flex-flow: column wrap;
   align-items: center;
   justify-content: center;
+  pointer-events: auto;
   position: relative;
   box-shadow: var(--boxShadowDarkValue);
   border-radius: 50%;

@@ -5,7 +5,7 @@ const levels = {
       question: "What does CBT stand for when we're talking recovery tools?",
       correctMessage:
         'Correct! Cognitive Behavioral Therapy – the one that helps you sort out dodgy thinking patterns.',
-      incorrectMessage: "Nope, it's Cognitive Behavioral Therapy.",
+      incorrectMessage: "Nearly correct, it's Cognitive Behavioral Therapy.",
       answers: [
         { text: 'Cognitive Behavioral Therapy', isCorrect: true },
         { text: 'Comprehensive Behavioral Training', isCorrect: false },
@@ -54,7 +54,7 @@ const levels = {
       correctMessage:
         'Correct! Reducing risks and damage, even if not fully abstinent.',
       incorrectMessage:
-        "Not quite. It's about making safer choices to reduce harm.",
+        "Not quite. It's about reducing risks and damage, even if not fully abstinent.",
       answers: [
         {
           text: 'Reducing risks even without full abstinence',
@@ -106,19 +106,6 @@ const levels = {
       ],
     },
     {
-      question: "What's peer support in recovery?",
-      correctMessage:
-        "Legend! Help from others who've been through similar struggles.",
-      incorrectMessage:
-        "Close. It's support from people with lived recovery experience.",
-      answers: [
-        { text: 'Support from others in recovery', isCorrect: true },
-        { text: 'Professional counseling only', isCorrect: false },
-        { text: 'Support from friends who never used', isCorrect: false },
-        { text: 'Online forums exclusively', isCorrect: false },
-      ],
-    },
-    {
       question: 'What are healthy boundaries in recovery?',
       correctMessage: 'Correct! Limits you set to protect your recovery.',
       incorrectMessage: "Close. They're protective limits for your wellbeing.",
@@ -149,16 +136,16 @@ const levels = {
       incorrectMessage: "Not quite. It's mindfulness.",
       answers: [
         { text: 'Mindfulness', isCorrect: true },
-        { text: 'Muscle relaxation only', isCorrect: false },
-        { text: 'Memory games', isCorrect: false },
-        { text: 'Mad venting sessions', isCorrect: false },
+        { text: 'Muscle relaxation technique', isCorrect: false },
+        { text: 'Separating memories', isCorrect: false },
+        { text: 'How to really let go by venting', isCorrect: false },
       ],
     },
     {
       question: 'SMART Recovery is all about what kind of vibe?',
       correctMessage:
         'You got it! Self-empowerment –  when you run your own show with tools that work.',
-      incorrectMessage: "Nope, it's self-empowerment, no higher power needed.",
+      incorrectMessage: "Nearly correct, it's self-empowerment, no higher power needed.",
       answers: [
         { text: 'Self-empowerment', isCorrect: true },
         { text: 'Spiritual surrender', isCorrect: false },
@@ -175,25 +162,25 @@ const levels = {
       answers: [
         { text: 'Riding out cravings like a wave', isCorrect: true },
         { text: 'Blocking urges forever', isCorrect: false },
-        { text: 'Scrolling TikTok to forget', isCorrect: false },
+        { text: 'Scrolling social media to forget', isCorrect: false },
         { text: 'Actual surfing on water to distract', isCorrect: false },
       ],
     },
     {
       question: 'In CBT, what are we challenging?',
       correctMessage: 'Yes! Negative thoughts that mess with your head.',
-      incorrectMessage: 'Nope, we challenge negative thoughts.',
+      incorrectMessage: 'Nearly correct, we challenge negative thoughts.',
       answers: [
         { text: 'Negative thoughts', isCorrect: true },
         { text: 'Automatic behaviors', isCorrect: false },
-        { text: 'Past traumas only', isCorrect: false },
-        { text: 'Physical symptoms', isCorrect: false },
+        { text: 'Past traumas', isCorrect: false },
+        { text: 'Physical cravings', isCorrect: false },
       ],
     },
     {
       question: 'DBT stands for what?',
       correctMessage: 'Correct! Dialectical Behavior Therapy.',
-      incorrectMessage: "Nope, it's Dialectical Behavior Therapy.",
+      incorrectMessage: "Nearly correct, it's Dialectical Behavior Therapy.",
       answers: [
         { text: 'Dialectical Behavior Therapy', isCorrect: true },
         { text: 'Dialectic Behavioral Treatment', isCorrect: false },
@@ -209,8 +196,8 @@ const levels = {
         "Not quite. It's accepting tough thoughts instead of battling them.",
       answers: [
         { text: 'Accepting thoughts without judgment', isCorrect: true },
-        { text: 'Forcing positivity 24/7', isCorrect: false },
-        { text: 'Arguing with every thought', isCorrect: false },
+        { text: 'Maintaining positivity 24/7', isCorrect: false },
+        { text: 'Arguing with thoughts', isCorrect: false },
         { text: 'Swerving all feelings', isCorrect: false },
       ],
     },
@@ -219,7 +206,7 @@ const levels = {
       correctMessage: 'You know it! Cost-Benefit Analysis.',
       incorrectMessage: "Close, but it's Cost-Benefit Analysis.",
       answers: [
-        { text: 'Cost-Benefit Analysis', isCorrect: true },
+        { text: 'Cost Benefit Analysis', isCorrect: true },
         { text: 'Calm Before Action', isCorrect: false },
         { text: 'Conducting Better Analysis', isCorrect: false },
         { text: 'Crowd Beating Answers', isCorrect: false },
@@ -254,7 +241,7 @@ const levels = {
       correctMessage:
         'Legend! That mental freeze to stop impulsive decisions and moves.',
       incorrectMessage:
-        "Nope, it's hitting pause before doing something you'll regret.",
+        "Nearly correct, it's hitting pause before doing something you'll regret.",
       answers: [
         { text: 'Mental break before reacting', isCorrect: true },
         { text: 'Button to push thoughts away', isCorrect: false },
@@ -280,7 +267,7 @@ const levels = {
       correctMessage:
         'You got it! People, places, or things linked to past use.',
       incorrectMessage:
-        'Nope sorry, triggers are anything that sparks cravings. Common triggers are People, places, or things linked to past use.',
+        'Almost, triggers are anything that sparks cravings. Common triggers are People, places, or things linked to past use.',
       answers: [
         { text: 'People, places, and things', isCorrect: true },
         { text: 'Positive memories and thoughts', isCorrect: false },
@@ -308,7 +295,7 @@ const levels = {
         'Not quite, DISARM helps you fight off craving thoughts. It stands for Destructive Imagery and Self-talk Awareness and Refusal Method',
       answers: [
         { text: 'Fighting addictive thoughts', isCorrect: true },
-        { text: 'Disarming people attacking you weapons', isCorrect: false },
+        { text: 'Disarming people attacking you', isCorrect: false },
         { text: 'Distracting with loud music', isCorrect: false },
         { text: 'Using alarm reminders for distraction', isCorrect: false },
       ],
@@ -344,7 +331,7 @@ const levels = {
       incorrectMessage:
         "Not quite. It's a quick way to chill your nervous system using your breathing. It can turn down the volume when it gets chaotic, giving you space to think clearly before making a move you'll later regret.",
       answers: [
-        { text: 'Calming stress fast', isCorrect: true },
+        { text: 'A way to calm stress fast', isCorrect: true },
         { text: 'Increasing lung capacity', isCorrect: false },
         { text: 'Improving cardio fitness', isCorrect: false },
         { text: 'Deepening meditation practice', isCorrect: false },
@@ -355,7 +342,7 @@ const levels = {
       correctMessage:
         'Yep! It is when someone is sober but they still behave like their old using self and have changed nothing.',
       incorrectMessage:
-        'Nope, It is when someone is sober but they still behave like their old using self and have changed nothing.',
+        'Nearly correct, It is when someone is sober but they still behave like their old using self and have changed nothing.',
       answers: [
         { text: 'Being sober without changing behaviors', isCorrect: true },
         { text: 'Remembering being drunk without drinking', isCorrect: false },
@@ -447,7 +434,7 @@ const levels = {
         { text: 'An early super happy phase', isCorrect: true },
         { text: 'A temporary mood boost in recovery', isCorrect: false },
         { text: 'Initial withdrawal symptoms', isCorrect: false },
-        { text: 'Foggy vision in withdrawl', isCorrect: false },
+        { text: 'Foggy vision in withdrawal', isCorrect: false },
       ],
     },
     {
@@ -455,7 +442,7 @@ const levels = {
       correctMessage: "Excellent! So they don't control your moves.",
       incorrectMessage: 'Not quite, allow feelings without letting them drive.',
       answers: [
-        { text: 'Allows feelings without fighting', isCorrect: true },
+        { text: 'It allows feelings without fighting', isCorrect: true },
         { text: 'So it blocks out emotions', isCorrect: false },
         { text: 'To push feelings away', isCorrect: false },
         { text: 'So we can find the negative ones', isCorrect: false },
@@ -502,7 +489,7 @@ const levels = {
       incorrectMessage: 'Not quite. It means staying completely clean.',
       answers: [
         { text: 'Complete avoidance of substances', isCorrect: true },
-        { text: 'Reducing use to weekends only', isCorrect: false },
+        { text: 'An alcohol free shot', isCorrect: false },
         { text: 'Switching to safer substances', isCorrect: false },
         { text: 'Taking breaks between using', isCorrect: false },
       ],
@@ -512,7 +499,7 @@ const levels = {
       correctMessage: 'Exactly! Changes in mood or behavior before relapse.',
       incorrectMessage: 'Close. It\'s early indicators you might be heading for trouble.',
       answers: [
-        { text: 'Early warning of potential relapse', isCorrect: true },
+        { text: 'An early warning of potential relapse', isCorrect: true },
         { text: 'Physical symptoms during withdrawal', isCorrect: false },
         { text: 'Signs you need more medication', isCorrect: false },
         { text: 'Warnings from family members', isCorrect: false },
@@ -525,8 +512,8 @@ const levels = {
       answers: [
         { text: 'Focuses on positives not negatives', isCorrect: true },
         { text: 'Makes you forget past mistakes', isCorrect: false },
-        { text: 'Replaces therapy completely', isCorrect: false },
-        { text: 'Earns rewards in meetings', isCorrect: false },
+        { text: 'It replaces therapy completely', isCorrect: false },
+        { text: 'It earns rewards in meetings', isCorrect: false },
       ],
     },
     {
@@ -546,9 +533,9 @@ const levels = {
       incorrectMessage: 'Not quite. It\'s your game plan for handling triggers.',
       answers: [
         { text: 'Plan for handling triggers', isCorrect: true },
-        { text: 'List of all your triggers', isCorrect: false },
+        { text: 'Listing of all your triggers', isCorrect: false },
         { text: 'Schedule for therapy sessions', isCorrect: false },
-        { text: 'Emergency contact numbers', isCorrect: false },
+        { text: 'A way to test your limits', isCorrect: false },
       ],
     },
     {
@@ -556,10 +543,10 @@ const levels = {
       correctMessage: 'Yes! Making things right with people you\'ve harmed.',
       incorrectMessage: 'Close. It\'s repairing damage from your addiction.',
       answers: [
-        { text: 'Making things right with people harmed', isCorrect: true },
-        { text: 'Paying back money owed', isCorrect: false },
+        { text: 'Making things right with people you harmed', isCorrect: true },
+        { text: 'Paying back money you owe', isCorrect: false },
         { text: 'Apologizing to everyone you know', isCorrect: false },
-        { text: 'Changing your phone number', isCorrect: false },
+        { text: 'Changing who you are', isCorrect: false },
       ],
     },
   ],
@@ -569,7 +556,7 @@ const levels = {
       correctMessage:
         "That's right! Spots and swaps out thoughts that make you wanna use.",
       incorrectMessage:
-        'Nope, it helps by changing the dodgy stories your brain tells you.',
+        'Nearly correct, it helps by changing the dodgy stories your brain tells you.',
       answers: [
         { text: 'Changes negative thought patterns', isCorrect: true },
         { text: 'Teaches distraction techniques', isCorrect: false },
@@ -583,8 +570,8 @@ const levels = {
       incorrectMessage: "Close, it's blending emotion mind and reason mind.",
       answers: [
         { text: 'Balance between feelings and logic', isCorrect: true },
-        { text: 'Studying and learnig things all the time', isCorrect: false },
-        { text: 'Pretending to be a Buddha', isCorrect: false },
+        { text: 'Studying and learning things all the time', isCorrect: false },
+        { text: 'Behaving like a Buddha', isCorrect: false },
         { text: 'Letting your mind wandering off', isCorrect: false },
       ],
     },
@@ -592,18 +579,18 @@ const levels = {
       question: "In SMART, what's the ABC tool proper good for?",
       correctMessage:
         'You got it! Breaking down trigger → thought → consequence.',
-      incorrectMessage: "Nope, it's event-belief-consequence breakdown.",
+      incorrectMessage: "Nearly correct, it's event-belief-consequence breakdown.",
       answers: [
-        { text: 'Trigger-thought-result breakdown', isCorrect: true },
-        { text: 'Awareness-Behavior-Change model', isCorrect: false },
-        { text: 'Accept-Believe-Commit framework', isCorrect: false },
-        { text: 'Analyze-Build-Continue process', isCorrect: false },
+        { text: 'Activating-Event, Belief, Consequence', isCorrect: true },
+        { text: 'Awareness, Behavior, Change', isCorrect: false },
+        { text: 'Accept, Believe, Commit', isCorrect: false },
+        { text: 'Analyze, Build, Continue', isCorrect: false },
       ],
     },
     {
       question: 'ACT says do what with rough feelings?',
       correctMessage: 'Legend! Accept the feelings instead of swerving them.',
-      incorrectMessage: 'Nope sorry. Accept tough emotions rather than fight.',
+      incorrectMessage: 'Almost. Accept tough emotions rather than fight.',
       answers: [
         { text: 'Accept instead of avoid', isCorrect: true },
         { text: 'Transform them into positivity', isCorrect: false },
@@ -614,7 +601,7 @@ const levels = {
     {
       question: 'DBT has distress tolerance tricks like what?',
       correctMessage: 'Exactly right! Radical acceptance – letting reality be.',
-      incorrectMessage: 'Nope, radical acceptance is a big one.',
+      incorrectMessage: 'Nearly correct, radical acceptance is the one.',
       answers: [
         { text: 'Radical acceptance', isCorrect: true },
         { text: 'Emotional regulation', isCorrect: false },
@@ -636,7 +623,7 @@ const levels = {
     {
       question: 'The CBT triangle links thoughts, feelings and what else?',
       correctMessage: 'Correct! Behaviors – they all bounce off each other.',
-      incorrectMessage: "Nope, it's thoughts, feelings, behaviors.",
+      incorrectMessage: "Nearly correct, it's thoughts, feelings, behaviors.",
       answers: [
         { text: 'Behaviors', isCorrect: true },
         { text: 'Beliefs', isCorrect: false },
@@ -653,13 +640,13 @@ const levels = {
         { text: 'Steps matching your values', isCorrect: true },
         { text: 'Committing to random stuff', isCorrect: false },
         { text: 'Acting like a ninja', isCorrect: false },
-        { text: 'Jumping in head first', isCorrect: false },
+        { text: 'Jumping-in head first', isCorrect: false },
       ],
     },
     {
       question: 'DBT teaches interpersonal skills for what?',
       correctMessage: 'You know it! Saying what you need without beef.',
-      incorrectMessage: "Nope, it's assertive communication in relationships.",
+      incorrectMessage: "Nearly correct, it's assertive communication in relationships.",
       answers: [
         { text: 'Assertive relationship skills', isCorrect: true },
         { text: 'Passive communication', isCorrect: false },
@@ -668,7 +655,7 @@ const levels = {
       ],
     },
     {
-      question: "SMART's four core areas cover what areas?",
+      question: "SMART's four core areas cover what?",
       correctMessage:
         'Legend! Motivation, urges, thoughts, and lifestyle balance.',
       incorrectMessage:
@@ -690,12 +677,12 @@ const levels = {
       question: 'Why is "connection" a BIG driver in beating addiction?',
       correctMessage:
         'Yes! Because addiction loves isolation, and connection pushes it to the curb.',
-      incorrectMessage: 'Nope, real bonds are the opposite of addiction.',
+      incorrectMessage: 'Nearly correct, real bonds are the opposite of addiction.',
       answers: [
         { text: 'Real bonds starve addiction', isCorrect: true },
-        { text: 'Good WiFi connection', isCorrect: false },
-        { text: 'Collecting contacts', isCorrect: false },
-        { text: 'Competing alone', isCorrect: false },
+        { text: 'Good WiFi is always needed', isCorrect: false },
+        { text: 'It\'s good to keep in touch with old using friends', isCorrect: false },
+        { text: 'You feel better with more social media friends', isCorrect: false },
       ],
     },
     {
@@ -707,7 +694,7 @@ const levels = {
         { text: 'Doing the opposite of emotion urges', isCorrect: true },
         { text: 'Running away from every feeling', isCorrect: false },
         { text: 'Pushing people away', isCorrect: false },
-        { text: 'Staying still', isCorrect: false },
+        { text: 'Doing things people don\'t expect', isCorrect: false },
       ],
     },
     {
@@ -755,7 +742,7 @@ const levels = {
       ],
     },
     {
-      question: 'What\'s the purpose of emotion regulation in DBT?',
+      question: 'What\'s the purpose of emotional regulation in DBT?',
       correctMessage: 'Exactly! Managing emotions so they don\'t trigger relapse.',
       incorrectMessage: 'Close. It\'s about handling feelings without letting them control you.',
       answers: [
@@ -794,7 +781,7 @@ const levels = {
       answers: [
         { text: 'Guides meaningful actions and decisions', isCorrect: true },
         { text: 'Helps you set strict recovery rules', isCorrect: false },
-        { text: 'Creates competition with others in recovery', isCorrect: false },
+        { text: 'Shows others how good you are', isCorrect: false },
         { text: 'Replaces all negative thoughts', isCorrect: false },
       ],
     },
@@ -816,7 +803,7 @@ const levels = {
       answers: [
         { text: 'Confidence handling triggers without using', isCorrect: true },
         { text: 'Being confident in social situations', isCorrect: false },
-        { text: 'Always trusting your gut feelings ', isCorrect: false },
+        { text: 'Always trusting your gut instincts ', isCorrect: false },
         { text: 'Believing you\'re cured from addiction', isCorrect: false },
       ],
     },
@@ -827,7 +814,7 @@ const levels = {
         'How does cognitive restructuring shut down cravings in CBT?',
       correctMessage:
         'Exactly right! Challenges thoughts saying "one won\'t hurt".',
-      incorrectMessage: 'Nope, it challenges irrational beliefs about using.',
+      incorrectMessage: 'Nearly correct, it challenges irrational beliefs about using.',
       answers: [
         { text: 'Challenges beliefs about using', isCorrect: true },
         {
@@ -842,12 +829,12 @@ const levels = {
       question:
         'In ACT, cognitive defusion helps you do what with sticky thoughts?',
       correctMessage: "That's right! See them as just words, not boss orders.",
-      incorrectMessage: 'Nope, it unhooks you so thoughts lose power.',
+      incorrectMessage: 'Nearly correct, it unhooks you so thoughts lose power.',
       answers: [
         { text: 'Unhooking from thoughts so they lose power', isCorrect: true },
-        { text: 'Fusing them  with helpful thoughts', isCorrect: false },
+        { text: 'Fusing them with helpful thoughts', isCorrect: false },
         { text: 'Distancing from all emotions', isCorrect: false },
-        { text: 'Temporaril detaching from reality ', isCorrect: false },
+        { text: 'Temporarily detaching from reality', isCorrect: false },
       ],
     },
     {
@@ -866,7 +853,7 @@ const levels = {
       correctMessage: 'Legend! When one slip triggers full relapse thinking.',
       incorrectMessage: 'Close. It\'s the \"all or nothing\" response to a lapse.',
       answers: [
-        { text: 'One slip triggers full relapse mindset', isCorrect: true },
+        { text: 'One slip triggers a full relapse mindset', isCorrect: true },
         { text: 'Violating abstinence rules repeatedly', isCorrect: false },
         { text: 'Physical effects of breaking sobriety', isCorrect: false },
         { text: 'Legal consequences of using', isCorrect: false },
@@ -924,7 +911,7 @@ const levels = {
         { text: 'Observing experience while aware of observing', isCorrect: true },
         { text: 'Tracking two things at once', isCorrect: false },
         { text: 'Being aware in dreams and waking', isCorrect: false },
-        { text: 'Noticing paired triggers', isCorrect: false },
+        { text: 'Noticing pairs of triggers', isCorrect: false },
       ],
     },
     {
@@ -933,7 +920,7 @@ const levels = {
       incorrectMessage: 'Close. Accepting resistance rather than challenging it directly.',
       answers: [
         { text: 'Explore resistance instead of fighting it', isCorrect: true },
-        { text: 'Ignoring client objections completely', isCorrect: false },
+        { text: 'Being difficult with therapists to get attention', isCorrect: false },
         { text: 'Rolling back treatment when challenged', isCorrect: false },
         { text: 'Moving past difficult topics quickly', isCorrect: false },
       ],
@@ -943,12 +930,12 @@ const levels = {
       correctMessage:
         "Spot on! Vital Absorbing Creative Interests – hobbies that are so boss they actually compete with the urge to use.",
       incorrectMessage:
-        "Nah, VACI is about finding proper absorbing hobbies to fill the void.",
+        "Almost, VACI is about finding proper absorbing hobbies to fill the void.",
       answers: [
         { text: 'Hobbies that compete with using', isCorrect: true },
-        { text: 'Very Active Clinical Interventions', isCorrect: false },
-        { text: 'Video Assisted Cognitive Imagery', isCorrect: false },
-        { text: 'Vacation and Comfort Incentives', isCorrect: false },
+        { text: 'It\'s very active clinical interventions', isCorrect: false },
+        { text: 'Videos explaining Cognitive Imagery', isCorrect: false },
+        { text: 'Show the benefits of vacations and comfort incentives', isCorrect: false },
       ],
     },
     {
@@ -969,7 +956,7 @@ const levels = {
       correctMessage:
         "Exactly! Automatic Negative Thoughts – those sneaky, unhelpful thoughts that crawl in and ruin your vibe without you even notice.",
       incorrectMessage:
-        "Nope, ANTs are Automatic Negative Thoughts that mess with your recovery.",
+        "Nearly correct, ANTs are Automatic Negative Thoughts that mess with your recovery.",
       answers: [
         { text: 'Automatic Negative Thoughts', isCorrect: true },
         { text: 'Addictive Neuroplastic Tendencies', isCorrect: false },
@@ -981,7 +968,7 @@ const levels = {
       question: "ACT talks about the 'Hexaflex' – what on earth is that?",
       correctMessage:
         "Brilliant! It's the six core processes that build psychological flexibility. Proper deep stuff.",
-      incorrectMessage: "Nah, it's the six-sided model of psychological flexibility.",
+      incorrectMessage: "Almost, it's the six-sided model of psychological flexibility.",
       answers: [
         { text: 'Six core processes of flexibility', isCorrect: true },
         { text: 'A six-step detox program', isCorrect: false },
@@ -990,11 +977,11 @@ const levels = {
       ],
     },
     {
-      question: 'If you need to ask for something or say "no" without blowing your top, which DBT skill is your best mate?',
+      question: 'If you need to ask for something or say "no" without blowing your cool, which DBT skill is your best mate?',
       correctMessage:
         'Spot on! DEAR MAN helps you get your point across clearly without the beef.',
       incorrectMessage:
-        "Not quite. DEAR MAN is the one for interpersonal effectiveness.",
+        "Nearly. DEAR MAN is the one for interpersonal effectiveness.",
       answers: [
         { text: 'DEAR MAN', isCorrect: true },
         { text: 'STOP skill', isCorrect: false },
@@ -1007,7 +994,7 @@ const levels = {
       correctMessage:
         "Legend! It helps you see the addictive voice as a separate, dodgy salesman trying to sell you a bad deal.",
       incorrectMessage:
-        "Nope, it's about seeing the addictive voice as external and untrustworthy.",
+        "Nearly correct, it's about seeing the addictive voice as external and untrustworthy.",
       answers: [
         { text: 'A dodgy salesman or enemy', isCorrect: true },
         { text: 'Your true inner self', isCorrect: false },
@@ -1020,7 +1007,7 @@ const levels = {
       correctMessage:
         "You got it! It's about asking yourself proper deep questions to see if your dodgy beliefs actually hold any water.",
       incorrectMessage:
-        "Nah, it's a way to challenge your own thoughts by looking for evidence.",
+        "Almost, it's a way to challenge your own thoughts by looking for evidence.",
       answers: [
         { text: 'Challenge beliefs with evidence', isCorrect: true },
         { text: 'Memorize ancient philosophy', isCorrect: false },
@@ -1033,24 +1020,24 @@ const levels = {
       correctMessage:
         "Exactly! The part of you that notices thoughts and feelings without getting sucked into the drama.",
       incorrectMessage:
-        "Nope, it's the transcendent part of you that observes your own experience.",
+        "Nearly correct, it's the transcendent part of you that observes your own experience.",
       answers: [
-        { text: 'The part that notices thoughts', isCorrect: true },
-        { text: 'Monitoring your heart rate', isCorrect: false },
+        { text: 'The part of you that notices thoughts', isCorrect: true },
+        { text: 'Constantly monitoring your heart rate', isCorrect: false },
         { text: 'Watching others for triggers', isCorrect: false },
         { text: 'Judging your own behavior', isCorrect: false },
       ],
     },
     {
-      question: "What's a 'Dialectic' in DBT? (It's in the name, innit?)",
+      question: "What's 'Dialectic' in DBT?",
       correctMessage:
         "Boss! It's the idea that two opposite things can both be true at once – like accepting yourself while also wanting to change.",
       incorrectMessage:
-        "Nah, it's the balance between two opposing truths.",
+        "Almost, it's the balance between two opposing truths.",
       answers: [
         { text: 'Two opposing truths co-existing', isCorrect: true },
         { text: 'A type of regional slang', isCorrect: false },
-        { text: 'A way to win an argument', isCorrect: false },
+        { text: 'An electronic therapy tool', isCorrect: false },
         { text: 'A strictly logical framework', isCorrect: false },
       ],
     },
@@ -1058,12 +1045,12 @@ const levels = {
       question: "SMART uses the 'Hula Hoop' or 'Circle of Control' to stop you stressing over what?",
       correctMessage:
         "Spot on! It reminds you to only faff about with the stuff inside your hoop (your own moves) and leave the rest alone.",
-      incorrectMessage: "Nah, it's about focusing only on what you can actually control.",
+      incorrectMessage: "Almost, it's about focusing only on what you can actually control.",
       answers: [
-        { text: 'Stuff you cant actually control', isCorrect: true },
-        { text: 'Physical fitness goals', isCorrect: false },
+        { text: 'Stuff you can\'t actually control', isCorrect: true },
+        { text: 'A type of physical fitness exercise', isCorrect: false },
         { text: 'Complex therapy homework', isCorrect: false },
-        { text: 'The behavior of everyone else', isCorrect: false },
+        { text: 'Thinking about eating crisps', isCorrect: false },
       ],
     },
     {
@@ -1071,12 +1058,12 @@ const levels = {
       correctMessage:
         "Legend! It's digging down through surface thoughts to find the proper deep 'core beliefs' that are making you miserable.",
       incorrectMessage:
-        "Nope, it's about finding the underlying core beliefs.",
+        "Nearly correct, it's about finding the underlying core beliefs.",
       answers: [
         { text: 'Finding deep core beliefs', isCorrect: true },
         { text: 'Tracking a mood drop', isCorrect: false },
         { text: 'Planning a quick exit', isCorrect: false },
-        { text: 'Organizing a task list', isCorrect: false },
+        { text: 'Deprioritizing the important stuff', isCorrect: false },
       ],
     },
     {
@@ -1084,10 +1071,10 @@ const levels = {
       correctMessage:
         "Exactly! Instead of tensing up, you make room for the feeling, proper breathing into it so it doesn't crush you.",
       incorrectMessage:
-        "Nah, it's about making space for physical discomfort.",
+        "Almost, it's about making space for physical discomfort.",
       answers: [
         { text: 'Making space for discomfort', isCorrect: true },
-        { text: 'Stretching your muscles', isCorrect: false },
+        { text: 'Opening your lungs when box-breathing', isCorrect: false },
         { text: 'Growing your social circle', isCorrect: false },
         { text: 'Trying to make the feeling bigger', isCorrect: false },
       ],
@@ -1097,7 +1084,7 @@ const levels = {
       correctMessage:
         "Perfect! Stop, Take a step back, Observe, Proceed mindfully. Keeps you from doing something proper daft when you're emotional.",
       incorrectMessage:
-        "Nope, it's a four-step process to prevent impulsive actions.",
+        "Nearly correct, it's a four-step process to prevent impulsive actions.",
       answers: [
         { text: 'Preventing impulsive actions', isCorrect: true },
         { text: 'Ending a therapy session', isCorrect: false },
@@ -1110,7 +1097,7 @@ const levels = {
       correctMessage:
         "You got it! Looking at how you see yourself, how others see you, and how you *think* others see you. Proper eye-opener.",
       incorrectMessage:
-        "Nah, it explores self-perception and how it differs from reality.",
+        "Almost, it explores self-perception and how it differs from reality.",
       answers: [
         { text: 'Self and social perception', isCorrect: true },
         { text: 'Three different relapse triggers', isCorrect: false },
@@ -1123,11 +1110,11 @@ const levels = {
       correctMessage:
         "Spot on! Doing stuff even when you don't feel like it, to break the cycle of feeling 'meh' and doing nothing.",
       incorrectMessage:
-        "Nah, it's about acting first to change your mood later.",
+        "Almost, it's about acting first to change your mood later.",
       answers: [
         { text: 'Acting to change mood', isCorrect: true },
         { text: 'Working out at the gym', isCorrect: false },
-        { text: 'Cleaning your house', isCorrect: false },
+        { text: 'Motivating yourself for chores', isCorrect: false },
         { text: 'Going to more meetings', isCorrect: false },
       ],
     },
@@ -1136,19 +1123,19 @@ const levels = {
       correctMessage:
         "Legend! It's about keeping your self-respect (Fair, Apologies-free, Stick to values, Truthful) while dealing with others.",
       incorrectMessage:
-        "Nope, FAST is specifically for maintaining self-respect in interactions.",
+        "Nearly correct, FAST is specifically for maintaining self-respect in interactions.",
       answers: [
         { text: 'Maintain self-respect', isCorrect: true },
         { text: 'Speed up your recovery', isCorrect: false },
         { text: 'Finish chores quickly', isCorrect: false },
-        { text: 'Avoid eating before therapy', isCorrect: false },
+        { text: 'Stashing bad thoughts away', isCorrect: false },
       ],
     },
     {
       question: "ACT says 'Goals' are destinations, but 'Values' are...",
       correctMessage:
         "Exactly! A direction or a compass. You never 'arrive' at a value, you just keep living it every day. Proper deep.",
-      incorrectMessage: "Nah, values are like directions, not endpoints.",
+      incorrectMessage: "Almost, values are like directions, not endpoints.",
       answers: [
         { text: 'Directions, not endpoints', isCorrect: true },
         { text: 'Optional suggestions', isCorrect: false },
@@ -1161,7 +1148,7 @@ const levels = {
       correctMessage:
         "Boom! The moment between an urge hitting and you actually making a move. That's where your power lives.",
       incorrectMessage:
-        "Nah, it's the gap between an impulse and an action.",
+        "Almost, it's the gap between an impulse and an action.",
       answers: [
         { text: 'Impulse and action', isCorrect: true },
         { text: 'Buying and using', isCorrect: false },
@@ -1174,7 +1161,7 @@ const levels = {
       correctMessage:
         "Exactly! Thinking that because you *feel* like a failure, you actually *are* one. Feelings aren't facts, mate!",
       incorrectMessage:
-        "Nope, it's believing that your feelings represent objective reality.",
+        "Nearly correct, it's believing that your feelings represent objective reality.",
       answers: [
         { text: 'Believing feelings are facts', isCorrect: true },
         { text: 'Being too emotional to think', isCorrect: false },
@@ -1187,11 +1174,11 @@ const levels = {
       correctMessage:
         "Spot on! Looking at every tiny link in the chain that led to a bad move, so you can break it next time. No more 'oops, it just happened'.",
       incorrectMessage:
-        "Nah, it's a step-by-step breakdown of how a problem behavior occurred.",
+        "Almost, it's a step-by-step breakdown of how a problem behavior occurred.",
       answers: [
         { text: 'Breakdown of problem behavior', isCorrect: true },
         { text: 'Linking your past traumas', isCorrect: false },
-        { text: 'A list of recovery friends', isCorrect: false },
+        { text: 'Listing your recovery friends who know each other', isCorrect: false },
         { text: 'Tracking your daily routines', isCorrect: false },
       ],
     },
@@ -1200,24 +1187,24 @@ const levels = {
 
 const completionStatus = [
   {
-    minScore: 25,
+    minScore: 13,
     title: 'Recovery Boss!',
-    description: 'You smashed it, legend! 🏆',
-  },
-  {
-    minScore: 20,
-    title: 'Solid Performance!',
-    description: 'Big up yourself, keep going! 🔥',
+    description: 'You smashed it, legend!  🔥🔥🏆🏆🔥🔥',
   },
   {
     minScore: 10,
-    title: 'Good Shift',
-    description: "You're on it, keep pushing! 💪",
+    title: 'Solid Performance!',
+    description: 'Big up yourself, keep levelling up your game That was 🔥🔥🔥',
+  },
+  {
+    minScore: 6,
+    title: 'A Recovery ninja in the making!',
+    description: "You're on it, keep pushing! 🙌💪",
   },
   {
     minScore: 0,
-    title: 'Needs work but no problem',
-    description: 'Everyone starts somewhere – try again, you\'ve got this! 🙌',
+    title: 'You\'re on the right path!',
+    description: 'Everyone starts somewhere – have another go. A bit more practice and you\'ve got this! 🙌',
   },
 ]
 

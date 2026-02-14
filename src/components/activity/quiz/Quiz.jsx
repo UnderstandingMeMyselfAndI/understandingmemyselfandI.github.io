@@ -1,9 +1,10 @@
-// Quiz.jsx (updated with simplified analytics)
-import { useState, useEffect } from 'react'
+// Quiz.jsx (updated with stats)
+import {useState, useEffect} from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import QuizProgress from './quizProgress/QuizProgress'
 import QuizQuestion from './quizQuestion/QuizQuestion'
 import QuizStart from './quizStart/QuizStart'
+import QuizStats from './quizStats/QuizStats'
 import questions from '@/data/quiz.js'
 import CloseBtn from '@/components/ui/buttons/close/CloseBtn'
 import useQuizStore from './useQuizStore'
@@ -28,8 +29,15 @@ const Quiz = () => {
   const id = 23
   const [open, setOpen] = useState(false)
   const [started, setStarted] = useState(false)
+  const [view, setView] = useState('start') // 'start', 'question', 'stats'
   const [currentLevel, setCurrentLevel] = useState(null)
-  const [optInAnalytics, setOptInAnalytics] = useState(false)
+  const { 
+    incrementPlayCount, 
+    getPlayCount, 
+    saveScore, 
+    addToHistory,
+    optIn
+  } = useQuizStore()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [score, setScore] = useState(0)
   const [totalAnswered, setTotalAnswered] = useState(0)
@@ -41,7 +49,6 @@ const Quiz = () => {
   const { activity } = useAppStore(
     useShallow((state) => ({ activity: state.activity })),
   )
-  const { incrementPlayCount, getPlayCount, saveScore } = useQuizStore()
 
   const totalQuestions = activeQuestions.length
 
@@ -61,11 +68,15 @@ const Quiz = () => {
   }, [activity, isModal, id, setOpen])
 
   const handleStart = (level, analyticsOptIn) => {
+    if (level === 'stats') {
+      setView('stats')
+      return
+    }
     const subset = getRandomSubset(questions.levels[level], 15)
     setActiveQuestions(subset)
     setCurrentLevel(level)
-    setOptInAnalytics(analyticsOptIn)
     setStarted(true)
+    setView('question')
     setCurrentIndex(0)
     setScore(0)
     setTotalAnswered(0)
@@ -73,7 +84,7 @@ const Quiz = () => {
     trackEvent(
       'quiz_start',
       { level, question_count: subset.length },
-      analyticsOptIn,
+      optIn,
     )
   }
 
@@ -85,59 +96,75 @@ const Quiz = () => {
     }
   }
 
-  const restQuiz = () => {
+  const resetQuiz = () => {
+    console.log("resetQuiz")
     setStarted(false)
     setCurrentLevel(null)
-    setOptInAnalytics(false)
     setCurrentIndex(0)
     setScore(0)
     setTotalAnswered(0)
+    setTotalAnswered(0)
     setActiveQuestions([])
+    setView('start')
   }
 
   const handleRestart = () => {
-    // Record completion
-    trackEvent(
-      'quiz_complete',
-      {
-        level: currentLevel,
-        score,
-        total_questions: totalQuestions,
-        accuracy:
-          totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0,
-        play_number: getPlayCount() + 1, // upcoming play count
-      },
-      optInAnalytics,
-    )
-
-    // Save best score if user opted in for recording scores
-    if (optInAnalytics && currentLevel) {
-      saveScore(currentLevel, score)
-    }
-
     // Increment play count (both in store and analytics)
     incrementPlayCount()
+    
+    trackEvent(
+      'quiz_restart',
+      { level: currentLevel },
+      optIn,
+    )
 
     // Reset quiz
-    restQuiz()
+    resetQuiz()
   }
 
   const getCompletionStatus = () => {
     if (!questions.completionStatus) return null
     return (
       questions.completionStatus
-        .slice()
-        .reverse()
         .find((status) => score >= status.minScore) ||
-      questions.completionStatus[0]
+      questions.completionStatus[questions.completionStatus.length - 1]
     )
   }
 
   const status = currentIndex >= totalQuestions ? getCompletionStatus() : null
   const isComplete = currentIndex >= totalQuestions
 
+  // Immediate save on completion
+  useEffect(() => {
+    if (isComplete && currentLevel) {
+       // Record completion event
+       trackEvent(
+         'quiz_complete',
+         {
+           level: currentLevel,
+           score,
+           total_questions: totalQuestions,
+           accuracy: totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0,
+           play_number: getPlayCount() + 1,
+         },
+         optIn,
+       )
+
+       // Save to history/scores if opted in
+       if (optIn) {
+         saveScore(currentLevel, score)
+         addToHistory({
+           level: currentLevel,
+           score,
+           total: totalQuestions,
+           accuracy: totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0,
+         })
+       }
+    }
+  }, [isComplete])
+
   const handleClose = () => {
-    restQuiz()    
+    resetQuiz()    
     setOpen(false)
     setActivity(-1)
   }
@@ -150,17 +177,21 @@ const Quiz = () => {
       
      
       <div className='inner'>
-        <CloseBtn className='close-btn' onClick={handleClose} />
-         {started && (
-        <button className='cancel-btn' onClick={restQuiz}>
-          Quit
-        </button>
-      )}
-        {!started ? (
+        <CloseBtn
+          className='close-btn'
+          onClick={view === 'stats' ? () => setView('start') : handleClose}
+        />
+        {started && (
+          <button className='cancel-btn' onClick={resetQuiz}>
+            Quit
+          </button>
+        )}
+        {view === 'start' ? (
           <QuizStart onStart={handleStart} levels={questions.levels} />
+        ) : view === 'stats' ? (
+          <QuizStats onBack={() => setView('start')} />
         ) : isComplete ? (
-          <div className='quiz-complete'>
-           
+          <div className='quiz-complete'>          
 
             {status && (
               <div className='completion-status'>
@@ -195,7 +226,6 @@ const Quiz = () => {
             </button>
           </div>
         ) : (
-          
           <QuizQuestion
             data={activeQuestions[currentIndex]}
             onNext={handleNext}
@@ -205,6 +235,7 @@ const Quiz = () => {
             totalAnswered={totalAnswered}
           />
         )}
+        
       </div>
     </section> : null
   )

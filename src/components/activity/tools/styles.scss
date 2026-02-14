@@ -12,7 +12,6 @@
   margin: 0 auto;
   padding: 1.5rem 1.5rem 0 1.5rem;
   width: 100%;
-  // max-width: var(--max-width);
 }
 
 body .activity-recovery-tools-cta {
@@ -23,6 +22,15 @@ body .activity-recovery-tools-cta {
   background: var(--blue20Trans);
 }
 
+body #the-tools .tools-description {
+  padding: 0;
+
+  * {
+    font-size: 2.0rem;
+    line-height: 1.2;
+  }
+}
+
 body section#the-tools.tools {
   position: fixed;
   top: 0;
@@ -31,6 +39,10 @@ body section#the-tools.tools {
   height: 100vh;
   padding: 0;
   margin: 0 auto;
+  line-height: 1;
+
+
+
 
   .tools-wrapper {
     display: flex;
@@ -90,5 +102,4 @@ body section#the-tools.tools {
     }
   }
 
-  // Remove the old tools-description styles since it's now inside MenuCarousel
 }

@@ -1,11 +1,11 @@
 {
   "arrowParens": "always",
   "bracketSpacing": true,
-  "htmlWhitespaceSensitivity": "css",
+  "htmlWhitespaceSensitivity": "ignore",
   "insertPragma": false,
   "bracketSameLine": true,
   "jsxSingleQuote": true,
-  "printWidth": 80,
+  "printWidth": 120,
   "proseWrap": "always",
   "quoteProps": "as-needed",
   "requirePragma": false,

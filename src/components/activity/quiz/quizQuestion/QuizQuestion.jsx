@@ -1,7 +1,6 @@
 // QuizQuestion.jsx
 import React, { useState, useEffect, useMemo, memo } from 'react'
-import parse from 'html-react-parser'
-import DOMPurify from 'dompurify'
+
 import QuizProgress from '../quizProgress/QuizProgress'
 import PropTypes from 'prop-types'
 import './styles.scss'
@@ -18,15 +17,18 @@ const questionShape = PropTypes.shape({
   answers: PropTypes.arrayOf(answerShape).isRequired,
 })
 
-const QuizQuestion = memo(({
-  data,
-  onNext,
-  currentIndex,
-  totalQuestions,
-  score,
-  totalAnswered,
-}) => {
+const QuizQuestion = memo(({ data, onNext, currentIndex, totalQuestions, score, totalAnswered }) => {
+  if (!data) return null
   const { question, correctMessage, incorrectMessage, answers } = data
+
+  const shuffledAnswers = useMemo(() => {
+    const shuffled = [...answers]
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+    }
+    return shuffled
+  }, [answers])
 
   // Reset state whenever the question (data) changes
   const [selected, setSelected] = useState(null)
@@ -55,25 +57,16 @@ const QuizQuestion = memo(({
 
   const handleSubmit = () => {
     if (selected !== null && !submitted) {
-      setIsCorrect(answers[selected].isCorrect)
+      setIsCorrect(shuffledAnswers[selected].isCorrect)
       setSubmitted(true)
     }
   }
 
-  const wrapSpan = (text) => {
-    const split = text.split(' ')
-    return split.map((word) => `<span>${word}</span>`).join(' ')
+  const renderTextWithSpans = (text) => {
+    return text.split(' ').map((word, index) => (
+      <span key={index}>{word} </span>
+    ))
   }
-
-  const parsedCorrect = useMemo(() => 
-    parse(wrapSpan(DOMPurify.sanitize(correctMessage))), 
-    [correctMessage]
-  )
-  
-  const parsedIncorrect = useMemo(() => 
-    parse(wrapSpan(DOMPurify.sanitize(incorrectMessage))), 
-    [incorrectMessage]
-  )
 
   const handleNext = () => {
     setIsNew(false)
@@ -85,27 +78,15 @@ const QuizQuestion = memo(({
 
   return (
     <div className='quiz-container'>
-     
       <div className={'question-container'}>
-        {!submitted && (
-          <div className={'question' + (isNew ? ' in' : ' ')}>{isNew && question}</div>
-        )}
+        {!submitted && <div className={'question' + (isNew ? ' in' : ' ')}>{isNew && question}</div>}
         <div className={'feedback-message' + (submitted ? ' show' : '')}>
-          {submitted && (
-            <p>
-              {isCorrect ? parsedCorrect : parsedIncorrect}
-            </p>
-          )}
+          {submitted && <p>{isCorrect ? renderTextWithSpans(correctMessage) : renderTextWithSpans(incorrectMessage)}</p>}
         </div>
       </div>
-      <QuizProgress
-        current={currentIndex + 1}
-        total={totalQuestions}
-        score={score}
-        totalAnswered={totalAnswered}
-      />
+      <QuizProgress current={currentIndex + 1} total={totalQuestions} score={score} totalAnswered={totalAnswered} />
       <form className='answers-form'>
-        {answers.map((answer, index) => {
+        {shuffledAnswers.map((answer, index) => {
           const isSelected = selected === index
           const isThisCorrect = answer.isCorrect
 
@@ -113,9 +94,7 @@ const QuizQuestion = memo(({
           if (submitted) {
             if (isThisCorrect) optionClass += ' correct-answer'
             if (isSelected) {
-              optionClass += isCorrect
-                ? ' selected-correct'
-                : ' selected-incorrect'
+              optionClass += isCorrect ? ' selected-correct' : ' selected-incorrect'
             }
           } else if (isSelected) {
             optionClass += ' selected-pending'
@@ -137,18 +116,10 @@ const QuizQuestion = memo(({
       </form>
 
       <div className='button-group'>
-        <button
-          className='submit-button'
-          disabled={selected === null || submitted}
-          onClick={handleSubmit}
-        >
+        <button className='submit-button' disabled={selected === null || submitted} onClick={handleSubmit}>
           Submit
         </button>
-        <button
-          className='next-button'
-          disabled={!submitted}
-          onClick={handleNext}
-        >
+        <button className='next-button' disabled={!submitted} onClick={handleNext}>
           Next
         </button>
       </div>

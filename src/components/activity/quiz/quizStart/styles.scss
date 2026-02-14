@@ -4,61 +4,73 @@
 
 .quiz-start {
   text-align: center;
-  padding: 1rem 1rem;
+  padding: 1.5rem 1rem;
   background-color: transparent;
-  border-radius: 12px;
-  margin: 40px auto;
   width: 100%;
+  height: 100%;
   display: flex;
   flex-flow: column nowrap;
+  row-gap: 1.5rem;
   justify-content: center;
   align-items: center;
+  position: relative;
+
+  .debug-btn {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
 }
 
 .quiz-start h1 {
-  font-size: 2.5rem;
   margin: 0;
-  color: #333;
+  padding: 0;
   color: var(--orange);
   width: 100%;
+  font-size: 2.16rem;
+}
+
+.intro-text p {
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
 }
 
 .level-selection {
-  margin-bottom: 40px;
+  margin-bottom: 0px;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
 .level-label {
-  font-size: 1.25rem;
-  margin-bottom: 20px;
-  color: #495057;
+  font-size: 1.1rem;
   color: var(--primary);
   font-weight: 400;
+  margin: 0.25rem 0;
 }
 
 .radio-group {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.25rem;
   align-items: flex-start;
-  margin: 2rem 0;
-  min-width: 200px;
+  min-width: 100%;
 }
 
 .radio-option {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 1.2rem;
+  gap: 1rem;
+  font-size: 1.1rem;
   font-weight: 400;
   cursor: pointer;
-  padding: 16px 20px;
+  padding: 10px 16px;
   border-radius: 4px;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: var(--greyDark30Trans);
   transition: all 0.2s ease;
   position: relative;
 
@@ -93,7 +105,6 @@
   font-weight: 600;
   color: var(--orange);
   transition: all 0.2s ease;
-
   background: transparent;
 
   &::after {
@@ -130,8 +141,8 @@
 }
 
 .radio-option input:checked+.radio-custom {
-  border-color: #007bff;
-  background-color: #007bff;
+  border-color: var(--lightBlue);
+  background-color: var(--lightBlue);
   outline-color: var(--primary);
   outline-width: 4px;
   background-color: transparent;
@@ -165,58 +176,60 @@
 }
 
 .radio-text {
-  color: #333;
   color: var(--primary);
   font-weight: 500;
 }
 
-.opt-in {
-  margin: 1rem 0;
-  font-size: 1rem;
+.opt-in-section {
+  width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.5rem;
-  text-align: left;
+  justify-content: center;
+  margin: 0.5rem 0;
+}
 
-  width: fit-content;
+.stats-row {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.opt-in {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--primary);
+  cursor: pointer;
+
+  input {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    cursor: pointer;
+  }
 
   label {
-    width: fit-content;
-    color: var(--greyDark);
+    margin: 0;
+    cursor: pointer;
+    white-space: nowrap;
   }
 }
 
-.opt-in-info {
-  width: 100%;
-  font-size: 0.75rem;
-  margin: 2rem 0;
-  color: var(--grey);
-}
-
-.opt-in input {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
-
-.opt-in label {
-  color: #495057;
-  color: var(--s);
-  cursor: pointer;
-}
-
 .start-button {
-  padding: 14px 32px;
+  padding: 1rem 2rem;
   color: var(--primary);
-  text-shadow: var(--textShadow);
+  text-shadow: var(--textShadowDark);
   font-size: 1.5rem;
   font-weight: 600;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  background-color: rgba(10, 10, 10, 0.25);
+  background-color: var(--greyDark30Trans);
   position: relative;
   box-shadow: var(--boxShadow);
 
@@ -239,5 +252,45 @@
 }
 
 .start-button:hover {
-  background-color: #0056b3;
+  background-color: var(--blue);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.stats-button {
+  background: var(--orange70Trans);
+  border: none;
+  outline: none;
+  box-shadow: none;
+  color: white;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  &:hover {
+    background: var(--orange80Trans);
+  }
+
+  &:disabled {
+    color: var(--grey);
+    cursor: not-allowed;
+    background: transparent;
+    opacity: 0.3;
+
+    &:hover {
+      background: transparent;
+      color: var(--grey);
+    }
+  }
 }

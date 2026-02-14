@@ -7,6 +7,10 @@ const useQuizStore = create(
     (set, get) => ({
       playCount: 0, // total number of times the quiz has been completed
       scores: {}, // { easy: bestScore, medium: bestScore, ... }
+      history: [], // [{ date, level, score, total, accuracy }]
+      optIn: false, // whether the user wants to record scores
+
+      setOptIn: (optIn) => set({ optIn }),
 
       incrementPlayCount: () =>
         set((state) => ({ playCount: state.playCount + 1 })),
@@ -23,6 +27,14 @@ const useQuizStore = create(
             },
           }
         }),
+
+      addToHistory: (entry) =>
+        set((state) => ({
+          history: [
+            ...state.history,
+            { ...entry, date: new Date().toISOString() },
+          ],
+        })),
     }),
     {
       name: 'ummi-quiz',

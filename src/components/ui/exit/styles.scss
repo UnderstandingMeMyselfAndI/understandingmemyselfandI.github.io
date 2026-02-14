@@ -4,8 +4,7 @@
 div.quick-exit {
   position: fixed;
   z-index: 155600;
-  // left: 1rem;
-  // bottom: 50%;
+  pointer-events: none;
 }
 
 div.quick-exit {

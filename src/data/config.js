@@ -1,8 +1,8 @@
 import HandymanIcon from '@mui/icons-material/Handyman'
 import { isTouchDevice } from '@/js/utils.js'
-import useAppStore from '@/store/useAppStore'
 
-// import { title } from "process";
+
+
 const cnf = {
   appName: 'Ummi',
   appLogName: 'Understanding Me, Myself, and I',
@@ -446,9 +446,9 @@ const strings = {
         (isTouchDevice() ? 'Tap' : 'Click') +
         ' on a tool to learn more about it',
       description: [
-        'These tools <br /><u class="yellow-ul"><b>might not </b></u>work <br />for<u><b class="yellow"> everbody.</b></u>',
-        'They <u>could work</u><br /> for <b><u class="yellow">one person</u></b> <br />and <u class="yellow-ul">not the next</u>.',
-        'But they <br /><u><b>have worked</b></u><br /> for <b><u class="yellow-ul">somebody</u></b>.',
+        'These tools <u class="yellow-ul"><b>might not </b></u>work for<u><b class="yellow"> everbody.</b></u>',
+        'They <u>could work</u> for <b><u class="yellow">one person</u></b> and <u class="yellow-ul">not the next</u>.',
+        'But they <u><b>have worked</b></u> for <b><u class="yellow-ul">somebody</u></b>.',
         // "<u>Everbody's<br /> journey <br /></u><u><b class='yellow'>is different.</b></u>",
       ],
       content: [],

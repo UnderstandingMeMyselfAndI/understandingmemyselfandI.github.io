@@ -54,6 +54,8 @@ const Introduction = () => {
 
   useGSAP(() => {}, { scope: sectionRefs, revertOnUpdate: true })
 
+  if (!open) return null
+
   return (
     <section
       id='intro'
