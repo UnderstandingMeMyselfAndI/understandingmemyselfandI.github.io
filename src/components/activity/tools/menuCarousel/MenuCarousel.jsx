@@ -20,7 +20,7 @@ const DEFAULT_CONFIG = {
 const useScrollEffects = (config = DEFAULT_CONFIG, scrollContainer = null) => {
   const itemsRef = useRef([])
   const rafId = useRef(null)
-  const isActive = useRef(true)
+  const isActive = useRef(false)
 
   const calculateEffects = useCallback(() => {
     if (!isActive.current) return
@@ -187,6 +187,14 @@ DescriptionItem.propTypes = {
   unregisterItem: PropTypes.func.isRequired,
 }
 
+const CUSTOM_CONFIG = {
+  minOpacity: 0.35,
+  minScale: 0.35,
+  fadeBoundary: 0.35,
+  centerZoneHeight: 0.025,
+  transitionSpeed: '0.25s',
+}
+
 // Main carousel component
 const MenuCarousel = ({
   data,
@@ -198,16 +206,8 @@ const MenuCarousel = ({
   const [open, setOpen] = useState(false)
   const scrollContainerRef = useRef(null)
 
-  const customConfig = {
-    minOpacity: 0.35,
-    minScale: 0.35,
-    fadeBoundary: 0.35,
-    centerZoneHeight: 0.025,
-    transitionSpeed: '0.25s',
-  }
-
   const { start, stop, registerItem, unregisterItem } = useScrollEffects(
-    customConfig,
+    CUSTOM_CONFIG,
     scrollContainerRef,
   )
 
@@ -301,7 +301,7 @@ const MenuCarousel = ({
       }}
     >
       {/* Top padding to center first items */}
-      <div style={{ paddingTop: '40vh', scrollTop: '40vh' }} />
+      <div style={{ paddingTop: '40vh' }} />
 
       <div className='accronym-menu'>{carouselItems}</div>
 
