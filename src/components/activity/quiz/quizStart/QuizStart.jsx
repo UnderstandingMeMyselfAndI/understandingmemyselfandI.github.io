@@ -17,7 +17,7 @@ const QuizStart = ({ onStart, levels }) => {
 
   return (
     <div className='quiz-start'>
-      <h1>Welcome to the Quiz!</h1>
+      <h1>Welcome to the BIG Recovery Quiz!</h1>
 
       <div className='level-selection'>
         <p className='level-label'>Select Difficulty Level:</p>
@@ -53,7 +53,7 @@ const QuizStart = ({ onStart, levels }) => {
       </div>
       <div className='opt-in-info'>
         *Scores are only saved to your device and will not be shared anywhere
-        else. Top-tip: Try a harder level becauseyou can't loose. Just by being here you're a winner already. 
+        else. Top-tip: Try a harder level because you can't loose. Just by being here you're winning already. 
       </div>
       
       <button className='start-button' onClick={handleStart}>

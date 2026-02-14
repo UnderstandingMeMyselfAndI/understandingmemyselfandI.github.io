@@ -305,7 +305,7 @@ const baseActivities = [
   {
     id: 23,
     url: 'quiz',
-    title: 'The BIG or small Recovery Quiz!',
+    title: 'The BIG Recovery Quiz!',
     menuPosition: 3,
     menu: true,
     modal: true,
@@ -340,7 +340,7 @@ const strings = {
           title: '',
           classes: 'ummi-blue',
           content: [
-            '<div class="circle-bg"></div><b><span class="yellow">U</span></b>nderstanding <b><span class="yellow">M</span></b>e, <b><span class="yellow">M</span></b>yself, and <b><span class="yellow">I</span></b> <b><u class="yellow-ul ummi">(U.M.M.I)</u></b>, is your <b><u class="yellow">FREE</u> companion app</b>',
+            '<div class="circle-bg"></div><b><span class="orange">U</span></b>nderstanding <b><span class="orange">M</span></b>e, <b><span class="orange">M</span></b>yself, and <b><span class="orange">I</span></b> <b><u class="yellow-ul ummi">(U.M.M.I)</u></b>, is your <b><u class="yellow">FREE</u> companion app</b>',
           ],
         },
         {
