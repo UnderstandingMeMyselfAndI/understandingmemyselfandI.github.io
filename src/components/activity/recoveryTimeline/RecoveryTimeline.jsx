@@ -1,102 +1,102 @@
-import { useState, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import CloseBtn from '@/components/ui/buttons/close/CloseBtn';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ScrollSmoother } from 'gsap/ScrollSmoother';
-import RecoveryDayCount from './RecoveryDayCount';
-import { useGSAP } from '@gsap/react';
-import { isOdd } from '@/js/utils.js';
-import './styles.scss';
+import { useState, useEffect, useRef } from 'react'
+import PropTypes from 'prop-types'
+import CloseBtn from '@/components/ui/buttons/close/CloseBtn'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ScrollSmoother } from 'gsap/ScrollSmoother'
+import RecoveryDayCount from './RecoveryDayCount'
+import { useGSAP } from '@gsap/react'
+import { isOdd } from '@/js/utils.js'
+import './styles.scss'
 function debounce(func, delay) {
-  let timeoutId;
+  let timeoutId
 
   return function (...args) {
     // Clear the previous timeout
-    clearTimeout(timeoutId);
+    clearTimeout(timeoutId)
 
     // Set a new timeout
     timeoutId = setTimeout(() => {
-      func.apply(this, args);
-    }, delay);
-  };
+      func.apply(this, args)
+    }, delay)
+  }
 }
 const RecoveryTimeline = ({ data, config, onClose }) => {
-  gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother);
+  gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother)
 
-  const [timelineData, setTimelineData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [enableScrollEffects, setEnableScrollEffects] = useState(false);
-  const [error, setError] = useState(null);
-  const componentRef = useRef(null);
-  const [groupMaxDays, setGroupMaxDays] = useState(1);
-  const [currentDay, setCurrentDay] = useState(-1);
-  const scrollContainerRef = useRef();
-  const containerRef = useRef();
+  const [timelineData, setTimelineData] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [enableScrollEffects, setEnableScrollEffects] = useState(false)
+  const [error, setError] = useState(null)
+  const componentRef = useRef(null)
+  const [groupMaxDays, setGroupMaxDays] = useState(1)
+  const [currentDay, setCurrentDay] = useState(-1)
+  const scrollContainerRef = useRef()
+  const containerRef = useRef()
   // const layerOneRef = useRef(null);
   // const layerTwoRef = useRef(null);
-  const scrollerRef = useRef();
+  const scrollerRef = useRef()
   // const mainTimeline = useRef(null);
-  const timePeriodRefs = useRef([]);
-  const categoryRefs = useRef([[]]);
+  const timePeriodRefs = useRef([])
+  const categoryRefs = useRef([[]])
 
-  const smoother = useRef();
+  const smoother = useRef()
 
   useEffect(() => {
     try {
       if (data) {
-        setTimelineData(data);
-        console.log('data', data);
+        setTimelineData(data)
+        console.log('data', data)
       }
-      setIsLoading(false);
+      setIsLoading(false)
     } catch (err) {
-      setError('Failed to load timeline data.');
-      setIsLoading(false);
+      setError('Failed to load timeline data.')
+      setIsLoading(false)
     }
-  }, [data]);
+  }, [data])
 
   useEffect(() => {
     if (!isLoading && timelineData && config) {
-      setEnableScrollEffects(true);
+      setEnableScrollEffects(true)
     }
-  }, [isLoading, timelineData, config, error]);
+  }, [isLoading, timelineData, config, error])
 
   const setGroup = (i) => {
-    const groups = gsap.utils.toArray('.change-group-wrap');
-    if (!groups[i]) return;
-    const maxDays = parseInt(groups[i].getAttribute('data-day-range'));
-    maxDays ? setGroupMaxDays(maxDays) : null;
-  };
+    const groups = gsap.utils.toArray('.change-group-wrap')
+    if (!groups[i]) return
+    const maxDays = parseInt(groups[i].getAttribute('data-day-range'))
+    maxDays ? setGroupMaxDays(maxDays) : null
+  }
 
-  const scrollContainer = document.querySelector('.box-scroller');
+  const scrollContainer = document.querySelector('.box-scroller')
   scrollContainer?.addEventListener('scroll', () => {
     // console.log('scrollTop ');
-  });
+  })
 
   const calculateDay = () => {
-    const computedStyle = window.getComputedStyle(scrollContainer);
+    const computedStyle = window.getComputedStyle(scrollContainer)
 
-    const transform = computedStyle.transform || computedStyle.webkitTransform;
+    const transform = computedStyle.transform || computedStyle.webkitTransform
 
     if (transform && transform !== 'none') {
-      const matrix = transform.match(/matrix\(([^)]+)\)/);
+      const matrix = transform.match(/matrix\(([^)]+)\)/)
 
       // Split the matrix values
-      const values = matrix[1].split(',').map(Number);
+      const values = matrix[1].split(',').map(Number)
       // // In matrix, the Y translation is at index 5 (0-based)
 
-      const yTranslation = values[5];
+      const yTranslation = values[5]
       // // The scroll position (top) would be the negative of this value
-      const scrollTop = -yTranslation;
+      const scrollTop = -yTranslation
 
-      if (!scrollTop) return;
+      if (!scrollTop) return
 
       // console.log('scrollTop ', scrollTop);
 
       const pos =
-        scrollTop / (scrollContainer.scrollHeight - window.innerHeight);
-      const day = Math.ceil(groupMaxDays * pos);
-      day !== currentDay && setCurrentDay(day);
+        scrollTop / (scrollContainer.scrollHeight - window.innerHeight)
+      const day = Math.ceil(groupMaxDays * pos)
+      day !== currentDay && setCurrentDay(day)
       // console.log('day', day, ' pos ', pos);
       // console.log(
       //   'scrollTop ',
@@ -105,11 +105,11 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
       //   scrollContainer.scrollHeight,
       // );
     }
-  };
+  }
 
   useGSAP(
     () => {
-      if (!enableScrollEffects) return;
+      if (!enableScrollEffects) return
 
       // let smoother = ScrollSmoother.create({
       //   smooth: 2, // how long (in seconds) it takes to "catch up" to the native scroll position
@@ -214,25 +214,25 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
       dependencies: [enableScrollEffects, groupMaxDays, currentDay],
       /* scope: scrollContainerRef,*/
     },
-  );
+  )
 
   const addTimePeriodRef = (el) => {
     if (el && !timePeriodRefs.current.includes(el)) {
-      timePeriodRefs.current.push(el);
+      timePeriodRefs.current.push(el)
     }
-  };
+  }
   // Handle retry
   const handleRetry = () => {
-    setIsLoading(true);
-    setError(null);
+    setIsLoading(true)
+    setError(null)
     if (data) {
-      setTimelineData(data);
-      setIsLoading(false);
+      setTimelineData(data)
+      setIsLoading(false)
     }
-  };
+  }
 
   if (isLoading) {
-    return <div className='timeline-loading'>Loading...</div>;
+    return <div className='timeline-loading'>Loading...</div>
   }
 
   if (error) {
@@ -241,21 +241,21 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
         <p>{error}</p>
         <button onClick={handleRetry}>Retry</button>
       </div>
-    );
+    )
   }
   if (
     !timelineData ||
     !Array.isArray(timelineData.timeline) ||
     timelineData.timeline.length === 0
   ) {
-    return <div className='timeline-empty'>No timeline data available.</div>;
+    return <div className='timeline-empty'>No timeline data available.</div>
   } else {
     // console.log('timelineData', timelineData);
   }
   function getSymptoms(which) {
-    let symptonCount = 0;
-    let pushNext = false;
-    const odd = which === 'odd' ? false : true;
+    let symptonCount = 0
+    let pushNext = false
+    const odd = which === 'odd' ? false : true
     return timelineData.timeline.map((period, index) => {
       return (
         <div
@@ -265,12 +265,12 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
         >
           {period.symptoms.map((symptom, i) => {
             if (i === period.symptoms.length - 1 && isOdd(i) === !odd) {
-              pushNext = true;
+              pushNext = true
             } else if (i === period.symptoms.length - 1) {
-              pushNext = false;
+              pushNext = false
             }
 
-            symptonCount++;
+            symptonCount++
             return isOdd(symptonCount) === odd ? (
               <div
                 className={'symptom-title' + (pushNext ? ' push' : '')}
@@ -279,17 +279,17 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
                 <div>{period.id}</div>
                 <div data-period={period.id}>{symptom}</div>
               </div>
-            ) : null;
+            ) : null
           })}
         </div>
-      );
-    });
+      )
+    })
   }
 
-  let boxCount = 0;
-  let isEvenFinish = false;
-  let lastCount = 0;
-  let lastCountOdd = false;
+  let boxCount = 0
+  let isEvenFinish = false
+  let lastCount = 0
+  let lastCountOdd = false
   return (
     <div
       className='timeline-container'
@@ -327,7 +327,7 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
                       key={timeIndex}
                     >
                       {period.symptoms.map((symptom, grpIndex) => {
-                        boxCount++;
+                        boxCount++
 
                         return (
                           <div className='box-wrapper' key={'p-' + grpIndex}>
@@ -335,7 +335,7 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
                               {boxCount}
                             </div>
                           </div>
-                        );
+                        )
                       })}
                     </div>
                   ))}
@@ -356,7 +356,7 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
                           >
                             {period.timePeriod}
                           </div>
-                        );
+                        )
                       })}
                     </div>
                   ))}
@@ -373,8 +373,8 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 RecoveryTimeline.propTypes = {
   /**
@@ -409,6 +409,6 @@ RecoveryTimeline.propTypes = {
    * Function to handle closing the timeline view.
    */
   onClose: PropTypes.func.isRequired,
-};
+}
 
-export default RecoveryTimeline;
+export default RecoveryTimeline

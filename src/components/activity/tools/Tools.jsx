@@ -3,6 +3,7 @@ import useAppStore from '@/store/useAppStore'
 import MenuCarousel from '@/components/activity/tools/menuCarousel/MenuCarousel'
 import BadgeToolbox from 'ui/badges/BadgeToolbox'
 import parse from 'html-react-parser'
+import DOMPurify from 'dompurify'
 import CloseBtn from '@/components/ui/buttons/close/CloseBtn.jsx'
 import toolsData from '../../../data/tools.js'
 import { strings } from '@/data/config'
@@ -48,7 +49,6 @@ const Tools = () => {
   const setIsModal = useAppStore((s) => s.setIsModal)
   // const isModal = useAppStore((s) => s.isModal)
   useEffect(() => {
-    console.log('tools modal ', activitiesById[id]?.modal)
     open && setIsModal(activitiesById[id]?.modal)
   }, [open, setIsModal, id, activitiesById])
 
@@ -72,12 +72,12 @@ const Tools = () => {
   const descriptionContent = content?.description && (
     <div className='tools-description'>
       {content.description.map((html, i) => (
-        <p key={i}>{parse(html)}</p>
+        <p key={i}>{parse(DOMPurify.sanitize(html))}</p>
       ))}
     </div>
   )
 
-  return (
+  return (open ? 
     <div className={'activity acronym-tools fixed' + (open ? ' show' : ' ')}>
       {toolboxFilterEnabled && <BadgeToolbox />}
 
@@ -85,8 +85,10 @@ const Tools = () => {
         <div className='tools-inner'>
           <CloseBtn onClick={handleClose} />
           <header>
-            <h2>{parse(content?.title)}</h2>
-            <div className='intro'>{parse(content?.introduction)}</div>
+            <h2>{parse(DOMPurify.sanitize(content?.title))}</h2>
+            <div className='intro'>
+              {parse(DOMPurify.sanitize(content?.introduction))}
+            </div>
           </header>
           <div className='tools-wrapper'>
             <MenuCarousel
@@ -99,7 +101,7 @@ const Tools = () => {
           </div>
         </div>
       </section>
-    </div>
+    </div> : null
   )
 }
 Tools.propTypes = {

@@ -1,35 +1,35 @@
-import { useState } from 'react';
-import { setPasswordKey } from '../utils/idbOptionalEncryptedStorage';
+import { useState } from 'react'
+import { setPasswordKey } from '../utils/idbOptionalEncryptedStorage'
 
 export default function PasswordOptionalSetup({ onSuccess }) {
-  const [password, setPassword] = useState('');
-  const [confirm, setConfirm] = useState('');
-  const [hint, setHint] = useState('');
-  const [error, setError] = useState('');
+  const [password, setPassword] = useState('')
+  const [confirm, setConfirm] = useState('')
+  const [hint, setHint] = useState('')
+  const [error, setError] = useState('')
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (!password) {
-      await setPasswordKey(null);
-      onSuccess();
-      return;
+      await setPasswordKey(null)
+      onSuccess()
+      return
     }
 
     if (password.length < 6) {
-      setError('Password must be at least 6 characters.');
-      return;
+      setError('Password must be at least 6 characters.')
+      return
     }
 
     if (password !== confirm) {
-      setError('Passwords do not match.');
-      return;
+      setError('Passwords do not match.')
+      return
     }
 
-    await setPasswordKey(password);
-    localStorage.setItem('passwordHint', hint); // optional plaintext hint
-    onSuccess();
-  };
+    await setPasswordKey(password)
+    localStorage.setItem('passwordHint', hint) // optional plaintext hint
+    onSuccess()
+  }
 
   return (
     <div className='password-setup'>
@@ -78,13 +78,13 @@ export default function PasswordOptionalSetup({ onSuccess }) {
         <button
           type='button'
           onClick={() => {
-            setPasswordKey(null);
-            onSuccess();
+            setPasswordKey(null)
+            onSuccess()
           }}
         >
           Skip Password
         </button>
       </form>
     </div>
-  );
+  )
 }

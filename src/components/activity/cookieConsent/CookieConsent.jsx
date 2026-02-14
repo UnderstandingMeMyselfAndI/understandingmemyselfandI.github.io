@@ -28,8 +28,8 @@ const CookieConsent = () => {
   const loadScripts = (consentData) => {
     const id = 'G-YWBEQ7E972'
 
-    console.log('loadScripts consentData ', consentData)
-    console.log('loadScripts window.GA_INITIALIZED ', window.GA_INITIALIZED)
+    // console.log('loadScripts consentData ', consentData)
+    // console.log('loadScripts window.GA_INITIALIZED ', window.GA_INITIALIZED)
 
     if (consentData.analytics && !window.GA_INITIALIZED) {
       var head = document.getElementsByTagName('head')[0]
@@ -108,17 +108,18 @@ const CookieConsent = () => {
 
   if (!show && !showSettings) return null
 
-  return (
+  return (show ?
     <div
       className={
         'activity activity-cookie-consent-overlay' + (show ? ' show' : '')
-      }>
+      }
+    >
       {show && !showSettings && (
         <div className='cookie-banner'>
           <div className='cookie-banner-content'>
             <div className='cookie-banner-header'>
               <div className='cookie-banner-text'>
-                <h2 className='cookie-banner-title'>Yum. Our Cookies.</h2>
+                <h2 className='cookie-banner-title'>Our Cookies. Yum. </h2>
                 <h4 className='cookie-banner-title-sml'>
                   We Value Your Privacy
                 </h4>
@@ -133,7 +134,8 @@ const CookieConsent = () => {
                   </button>
                   <button
                     onClick={handleRejectAll}
-                    className='btn btn-secondary'>
+                    className='btn btn-secondary'
+                  >
                     Reject All
                   </button>
                 </div>
@@ -152,7 +154,8 @@ const CookieConsent = () => {
               </div>
               <button
                 onClick={() => setShowSettings(false)}
-                className='modal-close'>
+                className='modal-close'
+              >
                 X
               </button>
             </div>
@@ -186,11 +189,14 @@ const CookieConsent = () => {
                   </div>
                   <button
                     onClick={() => handleToggle('analytics')}
-                    className='toggle-wrapper'>
+                    className='toggle-wrapper'
+                  >
                     <div
-                      className={`toggle ${consent.analytics ? 'toggle-active' : 'toggle-inactive'}`}>
+                      className={`toggle ${consent.analytics ? 'toggle-active' : 'toggle-inactive'}`}
+                    >
                       <div
-                        className={`toggle-knob ${consent.analytics ? 'toggle-knob-right' : 'toggle-knob-left'}`}></div>
+                        className={`toggle-knob ${consent.analytics ? 'toggle-knob-right' : 'toggle-knob-left'}`}
+                      ></div>
                     </div>
                   </button>
                 </div>
@@ -207,11 +213,14 @@ const CookieConsent = () => {
                   </div>
                   <button
                     onClick={() => handleToggle('marketing')}
-                    className='toggle-wrapper'>
+                    className='toggle-wrapper'
+                  >
                     <div
-                      className={`toggle ${consent.marketing ? 'toggle-active' : 'toggle-inactive'}`}>
+                      className={`toggle ${consent.marketing ? 'toggle-active' : 'toggle-inactive'}`}
+                    >
                       <div
-                        className={`toggle-knob ${consent.marketing ? 'toggle-knob-right' : 'toggle-knob-left'}`}></div>
+                        className={`toggle-knob ${consent.marketing ? 'toggle-knob-right' : 'toggle-knob-left'}`}
+                      ></div>
                     </div>
                   </button>
                 </div>
@@ -228,11 +237,14 @@ const CookieConsent = () => {
                   </div>
                   <button
                     onClick={() => handleToggle('preferences')}
-                    className='toggle-wrapper'>
+                    className='toggle-wrapper'
+                  >
                     <div
-                      className={`toggle ${consent.preferences ? 'toggle-active' : 'toggle-inactive'}`}>
+                      className={`toggle ${consent.preferences ? 'toggle-active' : 'toggle-inactive'}`}
+                    >
                       <div
-                        className={`toggle-knob ${consent.preferences ? 'toggle-knob-right' : 'toggle-knob-left'}`}></div>
+                        className={`toggle-knob ${consent.preferences ? 'toggle-knob-right' : 'toggle-knob-left'}`}
+                      ></div>
                     </div>
                   </button>
                 </div>
@@ -242,19 +254,21 @@ const CookieConsent = () => {
             <div className='modal-footer'>
               <button
                 onClick={handleSaveSettings}
-                className='btn btn-primary btn-full'>
+                className='btn btn-primary btn-full'
+              >
                 Save Preferences
               </button>
               <button
                 onClick={handleAcceptAll}
-                className='btn btn-secondary btn-full'>
+                className='btn btn-secondary btn-full'
+              >
                 Accept All
               </button>
             </div>
           </div>
         </div>
       )}
-    </div>
+    </div> : null
   )
 }
 

@@ -22,5 +22,5 @@ const server = https.createServer({
 );
 
 server.listen(port, '0.0.0.0', () => {
-  console.log(`Server for POST requests started at port ${port}`);
+  // console.log(`Server for POST requests started at port ${port}`);
 });

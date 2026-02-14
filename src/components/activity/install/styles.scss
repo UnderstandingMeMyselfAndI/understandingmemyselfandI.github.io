@@ -1,92 +1,85 @@
-@use "@/scss/_variables.scss";
-@import "@/globals.css";
-
+@use '@/scss/_variables.scss';
+@import '@/globals.css';
 
 #install {
-	scroll-margin-top: 25vh;
+  scroll-margin-top: 25vh;
 }
 
 section.activity-installCTA {
-	margin: 0 auto;
+  margin: 0 auto;
 
-	.homescreenIcon,
-	.shareIcon {
-		display: inline-block;
-		margin-bottom: -13px;
-	}
+  .homescreenIcon,
+  .shareIcon {
+    display: inline-block;
+    margin-bottom: -13px;
+  }
 
-	.shareIcon {
-		transform: scale(0.9);
-	}
+  .shareIcon {
+    transform: scale(0.9);
+  }
 
-	p {
-		line-height: 1.6;
-	}
+  p {
+    line-height: 1.6;
+  }
 
-	h3 u {
+  h3 u {
+    span {
+      width: fit-content;
+      position: relative;
+      display: inline-block;
+      font-weight: variables.$lrg_weight;
+    }
+  }
 
+  button.install {
+    border-radius: var(--border-radius);
+    background-color: var(--blue);
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    width: 170px;
 
-		span {
+    .ummi-logo.small {
+      min-width: 50px;
 
-			width: fit-content;
-			position: relative;
-			display: inline-block;
-			font-weight: variables.$lrg_weight;
+      img {
+        width: 50px;
+      }
+    }
+  }
 
+  .title {
+    margin-top: 2rem;
+    font-size: variables.$h4_size;
+    font-weight: 600;
+    font-variation-settings: 'wght' 600;
+    text-decoration-color: var(--yellow);
+    text-decoration-thickness: 5px;
+    text-decoration-style: solid;
+    text-decoration-line: underline;
 
-		}
-	}
+    span {
+      position: relative;
+      display: block;
+      width: fit-content;
+      margin: 0 auto;
 
-	button.install {
-		border-radius: var(--border-radius);
-		background-color: var(--blue);
-		display: flex;
-		align-items: center;
-		align-content: center;
-		justify-content: center;
-		width: 170px;
+      &::after {
+        content: ' ';
+        width: 115%;
+        height: 110%;
+        background-color: var(--yellow);
+        opacity: 0.2;
+        position: absolute;
+        top: 20%;
+        left: -15%;
+        z-index: -1;
 
-		.ummi-logo.small {
-			min-width: 50px;
-
-			img {
-				width: 50px;
-
-			}
-		}
-	}
-
-	.title {
-		margin-top: 2rem;
-		font-size: variables.$h4_size;
-		font-weight: 600;
-		font-variation-settings: "wght" 600;
-		text-decoration-color: var(--yellow);
-		text-decoration-thickness: 5px;
-		text-decoration-style: solid;
-		text-decoration-line: underline;
-
-		span {
-			position: relative;
-			display: block;
-			width: fit-content;
-			margin: 0 auto;
-
-			&::after {
-				content: " ";
-				width: 115%;
-				height: 110%;
-				background-color: var(--yellow);
-				opacity: 0.2;
-				position: absolute;
-				top: 20%;
-				left: -15%;
-				z-index: -1;
-
-				margin-top: -5%;
-				margin-left: 7.5%;
-				transform: rotate(-4deg);
-			}
-		}
-	}
+        margin-top: -5%;
+        margin-left: 7.5%;
+        transform: rotate(-4deg);
+      }
+    }
+  }
 }

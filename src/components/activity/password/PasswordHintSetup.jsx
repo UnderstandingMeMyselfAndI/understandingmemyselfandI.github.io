@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { setPasswordHint, getPasswordHint } from '@/src/js/utils/secureStorage';
-import PropTypes from 'prop-types';
+import { useState } from 'react'
+import { setPasswordHint, getPasswordHint } from '@/src/js/utils/secureStorage'
+import PropTypes from 'prop-types'
 const PasswordHintSetup = ({ onSuccess }) => {
-  const [hint, setHint] = useState(getPasswordHint());
+  const [hint, setHint] = useState(getPasswordHint())
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    setPasswordHint(hint);
-    if (onSuccess) onSuccess();
-  };
+    e.preventDefault()
+    setPasswordHint(hint)
+    if (onSuccess) onSuccess()
+  }
 
   return (
     <div className='password-hint-setup'>
@@ -27,11 +27,11 @@ const PasswordHintSetup = ({ onSuccess }) => {
         <button type='submit'>Save Hint</button>
       </form>
     </div>
-  );
-};
+  )
+}
 
 PasswordHintSetup.propTypes = {
   onSuccess: PropTypes.func.isRequired,
-};
+}
 
-export default PasswordHintSetup;
+export default PasswordHintSetup

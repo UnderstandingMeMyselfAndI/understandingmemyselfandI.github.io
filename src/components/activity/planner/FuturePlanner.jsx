@@ -1,8 +1,8 @@
-import { usePlannerStore } from '@/store/usePlannerStore';
-import { calcUnits } from '.@/src//js/utils/alcoholUtils';
+import { usePlannerStore } from '@/store/usePlannerStore'
+import { calcUnits } from '.@/src//js/utils/alcoholUtils'
 
 export default function FuturePlanner() {
-  const { plans, addPlan, removePlan } = usePlannerStore();
+  const { plans, addPlan, removePlan } = usePlannerStore()
 
   const addSamplePlan = () => {
     addPlan({
@@ -11,11 +11,11 @@ export default function FuturePlanner() {
       volume: 568,
       abv: 5,
       label: 'Saturday pint',
-    });
-  };
+    })
+  }
 
   return (
-    <div id='planner' className="activity">
+    <div id='planner' className='activity'>
       <h2>Future planner</h2>
 
       <button onClick={addSamplePlan}>Add planned drink</button>
@@ -34,5 +34,5 @@ export default function FuturePlanner() {
         Planned drinks don’t affect totals. This is for thinking ahead only.
       </p>
     </div>
-  );
+  )
 }

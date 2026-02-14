@@ -268,18 +268,21 @@ const Header = () => {
         })
       }
     },
-    { dependencies: [open, isLeaving], scope: cont },
+    { dependencies: [open, isLeaving, isModal], scope: cont },
   )
 
   // TODO #25 Maybe use ScrollTrigger isInViewport and drop thei library
   //https://gsap.com/docs/v3/Plugins/ScrollTrigger/static.positionInViewport()
+  const inViewData = useRef(true)
+
   const inViewRef = useOnInView(
     (inView) => {
+      inViewData.current = inView
       if (isFirstCall) {
         setIsFirstCall(false)
         return
       }
-      setIsLeaving(!inView)
+      setIsLeaving(!inView || isModal)
     },
     {
       threshold: 0.1,
@@ -287,11 +290,17 @@ const Header = () => {
     },
   )
 
-  return (
+  // Sync isLeaving when isModal changes
+  useEffect(() => {
+    setIsLeaving(!inViewData.current || isModal)
+  }, [isModal])
+
+  return ( 
     <section
       id='header'
       className={'activity header' + (open ? ' show' : ' hide')}
-      ref={cont}>
+      ref={cont}
+    >
       <div className='leavingWrap' ref={inViewRef}>
         <div className={'group-wrap'}>
           <div className='home-grp'>
@@ -308,8 +317,9 @@ const Header = () => {
                   <ErrorBoundary FallbackComponent={<>W0 had an error</>}>
                     <div className='w0w' ref={addLeaveRef}>
                       <div
-                        className={'r1 w0' + (isLeaving ? ' leaving' : '')}
-                        ref={addLoopRef}>
+                        className={'r1 w0' + (isLeaving || isModal ? ' leaving' : '')}
+                        ref={addLoopRef}
+                      >
                         Understanding
                       </div>
                     </div>
@@ -318,8 +328,9 @@ const Header = () => {
                     <ErrorBoundary FallbackComponent={<>W1 had an error</>}>
                       <div className='w1w' ref={addLeaveRef}>
                         <div
-                          className={'w1' + (isLeaving ? ' leaving' : '')}
-                          ref={addLoopRef}>
+                          className={'w1' + (isLeaving || isModal ? ' leaving' : '')}
+                          ref={addLoopRef}
+                        >
                           Me
                         </div>
                       </div>
@@ -327,8 +338,9 @@ const Header = () => {
                     <ErrorBoundary FallbackComponent={<>W2 had an error</>}>
                       <div className='w2w' ref={addLeaveRef}>
                         <div
-                          className={'w2' + (isLeaving ? ' leaving' : '')}
-                          ref={addLoopRef}>
+                          className={'w2' + (isLeaving || isModal ? ' leaving' : '')}
+                          ref={addLoopRef}
+                        >
                           Myself
                         </div>
                       </div>

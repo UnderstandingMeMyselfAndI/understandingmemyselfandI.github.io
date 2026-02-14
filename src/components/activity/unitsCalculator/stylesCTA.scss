@@ -1,47 +1,20 @@
 @use '@/scss/variables';
 @import '@/globals.css';
 
-.activity-units-calculator-cta {
-    position: relative;
+body div.main section.activity-units-calculator-cta div.cta {
+  .inner {
+    background-color: var(--yellow20Trans);
 
-    border-radius: var(--border-radius);
-
-    .cta-content {
-        text-shadow: var(--textShadowDarkStrong);
-        font-weight: 400;
-        font-variation-settings: 'wght' 400;
+    u {
+      text-decoration-color: var(--primary40Trans);
     }
 
-    .bg-img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        border-radius: var(--border-radius);
-        overflow: hidden;
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.4;
-        }
-
-        &::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--blueDark);
-            border-radius: var(--border-radius);
-            opacity: 1;
-            z-index: -1;
-        }
-
-        background-color:var(--lightBlue)
+    h3.title {
+      color: var(--orange);
+      font-weight: 900;
+      font-variation-settings: 'wght' 900;
     }
+  }
+
+  background-color: var(--blue90Trans);
 }

@@ -5,7 +5,8 @@ const CloseBtn = ({ onClick, classes = '', width = 30, thickness = 3 }) => {
   return (
     <button
       className={'close-btn' + (classes ? ' ' + classes : '')}
-      onClick={onClick}>
+      onClick={onClick}
+    >
       <div className='close-btn-wrap'>
         <div className='close-btn-inner'>
           <div className='line'></div>

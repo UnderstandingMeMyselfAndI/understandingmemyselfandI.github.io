@@ -1,11 +1,11 @@
-if ("setAppBadge" in navigator) {
-	navigator.setAppBadge(2).catch(error => {
-		// Code to handle an error
-	});
+if ('setAppBadge' in navigator) {
+  navigator.setAppBadge(2).catch((error) => {
+    // Code to handle an error
+  })
 }
 
 // remove badge
-navigator.clearAppBadge();
+navigator.clearAppBadge()
 
 // add badge
-navigator.setAppBadge(2);
+navigator.setAppBadge(2)

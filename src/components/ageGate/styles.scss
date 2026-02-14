@@ -1,5 +1,5 @@
-@use "@/scss/_variables.scss";
-@import "@/globals.css";
+@use '@/scss/_variables.scss';
+@import '@/globals.css';
 
 .age-gate-container {
   position: fixed;
@@ -60,7 +60,7 @@
       line-height: 1.5;
       margin-bottom: 1rem;
       opacity: 0.9;
-      
+
       &.question {
         font-size: 1.2rem;
         font-weight: 600;
@@ -89,8 +89,8 @@
         background-color: #ffffff;
         color: #000000;
         &:hover {
-            background-color: #e6e6e6;
-            transform: scale(1.05);
+          background-color: #e6e6e6;
+          transform: scale(1.05);
         }
       }
 
@@ -99,8 +99,8 @@
         border: 2px solid #ffffff;
         color: #ffffff;
         &:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-             transform: scale(1.05);
+          background-color: rgba(255, 255, 255, 0.1);
+          transform: scale(1.05);
         }
       }
     }

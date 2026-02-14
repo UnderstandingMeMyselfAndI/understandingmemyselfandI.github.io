@@ -1,0 +1,659 @@
+@use 'sass:color';
+@use './scss/_variables.scss';
+@import '@/globals.css';
+
+// --- 1. Global Variables ---
+$color-bg: #ffffff;
+$color-bg-dark: #1a1a1a;
+$color-text-primary: #333333;
+$color-text-dark-mode: #f0f0f0;
+$color-text-secondary: #666666;
+$color-grid-lines: #e0e0e0;
+$color-primary: #007bff;
+$color-highlight: rgba(0, 123, 255, 0.25);
+$color-btn-bg: #f8f9fa;
+$color-btn-border: #ddd;
+
+div#wheel-of-life {
+  position: fixed;
+  pointer-events: all;
+  background: var(--backgroundActivity);
+  width: 100dvw;
+  height: 100dvh;
+  /* Mobile fix */
+  min-width: 100dvw;
+  max-width: 100dvw;
+  display: flex;
+  overflow: visible;
+  left: 0;
+  overflow: hidden;
+  /* --- CUSTOMIZATION VARIABLES (Tweak these!) --- */
+
+  // 1. Outer Diameter (The circle at score 10)
+  --wheel-outer-border-color: var(--lightBlue30Trans);
+  --wheel-outer-border-width: 12px;
+
+  // 2. Segment Divider Lines (The spokes)
+  --wheel-divider-color: var(--lightBlue90Trans);
+  --wheel-divider-width: 1px;
+
+  // 3. Sub-section Lines (The inner circles 1-9)
+  --wheel-subsection-color: var(--lightBlue60Trans);
+  --wheel-subsection-width: 1px;
+
+  // 4. Outer Numbers (The "10"s)
+  --wheel-number-color: var(--orange70Trans);
+  --wheel-number-size: 1.5rem;
+  --wheel-number-weight: 800;
+
+  // 5. Labels (The category names)
+  --wheel-label-color: var(--primary);
+  --wheel-label-size: 1.6rem;
+
+  // -------------------------------------------------
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--greyDark40Trans);
+    z-index: -1;
+  }
+}
+
+// --- MODAL STYLES ---
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal-content {
+    background: var(--blue60Trans);
+    padding: 2.5rem 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--boxShadowDark);
+    max-width: var(--max-width);
+    width: 100%;
+    text-align: center;
+
+    display: flex;
+    flex-flow: column nowrap;
+    row-gap: 2rem;
+
+    &.large {
+      max-width: 600px;
+      text-align: left;
+    }
+
+    h3,
+    h4 {
+      margin: 0;
+      text-align: center;
+    }
+
+    p {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    ul {
+      list-style: none;
+      font-size: 1rem;
+      padding-right: 1rem;
+
+      li {
+        margin-bottom: 0.75rem;
+      }
+    }
+
+    .scrollable-text {
+      max-height: 50vh;
+      overflow-y: auto;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+      font-size: 1rem;
+
+      p {
+        margin-bottom: 10px;
+        font-size: 1rem;
+      }
+
+      ul {
+        margin-bottom: 10px;
+        padding-left: 20px;
+      }
+    }
+
+    button {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      border-radius: 4px;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin: 0 auto;
+
+      &:hover {
+        background: color.adjust($color-primary, $lightness: -5%);
+      }
+
+      &.btn-secondary {
+        background: #6c757d;
+
+        &:hover {
+          background: color.adjust(#6c757d, $lightness: -5%);
+        }
+      }
+    }
+
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--greyDark90Trans);
+      z-index: -1;
+    }
+  }
+}
+
+.wheel-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  row-gap: 5vh;
+  justify-content: center;
+
+  .circled-help {
+    display: inline-block;
+    border: 1px solid currentColor;
+    /* Uses text color for the circle */
+    border-radius: 50%;
+    /* Makes the border a perfect circle */
+    width: 1rem;
+    height: 1rem;
+    text-align: center;
+    line-height: 1rem;
+    /* Centers the ? vertically */
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    color: var(--orange);
+  }
+
+  .wheel-header {
+    flex: 0 0 auto;
+    padding-top: 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-flow: column nowrap;
+    row-gap: 1rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
+
+    @media screen and (width >=768px) {
+      max-width: var(--max-width-lrg-screen);
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+
+      h1 {
+        transition: color 0.3s;
+        margin: 0;
+      }
+
+      .btn-icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+        background: transparent;
+        border: 2px solid $color-primary;
+        color: $color-primary;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        font-weight: bold;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+
+        &:hover {
+          background: $color-primary;
+          color: white;
+        }
+      }
+    }
+
+    .wheel-instruction {
+      font-size: 1rem;
+      line-height: 1.4;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+  }
+
+  &.mode-compare {
+
+    .wheel-header {
+
+      h1,
+      p,
+      .checkbox-label {
+        color: $color-text-dark-mode;
+      }
+
+      .btn-icon {
+        border-color: #fff;
+        color: #fff;
+
+        &:hover {
+          background: #fff;
+          color: #000;
+        }
+      }
+
+      .wheel-notes {
+        background: rgba(0, 0, 0, 0.3);
+        color: #fff;
+        border-color: #555;
+      }
+    }
+  }
+
+  .wheel-preferences {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    column-gap: 2rem;
+    position: relative;
+
+    .checkbox-label {
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .btn-icon {
+      position: absolute;
+      right: 0;
+      top: 2rem;
+
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      z-index: 10;
+      padding: 20px;
+
+      svg {
+        width: 34px;
+        height: 34px;
+        fill: var(--orange);
+      }
+    }
+
+    .wheel-count {
+      position: absolute;
+      left: 0;
+      top: 2rem;
+
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      z-index: 10;
+      column-gap: 0.5rem;
+
+      div:first-child {
+        font-size: 2rem;
+        font-weight: 700;
+        font-variation-settings: 'wght' 700;
+        text-align: right;
+        color: var(--orange);
+      }
+
+      div:last-child {
+        max-width: 50px;
+        font-size: 0.75rem;
+        text-align: left;
+        color: var(--lightBlue);
+      }
+    }
+  }
+
+  // --- Viewport ---
+  .wheel-viewport {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 0 0;
+    min-height: 0;
+
+    .wheel-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      user-select: none;
+      overflow: visible;
+
+      .svg-bg {
+        fill: transparent;
+        transition: fill 0.3s;
+      }
+
+      &.neon-mode {
+        --wheel-outer-border-color: var(--lightBlue30Trans);
+        --wheel-outer-border-width: 12px;
+
+        // 2. Segment Divider Lines (The spokes)
+        --wheel-divider-color: var(--lightBlue20Trans);
+        --wheel-divider-width: 8px;
+
+        // 3. Sub-section Lines (The inner circles 1-9)
+        --wheel-subsection-color: var(--lightGrey10Trans);
+        --wheel-subsection-width: 1px;
+
+        // 4. Outer Numbers (The "10"s)
+        --wheel-number-color: var(--orange60Trans);
+        --wheel-number-size: 2.5rem;
+        --wheel-number-weight: 600;
+
+        // 5. Labels (The category names)
+        --wheel-label-color: var(--primary);
+        --wheel-label-size: 1.5rem;
+      }
+
+      .wheel-segment {
+        fill: transparent;
+        cursor: pointer;
+        transition: fill 0.2s;
+
+        &.active {
+          fill: $color-highlight;
+        }
+
+        /* Removes the blue focus outline on desktop */
+        outline: none;
+
+        /* Removes the blue flash/overlay on tap (mobile/touch devices) */
+        -webkit-tap-highlight-color: transparent;
+
+        /* Ensures no outline even when focused */
+        &:focus {
+          outline: none;
+        }
+      }
+
+      // --- GRID LINES ---
+
+      // 1. Sub-section circles (Inner rings)
+      .grid-circle {
+        fill: none;
+        stroke: var(--wheel-subsection-color);
+        stroke-width: var(--wheel-subsection-width);
+        pointer-events: none;
+        transition: stroke 0.3s;
+      }
+
+      // 2. Outer Diameter (The very last circle)
+      .grid-circle:last-of-type {
+        stroke: var(--wheel-outer-border-color);
+        stroke-width: var(--wheel-outer-border-width);
+      }
+
+      // 3. Divider Lines (Spokes)
+      .grid-line {
+        fill: none;
+        stroke: var(--wheel-divider-color);
+        stroke-width: var(--wheel-divider-width);
+        pointer-events: none;
+        transition: stroke 0.3s;
+      }
+
+      // --- LABELS & NUMBERS ---
+
+      .category-label {
+        font-size: var(--wheel-label-size);
+        font-weight: 700;
+        fill: var(--wheel-label-color);
+        pointer-events: none;
+        transition: fill 0.3s;
+      }
+
+      .score-number-outer {
+        font-size: 2.5rem; //var(--wheel-number-size);
+        font-weight: var(--wheel-number-weight);
+        font-variation-settings: 'wght' var(--wheel-number-weight);
+        fill: var(--wheel-number-color);
+        transition: fill 0.3s;
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column nowrap;
+
+        .max-score-group,
+        .score-separator,
+        .max-score {
+          font-size: 1.5rem;
+          font-weight: 300;
+          font-variation-settings: 'wght' 300;
+        }
+      }
+
+      .score-number-center {
+        font-size: 4rem;
+        line-height: 1;
+
+        font-weight: 600;
+        fill: var(--orange);
+        opacity: 0.5;
+        transition: fill 0.3s;
+      }
+
+      .score-dot-animated {
+        fill: $color-primary;
+        stroke: #fff;
+        stroke-width: 4px;
+        transform-origin: center;
+        transform-box: fill-box;
+        animation: popFromCenter 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      }
+
+      .score-line-animated {
+        animation: fadeInStroke 1s ease forwards;
+      }
+    }
+  }
+
+  // --- Controls ---
+  .wheel-controls {
+    flex: 0 0 auto;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    // align-self: stretch;
+
+    .control-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      // outline: 1px solid #ccc;
+      width: 100%;
+      max-width: var(--max-width);
+
+      .btn {
+        outline: 1px solid var(--lightGrey20Trans);
+      }
+
+      svg {
+        width: 34px;
+        height: 34px;
+      }
+
+      div.inactive {
+        svg {
+          fill: var(--grey);
+          stroke: var(--grey);
+
+          path {
+            fill: var(--greyMed);
+            stroke: var(--greyMed);
+          }
+        }
+      }
+    }
+
+    .history-controls {
+      padding-top: 10px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      gap: 6px;
+
+      .history-main-actions {
+        display: flex;
+        justify-content: flex-end;
+        flex-flow: column nowrap;
+        gap: 6px;
+      }
+
+      .history-management {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+        padding: 0px;
+        border-radius: 6px;
+
+        .history-select {
+          padding: 6px;
+          border-radius: 4px;
+          max-width: 250px;
+          font-size: 0.9rem;
+        }
+
+        .history-item-actions {
+          display: flex;
+          gap: 5px;
+        }
+      }
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s;
+
+      &.small {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+      }
+
+      &.btn-secondary {
+        background: $color-btn-bg;
+        border: 1px solid $color-btn-border;
+        color: $color-text-primary;
+
+        &:hover {
+          background: color.adjust($color-btn-bg, $lightness: -5%);
+        }
+      }
+
+      &.btn-primary {
+        border: 1px solid color.adjust($color-primary, $lightness: -5%);
+        color: white;
+
+        &:hover {
+          background: color.adjust($color-primary, $lightness: -5%);
+        }
+      }
+
+      &.btn-outline {
+        border: 1px solid #007bff;
+        color: #007bff;
+
+        &:hover {
+          background: rgba(0, 123, 255, 0.05);
+        }
+      }
+
+      &.btn-toggle {
+        border: 1px solid #ced4da;
+
+        &.active {
+          background: #007bff;
+          border-color: #007bff;
+        }
+      }
+
+      &.btn-danger {
+        background: #ffe3e3;
+        color: #e03131;
+
+        &:hover {
+          background: #ffc9c9;
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadeInStroke {
+  from {
+    stroke-opacity: 0;
+  }
+
+  to {
+    stroke-opacity: 1;
+  }
+}
+
+@keyframes popFromCenter {
+  0% {
+    transform: translate(0px, 0px) scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(var(--dx), var(--dy)) scale(1);
+    opacity: 1;
+  }
+}

@@ -38,14 +38,14 @@ const UnitsCalculatorCTA = () => {
 
   return (
     <section
-      className={
-        `activity activity-${activityUrl}-cta` + (open ? ' show' : '')
-      }>
+      className={`activity activity-${activityUrl}-cta` + (open ? ' show' : '')}
+    >
       <CTA
         name={activityName}
         title={content.title}
         open={open}
-        content={content.cta.content}>
+        content={content.cta.content}
+      >
         <UnitsCalculatorBtn label={content?.cta.btn?.label.unused} />
         <div className='bg-img'>
           <img className='bg' src={bgImg.src} alt={bgImg.alt} />

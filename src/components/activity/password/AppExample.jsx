@@ -1,21 +1,21 @@
-import { useState, useEffect } from 'react';
-import OptionalPasswordSetup from './OptionalPasswordSetup';
-import WeeklyChart from './WeeklyChart';
+import { useState, useEffect } from 'react'
+import OptionalPasswordSetup from './OptionalPasswordSetup'
+import WeeklyChart from './WeeklyChart'
 
 export default function App() {
-  const [unlocked, setUnlocked] = useState(false);
-  const [firstLoad, setFirstLoad] = useState(null);
+  const [unlocked, setUnlocked] = useState(false)
+  const [firstLoad, setFirstLoad] = useState(null)
 
   useEffect(() => {
     // Quick check if drink log already exists
-    const hasData = localStorage.getItem('drink-log-store');
-    setFirstLoad(hasData === null);
-  }, []);
+    const hasData = localStorage.getItem('drink-log-store')
+    setFirstLoad(hasData === null)
+  }, [])
 
-  if (firstLoad === null) return <p>Loading...</p>;
+  if (firstLoad === null) return <p>Loading...</p>
 
   if (!unlocked) {
-    return <OptionalPasswordSetup onSuccess={() => setUnlocked(true)} />;
+    return <OptionalPasswordSetup onSuccess={() => setUnlocked(true)} />
   }
 
   return (
@@ -23,5 +23,5 @@ export default function App() {
       <WeeklyChart />
       {/* other components */}
     </div>
-  );
+  )
 }

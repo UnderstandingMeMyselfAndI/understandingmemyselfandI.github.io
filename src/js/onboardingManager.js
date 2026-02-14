@@ -1,22 +1,22 @@
 // onboardingManager.js
-let onboardingInitialized = false;
-let onboardingInstance = null;
+let onboardingInitialized = false
+let onboardingInstance = null
 
 export const initOnboarding = async () => {
-	if (onboardingInitialized) return onboardingInstance;
+  if (onboardingInitialized) return onboardingInstance
 
-	// Dynamically import the onboarding to avoid immediate execution
-	const onboardingModule = await import("./tour.js");
-	onboardingInstance = onboardingModule.default;
-	onboardingInitialized = true;
+  // Dynamically import the onboarding to avoid immediate execution
+  const onboardingModule = await import('./tour.js')
+  onboardingInstance = onboardingModule.default
+  onboardingInitialized = true
 
-	console.log("Onboarding initialized");
-	return onboardingInstance;
-};
+  console.log('Onboarding initialized')
+  return onboardingInstance
+}
 
 export const startOnboarding = async () => {
-	const onboarding = await initOnboarding();
-	if (onboarding) {
-		onboarding.drive();
-	}
-};
+  const onboarding = await initOnboarding()
+  if (onboarding) {
+    onboarding.drive()
+  }
+}

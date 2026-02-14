@@ -1,26 +1,26 @@
-import { useState } from 'react';
-import { useDrinkLogStore } from '@/store/drinkLogStore';
-import { calcUnits, getWeekDates } from '@/src/js/utils/alcoholUtils';
-import '../styles/weekly-chart.scss';
-import '../styles/a11y.scss';
+import { useState } from 'react'
+import { useDrinkLogStore } from '@/store/drinkLogStore'
+import { calcUnits, getWeekDates } from '@/src/js/utils/alcoholUtils'
+import '../styles/weekly-chart.scss'
+import '../styles/a11y.scss'
 export default function WeeklyChart() {
-  const drinks = useDrinkLogStore((state) => state.drinks);
-  const isUnlocked = useDrinkLogStore((state) => state.isUnlocked);
-  const [showReference, setShowReference] = useState(true);
-  const week = getWeekDates();
+  const drinks = useDrinkLogStore((state) => state.drinks)
+  const isUnlocked = useDrinkLogStore((state) => state.isUnlocked)
+  const [showReference, setShowReference] = useState(true)
+  const week = getWeekDates()
 
   if (!isUnlocked) {
-    return <p>Please unlock to view your data</p>;
+    return <p>Please unlock to view your data</p>
   }
 
   const dailyTotals = week.map((date) =>
     drinks
       .filter((d) => d.date === date)
       .reduce((sum, d) => sum + calcUnits(d.volume, d.abv), 0),
-  );
+  )
 
-  const weeklyTotal = dailyTotals.reduce((a, b) => a + b, 0);
-  const maxUnits = Math.max(14, ...dailyTotals);
+  const weeklyTotal = dailyTotals.reduce((a, b) => a + b, 0)
+  const maxUnits = Math.max(14, ...dailyTotals)
 
   return (
     <section
@@ -75,7 +75,7 @@ export default function WeeklyChart() {
         )}
 
         {dailyTotals.map((units, i) => {
-          const height = (units / maxUnits) * 140;
+          const height = (units / maxUnits) * 140
 
           return (
             <g
@@ -106,7 +106,7 @@ export default function WeeklyChart() {
                 {['M', 'T', 'W', 'T', 'F', 'S', 'S'][i]}
               </text>
             </g>
-          );
+          )
         })}
       </svg>
 
@@ -144,5 +144,5 @@ export default function WeeklyChart() {
         The 14-unit figure is a reference point, not a target.
       </p>
     </section>
-  );
+  )
 }

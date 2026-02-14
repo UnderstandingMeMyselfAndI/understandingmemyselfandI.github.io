@@ -2,12 +2,10 @@
 @import '@/globals.css';
 
 body .activity-units-calculator-cta {
-
   margin: 0 auto;
 }
 
 section#ummi-units-calculator {
-
   position: fixed;
   top: 0%;
   left: 50%;
@@ -26,7 +24,6 @@ section#ummi-units-calculator {
   overflow: hidden;
   align-items: center;
 
-
   .backdrop {
     opacity: 0.4;
   }
@@ -43,7 +40,6 @@ section#ummi-units-calculator {
     opacity: 1;
   }
 
-
   .inner {
     position: relative;
     width: 100%;
@@ -56,7 +52,6 @@ section#ummi-units-calculator {
     align-items: center;
 
     .content {
-
       font-size: 0;
       flex: 1;
 
@@ -79,7 +74,10 @@ section#ummi-units-calculator {
           flex: 0;
           width: 100%;
           padding: 0.25rem 0;
-          // border: 1px solid yellow;
+
+          @media screen and (width>=768px) {
+            width: var(--max-width-lrg-screen);
+          }
 
           h3 {
             // margin: 1rem auto 0.5rem auto;
@@ -88,6 +86,10 @@ section#ummi-units-calculator {
             text-align: left;
             margin: 0rem;
             width: 100%;
+
+            @media screen and (width>=768px) {
+              text-align: center;
+            }
           }
 
           .intro {
@@ -105,7 +107,6 @@ section#ummi-units-calculator {
           margin: 0;
           width: 100%;
           height: calc(100% - 256px);
-
         }
       }
 
@@ -122,7 +123,6 @@ section#ummi-units-calculator {
           gap: 0.35rem;
           width: 100%;
         }
-
       }
 
       .measures-container {
@@ -149,8 +149,6 @@ section#ummi-units-calculator {
         justify-content: center;
         align-items: center;
 
-
-
         .measures-scroll-list-inner {
           position: relative;
           max-width: 90%;
@@ -169,11 +167,8 @@ section#ummi-units-calculator {
             justify-content: space-between;
             align-items: center;
             // row-gap: 1rem;
-
           }
-
         }
-
 
         .multiplier-input {
           text-align: center;
@@ -241,7 +236,6 @@ section#ummi-units-calculator {
           text-transform: uppercase;
           color: var(--greyLight);
           font-weight: 600;
-
         }
 
         div.no-measures {
@@ -297,7 +291,7 @@ section#ummi-units-calculator {
           position: relative;
 
           &:after {
-            content: "";
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
@@ -321,8 +315,6 @@ section#ummi-units-calculator {
           &::-webkit-scrollbar-track {
             background: var(--blue);
           }
-
-          li {}
 
           li.drinks-entry {
             display: flex;
@@ -448,6 +440,7 @@ section#ummi-units-calculator {
 
       input#custom-drink-volume {
         text-align: right;
+        width: 70px;
       }
 
       .multipler-cross {
@@ -502,7 +495,6 @@ section#ummi-units-calculator {
 
       button {
         min-height: 44px;
-
       }
 
       button.measure-action {
@@ -545,8 +537,6 @@ section#ummi-units-calculator {
           transition: all 0.35s ease-in-out;
         }
 
-
-
         &:hover {
           background-color: var(--blueDark);
           transition: all 0.35s ease-in-out;
@@ -573,8 +563,6 @@ section#ummi-units-calculator {
 
         &.selected {
           color: var(--blue);
-
-
 
           &::after {
             position: absolute;
@@ -676,7 +664,7 @@ section#ummi-units-calculator {
         align-content: center;
         line-height: 1;
         width: 100%;
-        margin: 1.0rem 0 0.25rem 0;
+        margin: 1rem 0 0.25rem 0;
 
         h3 {
           font-size: variables.$h4_size;
@@ -686,7 +674,6 @@ section#ummi-units-calculator {
           span {
             color: var(--lightBlue);
             font-size: variables.$h3_size;
-
           }
         }
 
@@ -734,7 +721,6 @@ section#ummi-units-calculator {
           }
         }
 
-
         section.calculator-core {
           display: flex;
           flex-flow: row-reverse nowrap;
@@ -742,7 +728,6 @@ section#ummi-units-calculator {
           align-items: stretch;
           justify-content: flex-start;
           width: 100%;
-
 
           .container-buttons {
             // flex: 1;
@@ -774,12 +759,8 @@ section#ummi-units-calculator {
                 text-align: right;
                 font-size: 1rem;
               }
-
-
             }
           }
-
-
 
           .selected-measures {
             flex: 1;
@@ -800,8 +781,6 @@ section#ummi-units-calculator {
             //   left: 0.25rem;
             // }
 
-
-
             .drinks-list {
               flex: 1;
               width: auto;
@@ -809,8 +788,6 @@ section#ummi-units-calculator {
               height: auto;
               max-height: 55vh;
               justify-content: center;
-
-
             }
           }
         }

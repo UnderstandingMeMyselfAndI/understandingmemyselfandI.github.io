@@ -1,27 +1,27 @@
-import { useEffect, useState } from 'react';
-import useAppStore from '@/store/useAppStore';
-import { activities } from '@/data/config';
-import RecoveryTimeline from './RecoveryTimeline';
-import { timelineData, timelineConfig } from '@/data/recoveryTimeline';
-import { transformTimelineData } from '@/data/recoveryTimelineTransformer';
-import './styles.scss';
+import { useEffect, useState } from 'react'
+import useAppStore from '@/store/useAppStore'
+import { activities } from '@/data/config'
+import RecoveryTimeline from './RecoveryTimeline'
+import { timelineData, timelineConfig } from '@/data/recoveryTimeline'
+import { transformTimelineData } from '@/data/recoveryTimelineTransformer'
+import './styles.scss'
 
 const RecoveryTimelineParent = () => {
-  const name = 'RecoveryTimelineParent';
-  const [open, setOpen] = useState(true);
-  const [data, setData] = useState(null);
-  const activity = useAppStore((s) => s.activity);
+  const name = 'RecoveryTimelineParent'
+  const [open, setOpen] = useState(true)
+  const [data, setData] = useState(null)
+  const activity = useAppStore((s) => s.activity)
   const activityID = activities.find((activity) =>
     activity.url === name ? activity.id : null,
-  );
+  )
 
   useEffect(() => {
-    setData(timelineData);
-  }, []);
+    setData(timelineData)
+  }, [])
 
   const handleClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   return (
     <div
@@ -36,8 +36,8 @@ const RecoveryTimelineParent = () => {
         />
       </section>
     </div>
-  );
-};
-RecoveryTimelineParent.propTypes = {};
+  )
+}
+RecoveryTimelineParent.propTypes = {}
 
-export default RecoveryTimelineParent;
+export default RecoveryTimelineParent

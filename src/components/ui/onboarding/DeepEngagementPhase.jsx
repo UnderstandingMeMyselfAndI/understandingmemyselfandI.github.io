@@ -1,7 +1,7 @@
-import React from 'react';
-import QuestionComponent from './QuestionComponent';
-import { useOnboardingStore } from '../stores/onboardingStore';
-import './DeepEngagementPhase.scss';
+import React from 'react'
+import QuestionComponent from './QuestionComponent'
+import { useOnboardingStore } from '../stores/onboardingStore'
+import './DeepEngagementPhase.scss'
 
 const questions = [
   {
@@ -13,7 +13,8 @@ const questions = [
       'A combination',
       'Rather not specify',
     ],
-    followUp: 'I appreciate you sharing – remember, every step counts, and there\'s no judgment here.',
+    followUp:
+      "I appreciate you sharing – remember, every step counts, and there's no judgment here.",
   },
   {
     question: "How's your energy feeling for making changes lately?",
@@ -25,18 +26,19 @@ const questions = [
       'Bouncing back from a rough patch',
       'All good/Not sure',
     ],
-    followUp: "You're incredible for where you're at – let's keep that momentum going!",
+    followUp:
+      "You're incredible for where you're at – let's keep that momentum going!",
   },
-];
+]
 
 const DeepEngagementPhase = () => {
-  const { currentQuestionIndex } = useOnboardingStore();
+  const { currentQuestionIndex } = useOnboardingStore()
 
   if (currentQuestionIndex >= questions.length) {
-    return null; // Phase complete
+    return null // Phase complete
   }
 
-  return <QuestionComponent {...questions[currentQuestionIndex]} />;
-};
+  return <QuestionComponent {...questions[currentQuestionIndex]} />
+}
 
-export default DeepEngagementPhase;
+export default DeepEngagementPhase

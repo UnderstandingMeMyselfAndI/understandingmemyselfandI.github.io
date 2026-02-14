@@ -33,13 +33,14 @@ const Template = () => {
 
   const handleClose = () => setOpen(false)
 
-  return (
+  return ( open ?
     <div
       id={name}
-      className={'activity ' + 'activity-' + name + (open ? ' show' : ' hide')}>
+      className={'activity ' + 'activity-' + name + (open ? ' show' : ' hide')}
+    >
       <CloseBtn onClick={handleClose} />
       <section className={name}></section>
-    </div>
+    </div> : null
   )
 }
 Template.propTypes = {}

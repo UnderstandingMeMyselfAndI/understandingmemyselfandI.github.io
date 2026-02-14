@@ -1,130 +1,139 @@
-import {useRef, useState, useEffect, useCallback, useMemo} from "react";
+import { useRef, useState, useEffect, useCallback, useMemo } from 'react'
 
 // Configuration constants - easily adjustable
 const SCROLL_EFFECT_CONFIG = {
-	minOpacity: 0.15, // Minimum opacity (15%)
-	minScale: 0.5, // Minimum scale (85%)
-	fadeBoundary: 0.35, // 15% from top/bottom
-	innerFadeBoundary: 0.15, // 15% from top/bottom
-	transitionSpeed: "0.25s ease-out", // speed when scrolling
-};
+  minOpacity: 0.15, // Minimum opacity (15%)
+  minScale: 0.5, // Minimum scale (85%)
+  fadeBoundary: 0.35, // 15% from top/bottom
+  innerFadeBoundary: 0.15, // 15% from top/bottom
+  transitionSpeed: '0.25s ease-out', // speed when scrolling
+}
 
 // Custom hook for scroll-based opacity and scale
-const useScrollEffects = (config = SCROLL_EFFECT_CONFIG, isExpanded = false) => {
-	const ref = useRef(null);
-	const [effects, setEffects] = useState({opacity: 1, scale: 1});
-	const [windowHeight, setWindowHeight] = useState(0);
-	const scrollEnabled = useRef(true);
-	const animationFrameId = useRef(null);
+const useScrollEffects = (
+  config = SCROLL_EFFECT_CONFIG,
+  isExpanded = false,
+) => {
+  const ref = useRef(null)
+  const [effects, setEffects] = useState({ opacity: 1, scale: 1 })
+  const [windowHeight, setWindowHeight] = useState(0)
+  const scrollEnabled = useRef(true)
+  const animationFrameId = useRef(null)
 
-	// Update window height on resize
-	useEffect(() => {
-		const handleResize = () => {
-			setWindowHeight(window.innerHeight);
-		};
+  // Update window height on resize
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowHeight(window.innerHeight)
+    }
 
-		handleResize();
-		window.addEventListener("resize", handleResize, {passive: true});
-		return () => window.removeEventListener("resize", handleResize);
-	}, []);
+    handleResize()
+    window.addEventListener('resize', handleResize, { passive: true })
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
-	const calculateEffects = useCallback(() => {
-		// If expanded or scroll disabled, use full opacity and scale
-		if (isExpanded || !scrollEnabled.current) {
-			setEffects({opacity: 1, scale: 1});
-			return;
-		}
+  const calculateEffects = useCallback(() => {
+    // If expanded or scroll disabled, use full opacity and scale
+    if (isExpanded || !scrollEnabled.current) {
+      setEffects({ opacity: 1, scale: 1 })
+      return
+    }
 
-		const element = ref.current;
-		if (!element || windowHeight === 0) return;
+    const element = ref.current
+    if (!element || windowHeight === 0) return
 
-		const rect = element.getBoundingClientRect();
-		const elementCenter = rect.top + rect.height / 2;
-		const viewportCenter = windowHeight / 2;
-		const distanceFromCenter = Math.abs(elementCenter - viewportCenter);
+    const rect = element.getBoundingClientRect()
+    const elementCenter = rect.top + rect.height / 2
+    const viewportCenter = windowHeight / 2
+    const distanceFromCenter = Math.abs(elementCenter - viewportCenter)
 
-		// Use different boundaries for opacity and scale if needed
-		const fadeEndDistance = windowHeight * config.fadeBoundary;
-		const innerFadeEndDistance = viewportCenter * config.innerFadeBoundary;
+    // Use different boundaries for opacity and scale if needed
+    const fadeEndDistance = windowHeight * config.fadeBoundary
+    const innerFadeEndDistance = viewportCenter * config.innerFadeBoundary
 
-		// Calculate progress with inner boundary (no effect until past inner boundary)
-		const effectiveDistance = Math.max(0, distanceFromCenter - innerFadeEndDistance);
-		const progress = Math.min(1, effectiveDistance / fadeEndDistance);
+    // Calculate progress with inner boundary (no effect until past inner boundary)
+    const effectiveDistance = Math.max(
+      0,
+      distanceFromCenter - innerFadeEndDistance,
+    )
+    const progress = Math.min(1, effectiveDistance / fadeEndDistance)
 
-		// Calculate both opacity and scale based on the same progress
-		let newOpacity = 1 - progress * (1 - config.minOpacity);
-		let newScale = 1 - progress * (1 - config.minScale);
+    // Calculate both opacity and scale based on the same progress
+    let newOpacity = 1 - progress * (1 - config.minOpacity)
+    let newScale = 1 - progress * (1 - config.minScale)
 
-		newOpacity = Math.max(config.minOpacity, Math.min(1, newOpacity));
-		newScale = Math.max(config.minScale, Math.min(1, newScale));
+    newOpacity = Math.max(config.minOpacity, Math.min(1, newOpacity))
+    newScale = Math.max(config.minScale, Math.min(1, newScale))
 
-		setEffects({opacity: newOpacity, scale: newScale});
-	}, [windowHeight, config, isExpanded]);
+    setEffects({ opacity: newOpacity, scale: newScale })
+  }, [windowHeight, config, isExpanded])
 
-	// Throttled scroll handler
-	const handleScroll = useCallback(() => {
-		if (animationFrameId.current) {
-			cancelAnimationFrame(animationFrameId.current);
-		}
+  // Throttled scroll handler
+  const handleScroll = useCallback(() => {
+    if (animationFrameId.current) {
+      cancelAnimationFrame(animationFrameId.current)
+    }
 
-		animationFrameId.current = requestAnimationFrame(() => {
-			if (scrollEnabled.current && !isExpanded) {
-				calculateEffects();
-			}
-			animationFrameId.current = null;
-		});
-	}, [calculateEffects, isExpanded]);
+    animationFrameId.current = requestAnimationFrame(() => {
+      if (scrollEnabled.current && !isExpanded) {
+        calculateEffects()
+      }
+      animationFrameId.current = null
+    })
+  }, [calculateEffects, isExpanded])
 
-	useEffect(() => {
-		const element = ref.current;
-		if (!element) return;
+  useEffect(() => {
+    const element = ref.current
+    if (!element) return
 
-		// Initial calculation
-		calculateEffects();
+    // Initial calculation
+    calculateEffects()
 
-		// Only add scroll listener if not expanded and scroll is enabled
-		if (!isExpanded && scrollEnabled.current) {
-			window.addEventListener("scroll", handleScroll, {passive: true});
-		} else {
-			// When expanded or scroll disabled, set to full visibility
-			setEffects({opacity: 1, scale: 1});
-		}
+    // Only add scroll listener if not expanded and scroll is enabled
+    if (!isExpanded && scrollEnabled.current) {
+      window.addEventListener('scroll', handleScroll, { passive: true })
+    } else {
+      // When expanded or scroll disabled, set to full visibility
+      setEffects({ opacity: 1, scale: 1 })
+    }
 
-		return () => {
-			window.removeEventListener("scroll", handleScroll);
-			if (animationFrameId.current) {
-				cancelAnimationFrame(animationFrameId.current);
-			}
-		};
-	}, [handleScroll, calculateEffects, isExpanded]);
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current)
+      }
+    }
+  }, [handleScroll, calculateEffects, isExpanded])
 
-	// Recalculate effects when expanded state changes
-	useEffect(() => {
-		calculateEffects();
-	}, [isExpanded, calculateEffects]);
+  // Recalculate effects when expanded state changes
+  useEffect(() => {
+    calculateEffects()
+  }, [isExpanded, calculateEffects])
 
-	// Function to disable scroll effects
-	const disableScrollEffects = useCallback(() => {
-		scrollEnabled.current = false;
-		setEffects({opacity: 1, scale: 1});
+  // Function to disable scroll effects
+  const disableScrollEffects = useCallback(() => {
+    scrollEnabled.current = false
+    setEffects({ opacity: 1, scale: 1 })
 
-		// Clean up any pending animation frames
-		if (animationFrameId.current) {
-			cancelAnimationFrame(animationFrameId.current);
-			animationFrameId.current = null;
-		}
-	}, []);
+    // Clean up any pending animation frames
+    if (animationFrameId.current) {
+      cancelAnimationFrame(animationFrameId.current)
+      animationFrameId.current = null
+    }
+  }, [])
 
-	// Function to enable scroll effects
-	const enableScrollEffects = useCallback(() => {
-		scrollEnabled.current = true;
+  // Function to enable scroll effects
+  const enableScrollEffects = useCallback(() => {
+    scrollEnabled.current = true
 
-		// Recalculate effects after a brief delay to ensure DOM is stable
-		setTimeout(() => {
-			calculateEffects();
-		}, 50);
-	}, [calculateEffects]);
+    // Recalculate effects after a brief delay to ensure DOM is stable
+    setTimeout(() => {
+      calculateEffects()
+    }, 50)
+  }, [calculateEffects])
 
-	return useMemo(() => [ref, effects, disableScrollEffects, enableScrollEffects], [effects, disableScrollEffects, enableScrollEffects]);
-};
-export {useScrollEffects, SCROLL_EFFECT_CONFIG};
+  return useMemo(
+    () => [ref, effects, disableScrollEffects, enableScrollEffects],
+    [effects, disableScrollEffects, enableScrollEffects],
+  )
+}
+export { useScrollEffects, SCROLL_EFFECT_CONFIG }

@@ -1,7 +1,7 @@
 // @import "@/globals.css";
 
 header {
-	opacity: 1;
+  opacity: 1;
 }
 
 .home-grp,
@@ -12,11 +12,9 @@ header {
 .w4,
 .w5,
 .arrow-cont {
-	opacity: 0;
-	transition: all 1s ease-in-out;
+  opacity: 0;
+  transition: all 1s ease-in-out;
 }
-
-
 
 // ::root {
 // 	--overstretch: cubic-bezier(1, -0.67, 0, 1.855);

@@ -9,15 +9,13 @@
 
 .tools-inner {
   position: relative;
-  max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0.75rem 1.5rem;
+  padding: 1.5rem 1.5rem 0 1.5rem;
   width: 100%;
-  max-width: var(--max-width);
+  // max-width: var(--max-width);
 }
 
 body .activity-recovery-tools-cta {
-
   margin: 0 auto;
 }
 
@@ -31,17 +29,13 @@ body section#the-tools.tools {
   left: 0;
   width: 100vw;
   height: 100vh;
-
   padding: 0;
   margin: 0 auto;
-
-
 
   .tools-wrapper {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    // padding-top: 120px; // For header
     overflow: hidden;
 
     // This ensures MenuCarousel takes available space
@@ -51,35 +45,27 @@ body section#the-tools.tools {
     }
 
     &:after {
-      content: "";
+      content: '';
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-
       z-index: -1;
     }
   }
 
   header {
-    // position: absolute;
-    // top: 0;
-    // left: 50%;
-    // transform: translate(-50%, 0);
     width: 100%;
-    // height: 120px;
-    // z-index: 100;
+    max-width: var(--max-width);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    // background: var(--blue20Trans);
     padding: 0;
     row-gap: 0.5rem;
     text-align: left;
-    margin-left: 0;
-
+    margin: 0 auto;
 
     h2 {
       margin: 0;
@@ -88,12 +74,19 @@ body section#the-tools.tools {
       width: 100%;
       font-size: variables.$h1_size;
 
+      @media screen and (width>=768px) {
+        text-align: center;
+      }
     }
 
     div.intro {
       margin: 0;
       text-align: left;
       width: 100%;
+
+      @media screen and (width>=768px) {
+        text-align: center;
+      }
     }
   }
 

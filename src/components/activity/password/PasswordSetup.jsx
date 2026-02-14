@@ -1,32 +1,32 @@
-import { useState } from 'react';
-import { setPasswordKey } from '../utils/idbEncryptedStorage';
+import { useState } from 'react'
+import { setPasswordKey } from '../utils/idbEncryptedStorage'
 
 export default function PasswordSetup({ onSuccess }) {
-  const [password, setPassword] = useState('');
-  const [confirm, setConfirm] = useState('');
-  const [error, setError] = useState('');
+  const [password, setPassword] = useState('')
+  const [confirm, setConfirm] = useState('')
+  const [error, setError] = useState('')
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (!password || password.length < 6) {
-      setError('Password must be at least 6 characters.');
-      return;
+      setError('Password must be at least 6 characters.')
+      return
     }
 
     if (password !== confirm) {
-      setError('Passwords do not match.');
-      return;
+      setError('Passwords do not match.')
+      return
     }
 
     try {
-      await setPasswordKey(password);
-      onSuccess(); // unlocks app
+      await setPasswordKey(password)
+      onSuccess() // unlocks app
     } catch (err) {
-      console.error(err);
-      setError('Failed to set password. Try again.');
+      console.error(err)
+      setError('Failed to set password. Try again.')
     }
-  };
+  }
 
   return (
     <div className='password-setup'>
@@ -59,5 +59,5 @@ export default function PasswordSetup({ onSuccess }) {
         <button type='submit'>Set Password</button>
       </form>
     </div>
-  );
+  )
 }

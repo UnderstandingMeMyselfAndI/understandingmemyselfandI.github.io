@@ -1,0 +1,31 @@
+@use '@/scss/variables';
+@import '@/globals.css';
+
+body div.main section.activity-recovery-timeline-cta div.cta {
+  div.inner {
+    u {
+      text-decoration-color: var(--yellow30Trans);
+
+      h3.title {
+        color: var(--lightBlue);
+        text-align: center;
+      }
+    }
+
+    .cta-content {
+      p {
+        text-align: center;
+      }
+    }
+
+    background-color: var(--blueDark40Trans);
+  }
+
+  .bg-img {
+    opacity: 0.75;
+
+    img {
+      opacity: 0.5;
+    }
+  }
+}

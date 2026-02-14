@@ -1,16 +1,16 @@
-import {useEffect} from "react";
+import { useEffect } from 'react'
 
-let listeners = [];
+let listeners = []
 
 export const triggerGlobalRecalc = () => {
-	listeners.forEach(fn => fn());
-};
+  listeners.forEach((fn) => fn())
+}
 
-export const useGlobalRecalcTrigger = callback => {
-	useEffect(() => {
-		listeners.push(callback);
-		return () => {
-			listeners = listeners.filter(l => l !== callback);
-		};
-	}, [callback]);
-};
+export const useGlobalRecalcTrigger = (callback) => {
+  useEffect(() => {
+    listeners.push(callback)
+    return () => {
+      listeners = listeners.filter((l) => l !== callback)
+    }
+  }, [callback])
+}

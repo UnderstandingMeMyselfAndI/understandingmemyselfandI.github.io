@@ -4,14 +4,28 @@ import { useShallow } from 'zustand/react/shallow'
 import QuizProgress from './quizProgress/QuizProgress'
 import QuizQuestion from './quizQuestion/QuizQuestion'
 import QuizStart from './quizStart/QuizStart'
-import questions from './questions-dev-2.js'
+import questions from '@/data/quiz.js'
 import CloseBtn from '@/components/ui/buttons/close/CloseBtn'
 import useQuizStore from './useQuizStore'
-import useAppStore from '@/store/appStore'
+import { strings } from '@/data/config'
+import useAppStore from '@/store/useAppStore'
 import { trackEvent } from '@/js/analytics/analytics'
+import { activities } from '@/data/config'
+
+const activitiesById = activities.reduce((acc, activity) => {
+  acc[activity.id] = activity
+  return acc
+}, {})
+const activityStringsByName = strings.activity.reduce((acc, activity) => {
+  acc[activity.name] = activity
+  return acc
+}, {})
+
 import './styles.scss'
 
 const Quiz = () => {
+  const name = 'quiz'
+  const id = 23
   const [open, setOpen] = useState(false)
   const [started, setStarted] = useState(false)
   const [currentLevel, setCurrentLevel] = useState(null)
@@ -19,22 +33,36 @@ const Quiz = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [score, setScore] = useState(0)
   const [totalAnswered, setTotalAnswered] = useState(0)
+  const [activeQuestions, setActiveQuestions] = useState([])
   const setActivity = useAppStore((state) => state.setActivity)
-
+  const setIsModal = useAppStore((s) => s.setIsModal)
+  const isModal = useAppStore((s) => s.isModal)
+  const strings = activityStringsByName[name]
   const { activity } = useAppStore(
     useShallow((state) => ({ activity: state.activity })),
   )
   const { incrementPlayCount, getPlayCount, saveScore } = useQuizStore()
 
-  const levelQuestions = currentLevel ? questions.levels[currentLevel] : []
-  const totalQuestions = levelQuestions.length
+  const totalQuestions = activeQuestions.length
+
+  // Helper to shuffle and pick 15
+  const getRandomSubset = (questionsArray, count = 15) => {
+    const shuffled = [...questionsArray].sort(() => 0.5 - Math.random())
+    return shuffled.slice(0, count)
+  }
 
   // Track when the quiz component is mounted (page view equivalent)
   useEffect(() => {
-    trackEvent('quiz_view', {}, optInAnalytics)
-  }, [optInAnalytics])
+    open && setIsModal(activitiesById[id]?.modal)
+  }, [open])
+
+  useEffect(() => {
+    setOpen(activity === id)
+  }, [activity, isModal, id, setOpen])
 
   const handleStart = (level, analyticsOptIn) => {
+    const subset = getRandomSubset(questions.levels[level], 15)
+    setActiveQuestions(subset)
     setCurrentLevel(level)
     setOptInAnalytics(analyticsOptIn)
     setStarted(true)
@@ -44,7 +72,7 @@ const Quiz = () => {
 
     trackEvent(
       'quiz_start',
-      { level, question_count: totalQuestions },
+      { level, question_count: subset.length },
       analyticsOptIn,
     )
   }
@@ -55,6 +83,16 @@ const Quiz = () => {
       setTotalAnswered((prev) => prev + 1)
       setCurrentIndex((prev) => prev + 1)
     }
+  }
+
+  const restQuiz = () => {
+    setStarted(false)
+    setCurrentLevel(null)
+    setOptInAnalytics(false)
+    setCurrentIndex(0)
+    setScore(0)
+    setTotalAnswered(0)
+    setActiveQuestions([])
   }
 
   const handleRestart = () => {
@@ -81,9 +119,7 @@ const Quiz = () => {
     incrementPlayCount()
 
     // Reset quiz
-    setStarted(false)
-    setCurrentLevel(null)
-    setOptInAnalytics(false)
+    restQuiz()
   }
 
   const getCompletionStatus = () => {
@@ -99,30 +135,32 @@ const Quiz = () => {
 
   const status = currentIndex >= totalQuestions ? getCompletionStatus() : null
   const isComplete = currentIndex >= totalQuestions
-  useEffect(() => {
-    setOpen(activity === 2)
-  }, [activity])
+
   const handleClose = () => {
+    restQuiz()    
+    setOpen(false)
     setActivity(-1)
   }
 
-  return (
-    <div
-      id='quiz'
-      className={'activity activity-quiz fixed' + (open ? ' show' : '')}>
-      <CloseBtn className='close-btn' handleClick={handleClose} />
+  return ( open ?
+    <section
+      id={name}
+      className={'activity activity-quiz fixed' + (open ? ' show' : ' hide')}
+    >
+      
+     
       <div className='inner'>
+        <CloseBtn className='close-btn' onClick={handleClose} />
+         {started && (
+        <button className='cancel-btn' onClick={restQuiz}>
+          Quit
+        </button>
+      )}
         {!started ? (
           <QuizStart onStart={handleStart} levels={questions.levels} />
         ) : isComplete ? (
           <div className='quiz-complete'>
-            <QuizProgress
-              current={currentIndex}
-              complete={true}
-              total={totalQuestions}
-              score={score}
-              totalAnswered={totalAnswered}
-            />
+           
 
             {status && (
               <div className='completion-status'>
@@ -133,16 +171,23 @@ const Quiz = () => {
             <div className='final-score'>
               <h3>Final Results</h3>
               <div className='score-details'>
-                <p>
-                  Score: {score} / {totalQuestions}
-                </p>
-                <p>
-                  Accuracy:{' '}
-                  {totalQuestions > 0
-                    ? Math.round((score / totalQuestions) * 100)
-                    : 0}
-                  %
-                </p>
+                <div className='score-metric'>
+                  <div className='score-metric-label'>Score: </div>
+                  <div className='score-metric-value'>
+                    <span>{score}</span> / <span>{totalQuestions}</span>
+                  </div>
+                </div>
+                <div className='score-metric'>
+                  <div className='score-metric-label'>Accuracy: </div>
+                  <div className='score-metric-value'>
+                    <span>
+                      {totalQuestions > 0
+                        ? Math.round((score / totalQuestions) * 100)
+                        : 0}
+                      %
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
             <button className='restart-button' onClick={handleRestart}>
@@ -150,8 +195,9 @@ const Quiz = () => {
             </button>
           </div>
         ) : (
+          
           <QuizQuestion
-            data={levelQuestions[currentIndex]}
+            data={activeQuestions[currentIndex]}
             onNext={handleNext}
             currentIndex={currentIndex}
             totalQuestions={totalQuestions}
@@ -160,7 +206,7 @@ const Quiz = () => {
           />
         )}
       </div>
-    </div>
+    </section> : null
   )
 }
 

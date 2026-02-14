@@ -35,7 +35,8 @@ const ExpandableContent = ({
     <div className='expandable-content-container'>
       <div
         ref={contentRef}
-        className={`expandable-content ${isExpanded ? 'expanded' : ''}`}>
+        className={`expandable-content ${isExpanded ? 'expanded' : ''}`}
+      >
         {children}
       </div>
 
@@ -52,7 +53,8 @@ const ExpandableContent = ({
         <button
           className='expand-toggle-button'
           onClick={() => setIsExpanded(!isExpanded)}
-          aria-expanded={isExpanded}>
+          aria-expanded={isExpanded}
+        >
           {isExpanded ? buttonText.less : buttonText.more}
         </button>
       )}

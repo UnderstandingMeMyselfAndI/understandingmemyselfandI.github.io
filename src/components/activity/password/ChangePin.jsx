@@ -1,34 +1,34 @@
-import { useState } from 'react';
-import { setPin, verifyPin } from '../utils/secureStorage';
-import PropTypes from 'prop-types';
+import { useState } from 'react'
+import { setPin, verifyPin } from '../utils/secureStorage'
+import PropTypes from 'prop-types'
 const ChangePin = ({ onSuccess }) => {
-  const [currentPin, setCurrentPin] = useState('');
-  const [newPin, setNewPin] = useState('');
-  const [confirmPin, setConfirmPin] = useState('');
-  const [error, setError] = useState('');
+  const [currentPin, setCurrentPin] = useState('')
+  const [newPin, setNewPin] = useState('')
+  const [confirmPin, setConfirmPin] = useState('')
+  const [error, setError] = useState('')
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (currentPin && !(await verifyPin(currentPin))) {
-      setError('Current PIN incorrect');
-      return;
+      setError('Current PIN incorrect')
+      return
     }
 
     if (!/^\d{4,6}$/.test(newPin)) {
-      setError('New PIN must be 4-6 digits');
-      return;
+      setError('New PIN must be 4-6 digits')
+      return
     }
 
     if (newPin !== confirmPin) {
-      setError('New PIN and confirmation do not match');
-      return;
+      setError('New PIN and confirmation do not match')
+      return
     }
 
-    await setPin(newPin);
-    setError('');
-    if (onSuccess) onSuccess();
-  };
+    await setPin(newPin)
+    setError('')
+    if (onSuccess) onSuccess()
+  }
 
   return (
     <div className='change-pin'>
@@ -65,7 +65,7 @@ const ChangePin = ({ onSuccess }) => {
         <button type='submit'>Save PIN</button>
       </form>
     </div>
-  );
-};
-ChangePin.propTypes = { onSuccess: PropTypes.func };
-export default ChangePin;
+  )
+}
+ChangePin.propTypes = { onSuccess: PropTypes.func }
+export default ChangePin

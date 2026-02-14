@@ -31,14 +31,16 @@ const DaysCounterCTA = () => {
   return (
     <section
       className={
-        `activity activity-${activityUrl}-cta` + (open ? ' show' : '')
-      }>
+        `activity cta activity-${activityUrl}-cta ` + (open ? ' show' : '')
+      }
+    >
       <CTA
         name={activityName}
         open={open}
         content={content.cta.content ? content.cta.content : null}
         title={content?.cta?.title}
-        label={content?.cta.btn?.label}>
+        label={content?.cta.btn?.label}
+      >
         <DaysCounterBtn label={content?.cta.btn?.label.unused} />
         <div className='bg-img'>
           <img className='bg' src={bgImg.src} alt={bgImg.alt} />

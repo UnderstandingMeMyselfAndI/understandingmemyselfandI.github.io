@@ -1,32 +1,32 @@
-@use "@/scss/variables";
-@import "@/globals.css";
+@use '@/scss/variables';
+@import '@/globals.css';
 
 .MuiSnackbar-root,
 .MuiSnackbar-anchorOriginTopCenter,
 .MuiSnackbar-anchorOriginTopLeft {
-	width: fit-content;
-	padding: 0;
+  width: fit-content;
+  padding: 0;
 }
 
 .MuiSnackbar-anchorOriginTopCenter,
 .MuiSnackbar-anchorOriginBottomLeft {
-	>div {
-		background: var(--mainBackground) !important;
+  > div {
+    background: var(--mainBackground) !important;
 
-		.MuiSnackbarContent-message {
-			color: var(--primary);
-			font-weight: variables.$p_weight;
-			font-size: variables.$p_size;
-			padding: 0.74rem 1rem;
-		}
-	}
+    .MuiSnackbarContent-message {
+      color: var(--primary);
+      font-weight: variables.$p_weight;
+      font-size: variables.$p_size;
+      padding: 0.74rem 1rem;
+    }
+  }
 }
 
 .snackBar.alert,
 .snackbars {
-	z-index: 15500;
+  z-index: 15500;
 
-	button {
-		box-shadow: none;
-	}
+  button {
+    box-shadow: none;
+  }
 }

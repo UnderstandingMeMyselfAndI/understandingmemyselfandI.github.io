@@ -18,8 +18,8 @@ const WallpapersCTA = () => {
   const [open, setOpen] = useState(false)
 
   const bgImg = {
-    src: '/ui/bg-wallpapers-1.avif',
-    alt: 'Picture of a martial arts master bowing before pupil',
+    src: '/ui/bg-wallpapers-5.avif',
+    alt: 'Picture of a motivation message on wall - never give up',
   }
 
   useEffect(() => {
@@ -39,16 +39,19 @@ const WallpapersCTA = () => {
   return (
     <section
       className={
-        `activity activity-${activityUrl}-cta` + (open ? ' show' : '')
-      }>
+        `activity activity-${activityUrl}-cta cta` + (open ? ' show' : '')
+      }
+    >
       <CTA
         name={activityName}
         title={content.title}
         open={open}
-        content={content.cta.content}>
+        content={content.cta.content}
+      >
         <button
           className={`${activityName}-cta-btn btn`}
-          onClick={() => handleClick()}>
+          onClick={() => handleClick()}
+        >
           {content?.cta?.btn?.label?.unused}
         </button>
         <div className='bg-img'>

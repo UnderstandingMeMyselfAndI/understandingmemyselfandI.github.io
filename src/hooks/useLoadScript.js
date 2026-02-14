@@ -1,12 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect } from 'react'
 
 function useLoadScript(src, options = {}) {
-  const { onLoad, onError, ...scriptAttributes } = options;
+  const { onLoad, onError, ...scriptAttributes } = options
 
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = src;
-    script.async = true;
+    const script = document.createElement('script')
+    script.src = src
+    script.async = true
 
     // Set additional attributes
     // Object.keys(scriptAttributes).forEach((key) => {
@@ -14,15 +14,15 @@ function useLoadScript(src, options = {}) {
     // })
 
     // Event handlers
-    if (onLoad) script.onload = onLoad;
-    if (onError) script.onerror = onError;
+    if (onLoad) script.onload = onLoad
+    if (onError) script.onerror = onError
 
-    document.body.appendChild(script);
+    document.body.appendChild(script)
 
     return () => {
-      document.body.removeChild(script);
-    };
-  }, [src, onLoad, onError, scriptAttributes]);
+      document.body.removeChild(script)
+    }
+  }, [src, onLoad, onError, scriptAttributes])
 }
 
-export default useLoadScript;
+export default useLoadScript

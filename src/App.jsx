@@ -35,9 +35,19 @@ import Lingo from './components/activity/lingo/Lingo'
 import UnitsCalculator from './components/activity/unitsCalculator/UnitsCalculator'
 import UnitsCalculatorCTA from './components/activity/unitsCalculator/UnitsCalculatorCTA'
 import WallpaperGallery from './components/activity/wallpapers/WallpaperGallery'
+import WheelOfLife from './components/activity/wheeloflife/WheelOfLife'
+import WheelOfLifeCTA from './components/activity/wheeloflife/WheelOfLifeCTA'
+import VerticalTimeline from './components/activity/timeline/VerticalTimeline'
+import TimelineCTA from './components/activity/timeline/TimelineCTA'
+import Quiz from './components/activity/quiz/Quiz'
 import { runPersistentStorageTests } from './js/utils.js'
 import './App.scss'
+import AccessibilitySettings from './components/ui/AccessibilitySettings/AccessibilitySettings'
+//TODO #41 Add Pop up confirm box with disclaimer. with timely reminder.
+//TODO #42 Add setting to remove reminder in settings
 // TODO: #21 "Clear Local Data" functionality
+//TODO #43 Styling of cookie consent
+
 function App() {
   const daysCounterEnabled = useAppStore((s) => s.daysCounterEnabled)
   // const enableYourTools = useAppStore((s) => s.enableYourTools)
@@ -57,10 +67,8 @@ function App() {
     })
   }
 
-
-
   if (!hasHydrated) {
-      return <AppLoading />
+    return <AppLoading />
   }
 
   if (!ageVerified) {
@@ -70,7 +78,6 @@ function App() {
   return (
     <div>
       <div className='main'>
-
         {/* <div className='dev-version'>Development Version.</div> */}
         <AppMenu />
 
@@ -80,28 +87,34 @@ function App() {
           <div className='vertical'></div>
           <div className='horizontal'></div>
         </div> */}
-        {/* <div className='dev-version'>Development Version.</div> */}
 
-        {/* <RecoveryTimelineParent /> */}
         <Header />
         <Introduction />
         <WallpaperGallery />
+        <VerticalTimeline />
+        <WheelOfLife />
         <Tools />
         <PrivacyPolicy />
+        <Quiz />
 
         <ToolsCTA />
         {daysCounterEnabled && <DaysCounterCTA />}
         {unitsCalculatorEnabled && <UnitsCalculatorCTA />}
+        <TimelineCTA />
+        <WheelOfLifeCTA />
         <Lingo />
+
         <WallpapersCTA />
         <YourPrivacyCTA />
 
         <NewsletterSignUp />
         <InstallCTA />
+
+        {/* <AccessibilitySettings /> */}
         <Footer />
 
         {/* <Motivation /> */}
-        {/* {quickExitEnabled && <Exit />} */}
+        {quickExitEnabled && <Exit />}
         {unitsCalculatorEnabled && <UnitsCalculator />}
         {daysCounterEnabled && <DaysCounter />}
         <AcronymExplained />

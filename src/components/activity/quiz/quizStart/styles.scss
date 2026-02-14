@@ -1,13 +1,12 @@
-@use "./scss/_variables.scss";
-@import "@/globals.css";
+@use './scss/_variables.scss';
+@import '@/globals.css';
 /* quizStart/styles.scss */
 
 .quiz-start {
   text-align: center;
-  padding: 60px 20px;
+  padding: 1rem 1rem;
   background-color: transparent;
   border-radius: 12px;
-  box-shadow: var(--boxShadowDarkValue);
   margin: 40px auto;
   width: 100%;
   display: flex;
@@ -30,7 +29,6 @@
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-
 }
 
 .level-label {
@@ -65,7 +63,7 @@
   position: relative;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -92,7 +90,6 @@
 }
 
 .radio-option:has(input:checked) {
-
   font-weight: 600;
   color: var(--orange);
   transition: all 0.2s ease;
@@ -165,7 +162,6 @@
   transition: all 0.2s ease;
   margin-top: 6px;
   opacity: 1;
-
 }
 
 .radio-text {
@@ -195,7 +191,7 @@
   width: 100%;
   font-size: 0.75rem;
   margin: 2rem 0;
-  color: var(--grey)
+  color: var(--grey);
 }
 
 .opt-in input {
@@ -213,7 +209,7 @@
 .start-button {
   padding: 14px 32px;
   color: var(--primary);
-  text-shadow: var(--textShadowDarkValue);
+  text-shadow: var(--textShadow);
   font-size: 1.5rem;
   font-weight: 600;
   border: none;
@@ -222,6 +218,7 @@
   transition: background-color 0.2s ease;
   background-color: rgba(10, 10, 10, 0.25);
   position: relative;
+  box-shadow: var(--boxShadow);
 
   &::after {
     position: absolute;

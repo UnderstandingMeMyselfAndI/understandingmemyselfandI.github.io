@@ -39,14 +39,14 @@ const ToolsCTA = () => {
 
   return (
     <section
-      className={
-        `activity activity-${activityUrl}-cta` + (open ? ' show' : '')
-      }>
+      className={`activity activity-${activityUrl}-cta` + (open ? ' show' : '')}
+    >
       <CTA
         name={name}
         open={open}
         title={content?.cta?.title}
-        content={content?.cta?.content}>
+        content={content?.cta?.content}
+      >
         <ToolsBtn
           label={content?.cta.btn?.label.unused}
           clickHandler={handleClick}

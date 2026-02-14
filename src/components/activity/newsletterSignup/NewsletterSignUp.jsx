@@ -173,12 +173,14 @@ const NewsletterSignUp = () => {
       id='newsletter'
       className={
         'activity activity-newsletter-signup-form' + (open ? ' show' : '')
-      }>
+      }
+    >
       <div className='sib-form'>
         <div id='sib-form-container' className='sib-form-container'>
           <div
             id='sib-container'
-            className='sib-container--large sib-container--vertical'>
+            className='sib-container--large sib-container--vertical'
+          >
             {status.success ? (
               <div className='signup-success'>
                 <div className='wrap'>
@@ -205,7 +207,8 @@ const NewsletterSignUp = () => {
                 id='sib-form'
                 method='POST'
                 data-type='subscription'
-                noValidate={true}>
+                noValidate={true}
+              >
                 <div className='form-row'>
                   <div className='title'>
                     Bigger things are coming.
@@ -242,7 +245,8 @@ const NewsletterSignUp = () => {
                     <span
                       id='email-error'
                       className='entry__error entry__error--primary'
-                      role='alert'>
+                      role='alert'
+                    >
                       {errors.email}
                     </span>
                   )}
@@ -274,7 +278,8 @@ const NewsletterSignUp = () => {
                       <span
                         id='checkbox-error'
                         className='entry__error entry__error--primary'
-                        role='alert'>
+                        role='alert'
+                      >
                         {errors.checkbox}
                       </span>
                     )}
@@ -289,7 +294,8 @@ const NewsletterSignUp = () => {
                       <a
                         href='https://www.brevo.com/en/legal/privacypolicy/'
                         target='_blank'
-                        rel='noreferrer'>
+                        rel='noreferrer'
+                      >
                         Brevo&apos;s Privacy Policy.
                       </a>
                     </p>
@@ -301,7 +307,8 @@ const NewsletterSignUp = () => {
                     type='submit'
                     className='signup-button btn'
                     aria-label='Sign Up'
-                    disabled={status.loading}>
+                    disabled={status.loading}
+                  >
                     {status.loading ? (
                       <>
                         <span className='loading-spinner'></span>

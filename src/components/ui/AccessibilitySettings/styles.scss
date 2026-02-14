@@ -1,0 +1,69 @@
+import React from 'react';
+import useAppStore, { applyAccessibilitySettings } from './useAppStore';
+
+const AccessibilitySettings = () => {
+  const { theme, setTheme, textScale, setTextScale } = useAppStore();
+
+  const handleThemeChange = (newTheme) => {
+    setTheme(newTheme);
+    applyAccessibilitySettings(newTheme, textScale);
+  };
+
+  const handleScaleChange = (e) => {
+    const newScale = parseInt(e.target.value);
+    setTextScale(newScale);
+    applyAccessibilitySettings(theme, newScale);
+  };
+
+  return (
+    <div style={{ padding: '1rem', border: 'var(--card-outline)', borderRadius: 'var(--border-radius-lrg)' }}>
+      <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Display Settings</h2>
+
+      {/* Theme Selection */}
+      <section style={{ marginBottom: '1.5rem' }}>
+        <p>Appearance</p>
+        <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+          {['light', 'dark', 'system', 'high-contrast'].map((t) => (
+            <button
+              key={t}
+              onClick={() => handleThemeChange(t)}
+              style={{
+                padding: '8px 16px',
+                background: theme === t ? 'var(--blue)' : 'var(--backgroundGrayTrans10)',
+                color: theme === t ? 'white' : 'var(--foreground)',
+                border: 'none',
+                borderRadius: 'var(--border-radius)',
+                cursor: 'pointer'
+              }}
+            >
+              {t.replace('-', ' ').toUpperCase()}
+            </button>
+          ))}
+        </div>
+      </section>
+
+      {/* Text Size Slider */}
+      <section>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <label htmlFor="text-scale">Text Size: {textScale}%</label>
+          <button onClick={() => handleScaleChange({ target: { value: 100 } })}>Reset</button>
+        </div>
+        <input
+          id="text-scale"
+          type="range"
+          min="100"
+          max="200"
+          step="10"
+          value={textScale}
+          onChange={handleScaleChange}
+          style={{ width: '100%', marginTop: '0.5rem' }}
+        />
+        <p style={{ fontSize: '0.8rem', marginTop: '0.5rem', opacity: 0.7 }}>
+          Increasing this will scale all text and layouts for better readability.
+        </p>
+      </section>
+    </div>
+  );
+};
+
+export default AccessibilitySettings;

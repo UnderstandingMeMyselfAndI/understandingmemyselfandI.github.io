@@ -1,6 +1,7 @@
-import HandymanIcon from '@mui/icons-material/Handyman';
-import {isTouchDevice} from '@/js/utils.js';
+import HandymanIcon from '@mui/icons-material/Handyman'
+import { isTouchDevice } from '@/js/utils.js'
 import useAppStore from '@/store/useAppStore'
+
 // import { title } from "process";
 const cnf = {
   appName: 'Ummi',
@@ -30,7 +31,7 @@ const cnf = {
     activityContainer: '.activities',
     activityNode: '.activity',
   },
-};
+}
 
 // ---------------------------------------------------------------
 // Icon ids are fixed and should not be mutated as they are used as reference
@@ -42,7 +43,7 @@ const baseActivities = [
     title: 'Home',
     menu: false,
     modal: false,
-    conditions:[],
+    conditions: [],
   },
   {
     id: 0,
@@ -50,18 +51,18 @@ const baseActivities = [
     title: 'Introduction',
     menu: false,
     modal: false,
-    conditions:[],
+    conditions: [],
   },
   {
     id: 1,
     url: 'tools',
     title: 'Tools',
-    menuPosition:1,
+    menuPosition: 1,
     menu: true,
     modal: true,
     classes: '',
-    anchorID:'',
-    conditions:[],
+    anchorID: '',
+    conditions: [],
   },
   {
     id: 2,
@@ -71,10 +72,8 @@ const baseActivities = [
     menu: true,
     modal: true,
     classes: 'new',
-    anchorID:'',
-    conditions:[
-      { state: 'daysCounterEnabled', value: true}
-    ],
+    anchorID: '',
+    conditions: [{ state: 'daysCounterEnabled', value: true }],
   },
   {
     id: 3,
@@ -84,8 +83,8 @@ const baseActivities = [
     menu: false,
     modal: false,
     classes: '',
-    anchorID:'',
-    conditions:[],
+    anchorID: '',
+    conditions: [],
   },
   {
     id: 4,
@@ -95,8 +94,8 @@ const baseActivities = [
     menu: false,
     modal: false,
     classes: '',
-    anchorID:'',
-    conditions:[],
+    anchorID: '',
+    conditions: [],
   },
   {
     id: 5,
@@ -105,11 +104,9 @@ const baseActivities = [
     menuPosition: 3,
     menu: true,
     modal: true,
-    classes: '',
-    anchorID:'',
-    conditions:[
-      { state: 'unitsCalculatorEnabled', value: true }
-    ],
+    classes: 'new',
+    anchorID: '',
+    conditions: [{ state: 'unitsCalculatorEnabled', value: true }],
   },
   {
     id: 6,
@@ -118,9 +115,9 @@ const baseActivities = [
     menuPosition: 4,
     menu: true,
     modal: true,
-    classes: 'new',
-    anchorID:'',
-    conditions:[],
+    classes: '',
+    anchorID: '',
+    conditions: [],
   },
   {
     id: 7,
@@ -130,8 +127,8 @@ const baseActivities = [
     menu: false,
     modal: false,
     classes: '',
-    anchorID:'',
-    conditions:[],
+    anchorID: '',
+    conditions: [],
   },
   {
     id: 8,
@@ -141,8 +138,8 @@ const baseActivities = [
     menu: false,
     modal: false,
     classes: '',
-    anchorID:'',
-    conditions:[],
+    anchorID: '',
+    conditions: [],
   },
   {
     id: 9,
@@ -152,19 +149,19 @@ const baseActivities = [
     menu: false,
     modal: false,
     classes: '',
-    anchorID:'',
-    conditions:[],
+    anchorID: '',
+    conditions: [],
   },
   {
     id: 10,
     url: 'privacy-policy',
     title: 'Privacy Policy',
     menuPosition: 16,
-    menu: true,
+    menu: false,
     modal: true,
     classes: '',
-    anchorID:'',
-    conditions:[],
+    anchorID: '',
+    conditions: [],
   },
   {
     id: 11,
@@ -174,8 +171,8 @@ const baseActivities = [
     menu: false,
     modal: true,
     classes: '',
-    anchorID:'',
-    conditions:[],
+    anchorID: '',
+    conditions: [],
   },
   {
     id: 12,
@@ -185,8 +182,8 @@ const baseActivities = [
     menu: true,
     modal: true,
     classes: '',
-    anchorID:'',
-    conditions:[],
+    anchorID: '',
+    conditions: [],
   },
   {
     id: 13,
@@ -196,8 +193,8 @@ const baseActivities = [
     menu: true,
     modal: false,
     classes: 'new',
-    anchorID:'lingo',
-    conditions:[],
+    anchorID: 'lingo',
+    conditions: [],
   },
   {
     id: 14,
@@ -207,21 +204,19 @@ const baseActivities = [
     menu: true,
     modal: false,
     classes: '',
-    anchorID:'share',
-    conditions:[],
+    anchorID: 'share',
+    conditions: [],
   },
   {
     id: 15,
     url: 'newsletter',
     title: 'Newsletter',
     menuPosition: 8,
-    menu: true,
+    menu: false,
     modal: false,
     classes: '',
-    anchorID:'newsletter',
-    conditions:[ 
-      
-    ],
+    anchorID: 'newsletter',
+    conditions: [],
   },
   {
     id: 16,
@@ -231,10 +226,10 @@ const baseActivities = [
     menu: true,
     modal: false,
     classes: '',
-    anchorID:'install',
-    conditions:[ 
-      { state: 'isInstalled', value: false }, 
-      { state: 'isInstallable', value: true }
+    anchorID: 'install',
+    conditions: [
+      { state: 'isInstalled', value: false },
+      { state: 'isInstallable', value: true },
     ],
   },
 
@@ -246,8 +241,8 @@ const baseActivities = [
     menu: false,
     modal: true,
     classes: '',
-    anchorID:'',
-    conditions:[],
+    anchorID: '',
+    conditions: [],
   },
 
   {
@@ -258,8 +253,8 @@ const baseActivities = [
     menu: false,
     modal: false,
     classes: '',
-    anchorID:'footer',
-    conditions:[],
+    anchorID: 'footer',
+    conditions: [],
   },
 
   {
@@ -270,35 +265,67 @@ const baseActivities = [
     menu: false,
     modal: false,
     classes: '',
-    anchorID:'header',
-    conditions:[],
+    anchorID: 'header',
+    conditions: [],
   },
 
-   {
+  {
     id: 20,
     url: 'your-privacy-cta',
-    title: 'Yoyr Privacy',
+    title: 'Your Privacy',
     menuPosition: 20,
     menu: false,
     modal: false,
     classes: '',
-    anchorID:'your-privacy-cta',
-    conditions:[],
+    anchorID: 'your-privacy-cta',
+    conditions: [],
   },
-];
+  {
+    id: 21,
+    url: 'recovery-timeline',
+    title: 'Recovery Timeline',
+    menuPosition: 3,
+    menu: true,
+    modal: true,
+    classes: 'new',
+    anchorID: '',
+    conditions: [],
+  },
+  {
+    id: 22,
+    url: 'wheel-of-life',
+    title: 'Wheel of Life',
+    menuPosition: 3,
+    menu: true,
+    modal: true,
+    classes: 'new',
+    anchorID: '',
+    conditions: [],
+  },
+  {
+    id: 23,
+    url: 'quiz',
+    title: 'The BIG or small Recovery Quiz!',
+    menuPosition: 3,
+    menu: true,
+    modal: true,
+    classes: 'new',
+    anchorID: '',
+    conditions: [],
+  },
+]
 const activities = baseActivities.map((item) => ({
   ...item,
   icon: null, // add the sequential icon
-}));
+}))
 
 const strings = {
-  app:{
-   
+  app: {
     appName: 'Ummi',
     title: 'Understanding Me, Myself, and I',
     installDescription: 'Install the Ummi App',
     appDescription:
-      'Understanding Me Myself & I (Ummi) is a companion app and website providing support for mental health, wellbeing, and addiction recovery. It provides quick access to tools and skills learnt in SMART, Cognitive Behavioural Therapy (CBT), Acceptance Commitment Therapy (ACT), Dialectical Behaviour Therapy (DBT) and other therapies.',
+      'Understanding Me Myself & I (Ummi) is a companion app and website providing support for addiction recovery, mental health, and wellbeing. It provides quick access to tools and skills learnt in SMART, Cognitive Behavioural Therapy (CBT), Acceptance Commitment Therapy (ACT), Dialectical Behaviour Therapy (DBT) and other therapies.',
     logoURI: '/UmmiIcon2.svg',
   },
   activity: [
@@ -313,39 +340,49 @@ const strings = {
           title: '',
           classes: 'ummi-blue',
           content: [
-           '<b><span class="ummi">U</span></b>nderstanding <b><span class="ummi">M</span></b>e, <b><span class="ummi">M</span></b>yself, and <b><span class="ummi">I</span></b> <b><u class="yellow-ul ummi">(U.M.M.I)</u></b>, is your <b><u class="yellow">FREE</u> companion app.</b>',
+            '<div class="circle-bg"></div><b><span class="yellow">U</span></b>nderstanding <b><span class="yellow">M</span></b>e, <b><span class="yellow">M</span></b>yself, and <b><span class="yellow">I</span></b> <b><u class="yellow-ul ummi">(U.M.M.I)</u></b>, is your <b><u class="yellow">FREE</u> companion app</b>',
           ],
         },
-      {
+        {
           title: '',
           content: [
-            'If you\'re <b>looking</b> for <u class="yellow-ul lrg yellow">information</u> about <b><u class="orange-ul">Alcohol Recovery </u></b> <br /><br /><br /><b><u class="yellow-ul lrg yellow">this app is for you.</u></b>',
-            'If you\'re <b>learning</b> <b><u class="orange-ul">recovery tools</u></b> <br />at groups using <br /><u class="blue-ul"><b>ACT, CBT, DBT, REBT,</b> or <b>SMART</b> therapies?</u><br /><br /><br /><b><u class="yellow-ul lrg yellow">this app is for you.</u>.</b>',
-            '<u class="white-ul"><b><span class="ummi">Ummi</span></b></u> was created because <u class="yellow-ul lrg"><b>the tools are great</b></u>.',
+            'If you\'re <b>looking</b> for <u class="yellow-ul lrg yellow">information</u> about <b><u class="orange-ul">Alcohol Recovery </u></b>',
+            '<b class="taify">this app is for <span>you</span</b>',
+            'If you\'re <b>learning</b> <b><u class="orange-ul">recovery tools</u></b> <br />at groups using <br /><u class="blue-ul"><b>ACT, CBT, DBT, REBT,</b> or <b>SMART</b> therapies?</u>',
+            '<b class="taify">this app is for <span>you </span></b>',
+            'Looking to see <b><u class="blue-ul yellow">which tools can help</u></b> <b><u class="blue-ul">in recovery?</u>?</b>',
+            '<b class="taify">this app is for  <span>you </span></b>',
+            'Want to <b><u class="blue-ul yellow">track</u></b> <b><u class="blue-ul">your <span class="orange">recovery progress</span></u>?</b>',
+            '<b class="taify">this app is for  <span>you </span></b>',
+            'Want to <u class="blue-ul yellow"><b>plan your recovery</b></u> or just<b><u class="orange-ul"> find out more </u></b>',
+            '<b class="taify">this app is for  <span>you </span></b>',
+            'Wondering what some <u class="blue-ul yellow"><b>Lingo or Phrases</b></u> used in a group means?',
+            '<b class="taify">this app is for  <span>you </span></b>',
+            '<div class="circle-bg"></div><u class="white-ul"><b><span class="ummi">Ummi</span></b></u> was created because <u class="yellow-ul lrg"><b>the tools</b></u> and <u class="yellow-ul lrg"><b class="yellow">the way they are taught</b></u> in groups <u class="blue-ul "><b>is great</b></u>',
             'But <b class="yellow">remembering</b> them <u><b>can be hard</b></u>',
-            '<u class="white-ul"><b><span class="ummi">Ummi</span></b></u> helps you <b><u class="blue-ul">find  tools</u></b> that work <b><u class="yellow">for you,</u></b> and <b><u>your journey</u></b>.',
-            '<u class="light-blue">Completely</u> <b><u class="yellow-ul lrg">for free</b></u>'
+            '<div class="circle-bg"></div><u class="white-ul"><b><span class="ummi">Ummi</span></b></u> helps you <b><u class="blue-ul">find tools</u></b> that <b><u class="yellow">work for you,</u></b> and <b><u class="yellow">your journey</u></b>.<br />Making them <u class="blue-ul "><b>easily accessible</b></u> <u class="yellow-ul"><b>on your device</b></u>',
+            '<u class="light-blue">Completely</u> <br /><b><u class="yellow-ul lrg">for free</b></u>',
           ],
         },
         {
           title: 'FEATURES:',
           icon: HandymanIcon,
           content: [
-            'Explanations of <b><u class="yellow-ul">Addiction Recovery</u> <u>tools </u></b>.',
-            '<u class="yellow-ul"><b>Scenarios</b></u> describing <u>when tools <b>could be useful</b></u>.',
+            '<b class="yellow">Explanations</b> of <b><u class="yellow-ul">Addiction Recovery</u> <u>tools </u></b>',
+            '<u class="yellow-ul yellow"><b>Scenarios</b></u> describing <u>when tools <b>could be useful</b></u>',
             // 'Find tools <u>that work for you</u>.',
-            '<u><b>Favourites</b></u> to <b>save tools</b> to <b><u class="yellow-ul light-blue">your own toolbox</u></b>.',
+            '<u><b class="yellow">Favourites</b></u> to <b>save tools</b> to <b><u class="yellow-ul light-blue">your own toolbox</u></b>',
             // 'Easily to understand descriptions.',
-            
-            '<u class="yellow-ul"><b>Private Days Counter</b></u> to <u><b>track recovery</b></u>.',
-            '<u><b class="yellow">Alcohol Units Calculator</b></u>.',
-            '<u class="yellow-ul">Recovery <b>Lingo &amp; Phrases</b> explained.</u>.',
-            '<b class="yellow">Quick Exit button.</b> <b><u class="yellow-ul">Leave fast</u></b> to Google.com<br /><b><u>Just in case it\'s needed.</b></u>',
-            '<b>Complete privacy</b> <u>you control</u>. <b class="light-blue">Erase <u class="yellow-ul">all data</u></b>, <b><u >instantly</u>, <u class="yellow-ul yellow">at anytime</u></b>.',
+            '<u class="yellow-ul yellow"><b>Recovery timeline</b></u> covering the <b><u class="blue-ul">days before detox</u></b>, <b><u class="orange-ul light-blue">during detox</u></b>, and through the <b><u class="yellow-ul">first year of recovery</u></b>',
+            '<u class="yellow-ul yellow"><b>Private Days Counter</b></u> to <u><b>track recovery</b></u>',
+            '<u><b class="yellow">Alcohol Units Calculator</b></u> to help <u><b>plan recovery</b></u>',
+            '<u class="yellow-ul">Recovery <b class="yellow">Lingo &amp; Phrases</b> explained</u>',
+            '<u><b class="yellow">Wheel of Life</b></u> for keeping a <b><u class="yellow-ul">healthy life balance</u><b>',
+            '<u class="blue-ul"><b class="yellow">Quick Exit button.</b></u> <b><u class="yellow-ul">Leave fast</u></b> to Google.com<br /><b><u>Just in case it\'s needed</b></u>',
+            '<b class="yellow">Complete privacy</b> <u>you control</u>. <b class="light-blue">Erase <u class="yellow-ul">all data</u></b>, <b><u >instantly</u>, <u class="yellow-ul yellow">at anytime</u></b>',
             '',
           ],
         },
-       
       ],
       installed: {
         content: [
@@ -405,7 +442,9 @@ const strings = {
       slug: '#recovery-tools',
       url: 'recovery-tools',
       title: 'The Tools',
-      introduction: (isTouchDevice() ? "Tap" : "Click") + ' on a tool to learn more about it',
+      introduction:
+        (isTouchDevice() ? 'Tap' : 'Click') +
+        ' on a tool to learn more about it',
       description: [
         'These tools <br /><u class="yellow-ul"><b>might not </b></u>work <br />for<u><b class="yellow"> everbody.</b></u>',
         'They <u>could work</u><br /> for <b><u class="yellow">one person</u></b> <br />and <u class="yellow-ul">not the next</u>.',
@@ -416,16 +455,15 @@ const strings = {
       cta: {
         title: 'The Tools',
         content: [
-          'Find tools that are used in Recovery groups and classes.',
-          'Save the ones that work for you to your toolbox.',
-          'Try them out to see if they work for you.'],
-           btn: {
-            
-            label: {
-              unused:'See the tools',
-              used:'See the tools',
-            },
+          'Find tools that are used in Recovery Groups and Classes.',
+          'Save the ones that work for you to your own toolbox.',
+        ],
+        btn: {
+          label: {
+            unused: 'See the tools',
+            used: 'See the tools',
           },
+        },
       },
     },
     {
@@ -449,11 +487,10 @@ const strings = {
         ],
         btn: {
           label: {
-            unused:'Set Dates',
-            used:'View Dates',
-          }
-        }        
-        
+            unused: 'Set Dates',
+            used: 'View Dates',
+          },
+        },
       },
     },
     {
@@ -466,14 +503,13 @@ const strings = {
       cta: {
         title: 'Units Calculator',
         content: [
-          'Calculate the Alcholic Units for standard measures and custom drink sizes and ABV.',
+          'Calculate the Alcoholic Units for standard measures and custom drink sizes and ABV.',
         ],
-         btn: {
-        
+        btn: {
           label: {
-            unused:'Use the Calculator',
-            used:'View your Calculation',
-          }
+            unused: 'Use the Calculator',
+            used: 'View your Calculation',
+          },
         },
       },
     },
@@ -489,11 +525,10 @@ const strings = {
         title: 'Install Ummi',
         content: ['Install Ummi for quick access'],
         btn: {
-
           label: {
-            unused:'Install ',
-            used:'Install',
-          }
+            unused: 'Install ',
+            used: 'Install',
+          },
         },
         postInstall: {
           title: 'Thanks!',
@@ -518,16 +553,15 @@ const strings = {
       cta: {
         title: 'We respect you<br />and your privacy',
         content: [
-          'You are fully in control<br />of any data you provide whilst using Ummi and it\'s features.',
-          'Some features can be hidden and shown to suit your needs.',
+          "You are fully in control<br />of any data you provide whilst using Ummi and it's features.",
+          'Some features can be used then hidden and shown to suit your needs.',
           'Visit Settings to see the features or to remove your data at any time',
         ],
         btnLabel: 'Privacy Policy',
         label: {
-            unused:'Privacy Policy',
-            used:'Privacy Policy',
-          },
-        
+          unused: 'Privacy Policy',
+          used: 'Privacy Policy',
+        },
       },
     },
     {
@@ -536,20 +570,21 @@ const strings = {
       slug: 'wallpapers',
       url: 'wallpapers',
       anchorID: '',
-      htmlContent:  ['Download for free'],
-     
+      htmlContent: ['Download for free'],
+
       cta: {
-         btnLabel: 'Wallpapers',
+        btnLabel: 'Wallpapers',
         title: 'Motivational Wallpapers',
-        content: [          
-          'View our <b>gallery of motivational wallpapers</b> and <b class="yellow">download them for free</b> straight to your device.'],
+        content: [
+          'View our <b>gallery of motivational wallpapers</b> and <b class="yellow">download them for free</b> straight to your device.',
+        ],
         btn: {
           label: {
-            unused:'View wallpapers ',
-            used:'Install',
-          }
+            unused: 'View wallpapers ',
+            used: 'Install',
+          },
         },
-      }
+      },
     },
     {
       name: 'yourData',
@@ -576,9 +611,71 @@ const strings = {
         title: '',
         content: [''],
         label: {
-            unused:'Settings',
-            used:'',
+          unused: 'Settings',
+          used: '',
+        },
+      },
+    },
+    {
+      name: 'recovery-timeline',
+      title: 'Detox &amp; Recovery Timeline',
+
+      slug: 'recovery-timeline',
+      url: 'recovery-timeline',
+      anchorID: '',
+      content: [
+        'The timeline provides support information describing the emotional and physical recovery process. ',
+        'Everybody is different so not everyone will experience the same symptoms during the process.',
+        '<b>Scroll down to explore the timeline</b>',
+      ],
+      confirm: {
+        title: 'Detox &amp; Recovery Timeline',
+        instruction:
+          '<p>The information provided in the Recovery Timeline is for <u><b>support purposes only</b></u> and should not be considered as <b><u>advice</u></b>. </p><p>If you are seeking <b><u>medical or recovery advice</u></b> please consult a qualified professional such as a <b><u class="yellow-ul">key worker or medical professional</u></b>.</p>',
+        confirmBtnLabel: "I understand <br />let's go",
+        cancelBtnLabel: 'Get me <br />out of here',
+      },
+
+      cta: {
+        title: 'Recovery Timeline',
+        content: [
+          'The Detox and Recovery Timeline is a support tool to help you understand the recovery journey.',
+        ],
+        btn: {
+          label: {
+            unused: 'The Recovery Timeline ',
+            used: 'The Recovery Timeline',
           },
+        },
+      },
+    },
+    {
+      name: 'wheel-of-life',
+      title: 'The Wheel of Life',
+
+      slug: 'wheel-of-life',
+      url: 'wheel-of-life',
+      anchorID: '',
+      content: ['The Wheel of Life content to go here'],
+      confirm: {
+        title: 'Show me The Wheel of Life',
+        instruction: '',
+        confirmBtnLabel: "I understand <br />let's go",
+        cancelBtnLabel: 'Get me <br />out of here',
+      },
+
+      cta: {
+        title: 'Wheel of Life',
+        content: [
+          'Assess your life balance and find areas that could need work.',
+          'Save wheels over time and see how your hard work is paying off.',
+        ],
+        btn: {
+          label: {
+            unused: 'The Wheel of Life',
+            used: 'The Wheel of Life',
+          },
+        },
       },
     },
   ],
@@ -596,6 +693,6 @@ const strings = {
       yourToolsFiltered: 'Showing YOUR tools', //"Showing only the tools you selected"
     },
   },
-};
+}
 
-export { cnf, activities, strings }; //strings activities;
+export { cnf, activities, strings } //strings activities;

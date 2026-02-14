@@ -4,474 +4,456 @@
  * This document outlines the CSS classes required for styling the RecoveryTimeline component.
  */
 body .main div#RecoveryTimelineParent {
-    z-index: 80000;
-    overscroll-behavior: none;
+  z-index: 80000;
+  overscroll-behavior: none;
 }
 
 /* --- Main Container --- */
 .timeline-container {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    font-family: sans-serif;
-    color: #ffffff;
-    background-color: #242424;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-family: sans-serif;
+  color: #ffffff;
+  background-color: #242424;
 
-    z-index: 1000000;
+  z-index: 1000000;
 }
 
 /* --- Scrollable Area --- */
 .timeline-scroll-container {
-    height: 100dvh; //calc( - 90px);
-    width: 100%;
+  height: 100dvh; //calc( - 90px);
+  width: 100%;
 
-    // -webkit-overflow-scrolling: touch;
-    // outline: 10px solid yellow;
-    position: relative;
-    // margin-top: 90px;
-    padding: 0;
-
+  // -webkit-overflow-scrolling: touch;
+  // outline: 10px solid yellow;
+  position: relative;
+  // margin-top: 90px;
+  padding: 0;
 }
 
 /* --- Header --- */
 .timeline-header {
-    position: relative;
+  position: relative;
 
+  width: 100%;
+  padding: 1rem;
+  background-color: rgb(54, 54, 54);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > div {
     width: 100%;
-    padding: 1rem;
-    background-color: rgb(54, 54, 54);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  h1 {
+    margin: 0;
+    width: 100%;
+    max-width: none;
+    font-size: 1.5em;
+  }
 
-    >div {
-        width: 100%;
-    }
+  p {
+    margin: 0;
+  }
 
-    h1 {
-        margin: 0;
-        width: 100%;
-        max-width: none;
-        font-size: 1.5em;
-    }
-
-    p {
-        margin: 0;
-    }
-
-    button {
-        background: none;
-        border: none;
-        font-size: 2em;
-        cursor: pointer;
-        position: absolute;
-    }
+  button {
+    background: none;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+    position: absolute;
+  }
 }
 
 .day-count {
-    position: fixed;
-    top: 90px;
-    left: calc(50% + 250px);
+  position: fixed;
+  top: 90px;
+  left: calc(50% + 250px);
 
-    font-size: 80px;
-    font-weight: 900;
-    font-variation-settings: 'wght' 900;
-    opacity: 0.15;
-    text-align: center;
-    display: flex;
+  font-size: 80px;
+  font-weight: 900;
+  font-variation-settings: 'wght' 900;
+  opacity: 0.15;
+  text-align: center;
+  display: flex;
 
-    align-content: center;
-    align-items: center;
-    // transform: rotate(90deg) translate(0, -100%);
+  align-content: center;
+  align-items: center;
+  // transform: rotate(90deg) translate(0, -100%);
 
-    div:last-child {
-        font-size: 30px;
-        transform: rotate(90deg) // 
-            // margin-right: -0.5rem;
-            // font-weight: 600;
-            // font-variation-settings: 'wght' 600;
-    }
+  div:last-child {
+    font-size: 30px;
+    transform: rotate(90deg); //
+    // margin-right: -0.5rem;
+    // font-weight: 600;
+    // font-variation-settings: 'wght' 600;
+  }
 }
 
 /* ****************************
 Content
  ***************************** */
 
-
-
 /* ****************************
  Scoller for trigger
  ***************************** */
 #smooth-wrapper {
-    overflow-y: scroll;
-    min-height: 100dvh;
+  overflow-y: scroll;
+  min-height: 100dvh;
 }
 
 #smooth-content {
-    overflow: visible;
-    width: 100%;
-    // min-height: 16000px;
+  overflow: visible;
+  width: 100%;
+  // min-height: 16000px;
 }
 
 $rowGap: 260px;
 $itemHeight: 260px;
 
 .scroller {
-    position: relative;
-    top: 0;
-    left: 50%;
-    width: 800px;
-    // height: auto;
+  position: relative;
+  top: 0;
+  left: 50%;
+  width: 800px;
+  // height: auto;
 
-    margin-top: 80px;
-    transform: translate(-50%, 0);
-    // display: flex;
-    // flex-flow: row wrap;
-    // column-gap: 1rem;
-    // justify-content: space-evenly;
+  margin-top: 80px;
+  transform: translate(-50%, 0);
+  // display: flex;
+  // flex-flow: row wrap;
+  // column-gap: 1rem;
+  // justify-content: space-evenly;
 
-    // overflow-y: scroll;
-    outline: 1px solid #ccc;
+  // overflow-y: scroll;
+  outline: 1px solid #ccc;
 }
 
 .box-column {
-    width: 100%;
-    height: fit-content;
-    position: absolute;
-    top: 20vh;
-    left: 0;
+  width: 100%;
+  height: fit-content;
+  position: absolute;
+  top: 20vh;
+  left: 0;
 
-    outline: 1px solid #ccc;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    // align-content: center;
-    // align-items: center;
-    // justify-content: center;
+  outline: 1px solid #ccc;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  // align-content: center;
+  // align-items: center;
+  // justify-content: center;
 }
 
 .box-group {
-    width: 200px;
-    max-width: 200px;
-    display: flex;
-    flex-flow: column nowrap;
-    align-content: center;
-    align-items: center;
-    justify-content: center;
-    row-gap: $rowGap;
+  width: 200px;
+  max-width: 200px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  row-gap: $rowGap;
 }
 
 .box-wrapper {
+  width: 100%;
+  position: relative;
+
+  align-items: center;
+  // flex: 1;
+  display: flex;
+  // outline: 1px solid #ccc;
+  height: $itemHeight;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
     width: 100%;
-    position: relative;
-
-    align-items: center;
-    // flex: 1;
-    display: flex;
-    // outline: 1px solid #ccc;
-    height: $itemHeight;
-
-    &::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        ;
-        // margin-top: 50%;
-        transform: translate(0, -50%);
-        z-index: -1;
-        opacity: 0.75;
-        border-bottom: 1px solid rgba(255, 2, 2, 0.582);
-    }
+    height: 1px;
+    // margin-top: 50%;
+    transform: translate(0, -50%);
+    z-index: -1;
+    opacity: 0.75;
+    border-bottom: 1px solid rgba(255, 2, 2, 0.582);
+  }
 }
 
 .box {
-    width: 50px;
-    height: 50px;
-    align-content: center;
-    background-color: rgba(255, 0, 0, 0.363); // rgba(255, 0, 0, 0.84);
+  width: 50px;
+  height: 50px;
+  align-content: center;
+  background-color: rgba(255, 0, 0, 0.363); // rgba(255, 0, 0, 0.84);
 }
-
 
 .symptoms-column-wrap,
 .symptoms-time-period-columns {
-    position: absolute;
-    width: 100%;
-    top: 20vh;
-    display: flex;
-    align-items: center;
-    align-content: flex-start;
-    justify-content: center;
-    flex: 1;
-    flex-direction: column;
-    row-gap: 0;
-    min-height: 100%;
-    height: fit-content;
-
+  position: absolute;
+  width: 100%;
+  top: 20vh;
+  display: flex;
+  align-items: center;
+  align-content: flex-start;
+  justify-content: center;
+  flex: 1;
+  flex-direction: column;
+  row-gap: 0;
+  min-height: 100%;
+  height: fit-content;
 }
 
 .symptoms-period-column {
-    // position: absolute;
-    width: 100%;
-    opacity: 0.25;
-    display: flex;
-    align-items: center;
-    align-content: flex-start;
-    justify-content: center;
-    flex: 1;
-    flex-direction: column;
-    row-gap: 0;
-    height: fit-content;
-
+  // position: absolute;
+  width: 100%;
+  opacity: 0.25;
+  display: flex;
+  align-items: center;
+  align-content: flex-start;
+  justify-content: center;
+  flex: 1;
+  flex-direction: column;
+  row-gap: 0;
+  height: fit-content;
 }
 
-
 .symptoms-column-wrap {
-    // margin-top: $rowGap;
+  // margin-top: $rowGap;
 }
 
 .symptoms-column {
-    display: flex;
-    // align-content: center;
-    align-items: center;
-    // justify-content: center;
-    width: 30%;
-    height: fit-content;
-    flex-direction: column;
-    width: 100%;
-    row-gap: $rowGap;
-    position: relative;
-
+  display: flex;
+  // align-content: center;
+  align-items: center;
+  // justify-content: center;
+  width: 30%;
+  height: fit-content;
+  flex-direction: column;
+  width: 100%;
+  row-gap: $rowGap;
+  position: relative;
 }
 
 .symptoms-column.even {
-    background: rgba(0, 0, 255, 0.295);
+  background: rgba(0, 0, 255, 0.295);
 
-    .symptom-title {
-        outline: 1px solid #a8a8a8f5;
-        outline: 10px solid rgba(86, 71, 168, 0.205);
-    }
+  .symptom-title {
+    outline: 1px solid #a8a8a8f5;
+    outline: 10px solid rgba(86, 71, 168, 0.205);
+  }
 }
 
 .symptoms-column.odd {
-
-    background: rgba(255, 60, 0, 0.295);
+  background: rgba(255, 60, 0, 0.295);
 }
 
 .symptoms-column:has(.symptom-title:first-child:is(.push)) {
-    background: rgba(1, 165, 194, 0.589);
+  background: rgba(1, 165, 194, 0.589);
 
+  &.odd {
+    // margin-top: $itemHeight;
+  }
 
-    &.odd {
-        // margin-top: $itemHeight;
+  &.even {
+    // margin-top: $itemHeight;
+
+    .symptom-title:first-child:is(.push) {
+      margin-top: $itemHeight;
     }
-
-    &.even {
-        // margin-top: $itemHeight;
-
-        .symptom-title:first-child:is(.push) {
-            margin-top: $itemHeight;
-        }
-    }
+  }
 }
 
 .symptoms-column.odd {
-    margin-top: $itemHeight;
-    transform: translate(50%, 0);
-    width: 100%;
-    // background: rgba(255, 0, 0, 0.363);
+  margin-top: $itemHeight;
+  transform: translate(50%, 0);
+  width: 100%;
+  // background: rgba(255, 0, 0, 0.363);
 
-    .symptom-title {
-        outline: 1px solid #131313f5;
-        outline: 10px solid rgba(255, 255, 0, 0.315);
-    }
+  .symptom-title {
+    outline: 1px solid #131313f5;
+    outline: 10px solid rgba(255, 255, 0, 0.315);
+  }
 }
 
 .symptom-title {
-    align-content: center;
-    align-items: center;
-    height: $itemHeight;
-    padding: 0;
-    margin: 0;
-    font-size: 24px;
-    font-weight: 600;
-    max-width: 260px;
-    height: $itemHeight;
+  align-content: center;
+  align-items: center;
+  height: $itemHeight;
+  padding: 0;
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  max-width: 260px;
+  height: $itemHeight;
 
-    div:first-child {
-        color: #96d10d;
-        font-size: 0.8rem;
-    }
+  div:first-child {
+    color: #96d10d;
+    font-size: 0.8rem;
+  }
 
-
-    /* Makes content area fill available height */
+  /* Makes content area fill available height */
 }
 
 .period-title {
-    text-align: left;
-    width: 500px;
-    height: $itemHeight;
+  text-align: left;
+  width: 500px;
+  height: $itemHeight;
+  align-content: center;
+  position: relative;
+  outline: 1px solid #ccc;
+  opacity: 0.25;
+
+  &::after {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    content: attr(data-period);
+    opacity: 1;
+    transform: translate(0%, -100%);
     align-content: center;
-    position: relative;
-    outline: 1px solid #ccc;
-    opacity: 0.25;
+    text-align: right;
+    font-size: 1rem;
+    font-weight: 400;
+    font-variation-settings: 'wght' 400;
+  }
 
-
-    &::after {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        content: attr(data-period);
-        opacity: 1;
-        transform: translate(0%, -100%);
-        align-content: center;
-        text-align: right;
-        font-size: 1rem;
-        font-weight: 400;
-        font-variation-settings: 'wght' 400;
-    }
-
-    &::after {
-        text-align: right;
-    }
+  &::after {
+    text-align: right;
+  }
 }
 
 .period-title.first,
 .period-title.last {
-    font-size: 60px;
-    line-height: 1;
-    position: relative;
-    font-weight: 800;
-    font-variation-settings: 'wght' 800;
-    height: $rowGap;
+  font-size: 60px;
+  line-height: 1;
+  position: relative;
+  font-weight: 800;
+  font-variation-settings: 'wght' 800;
+  height: $rowGap;
 
+  &::after,
+  &::before {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    content: attr(data-period);
+    opacity: 1;
+    transform: translate(0%, -100%);
+    align-content: center;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 400;
+    font-variation-settings: 'wght' 400;
+    font-size: 1rem;
+    font-weight: 400;
+    font-variation-settings: 'wght' 400;
+  }
 
-    &::after,
-    &::before {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        content: attr(data-period);
-        opacity: 1;
-        transform: translate(0%, -100%);
-        align-content: center;
-        text-align: left;
-        font-size: 1rem;
-        font-weight: 400;
-        font-variation-settings: 'wght' 400;
-        font-size: 1rem;
-        font-weight: 400;
-        font-variation-settings: 'wght' 400;
-    }
-
-    &::before {
-        text-align: right;
-    }
-
+  &::before {
+    text-align: right;
+  }
 }
 
 .period-title.first {
-    text-align: center;
-    border-top: 2px solid #acacac;
-    // transform: translate(0, ($itemHeight / 2) * -1);
-    // margin-top: -60px;
-    // margin-bottom: 60px;
+  text-align: center;
+  border-top: 2px solid #acacac;
+  // transform: translate(0, ($itemHeight / 2) * -1);
+  // margin-top: -60px;
+  // margin-bottom: 60px;
 
+  &::after {
+    border-bottom: 2px dotted #acacac;
+  }
 
-    &::after {
-        border-bottom: 2px dotted #acacac;
-
-    }
-
-    &::before,
-    &::after {
-        // margin-top: 60px;
-
-    }
-
+  &::before,
+  &::after {
+    // margin-top: 60px;
+  }
 }
 
 .period-title.last {
-    text-align: center;
-    border-bottom: 2px solid #161616;
-    // transform: translate(0, 25%);
+  text-align: center;
+  border-bottom: 2px solid #161616;
+  // transform: translate(0, 25%);
 
-    // margin-top: 60px;
-    // margin-bottom: -60px;
+  // margin-top: 60px;
+  // margin-bottom: -60px;
 
-    &::after {
-        border-bottom: 2px dashed #161616;
-        // margin-top: -60px;
-    }
-
-
+  &::after {
+    border-bottom: 2px dashed #161616;
+    // margin-top: -60px;
+  }
 }
 
-
 .lines-col {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    ;
-    height: 100%;
-    width: 2px;
-    // transform: rotate(90deg);
-    z-index: 10;
-    border-right: 1px solid #ccc;
-    flex: 1;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  width: 2px;
+  // transform: rotate(90deg);
+  z-index: 10;
+  border-right: 1px solid #ccc;
+  flex: 1;
 }
 
 .line {
-
-    margin: 0 auto;
-    flex: 1;
-    border-bottom: 1px solid white;
-    height: 100%;
-    width: 40px;
-    // transform: translate(0%, 0);
-    margin: 0 auto;
-    background-size: 100% 1px;
-    background-position-x: center;
-    background: repeating-linear-gradient(rgba(255, 255, 255, 0),
-            rgba(255, 255, 255, 0) 24px,
-            rgba(255, 255, 255, 0.1) 24px,
-            rgba(255, 255, 255, 0.1) 25px);
-    background-repeat: repeat-y;
+  margin: 0 auto;
+  flex: 1;
+  border-bottom: 1px solid white;
+  height: 100%;
+  width: 40px;
+  // transform: translate(0%, 0);
+  margin: 0 auto;
+  background-size: 100% 1px;
+  background-position-x: center;
+  background: repeating-linear-gradient(
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0) 24px,
+    rgba(255, 255, 255, 0.1) 24px,
+    rgba(255, 255, 255, 0.1) 25px
+  );
+  background-repeat: repeat-y;
 }
 
 .lines {
-    height: 100%;
-    width: 40px;
-    // transform: translate(0%, 0);
-    margin: 0 auto;
-    background-size: 100% 1px;
-    background-position-x: center;
-    background: repeating-linear-gradient(rgba(255, 255, 255, 0),
-            rgba(255, 255, 255, 0) 24px,
-            rgba(255, 255, 255, 0.1) 24px,
-            rgba(255, 255, 255, 0.1) 25px);
-    background-repeat: repeat-y;
+  height: 100%;
+  width: 40px;
+  // transform: translate(0%, 0);
+  margin: 0 auto;
+  background-size: 100% 1px;
+  background-position-x: center;
+  background: repeating-linear-gradient(
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0) 24px,
+    rgba(255, 255, 255, 0.1) 24px,
+    rgba(255, 255, 255, 0.1) 25px
+  );
+  background-repeat: repeat-y;
 }
 
 .lines-lrg {
-    height: 100%;
-    width: 80px;
-    margin: 0 auto;
-    background-size: 100% 1px;
-    background-position-x: center;
-    background: repeating-linear-gradient(rgba(255, 255, 255, 0),
-            rgba(255, 255, 255, 0) 198px,
-            rgba(255, 255, 255, 0.25) 198px,
-            rgba(255, 255, 255, 0.25) 200px);
-    background-repeat: repeat-y;
+  height: 100%;
+  width: 80px;
+  margin: 0 auto;
+  background-size: 100% 1px;
+  background-position-x: center;
+  background: repeating-linear-gradient(
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0) 198px,
+    rgba(255, 255, 255, 0.25) 198px,
+    rgba(255, 255, 255, 0.25) 200px
+  );
+  background-repeat: repeat-y;
 }

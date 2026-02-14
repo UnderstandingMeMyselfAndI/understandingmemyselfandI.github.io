@@ -1,23 +1,23 @@
-import { useState } from 'react';
-import { useDrinkLogStore } from '@/store/drinkLogStore';
-import { verifyPin, setPasswordKey } from '@src/js/utils/secureStorage';
+import { useState } from 'react'
+import { useDrinkLogStore } from '@/store/drinkLogStore'
+import { verifyPin, setPasswordKey } from '@src/js/utils/secureStorage'
 
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 const Unlock = ({ onSuccess }) => {
-  const [pin, setPinInput] = useState('');
-  const [error, setError] = useState('');
-  const unlockStore = useDrinkLogStore();
+  const [pin, setPinInput] = useState('')
+  const [error, setError] = useState('')
+  const unlockStore = useDrinkLogStore()
 
   const handlePin = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (await verifyPin(pin)) {
       // AES key is already in memory from first setup
-      unlockStore.unlock(); // ✅ set global unlocked state
-      onSuccess();
+      unlockStore.unlock() // ✅ set global unlocked state
+      onSuccess()
     } else {
-      setError('Invalid PIN');
+      setError('Invalid PIN')
     }
-  };
+  }
 
   return (
     <form onSubmit={handlePin}>
@@ -32,8 +32,8 @@ const Unlock = ({ onSuccess }) => {
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <button type='submit'>Unlock</button>
     </form>
-  );
-};
+  )
+}
 
-Unlock.propTypes = { onSuccess: PropTypes.func.isRequired };
-export default Unlock;
+Unlock.propTypes = { onSuccess: PropTypes.func.isRequired }
+export default Unlock

@@ -1,13 +1,13 @@
-import './styles.css';
-import FontSettingsIcon from './FontSettingsIcon.jsx';
+import './styles.css'
+import FontSettingsIcon from './FontSettingsIcon.jsx'
 
 const ButtonFontSettings = () => {
-	return (
-		<div className='settings-icon btn btn-font-settings'>
-			<div dangerouslySetInnerHTML={{ __html: FontSettingsIcon }} />
-		</div>
-	);
-};
+  return (
+    <div className='settings-icon btn btn-font-settings'>
+      <div dangerouslySetInnerHTML={{ __html: FontSettingsIcon }} />
+    </div>
+  )
+}
 
-ButtonFontSettings.displayName = 'ButtonSettings';
-export default ButtonFontSettings;
+ButtonFontSettings.displayName = 'ButtonSettings'
+export default ButtonFontSettings

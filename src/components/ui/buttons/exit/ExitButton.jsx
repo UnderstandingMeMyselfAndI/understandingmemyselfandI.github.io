@@ -12,7 +12,7 @@ const ExitButton = ({ handleClick }) => {
   const minY = 15
   const menuBoundsX = 120
   const menuBoundsY = 60
-  
+
   // Threshold to distinguish between a tap and a drag
   const DRAG_THRESHOLD = 5
 
@@ -32,11 +32,11 @@ const ExitButton = ({ handleClick }) => {
   const nodeRef = useRef(null)
   // Store start position to calculate drag distance
   const dragStartPos = useRef({ x: 0, y: 0 })
-  
+
   const [buttonPosition, setButtonPosition] = useState(
     restrictPos({ x: minX, y: window.innerHeight * 0.5 }),
   )
-  
+
   const exitButtonPosition = useAppStore((s) => s.exitButtonPosition)
   const setExitButtonPosition = useAppStore((s) => s.setExitButtonPosition)
 
@@ -55,7 +55,7 @@ const ExitButton = ({ handleClick }) => {
     // Calculate distance moved
     const deltaX = Math.abs(data.x - dragStartPos.current.x)
     const deltaY = Math.abs(data.y - dragStartPos.current.y)
-    
+
     // If movement is within threshold, treat it as a click
     if (deltaX < DRAG_THRESHOLD && deltaY < DRAG_THRESHOLD) {
       handleClick()
@@ -71,11 +71,9 @@ const ExitButton = ({ handleClick }) => {
       onStart={handleDragStart}
       onStop={handleDragStop}
       handle='.exit-wrap'
-      nodeRef={nodeRef}>
-      <div
-        className='exit-wrap label'
-        ref={nodeRef}
-      >
+      nodeRef={nodeRef}
+    >
+      <div className='exit-wrap label' ref={nodeRef}>
         <div className={'exit-btn'}>
           <ExitToAppOutlinedIcon className='icon' />
         </div>

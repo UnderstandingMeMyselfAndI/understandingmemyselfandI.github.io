@@ -128,7 +128,8 @@ const Lingo = () => {
     <section
       id='lingo'
       className={'activity activity-search-lingo' + (open ? ' show' : ' hide')}
-      ref={inViewRef}>
+      ref={inViewRef}
+    >
       <div className='search-lingo-wrap'>
         <Dialog
           show={showDialog}
@@ -145,12 +146,14 @@ const Lingo = () => {
             (showAll ? ' expand' : '  collapse') +
             (showAll ? ' elHeightExpanded' : ' elHeight')
           }
-          style={{ height: listHeight + 'px' }}>
+          style={{ height: listHeight + 'px' }}
+        >
           <SearchField handleClick={handleClick} ref={listRef} />
         </div>
         <div
           className={'lingo-list-btn' + (showAll ? ' expand' : ' collapse')}
-          onClick={handleExpandClick}>
+          onClick={handleExpandClick}
+        >
           {showAll ? 'HIDE LINGO' : 'SHOW ALL LINGO'}
         </div>
       </div>
