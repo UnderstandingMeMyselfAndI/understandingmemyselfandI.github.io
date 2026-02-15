@@ -28,7 +28,7 @@ export default defineConfig({
   build: {
     minify: 'esbuild',
     cssMinify: 'lightningcss',
-    outDir: './dist',
+    outDir: './docs',
     emptyOutDir: true,
     commonjsOptions: { transformMixedEsModules: true },
     cssCodeSplit: true,
