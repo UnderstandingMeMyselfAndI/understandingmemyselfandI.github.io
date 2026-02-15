@@ -1,0 +1,14 @@
+static_routes:
+  - path: /assets
+    match: ^/assets/.*
+    headers:
+      - key: Content-Type
+        value: application/javascript
+  - path: /sw.js
+    headers:
+      - key: Content-Type
+        value: application/javascript
+  - path: /registerSW.js
+    headers:
+      - key: Content-Type
+        value: application/javascript
