@@ -12,12 +12,14 @@ import { browserslistToTargets } from 'lightningcss';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
 //version meta data
 const metadata = JSON.parse(fs.readFileSync('./src/metadata.json', 'utf-8'));
+const buildVersion = `${metadata.buildMajor}.${metadata.buildMinor}.${metadata.buildRevision}${metadata.buildTag ? '-' + metadata.buildTag : ''}`;
 
 export default defineConfig({
   root: './',
   publicDir: 'public',
   define: {
     __BUILD_METADATA__: JSON.stringify(metadata),
+    __BUILD_VERSION__: JSON.stringify(buildVersion),
   },
   css: {
     transformer: 'lightningcss', // Use LightningCSS for transformations
@@ -291,7 +293,8 @@ export default defineConfig({
             "label": "Quick access menu layout."
           }
         ]
-      }
+      },
+     
 
     }),
   ],

@@ -206,6 +206,29 @@ export function getUrlPathSegments() {
   // return location.pathname.split('/');
 }
 
+export const checkAssetsLoaded = () => {
+  // Detect if app failed to initialize properly - if not force clean and new service worker registration
+  // Check if a key component/function exists
+  if (typeof window.MyApp === 'undefined' && !document.getElementById('app-root')) {
+    // After 5 seconds, if app isn't ready, force clean everything
+    setTimeout(() => {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(registrations => {
+          registrations.forEach(reg => reg.unregister());
+          
+          // Clear all caches
+          caches.keys().then(names => {
+            names.forEach(name => caches.delete(name));
+          });
+          
+          // Force reload from server
+          window.location.reload(true);
+        });
+      }
+    }, 5000);
+  }
+};
+
 export default {
   clamp,
   isSet,

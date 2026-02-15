@@ -48,6 +48,9 @@ import AccessibilitySettings from './components/ui/AccessibilitySettings/Accessi
 // TODO: #21 "Clear Local Data" functionality
 //TODO #43 Styling of cookie consent
 
+//NEed for Service Worker update itself
+window.__APP_LOADED = true
+
 function App() {
   const daysCounterEnabled = useAppStore((s) => s.daysCounterEnabled)
   // const enableYourTools = useAppStore((s) => s.enableYourTools)

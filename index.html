@@ -43,6 +43,35 @@
     <script>
       window.GA_INITIALIZED = false
     </script>
+    <script>
+  // Emergency recovery for broken service worker caches
+  (function() {
+    // Wait 5 seconds for the app to signal it's loaded
+    setTimeout(function() {
+      if (!window.__APP_LOADED) {
+        console.warn('App failed to load, attempting recovery...');
+        // Unregister all service workers
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            registrations.forEach(function(registration) {
+              registration.unregister();
+            });
+          });
+        }
+        // Clear all caches
+        if ('caches' in window) {
+          caches.keys().then(function(names) {
+            names.forEach(function(name) {
+              caches.delete(name);
+            });
+          });
+        }
+        // Force reload from server (bypass cache)
+        window.location.reload(true);
+      }
+    }, 5000); // 5 seconds
+  })();
+</script>
   </head>
 
   <body>
