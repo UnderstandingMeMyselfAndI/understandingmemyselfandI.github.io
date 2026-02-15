@@ -32,10 +32,7 @@ const WallpaperGallery = () => {
   const isModal = useAppStore((s) => s.isModal)
 
   // Find the correct activity ID from config
-  const activityData = useMemo(
-    () => activities.find((act) => act.url === name),
-    [name],
-  )
+  const activityData = useMemo(() => activities.find((act) => act.url === name), [name])
   const activityID = activityData?.id
 
   useEffect(() => {
@@ -69,10 +66,7 @@ const WallpaperGallery = () => {
   )
 
   // Get the current wallpaper
-  const currentWallpaper = useMemo(
-    () => wallpapers[currentIndex] || wallpapers[0],
-    [currentIndex],
-  )
+  const currentWallpaper = useMemo(() => wallpapers[currentIndex] || wallpapers[0], [currentIndex])
 
   // Get dedicated thumbnail URL
   const getThumbnailUrl = useCallback((wallpaperId) => {
@@ -206,12 +200,7 @@ const WallpaperGallery = () => {
     preloadThumbnail(currentWallpaper.id)
 
     // Preload next thumbnails (2 ahead and 2 behind)
-    const preloadIndices = [
-      currentIndex - 2,
-      currentIndex - 1,
-      currentIndex + 1,
-      currentIndex + 2,
-    ]
+    const preloadIndices = [currentIndex - 2, currentIndex - 1, currentIndex + 1, currentIndex + 2]
 
     preloadIndices.forEach((index) => {
       if (index >= 0 && index < wallpapers.length) {
@@ -410,15 +399,7 @@ const WallpaperGallery = () => {
         }
       }
     },
-    [
-      open,
-      previewMode,
-      handleExitPreview,
-      handlePrevious,
-      handleNext,
-      handlePreview,
-      handleClose,
-    ],
+    [open, previewMode, handleExitPreview, handlePrevious, handleNext, handlePreview, handleClose],
   )
 
   // Setup keyboard listeners
@@ -500,11 +481,8 @@ const WallpaperGallery = () => {
   // }
 
   // Main Gallery Mode
-  return ( open ?
-    <div
-      id={name}
-      className={'activity ' + 'activity-' + name + (open ? ' show' : ' hide')}
-    >
+  return open ? (
+    <div id={name} className={'activity ' + 'activity-' + name + (open ? ' show' : ' hide')}>
       <section className={name}>
         <header className='gallery-header'>
           <CloseBtn className='close-btn' onClick={handleClose} />
@@ -522,8 +500,7 @@ const WallpaperGallery = () => {
           ref={carouselRef}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-        >
+          onTouchEnd={handleTouchEnd}>
           <button
             className={`nav-btn prev ${currentIndex === 0 ? 'disabled' : ''}`}
             onClick={handlePrevious}
@@ -536,26 +513,18 @@ const WallpaperGallery = () => {
           </button>
 
           <div className='carousel-track'>
-            <div
-              className='carousel-slides'
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-            >
+            <div className='carousel-slides' style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
               {wallpapers.map((wallpaper, index) => {
                 const isLoaded = thumbnailsLoaded[wallpaper.id]
                 const hasError = thumbnailsError[wallpaper.id]
 
                 return (
-                  <div
-                    key={wallpaper.id}
-                    className={`slide ${index === currentIndex ? 'active' : ''}`}
-                  >
+                  <div key={wallpaper.id} className={`slide ${index === currentIndex ? 'active' : ''}`}>
                     <div className='wallpaper-card'>
                       <div className='image-container'>
                         {!hasError ? (
                           <img
-                            ref={(el) =>
-                              (thumbnailRefs.current[wallpaper.id] = el)
-                            }
+                            ref={(el) => (thumbnailRefs.current[wallpaper.id] = el)}
                             src={getThumbnailUrl(wallpaper.id)}
                             alt={wallpaper.title}
                             className={`wallpaper-thumbnail ${isLoaded ? 'loaded' : 'loading'}`}
@@ -579,9 +548,7 @@ const WallpaperGallery = () => {
                         <div className='wallpaper-overlay'>
                           <div className='wallpaper-meta'>
                             <h3>{wallpaper.title}</h3>
-                            <p className='wallpaper-category'>
-                              {wallpaper.category}
-                            </p>
+                            <p className='wallpaper-category'>{wallpaper.category}</p>
                           </div>
                         </div>
                       </div>
@@ -611,15 +578,12 @@ const WallpaperGallery = () => {
               disabled={!detectedSize}
               label='Preview'
             /> */}
-            <DownloadForOfflineOutlinedIcon
-              className='download-icon'
-              onClick={handleDownload}
-            />
+            <DownloadForOfflineOutlinedIcon className='download-icon' onClick={handleDownload} />
           </div>
         </div>
       </section>
-    </div> : null
-  )
+    </div>
+  ) : null
 }
 
 export default WallpaperGallery

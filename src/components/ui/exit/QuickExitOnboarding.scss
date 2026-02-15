@@ -70,7 +70,7 @@ $fade-sec: math.div($fade-duration, 1s);
 $pause-sec: math.div($pause-duration, 1s);
 
 // Total cycle for one message (fade in + hold + fade out)
-$cycle-sec: 2 * $fade-sec + $pause-sec; // 3
+$cycle-sec: 1 + 2 * $fade-sec + $pause-sec; // 3
 
 // Total cycle for all five messages
 $total-cycle-sec: 5 * $cycle-sec; // 15
@@ -124,10 +124,7 @@ $fade-out-end: math.div((2 * $fade-sec + $pause-sec), $total-cycle-sec) * 100;
 
   .quick-exit-onboarding-arrow-wrap {
     transform: scale(1.5) rotate(25deg) translateY(-12px);
-    // outline: 1px solid #ccc;
-    // width: fit-content;
     font-size: 3.5rem;
-    // font-weight: bold;
     width: 38px;
     height: 28px;
     position: absolute;
@@ -138,12 +135,13 @@ $fade-out-end: math.div((2 * $fade-sec + $pause-sec), $total-cycle-sec) * 100;
   }
 
   .quick-exit-onboarding-message {
-    width: 80px;
+    width: 110px;
     // outline: 1ch solid #ccc;
     height: fit-content;
     position: absolute;
     top: 32px;
     left: 0;
+    transform: translateX(-20px);
 
     div {
       position: absolute;

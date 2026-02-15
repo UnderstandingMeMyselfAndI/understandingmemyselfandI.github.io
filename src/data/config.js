@@ -1,6 +1,6 @@
 import HandymanIcon from '@mui/icons-material/Handyman'
-import { isTouchDevice } from '@/js/utils.js'
-
+// import { isTouchDevice } from '../js/utils.js'
+const isTouchDevice = () => { return true;} 
 
 
 const cnf = {
@@ -36,7 +36,7 @@ const cnf = {
 // ---------------------------------------------------------------
 // Icon ids are fixed and should not be mutated as they are used as reference
 //
-const baseActivities = [
+export const baseActivities = [
   {
     id: -1,
     url: '',

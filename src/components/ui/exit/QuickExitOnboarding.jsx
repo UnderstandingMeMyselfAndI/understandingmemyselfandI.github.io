@@ -18,8 +18,8 @@ const QuickExitOnboarding = ({ children }) => {
       setShow(true)
       setTimeout(() => {
         setShow(false)
-      }, 90000)
-    }, 10000)
+      }, 120000)
+    }, 30000) // show after 30 seconds
   })
   return show ? (
     <div className={'quick-exit-onboarding-wrap' + (show ? ' show' : ' ')} onClick={handleClick}>
@@ -29,10 +29,11 @@ const QuickExitOnboarding = ({ children }) => {
           <div className='quick-exit-onboarding-arrow'>&#8630;</div>
         </div>
         <div className='quick-exit-onboarding-message'>
-          <div>This is the quick exit button.</div>
-          <div>Click it to exit fast.</div>
-          <div>Drag to position it.</div>
-          <div>Hide it in menu-{'>'}settings.</div>
+          <div>This is the quick exit button</div>
+          <div>Click it to exit fast to google.com</div>
+          <div>Drag to position it</div>
+          <div>Hide it in settings</div>
+          <div>Access settings from the menu</div>
           <div>Tap to hide this message</div>
         </div>
       </div>
