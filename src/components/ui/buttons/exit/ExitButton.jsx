@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import Draggable from 'react-draggable'
 import useAppStore from '@/store/useAppStore'
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined'
+import QuickExitOnboarding from '../../exit/QuickExitOnboarding'
 import PropTypes from 'prop-types'
 import './styles.scss'
 
@@ -33,9 +34,7 @@ const ExitButton = ({ handleClick }) => {
   // Store start position to calculate drag distance
   const dragStartPos = useRef({ x: 0, y: 0 })
 
-  const [buttonPosition, setButtonPosition] = useState(
-    restrictPos({ x: minX, y: window.innerHeight * 0.5 }),
-  )
+  const [buttonPosition, setButtonPosition] = useState(restrictPos({ x: minX, y: window.innerHeight * 0.5 }))
 
   const exitButtonPosition = useAppStore((s) => s.exitButtonPosition)
   const setExitButtonPosition = useAppStore((s) => s.setExitButtonPosition)
@@ -71,13 +70,16 @@ const ExitButton = ({ handleClick }) => {
       onStart={handleDragStart}
       onStop={handleDragStop}
       handle='.exit-wrap'
-      nodeRef={nodeRef}
-    >
-      <div className='exit-wrap label' ref={nodeRef}>
-        <div className={'exit-btn'}>
-          <ExitToAppOutlinedIcon className='icon' />
-        </div>
-        <div className='label'>{label}</div>
+      nodeRef={nodeRef}>
+      <div ref={nodeRef}>
+        <QuickExitOnboarding>
+          <div className='exit-wrap label'>
+            <div className={'exit-btn'}>
+              <ExitToAppOutlinedIcon className='icon' />
+            </div>
+            <div className='label'>{label}</div>
+          </div>
+        </QuickExitOnboarding>
       </div>
     </Draggable>
   )

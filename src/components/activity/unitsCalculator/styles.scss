@@ -51,6 +51,8 @@ section#ummi-units-calculator {
     align-content: stretch;
     align-items: center;
 
+
+
     .content {
       font-size: 0;
       flex: 1;
@@ -74,6 +76,7 @@ section#ummi-units-calculator {
           flex: 0;
           width: 100%;
           padding: 0.25rem 0;
+          padding-top: 2rem;
 
           @media screen and (width>=768px) {
             width: var(--max-width-lrg-screen);

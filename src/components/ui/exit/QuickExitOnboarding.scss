@@ -1,0 +1,224 @@
+@use 'sass:math';
+@use '@/scss/_variables.scss';
+@import '@/globals.css';
+// $fade-duration: 0.5s;
+// $pause-duration: 2s;
+// $total-cycle: calc(2 * #{$fade-duration} + #{$pause-duration});
+
+
+.quick-exit-onboarding-wrap {
+  font-size: 1rem;
+
+  // outline: 1px solid #ccc;
+  pointer-events: none;
+  width: 100px;
+  position: relative;
+
+  .exit-wrap {
+    z-index: 10000;
+  }
+
+  .quick-exit-onboarding {
+    width: 100%;
+    height: 100%;
+    // margin-right: 60px;
+    position: absolute;
+    top: 10px;
+    left: 90px;
+    // position: relative;
+  }
+
+  .quick-exit-onboarding-arrow {
+    transform: scaleY(-100%);
+    // outline: 1px solid #ccc;
+    width: fit-content;
+    font-size: 2.5rem;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 0px;
+  }
+
+  .quick-exit-onboarding-message {
+    // outline: 1px solid yellow;
+    width: 100%;
+    height: fit-content;
+    position: absolute;
+    top: 32px;
+    left: 0px;
+
+    div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+
+    }
+
+
+  }
+}
+
+
+
+
+$fade-duration: 0.75s;
+$pause-duration: 2s;
+
+// Convert to unitless seconds
+$fade-sec: math.div($fade-duration, 1s);
+$pause-sec: math.div($pause-duration, 1s);
+
+// Total cycle for one message (fade in + hold + fade out)
+$cycle-sec: 2 * $fade-sec + $pause-sec; // 3
+
+// Total cycle for all five messages
+$total-cycle-sec: 5 * $cycle-sec; // 15
+
+// Calculate keyframe percentages (unitless numbers)
+$fade-in-end: math.div($fade-sec, $total-cycle-sec) * 100;
+$hold-end: math.div(($fade-sec + $pause-sec), $total-cycle-sec) * 100;
+$fade-out-end: math.div((2 * $fade-sec + $pause-sec), $total-cycle-sec) * 100;
+
+@keyframes sequentialFade {
+  0% {
+    opacity: 0;
+  }
+
+  #{$fade-in-end * 1%} {
+    opacity: 1;
+  }
+
+  #{$hold-end * 1%} {
+    opacity: 1;
+  }
+
+  #{$fade-out-end * 1%} {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+// ... rest of your styles remain the same ...
+.quick-exit-onboarding-wrap {
+  font-size: 1rem;
+  // outline: 1px solid #ccc;
+  pointer-events: none;
+  width: 100px;
+  position: relative;
+
+  .exit-wrap {
+    z-index: 10000;
+  }
+
+  .quick-exit-onboarding {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 10px;
+    left: 90px;
+  }
+
+  .quick-exit-onboarding-arrow-wrap {
+    transform: scale(1.5) rotate(25deg) translateY(-12px);
+    // outline: 1px solid #ccc;
+    // width: fit-content;
+    font-size: 3.5rem;
+    // font-weight: bold;
+    width: 38px;
+    height: 28px;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    opacity: 0.4;
+    pointer-events: all;
+  }
+
+  .quick-exit-onboarding-message {
+    width: 80px;
+    // outline: 1ch solid #ccc;
+    height: fit-content;
+    position: absolute;
+    top: 32px;
+    left: 0;
+
+    div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      animation: sequentialFade #{$total-cycle-sec}s infinite forwards;
+    }
+
+    div:nth-child(1) {
+      animation-delay: 1s;
+    }
+
+    div:nth-child(2) {
+      animation-delay: #{1 + $cycle-sec}s;
+    }
+
+    div:nth-child(3) {
+      animation-delay: #{1 + 2 * $cycle-sec}s;
+    }
+
+    div:nth-child(4) {
+      animation-delay: #{1 + 3 * $cycle-sec}s;
+    }
+
+    div:nth-child(5) {
+      animation-delay: #{1 + 4 * $cycle-sec}s;
+    }
+  }
+}
+
+@keyframes onboardingEntrance {
+  0% {
+    opacity: 0;
+    transform-origin: 100% 100%;
+    transform: translateX(0px) scale(0.3) rotate(60deg);
+  }
+
+  2% {
+    opacity: 1;
+    transform-origin: 100% 100%;
+
+    transform: translateX(0) scale(1);
+  }
+
+  3% {
+    opacity: 1;
+    transform-origin: 100% 100%;
+    transform: translateX(0) scale(1);
+  }
+
+  99% {
+    opacity: 1;
+    transform-origin: 100% 100%;
+    transform: translateX(0px) scale(0.9) rotate(0deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform-origin: 100% 100%;
+    transform: translateX(0px) scale(0.9) rotate(0deg); // optional: slide back out
+  }
+}
+
+.quick-exit-onboarding-arrow {
+
+  width: fit-content;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--orange);
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 60px;
+  left: 90px;
+  animation: onboardingEntrance #{$total-cycle-sec}s 0.5s infinite forwards;
+}

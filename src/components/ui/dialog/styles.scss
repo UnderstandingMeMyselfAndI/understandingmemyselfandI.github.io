@@ -9,29 +9,49 @@
   }
 
   position: fixed;
-  z-index: 8510;
+  z-index: 9000;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100dvh;
+  height: 100vh;
+
+  /* iOS Safari specific fixes */
+  @supports (-webkit-touch-callout: none) {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
   background-color: rgba(10, 10, 10, 0.75);
 }
 
 .dialog {
   text-align: center;
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column nowrap;
   position: absolute;
   z-index: 20;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
   width: 360px;
   max-width: 90%;
   min-height: 260px;
   height: fit-content;
   justify-content: space-between;
   row-gap: 1.5rem;
+
+  /* iOS Safari specific positioning */
+  @supports (-webkit-touch-callout: none) {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 360px;
+  }
 
   outline: 1px solid rgba(150, 150, 150, 0.15);
 
@@ -40,7 +60,7 @@
     width: 100%;
     height: calc(100% - 5rem);
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
     row-gap: 1.5rem;
     padding: 2.5rem 1.5rem;
     background-color: rgba(10, 10, 10, 0.15);
@@ -62,6 +82,8 @@
     max-height: 65vh;
     overflow-y: auto;
     padding: 0 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    /* Smooth scrolling on iOS */
 
     &::-webkit-scrollbar {
       width: 6px;
@@ -78,6 +100,12 @@
     &::-webkit-scrollbar-thumb {
       border-radius: 4px;
       background: rgba(250, 250, 250, 0.2);
+    }
+
+    /* iOS Safari specific */
+    @supports (-webkit-touch-callout: none) {
+      overscroll-behavior: contain;
+      scroll-snap-type: y mandatory;
     }
   }
 
@@ -109,6 +137,15 @@
     justify-content: center;
     background-color: var(--blue);
     box-shadow: none;
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px 20px;
+
+    /* iOS specific */
+    @supports (-webkit-touch-callout: none) {
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
   }
 
   button.btn.cancel {
@@ -117,5 +154,14 @@
     background: transparent;
     justify-content: center;
     outline: 1px solid rgba(150, 150, 150, 0.5);
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px 20px;
+
+    /* iOS specific */
+    @supports (-webkit-touch-callout: none) {
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
   }
 }

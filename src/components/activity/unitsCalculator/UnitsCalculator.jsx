@@ -78,9 +78,7 @@ const UnitsCalculator = () => {
   const [open, setOpen] = useState(false)
   const [drinks, setDrinks] = useState([])
 
-  const { activity } = useAppStore(
-    useShallow((s) => ({ activity: s.activity })),
-  )
+  const { activity } = useAppStore(useShallow((s) => ({ activity: s.activity })))
   const setIsModal = useAppStore((s) => s.setIsModal)
   useEffect(() => {
     open && setIsModal(activitiesById[id]?.modal)
@@ -102,23 +100,13 @@ const UnitsCalculator = () => {
 
   const addDrink = (preset, countToAdd = 1) => {
     const existingDrink = drinks.find(
-      (d) =>
-        d.label === preset.label &&
-        d.volume === preset.volume &&
-        d.abv === preset.abv,
+      (d) => d.label === preset.label && d.volume === preset.volume && d.abv === preset.abv,
     )
 
     if (existingDrink) {
-      setDrinks(
-        drinks.map((d) =>
-          d.id === existingDrink.id ? { ...d, count: d.count + countToAdd } : d,
-        ),
-      )
+      setDrinks(drinks.map((d) => (d.id === existingDrink.id ? { ...d, count: d.count + countToAdd } : d)))
     } else {
-      setDrinks([
-        ...drinks,
-        { ...preset, id: crypto.randomUUID(), count: countToAdd },
-      ])
+      setDrinks([...drinks, { ...preset, id: crypto.randomUUID(), count: countToAdd }])
     }
   }
 
@@ -129,10 +117,7 @@ const UnitsCalculator = () => {
 
   const handleCustomDrinkSubmit = (e) => {
     e.preventDefault()
-    addDrink(
-      { ...customDrink, type: 'custom' },
-      parseInt(customDrink.count, 10) || 1,
-    )
+    addDrink({ ...customDrink, type: 'custom' }, parseInt(customDrink.count, 10) || 1)
   }
 
   // const updateDrink = (id, field, value) => {
@@ -144,30 +129,20 @@ const UnitsCalculator = () => {
   const removeDrink = (id) => {
     const drinkToRemove = drinks.find((d) => d.id === id)
     if (drinkToRemove.count > 1) {
-      setDrinks(
-        drinks.map((d) => (d.id === id ? { ...d, count: d.count - 1 } : d)),
-      )
+      setDrinks(drinks.map((d) => (d.id === id ? { ...d, count: d.count - 1 } : d)))
     } else {
       setDrinks(drinks.filter((d) => d.id !== id))
     }
   }
 
-  const totalUnits = drinks.reduce(
-    (sum, d) => sum + calcUnits(d.volume, d.abv) * d.count,
-    0,
-  )
+  const totalUnits = drinks.reduce((sum, d) => sum + calcUnits(d.volume, d.abv) * d.count, 0)
 
   const totalDrinkCount = drinks.reduce((sum, d) => sum + d.count, 0)
 
   return open ? (
-    <section
-      id='ummi-units-calculator'
-      className={'activity ummi-units-calculator fixed' + (open ? ' open' : '')}
-    >
+    <section id='ummi-units-calculator' className={'activity ummi-units-calculator fixed' + (open ? ' open' : '')}>
       <div className='inner'>
-        {!isMeasuresVisible && (
-          <CloseBtn className='close-btn' onClick={handleClose} />
-        )}
+        {!isMeasuresVisible && <CloseBtn className='close-btn-activity' onClick={handleClose} />}
         <div className='content'>
           <div className='wrap'>
             <header>
@@ -175,34 +150,18 @@ const UnitsCalculator = () => {
             </header>
             <section className='calculator-core'>
               <div className='selected-measures'>
-                {drinks.length > 0 ? (
-                  <div className='instruction'>Tap row to remove</div>
-                ) : null}
+                {drinks.length > 0 ? <div className='instruction'>Tap row to remove</div> : null}
                 {drinks.length === 0 ? (
                   <div className='no-measures'>
                     {' '}
-                    <div className='no-drinks-selected '>
-                      {parse(DOMPurify.sanitize(noDrinksMessage))}
-                    </div>
+                    <div className='no-drinks-selected '>{parse(DOMPurify.sanitize(noDrinksMessage))}</div>
                   </div>
                 ) : (
-                  <ul
-                    className={
-                      'measures ' + (drinks.length === 0 ? ' none' : '')
-                    }
-                  >
+                  <ul className={'measures ' + (drinks.length === 0 ? ' none' : '')}>
                     {[...drinks]
-                      .sort(
-                        (a, b) =>
-                          calcUnits(a.volume, a.abv) -
-                          calcUnits(b.volume, b.abv),
-                      )
+                      .sort((a, b) => calcUnits(a.volume, a.abv) - calcUnits(b.volume, b.abv))
                       .map((d) => (
-                        <li
-                          key={d.id}
-                          className='drinks-entry'
-                          onClick={() => removeDrink(d.id)}
-                        >
+                        <li key={d.id} className='drinks-entry' onClick={() => removeDrink(d.id)}>
                           <div className='desc'>
                             <div className='row-1'>
                               <div className='multiplier'>{d.count}x</div>{' '}
@@ -218,10 +177,7 @@ const UnitsCalculator = () => {
                             </div>
                           </div>
                           <div className='equals'>=</div>
-                          <div className='units'>
-                            {(calcUnits(d.volume, d.abv) * d.count).toFixed(2)}{' '}
-                            units
-                          </div>
+                          <div className='units'>{(calcUnits(d.volume, d.abv) * d.count).toFixed(2)} units</div>
                         </li>
                       ))}
                   </ul>
@@ -231,9 +187,7 @@ const UnitsCalculator = () => {
                     <h3>
                       Total : <span>{totalUnits.toFixed(2)} units </span>
                     </h3>{' '}
-                    <div className='drinks-count'>
-                      ({totalDrinkCount} drinks)
-                    </div>
+                    <div className='drinks-count'>({totalDrinkCount} drinks)</div>
                   </div>
                 </div>
               </div>
@@ -245,16 +199,10 @@ const UnitsCalculator = () => {
                         setType('custom')
                         setIsMeasuresVisible(false)
                       }}
-                      className={
-                        'group' + (type === 'custom' ? ' selected' : ' ')
-                      }
-                    >
+                      className={'group' + (type === 'custom' ? ' selected' : ' ')}>
                       Custom
                     </button>
-                    <button
-                      onClick={() => setIsMeasuresVisible(true)}
-                      className='group'
-                    >
+                    <button onClick={() => setIsMeasuresVisible(true)} className='group'>
                       Measures
                     </button>
                   </div>
@@ -262,10 +210,7 @@ const UnitsCalculator = () => {
 
                 <div className='measures-container'>
                   {type === 'custom' && (
-                    <form
-                      onSubmit={handleCustomDrinkSubmit}
-                      className='custom-drink-form'
-                    >
+                    <form onSubmit={handleCustomDrinkSubmit} className='custom-drink-form'>
                       <div className='row'>
                         {/* <div>Name</div> */}
                         <label htmlFor='custom-drink-name'>
@@ -323,18 +268,9 @@ const UnitsCalculator = () => {
               </div>
             </section>
             {isMeasuresVisible && (
-              <div
-                className='measures-scroll-list'
-                onClick={() => setIsMeasuresVisible(false)}
-              >
-                <CloseBtn
-                  className='close-btn-measures'
-                  handleClick={() => setIsMeasuresVisible(false)}
-                />
-                <div
-                  className='measures-scroll-list-inner'
-                  onClick={(e) => e.stopPropagation()}
-                >
+              <div className='measures-scroll-list' onClick={() => setIsMeasuresVisible(false)}>
+                <CloseBtn className='close-btn-measures' handleClick={() => setIsMeasuresVisible(false)} />
+                <div className='measures-scroll-list-inner' onClick={(e) => e.stopPropagation()}>
                   <div className='multiplier-input'>
                     <label htmlFor='multiplier'>No of:</label>
                     <input
@@ -342,9 +278,7 @@ const UnitsCalculator = () => {
                       id='multiplier'
                       name='multiplier'
                       value={multiplier}
-                      onChange={(e) =>
-                        setMultiplier(parseInt(e.target.value, 10) || 1)
-                      }
+                      onChange={(e) => setMultiplier(parseInt(e.target.value, 10) || 1)}
                       min={1}
                     />
                   </div>
@@ -359,17 +293,11 @@ const UnitsCalculator = () => {
                             <button
                               key={preset.label}
                               onClick={() => {
-                                addDrink(
-                                  { ...preset, type: group.type },
-                                  multiplier,
-                                )
+                                addDrink({ ...preset, type: group.type }, multiplier)
                                 setIsMeasuresVisible(false)
                               }}
-                              className='measure'
-                            >
-                              <span className='measure-title'>
-                                {preset.label}
-                              </span>
+                              className='measure'>
+                              <span className='measure-title'>{preset.label}</span>
                               <span className='spec'>
                                 <span className='volume'>
                                   {preset.volume} {preset.unit}
@@ -387,8 +315,7 @@ const UnitsCalculator = () => {
             )}
             <div className='calculation-information'>
               <div>
-                <span>Units calculated</span> = <span>(volume in ml</span> X{' '}
-                <span>ABV%)</span> ÷ <span>1000</span>
+                <span>Units calculated</span> = <span>(volume in ml</span> X <span>ABV%)</span> ÷ <span>1000</span>
               </div>
             </div>
           </div>

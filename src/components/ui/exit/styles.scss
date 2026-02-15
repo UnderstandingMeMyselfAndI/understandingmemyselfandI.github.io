@@ -5,6 +5,10 @@ div.quick-exit {
   position: fixed;
   z-index: 155600;
   pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
 }
 
 div.quick-exit {

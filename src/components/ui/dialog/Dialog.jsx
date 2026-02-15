@@ -43,7 +43,8 @@ const Dialog = ({
   return (
     <div
       className={
-        'dialog-backdrop' + (open ? '  show' : '') + classes.map((c) => ' ' + c)
+        'dialog-backdrop' + (open ? ' show' : '') + 
+        (classes.length > 0 ? ' ' + classes.join(' ') : '')
       }
     >
       <div className='dialog'>

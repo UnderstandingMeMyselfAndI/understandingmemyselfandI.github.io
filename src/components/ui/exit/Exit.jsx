@@ -4,17 +4,14 @@ import ExitButton from 'buttons/exit/ExitButton'
 import Dialog from 'components/ui/dialog/Dialog'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
+
 import PropTypes from 'prop-types'
 import './styles.scss'
 const Exit = () => {
-  const quickExitMessageEnabled = useAppStore(
-    (state) => state.quickExitMessageEnabled,
-  )
+  const quickExitMessageEnabled = useAppStore((state) => state.quickExitMessageEnabled)
   const [showDialog, setShowDialog] = useState(false)
 
-  const enableQuickExitMessage = useAppStore(
-    (state) => state.enableQuickExitMessage,
-  )
+  const enableQuickExitMessage = useAppStore((state) => state.enableQuickExitMessage)
 
   const message =
     '<p>Your privacy matters.</p><p>This button lets you leave the app immediately and open google.com if you need to.</p><p>Use it whenever that feels helpful.</p><p>This message can be turned off below and also controlled in settings.</p>'
@@ -76,8 +73,7 @@ const Exit = () => {
           onCancel={handleDialogueCancel}
           confirmLabel='Continue'
           cancelLabel='Back'
-          classes={['exit-dialog']}
-        >
+          classes={['exit-dialog']}>
           <div className='checkBox-row'>
             <input
               type='checkbox'
@@ -86,9 +82,7 @@ const Exit = () => {
               checked={showDialog}
               onChange={handleCheckboxChange}
             />
-            <label htmlFor='showAgain'>
-              {parse(DOMPurify.sanitize(checkBoxInstruction))}
-            </label>
+            <label htmlFor='showAgain'>{parse(DOMPurify.sanitize(checkBoxInstruction))}</label>
           </div>
         </Dialog>
       )}

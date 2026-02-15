@@ -30,11 +30,11 @@ body #root .main section.days-counter-activity.fixed {
     flex-flow: column nowrap;
     align-items: stretch;
     justify-content: space-evenly;
-    padding: 0.25rem 1.5rem;
+    padding: 1.75rem 1.5rem 1.5rem 1.5rem;
     max-width: var(--max-width);
 
     header {
-      text-align: left;
+      // text-align: left;
 
       @media screen and (width>=768px) {
         text-align: center;
@@ -116,7 +116,7 @@ body #root .main section.days-counter-activity.fixed {
   }
 }
 
-.title::placeholder {
+.days-counter-card-title::placeholder {
   font-size: 1rem;
   color: #666;
 }
@@ -127,6 +127,7 @@ body #root .main section.days-counter-activity.fixed {
   color: white;
   margin-bottom: 0.5rem;
   text-shadow: var(--textShadowDarkValue);
+
 }
 
 .days-counter-subtitle {
@@ -175,12 +176,12 @@ body #root .main section.days-counter-activity.fixed {
 }
 
 .days-counter-add-first-icon {
-  background: rgba(164, 120, 245, 0.5);
+  background: var(--blue50Trans);
   border: none;
   border-radius: 50%;
 
-  background: rgba(31, 31, 31, 0.5);
-  box-shadow: var(--box-ShadowDarkValue);
+  background: var(--greyDark30Trans);
+  box-shadow: var(--boxShadowDarkValue);
   width: 80px;
   height: 80px;
   cursor: pointer;
@@ -194,10 +195,10 @@ body #root .main section.days-counter-activity.fixed {
 button.days-counter-add-first-btn {
   margin: 1.5rem auto;
 
-  background: rgba(164, 120, 245, 0.5);
+  background: var(--blue50Trans);
   border: none;
   padding: 0.75rem 2rem;
-  box-shadow: var(--box-ShadowDarkValue);
+  box-shadow: var(--boxShadowDarkValue);
   display: flex;
   font-size: 1.25rem;
   font-weight: 400;
@@ -212,8 +213,8 @@ button.days-counter-add-first-btn {
 }
 
 .days-counter-add-first-btn:hover {
-  box-shadow: var(--box-ShadowLightValue);
-  background: rgba(10, 10, 10, 0.25);
+  box-shadow: var(--boxShadowLightValue);
+  background: var(--greyDark30Trans);
 }
 
 .days-counter-add-icon {
@@ -281,7 +282,7 @@ button.days-counter-add-first-btn {
 }
 
 input.days-counter-title-input:focus {
-  border-bottom: 1px solid rgba(174, 156, 255, 0.25);
+  border-bottom: 1px solid var(--blue30Trans);
 
   &::placeholder {
     color: transparent;
@@ -299,13 +300,14 @@ input.days-counter-title-input:focus {
   width: 100%;
   font-size: 1.125rem;
   font-weight: 900;
-  color: var(--greyDark);
+  color: var(--lightBlue);
   border-bottom-width: 2px;
   border-bottom-color: transparent;
   outline: none;
   padding-bottom: 0.25rem;
   margin-bottom: 0.75rem;
   border: none;
+  background: transparent;
 }
 
 .days-counter-label-input::placeholder {
@@ -349,7 +351,7 @@ input.days-counter-title-input:focus {
   span {
     // width:70%;
     font-weight: 600;
-    color: #fff;
+    color: var(--primary);
     font-size: 1.25rem;
   }
 }
@@ -368,7 +370,7 @@ input.days-counter-date-input {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   outline: none;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--primary20Trans);
   border-style: solid;
   text-align: center;
   box-sizing: border-box;
@@ -392,7 +394,7 @@ input.days-counter-date-input {
 }
 
 .days-counter-date-input:focus {
-  box-shadow: var(--box-ShadowBluekValue);
+  box-shadow: var(--boxShadowBlue);
 }
 
 .days-counter-card-actions {
@@ -403,32 +405,6 @@ input.days-counter-date-input {
   position: absolute;
 }
 
-// .days-counter-stat-new {
-//   .value {
-//     padding: 0;
-//     margin: 0;
-//     font-weight: 900;
-//     font-size: 5.0rem;
-//     line-height: 1;
-//     letter-spacing: -0.5px;
-//     color: white;
-//     position: relative;
-
-//     &::after {
-//       content: 'days';
-//       position: absolute;
-//       font-size: 1.0rem;
-//       color: #999;
-//       font-weight: 600;
-//       font-variation-settings: 'wght' 600;
-//       // bottom: 50%;
-//       bottom: -0.8rem;
-//       left: 50%;
-//       transform: translate(-50%, 0);
-//       margin: 0 0 -0.9rem 0;
-//     }
-//   }
-// }
 
 /* **********************************************
 * Values and Labels
@@ -458,22 +434,20 @@ input.days-counter-date-input {
     font-size: 4.75rem;
     line-height: 1;
     letter-spacing: -0.5px;
-    color: white;
+    color: var(--primary);
     position: relative;
 
     &::after {
       content: 'days';
       position: absolute;
-      font-weight: 400;
-      font-variation-settings: 'wght' 400;
-      font-size: 1.25rem;
-      // color: #999;
-      font-weight: 600;
-      font-variation-settings: 'wght' 600;
+      font-size: 1.0rem;
+      font-weight: 500;
+      font-variation-settings: 'wght' 500;
+      color: var(--primary);
       bottom: 0;
       left: 50%;
       transform: translate(-50%, 0);
-      margin: 0 0 -1.2rem 0;
+      margin: 0 0 -1.0rem 0;
     }
   }
 
@@ -482,18 +456,12 @@ input.days-counter-date-input {
     margin-bottom: 10px;
     z-index: 1;
     font-weight: 900;
-    color: rgba(224, 171, 245, 0.8);
+    color: var(--lightBlue);
     mix-blend-mode: difference;
     font-size: 2.25rem;
     display: none;
   }
 }
-
-// .days-counter-stat:nth-child(2),
-// .days-counter-stat:nth-child(3) {
-//   height: 60px;
-
-// }
 
 .days-counter-stat-group {
   width: 100%;
@@ -522,7 +490,7 @@ input.days-counter-date-input {
 .days-counter-no-date {
   text-align: center;
   padding: 3rem 0;
-  color: #6b7280;
+  color: var(--grey);
 }
 
 .days-counter-no-date-icon {
@@ -584,7 +552,7 @@ input.days-counter-date-input {
 }
 
 .days-counter-delete-btn {
-  color: #dc2626;
+  color: var(--red);
   width: 45px;
   height: 45px;
   position: absolute;
@@ -601,11 +569,11 @@ input.days-counter-date-input {
 .days-counter-action-icon {
   width: 1.5rem;
   height: 1.5rem;
-  stroke: #666666;
+  stroke: var(--greyMed);
 
   svg {
     // fill:#fff;
-    stroke: #666666;
+    stroke: var(--greyMed);
   }
 
   path {
@@ -621,7 +589,7 @@ input.days-counter-date-input {
   height: 80px;
 
   background-color: var(--blue);
-  color: #ffffff;
+  color: var(--primary);
   padding: 1.5rem;
 
   border-radius: 50%;
@@ -636,15 +604,17 @@ input.days-counter-date-input {
 }
 
 .days-counter-add-another-btn:hover {
-  background-color: transparent;
   box-shadow: var(--textShadowDarkValue);
-  background: rgba(10, 10, 10, 0.25);
+  background: var(--greyDark30Trans);
 }
 
 .days-counter-note-container {
   position: relative;
-  // z-index: 5601;
   margin: 1.5vh auto 0 auto;
+
+  u {
+    text-decoration: none;
+  }
 }
 
 .days-counter-note {
@@ -652,7 +622,7 @@ input.days-counter-date-input {
 
   max-width: 240px;
   margin: 0 auto;
-  color: #b4b4b4;
+  color: var(--grey);
 
   p {
     font-size: 0.75rem;

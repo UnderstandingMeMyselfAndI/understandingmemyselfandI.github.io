@@ -20,9 +20,7 @@ const DaysCounter = () => {
   // const activity = useAppStore(state => state.activity);
   const setActivity = useAppStore((state) => state.setActivity)
 
-  const { activity } = useAppStore(
-    useShallow((state) => ({ activity: state.activity })),
-  )
+  const { activity } = useAppStore(useShallow((state) => ({ activity: state.activity })))
 
   const [open, setOpen] = useState(false)
   const [showDialog, setShowDialog] = useState(false)
@@ -136,17 +134,9 @@ const DaysCounter = () => {
   // 	setActivity(-1)
   // 	return null
   // }
-  return ( open ?
-    <section
-      className={'activity days-counter-activity fixed' + (open ? ' show' : '')}
-    >
-      <div
-        className={
-          'days-counter-wrapper ' +
-          (dates.length === 2 ? ' full' : '') +
-          (open ? ' open' : '')
-        }
-      >
+  return open ? (
+    <section className={'activity days-counter-activity fixed' + (open ? ' show' : '')}>
+      <div className={'days-counter-wrapper ' + (dates.length === 2 ? ' full' : '') + (open ? ' open' : '')}>
         <div className='days-counter-wrap'>
           <div className='days-counter-inner'>
             <CloseBtn classes='days-counter-close-btn' onClick={handleClose} />
@@ -164,32 +154,19 @@ const DaysCounter = () => {
                 onCancel={() => handleCloseDialog()}
               />
             )}
-            <div
-              className={
-                'days-counter-container' + (dates.length === 2 ? ' full' : '')
-              }
-            >
+            <div className={'days-counter-container' + (dates.length === 2 ? ' full' : '')}>
               {dates.length === 0 && (
                 <div className='days-counter-empty-state'>
                   <h3>Days Counter</h3>
-                  <div className='days-counter-empty-title'>
-                    Tap to add a date
-                  </div>
+                  <div className='days-counter-empty-title'>Tap to add a date</div>
 
-                  <button
-                    onClick={() => addDate()}
-                    className='days-counter-add-another-btn'
-                  >
+                  <button onClick={() => addDate()} className='days-counter-add-another-btn'>
                     ({dates.length}/2)
                   </button>
                 </div>
               )}
               {dates.length > 0 && (
-                <div
-                  className={
-                    'days-counter-list' + (dates.length === 2 ? ' full' : '')
-                  }
-                >
+                <div className={'days-counter-list' + (dates.length === 2 ? ' full' : '')}>
                   {dates.map((date, index) => (
                     <div key={date.id} className='days-counter-card'>
                       <button
@@ -198,8 +175,7 @@ const DaysCounter = () => {
                           setShowDialog(true)
                         }}
                         className='days-counter-delete-btn'
-                        title='Delete'
-                      >
+                        title='Delete'>
                         <DeleteForeverIcon />
                       </button>
 
@@ -207,8 +183,7 @@ const DaysCounter = () => {
                         <div className='days-counter-values'>
                           <div className='days-counter-stat'>
                             <span className='value'>
-                              {currentTimes[index] &&
-                              currentTimes[index].days !== undefined
+                              {currentTimes[index] && currentTimes[index].days !== undefined
                                 ? currentTimes[index].days.toLocaleString()
                                 : 0}
                             </span>
@@ -217,8 +192,7 @@ const DaysCounter = () => {
                           <div className='days-counter-stat-group'>
                             <div className='days-counter-stat'>
                               <span className='value'>
-                                {currentTimes[index] &&
-                                currentTimes[index].hours !== undefined
+                                {currentTimes[index] && currentTimes[index].hours !== undefined
                                   ? currentTimes[index].hours.toLocaleString()
                                   : 0}
                               </span>
@@ -226,8 +200,7 @@ const DaysCounter = () => {
                             </div>
                             <div className='days-counter-stat'>
                               <span className='value'>
-                                {currentTimes[index] &&
-                                currentTimes[index].minutes !== undefined
+                                {currentTimes[index] && currentTimes[index].minutes !== undefined
                                   ? currentTimes[index].minutes.toLocaleString()
                                   : 0}
                               </span>
@@ -243,19 +216,13 @@ const DaysCounter = () => {
                         </div>
                       )}
                       <div className='days-counter-card-date'>
-                        <div className='title'>
+                        <div className='days-counter-card-title'>
                           <input
                             id={`Days-Counter-Title-${index}`}
                             type='text'
                             placeholder='Tap to set a title'
                             value={date.label}
-                            onChange={(e) =>
-                              updateDate(
-                                index,
-                                date.selectedDate,
-                                e.target.value,
-                              )
-                            }
+                            onChange={(e) => updateDate(index, date.selectedDate, e.target.value)}
                             className='days-counter-title-input'
                           />
                         </div>
@@ -264,13 +231,8 @@ const DaysCounter = () => {
                             <span
                               className='days-counter-date-display'
                               onClick={() => handleDateClick(index)}
-                              style={{ cursor: 'pointer' }}
-                            >
-                              {parse(
-                                formatDate(
-                                  DOMPurify.sanitize(date.selectedDate),
-                                ),
-                              )}
+                              style={{ cursor: 'pointer' }}>
+                              {parse(formatDate(DOMPurify.sanitize(date.selectedDate)))}
                             </span>
                           ) : (
                             <></>
@@ -279,9 +241,7 @@ const DaysCounter = () => {
                             <input
                               type='datetime-local'
                               value={date.selectedDate || ''}
-                              onChange={(e) =>
-                                updateDate(index, e.target.value, date.label)
-                              }
+                              onChange={(e) => updateDate(index, e.target.value, date.label)}
                               onBlur={() => setEditingDateIndex(-1)}
                               min={getTenYearsAgo()}
                               max={getToday()}
@@ -299,10 +259,7 @@ const DaysCounter = () => {
               )}
 
               {dates.length > 0 && dates.length < 2 && (
-                <button
-                  onClick={() => addDate()}
-                  className='days-counter-add-another-btn'
-                >
+                <button onClick={() => addDate()} className='days-counter-add-another-btn'>
                   ({dates.length}/2)
                 </button>
               )}
@@ -310,8 +267,7 @@ const DaysCounter = () => {
             <div className='days-counter-note-container'>
               <div className='days-counter-note'>
                 <p>
-                  * All dates are saved <u>only on your device</u> to ensure
-                  your privacy.
+                  * All dates are saved <u>only on your device</u> to ensure your privacy.
                 </p>
 
                 <p>Disble controls available in settings.</p>
@@ -320,8 +276,8 @@ const DaysCounter = () => {
           </div>
         </div>
       </div>
-    </section> : null
-  )
+    </section>
+  ) : null
 }
 
 export default DaysCounter
