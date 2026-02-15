@@ -1,0 +1,11 @@
+name: ummi-deploy-app
+static_sites:
+  - name: understandingmemyselfandi-github
+    github:
+      branch: main
+      deploy_on_push: true
+      repo: UnderstandingMeMyselfAndI/understandingmemyselfandI.github.io
+    source_dir: docs
+    catchall_document: '' # <-- this disables the fallback
+    # Optionally, you can also set an explicit error document:
+    # error_document: 404.html
