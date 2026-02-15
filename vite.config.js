@@ -6,7 +6,7 @@ import react from '@vitejs/plugin-react';
 import { analyzer } from 'vite-bundle-analyzer';
 import Sitemap from 'vite-plugin-sitemap';
 import { VitePWA } from 'vite-plugin-pwa';
-import getDynamicRoutes from './getDynamicRoutes.js';
+import {getDynamicRoutes,getShortcuts} from './getDynamicRoutes.js';
 import browserslist from 'browserslist';
 import { browserslistToTargets } from 'lightningcss';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
@@ -104,6 +104,7 @@ export default defineConfig({
         
       },
       manifest: {
+        filename: 'manifest.json', 
         "name": "Ummi",
         "short_name": "Ummi",
         "description": "Understanding Me Myself & I (Ummi) is a companion app providing support for mental health and addiction recovery. It provides quick access to tools and skills learnt in SMART, Cognitive Behavioural Therapy (CBT), Acceptance Commitment Therapy (ACT), Dialectical Behaviour Therapy (DBT) and others.",
@@ -118,9 +119,10 @@ export default defineConfig({
             "origin": "https://www.ummi.now",
           }
         ],
+        "shortcuts": getShortcuts(),
         "handle_links": ["preferred", "auto"],
-        "background_color": "#000000",
-        "theme_color": "#000000",
+        "background_color": "#1b1b1b",
+        "theme_color": "#1b1b1b",
         "orientation": "portrait",
         "lang": "en",
         "dir": "ltr",
