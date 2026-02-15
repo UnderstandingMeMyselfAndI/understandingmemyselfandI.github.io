@@ -1,1 +1,10 @@
-AddType application/javascript .js
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^(.*\.js)$ - [T=application/javascript,L]
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType application/javascript .js
+  DefaultType application/javascript
+</IfModule>
