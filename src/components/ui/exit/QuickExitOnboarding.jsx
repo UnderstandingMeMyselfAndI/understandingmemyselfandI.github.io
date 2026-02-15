@@ -32,7 +32,7 @@ const QuickExitOnboarding = ({ children }) => {
           <div>This is the quick exit button.</div>
           <div>Click it to exit fast.</div>
           <div>Drag to position it.</div>
-          <div>Hide it in settings.</div>
+          <div>Hide it in menu-{'>'}settings.</div>
           <div>Tap to hide this message</div>
         </div>
       </div>
