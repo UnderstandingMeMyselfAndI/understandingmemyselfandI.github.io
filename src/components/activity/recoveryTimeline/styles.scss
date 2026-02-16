@@ -47,7 +47,7 @@ body .main div#RecoveryTimelineParent {
   justify-content: center;
   align-items: center;
 
-  > div {
+  >div {
     width: 100%;
   }
 
@@ -77,8 +77,8 @@ body .main div#RecoveryTimelineParent {
   left: calc(50% + 250px);
 
   font-size: 80px;
-  font-weight: 900;
-  font-variation-settings: 'wght' 900;
+  font-weight: 800;
+  font-variation-settings: 'wght' 800;
   opacity: 0.15;
   text-align: center;
   display: flex;
@@ -418,12 +418,10 @@ $itemHeight: 260px;
   margin: 0 auto;
   background-size: 100% 1px;
   background-position-x: center;
-  background: repeating-linear-gradient(
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0) 24px,
-    rgba(255, 255, 255, 0.1) 24px,
-    rgba(255, 255, 255, 0.1) 25px
-  );
+  background: repeating-linear-gradient(rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0) 24px,
+      rgba(255, 255, 255, 0.1) 24px,
+      rgba(255, 255, 255, 0.1) 25px);
   background-repeat: repeat-y;
 }
 
@@ -434,12 +432,10 @@ $itemHeight: 260px;
   margin: 0 auto;
   background-size: 100% 1px;
   background-position-x: center;
-  background: repeating-linear-gradient(
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0) 24px,
-    rgba(255, 255, 255, 0.1) 24px,
-    rgba(255, 255, 255, 0.1) 25px
-  );
+  background: repeating-linear-gradient(rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0) 24px,
+      rgba(255, 255, 255, 0.1) 24px,
+      rgba(255, 255, 255, 0.1) 25px);
   background-repeat: repeat-y;
 }
 
@@ -449,11 +445,9 @@ $itemHeight: 260px;
   margin: 0 auto;
   background-size: 100% 1px;
   background-position-x: center;
-  background: repeating-linear-gradient(
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0) 198px,
-    rgba(255, 255, 255, 0.25) 198px,
-    rgba(255, 255, 255, 0.25) 200px
-  );
+  background: repeating-linear-gradient(rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0) 198px,
+      rgba(255, 255, 255, 0.25) 198px,
+      rgba(255, 255, 255, 0.25) 200px);
   background-repeat: repeat-y;
 }

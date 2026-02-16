@@ -33,12 +33,10 @@ output
 }
 // --- END Usage Example ---
  */
-@function responsiveFontSize(
-  $minFontSize,
+@function responsiveFontSize($minFontSize,
   $maxFontSize,
   $minDeviceWidth,
-  $maxDeviceWidth
-) {
+  $maxDeviceWidth) {
   // Convert all inputs to base units (e.g., px) for consistent calculation
   $minFontSizePx: math.div(math.div($minFontSize, 1), 1px) * 1px;
   $maxFontSizePx: math.div(math.div($maxFontSize, 1), 1px) * 1px;
@@ -46,10 +44,8 @@ output
   $maxDeviceWidthPx: math.div(math.div($maxDeviceWidth, 1), 1px) * 1px;
 
   // Calculate the slope (unitless)
-  $slope: math.div(
-    $maxFontSizePx - $minFontSizePx,
-    $maxDeviceWidthPx - $minDeviceWidthPx
-  );
+  $slope: math.div($maxFontSizePx - $minFontSizePx,
+      $maxDeviceWidthPx - $minDeviceWidthPx );
 
   // Calculate the Y-axis intersection (in a base unit like rem, assuming 1rem = 16px here)
   // To keep it simple in pure Sass math, we keep it in px first and then add the unit later
@@ -120,12 +116,10 @@ $font_family: 'Plus Jakarta Sans', sans-serif;
 
 $default_size_min: 18px;
 $default_size_max: 20px;
-$default_size: responsiveFontSize(
-  $default_size_min,
-  $default_size_max,
-  $minDeviceWidth,
-  $maxDeviceWidth
-);
+$default_size: responsiveFontSize($default_size_min,
+    $default_size_max,
+    $minDeviceWidth,
+    $maxDeviceWidth);
 
 $default_text_color: var(--text_primary);
 $default_line_height: 1.2;
@@ -136,14 +130,12 @@ $default_line_height: 1.2;
 
 $logo_lrg_size_min: 40px;
 $logo_lrg_size_max: 56px;
-$logo_lrg_size: responsiveFontSize(
-  $logo_lrg_size_min,
-  $logo_lrg_size_max,
-  $minDeviceWidth,
-  $maxDeviceWidth
-);
+$logo_lrg_size: responsiveFontSize($logo_lrg_size_min,
+    $logo_lrg_size_max,
+    $minDeviceWidth,
+    $maxDeviceWidth);
 $logo_lrg_color: var(--text_primary);
-$logo_lrg_weight: 900;
+$logo_lrg_weight: 800;
 $logo_lrg_line_height: 1.2;
 
 // ------------------------------------------
@@ -152,24 +144,20 @@ $logo_lrg_line_height: 1.2;
 
 $acc_title_size_min: 54px;
 $acc_title_size_max: 60px;
-$acc_title_size: responsiveFontSize(
-  $acc_title_size_min,
-  $acc_title_size_max,
-  $minDeviceWidth,
-  $maxDeviceWidth
-);
+$acc_title_size: responsiveFontSize($acc_title_size_min,
+    $acc_title_size_max,
+    $minDeviceWidth,
+    $maxDeviceWidth);
 $acc_title_color: var(--text_primary);
 $acc_title_weight: 800;
 $acc_title_line_height: 1.1;
 
 $acc_title_size_sml_min: 38px;
 $acc_title_size_sml_max: 60px;
-$acc_title_size_sml: responsiveFontSize(
-  $acc_title_size_sml_min,
-  $acc_title_size_sml_max,
-  $minDeviceWidth,
-  $maxDeviceWidth
-);
+$acc_title_size_sml: responsiveFontSize($acc_title_size_sml_min,
+    $acc_title_size_sml_max,
+    $minDeviceWidth,
+    $maxDeviceWidth);
 
 // ------------------------------------------
 // Ancronym letter font size
@@ -177,12 +165,10 @@ $acc_title_size_sml: responsiveFontSize(
 
 $letter_size_min: 44px;
 $letter_size_max: 66px;
-$letter_size: responsiveFontSize(
-  $letter_size_min,
-  $letter_size_max,
-  $minDeviceWidth,
-  $maxDeviceWidth
-);
+$letter_size: responsiveFontSize($letter_size_min,
+    $letter_size_max,
+    $minDeviceWidth,
+    $maxDeviceWidth);
 $letter_color: var(--text_primary);
 $letter_weight: 800;
 $letter_line_height: 1;
@@ -193,12 +179,10 @@ $letter_line_height: 1;
 
 $acc_wrd_size_min: 40px;
 $acc_wrd_size_max: 60px;
-$acc_wrd_size: responsiveFontSize(
-  $acc_wrd_size_min,
-  $acc_wrd_size_max,
-  $minDeviceWidth,
-  $maxDeviceWidth
-);
+$acc_wrd_size: responsiveFontSize($acc_wrd_size_min,
+    $acc_wrd_size_max,
+    $minDeviceWidth,
+    $maxDeviceWidth);
 $acc_wrd_color: var(--text_primary);
 $acc_wrd_weight: 800;
 $acc_wrd_line_height: 1;
@@ -209,12 +193,10 @@ $acc_wrd_line_height: 1;
 
 $section_title_size_min: 62px;
 $section_title_size_max: 120px;
-$section_title_size: responsiveFontSize(
-  $section_title_size_min,
-  $section_title_size_max,
-  $minDeviceWidth,
-  $maxDeviceWidth
-);
+$section_title_size: responsiveFontSize($section_title_size_min,
+    $section_title_size_max,
+    $minDeviceWidth,
+    $maxDeviceWidth);
 $section_title_color: var(--text_primary);
 $section_title_weight: 800;
 $section_title_line_height: 1.1;
@@ -225,12 +207,10 @@ $section_title_line_height: 1.1;
 
 $h1_size_min: 38px;
 $h1_size_max: 80px;
-$h1_size: responsiveFontSize(
-  $h1_size_min,
-  $h1_size_max,
-  $minDeviceWidth,
-  $maxDeviceWidth
-);
+$h1_size: responsiveFontSize($h1_size_min,
+    $h1_size_max,
+    $minDeviceWidth,
+    $maxDeviceWidth);
 $h1_color: var(--text_primary);
 $h1_weight: 800;
 $h1_line_height: 1.2;
@@ -241,12 +221,10 @@ $h1_line_height: 1.2;
 
 $h2_size_min: 50px;
 $h2_size_max: 88px;
-$h2_size: responsiveFontSize(
-  $h2_size_min,
-  $h2_size_max,
-  $minDeviceWidth,
-  $maxDeviceWidth
-);
+$h2_size: responsiveFontSize($h2_size_min,
+    $h2_size_max,
+    $minDeviceWidth,
+    $maxDeviceWidth);
 
 $h2_color: var(--text_primary);
 $h2_weight: 800;
@@ -258,12 +236,10 @@ $h2_line_height: 1.4;
 
 $h3_size_min: 38px;
 $h3_size_max: 62px;
-$h3_size: responsiveFontSize(
-  $h3_size_min,
-  $h3_size_max,
-  $minDeviceWidth,
-  $maxDeviceWidth
-);
+$h3_size: responsiveFontSize($h3_size_min,
+    $h3_size_max,
+    $minDeviceWidth,
+    $maxDeviceWidth);
 $h3_color: var(--text_primary);
 $h3_weight: 800;
 $h3_line_height: 1.2;
@@ -274,12 +250,10 @@ $h3_line_height: 1.2;
 
 $h4_size_min: 28px;
 $h4_size_max: 42px;
-$h4_size: responsiveFontSize(
-  $h4_size_min,
-  $h4_size_max,
-  $minDeviceWidth,
-  $maxDeviceWidth
-);
+$h4_size: responsiveFontSize($h4_size_min,
+    $h4_size_max,
+    $minDeviceWidth,
+    $maxDeviceWidth);
 
 $h4_color: var(--text_primary);
 $h4_weight: 700;
@@ -291,12 +265,10 @@ $h4_line_height: 1.2;
 
 $h5_size_min: 24px;
 $h5_size_max: 34px;
-$h5_size: responsiveFontSize(
-  $h5_size_min,
-  $h5_size_max,
-  $minDeviceWidth,
-  $maxDeviceWidth
-);
+$h5_size: responsiveFontSize($h5_size_min,
+    $h5_size_max,
+    $minDeviceWidth,
+    $maxDeviceWidth);
 
 $h5_color: var(--text_primary);
 $h5_weight: 500;
@@ -308,12 +280,10 @@ $h5_line_height: 1.2;
 
 $subtitle_size_min: 14px;
 $subtitle_size_max: 16px;
-$subtitle_size: responsiveFontSize(
-  $subtitle_size_min,
-  $subtitle_size_max,
-  $minDeviceWidth,
-  $maxDeviceWidth
-);
+$subtitle_size: responsiveFontSize($subtitle_size_min,
+    $subtitle_size_max,
+    $minDeviceWidth,
+    $maxDeviceWidth);
 
 $subtitle_color: var(--text_primary);
 $subtitle_weight: 400;
@@ -325,12 +295,10 @@ $subtitle_style: normal;
 
 $menu_size_min: 25px;
 $menu_size_max: 38px;
-$menu_size: responsiveFontSize(
-  $menu_size_min,
-  $menu_size_max,
-  $minDeviceWidth,
-  $maxDeviceWidth
-);
+$menu_size: responsiveFontSize($menu_size_min,
+    $menu_size_max,
+    $minDeviceWidth,
+    $maxDeviceWidth);
 $menu_color: var(--text_primary);
 $menu_weight: 100;
 $menu_line_height: 1.1;
@@ -342,12 +310,10 @@ $menu_line_height: 1.1;
 $small_size_min: 10px;
 $small_size_max: 16px;
 
-$small_size: responsiveFontSize(
-  $small_size_min,
-  $small_size_max,
-  $minDeviceWidth,
-  $maxDeviceWidth
-);
+$small_size: responsiveFontSize($small_size_min,
+    $small_size_max,
+    $minDeviceWidth,
+    $maxDeviceWidth);
 
 $small_color: var(--text_primary);
 $small_weight: 400;
@@ -359,12 +325,10 @@ $small_style: normal;
 
 $med_size_min: 14px;
 $med_size_max: 20px;
-$med_size: responsiveFontSize(
-  $med_size_min,
-  $med_size_max,
-  $minDeviceWidth,
-  $maxDeviceWidth
-);
+$med_size: responsiveFontSize($med_size_min,
+    $med_size_max,
+    $minDeviceWidth,
+    $maxDeviceWidth);
 
 $med_color: var(--text_primary);
 $med_weight: 700;
@@ -376,12 +340,10 @@ $med_line_height: 1.2;
 
 $lrg_size_min: 36px;
 $lrg_size_max: 158px;
-$lrg_size: responsiveFontSize(
-  $lrg_size_min,
-  $lrg_size_max,
-  $minDeviceWidth,
-  $maxDeviceWidth
-);
+$lrg_size: responsiveFontSize($lrg_size_min,
+    $lrg_size_max,
+    $minDeviceWidth,
+    $maxDeviceWidth);
 
 $lrg_color: var(--text_primary);
 $lrg_weight: 600;
@@ -394,12 +356,10 @@ $lrg_line_height: 1.2;
 
 $lrg_title_size_min: 40px;
 $lrg_title_size_max: 158px;
-$lrg_title_size: responsiveFontSize(
-  $lrg_title_size_min,
-  $lrg_title_size_max,
-  $minDeviceWidth,
-  $maxDeviceWidth
-);
+$lrg_title_size: responsiveFontSize($lrg_title_size_min,
+    $lrg_title_size_max,
+    $minDeviceWidth,
+    $maxDeviceWidth);
 
 $lrg_title_color: var(--text_primary);
 $lrg_title_weight: 600;
@@ -412,12 +372,10 @@ $lrg_title_line_height: 1.2;
 
 $date_size_min: 12px;
 $date_size_max: 14px;
-$date_size: responsiveFontSize(
-  $date_size_min,
-  $date_size_max,
-  $minDeviceWidth,
-  $maxDeviceWidth
-);
+$date_size: responsiveFontSize($date_size_min,
+    $date_size_max,
+    $minDeviceWidth,
+    $maxDeviceWidth);
 
 $date_color: var(--text_primary);
 $date_weight: 200;
@@ -429,12 +387,10 @@ $date_style: normal;
 
 $p_size_min: 22px;
 $p_size_max: 22px;
-$p_size: responsiveFontSize(
-  $p_size_min,
-  $p_size_max,
-  $minDeviceWidth,
-  $maxDeviceWidth
-);
+$p_size: responsiveFontSize($p_size_min,
+    $p_size_max,
+    $minDeviceWidth,
+    $maxDeviceWidth);
 
 $p_color: var(--text_primary);
 $p_weight: 300;
@@ -446,12 +402,10 @@ $p_line_height: 1.4;
 
 $ummi_size_min: 22px;
 $ummi_size_max: 26px;
-$ummi_size: responsiveFontSize(
-  $ummi_size_min,
-  $ummi_size_max,
-  $minDeviceWidth,
-  $maxDeviceWidth
-);
+$ummi_size: responsiveFontSize($ummi_size_min,
+    $ummi_size_max,
+    $minDeviceWidth,
+    $maxDeviceWidth);
 
 $ummi_color: var(--lightBlue);
 $ummi_weight: 400;
@@ -463,12 +417,10 @@ $ummi_line_height: 1.4;
 
 $btn_size_min: 14px;
 $btn_size_max: 18px;
-$btn_size: responsiveFontSize(
-  $btn_size_min,
-  $btn_size_max,
-  $minDeviceWidth,
-  $maxDeviceWidth
-);
+$btn_size: responsiveFontSize($btn_size_min,
+    $btn_size_max,
+    $minDeviceWidth,
+    $maxDeviceWidth);
 
 $btn_color: var(--text_primary);
 $btn_weight: 400;

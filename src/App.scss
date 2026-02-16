@@ -245,7 +245,7 @@ body {
       }
     }
 
-    > .inner {
+    >.inner {
       width: 100%;
 
       .content {
@@ -341,6 +341,7 @@ body {
   }
 
   section {
+
     .title,
     h4 {
       text-decoration-thickness: 4px;
@@ -389,8 +390,8 @@ body {
   strong,
   b,
   p b {
-    font-weight: 900;
-    font-variation-settings: 'wght' 900;
+    font-weight: 800;
+    font-variation-settings: 'wght' 800;
   }
 }
 

@@ -156,8 +156,7 @@ const Header = () => {
           scale: (i) => leaveAnimations[i].scale || 1,
           rotateY: (i) => leaveAnimations[i].rotateY,
           rotateZ: (i) => leaveAnimations[i].rotateZ,
-          transformOrigin: (i) =>
-            leaveAnimations[i].transformOrigin || '50% 50%',
+          transformOrigin: (i) => leaveAnimations[i].transformOrigin || '50% 50%',
           x: (i) => leaveAnimations[i].x,
           y: (i) => leaveAnimations[i].y,
         })
@@ -295,12 +294,8 @@ const Header = () => {
     setIsLeaving(!inViewData.current || isModal)
   }, [isModal])
 
-  return ( 
-    <section
-      id='header'
-      className={'activity header' + (open ? ' show' : ' hide')}
-      ref={cont}
-    >
+  return (
+    <section id='header' className={'activity header' + (open ? ' show' : ' hide')} ref={cont}>
       <div className='leavingWrap' ref={inViewRef}>
         <div className={'group-wrap'}>
           <div className='home-grp'>
@@ -314,45 +309,36 @@ const Header = () => {
             <div className={`wgrp ss-0`} ref={groupRef}>
               <div>
                 <div className='logoType'>
-                  <ErrorBoundary FallbackComponent={<>W0 had an error</>}>
+                  <ErrorBoundary FallbackComponent={<></>}>
                     <div className='w0w' ref={addLeaveRef}>
-                      <div
-                        className={'r1 w0' + (isLeaving || isModal ? ' leaving' : '')}
-                        ref={addLoopRef}
-                      >
+                      <div className={'r1 w0' + (isLeaving || isModal ? ' leaving' : '')} ref={addLoopRef}>
                         Understanding
                       </div>
                     </div>
                   </ErrorBoundary>
                   <div className='r2'>
-                    <ErrorBoundary FallbackComponent={<>W1 had an error</>}>
+                    <ErrorBoundary FallbackComponent={<></>}>
                       <div className='w1w' ref={addLeaveRef}>
-                        <div
-                          className={'w1' + (isLeaving || isModal ? ' leaving' : '')}
-                          ref={addLoopRef}
-                        >
+                        <div className={'w1' + (isLeaving || isModal ? ' leaving' : '')} ref={addLoopRef}>
                           Me
                         </div>
                       </div>
                     </ErrorBoundary>
-                    <ErrorBoundary FallbackComponent={<>W2 had an error</>}>
+                    <ErrorBoundary FallbackComponent={<></>}>
                       <div className='w2w' ref={addLeaveRef}>
-                        <div
-                          className={'w2' + (isLeaving || isModal ? ' leaving' : '')}
-                          ref={addLoopRef}
-                        >
+                        <div className={'w2' + (isLeaving || isModal ? ' leaving' : '')} ref={addLoopRef}>
                           Myself
                         </div>
                       </div>
                     </ErrorBoundary>
-                    <ErrorBoundary FallbackComponent={<>W3 had an error</>}>
+                    <ErrorBoundary FallbackComponent={<></>}>
                       <div className='w3w' ref={addLeaveRef}>
                         <div className='w3' ref={addLoopRef}>
                           &
                         </div>
                       </div>
                     </ErrorBoundary>
-                    <ErrorBoundary FallbackComponent={<>W4 had an error</>}>
+                    <ErrorBoundary FallbackComponent={<></>}>
                       <div className='w4w' ref={addLeaveRef}>
                         <div className='w4' ref={addLoopRef}>
                           I

@@ -155,20 +155,16 @@ $minimap-w: 50px;
   background-position: center top;
 
   // Optional: Fade out at very top and bottom for smoothness
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent,
-    black 10%,
-    black 90%,
-    transparent
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    transparent,
-    black 10%,
-    black 90%,
-    transparent
-  );
+  -webkit-mask-image: linear-gradient(to bottom,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent);
+  mask-image: linear-gradient(to bottom,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent);
 
   @media (width <=425px) {
     transform: translateX(calc(-50% - 15px));
@@ -234,6 +230,7 @@ $minimap-w: 50px;
 }
 
 @keyframes bounce {
+
   0%,
   20%,
   50%,
@@ -287,12 +284,12 @@ $minimap-w: 50px;
   display: flex;
   flex-flow: column nowrap;
 
-  > div p {
+  >div p {
     font-size: 0.8751rem;
     width: 96%;
   }
 
-  > div:first-child {
+  >div:first-child {
     text-transform: uppercase;
     letter-spacing: 2px;
     width: 96%;
@@ -305,10 +302,10 @@ $minimap-w: 50px;
     justify-content: center;
     align-items: center;
     align-content: center;
-    font-weight: 900;
+    font-weight: 800;
     font-size: 2rem;
     line-height: 1;
-    font-variation-settings: 'wght' 900;
+    font-variation-settings: 'wght' 800;
   }
 }
 
@@ -355,8 +352,8 @@ $minimap-w: 50px;
   color: var(--orange70Trans);
   min-width: 100%;
   letter-spacing: -0.9;
-  font-weight: 900;
-  font-variation-settings: 'wght' 900;
+  font-weight: 800;
+  font-variation-settings: 'wght' 800;
 }
 
 .huge-title {

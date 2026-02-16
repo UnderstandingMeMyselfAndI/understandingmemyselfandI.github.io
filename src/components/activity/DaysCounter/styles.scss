@@ -123,7 +123,7 @@ body #root .main section.days-counter-activity.fixed {
 
 .days-counter-title {
   font-size: 2rem;
-  font-weight: 900;
+  font-weight: 800;
   color: white;
   margin-bottom: 0.5rem;
   text-shadow: var(--textShadowDarkValue);
@@ -299,7 +299,7 @@ input.days-counter-title-input:focus {
 .days-counter-label-input {
   width: 100%;
   font-size: 1.125rem;
-  font-weight: 900;
+  font-weight: 800;
   color: var(--lightBlue);
   border-bottom-width: 2px;
   border-bottom-color: transparent;
@@ -429,8 +429,8 @@ input.days-counter-date-input {
   .value {
     padding: 0;
     margin: 0;
-    font-weight: 900;
-    font-variation-settings: 'wght' 900;
+    font-weight: 800;
+    font-variation-settings: 'wght' 800;
     font-size: 4.75rem;
     line-height: 1;
     letter-spacing: -0.5px;
@@ -455,7 +455,7 @@ input.days-counter-date-input {
     letter-spacing: -0.25px;
     margin-bottom: 10px;
     z-index: 1;
-    font-weight: 900;
+    font-weight: 800;
     color: var(--lightBlue);
     mix-blend-mode: difference;
     font-size: 2.25rem;

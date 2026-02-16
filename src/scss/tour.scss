@@ -8,11 +8,13 @@ Onboarding
   width: fit-content;
   height: fit-content;
 }
+
 body {
   #driver-popover-content {
     width: 200px;
     height: 300px;
   }
+
   #driver-dummy-element,
   #driver-popover-content,
   .driver-popover-title,
@@ -25,6 +27,7 @@ body {
   .driver-popover {
     font-family: 'Plus Jakarta Sans', sans-serif !important;
   }
+
   .italic {
     font-family: 'Plus Jakarta Sans', sans-serif !important;
     font-weight: 500;
@@ -32,6 +35,7 @@ body {
 
     color: var(--primary);
   }
+
   #driver-popover-content {
     display: flex !important;
     flex-flow: column wrap;
@@ -42,12 +46,11 @@ body {
 
   .driver-popover.flp-theme {
     background: rgba(104, 79, 128, 0.8);
-    background: linear-gradient(
-      140deg,
-      rgba(27, 134, 158, 1) 0%,
-      rgb(157, 30, 30) 81%
-    );
+    background: linear-gradient(140deg,
+        rgba(27, 134, 158, 1) 0%,
+        rgb(157, 30, 30) 81%);
     margin: -3px;
+
     .driver-popover-title,
     .driver-popover-description,
     .driver-popover-footer,
@@ -62,10 +65,12 @@ body {
       font-family: 'Plus Jakarta Sans' !important;
       font-weight: 300;
     }
+
     .driver-popover-description p {
       font-family: 'Plus Jakarta Sans', cursive !important;
       font-weight: 300 !important;
     }
+
     .driver-popover-title {
       font-family: 'Plus Jakarta Sans', cursive !important;
       color: var(--primary);
@@ -78,15 +83,17 @@ body {
         row-gap: 1.5rem;
         margin: 0.5rem 0 1.75rem 0;
         text-align: center;
+
         .t {
           width: 100%;
           font-family: 'Plus Jakarta Sans', cursive !important;
           transform: none;
           font-size: 2.75rem;
-          font-weight: 900;
+          font-weight: 800;
           color: var(--primary);
           width: 100%;
         }
+
         .italic {
           // font-family: "Kaushan Script", cursive !important;
           color: var(--primary);
@@ -98,10 +105,12 @@ body {
         }
       }
     }
+
     .driver-popover-progress-text {
       color: var(--grey);
       font-size: 1rem;
     }
+
     /* ------------------------------------------------
 		Description
 		------------------------------------------------ */
@@ -109,13 +118,16 @@ body {
       .intro {
         text-align: center;
       }
+
       p {
         margin-bottom: 1rem;
       }
+
       p:has(span.note) {
         text-align: center;
         margin-bottom: 1rem;
         font-weight: 100;
+
         span.note {
           font-weight: 100;
           font-size: 2rem;
@@ -126,6 +138,7 @@ body {
         }
       }
     }
+
     /* ------------------------------------------------
 		Close button
 		------------------------------------------------ */
@@ -136,6 +149,7 @@ body {
       font-weight: 200;
       color: #bebebe !important;
     }
+
     /* ------------------------------------------------
 		Overlay Arrow
 		------------------------------------------------ */
@@ -148,16 +162,20 @@ body {
       height: 13px;
 
       border: none;
+
       &.driver-popover-arrow-side-right {
         left: -12px;
         clip-path: polygon(100% 0, 0 50%, 100% 100%);
       }
+
       &.driver-popover-arrow-side-left {
         clip-path: polygon(100% 50%, 0 0, 0 100%);
       }
+
       &.driver-popover-arrow-side-top {
         clip-path: polygon(100% 0, 0 0, 50% 100%);
       }
+
       &.driver-popover-arrow-side-bottom {
         top: -12px;
         clip-path: polygon(100% 100%, 50% 0, 0 100%);
@@ -170,9 +188,11 @@ body {
     .driver-popover-footer {
       .driver-popover-navigation-btns {
         column-gap: 0.5rem;
+
         button {
           text-shadow: none;
         }
+
         .driver-popover-next-btn,
         .driver-popover-prev-btn {
           background: rgba(250, 250, 250, 0.2);
@@ -185,13 +205,16 @@ body {
           align-items: center;
           justify-content: center;
           column-gap: 0.25rem;
+
           svg {
             width: 20px;
             height: 20px;
             /* outline: 1px solid #ccc; */
           }
+
           &.driver-popover-btn-disabled {
             color: #cacaca;
+
             svg {
               width: 20px;
               height: 20px;
@@ -205,15 +228,15 @@ body {
         }
       }
     }
+
     /* ------------------------------------------------
 		Highlighted Element
 		------------------------------------------------ */
-    .driver-active-element {
-    }
+    .driver-active-element {}
+
     /* ------------------------------------------------
 		Overlay 
 		------------------------------------------------ */
-    .driver-overlay {
-    }
+    .driver-overlay {}
   }
 }

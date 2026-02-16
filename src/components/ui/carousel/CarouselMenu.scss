@@ -8,7 +8,7 @@ div.AccordionRoot {
   position: relative;
 }
 
-div.AccordionRoot > div {
+div.AccordionRoot>div {
   transition: opacity 0.1s ease-out;
   background: rgba(50, 50, 50, 0.2);
   border-radius: var(--border-radius);
@@ -127,7 +127,7 @@ h3.MuiAccordion-heading {
         display: flex;
         font-size: variables.$acc_title_size;
         line-height: 1.1;
-        font-weight: 900;
+        font-weight: 800;
         transition: all 0.2s ease-in-out;
         text-align: center;
         column-gap: 0.25rem;
@@ -138,7 +138,7 @@ h3.MuiAccordion-heading {
         column-gap: 0.65rem;
         justify-content: center;
 
-        > div {
+        >div {
           position: relative;
           // outline: 1px solid #ccc;
           height: 100%;
@@ -298,12 +298,12 @@ h3.MuiAccordion-heading {
   flex-flow: column nowrap;
   justify-content: space-evenly;
 
-  > div:first-child {
+  >div:first-child {
     margin: 2rem 0 1rem 0;
     color: var(--primary);
   }
 
-  > div {
+  >div {
     margin: 1rem 0;
     text-align: left;
     color: var(--lightBlue);
@@ -316,7 +316,7 @@ h3.MuiAccordion-heading {
 
       div.Acronym-letter {
         position: absolute;
-        font-weight: 900;
+        font-weight: 800;
         font-size: variables.$letter_size_min;
 
         color: rgba(255, 165, 0, 0.9);
@@ -339,8 +339,7 @@ h3.MuiAccordion-heading {
           transform: translate(0, -80%);
           left: 0;
           z-index: -2;
-          transform: rotateZ(-6deg) skew(0.03turn, 12deg) translate(-12px, -6px)
-            scale(0.9, 0.5);
+          transform: rotateZ(-6deg) skew(0.03turn, 12deg) translate(-12px, -6px) scale(0.9, 0.5);
           outline: 1px solid rgba(150, 150, 150, 0.5);
           background-color: rgba(20, 20, 20, 0.4);
         }
@@ -357,7 +356,7 @@ h3.MuiAccordion-heading {
 
         &::first-letter {
           opacity: 0;
-          font-weight: 900;
+          font-weight: 800;
           font-size: variables.$h1_size;
         }
 
@@ -369,8 +368,7 @@ h3.MuiAccordion-heading {
           top: 0;
           left: 0;
           z-index: -1;
-          transform: rotateZ(-2deg) skew(-0.09turn, 6deg) translate(-20px, 10px)
-            scale(0.9, 0.5);
+          transform: rotateZ(-2deg) skew(-0.09turn, 6deg) translate(-20px, 10px) scale(0.9, 0.5);
           outline: 1px solid #185301;
         }
       }
