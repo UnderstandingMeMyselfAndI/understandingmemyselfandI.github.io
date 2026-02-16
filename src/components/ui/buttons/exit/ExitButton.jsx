@@ -38,12 +38,15 @@ const ExitButton = ({ handleClick }) => {
 
   const exitButtonPosition = useAppStore((s) => s.exitButtonPosition)
   const setExitButtonPosition = useAppStore((s) => s.setExitButtonPosition)
+  const showQuickExitOnboarding = useAppStore((state) => state.showQuickExitOnboarding)
+  const setShowQuickExitOnboarding = useAppStore((state) => state.setShowQuickExitOnboarding)
 
   useEffect(() => {
     setButtonPosition(exitButtonPosition)
   }, [exitButtonPosition])
 
   const handleDragStart = (e, data) => {
+    // if (showQuickExitOnboarding) setShowQuickExitOnboarding(false)
     dragStartPos.current = { x: data.x, y: data.y }
   }
 
@@ -72,7 +75,7 @@ const ExitButton = ({ handleClick }) => {
       handle='.exit-wrap'
       nodeRef={nodeRef}>
       <div ref={nodeRef}>
-        <QuickExitOnboarding>
+        <QuickExitOnboarding showOnboarding={true}>
           <div className='exit-wrap label'>
             <div className={'exit-btn'}>
               <ExitToAppOutlinedIcon className='icon' />

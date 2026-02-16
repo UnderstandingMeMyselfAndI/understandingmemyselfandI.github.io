@@ -342,6 +342,13 @@ const useAppStore = create(
         set(() => ({ showAccCard: v }))
       },
       // ----------------------------------------
+      // Show Acronym Card
+      showQuickExitOnboarding: true,
+      setShowQuickExitOnboarding: (v) => {
+        // console.trace(`setShowAccCard called with value: ${show}`);
+        set(() => ({ showQuickExitOnboarding: v }))
+      },
+      // ----------------------------------------
       // analytics enabled
       gae: true,
       setGAE: (v) => set(() => ({ gae: v })),
@@ -422,6 +429,7 @@ const useAppStore = create(
 
         wheelHistory: state.wheelHistory,
         rememberWheels: state.rememberWheels,
+        showQExitOnboarding: state.showQExitOnboarding,
       }),
       onRehydrateStorage: () => (state) => {
         if (state) {
