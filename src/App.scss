@@ -297,8 +297,8 @@ body {
   .white-ul {
     width: auto;
     text-decoration-color: var(--lightBlue50Trans);
-    text-decoration-thickness: 0.45em; //45%; ems used for iOS devices
-    text-underline-offset: -0.255em;
+    text-decoration-thickness: 0.55em; //45%; ems used for iOS devices
+    text-underline-offset: -0.355em;
     /* -25.5% of font-size (approx) */
     text-decoration-skip-ink: none;
   }
@@ -318,7 +318,7 @@ body {
   .white-ul {
     text-decoration-color: var(--primary);
     text-decoration-thickness: 0.10em; //10%; ems used for iOS devices
-    text-underline-offset: -0.055em; //5.5%;
+    text-underline-offset: -0.075em; //5.5%;
   }
 
   *.MuiTypography-root {
