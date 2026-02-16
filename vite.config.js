@@ -93,10 +93,12 @@ export default defineConfig({
         'favicon.ico',
         'apple-touch-icon.png',
         'masked-icon.svg',
-        'bgs/*.avif',
-        'icons/**/*.png',
-        'icons/**/*.svg',
-        'icons/**/*.avif'
+        'bgs/*.avif', 
+        'icons/UmmiIcon.svg',
+        'icons/UmmiIcon2.svg',
+        'icons/pwa-192x192.png',
+        'icons/pwa-512x512.png',
+         '!icons/invert/**',  // exclude
       ],
                   // Where your custom sw.js lives
       injectManifest: {
