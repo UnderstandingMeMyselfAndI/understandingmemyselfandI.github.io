@@ -61,6 +61,18 @@ export default defineConfig({
   
         },
         chunkFileNames: 'assets/js/[hash].js',
+        assetFileNames: (assetInfo) => {
+          // Handle deprecation: assetInfo.names is the new array of original names
+          const originalNames = assetInfo.names || (assetInfo.name ? [assetInfo.name] : []);
+          const isCss = originalNames.some(name => name && name.endsWith('.css'));
+
+          if (isCss) {
+            // Obfuscate CSS: only hash, no component name
+            return 'assets/css/[hash][extname]';
+          }
+          // For other assets (images, fonts, etc.) keep original name + hash
+          return 'assets/[name]-[hash][extname]';
+        },
       },
     },
   },
