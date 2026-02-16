@@ -151,9 +151,7 @@ body {
     margin: 0;
     overflow-x: hidden;
     overflow-y: auto;
-    // z-index: 10000;
     width: 100%;
-    // max-width: 100dvw;
     display: flex;
     flex-flow: column nowrap;
   }
@@ -299,8 +297,9 @@ body {
   .white-ul {
     width: auto;
     text-decoration-color: var(--lightBlue50Trans);
-    text-decoration-thickness: 45%;
-    text-underline-offset: -25.5%;
+    text-decoration-thickness: 0.45em; //45%; ems used for iOS devices
+    text-underline-offset: -0.255em;
+    /* -25.5% of font-size (approx) */
     text-decoration-skip-ink: none;
   }
 
@@ -318,8 +317,8 @@ body {
 
   .white-ul {
     text-decoration-color: var(--primary);
-    text-decoration-thickness: 10%;
-    text-underline-offset: 5.5%;
+    text-decoration-thickness: 0.10em; //10%; ems used for iOS devices
+    text-underline-offset: -0.055em; //5.5%;
   }
 
   *.MuiTypography-root {
@@ -504,7 +503,6 @@ div#centers {
   .icon.peacehand {
     top: 26%;
     left: auto;
-    /* right: 0%; */
     margin-right: -10%;
     transform: rotate(45deg) scale(0.53) translate(-40%, 0%);
 
