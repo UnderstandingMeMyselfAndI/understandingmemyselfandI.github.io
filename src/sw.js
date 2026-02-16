@@ -1,15 +1,17 @@
 /* eslint-env serviceworker */
 // DISABLE WORKBOX LOGS HERE (Must be before imports)
 self.__WB_DISABLE_DEV_LOGS = true
-import { precacheAndRoute, cleanupOutdatedCaches, createHandlerBoundToURL, matchPrecache } from 'workbox-precaching';
-import { registerRoute, NavigationRoute } from 'workbox-routing'
+import { precacheAndRoute, cleanupOutdatedCaches,  matchPrecache } from 'workbox-precaching';
+import { registerRoute } from 'workbox-routing'
 import { CacheFirst } from 'workbox-strategies'
-// 1. Import setConfig
 import { ExpirationPlugin } from 'workbox-expiration' // <--- Optional: limits cache size
 import { openDB } from 'idb'
-
+const BUILD_VERSION = typeof __BUILD_VERSION__ !== 'undefined' 
+  ? __BUILD_VERSION__ 
+  : `dev-${Date.now()}`;
 // Caching & Offline Support
-const IMAGE_CACHE_NAME  = `ummi-images-${__BUILD_VERSION__}`;
+const IMAGE_CACHE_NAME  = `ummi-images-${BUILD_VERSION}`;
+
 
 precacheAndRoute(self.__WB_MANIFEST)
 cleanupOutdatedCaches()
