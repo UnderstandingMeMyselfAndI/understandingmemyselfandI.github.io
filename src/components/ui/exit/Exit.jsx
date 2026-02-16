@@ -22,7 +22,7 @@ const Exit = () => {
   useEffect(() => {
     const interval = setTimeout(() => {
       setShow(true)
-      clearINterval(interval)
+      clearInterval(interval)
     }, showAfterMillis)
   })
 
