@@ -9,7 +9,8 @@
   }
 
   position: fixed;
-  z-index: 9000;
+  z-index: 155601;
+  /* Increased to ensure visibility above .quick-exit */
   top: 0;
   left: 0;
   width: 100%;
@@ -86,6 +87,7 @@
     /* Smooth scrolling on iOS */
 
     &::-webkit-scrollbar {
+      display: block;
       width: 6px;
     }
 
@@ -120,6 +122,8 @@
   .dialog-instruction {
     width: 100%;
     line-height: 1.4;
+    font-size: 1rem;
+    color: var(--primary);
   }
 
   .dialog-actions {
