@@ -200,7 +200,6 @@ div.activity-footer {
     margin: 0 auto;
 
     u {
-      // text-decoration-thickness: 11px;
       width: fit-content;
     }
   }
@@ -208,29 +207,17 @@ div.activity-footer {
   p {
     text-shadow: none;
 
-    u {
-      // text-decoration-thickness: 6px;
-      // text-decoration-color: var(--blue);
-    }
-
     a {
       word-break: break-word;
     }
   }
 
-  section#feedback {
-    p u {
-      // text-decoration-thickness: 4px;
-      // text-decoration-color: var(--yellow);
-    }
-  }
 
   u {
     width: fit-content;
     position: relative;
     display: inline-block;
     font-weight: variables.$lrg_weight;
-    // font-size: variables.$med_size;
 
     &::after {
       content: ' ';

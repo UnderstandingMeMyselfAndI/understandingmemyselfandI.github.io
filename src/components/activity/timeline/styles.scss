@@ -206,8 +206,8 @@ $minimap-w: 50px;
     letter-spacing: 4px;
     text-decoration: underline;
     text-decoration-color: var(--orange30Trans);
-    text-decoration-thickness: 65%;
-    text-underline-offset: -45.5%;
+    text-decoration-thickness: 0.70em; //45%; ems used for iOS devices
+    text-underline-offset: -0.5em; // must use em for iOS
     text-decoration-skip-ink: none;
   }
 
@@ -352,8 +352,8 @@ $minimap-w: 50px;
   color: var(--orange70Trans);
   min-width: 100%;
   letter-spacing: -0.9;
-  font-weight: 800;
-  font-variation-settings: 'wght' 800;
+  font-weight: 00;
+  font-variation-settings: 'wght' 900;
 }
 
 .huge-title {

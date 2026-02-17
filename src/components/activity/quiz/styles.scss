@@ -471,8 +471,8 @@ body div.main section.activity-quiz {
         font-size: 2rem;
         color: var(--primary);
         text-decoration: underline 6px var(--orange40Trans);
-        text-decoration-thickness: 45%;
-        text-underline-offset: -25.5%;
+        text-decoration-thickness: 0.55em; //45%; ems used for iOS devices
+        text-underline-offset: -0.355em; // must use em for iOS
         text-decoration-skip-ink: none;
       }
 

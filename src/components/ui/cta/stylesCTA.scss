@@ -110,8 +110,8 @@ body div.main section.activity div.cta {
 
     u {
       text-decoration-color: var(--blue);
-      text-underline-offset: -42.5%;
-      text-decoration-thickness: 26px;
+      text-underline-offset: -0.45em; // must use em for iOS
+      text-decoration-thickness: 0.55em; //45%; ems used for iOS devices
     }
 
     h3.title {

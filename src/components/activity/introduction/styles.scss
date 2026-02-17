@@ -158,8 +158,8 @@ body section.activity.intro {
     width: auto;
     text-decoration: underline;
     text-decoration-color: var(--lightBlue50Trans);
-    text-decoration-thickness: 45%;
-    text-underline-offset: -25.5%;
+    text-decoration-thickness: 0.55em; //45%; ems used for iOS devices
+    text-underline-offset: -0.355em; // must use em for iOS
     text-decoration-skip-ink: none;
 
     position: relative;

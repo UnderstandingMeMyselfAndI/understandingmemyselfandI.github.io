@@ -298,7 +298,7 @@ body {
     width: auto;
     text-decoration-color: var(--lightBlue50Trans);
     text-decoration-thickness: 0.55em; //45%; ems used for iOS devices
-    text-underline-offset: -0.355em;
+    text-underline-offset: -0.355em; // roughtly 35.5%
     /* -25.5% of font-size (approx) */
     text-decoration-skip-ink: none;
   }
