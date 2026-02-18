@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import useQuizStore from '../useQuizStore'
-import '../styles.scss'
+import useAppStore from '@/store/useAppStore'
 
+import '../styles.scss'
 
 const SimpleLineGraph = ({ data, visibleLevels, zoom }) => {
   const scrollRef = React.useRef(null)
@@ -31,7 +32,7 @@ const SimpleLineGraph = ({ data, visibleLevels, zoom }) => {
     x: index * pointSpacing,
     y: chartHeight - (point.accuracy / maxY) * (chartHeight - paddingTop - paddingBottom) - paddingBottom,
     accuracy: point.accuracy,
-    level: point.level
+    level: point.level,
   }))
 
   const getPath = (points) => {
@@ -50,12 +51,14 @@ const SimpleLineGraph = ({ data, visibleLevels, zoom }) => {
 
   // SMA calculation for overall trend line
   const smaPeriod = 5
-  const smaPts = allPts.map((pt, i, a) => {
-    if (i < smaPeriod - 1) return null
-    const periodSlice = a.slice(i - (smaPeriod - 1), i + 1)
-    const avgY = periodSlice.reduce((sum, p) => sum + p.y, 0) / smaPeriod
-    return { x: pt.x, y: avgY }
-  }).filter(p => p !== null)
+  const smaPts = allPts
+    .map((pt, i, a) => {
+      if (i < smaPeriod - 1) return null
+      const periodSlice = a.slice(i - (smaPeriod - 1), i + 1)
+      const avgY = periodSlice.reduce((sum, p) => sum + p.y, 0) / smaPeriod
+      return { x: pt.x, y: avgY }
+    })
+    .filter((p) => p !== null)
 
   // Track viewport intersection
   React.useEffect(() => {
@@ -70,8 +73,8 @@ const SimpleLineGraph = ({ data, visibleLevels, zoom }) => {
       const viewportRightX = scrollLeft + clientWidth
 
       // Find the segment of smaPts that viewportRightX is in
-      const nextIdx = smaPts.findIndex(p => p.x >= viewportRightX)
-      
+      const nextIdx = smaPts.findIndex((p) => p.x >= viewportRightX)
+
       if (nextIdx === -1) {
         // Beyond last point, use last point's Y
         setIntersectY(smaPts[smaPts.length - 1].y)
@@ -93,11 +96,11 @@ const SimpleLineGraph = ({ data, visibleLevels, zoom }) => {
       container.addEventListener('scroll', updateIntersect)
       // Initial update
       updateIntersect()
-      
+
       // Also update on zoom or visibility change
       const observer = new ResizeObserver(updateIntersect)
       observer.observe(container)
-      
+
       return () => {
         container.removeEventListener('scroll', updateIntersect)
         observer.disconnect()
@@ -114,14 +117,7 @@ const SimpleLineGraph = ({ data, visibleLevels, zoom }) => {
           {yTicks.map((tick) => {
             const y = chartHeight - (tick / maxY) * (chartHeight - paddingTop - paddingBottom) - paddingBottom
             return (
-              <text
-                key={tick}
-                x={0}
-                y={y + 4}
-                textAnchor='start'
-                fill='rgba(255,255,255,0.4)'
-                fontSize='10px'
-              >
+              <text key={tick} x={0} y={y + 4} textAnchor='start' fill='rgba(255,255,255,0.4)' fontSize='10px'>
                 {tick}%
               </text>
             )
@@ -152,7 +148,10 @@ const SimpleLineGraph = ({ data, visibleLevels, zoom }) => {
             return (
               <line
                 key={tick}
-                x1='0' y1={y} x2={graphWidth} y2={y}
+                x1='0'
+                y1={y}
+                x2={graphWidth}
+                y2={y}
                 stroke={tick === 100 ? 'rgba(79, 195, 247, 0.3)' : 'rgba(255,255,255,0.05)'}
                 strokeWidth={tick === 100 ? '1.5' : '1'}
               />
@@ -177,13 +176,13 @@ const SimpleLineGraph = ({ data, visibleLevels, zoom }) => {
             if (!isVisible || level === 'average') return null
             const levelPts = allPts.filter((p) => p.level === level)
             if (levelPts.length < 2) return null
-            
+
             const color =
               level === 'easy'
                 ? '#00fbff' // Cyan
                 : level === 'medium'
-                ? '#ffea00' // Amber
-                : '#2979ff' // Vibrant Blue
+                  ? '#ffea00' // Amber
+                  : '#2979ff' // Vibrant Blue
 
             return (
               <path
@@ -234,41 +233,41 @@ const SimpleLineGraph = ({ data, visibleLevels, zoom }) => {
         <div className='graph-avg-tracker-overlay'>
           <svg width='100%' height={chartHeight}>
             {/* Main Blue Reference Line (Solid, Thin) */}
-            <line 
-              x1={0} 
-              y1={intersectY} 
-              x2={scaleWidth + viewportWidth} 
-              y2={intersectY} 
-              stroke='#4fc3f7' 
+            <line
+              x1={0}
+              y1={intersectY}
+              x2={scaleWidth + viewportWidth}
+              y2={intersectY}
+              stroke='#4fc3f7'
               strokeWidth='1'
               opacity='0.5'
             />
-            
+
             {/* Right Value & Label (beyond the graph edge) */}
             {(() => {
-              const accuracy = Math.round(((chartHeight - paddingBottom - intersectY) / (chartHeight - paddingTop - paddingBottom)) * 100)
+              const accuracy = Math.round(
+                ((chartHeight - paddingBottom - intersectY) / (chartHeight - paddingTop - paddingBottom)) * 100,
+              )
               const labelX = scaleWidth + viewportWidth + 8 // 8px gap from graph edge
               return (
                 <g transform={`translate(${labelX}, ${intersectY})`}>
-                  <text 
-                    x='0' 
-                    y='4' 
-                    fill='#4fc3f7' 
-                    fontSize='10px' 
+                  <text
+                    x='0'
+                    y='4'
+                    fill='#4fc3f7'
+                    fontSize='10px'
                     fontWeight='bold'
-                    style={{ textShadow: '0 0 2px rgba(0,0,0,0.5)' }}
-                  >
+                    style={{ textShadow: '0 0 2px rgba(0,0,0,0.5)' }}>
                     {accuracy}%
                   </text>
-                  <text 
-                    x='0' 
-                    y='14' 
-                    fill='rgba(255,255,255,0.5)' 
-                    fontSize='12px' 
+                  <text
+                    x='0'
+                    y='14'
+                    fill='rgba(255,255,255,0.5)'
+                    fontSize='12px'
                     textAnchor='start'
                     textTransform='uppercase'
-                    letterSpacing='0.05em'
-                  >
+                    letterSpacing='0.05em'>
                     avg
                   </text>
                 </g>
@@ -288,15 +287,14 @@ const QuizStats = ({ onBack }) => {
     average: true,
     easy: false,
     medium: false,
-    hard: false
+    hard: false,
   })
 
   const stats = useMemo(() => {
     const totalQuizzes = history.length
     const totalQuestions = history.reduce((acc, curr) => acc + curr.total, 0)
     const totalCorrect = history.reduce((acc, curr) => acc + curr.score, 0)
-    const overallAccuracy =
-      totalQuestions > 0 ? Math.round((totalCorrect / totalQuestions) * 100) : 0
+    const overallAccuracy = totalQuestions > 0 ? Math.round((totalCorrect / totalQuestions) * 100) : 0
 
     const byLevel = history.reduce((acc, curr) => {
       if (!acc[curr.level]) {
@@ -312,9 +310,9 @@ const QuizStats = ({ onBack }) => {
   }, [history])
 
   const toggleLevel = (level) => {
-    setVisibleLevels(prev => ({
+    setVisibleLevels((prev) => ({
       ...prev,
-      [level]: !prev[level]
+      [level]: !prev[level],
     }))
   }
 
@@ -348,28 +346,22 @@ const QuizStats = ({ onBack }) => {
         <div className='section-header-row'>
           <h3>Results Over Time</h3>
           <div className='zoom-controls'>
-            <button 
-              className='zoom-btn' 
-              onClick={() => setZoom(prev => Math.max(0.4, prev - 0.2))}
-              aria-label='Zoom Out'
-            >
+            <button
+              className='zoom-btn'
+              onClick={() => setZoom((prev) => Math.max(0.4, prev - 0.2))}
+              aria-label='Zoom Out'>
               –
             </button>
             <span className='zoom-level'>{Math.round(zoom * 100)}%</span>
-            <button 
-              className='zoom-btn' 
-              onClick={() => setZoom(prev => Math.min(3, prev + 0.2))}
-              aria-label='Zoom In'
-            >
+            <button
+              className='zoom-btn'
+              onClick={() => setZoom((prev) => Math.min(3, prev + 0.2))}
+              aria-label='Zoom In'>
               +
             </button>
           </div>
         </div>
-        <SimpleLineGraph 
-          data={history} 
-          visibleLevels={visibleLevels}
-          zoom={zoom}
-        />
+        <SimpleLineGraph data={history} visibleLevels={visibleLevels} zoom={zoom} />
       </div>
 
       <div className='stats-section level-section'>
@@ -377,11 +369,10 @@ const QuizStats = ({ onBack }) => {
           <h3>Level Breakdown</h3>
           <div className='avg-toggle-row'>
             <span className='avg-label'>Avg</span>
-            <button 
+            <button
               className={`avg-switch ${visibleLevels.average ? 'active' : ''}`}
               onClick={() => toggleLevel('average')}
-              aria-label='Toggle Average Line'
-            >
+              aria-label='Toggle Average Line'>
               <div className='switch-thumb' />
             </button>
           </div>
@@ -391,29 +382,26 @@ const QuizStats = ({ onBack }) => {
           <div className='level-list'>
             {Object.entries(stats.byLevel).map(([level, data]) => {
               const isActive = visibleLevels[level]
-              const levelColor =
-                level === 'easy'
-                  ? '#00fbff'
-                  : level === 'medium'
-                  ? '#ffea00'
-                  : '#2979ff'
-              
+              const levelColor = level === 'easy' ? '#00fbff' : level === 'medium' ? '#ffea00' : '#2979ff'
+
               return (
-                <div 
-                  key={level} 
+                <div
+                  key={level}
                   className={`level-item toggleable ${isActive ? 'active' : ''}`}
                   onClick={() => toggleLevel(level)}
-                  style={{ 
+                  style={{
                     borderLeft: `3px solid ${isActive ? levelColor : 'transparent'}`,
-                    paddingLeft: '0.75rem'
-                  }}
-                >
+                    paddingLeft: '0.75rem',
+                  }}>
                   <span className='level-name' style={{ color: isActive ? levelColor : 'inherit' }}>
                     {level}
                   </span>
                   <span className='level-detail'>
-                    {Math.round((data.correct / data.total) * 100)}% 
-                    <small> ({data.correct}/{data.total}, {data.count})</small>
+                    {Math.round((data.correct / data.total) * 100)}%
+                    <small>
+                      {' '}
+                      ({data.correct}/{data.total}, {data.count})
+                    </small>
                   </span>
                 </div>
               )
