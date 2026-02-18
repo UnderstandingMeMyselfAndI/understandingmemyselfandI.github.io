@@ -7,12 +7,12 @@ import PropTypes from 'prop-types'
 import './styles.scss'
 
 const ExitButton = ({ handleClick }) => {
-  const maxX = 80
-  const minX = 0
-  const maxY = 90
-  const minY = 15
-  const menuBoundsX = 120
-  const menuBoundsY = 60
+  const maxX = 80 // value as pixel offsets from edge
+  const minX = 10 // value as pixel offsets from edge
+  const maxY = 130 // value as pixel offsets from edge
+  const minY = 15 // value as pixel offsets from edge
+  const menuBoundsX = 120 // value as pixel offsets from edge
+  const menuBoundsY = 60 // value as pixel offsets from edge
 
   // Threshold to distinguish between a tap and a drag
   const DRAG_THRESHOLD = 5
@@ -42,7 +42,9 @@ const ExitButton = ({ handleClick }) => {
   const setShowQuickExitOnboarding = useAppStore((state) => state.setShowQuickExitOnboarding)
 
   useEffect(() => {
-    setButtonPosition(exitButtonPosition)
+    setButtonPosition(restrictPos(exitButtonPosition))
+    console.log('exitButtonPosition', restrictPos(exitButtonPosition))
+    console.log('window.innerHeight', window.innerHeight)
   }, [exitButtonPosition])
 
   const handleDragStart = (e, data) => {

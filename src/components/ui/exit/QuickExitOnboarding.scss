@@ -104,7 +104,7 @@ $fade-out-end: math.div((2 * $fade-sec + $pause-sec), $total-cycle-sec) * 100;
   position: relative;
 
   .exit-wrap {
-    z-index: 10000;
+    z-index: 155500;
   }
 
   .quick-exit-onboarding {
@@ -184,6 +184,8 @@ $fade-out-end: math.div((2 * $fade-sec + $pause-sec), $total-cycle-sec) * 100;
 
   .quick-exit-onboarding-message {
     pointer-events: all;
+
+
   }
 
   .quick-exit-onboarding-arrow {
@@ -212,6 +214,18 @@ $fade-out-end: math.div((2 * $fade-sec + $pause-sec), $total-cycle-sec) * 100;
     top: 32px;
     left: 0;
     transform: translateX(-20px);
+
+    div {
+      font-size: 1rem;
+      text-decoration-line: underline;
+      text-underline-offset: -0.355em; // roughtly 35.5%
+
+      text-decoration-color: var(--blue70Trans);
+      text-underline-offset: -1em;
+
+      text-decoration-skip-ink: none;
+      text-decoration-thickness: 1.4em;
+    }
 
     div {
       position: absolute;
