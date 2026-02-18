@@ -25,6 +25,10 @@ const Introduction = () => {
   const activity = useAppStore((s) => s.activity)
   const isModal = useAppStore((state) => state.isModal)
   const setIsModal = useAppStore((s) => s.setIsModal)
+  // TODO: #46 #45 These content thresholds need revisiting
+  const curiousThreshold = 16
+  const newThreshold = 60
+  const userThreshold = 120
 
   const sectionRefs = useRef([])
   useEffect(() => {
@@ -39,8 +43,7 @@ const Introduction = () => {
 
   sectionRefs.current = []
 
-  const content =
-    strings.activity.find((activity) => activity.name === name) || null
+  const content = strings.activity.find((activity) => activity.name === name) || null
   if (content === null) {
     console.warn(`No content found for activity "${name}"`)
   }
@@ -57,26 +60,21 @@ const Introduction = () => {
   if (!open) return null
 
   return (
-    <section
-      id='intro'
-      className={'activity intro' + (open ? ' show' : ' hide')}
-    >
+    <section id='intro' className={'activity intro' + (open ? ' show' : ' hide')}>
       <div className='introduction-inner'>
         <div className='inner'>
           <h1 style={{ fontSize: '68px' }}>
-            {(!isInstalled || (isInstalled && vc < 3)) && (
+            {(!isInstalled || (isInstalled && vc < curiousThreshold)) && (
               <b>
                 <u>{content?.title}</u>
               </b>
             )}
 
-            {isInstalled && vc >= 3 && (
+            {isInstalled && vc >= curiousThreshold && (
               <u>
                 {parse(
                   DOMPurify.sanitize(
-                    content?.returning?.content?.titles[
-                      getRand(content?.returning?.content?.titles?.length - 1)
-                    ],
+                    content?.returning?.content?.titles[getRand(content?.returning?.content?.titles?.length - 1)],
                   ),
                 )}
               </u>
@@ -84,15 +82,11 @@ const Introduction = () => {
           </h1>
 
           {isInstalled &&
-            vc > 20 &&
-            vc < 33 && // if app is installed show different content
+            vc > newThreshold &&
+            vc < curiousThreshold &&
             content?.installed.content?.map((cnt, i) => {
               return (
-                <div
-                  key={`intro-${i}`}
-                  className={'subsection installed'}
-                  ref={addToRefs}
-                >
+                <div key={`intro-${i}`} className={'subsection installed'} ref={addToRefs}>
                   {cnt?.title && (
                     <div className='subsection-title'>
                       <h2>{parse(DOMPurify.sanitize(cnt?.title))}</h2>
@@ -111,17 +105,13 @@ const Introduction = () => {
               )
             })}
 
-          {isInstalled && vc >= 20 && (
+          {isInstalled && vc >= newThreshold && (
             <div key={`intro`} className={'subsection'}>
               <div className=' returning'>
                 <h1>
                   {parse(
                     DOMPurify.sanitize(
-                      content?.returning?.content?.contents[
-                        getRand(
-                          content?.returning?.content?.contents?.length - 1,
-                        )
-                      ],
+                      content?.returning?.content?.contents[getRand(content?.returning?.content?.contents?.length - 1)],
                     ),
                   )}
                 </h1>
@@ -129,20 +119,14 @@ const Introduction = () => {
             </div>
           )}
 
-          {(!isInstalled || (isInstalled && vc < 20)) &&
+          {(!isInstalled || (isInstalled && vc < newThreshold)) &&
             content?.content &&
             content?.content?.map((cnt, i) => {
               return (
-                <div
-                  key={`intro-${i}`}
-                  className={'subsection notinstalled '}
-                  ref={addToRefs}
-                >
+                <div key={`intro-${i}`} className={'subsection notinstalled '} ref={addToRefs}>
                   {cnt?.title && (
                     <div className='subsection-title'>
-                      <h2 className='intro-title'>
-                        {parse(DOMPurify.sanitize(cnt?.title))}
-                      </h2>
+                      <h2 className='intro-title'>{parse(DOMPurify.sanitize(cnt?.title))}</h2>
                     </div>
                   )}
                   {cnt?.content?.map((para, k) => {
