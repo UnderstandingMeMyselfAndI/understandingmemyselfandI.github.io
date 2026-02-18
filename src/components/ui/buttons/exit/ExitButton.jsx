@@ -77,7 +77,7 @@ const ExitButton = ({ handleClick }) => {
       <div ref={nodeRef}>
         <QuickExitOnboarding showOnboarding={true}>
           <div className='exit-wrap label'>
-            <div className={'exit-btn'}>
+            <div className={'exit-btn'} onClick={handleClick}>
               <ExitToAppOutlinedIcon className='icon' />
             </div>
             <div className='label'>{label}</div>

@@ -18,7 +18,7 @@ body div.main section.activity div.cta {
   font-size: 1rem;
 
   div.inner {
-    padding-bottom: 2rem;
+    padding-bottom: 1.5rem;
     padding-top: 2rem;
 
     h3.title {
@@ -119,12 +119,20 @@ body div.main section.activity div.cta {
       font-weight: 700;
       font-variation-settings: 'wght' 700;
       text-transform: uppercase;
-      text-decoration: none;
+      // text-decoration: none;
       color: var(--orange);
+      text-decoration-color: var(--yellow30Trans);
+      text-underline-offset: -0.45em; // must use em for iOS
+      text-decoration-thickness: 0.55em; //45%; ems used for iOS devices
     }
 
     .cta-content {
       margin-left: 0.5rem;
+    }
+
+    h3.title,
+    .cta-content {
+      text-align: center;
     }
 
     .cta-buttons-wrapper {
@@ -144,6 +152,8 @@ body div.main section.activity div.cta {
         box-shadow: var(--boxShadowDarkValue);
         background-color: var(--blue80Trans);
         // width: 100%;
+        text-transform: uppercase;
+
 
         svg {
           width: 40px;

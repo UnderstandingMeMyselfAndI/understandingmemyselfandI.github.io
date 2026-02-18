@@ -40,6 +40,7 @@ import WheelOfLifeCTA from './components/activity/wheeloflife/WheelOfLifeCTA'
 import VerticalTimeline from './components/activity/timeline/VerticalTimeline'
 import TimelineCTA from './components/activity/timeline/TimelineCTA'
 import Quiz from './components/activity/quiz/Quiz'
+import QuizCTA from './components/activity/quiz/QuizCTA'
 import { runPersistentStorageTests } from './js/utils.js'
 import './App.scss'
 import AccessibilitySettings from './components/ui/AccessibilitySettings/AccessibilitySettings'
@@ -106,7 +107,7 @@ function App() {
         <TimelineCTA />
         <WheelOfLifeCTA />
         <Lingo />
-
+        <QuizCTA />
         <WallpapersCTA />
         <YourPrivacyCTA />
 
@@ -126,13 +127,7 @@ function App() {
         <SnackBars />
         <ScrollPosition />
       </div>
-      <Backdrop
-        initialImageId={2}
-        initialDelay={3000}
-        interval={6000}
-        parallaxStrength={0}
-        className='backdrop'
-      />
+      <Backdrop initialImageId={2} initialDelay={3000} interval={6000} parallaxStrength={0} className='backdrop' />
       <Routing />
       <Vcn />
       <CookieConsent />

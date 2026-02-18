@@ -19,6 +19,32 @@ const indexedDBStorage = {
 const useAppStore = create(
   persist(
     (set, get) => ({
+      // --- PASSCODE MANAGEMENT ---
+      passcodeHash: "",
+      passcodeSalt: "",
+
+      setPasscode: async (passcode) => {
+        const salt = crypto.getRandomValues(new Uint8Array(16)).toString();
+        const hashBuffer = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(passcode + salt));
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const passcodeHash = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+        set(() => ({ passcodeHash, passcodeSalt: salt }));
+      },
+
+      verifyPasscode: async (passcode) => {
+        const { passcodeHash, passcodeSalt } = get();
+        if (!passcodeHash || !passcodeSalt) return false;
+
+        const hashBuffer = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(passcode + passcodeSalt));
+        const inputHash = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, "0")).join("");
+        return inputHash === passcodeHash;
+      },
+
+      resetPasscode: () => {
+        set(() => ({ passcodeHash: "", passcodeSalt: "" }));
+      },
+      // --- END PASSCODE MANAGEMENT ---
+
       // --- WHEEL OF LIFE HISTORY ---
       wheelHistory: [],
       rememberWheels: false,
@@ -430,6 +456,8 @@ const useAppStore = create(
         wheelHistory: state.wheelHistory,
         rememberWheels: state.rememberWheels,
         showQExitOnboarding: state.showQExitOnboarding,
+        passcodeHash: state.passcodeHash,
+        passcodeSalt: state.passcodeSalt,
       }),
       onRehydrateStorage: () => (state) => {
         if (state) {

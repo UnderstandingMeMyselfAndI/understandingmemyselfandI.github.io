@@ -304,7 +304,7 @@ export const baseActivities = [
   },
   {
     id: 23,
-    url: 'quiz',
+    url: 'recovery-quiz',
     title: 'The BIG Recovery Quiz!',
     menuPosition: 3,
     menu: true,
@@ -460,8 +460,8 @@ const strings = {
         ],
         btn: {
           label: {
-            unused: 'See the tools',
-            used: 'See the tools',
+            unused: 'View the tools',
+            used: 'View the tools',
           },
         },
       },
@@ -507,8 +507,31 @@ const strings = {
         ],
         btn: {
           label: {
-            unused: 'Use the Calculator',
+            unused: 'Calculate Units',
             used: 'View your Calculation',
+          },
+        },
+      },
+    },
+    {
+      name: 'The BIG Recovery Quiz',
+      title: 'The BIG Recovery Quiz',
+      slug: 'recovery-quiz',
+      url: 'recovery-quiz',
+      btnLabel: 'Recovery Quiz',
+      content: [],
+      cta: {
+        title: 'The BIG Recovery Quiz',
+        content: [
+          'How much do you know about the recovery process and tools?. ',
+          'Nothing? All of it? Either way, it\'s a great way to test your knowledge and learn something new.',
+          'With three difficulty levels to choose from, there\'s something for everyone and nobody noting down scores.',
+          'Unfortunately, there\'s no losers in this quiz, as only winners use tools like Ummi for their recovery!',
+        ],
+        btn: {
+          label: {
+            unused: 'Play the Quiz',
+            used: 'Play the Quiz',
           },
         },
       },
@@ -643,8 +666,8 @@ const strings = {
         ],
         btn: {
           label: {
-            unused: 'The Recovery Timeline ',
-            used: 'The Recovery Timeline',
+            unused: 'Recovery Timeline ',
+            used: 'Recovery Timeline',
           },
         },
       },

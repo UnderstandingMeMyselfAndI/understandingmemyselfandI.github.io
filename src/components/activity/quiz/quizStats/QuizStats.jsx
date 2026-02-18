@@ -3,9 +3,6 @@ import PropTypes from 'prop-types'
 import useQuizStore from '../useQuizStore'
 import '../styles.scss'
 
-// Simple SVG Line Graph if recharts is too heavy or not desired, 
-// but since I can't easily check for recharts existence without a file read, 
-// I'll implement a custom SVG graph to save on bundle size as requested by the user's previous memory concerns.
 
 const SimpleLineGraph = ({ data, visibleLevels, zoom }) => {
   const scrollRef = React.useRef(null)

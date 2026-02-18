@@ -228,9 +228,13 @@ export const checkAssetsLoaded = () => {
     }, 5000);
   }
 };
+export const isArrayOfStrings = (value) => {
+  return Array.isArray(value) && value.every(item => typeof item === 'string');
+};
 
 export default {
   clamp,
+  isArrayOfStrings,
   isSet,
   isUndefined,
   isNull,

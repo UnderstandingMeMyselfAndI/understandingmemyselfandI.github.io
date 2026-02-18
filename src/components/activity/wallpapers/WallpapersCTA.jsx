@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { strings } from '@/data/config'
 import useAppStore from '@/store/useAppStore'
 import CTA from '@/components/ui/cta/CTA'
+import ButtonSimple from '@/components/ui/buttons/ButtonSimple'
+import WallpaperOutlinedIcon from '@mui/icons-material/WallpaperOutlined'
 import './styles.scss'
 import './stylesCTA.scss'
 
@@ -26,8 +28,7 @@ const WallpapersCTA = () => {
     setOpen(activity === id || !isModal)
   }, [activity, isModal])
 
-  const content =
-    strings.activity.find((activity) => activity.url === activityUrl) || null
+  const content = strings.activity.find((activity) => activity.url === activityUrl) || null
   if (content === null) {
     console.warn('No content found for activity "' + activityName + '"')
   }
@@ -37,23 +38,14 @@ const WallpapersCTA = () => {
   }
 
   return (
-    <section
-      className={
-        `activity activity-${activityUrl}-cta cta` + (open ? ' show' : '')
-      }
-    >
-      <CTA
-        name={activityName}
-        title={content.title}
-        open={open}
-        content={content.cta.content}
-      >
-        <button
-          className={`${activityName}-cta-btn btn`}
-          onClick={() => handleClick()}
-        >
-          {content?.cta?.btn?.label?.unused}
-        </button>
+    <section className={`activity activity-${activityUrl}-cta cta` + (open ? ' show' : '')}>
+      <CTA name={activityName} title={content.title} open={open} content={content.cta.content}>
+        <ButtonSimple
+          classes={[`${activityName}-cta-btn btn`]}
+          label={content?.cta.btn?.label.unused}
+          handleClick={handleClick}>
+          <WallpaperOutlinedIcon />
+        </ButtonSimple>
         <div className='bg-img'>
           <img className='bg' src={bgImg.src} alt={bgImg.alt} />
         </div>
