@@ -10,7 +10,7 @@ export function getDynamicRoutes() {
     })
     activities.forEach((activity) => {
        activity.menu && routes.push('/' + activity.url)
-       console.log("Adding route: " + '/' + activity.url)
+       activity.menu && console.log("Adding route: " + '/' + activity.url)
     })
 
     return routes
@@ -21,10 +21,10 @@ export function getShortcuts() {
        activity.shortcuts && shortcuts.push(
         {
             "name": activity.title,
-            "url": activity.url,
+            "url": '/' + activity.url,
         }
         )
-        activity.shortcuts && console.log("Adding shortcut: " + activity.title+"  url: " + activity.url)
+        activity.shortcuts && console.log("Adding shortcut: " + activity.title+"  url: " + '/' + activity.url)
     })
     return shortcuts;
 }

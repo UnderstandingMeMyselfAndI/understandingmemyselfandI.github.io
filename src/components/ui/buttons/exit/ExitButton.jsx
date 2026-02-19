@@ -43,8 +43,6 @@ const ExitButton = ({ handleClick }) => {
 
   useEffect(() => {
     setButtonPosition(restrictPos(exitButtonPosition))
-    console.log('exitButtonPosition', restrictPos(exitButtonPosition))
-    console.log('window.innerHeight', window.innerHeight)
   }, [exitButtonPosition])
 
   const handleDragStart = (e, data) => {
@@ -79,7 +77,7 @@ const ExitButton = ({ handleClick }) => {
       <div ref={nodeRef}>
         <QuickExitOnboarding showOnboarding={true}>
           <div className='exit-wrap label'>
-            <div className={'exit-btn'} onClick={handleClick}>
+            <div className={'exit-btn'}>
               <ExitToAppOutlinedIcon className='icon' />
             </div>
             <div className='label'>{label}</div>

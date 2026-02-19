@@ -41,6 +41,7 @@ import VerticalTimeline from './components/activity/timeline/VerticalTimeline'
 import TimelineCTA from './components/activity/timeline/TimelineCTA'
 import Quiz from './components/activity/quiz/Quiz'
 import QuizCTA from './components/activity/quiz/QuizCTA'
+import PongGameAI from './components/activity/games/pong/PongGameAI'
 import { runPersistentStorageTests } from './js/utils.js'
 import './App.scss'
 import AccessibilitySettings from './components/ui/AccessibilitySettings/AccessibilitySettings'
@@ -49,7 +50,7 @@ import AccessibilitySettings from './components/ui/AccessibilitySettings/Accessi
 // TODO: #21 "Clear Local Data" functionality
 //TODO #43 Styling of cookie consent
 
-//NEed for Service Worker update itself
+//Need for Service Worker update itself
 window.__APP_LOADED = true
 
 function App() {
@@ -82,15 +83,9 @@ function App() {
   return (
     <div>
       <div className='main'>
-        {/* <div className='dev-version'>Development Version.</div> */}
         <AppMenu />
 
         {quickExitEnabled && <Exit />}
-
-        {/* <div id='centers'>
-          <div className='vertical'></div>
-          <div className='horizontal'></div>
-        </div> */}
 
         <Header />
         <Introduction />
@@ -100,6 +95,7 @@ function App() {
         <Tools />
         <PrivacyPolicy />
         <Quiz />
+        <PongGameAI />
 
         <ToolsCTA />
         {daysCounterEnabled && <DaysCounterCTA />}
@@ -114,10 +110,8 @@ function App() {
         <NewsletterSignUp />
         <InstallCTA />
 
-        {/* <AccessibilitySettings /> */}
         <Footer />
 
-        {/* <Motivation /> */}
         {quickExitEnabled && <Exit />}
         {unitsCalculatorEnabled && <UnitsCalculator />}
         {daysCounterEnabled && <DaysCounter />}
@@ -125,7 +119,7 @@ function App() {
         <Settings />
 
         <SnackBars />
-        <ScrollPosition />
+        {/* <ScrollPosition /> */}
       </div>
       <Backdrop initialImageId={2} initialDelay={3000} interval={6000} parallaxStrength={0} className='backdrop' />
       <Routing />

@@ -45,6 +45,7 @@ export const baseActivities = [
     shortcuts:false,
     modal: false,
     conditions: [],
+    settings:null,
   },
   {
     id: 0,
@@ -54,6 +55,7 @@ export const baseActivities = [
     shortcuts:false,
     modal: false,
     conditions: [],
+    settings:null,
   },
   {
     id: 1,

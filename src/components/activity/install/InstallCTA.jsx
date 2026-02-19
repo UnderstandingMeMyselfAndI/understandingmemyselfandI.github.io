@@ -19,8 +19,7 @@ const InstallCTA = () => {
   const id = 16
 
   //TODO: #16 Check this is working - don't show if already installed
-  const content =
-    strings.activity.find((activity) => activity.name === name) || null
+  const content = strings.activity.find((activity) => activity.name === name) || null
   if (content === null) {
     console.warn('No content found for activity "Install"')
   }
@@ -47,8 +46,7 @@ const InstallCTA = () => {
   )
 
   const appleUsersContent = 'Tap the <b><u>Share icon</u></b></b>'
-  const appleUsersContent2 =
-    '<br />on your device and then select <br /><b><u>Add to Home Screen</u></b>'
+  const appleUsersContent2 = '<br />on your device and then select <br /><b><u>Add to Home Screen</u></b>'
 
   const setIsInstalled = useAppStore((state) => state.setIsInstalled)
   const setIsInstallable = useAppStore((state) => state.setIsInstallable)
@@ -61,41 +59,56 @@ const InstallCTA = () => {
   // const [promptEvent, setPromptEvent] = useState(null)
   // const pwaInstallRef = (useRef < PWAInstallElement) | (null > null)
 
-  function handleBeforeInstallPrompt(event) {
-    event.preventDefault() // Prevent automatic prompt
-    // app is installable
-    setDeferredPrompt(event) // Store the event
+  // function handleBeforeInstallPrompt(event) {
+  //   event.preventDefault() // Prevent automatic prompt
+  //   // app is installable
+  //   setDeferredPrompt(event) // Store the event
 
-    //  Show the install button
-    setShowInstallBtn(true)
-    setShowInstalCTA(true)
-    setIsInstallable(true)
-  }
+  //   //  Show the install button
+  //   setShowInstallBtn(true)
+  //   setShowInstalCTA(true)
+  //   setIsInstallable(true)
+  // }
 
   useEffect(() => {
     setIsInstallable(showInstallCTA)
   }, [showInstallCTA, setIsInstallable])
 
-  function handleAppInstalled() {
-    // isInstallable = false; // Hide the install button
-    setShowInstallBtn(false)
-    setIsInstalled(true)
-    // Clear the deferredPrompt so it can be garbage collected
-    setDeferredPrompt(null)
-  }
-  window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
-  window.addEventListener('appinstalled', handleAppInstalled)
-
+  // function handleAppInstalled() {
+  //   // isInstallable = false; // Hide the install button
+  //   setShowInstallBtn(false)
+  //   setIsInstalled(true)
+  //   // Clear the deferredPrompt so it can be garbage collected
+  //   setDeferredPrompt(null)
+  // }
   useEffect(() => {
-    // Cleanup on destroy
+    const handleBeforeInstallPrompt = (event) => {
+      event.preventDefault() // Prevent automatic prompt
+      // app is installable
+      setDeferredPrompt(event) // Store the event
+
+      //  Show the install button
+      setShowInstallBtn(true)
+      setShowInstalCTA(true)
+      setIsInstallable(true)
+    }
+
+    const handleAppInstalled = () => {
+      // isInstallable = false; // Hide the install button
+      setShowInstallBtn(false)
+      setIsInstalled(true)
+      // Clear the deferredPrompt so it can be garbage collected
+      setDeferredPrompt(null)
+    }
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+    window.addEventListener('appinstalled', handleAppInstalled)
+
     return () => {
-      window.removeEventListener(
-        'beforeinstallprompt',
-        handleBeforeInstallPrompt,
-      )
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
       window.removeEventListener('appinstalled', handleAppInstalled)
     }
-  })
+  }, [])
 
   const handleClick = async () => {
     if (!deferredPrompt) return
@@ -124,19 +137,10 @@ const InstallCTA = () => {
 
   return open
     ? !isInstalled && isInstallable && showInstallCTA && (
-        <section
-          className={
-            'activity activity-installCTA ' + (open ? ' show' : ' hide')
-          }
-          ref={inViewRef}
-        >
+        <section className={'activity activity-installCTA ' + (open ? ' show' : ' hide')} ref={inViewRef}>
           <div id='install'>
             <h3>
-              <u className='yellow-ul'>
-                {!showInstallBtn
-                  ? content?.cta?.postInstall?.title
-                  : content?.cta?.title}
-              </u>
+              <u className='yellow-ul'>{!showInstallBtn ? content?.cta?.postInstall?.title : content?.cta?.title}</u>
             </h3>
 
             {showInstallBtn && (
@@ -145,24 +149,13 @@ const InstallCTA = () => {
                   return <p key={i}>{parse(DOMPurify.sanitize(html))}</p>
                 })}
 
-                <InstallPWA
-                  handleClick={handleClick}
-                  label={content?.cta?.btn?.label.unused}
-                />
+                <InstallPWA handleClick={handleClick} label={content?.cta?.btn?.label.unused} />
                 <div className='title'>Apple users:</div>
                 <p>
                   <span>{parse(DOMPurify.sanitize(appleUsersContent))}</span>
-                  <img
-                    src={appleShareIcon}
-                    className='shareIcon'
-                    alt='apple share icon'
-                  />
+                  <img src={appleShareIcon} className='shareIcon' alt='apple share icon' />
                   <span>{parse(DOMPurify.sanitize(appleUsersContent2))}</span>
-                  <img
-                    src={appleAddToHomescreen}
-                    className='homescreenIcon'
-                    alt='apple add to homescreen icon'
-                  />
+                  <img src={appleAddToHomescreen} className='homescreenIcon' alt='apple add to homescreen icon' />
                 </p>
               </div>
             )}
