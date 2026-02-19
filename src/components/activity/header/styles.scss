@@ -14,7 +14,7 @@ section.header#header {
   height: 100dvh;
   padding: 0;
   margin: 0;
-  margin-top: -6rem; // offset the first row-gap in #main
+  // margin-top: -6rem; // offset the first row-gap in #main
   text-shadow: var(--textShadowDarkValue);
   transition: height 0.35s ease-in-out;
 
