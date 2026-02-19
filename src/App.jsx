@@ -41,10 +41,10 @@ import VerticalTimeline from './components/activity/timeline/VerticalTimeline'
 import TimelineCTA from './components/activity/timeline/TimelineCTA'
 import Quiz from './components/activity/quiz/Quiz'
 import QuizCTA from './components/activity/quiz/QuizCTA'
-import PongGameAI from './components/activity/games/pong/PongGameAI'
-import { runPersistentStorageTests } from './js/utils.js'
+// import PongGameAI from './components/activity/games/pong/PongGameAI'
+// import { runPersistentStorageTests } from './js/utils.js'
 import './App.scss'
-import AccessibilitySettings from './components/ui/AccessibilitySettings/AccessibilitySettings'
+// import AccessibilitySettings from './components/ui/AccessibilitySettings/AccessibilitySettings'
 //TODO #41 Add Pop up confirm box with disclaimer. with timely reminder.
 //TODO #42 Add setting to remove reminder in settings
 // TODO: #21 "Clear Local Data" functionality
@@ -95,7 +95,7 @@ function App() {
         <Tools />
         <PrivacyPolicy />
         <Quiz />
-        <PongGameAI />
+        {/* <PongGameAI /> */}
 
         <ToolsCTA />
         {daysCounterEnabled && <DaysCounterCTA />}
@@ -119,7 +119,6 @@ function App() {
         <Settings />
 
         <SnackBars />
-        {/* <ScrollPosition /> */}
       </div>
       <Backdrop initialImageId={2} initialDelay={3000} interval={6000} parallaxStrength={0} className='backdrop' />
       <Routing />
