@@ -108,7 +108,7 @@ const pengGameAI = () => {
   // Boost parameters (fixed in code, not user‑adjustable)
   const BOOST_MIN_HOLD = 200 // ms – minimum hold to get any boost
   const BOOST_MAX_HOLD = 1000 // ms – maximum charge time for full boost (not used now)
-  const BOOST_MULTIPLIER = 2.25 // Fixed boost force (mid‑range)
+  const BOOST_MULTIPLIER = 3.5 // Fixed boost force (mid‑range)
   const BOOST_COOLDOWN = 300 // ms – prevent spamming
 
   // AI parameters
@@ -132,16 +132,20 @@ const pengGameAI = () => {
   // Apply boost (fixed multiplier)
   const tryApplyBoost = (holdTime) => {
     const now = Date.now()
-    if (
-      gameState.current.gameActive &&
-      !isPaused &&
-      !isFrozen &&
-      isBallCollidingWithLeftPaddle() &&
-      now - lastBoostTime.current > BOOST_COOLDOWN
-    ) {
-      // Only boost if hold time meets minimum
-      if (holdTime >= BOOST_MIN_HOLD) {
-        gameState.current.ballVX = Math.abs(gameState.current.ballVX) * BOOST_MULTIPLIER
+    if (gameState.current.gameActive && !isPaused && !isFrozen && now - lastBoostTime.current > BOOST_COOLDOWN) {
+      // Check if ball is still touching paddle OR was touching recently
+      const ballWasNearPaddle = isBallCollidingWithLeftPaddle() || now - lastCollisionTime.current < BOOST_GRACE_MS // need to track last collision time
+
+      if (ballWasNearPaddle && holdTime >= BOOST_MIN_HOLD) {
+        // Scale boost with hold time (optional: min hold gives base, longer = stronger)
+        const holdFactor = Math.min(1, holdTime / BOOST_MAX_HOLD) // BOOST_MAX_HOLD could be 1000
+        const effectiveMultiplier = BOOST_MULTIPLIER * (0.8 + 0.4 * holdFactor) // ranges 0.8x–1.2x of base
+
+        gameState.current.ballVX = Math.abs(gameState.current.ballVX) * effectiveMultiplier
+
+        // Add a small vertical kick for excitement
+        gameState.current.ballVY += (Math.random() * 2 - 1) * 0.5 * speedFactor
+
         lastBoostTime.current = now
       }
     }
@@ -356,6 +360,39 @@ const pengGameAI = () => {
         gameState.current.ballVX = -Math.abs(gameState.current.ballVX)
         const hitPos = gameState.current.ballY + ballSize / 2 - (gameState.current.rightPaddleY + paddleHeight / 2)
         gameState.current.ballVY += hitPos * 0.1
+      }
+
+      // Left paddle collision
+      if (
+        gameState.current.ballX <= paddleWidth &&
+        gameState.current.ballY + ballSize > gameState.current.leftPaddleY &&
+        gameState.current.ballY < gameState.current.leftPaddleY + paddleHeight
+      ) {
+        gameState.current.ballVX = Math.abs(gameState.current.ballVX)
+        const hitPos = gameState.current.ballY + ballSize / 2 - (gameState.current.leftPaddleY + paddleHeight / 2)
+        gameState.current.ballVY += hitPos * 0.05 // reduced from 0.1
+
+        // Optional: cap vertical speed to avoid excessive movement
+        const maxVY = 3 * speedFactor
+        if (Math.abs(gameState.current.ballVY) > maxVY) {
+          gameState.current.ballVY = Math.sign(gameState.current.ballVY) * maxVY
+        }
+      }
+
+      // Right paddle collision – apply the same changes
+      if (
+        gameState.current.ballX + ballSize >= canvas.width - paddleWidth &&
+        gameState.current.ballY + ballSize > gameState.current.rightPaddleY &&
+        gameState.current.ballY < gameState.current.rightPaddleY + paddleHeight
+      ) {
+        gameState.current.ballVX = -Math.abs(gameState.current.ballVX)
+        const hitPos = gameState.current.ballY + ballSize / 2 - (gameState.current.rightPaddleY + paddleHeight / 2)
+        gameState.current.ballVY += hitPos * 0.05
+        // same speed cap
+        const maxVY = 3 * speedFactor
+        if (Math.abs(gameState.current.ballVY) > maxVY) {
+          gameState.current.ballVY = Math.sign(gameState.current.ballVY) * maxVY
+        }
       }
 
       // Scoring – only update scores, no pop‑up
@@ -699,193 +736,195 @@ const pengGameAI = () => {
   return (
     <div id={name} className={'activity activity-' + name + (show ? ' show' : ' hide') + ' fixed'}>
       {!showSettings && <CloseBtn onClick={handleClose} />}
-      <div className='peng-game-header'>
-        <h1 className='peng-game-title'>Peng</h1>
-      </div>
-      <div className='score-board'>
-        <div className='peng-game-player'>
-          <div className='peng-game-player-name'>PLAYER</div>
-          <div className='peng-game-player-score'>{scores.left}</div>
+      <div className='peng-game-inner'>
+        <div className='peng-game-header'>
+          <h1 className='peng-game-title'>Peng</h1>
         </div>
-        <div className='score-board-vs'>vs</div>
-        <div className='peng-game-player'>
-          <div className='peng-game-player-score'>{scores.right}</div>
-          <div className='peng-game-player-name'>A.I.</div>
+        <div className='score-board'>
+          <div className='peng-game-player'>
+            <div className='peng-game-player-name'>PLAYER</div>
+            <div className='peng-game-player-score'>{scores.left}</div>
+          </div>
+          <div className='score-board-vs'>vs</div>
+          <div className='peng-game-player'>
+            <div className='peng-game-player-score'>{scores.right}</div>
+            <div className='peng-game-player-name'>A.I.</div>
+          </div>
         </div>
-      </div>
-      <div className='canvas-wrapper'>
-        <canvas ref={canvasRef} className='peng-canvas' />
-      </div>
+        <div className='canvas-wrapper'>
+          <canvas ref={canvasRef} className='peng-canvas' />
+        </div>
 
-      <div className='button-group'>
-        <button className='btn start-button' onClick={startGame}>
-          {gameState.current.gameActive ? 'Restart' : 'Start'}
-        </button>
-        <button className='btn pause-button' onClick={togglePause} disabled={!gameState.current.gameActive}>
-          {isPaused ? 'Resume' : 'Pause'}
-        </button>
-        <button className='btn stop-button' onClick={stopGame} disabled={!gameState.current.gameActive}>
-          Stop
-        </button>
-      </div>
+        <div className='button-group'>
+          <button className='btn start-button' onClick={startGame}>
+            {gameState.current.gameActive ? 'Restart' : 'Start'}
+          </button>
+          <button className='btn pause-button' onClick={togglePause} disabled={!gameState.current.gameActive}>
+            {isPaused ? 'Resume' : 'Pause'}
+          </button>
+          <button className='btn stop-button' onClick={stopGame} disabled={!gameState.current.gameActive}>
+            Stop
+          </button>
+        </div>
 
-      <div className='button-group'>
-        <button className='btn settings-button' onClick={openSettings}>
-          <SettingsOutlinedIcon /> Settings
-        </button>
-      </div>
+        <div className='button-group'>
+          <button className='btn settings-button' onClick={openSettings}>
+            <SettingsOutlinedIcon /> Settings
+          </button>
+        </div>
 
-      {/* Settings Modal */}
-      {showSettings && (
-        <div className='modal-overlay' onClick={() => setShowSettings(false)}>
-          <div className='modal-content' onClick={(e) => e.stopPropagation()}>
-            <div className='modal-inner'>
-              <div className='game-settings-title'>
-                <h4>Game Settings</h4>
-              </div>
-
-              <div className='slider-control'>
-                <label>
-                  <div>Ball Size: </div>
-                  <div>{tempBallSize}</div>
-                </label>
-
-                <input
-                  type='range'
-                  min='5'
-                  max='30'
-                  step='1'
-                  value={tempBallSize}
-                  onChange={(e) => setTempBallSize(parseInt(e.target.value))}
-                />
-              </div>
-
-              <div className='slider-control'>
-                <label>
-                  <div>Paddle Width: </div>
-                  <div>{tempPaddleWidth}</div>
-                </label>
-                <input
-                  type='range'
-                  min='5'
-                  max={MAX_PADDLE_WIDTH}
-                  step='1'
-                  value={tempPaddleWidth}
-                  onChange={(e) => setTempPaddleWidth(parseInt(e.target.value))}
-                />
-              </div>
-
-              <div className='slider-control'>
-                <label>
-                  <div>Paddle Height: </div>
-                  <div>{tempPaddleHeight}</div>
-                </label>
-                <input
-                  type='range'
-                  min='50'
-                  max={MAX_PADDLE_HEIGHT}
-                  step='5'
-                  value={tempPaddleHeight}
-                  onChange={(e) => setTempPaddleHeight(parseInt(e.target.value))}
-                />
-              </div>
-
-              <div className='slider-control'>
-                <label>
-                  <div> Ball Speed:</div>
-                  <div>{tempSpeedFactor.toFixed(1)}x</div>
-                </label>
-                <input
-                  type='range'
-                  min='0.5'
-                  max='2.0'
-                  step='0.1'
-                  value={tempSpeedFactor}
-                  onChange={(e) => setTempSpeedFactor(parseFloat(e.target.value))}
-                />
-              </div>
-
-              <div className='slider-control'>
-                <label>
-                  <div>AI Skill:</div>
-                  <div>{tempAiSkill === 0 ? 'Easy' : tempAiSkill === 1 ? 'Hard' : 'Medium'}</div>
-                </label>
-                <input
-                  type='range'
-                  min='0'
-                  max='1'
-                  step='0.5'
-                  value={tempAiSkill}
-                  onChange={(e) => setTempAiSkill(parseFloat(e.target.value))}
-                />
-              </div>
-
-              <div className='slider-control'>
-                <label>
-                  <div>Max Hold Time:</div>
-                  <div> {tempMaxHold / 1000} s</div>
-                </label>
-                <input
-                  type='range'
-                  min='500'
-                  max='3000'
-                  step='50'
-                  value={tempMaxHold}
-                  onChange={(e) => setTempMaxHold(parseInt(e.target.value))}
-                />
-              </div>
-
-              <div className='slider-control'>
-                <label>
-                  <div>Freeze Cooldown: </div>
-                  <div>{tempFreeze / 1000} s</div>
-                </label>
-                <input
-                  type='range'
-                  min='300'
-                  max='2000'
-                  step='50'
-                  value={tempFreeze}
-                  onChange={(e) => setTempFreeze(parseInt(e.target.value))}
-                />
-              </div>
-
-              <div className='instructions-modal'>
-                <h4>Instructions</h4>
-                <div>
-                  <p>Desktop keys:</p>
-                  <p> W/S move, Space start, P pause.</p>
+        {/* Settings Modal */}
+        {showSettings && (
+          <div className='modal-overlay' onClick={() => setShowSettings(false)}>
+            <div className='modal-content' onClick={(e) => e.stopPropagation()}>
+              <div className='modal-inner'>
+                <div className='game-settings-title'>
+                  <h4>Game Settings</h4>
                 </div>
-                <div>
-                  <p>Mobile:</p>
-                  <p> Touch‑hold left half to move.</p>
-                </div>
-                <div>
-                  <p>Click‑hold left half to charge (yellow & shrinks).</p>
-                </div>
-                <div>
-                  <p>Release while touching ball to boost (fixed {BOOST_MULTIPLIER}x force).</p>
-                </div>
-                <div>
-                  <p>Hold longer than max hold time → paddle freezes (grey) for cooldown.</p>
-                </div>
-              </div>
 
-              <div className='modal-buttons'>
-                <button className='apply-button' onClick={applySettings}>
-                  <DoneIcon />
-                </button>
-                <button className='reset-button' onClick={resetSettings}>
-                  <RestartAltOutlinedIcon />
-                </button>
-                <button className='cancel-button' onClick={() => setShowSettings(false)}>
-                  <CloseOutlinedIcon />
-                </button>
+                <div className='slider-control'>
+                  <label>
+                    <div>Ball Size: </div>
+                    <div>{tempBallSize}</div>
+                  </label>
+
+                  <input
+                    type='range'
+                    min='5'
+                    max='30'
+                    step='1'
+                    value={tempBallSize}
+                    onChange={(e) => setTempBallSize(parseInt(e.target.value))}
+                  />
+                </div>
+
+                <div className='slider-control'>
+                  <label>
+                    <div>Paddle Width: </div>
+                    <div>{tempPaddleWidth}</div>
+                  </label>
+                  <input
+                    type='range'
+                    min='5'
+                    max={MAX_PADDLE_WIDTH}
+                    step='1'
+                    value={tempPaddleWidth}
+                    onChange={(e) => setTempPaddleWidth(parseInt(e.target.value))}
+                  />
+                </div>
+
+                <div className='slider-control'>
+                  <label>
+                    <div>Paddle Height: </div>
+                    <div>{tempPaddleHeight}</div>
+                  </label>
+                  <input
+                    type='range'
+                    min='50'
+                    max={MAX_PADDLE_HEIGHT}
+                    step='5'
+                    value={tempPaddleHeight}
+                    onChange={(e) => setTempPaddleHeight(parseInt(e.target.value))}
+                  />
+                </div>
+
+                <div className='slider-control'>
+                  <label>
+                    <div> Ball Speed:</div>
+                    <div>{tempSpeedFactor.toFixed(1)}x</div>
+                  </label>
+                  <input
+                    type='range'
+                    min='0.5'
+                    max='2.0'
+                    step='0.1'
+                    value={tempSpeedFactor}
+                    onChange={(e) => setTempSpeedFactor(parseFloat(e.target.value))}
+                  />
+                </div>
+
+                <div className='slider-control'>
+                  <label>
+                    <div>AI Skill:</div>
+                    <div>{tempAiSkill === 0 ? 'Easy' : tempAiSkill === 1 ? 'Hard' : 'Medium'}</div>
+                  </label>
+                  <input
+                    type='range'
+                    min='0'
+                    max='1'
+                    step='0.5'
+                    value={tempAiSkill}
+                    onChange={(e) => setTempAiSkill(parseFloat(e.target.value))}
+                  />
+                </div>
+
+                <div className='slider-control'>
+                  <label>
+                    <div>Max Hold Time:</div>
+                    <div> {tempMaxHold / 1000} s</div>
+                  </label>
+                  <input
+                    type='range'
+                    min='500'
+                    max='3000'
+                    step='50'
+                    value={tempMaxHold}
+                    onChange={(e) => setTempMaxHold(parseInt(e.target.value))}
+                  />
+                </div>
+
+                <div className='slider-control'>
+                  <label>
+                    <div>Freeze Cooldown: </div>
+                    <div>{tempFreeze / 1000} s</div>
+                  </label>
+                  <input
+                    type='range'
+                    min='300'
+                    max='2000'
+                    step='50'
+                    value={tempFreeze}
+                    onChange={(e) => setTempFreeze(parseInt(e.target.value))}
+                  />
+                </div>
+
+                <div className='instructions-modal'>
+                  <h4>Instructions</h4>
+                  <div>
+                    <p>Desktop keys:</p>
+                    <p> W/S move, Space start, P pause.</p>
+                  </div>
+                  <div>
+                    <p>Mobile:</p>
+                    <p> Touch‑hold left half to move.</p>
+                  </div>
+                  <div>
+                    <p>Click‑hold left half to charge (yellow & shrinks).</p>
+                  </div>
+                  <div>
+                    <p>Release while touching ball to boost (fixed {BOOST_MULTIPLIER}x force).</p>
+                  </div>
+                  <div>
+                    <p>Hold longer than max hold time → paddle freezes (grey) for cooldown.</p>
+                  </div>
+                </div>
+
+                <div className='modal-buttons'>
+                  <button className='apply-button' onClick={applySettings}>
+                    <DoneIcon />
+                  </button>
+                  <button className='reset-button' onClick={resetSettings}>
+                    <RestartAltOutlinedIcon />
+                  </button>
+                  <button className='cancel-button' onClick={() => setShowSettings(false)}>
+                    <CloseOutlinedIcon />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   )
 }

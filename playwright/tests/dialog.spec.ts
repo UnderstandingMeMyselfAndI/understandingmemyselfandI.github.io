@@ -8,6 +8,9 @@ test('clicking the exit button opens the quick exit dialog', async ({ page }) =>
   await page.click('#age-gate-yes-btn')
   await page.click('#accept-all-btn')
 
+  // Browser will stay open here for manual testing
+  await page.pause() // <-- ADD THIS LINE
+
   // 2. Wait for the exit button to appear (it's shown after 10 seconds)
   // The button is inside a div with class 'exit-wrap' (see ExitButton.jsx)
   const exitButton = page.locator('.exit-btn').first()
