@@ -54,32 +54,65 @@ body .main section.activity.activity-peng-game {
         align-content: center;
         justify-content: space-evenly;
     }
+
+    .peng-game-header {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+
+        button {
+            background: transparent;
+            padding: 0.75rem;
+            min-height: 0;
+            height: fit-content;
+            border: none;
+            outline: none;
+
+            svg {
+                width: 30px;
+                height: 30px;
+                // fill: transparent;
+                stroke: transparent
+            }
+        }
+    }
 }
 
 .score-board {
-    font-size: 1.0rem;
-    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    // margin-bottom: 1rem;
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
     width: 100%;
     // outline: 1px solid yellow;
     justify-content: center;
     align-content: center;
+    align-content: center;
+    align-items: center;
     // align-items: stretch; // align-items: stretch;
 }
 
 .peng-game-player {
     display: flex;
     align-items: center;
+    align-content: center;
     // outline: 1px solid #ccc;
-    gap: 1rem;
+    gap: 0.5rem;
     align-self: stretch;
     width: 100%;
+    height: 100%;
+    text-align: right;
+}
+
+.peng-game-player:last-child {
+    text-align: left;
+    align-self: flex-start;
 }
 
 .peng-game-player-score {
     font-weight: 800;
     font-size: 2.5rem;
+    color: var(--yellow);
 }
 
 .score-board-vs {
@@ -113,6 +146,9 @@ body .main section.activity.activity-peng-game {
     background-color: var(--blue20Trans);
 }
 
+
+
+.toggle-control,
 .slider-control {
     margin-top: 1rem;
     display: flex;
@@ -163,6 +199,13 @@ body .main section.activity.activity-peng-game {
             cursor: not-allowed;
         }
     }
+}
+
+.toggle-control label {
+    text-align: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 0.5rem;
 }
 
 .button-group {
@@ -263,6 +306,7 @@ body .main section.activity.activity-peng-game {
     h4 {
         text-transform: uppercase;
         color: var(--primary);
+        text-decoration: none;
 
     }
 

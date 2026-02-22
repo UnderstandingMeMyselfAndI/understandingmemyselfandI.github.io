@@ -751,16 +751,26 @@ const pengGameAI = () => {
       {!showSettings && <CloseBtn onClick={handleClose} />}
       <div className='peng-game-inner'>
         <div className='peng-game-header'>
+          <button className='btn settings-button' onClick={openSettings}>
+            <SettingsOutlinedIcon />
+          </button>
           <h1 className='peng-game-title'>Peng</h1>
         </div>
         <div className='score-board'>
           <div className='peng-game-player'>
-            <div className='peng-game-player-name'>PLAYER</div>
             <div className='peng-game-player-score'>{scores.left}</div>
           </div>
           <div className='score-board-vs'>vs</div>
           <div className='peng-game-player'>
             <div className='peng-game-player-score'>{scores.right}</div>
+          </div>
+        </div>
+        <div className='score-board'>
+          <div className='peng-game-player'>
+            <div className='peng-game-player-name'>Player One</div>
+          </div>
+          <div className='score-board-vs'>vs</div>
+          <div className='peng-game-player'>
             <div className='peng-game-player-name'>
               A.I. {aiSkill === 0 ? 'Easy' : aiSkill === 1 ? 'Hard' : 'Medium'}
             </div>
@@ -779,12 +789,6 @@ const pengGameAI = () => {
           </button>
           <button className='btn stop-button' onClick={stopGame} disabled={!gameState.current.gameActive}>
             Stop
-          </button>
-        </div>
-
-        <div className='button-group'>
-          <button className='btn settings-button' onClick={openSettings}>
-            <SettingsOutlinedIcon /> Settings
           </button>
         </div>
 
