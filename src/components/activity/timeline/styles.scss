@@ -224,7 +224,7 @@ $minimap-w: 50px;
   color: var(--orange70Trans);
   animation: bounce 2s infinite;
   width: 100%;
-  font-weight: 700;
+  font-weight: 800;
   font-variation-settings: 'wght' 700;
   margin-left: -4px;
 }
@@ -315,6 +315,7 @@ $minimap-w: 50px;
   // Make section tall enough to scroll through
   min-height: 150vh;
   width: 100%;
+
 }
 
 // --- PINNED BACKGROUND ---
@@ -346,14 +347,15 @@ $minimap-w: 50px;
 
 .huge-year {
   /* Clamp scales linearly: min 4rem, ideal 15vw, max 12rem */
-  font-size: clamp(5.5rem, 5vw, 8rem);
+  font-size: clamp(5.25rem, 5vw, 8rem);
   line-height: 0.9;
-  // outline: 1px solid #ccc;
+  margin-left: 1rem;
   color: var(--orange70Trans);
   min-width: 100%;
   letter-spacing: -0.9;
   font-weight: 00;
   font-variation-settings: 'wght' 900;
+
 }
 
 .huge-title {
@@ -361,6 +363,7 @@ $minimap-w: 50px;
   color: var(--lightBlue60Trans);
   letter-spacing: -0.2;
   line-height: 1;
+  margin-left: 1rem;
 }
 
 .marker-label {
@@ -372,6 +375,8 @@ $minimap-w: 50px;
   border-top: 1px solid $accent;
   border-bottom: 1px solid $accent;
   padding: 5px 20px;
+  margin-left: 1.5rem;
+  width: 100%;
 }
 
 // --- EVENTS ---
@@ -393,11 +398,7 @@ $minimap-w: 50px;
   max-width: 325px;
   width: 100%;
   border-radius: var(--border-radius);
-  // border: 1px solid #333;
-  // box-shadow: 0 0px 16px rgba(0, 0, 0, 0.5);
   position: relative;
-  // margin-left: 100px;
-  // text-align: left;
 
   h3 {
     color: $accent;

@@ -3,18 +3,19 @@
 
 body div.main section.activity-units-calculator-cta div.cta {
   .inner {
-    background-color: var(--yellow20Trans);
+
+    // background-color: var(--blueDark10Trans);
 
     u {
-      text-decoration-color: var(--primary40Trans);
+      text-decoration-color: var(--primary20Trans);
     }
 
     h3.title {
       color: var(--orange);
       font-weight: 800;
       font-variation-settings: 'wght' 800;
+      text-decoration-color: var(--lightBlue40Trans);
     }
   }
 
-  background-color: var(--blue90Trans);
 }

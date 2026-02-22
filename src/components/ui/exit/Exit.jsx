@@ -12,11 +12,15 @@ const Exit = () => {
   const quickExitMessageEnabled = useAppStore((state) => state.quickExitMessageEnabled)
   const [showDialog, setShowDialog] = useState(false)
   const [show, setShow] = useState(false)
-  const showAfterMillis = 10000
+  const showAfterMillis = quickExitMessageEnabled ? 0 : 10000
   const enableQuickExitMessage = useAppStore((state) => state.enableQuickExitMessage)
 
-  const message =
-    '<p>Your privacy matters.</p><p>This button lets you leave the app immediately and open google.com if you need to.</p><p>Use it whenever that feels helpful.</p><p>This message can be turned off below and also controlled in settings.</p>'
+  const message = [
+    'Your privacy matters.',
+    'This button lets you leave the app immediately and open google.com if you need to.',
+    'Use it whenever that feels helpful.',
+    'This message can be turned off below and also controlled in settings.',
+  ]
 
   const checkBoxInstruction = '<p>Show this message again</p>'
   useEffect(() => {

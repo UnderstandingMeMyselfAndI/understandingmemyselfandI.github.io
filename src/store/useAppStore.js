@@ -154,6 +154,20 @@ const useAppStore = create(
         set(() => ({ dc: v }))
       },
       // ----------------------------------------
+      // Wheel Of Life
+      wol: true,
+      wheelOfLifeEnabled: true,
+      enableWheelOfLife: (v) => {
+        set(() => ({ wheelOfLifeEnabled: v }))
+        set(() => ({ wol: v }))
+      },
+      // ----------------------------------------
+      // Quiz
+      quizEnabled: true,
+      enableQuiz: (v) => {
+        set(() => ({ quiz: v }))
+      },        
+      // ----------------------------------------
       // Units Calculator
       uc: true,
       setUc: (v) => {
@@ -391,6 +405,9 @@ const useAppStore = create(
         theme: state.theme,
         textScale: state.textScale,
         ageVerified: state.ageVerified,
+        wol: state.wol,
+        wheelOfLifeEnabled: state.wheelOfLifeEnabled,
+        quizEnabled: state.quizEnabled,
         dc: state.dc,
         daysCounterEnabled: state.daysCounterEnabled,
         uc: state.uc,

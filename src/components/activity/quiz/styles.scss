@@ -31,7 +31,7 @@ body div.main section.activity-quiz {
     left: 0;
     top: 0;
     z-index: -1;
-    opacity: 1;
+    opacity: 0.6;
     box-shadow: none;
   }
 
@@ -137,7 +137,7 @@ body div.main section.activity-quiz {
             flex-direction: column;
             gap: 0.25rem;
             font-size: 1.5rem;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--orange);
 
             &:first-child {
@@ -207,7 +207,7 @@ body div.main section.activity-quiz {
             .avg-label {
               font-size: 0.8rem;
               opacity: 0.6;
-              font-weight: 500;
+              font-weight: 600;
               text-transform: uppercase;
               letter-spacing: 0.05em;
             }
@@ -304,7 +304,7 @@ body div.main section.activity-quiz {
                   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 
                   .level-name {
-                    font-weight: 700;
+                    font-weight: 800;
                     color: inherit;
                   }
                 }
@@ -446,7 +446,7 @@ body div.main section.activity-quiz {
           opacity: 0.5;
           min-width: 2.5rem;
           text-align: center;
-          font-weight: 500;
+          font-weight: 600;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -485,7 +485,7 @@ body div.main section.activity-quiz {
       .status-title {
         font-size: 3rem;
         font-weight: 600;
-        color: var(--orange);
+        color: var(--primary);
         padding: 2rem 0;
         flex: 1;
       }
@@ -528,8 +528,8 @@ body div.main section.activity-quiz {
             .score-metric-value {
               font-size: 3rem;
               color: var(--primary);
-              font-weight: 300;
-              font-variation-settings: 'wght' 300;
+              font-weight: 200;
+              font-variation-settings: 'wght' 320;
               color: var(--grey);
               line-height: 1;
               letter-spacing: -0.9;

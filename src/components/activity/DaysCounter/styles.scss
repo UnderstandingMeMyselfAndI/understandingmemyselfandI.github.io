@@ -441,8 +441,8 @@ input.days-counter-date-input {
       content: 'days';
       position: absolute;
       font-size: 1.0rem;
-      font-weight: 500;
-      font-variation-settings: 'wght' 500;
+      font-weight: 600;
+      font-variation-settings: 'wght' 600;
       color: var(--primary);
       bottom: 0;
       left: 50%;
@@ -599,7 +599,7 @@ input.days-counter-date-input {
   justify-content: center;
   gap: 0.75rem;
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
 }
 

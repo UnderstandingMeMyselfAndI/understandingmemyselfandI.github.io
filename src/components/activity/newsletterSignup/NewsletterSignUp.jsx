@@ -4,7 +4,7 @@ import { trackEvent } from '@/js/analytics/analytics'
 import './styles.scss'
 
 const NewsletterSignUp = () => {
-  const COMPONENT_ID = 15
+  const id = -1
   const setActivity = useAppStore((state) => state.setActivity)
   const [checked, setChecked] = useState(false)
   const nss = useAppStore((s) => s.nss) // subscribed to newsletter
@@ -18,8 +18,8 @@ const NewsletterSignUp = () => {
   const activity = useAppStore((s) => s.activity)
 
   useEffect(() => {
-    !nss && setOpen(activity === COMPONENT_ID || !isModal)
-  }, [activity, isModal, nss])
+    setOpen(activity === id || !isModal)
+  }, [activity, isModal])
 
   useEffect(() => {
     window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code'
@@ -169,18 +169,10 @@ const NewsletterSignUp = () => {
     alt: 'Picture of man saluting',
   }
   return (
-    <div
-      id='newsletter'
-      className={
-        'activity activity-newsletter-signup-form' + (open ? ' show' : '')
-      }
-    >
+    <div id='newsletter' className={'activity activity-newsletter-signup-form' + (open ? ' show' : '')}>
       <div className='sib-form'>
         <div id='sib-form-container' className='sib-form-container'>
-          <div
-            id='sib-container'
-            className='sib-container--large sib-container--vertical'
-          >
+          <div id='sib-container' className='sib-container--large sib-container--vertical'>
             {status.success ? (
               <div className='signup-success'>
                 <div className='wrap'>
@@ -191,9 +183,7 @@ const NewsletterSignUp = () => {
                     signing up
                   </h3>
                   <div className='blue-bg'>
-                    <u className='blue-ul'>
-                      Check your inbox to confirm your email address.
-                    </u>
+                    <u className='blue-ul'>Check your inbox to confirm your email address.</u>
                   </div>
                 </div>
                 <div className='bg-img'>
@@ -207,8 +197,7 @@ const NewsletterSignUp = () => {
                 id='sib-form'
                 method='POST'
                 data-type='subscription'
-                noValidate={true}
-              >
+                noValidate={true}>
                 <div className='form-row'>
                   <div className='title'>
                     Bigger things are coming.
@@ -217,10 +206,7 @@ const NewsletterSignUp = () => {
                   </div>
                 </div>
                 <div className='form-row'>
-                  <p>
-                    Get useful updates &amp; exclusive invites delivered direct
-                    to your inbox.
-                  </p>
+                  <p>Get useful updates &amp; exclusive invites delivered direct to your inbox.</p>
                 </div>
                 {status.error && (
                   <div className='error-message' role='alert'>
@@ -242,11 +228,7 @@ const NewsletterSignUp = () => {
                     className={`email-input input ${errors.email ? 'input-error' : ''}`}
                   />
                   {errors.email && (
-                    <span
-                      id='email-error'
-                      className='entry__error entry__error--primary'
-                      role='alert'
-                    >
+                    <span id='email-error' className='entry__error entry__error--primary' role='alert'>
                       {errors.email}
                     </span>
                   )}
@@ -261,13 +243,10 @@ const NewsletterSignUp = () => {
                           id='OPT_IN'
                           name='OPT_IN'
                           aria-invalid={errors.checkbox ? 'true' : 'false'}
-                          aria-describedby={
-                            errors.checkbox ? 'checkbox-error' : undefined
-                          }
+                          aria-describedby={errors.checkbox ? 'checkbox-error' : undefined}
                           onChange={handleCheckboxChange}
                         />
-                        I agree to receive emails from Ummi and accept the terms
-                        of the{' '}
+                        I agree to receive emails from Ummi and accept the terms of the{' '}
                         <a href='#' onClick={handlePrivacyClick}>
                           data privacy policy
                         </a>
@@ -275,11 +254,7 @@ const NewsletterSignUp = () => {
                       </label>
                     </div>
                     {errors.checkbox && (
-                      <span
-                        id='checkbox-error'
-                        className='entry__error entry__error--primary'
-                        role='alert'
-                      >
+                      <span id='checkbox-error' className='entry__error entry__error--primary' role='alert'>
                         {errors.checkbox}
                       </span>
                     )}
@@ -288,14 +263,9 @@ const NewsletterSignUp = () => {
                 <div className='form-row privacy'>
                   <div>
                     <p>
-                      We use Brevo as our marketing platform. By submitting this
-                      form you agree that the personal data you provided will be
-                      transferred to Brevo for processing in accordance with{' '}
-                      <a
-                        href='https://www.brevo.com/en/legal/privacypolicy/'
-                        target='_blank'
-                        rel='noreferrer'
-                      >
+                      We use Brevo as our marketing platform. By submitting this form you agree that the personal data
+                      you provided will be transferred to Brevo for processing in accordance with{' '}
+                      <a href='https://www.brevo.com/en/legal/privacypolicy/' target='_blank' rel='noreferrer'>
                         Brevo&apos;s Privacy Policy.
                       </a>
                     </p>
@@ -303,12 +273,7 @@ const NewsletterSignUp = () => {
                 </div>
 
                 <div className='form-row'>
-                  <button
-                    type='submit'
-                    className='signup-button btn'
-                    aria-label='Sign Up'
-                    disabled={status.loading}
-                  >
+                  <button type='submit' className='signup-button btn' aria-label='Sign Up' disabled={status.loading}>
                     {status.loading ? (
                       <>
                         <span className='loading-spinner'></span>
@@ -321,21 +286,10 @@ const NewsletterSignUp = () => {
                 </div>
                 <div className='form-row privacy-google'>
                   This app is protected by reCAPTCHA and the Google
-                  <a href='https://policies.google.com/privacy'>
-                    Privacy Policy
-                  </a>{' '}
-                  and
-                  <a href='https://policies.google.com/terms'>
-                    Terms of Service
-                  </a>{' '}
-                  apply.
+                  <a href='https://policies.google.com/privacy'>Privacy Policy</a> and
+                  <a href='https://policies.google.com/terms'>Terms of Service</a> apply.
                 </div>
-                <input
-                  type='text'
-                  name='email_address_check'
-                  defaultValue=''
-                  className='input--hidden'
-                />
+                <input type='text' name='email_address_check' defaultValue='' className='input--hidden' />
                 <input type='hidden' name='locale' value='en' />
               </form>
             )}

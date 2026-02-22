@@ -40,15 +40,17 @@ import WheelOfLifeCTA from './components/activity/wheeloflife/WheelOfLifeCTA'
 import VerticalTimeline from './components/activity/timeline/VerticalTimeline'
 import TimelineCTA from './components/activity/timeline/TimelineCTA'
 import Quiz from './components/activity/quiz/Quiz'
-import { runPersistentStorageTests } from './js/utils.js'
+import QuizCTA from './components/activity/quiz/QuizCTA'
+import PengGameAI from './components/activity/games/peng/PengGameAI'
+// import { runPersistentStorageTests } from './js/utils.js'
 import './App.scss'
-import AccessibilitySettings from './components/ui/AccessibilitySettings/AccessibilitySettings'
+// import AccessibilitySettings from './components/ui/AccessibilitySettings/AccessibilitySettings'
 //TODO #41 Add Pop up confirm box with disclaimer. with timely reminder.
 //TODO #42 Add setting to remove reminder in settings
 // TODO: #21 "Clear Local Data" functionality
 //TODO #43 Styling of cookie consent
 
-//NEed for Service Worker update itself
+//Need for Service Worker update itself
 window.__APP_LOADED = true
 
 function App() {
@@ -81,15 +83,9 @@ function App() {
   return (
     <div>
       <div className='main'>
-        {/* <div className='dev-version'>Development Version.</div> */}
         <AppMenu />
 
         {quickExitEnabled && <Exit />}
-
-        {/* <div id='centers'>
-          <div className='vertical'></div>
-          <div className='horizontal'></div>
-        </div> */}
 
         <Header />
         <Introduction />
@@ -99,6 +95,7 @@ function App() {
         <Tools />
         <PrivacyPolicy />
         <Quiz />
+        <PengGameAI />
 
         <ToolsCTA />
         {daysCounterEnabled && <DaysCounterCTA />}
@@ -106,17 +103,15 @@ function App() {
         <TimelineCTA />
         <WheelOfLifeCTA />
         <Lingo />
-
+        <QuizCTA />
         <WallpapersCTA />
         <YourPrivacyCTA />
 
         <NewsletterSignUp />
         <InstallCTA />
 
-        {/* <AccessibilitySettings /> */}
         <Footer />
 
-        {/* <Motivation /> */}
         {quickExitEnabled && <Exit />}
         {unitsCalculatorEnabled && <UnitsCalculator />}
         {daysCounterEnabled && <DaysCounter />}
@@ -124,15 +119,8 @@ function App() {
         <Settings />
 
         <SnackBars />
-        <ScrollPosition />
       </div>
-      <Backdrop
-        initialImageId={2}
-        initialDelay={3000}
-        interval={6000}
-        parallaxStrength={0}
-        className='backdrop'
-      />
+      <Backdrop initialImageId={2} initialDelay={3000} interval={6000} parallaxStrength={0} className='backdrop' />
       <Routing />
       <Vcn />
       <CookieConsent />

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import ButtonSimple from '../buttons/ButtonSimple'
 import parse from 'html-react-parser'
+import { isArrayOfStrings } from '@/js/utils'
 import DOMPurify from 'dompurify'
 import './styles.scss'
 
@@ -41,32 +42,18 @@ const Dialog = ({
   }
 
   return (
-    <div
-      className={
-        'dialog-backdrop' + (open ? ' show' : '') + 
-        (classes.length > 0 ? ' ' + classes.join(' ') : '')
-      }
-    >
+    <div className={'dialog-backdrop' + (open ? ' show' : '') + (classes.length > 0 ? ' ' + classes.join(' ') : '')}>
       <div className='dialog'>
         <div className='dialog-inner'>
           <div className='dialog-title'>{title}</div>
           <div className='dialog-instruction' id='dialog-instruction'>
-            {parse(DOMPurify.sanitize(instruction))}
+            {typeof instruction === 'string' && parse(DOMPurify.sanitize(instruction))}
+            {isArrayOfStrings(instruction) && instruction.map((part, i) => parse(DOMPurify.sanitize(`<p>${part}</p>`)))}
           </div>
           <div className='dialog-content'>{children}</div>
           <div className='dialog-actions'>
-            <ButtonSimple
-              label={confirmLabel}
-              handleClick={handleConfirm}
-              classes={['confirm']}
-            />
-            {showCancel && (
-              <ButtonSimple
-                label={cancelLabel}
-                handleClick={handleCancel}
-                classes={['cancel']}
-              />
-            )}
+            <ButtonSimple label={confirmLabel} handleClick={handleConfirm} classes={['confirm']} />
+            {showCancel && <ButtonSimple label={cancelLabel} handleClick={handleCancel} classes={['cancel']} />}
           </div>
         </div>
       </div>
@@ -76,7 +63,7 @@ const Dialog = ({
 Dialog.propTypes = {
   children: PropTypes.node,
   title: PropTypes.string.isRequired,
-  instruction: PropTypes.string,
+  instruction: PropTypes.string || PropTypes.arrayOf(PropTypes.string),
   cancelLabel: PropTypes.string,
   confirmLabel: PropTypes.string,
   onConfirm: PropTypes.func.isRequired,

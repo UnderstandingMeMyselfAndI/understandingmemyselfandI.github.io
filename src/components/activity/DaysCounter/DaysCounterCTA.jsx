@@ -2,15 +2,19 @@ import { useState, useEffect } from 'react'
 import DaysCounterBtn from './DaysCounterBtn'
 import { strings } from '@/data/config'
 import useAppStore from '@/store/useAppStore'
+import ButtonSimple from '@/components/ui/buttons/ButtonSimple'
 import CTA from '@/components/ui/cta/CTA'
+import MoreTimeIcon from '@mui/icons-material/MoreTime'
 import './stylesCTA.scss'
 const DaysCounterCTA = () => {
   const activityName = 'DaysCounter'
   const activityUrl = 'days-counter'
   const activityID = -1
+  const targetID = 2
   const id = -1
   const activity = useAppStore((state) => state.activity)
   const isModal = useAppStore((state) => state.isModal)
+  const setActivity = useAppStore((state) => state.setActivity)
   const [open, setOpen] = useState(false)
 
   const bgImg = {
@@ -22,26 +26,28 @@ const DaysCounterCTA = () => {
     setOpen(activity === id)
   }, [activity])
 
-  const content =
-    strings.activity.find((activity) => activity.url === activityUrl) || null
+  const content = strings.activity.find((activity) => activity.url === activityUrl) || null
   if (content === null) {
     console.warn('No content found for activity "' + activityName + '"')
   }
-
+  const handleClick = () => {
+    setActivity(targetID)
+  }
   return (
-    <section
-      className={
-        `activity cta activity-${activityUrl}-cta ` + (open ? ' show' : '')
-      }
-    >
+    <section className={`activity cta activity-${activityUrl}-cta ` + (open ? ' show' : '')}>
       <CTA
         name={activityName}
         open={open}
         content={content.cta.content ? content.cta.content : null}
         title={content?.cta?.title}
-        label={content?.cta.btn?.label}
-      >
-        <DaysCounterBtn label={content?.cta.btn?.label.unused} />
+        label={content?.cta.btn?.label}>
+        {/* <DaysCounterBtn label={content?.cta.btn?.label.unused} /> */}
+        <ButtonSimple
+          classes={[`${activityName}-cta-btn btn`]}
+          label={content?.cta.btn?.label.unused}
+          handleClick={handleClick}>
+          <MoreTimeIcon />
+        </ButtonSimple>
         <div className='bg-img'>
           <img className='bg' src={bgImg.src} alt={bgImg.alt} />
         </div>

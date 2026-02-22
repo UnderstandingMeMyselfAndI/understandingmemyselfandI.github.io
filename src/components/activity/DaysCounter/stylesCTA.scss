@@ -3,7 +3,7 @@
 
 body div.main section.activity-days-counter-cta div.cta {
   .inner {
-    background-color: var(--orange60Trans);
+    // background-color: var(--blueDark10Trans);
 
     u {
       text-decoration-color: var(--blue30Trans);
@@ -13,18 +13,12 @@ body div.main section.activity-days-counter-cta div.cta {
       color: var(--primary);
       font-weight: 800;
       font-variation-settings: 'wght' 800;
-      text-align: right;
+
       text-shadow: none;
     }
 
-    .cta-content {
-      p {
-        text-align: right;
-      }
-    }
-
-    &::after {
-      background-color: var(--greyDark20Trans);
-    }
+    // &::after {
+    //   background-color: var(--greyDark20Trans);
+    // }
   }
 }

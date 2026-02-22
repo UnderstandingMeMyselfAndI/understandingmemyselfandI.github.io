@@ -1,5 +1,5 @@
 // Quiz.jsx (updated with stats)
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import QuizProgress from './quizProgress/QuizProgress'
 import QuizQuestion from './quizQuestion/QuizQuestion'
@@ -25,19 +25,13 @@ const activityStringsByName = strings.activity.reduce((acc, activity) => {
 import './styles.scss'
 
 const Quiz = () => {
-  const name = 'quiz'
+  const name = 'recovery-quiz'
   const id = 23
   const [open, setOpen] = useState(false)
   const [started, setStarted] = useState(false)
   const [view, setView] = useState('start') // 'start', 'question', 'stats'
   const [currentLevel, setCurrentLevel] = useState(null)
-  const { 
-    incrementPlayCount, 
-    getPlayCount, 
-    saveScore, 
-    addToHistory,
-    optIn
-  } = useQuizStore()
+  const { incrementPlayCount, getPlayCount, saveScore, addToHistory, optIn } = useQuizStore()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [score, setScore] = useState(0)
   const [totalAnswered, setTotalAnswered] = useState(0)
@@ -46,9 +40,7 @@ const Quiz = () => {
   const setIsModal = useAppStore((s) => s.setIsModal)
   const isModal = useAppStore((s) => s.isModal)
   const strings = activityStringsByName[name]
-  const { activity } = useAppStore(
-    useShallow((state) => ({ activity: state.activity })),
-  )
+  const { activity } = useAppStore(useShallow((state) => ({ activity: state.activity })))
 
   const totalQuestions = activeQuestions.length
 
@@ -81,11 +73,7 @@ const Quiz = () => {
     setScore(0)
     setTotalAnswered(0)
 
-    trackEvent(
-      'quiz_start',
-      { level, question_count: subset.length },
-      optIn,
-    )
+    trackEvent('quiz_start', { level, question_count: subset.length }, optIn)
   }
 
   const handleNext = (wasCorrect) => {
@@ -97,7 +85,7 @@ const Quiz = () => {
   }
 
   const resetQuiz = () => {
-    console.log("resetQuiz")
+    console.log('resetQuiz')
     setStarted(false)
     setCurrentLevel(null)
     setCurrentIndex(0)
@@ -111,12 +99,8 @@ const Quiz = () => {
   const handleRestart = () => {
     // Increment play count (both in store and analytics)
     incrementPlayCount()
-    
-    trackEvent(
-      'quiz_restart',
-      { level: currentLevel },
-      optIn,
-    )
+
+    trackEvent('quiz_restart', { level: currentLevel }, optIn)
 
     // Reset quiz
     resetQuiz()
@@ -125,8 +109,7 @@ const Quiz = () => {
   const getCompletionStatus = () => {
     if (!questions.completionStatus) return null
     return (
-      questions.completionStatus
-        .find((status) => score >= status.minScore) ||
+      questions.completionStatus.find((status) => score >= status.minScore) ||
       questions.completionStatus[questions.completionStatus.length - 1]
     )
   }
@@ -137,50 +120,42 @@ const Quiz = () => {
   // Immediate save on completion
   useEffect(() => {
     if (isComplete && currentLevel) {
-       // Record completion event
-       trackEvent(
-         'quiz_complete',
-         {
-           level: currentLevel,
-           score,
-           total_questions: totalQuestions,
-           accuracy: totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0,
-           play_number: getPlayCount() + 1,
-         },
-         optIn,
-       )
+      // Record completion event
+      trackEvent(
+        'quiz_complete',
+        {
+          level: currentLevel,
+          score,
+          total_questions: totalQuestions,
+          accuracy: totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0,
+          play_number: getPlayCount() + 1,
+        },
+        optIn,
+      )
 
-       // Save to history/scores if opted in
-       if (optIn) {
-         saveScore(currentLevel, score)
-         addToHistory({
-           level: currentLevel,
-           score,
-           total: totalQuestions,
-           accuracy: totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0,
-         })
-       }
+      // Save to history/scores if opted in
+      if (optIn) {
+        saveScore(currentLevel, score)
+        addToHistory({
+          level: currentLevel,
+          score,
+          total: totalQuestions,
+          accuracy: totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0,
+        })
+      }
     }
   }, [isComplete])
 
   const handleClose = () => {
-    resetQuiz()    
+    resetQuiz()
     setOpen(false)
     setActivity(-1)
   }
 
-  return ( open ?
-    <section
-      id={name}
-      className={'activity activity-quiz fixed' + (open ? ' show' : ' hide')}
-    >
-      
-     
+  return open ? (
+    <section id={name} className={'activity activity-quiz fixed' + (open ? ' show' : ' hide')}>
       <div className='inner'>
-        <CloseBtn
-          className='close-btn'
-          onClick={view === 'stats' ? () => setView('start') : handleClose}
-        />
+        <CloseBtn className='close-btn' onClick={view === 'stats' ? () => setView('start') : handleClose} />
         {started && (
           <button className='cancel-btn' onClick={resetQuiz}>
             Quit
@@ -191,8 +166,7 @@ const Quiz = () => {
         ) : view === 'stats' ? (
           <QuizStats onBack={() => setView('start')} />
         ) : isComplete ? (
-          <div className='quiz-complete'>          
-
+          <div className='quiz-complete'>
             {status && (
               <div className='completion-status'>
                 <h2 className='status-title'>{status.title}</h2>
@@ -211,12 +185,7 @@ const Quiz = () => {
                 <div className='score-metric'>
                   <div className='score-metric-label'>Accuracy: </div>
                   <div className='score-metric-value'>
-                    <span>
-                      {totalQuestions > 0
-                        ? Math.round((score / totalQuestions) * 100)
-                        : 0}
-                      %
-                    </span>
+                    <span>{totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0}%</span>
                   </div>
                 </div>
               </div>
@@ -235,10 +204,9 @@ const Quiz = () => {
             totalAnswered={totalAnswered}
           />
         )}
-        
       </div>
-    </section> : null
-  )
+    </section>
+  ) : null
 }
 
 export default Quiz

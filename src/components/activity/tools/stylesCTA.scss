@@ -5,7 +5,17 @@
   position: relative;
   border-radius: var(--border-radius);
 
+  .inner {
+    // background-color: var(--blueDark10Trans);
+  }
+
+  h3.title,
   .cta-content {
+    text-align: center;
+  }
+
+  .cta-content {
+    text-align: center;
     text-shadow: var(--textShadowDarkStrong);
     font-weight: 400;
     font-variation-settings: 'wght' 400;
@@ -20,7 +30,6 @@
     height: 100%;
     z-index: -1;
     border-radius: var(--border-radius);
-
     overflow: hidden;
 
     img {

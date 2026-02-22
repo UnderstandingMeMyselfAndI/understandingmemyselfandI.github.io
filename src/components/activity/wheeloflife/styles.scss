@@ -334,7 +334,7 @@ div#wheel-of-life {
 
       div:first-child {
         font-size: 2rem;
-        font-weight: 700;
+        font-weight: 800;
         font-variation-settings: 'wght' 700;
         text-align: right;
         color: var(--orange);
@@ -443,7 +443,7 @@ div#wheel-of-life {
 
       .category-label {
         font-size: var(--wheel-label-size);
-        font-weight: 700;
+        font-weight: 800;
         fill: var(--wheel-label-color);
         pointer-events: none;
         transition: fill 0.3s;
@@ -465,8 +465,8 @@ div#wheel-of-life {
         .score-separator,
         .max-score {
           font-size: 1.5rem;
-          font-weight: 300;
-          font-variation-settings: 'wght' 300;
+          font-weight: 200;
+          font-variation-settings: 'wght' 200;
         }
       }
 
@@ -516,6 +516,7 @@ div#wheel-of-life {
 
       .btn {
         outline: 1px solid var(--lightGrey20Trans);
+        padding: .625rem 1.15rem;
       }
 
       svg {
@@ -579,7 +580,7 @@ div#wheel-of-life {
       font-size: 1rem;
       border-radius: 6px;
       cursor: pointer;
-      font-weight: 500;
+      font-weight: 600;
       transition: all 0.2s;
 
       &.small {

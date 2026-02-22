@@ -18,7 +18,7 @@
 
   padding: 2rem 0;
 
-  > div {
+  >div {
     padding: 1.25rem 2rem;
     display: flex;
     flex-flow: column nowrap;
@@ -71,11 +71,7 @@
   scroll-margin-top: 5vh;
 }
 
-body
-  div.activity-newsletter-signup-form
-  div.sib-form
-  div#sib-form-container
-  div#sib-container {
+body div.activity-newsletter-signup-form div.sib-form div#sib-form-container div#sib-container {
   //
 
   &:has(.signup-success) {
@@ -197,13 +193,13 @@ body
         padding: 3rem 0;
         justify-content: center;
 
-        > div {
+        >div {
           padding: 8px 0;
 
           .sib-form-block {
             font-size: 2rem;
             text-align: left;
-            font-weight: 700;
+            font-weight: 800;
             color: #3c4858;
             background-color: transparent;
             text-align: left;
@@ -211,7 +207,7 @@ body
             button.sib-form-block__button {
               font-size: 1rem;
               text-align: left;
-              font-weight: 700;
+              font-weight: 800;
               color: #ffffff;
               background-color: #3e4857;
               border-radius: 3px;
@@ -311,8 +307,8 @@ body
 
         .title {
           font-size: variables.$h3_size;
-          font-weight: 700;
-          font-variation-settings: 'wght' 700;
+          font-weight: 800;
+          font-variation-settings: 'wght' 800;
           line-height: 1.3;
         }
 
