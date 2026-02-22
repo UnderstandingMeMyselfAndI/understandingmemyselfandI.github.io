@@ -10,7 +10,7 @@ $charge-color: #ffff00;
 $border-color: var(--greyMed);
 
 
-.activity-peng-game {
+body .main section.activity.activity-peng-game {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,8 +19,9 @@ $border-color: var(--greyMed);
     justify-content: center;
     min-height: 100vh;
     width: 100vw;
+    max-width: 100vw;
     height: 100vh;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
     background-color: var(--greyDark90Trans);
 
     color: var(--parimary);
@@ -43,21 +44,24 @@ $border-color: var(--greyMed);
     }
 
     .peng-game-inner {
-        padding-bottom: 2rem;
+        padding: 2rem 0;
         width: 100%;
+        height: 100%;
         display: flex;
+        // gap: 0.5rem;
         flex-direction: column;
         align-items: center;
         align-content: center;
+        justify-content: space-evenly;
     }
 }
 
 .score-board {
-    font-size: 1.25rem;
+    font-size: 1.0rem;
     margin-bottom: 1rem;
     display: flex;
     gap: 1rem;
-    width: 90%;
+    width: 100%;
     // outline: 1px solid yellow;
     justify-content: center;
     align-content: center;
@@ -81,9 +85,9 @@ $border-color: var(--greyMed);
 .score-board-vs {
     color: var(--lightBlue);
     height: 100%;
-    align-self: flex-end;
+    align-self: center;
     // outline: 1px solid #ccc;
-    align-content: flex-end;
+    align-content: center
 }
 
 .peng-game-player:first-child {
@@ -93,12 +97,12 @@ $border-color: var(--greyMed);
 }
 
 .canvas-wrapper {
-    width: 90%;
-    max-width: 800px;
+    width: 100%;
+    max-width: var(--max-width);
     height: 50vh;
     max-height: 500px;
+    aspect-ratio: 1.5;
     border: 1px solid var(--greyMid);
-    // border-radius: var(--border-radius);
     overflow: hidden;
 }
 
@@ -162,8 +166,8 @@ $border-color: var(--greyMed);
 }
 
 .button-group {
-    margin-top: 1.5rem;
-    width: 90%;
+    margin-top: 1.0rem;
+    width: 100%;
     display: flex;
 
     gap: 1rem;
@@ -175,20 +179,9 @@ $border-color: var(--greyMed);
 .pause-button,
 .stop-button,
 .settings-button {
-    // padding: 0.75rem 2rem;
-    // font-size: 1.2rem;
-    // border: none;
-    // border-radius: 4px;
-    // cursor: pointer;
+
     transition: opacity 0.2s, transform 0.1s;
 
-    &:hover {
-        opacity: 0.9;
-    }
-
-    &:active {
-        transform: scale(0.98);
-    }
 
     &:disabled {
         opacity: 0.5;

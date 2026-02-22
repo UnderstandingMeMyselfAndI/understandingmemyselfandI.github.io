@@ -747,7 +747,7 @@ const pengGameAI = () => {
   ])
 
   return (
-    <div id={name} className={'activity activity-' + name + (show ? ' show' : ' hide') + ' fixed'}>
+    <section id={name} className={'activity activity-' + name + (show ? ' show' : ' hide') + ' fixed'}>
       {!showSettings && <CloseBtn onClick={handleClose} />}
       <div className='peng-game-inner'>
         <div className='peng-game-header'>
@@ -761,7 +761,9 @@ const pengGameAI = () => {
           <div className='score-board-vs'>vs</div>
           <div className='peng-game-player'>
             <div className='peng-game-player-score'>{scores.right}</div>
-            <div className='peng-game-player-name'>A.I.</div>
+            <div className='peng-game-player-name'>
+              A.I. {aiSkill === 0 ? 'Easy' : aiSkill === 1 ? 'Hard' : 'Medium'}
+            </div>
           </div>
         </div>
         <div className='canvas-wrapper'>
@@ -962,7 +964,7 @@ const pengGameAI = () => {
           </div>
         )}
       </div>
-    </div>
+    </section>
   )
 }
 
