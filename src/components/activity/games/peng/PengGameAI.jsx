@@ -74,6 +74,8 @@ const pengGameAI = () => {
   const [tempAiSkill, setTempAiSkill] = useState(aiSkill)
   const [tempMaxHold, setTempMaxHold] = useState(maxHoldTime)
   const [tempFreeze, setTempFreeze] = useState(freezeCooldown)
+  const [boostEnabled, setBoostEnabled] = useState(false) // NEW
+  const [tempBoostEnabled, setTempBoostEnabled] = useState(false) // NEW
 
   // Max limits for paddle dimensions
   const MAX_PADDLE_WIDTH = 40
@@ -131,6 +133,7 @@ const pengGameAI = () => {
 
   // Apply boost (fixed multiplier)
   const tryApplyBoost = (holdTime) => {
+    if (!boostEnabled) return
     const now = Date.now()
     if (gameState.current.gameActive && !isPaused && !isFrozen && now - lastBoostTime.current > BOOST_COOLDOWN) {
       // Check if ball is still touching paddle OR was touching recently
@@ -249,6 +252,7 @@ const pengGameAI = () => {
     setTempAiSkill(aiSkill)
     setTempMaxHold(maxHoldTime)
     setTempFreeze(freezeCooldown)
+    setTempBoostEnabled(boostEnabled)
     setShowSettings(true)
   }
 
@@ -261,6 +265,7 @@ const pengGameAI = () => {
     setAiSkill(tempAiSkill)
     setMaxHoldTime(tempMaxHold)
     setFreezeCooldown(tempFreeze)
+    setBoostEnabled(tempBoostEnabled)
     setShowSettings(false)
 
     const canvas = canvasRef.current
@@ -290,6 +295,7 @@ const pengGameAI = () => {
     setTempAiSkill(0.5)
     setTempMaxHold(1500)
     setTempFreeze(1000)
+    setTempBoostEnabled(false)
   }
 
   // Update game logic
@@ -441,10 +447,10 @@ const pengGameAI = () => {
     ctx.setLineDash([])
 
     // Left paddle
-    if (isFrozen) {
+    if (isFrozen && boostEnabled) {
       ctx.fillStyle = '#808080' // grey when frozen
       ctx.fillRect(0, gameState.current.leftPaddleY, paddleWidth, paddleHeight)
-    } else if (isCharging) {
+    } else if (isCharging && boostEnabled) {
       ctx.fillStyle = '#ffff00' // yellow when charging
       const chargedWidth = paddleWidth * 0.85
       ctx.fillRect(0, gameState.current.leftPaddleY, chargedWidth, paddleHeight)
@@ -540,13 +546,17 @@ const pengGameAI = () => {
       const mouseY = e.clientY - rect.top
 
       if (mouseX < canvas.width / 2) {
+        // Always set mouse down for paddle movement
         isMouseDown.current = true
-        chargeStartTime.current = Date.now()
-        setIsCharging(true)
+        // Only start charging if boost enabled
+        if (boostEnabled) {
+          chargeStartTime.current = Date.now()
+          setIsCharging(true)
+        }
         gameState.current.leftPaddleY = Math.max(0, Math.min(canvas.height - paddleHeight, mouseY - paddleHeight / 2))
       }
     },
-    [isPaused, isFrozen, paddleHeight],
+    [isPaused, isFrozen, paddleHeight, boostEnabled],
   )
 
   const handleMouseMove = useCallback(
@@ -595,10 +605,13 @@ const pengGameAI = () => {
         const touchX = touch.clientX - rect.left
         if (touchX < canvas.width / 2) {
           if (activeTouchId.current === null) {
+            // Always set active touch for paddle movement
             activeTouchId.current = touch.identifier
-            chargeStartTime.current = Date.now()
-            setIsCharging(true)
-
+            // Only start charging if boost enabled
+            if (boostEnabled) {
+              chargeStartTime.current = Date.now()
+              setIsCharging(true)
+            }
             const touchY = touch.clientY - rect.top
             gameState.current.leftPaddleY = Math.max(
               0,
@@ -609,7 +622,7 @@ const pengGameAI = () => {
         }
       }
     },
-    [isPaused, isFrozen, paddleHeight],
+    [isPaused, isFrozen, paddleHeight, boostEnabled],
   )
 
   const handleTouchMove = useCallback(
@@ -662,7 +675,7 @@ const pengGameAI = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       if (!gameState.current.gameActive || isPaused) return
-      if (isCharging && !isFrozen) {
+      if (boostEnabled && isCharging && !isFrozen) {
         const now = Date.now()
         const holdTime = now - chargeStartTime.current
         if (holdTime > maxHoldTime) {
@@ -675,7 +688,7 @@ const pengGameAI = () => {
       }
     }, 100)
     return () => clearInterval(interval)
-  }, [isPaused, isCharging, isFrozen, maxHoldTime, freezeCooldown])
+  }, [isPaused, isCharging, isFrozen, maxHoldTime, freezeCooldown, boostEnabled])
 
   // Lifecycle and event listeners
   useEffect(() => {
@@ -782,6 +795,20 @@ const pengGameAI = () => {
                   <h4>Game Settings</h4>
                 </div>
 
+                {/* Boost Enable Toggle */}
+                <div className='toggle-control' style={{ marginBottom: '1rem' }}>
+                  {' '}
+                  {/* NEW */}
+                  <label>
+                    <input
+                      type='checkbox'
+                      checked={tempBoostEnabled}
+                      onChange={(e) => setTempBoostEnabled(e.target.checked)}
+                    />
+                    <span>Enable Boost / Freeze</span>
+                  </label>
+                </div>
+
                 <div className='slider-control'>
                   <label>
                     <div>Ball Size: </div>
@@ -870,6 +897,7 @@ const pengGameAI = () => {
                     step='50'
                     value={tempMaxHold}
                     onChange={(e) => setTempMaxHold(parseInt(e.target.value))}
+                    disabled={!tempBoostEnabled}
                   />
                 </div>
 
@@ -885,6 +913,7 @@ const pengGameAI = () => {
                     step='50'
                     value={tempFreeze}
                     onChange={(e) => setTempFreeze(parseInt(e.target.value))}
+                    disabled={!tempBoostEnabled}
                   />
                 </div>
 
@@ -898,15 +927,23 @@ const pengGameAI = () => {
                     <p>Mobile:</p>
                     <p> Touch‑hold left half to move.</p>
                   </div>
-                  <div>
-                    <p>Click‑hold left half to charge (yellow & shrinks).</p>
-                  </div>
-                  <div>
-                    <p>Release while touching ball to boost (fixed {BOOST_MULTIPLIER}x force).</p>
-                  </div>
-                  <div>
-                    <p>Hold longer than max hold time → paddle freezes (grey) for cooldown.</p>
-                  </div>
+                  {tempBoostEnabled ? ( // NEW conditional instructions
+                    <>
+                      <div>
+                        <p>Click‑hold left half to charge (yellow).</p>
+                      </div>
+                      <div>
+                        <p>Release while touching ball to boost (fixed {BOOST_MULTIPLIER}x force).</p>
+                      </div>
+                      <div>
+                        <p>Hold longer than max hold time → paddle freezes (grey) for cooldown.</p>
+                      </div>
+                    </>
+                  ) : (
+                    <div>
+                      <p>Boost/Freeze feature is disabled.</p>
+                    </div>
+                  )}
                 </div>
 
                 <div className='modal-buttons'>
