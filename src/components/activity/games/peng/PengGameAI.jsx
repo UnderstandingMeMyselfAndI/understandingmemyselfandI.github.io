@@ -60,7 +60,7 @@ const pengGameAI = () => {
   const [ballSize, setBallSize] = useState(20)
   const [paddleWidth, setPaddleWidth] = useState(20)
   const [paddleHeight, setPaddleHeight] = useState(140)
-  const [speedFactor, setSpeedFactor] = useState(1.0)
+  const [speedFactor, setSpeedFactor] = useState(3.0)
   const [aiSkill, setAiSkill] = useState(0.5)
   // Freeze settings (adjustable)
   const [maxHoldTime, setMaxHoldTime] = useState(1500) // ms
@@ -80,6 +80,8 @@ const pengGameAI = () => {
   // Max limits for paddle dimensions
   const MAX_PADDLE_WIDTH = 40
   const MAX_PADDLE_HEIGHT = 200
+
+  const MAX_BALL_SPEED = 8.0
 
   // Pause state
   const [isPaused, setIsPaused] = useState(false)
@@ -291,7 +293,7 @@ const pengGameAI = () => {
     setTempBallSize(10)
     setTempPaddleWidth(10)
     setTempPaddleHeight(100)
-    setTempSpeedFactor(1.0)
+    setTempSpeedFactor(3.0)
     setTempAiSkill(0.5)
     setTempMaxHold(1500)
     setTempFreeze(1000)
@@ -869,7 +871,7 @@ const pengGameAI = () => {
                   <input
                     type='range'
                     min='0.5'
-                    max='2.0'
+                    max={MAX_BALL_SPEED}
                     step='0.1'
                     value={tempSpeedFactor}
                     onChange={(e) => setTempSpeedFactor(parseFloat(e.target.value))}
