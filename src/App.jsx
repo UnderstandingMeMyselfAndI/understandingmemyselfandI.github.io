@@ -41,7 +41,7 @@ import VerticalTimeline from './components/activity/timeline/VerticalTimeline'
 import TimelineCTA from './components/activity/timeline/TimelineCTA'
 import Quiz from './components/activity/quiz/Quiz'
 import QuizCTA from './components/activity/quiz/QuizCTA'
-// import PongGameAI from './components/activity/games/pong/PongGameAI'
+import PengGameAI from './components/activity/games/peng/PengGameAI'
 // import { runPersistentStorageTests } from './js/utils.js'
 import './App.scss'
 // import AccessibilitySettings from './components/ui/AccessibilitySettings/AccessibilitySettings'
@@ -95,7 +95,7 @@ function App() {
         <Tools />
         <PrivacyPolicy />
         <Quiz />
-        {/* <PongGameAI /> */}
+        <PengGameAI />
 
         <ToolsCTA />
         {daysCounterEnabled && <DaysCounterCTA />}

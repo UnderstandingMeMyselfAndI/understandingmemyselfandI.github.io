@@ -157,7 +157,7 @@ const useAppStore = create(
       // Wheel Of Life
       wol: true,
       wheelOfLifeEnabled: true,
-      emableWheelOfLife: (v) => {
+      enableWheelOfLife: (v) => {
         set(() => ({ wheelOfLifeEnabled: v }))
         set(() => ({ wol: v }))
       },

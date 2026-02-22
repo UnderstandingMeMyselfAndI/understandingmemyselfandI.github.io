@@ -31,7 +31,7 @@ body div.main section.activity-quiz {
     left: 0;
     top: 0;
     z-index: -1;
-    opacity: 1;
+    opacity: 0.6;
     box-shadow: none;
   }
 
@@ -485,7 +485,7 @@ body div.main section.activity-quiz {
       .status-title {
         font-size: 3rem;
         font-weight: 600;
-        color: var(--orange);
+        color: var(--primary);
         padding: 2rem 0;
         flex: 1;
       }

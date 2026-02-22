@@ -19,6 +19,7 @@ const phrasesByURL = lingo.reduce((acc, phrase) => {
   acc[sanitizeStringForUrl(phrase.title)] = phrase
   return acc
 }, {})
+//TODO #52 #51 Lingo Description not scrolling
 const Lingo = () => {
   const name = 'lingo'
   const id = 13
@@ -79,8 +80,7 @@ const Lingo = () => {
 
   useEffect(() => {
     if (isEmpty(phrase)) return
-    phrasesByURL[sanitizeStringForUrl(phrase)] &&
-      setContent(phrasesByURL[sanitizeStringForUrl(phrase)])
+    phrasesByURL[sanitizeStringForUrl(phrase)] && setContent(phrasesByURL[sanitizeStringForUrl(phrase)])
     setShowDialog(true)
   }, [phrase])
 
@@ -102,10 +102,7 @@ const Lingo = () => {
     setActivity(id)
     setShowDialog(false)
     const appURL = `${window.location.protocol}//${window.location.host}`
-    setBrowserHistory(
-      `${appURL}/${sanitizeStringForUrl(activityObj.url)}`,
-      activityObj.name,
-    )
+    setBrowserHistory(`${appURL}/${sanitizeStringForUrl(activityObj.url)}`, activityObj.name)
   }
 
   const inViewRef = useOnInView(
@@ -125,11 +122,7 @@ const Lingo = () => {
   const listHeight = showAll ? elHeightExpanded : elHeight
 
   return (
-    <section
-      id='lingo'
-      className={'activity activity-search-lingo' + (open ? ' show' : ' hide')}
-      ref={inViewRef}
-    >
+    <section id='lingo' className={'activity activity-search-lingo' + (open ? ' show' : ' hide')} ref={inViewRef}>
       <div className='search-lingo-wrap'>
         <Dialog
           show={showDialog}
@@ -142,18 +135,12 @@ const Lingo = () => {
         <h3>Lingo &amp; Phrases</h3>
         <div
           className={
-            'lingo-list-wrapper' +
-            (showAll ? ' expand' : '  collapse') +
-            (showAll ? ' elHeightExpanded' : ' elHeight')
+            'lingo-list-wrapper' + (showAll ? ' expand' : '  collapse') + (showAll ? ' elHeightExpanded' : ' elHeight')
           }
-          style={{ height: listHeight + 'px' }}
-        >
+          style={{ height: listHeight + 'px' }}>
           <SearchField handleClick={handleClick} ref={listRef} />
         </div>
-        <div
-          className={'lingo-list-btn' + (showAll ? ' expand' : ' collapse')}
-          onClick={handleExpandClick}
-        >
+        <div className={'lingo-list-btn' + (showAll ? ' expand' : ' collapse')} onClick={handleExpandClick}>
           {showAll ? 'HIDE LINGO' : 'SHOW ALL LINGO'}
         </div>
       </div>

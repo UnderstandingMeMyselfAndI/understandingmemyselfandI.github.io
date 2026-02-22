@@ -340,6 +340,18 @@ export const baseActivities = [
     anchorID: '',
     conditions: [],
   },
+  {
+    id: 24,
+    url: 'peng-game',
+    title: 'Peng',
+    menuPosition: 3,
+    menu: true,
+    shortcuts: true,
+    modal: true,
+    classes: 'new',
+    anchorID: '',
+    conditions: [],
+  },
 ]
 const activities = baseActivities.map((item) => ({
   ...item,

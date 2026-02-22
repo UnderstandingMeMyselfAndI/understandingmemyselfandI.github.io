@@ -104,12 +104,35 @@ const Settings = () => {
   }
 
   const handleClose = () => {
-    if (!YourToolsSettings.state) {
-      setShowToolsOnly(false)
-    }
+    console.log(' YourToolsSettings ', settingsDataWithStateObjects)
+
+    const YouurToolsSettings = settingsDataWithStateObjects.find((stateObject) => stateObject.name === 'YourToolbox')
+
+    settingsDataWithStateObjects.forEach((settings) => {
+      settings.settings.forEach((setting) => {
+        setting.stateObject.name === 'YourToolbox' && setShowToolsOnly(setting.stateObject.state)
+      })
+    })
+
+    settingsDataWithStateObjects.forEach((settings) => {
+      settings.settings.forEach((setting) => {
+        console.log(' ----------------------------------------- ')
+        console.log(' setting.stateObject.state ', setting.stateObject.state)
+        console.log(' setting.stateObject.setState ', setting.stateObject.setState)
+
+        console.log(' setting.stateObject.name ', setting.stateObject.name)
+        setting.stateObject.setState(setting.stateObject.state)
+      })
+    })
+
+    // const YourToolsSettings = settingsDataWithStateObjects.settings.find((setting) => setting.name === 'YourToolbox')
+    // console.log(' YourToolsSettings ', YourToolsSettings)
+    // if (!YourToolsSettings.state) {
+    //   setShowToolsOnly(false)
+    // }
     // Set all state here to avoid repaint when changing individual settings
 
-    group.settings.map((setting) => setting.stateObject.update())
+    // group.settings.map((setting) => setting.stateObject.update())
 
     setOpen(false)
     setActivity(-1)
@@ -167,12 +190,12 @@ const Settings = () => {
         </div>
         <CloseBtn onClick={handleClose} />
 
-        {settingsDataWithStateObjects.map((group) => (
-          <div className='section'>
+        {settingsDataWithStateObjects.map((group, key) => (
+          <div className='section' key={key}>
             <div className='title'>{group.groupTitle}</div>
             <div>
-              {group.settings.map((setting) => (
-                <div className={'row ' + setting.stateObject.classes}>
+              {group.settings.map((setting, index) => (
+                <div className={'row ' + setting.stateObject.classes} key={index}>
                   <div className={'checkBox-row '}>
                     <label htmlFor={setting.stateObject.name} className={setting.stateObject.state ? 'checked' : ''}>
                       {parse(DOMPurify.sanitize(setting.stateObject.instruction))}

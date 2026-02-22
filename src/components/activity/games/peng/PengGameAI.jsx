@@ -1,22 +1,45 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
-import './PongGameAI.scss'
+import React, { useState, useRef, useCallback, useMemo, useEffect } from 'react'
+import useAppStore from '@/store/useAppStore'
+import { activities } from '@/data/config'
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
+import CloseBtn from '@/components/ui/buttons/close/CloseBtn'
 
-/**
- * PongGameAI Component
- *
- * Features:
- * - Keyboard (W/S) and touch controls
- * - Speed and AI skill sliders
- * - Pause, Stop, and spring‑load (charge) mechanics
- * - Max hold time → freeze cooldown (adjustable)
- * - Settings modal for ball size, paddle dimensions, max hold, freeze cooldown
- * - Fixed boost multiplier (constant in code)
- */
-const PongGameAI = () => {
+import DoneIcon from '@mui/icons-material/Done'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+import RestartAltOutlinedIcon from '@mui/icons-material/RestartAltOutlined'
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
+import './pengGameAI.scss'
+import { strings } from '@/data/config'
+import parse from 'html-react-parser'
+const activitiesById = activities.reduce((acc, activity) => {
+  acc[activity.id] = activity
+  return acc
+}, {})
+const activityStringsByName = strings.activity.reduce((acc, activity) => {
+  acc[activity.name] = activity
+  return acc
+}, {})
+const pengGameAI = () => {
+  const name = 'peng-game'
+  const id = 24
+  const [show, setShow] = useState(true)
+  const activity = useAppStore((s) => s.activity)
+  const setActivity = useAppStore((s) => s.setActivity)
   // Refs for canvas and animation frame
   const canvasRef = useRef(null)
   const animationRef = useRef(null)
 
+  const strings = activityStringsByName[name]
+  const setIsModal = useAppStore((s) => s.setIsModal)
+
+  useEffect(() => {
+    setShow(id === activity)
+  }, [activity])
+
+  const handleClose = () => {
+    setShow(false)
+    setActivity(-1)
+  }
   // Game state stored in refs to avoid re-rendering on every frame
   const gameState = useRef({
     ballX: 0,
@@ -34,9 +57,9 @@ const PongGameAI = () => {
   const [scores, setScores] = useState({ left: 0, right: 0 })
 
   // --- Live settings (applied) ---
-  const [ballSize, setBallSize] = useState(10)
-  const [paddleWidth, setPaddleWidth] = useState(10)
-  const [paddleHeight, setPaddleHeight] = useState(100)
+  const [ballSize, setBallSize] = useState(20)
+  const [paddleWidth, setPaddleWidth] = useState(20)
+  const [paddleHeight, setPaddleHeight] = useState(140)
   const [speedFactor, setSpeedFactor] = useState(1.0)
   const [aiSkill, setAiSkill] = useState(0.5)
   // Freeze settings (adjustable)
@@ -53,7 +76,7 @@ const PongGameAI = () => {
   const [tempFreeze, setTempFreeze] = useState(freezeCooldown)
 
   // Max limits for paddle dimensions
-  const MAX_PADDLE_WIDTH = 20
+  const MAX_PADDLE_WIDTH = 40
   const MAX_PADDLE_HEIGHT = 200
 
   // Pause state
@@ -369,10 +392,10 @@ const PongGameAI = () => {
     const ctx = canvas?.getContext('2d')
     if (!canvas || !ctx) return
 
-    ctx.fillStyle = 'black'
+    ctx.fillStyle = '#00000033'
     ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-    ctx.strokeStyle = 'white'
+    ctx.strokeStyle = '#83838333'
     ctx.setLineDash([10, 15])
     ctx.beginPath()
     ctx.moveTo(canvas.width / 2, 0)
@@ -674,27 +697,41 @@ const PongGameAI = () => {
   ])
 
   return (
-    <div className='pong-container'>
+    <div id={name} className={'activity activity-' + name + (show ? ' show' : ' hide') + ' fixed'}>
+      {!showSettings && <CloseBtn onClick={handleClose} />}
+      <div className='peng-game-header'>
+        <h1 className='peng-game-title'>Peng</h1>
+      </div>
       <div className='score-board'>
-        <span>Player: {scores.left}</span>
-        <span>AI: {scores.right}</span>
+        <div className='peng-game-player'>
+          <div className='peng-game-player-name'>PLAYER</div>
+          <div className='peng-game-player-score'>{scores.left}</div>
+        </div>
+        <div className='score-board-vs'>vs</div>
+        <div className='peng-game-player'>
+          <div className='peng-game-player-score'>{scores.right}</div>
+          <div className='peng-game-player-name'>A.I.</div>
+        </div>
       </div>
       <div className='canvas-wrapper'>
-        <canvas ref={canvasRef} className='pong-canvas' />
+        <canvas ref={canvasRef} className='peng-canvas' />
       </div>
 
       <div className='button-group'>
-        <button className='start-button' onClick={startGame}>
-          {gameState.current.gameActive ? 'Restart' : 'Start Game'}
+        <button className='btn start-button' onClick={startGame}>
+          {gameState.current.gameActive ? 'Restart' : 'Start'}
         </button>
-        <button className='pause-button' onClick={togglePause} disabled={!gameState.current.gameActive}>
+        <button className='btn pause-button' onClick={togglePause} disabled={!gameState.current.gameActive}>
           {isPaused ? 'Resume' : 'Pause'}
         </button>
-        <button className='stop-button' onClick={stopGame} disabled={!gameState.current.gameActive}>
+        <button className='btn stop-button' onClick={stopGame} disabled={!gameState.current.gameActive}>
           Stop
         </button>
-        <button className='settings-button' onClick={openSettings}>
-          ⚙️ Settings
+      </div>
+
+      <div className='button-group'>
+        <button className='btn settings-button' onClick={openSettings}>
+          <SettingsOutlinedIcon /> Settings
         </button>
       </div>
 
@@ -702,115 +739,149 @@ const PongGameAI = () => {
       {showSettings && (
         <div className='modal-overlay' onClick={() => setShowSettings(false)}>
           <div className='modal-content' onClick={(e) => e.stopPropagation()}>
-            <h2>Game Settings</h2>
+            <div className='modal-inner'>
+              <div className='game-settings-title'>
+                <h4>Game Settings</h4>
+              </div>
 
-            <div className='slider-control'>
-              <label>Ball Size: {tempBallSize}px</label>
-              <input
-                type='range'
-                min='5'
-                max='30'
-                step='1'
-                value={tempBallSize}
-                onChange={(e) => setTempBallSize(parseInt(e.target.value))}
-              />
-            </div>
+              <div className='slider-control'>
+                <label>
+                  <div>Ball Size: </div>
+                  <div>{tempBallSize}</div>
+                </label>
 
-            <div className='slider-control'>
-              <label>
-                Paddle Width: {tempPaddleWidth}px (max {MAX_PADDLE_WIDTH})
-              </label>
-              <input
-                type='range'
-                min='5'
-                max={MAX_PADDLE_WIDTH}
-                step='1'
-                value={tempPaddleWidth}
-                onChange={(e) => setTempPaddleWidth(parseInt(e.target.value))}
-              />
-            </div>
+                <input
+                  type='range'
+                  min='5'
+                  max='30'
+                  step='1'
+                  value={tempBallSize}
+                  onChange={(e) => setTempBallSize(parseInt(e.target.value))}
+                />
+              </div>
 
-            <div className='slider-control'>
-              <label>
-                Paddle Height: {tempPaddleHeight}px (max {MAX_PADDLE_HEIGHT})
-              </label>
-              <input
-                type='range'
-                min='50'
-                max={MAX_PADDLE_HEIGHT}
-                step='5'
-                value={tempPaddleHeight}
-                onChange={(e) => setTempPaddleHeight(parseInt(e.target.value))}
-              />
-            </div>
+              <div className='slider-control'>
+                <label>
+                  <div>Paddle Width: </div>
+                  <div>{tempPaddleWidth}</div>
+                </label>
+                <input
+                  type='range'
+                  min='5'
+                  max={MAX_PADDLE_WIDTH}
+                  step='1'
+                  value={tempPaddleWidth}
+                  onChange={(e) => setTempPaddleWidth(parseInt(e.target.value))}
+                />
+              </div>
 
-            <div className='slider-control'>
-              <label>Ball Speed: {tempSpeedFactor.toFixed(1)}x</label>
-              <input
-                type='range'
-                min='0.5'
-                max='2.0'
-                step='0.1'
-                value={tempSpeedFactor}
-                onChange={(e) => setTempSpeedFactor(parseFloat(e.target.value))}
-              />
-            </div>
+              <div className='slider-control'>
+                <label>
+                  <div>Paddle Height: </div>
+                  <div>{tempPaddleHeight}</div>
+                </label>
+                <input
+                  type='range'
+                  min='50'
+                  max={MAX_PADDLE_HEIGHT}
+                  step='5'
+                  value={tempPaddleHeight}
+                  onChange={(e) => setTempPaddleHeight(parseInt(e.target.value))}
+                />
+              </div>
 
-            <div className='slider-control'>
-              <label>AI Skill: {tempAiSkill === 0 ? 'Easy' : tempAiSkill === 1 ? 'Hard' : 'Medium'}</label>
-              <input
-                type='range'
-                min='0'
-                max='1'
-                step='0.1'
-                value={tempAiSkill}
-                onChange={(e) => setTempAiSkill(parseFloat(e.target.value))}
-              />
-            </div>
+              <div className='slider-control'>
+                <label>
+                  <div> Ball Speed:</div>
+                  <div>{tempSpeedFactor.toFixed(1)}x</div>
+                </label>
+                <input
+                  type='range'
+                  min='0.5'
+                  max='2.0'
+                  step='0.1'
+                  value={tempSpeedFactor}
+                  onChange={(e) => setTempSpeedFactor(parseFloat(e.target.value))}
+                />
+              </div>
 
-            <div className='slider-control'>
-              <label>Max Hold Time: {tempMaxHold} ms</label>
-              <input
-                type='range'
-                min='500'
-                max='3000'
-                step='50'
-                value={tempMaxHold}
-                onChange={(e) => setTempMaxHold(parseInt(e.target.value))}
-              />
-            </div>
+              <div className='slider-control'>
+                <label>
+                  <div>AI Skill:</div>
+                  <div>{tempAiSkill === 0 ? 'Easy' : tempAiSkill === 1 ? 'Hard' : 'Medium'}</div>
+                </label>
+                <input
+                  type='range'
+                  min='0'
+                  max='1'
+                  step='0.5'
+                  value={tempAiSkill}
+                  onChange={(e) => setTempAiSkill(parseFloat(e.target.value))}
+                />
+              </div>
 
-            <div className='slider-control'>
-              <label>Freeze Cooldown: {tempFreeze} ms</label>
-              <input
-                type='range'
-                min='300'
-                max='2000'
-                step='50'
-                value={tempFreeze}
-                onChange={(e) => setTempFreeze(parseInt(e.target.value))}
-              />
-            </div>
+              <div className='slider-control'>
+                <label>
+                  <div>Max Hold Time:</div>
+                  <div> {tempMaxHold / 1000} s</div>
+                </label>
+                <input
+                  type='range'
+                  min='500'
+                  max='3000'
+                  step='50'
+                  value={tempMaxHold}
+                  onChange={(e) => setTempMaxHold(parseInt(e.target.value))}
+                />
+              </div>
 
-            <div className='instructions-modal'>
-              <h3>Instructions</h3>
-              <p>Desktop: W/S move, Space start, P pause.</p>
-              <p>Mobile: Touch‑hold left half to move.</p>
-              <p>Click‑hold left half to charge (yellow & shrinks).</p>
-              <p>Release while touching ball to boost (fixed {BOOST_MULTIPLIER}x force).</p>
-              <p>Hold longer than max hold time → paddle freezes (grey) for cooldown.</p>
-            </div>
+              <div className='slider-control'>
+                <label>
+                  <div>Freeze Cooldown: </div>
+                  <div>{tempFreeze / 1000} s</div>
+                </label>
+                <input
+                  type='range'
+                  min='300'
+                  max='2000'
+                  step='50'
+                  value={tempFreeze}
+                  onChange={(e) => setTempFreeze(parseInt(e.target.value))}
+                />
+              </div>
 
-            <div className='modal-buttons'>
-              <button className='apply-button' onClick={applySettings}>
-                Apply
-              </button>
-              <button className='reset-button' onClick={resetSettings}>
-                Reset to Defaults
-              </button>
-              <button className='cancel-button' onClick={() => setShowSettings(false)}>
-                Cancel
-              </button>
+              <div className='instructions-modal'>
+                <h4>Instructions</h4>
+                <div>
+                  <p>Desktop keys:</p>
+                  <p> W/S move, Space start, P pause.</p>
+                </div>
+                <div>
+                  <p>Mobile:</p>
+                  <p> Touch‑hold left half to move.</p>
+                </div>
+                <div>
+                  <p>Click‑hold left half to charge (yellow & shrinks).</p>
+                </div>
+                <div>
+                  <p>Release while touching ball to boost (fixed {BOOST_MULTIPLIER}x force).</p>
+                </div>
+                <div>
+                  <p>Hold longer than max hold time → paddle freezes (grey) for cooldown.</p>
+                </div>
+              </div>
+
+              <div className='modal-buttons'>
+                <button className='apply-button' onClick={applySettings}>
+                  <DoneIcon />
+                </button>
+                <button className='reset-button' onClick={resetSettings}>
+                  <RestartAltOutlinedIcon />
+                </button>
+                <button className='cancel-button' onClick={() => setShowSettings(false)}>
+                  <CloseOutlinedIcon />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -819,4 +890,4 @@ const PongGameAI = () => {
   )
 }
 
-export default PongGameAI
+export default pengGameAI

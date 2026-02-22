@@ -8,8 +8,8 @@ import Feature from './Feature'
 import gsap from 'gsap' // <-- import GSAP
 import { useGSAP } from '@gsap/react' // <-- import the hook from our React package
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { SplitText } from 'gsap/SplitText'
-gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText)
+// import { SplitText } from 'gsap/SplitText'
+gsap.registerPlugin(useGSAP, ScrollTrigger)
 import { activities } from '@/data/config'
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
