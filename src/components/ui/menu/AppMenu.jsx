@@ -6,24 +6,12 @@ import { strings } from '@/data/config'
 import { sanitizeStringForUrl, setBrowserHistory } from '@/js/utils.js'
 import './styles.scss'
 export const MenuOpenIcon = () => (
-  <svg
-    xmlns='http://www.w3.org/2000/svg'
-    height='40px'
-    width='40px'
-    viewBox='0 -960 960 960'
-    fill='#ffffff'
-  >
+  <svg xmlns='http://www.w3.org/2000/svg' height='40px' width='40px' viewBox='0 -960 960 960' fill='#ffffff'>
     <path d='M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z' />
   </svg>
 )
 export const MenuCloseIcon = () => (
-  <svg
-    xmlns='http://www.w3.org/2000/svg'
-    height='40px'
-    viewBox='0 -960 960 960'
-    width='40px'
-    fill='#ffffff'
-  >
+  <svg xmlns='http://www.w3.org/2000/svg' height='40px' viewBox='0 -960 960 960' width='40px' fill='#ffffff'>
     <path d='m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z' />
   </svg>
 )
@@ -33,6 +21,8 @@ export default function AppMenu() {
   const [open, setOpen] = useState(false)
   const [showMenu, setShowMenu] = useState(true)
   const [openMenu, setOpenMenu] = useState(false)
+
+  const showBurgerStack = useAppStore((state) => state.showBurgerStack)
 
   const daysCounterEnabled = useAppStore((state) => state.daysCounterEnabled)
   const unitsCalculatorEnabled = useAppStore((s) => s.unitsCalculatorEnabled)
@@ -57,16 +47,12 @@ export default function AppMenu() {
   }
 
   function findActivityObj(id) {
-    const obj = activities.find((a) =>
-      parseInt(a.id) === parseInt(id) ? id : null,
-    )
+    const obj = activities.find((a) => (parseInt(a.id) === parseInt(id) ? id : null))
     return obj
   }
 
   useEffect(() => {
-    const obj = activities.find((a) =>
-      parseInt(a.id) === parseInt(activity) ? activity : null,
-    )
+    const obj = activities.find((a) => (parseInt(a.id) === parseInt(activity) ? activity : null))
     const showMenu = activity === -1 ? true : obj.modal ? false : true
     setShowMenu(showMenu)
     if (obj) {
@@ -98,40 +84,31 @@ export default function AppMenu() {
         const posB = b.menuPosition ?? Infinity
         return posA - posB
       })
-  }, [
-    daysCounterEnabled,
-    unitsCalculatorEnabled,
-    isInstalled,
-    isInstallable,
-    gae,
-    nss,
-  ])
+  }, [daysCounterEnabled, unitsCalculatorEnabled, isInstalled, isInstallable, gae, nss])
 
   return showMenu ? (
     <div className={'AppMenu' + (openMenu ? ' ' : ' hide')}>
-      <div className='burger-stack' id='burger-button'>
-        <input
-          type='checkbox'
-          id='checkbox1'
-          value={open}
-          checked={open}
-          className='checkbox1 visuallyHidden'
-          onChange={toggleOpen}
-        />
-        <label htmlFor='checkbox1'>
-          <div className='hamburger hamburger1'>
-            <span className='bar bar1'></span>
-            <span className='bar bar2'></span>
-            <span className='bar bar3'></span>
-            <span className='bar bar4'></span>
-          </div>
-        </label>
-      </div>
-      <ul
-        className={open ? ' open' : ' closed'}
-        id='app-menu'
-        onClick={handleClose}
-      >
+      {showBurgerStack && (
+        <div className='burger-stack' id='burger-button'>
+          <input
+            type='checkbox'
+            id='checkbox1'
+            value={open}
+            checked={open}
+            className='checkbox1 visuallyHidden'
+            onChange={toggleOpen}
+          />
+          <label htmlFor='checkbox1'>
+            <div className='hamburger hamburger1'>
+              <span className='bar bar1'></span>
+              <span className='bar bar2'></span>
+              <span className='bar bar3'></span>
+              <span className='bar bar4'></span>
+            </div>
+          </label>
+        </div>
+      )}
+      <ul className={open ? ' open' : ' closed'} id='app-menu' onClick={handleClose}>
         {filteredActivities.map((activityForMenu, i) => {
           return activityForMenu.menu ? (
             <li
@@ -147,8 +124,7 @@ export default function AppMenu() {
                 setIsModal(activityForMenu.modal)
                 handleClose()
                 setActivity(activityForMenu.id)
-              }}
-            >
+              }}>
               {activityForMenu.title}
             </li>
           ) : null
