@@ -88,7 +88,9 @@ const useAppStore = create(
         set(() => ({ isisn: v }))
       },
       // ----------------------------------------
-
+      //show burger stack      
+      showBurgerStack: true,
+      setShowBurgerStack: (v) => set(() => ({ showBurgerStack: v })),
       // ----------------------------------------
       // Need Update
       nu: false,

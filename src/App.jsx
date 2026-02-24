@@ -62,6 +62,8 @@ function App() {
   const ageVerified = useAppStore((s) => s.ageVerified)
   const hasHydrated = useAppStore((s) => s._hasHydrated)
 
+  const savedConsent = localStorage.getItem('cookieConsent')
+
   smoothScroll()
   const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme)
 
@@ -123,7 +125,7 @@ function App() {
       <Backdrop initialImageId={2} initialDelay={3000} interval={6000} parallaxStrength={0} className='backdrop' />
       <Routing />
       <Vcn />
-      <CookieConsent />
+      {!savedConsent && <CookieConsent />}
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import useAppStore from '@/store/useAppStore'
 import ButtonSimple from '../buttons/ButtonSimple'
 import parse from 'html-react-parser'
 import { isArrayOfStrings } from '@/js/utils'
@@ -20,12 +21,17 @@ const Dialog = ({
 }) => {
   const [open, setOpen] = useState(show)
   const contentEl = document.getElementById('dialog-instruction')
+  const setShowBurgerStack = useAppStore((state) => state.setShowBurgerStack)
   const handleCancel = () => {
     setOpen(false)
     onCancel()
   }
   useEffect(() => {
+    setShowBurgerStack(!show)
+  }, [open])
+  useEffect(() => {
     setOpen(show)
+
     const elScrollTop = () => {
       contentEl.scrollTo(0, 0)
     }

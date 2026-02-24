@@ -3,12 +3,7 @@ import useAppStore from '@/store/useAppStore'
 import { activities } from '@/data/config'
 import { trackEvent } from '@/js/analytics/analytics'
 import data from '@/data/tools'
-import {
-  getUrlPathSegments,
-  isEmpty,
-  sanitizeStringForUrl,
-  setBrowserHistory,
-} from '@/js/utils.js'
+import { getUrlPathSegments, isEmpty, sanitizeStringForUrl, setBrowserHistory } from '@/js/utils.js'
 import { strings } from '@/data/config'
 
 // TODO: #14 Ga event names need to be changed phrase_viewed - > [name of phrase]_viewed
@@ -87,10 +82,7 @@ const Routing = () => {
   // )
   const doSetBrowserHistory = (activityObj, title, segments = []) => {
     const urlExtra = segments.length > 0 ? '/' + segments.join('/') : ''
-    setBrowserHistory(
-      `${appURL}/${activityObj.url.toLowerCase()}${urlExtra}`,
-      `${strings.app.appName} - ${title}`,
-    )
+    setBrowserHistory(`${appURL}/${activityObj.url.toLowerCase()}${urlExtra}`, `${strings.app.appName} - ${title}`)
   }
 
   //-------------------------------------------------------------
@@ -112,13 +104,10 @@ const Routing = () => {
 
     // Set the browser history
 
-    doSetBrowserHistory(activityObj, `Lingo and Phrases: ${phrase}`, [
-      urlSafePhrase.toLowerCase(),
-    ])
+    doSetBrowserHistory(activityObj, `Lingo and Phrases: ${phrase}`, [urlSafePhrase.toLowerCase()])
 
     // Log the Anayltics event
-    const event_name =
-      sanitizeStringForUrl(phrase.toLowerCase()) + '_phrase_viewed'
+    const event_name = sanitizeStringForUrl(phrase.toLowerCase()) + '_phrase_viewed'
 
     trackEvent(event_name, {}, gae)
     // console.groupEnd()
@@ -137,12 +126,7 @@ const Routing = () => {
     // console.log('activity', activity)
     // console.log('isFirstPageLoad.current', isFirstPageLoad.current)
 
-    if (
-      activity !== -1 &&
-      !isFirstPageLoad.current &&
-      activityObj?.title &&
-      activityObj?.url
-    ) {
+    if (activity !== -1 && !isFirstPageLoad.current && activityObj?.title && activityObj?.url) {
       // console.log('activitiesById', activitiesById)
       doSetBrowserHistory(activityObj, activityObj.title)
 
@@ -185,12 +169,12 @@ const Routing = () => {
       const [mainRoute, childRoute] = segments
       if (mainRoute === 'lingo-and-phrases' && childRoute) {
         trackEvent(`${childRoute}_phrase_viewed`, {}, gae)
-        console.log('logGAEvent ', `${childRoute}_phrase_viewed`)
+        // console.log('logGAEvent ', `${childRoute}_phrase_viewed`)
       } else if (mainRoute === 'tools' && childRoute) {
         // Assuming childRoute is the tool title/slug
 
         trackEvent(`${childRoute}_tool_viewed`, {}, gae)
-        console.log('logGAEvent ', `${childRoute}_tool_viewed`)
+        // console.log('logGAEvent ', `${childRoute}_tool_viewed`)
       }
       console.groupEnd()
     },
@@ -208,11 +192,9 @@ const Routing = () => {
     // --- Performance: O(1) lookup ---
     const activityObj = activitiesByUrl[segments[0]] || null
     if (!activityObj) {
-      console.warn(`Routing: No activity found for slug "${segments[0]}"`)
+      // console.warn(`Routing: No activity found for slug "${segments[0]}"`)
       return
     }
-
-    console.log('segments', segments)
 
     // console.log('setActivity id:', activityObj?.id)
     setActivity(activityObj.id ?? -1)

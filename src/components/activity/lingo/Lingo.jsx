@@ -131,6 +131,7 @@ const Lingo = () => {
           confirmLabel='Close'
           onConfirm={handleDialogClick}
           showCancel={false}
+          classes={['lingo-dialog-fullscreen']}
         />
         <h3>Lingo &amp; Phrases</h3>
         <div
