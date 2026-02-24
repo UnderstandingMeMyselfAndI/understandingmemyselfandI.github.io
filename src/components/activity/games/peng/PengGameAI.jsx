@@ -53,18 +53,27 @@ const pengGameAI = () => {
     gameActive: false,
   })
 
+  const defaultBallSpeed = 1.0
+  const defaultAiSkill = 0.5
+  const defaultMaxHoldTime = 1500 // ms
+  const defaultFreezeCooldown = 1000 // ms
+  const defaultBoostEnabled = false
+  const defaultPaddleWidth = 20
+  const defaultPaddleHeight = 140
+  const defaultBallSize = 20
+
   // Scores in state for display
   const [scores, setScores] = useState({ left: 0, right: 0 })
 
   // --- Live settings (applied) ---
-  const [ballSize, setBallSize] = useState(20)
-  const [paddleWidth, setPaddleWidth] = useState(20)
-  const [paddleHeight, setPaddleHeight] = useState(140)
-  const [speedFactor, setSpeedFactor] = useState(3.0)
-  const [aiSkill, setAiSkill] = useState(0.5)
+  const [ballSize, setBallSize] = useState(defaultBallSize)
+  const [paddleWidth, setPaddleWidth] = useState(defaultPaddleWidth)
+  const [paddleHeight, setPaddleHeight] = useState(defaultPaddleHeight)
+  const [speedFactor, setSpeedFactor] = useState(defaultBallSpeed)
+  const [aiSkill, setAiSkill] = useState(defaultAiSkill)
   // Freeze settings (adjustable)
-  const [maxHoldTime, setMaxHoldTime] = useState(1500) // ms
-  const [freezeCooldown, setFreezeCooldown] = useState(1000) // ms
+  const [maxHoldTime, setMaxHoldTime] = useState(defaultMaxHoldTime) // ms
+  const [freezeCooldown, setFreezeCooldown] = useState(defaultFreezeCooldown) // ms
 
   // --- Temporary settings (while modal open) ---
   const [tempBallSize, setTempBallSize] = useState(ballSize)
@@ -74,8 +83,8 @@ const pengGameAI = () => {
   const [tempAiSkill, setTempAiSkill] = useState(aiSkill)
   const [tempMaxHold, setTempMaxHold] = useState(maxHoldTime)
   const [tempFreeze, setTempFreeze] = useState(freezeCooldown)
-  const [boostEnabled, setBoostEnabled] = useState(false) // NEW
-  const [tempBoostEnabled, setTempBoostEnabled] = useState(false) // NEW
+  const [boostEnabled, setBoostEnabled] = useState(defaultBoostEnabled) // NEW
+  const [tempBoostEnabled, setTempBoostEnabled] = useState(defaultBoostEnabled) // NEW
 
   // Max limits for paddle dimensions
   const MAX_PADDLE_WIDTH = 40
@@ -290,14 +299,14 @@ const pengGameAI = () => {
 
   // Reset to default settings
   const resetSettings = () => {
-    setTempBallSize(10)
-    setTempPaddleWidth(10)
-    setTempPaddleHeight(100)
-    setTempSpeedFactor(3.0)
-    setTempAiSkill(0.5)
-    setTempMaxHold(1500)
-    setTempFreeze(1000)
-    setTempBoostEnabled(false)
+    setTempBallSize(defaultBallSize)
+    setTempPaddleWidth(defaultPaddleWidth)
+    setTempPaddleHeight(defaultPaddleHeight)
+    setTempSpeedFactor(defaultBallSpeed)
+    setTempAiSkill(defaultAiSkill)
+    setTempMaxHold(defaultMaxHoldTime)
+    setTempFreeze(defaultFreezeCooldown)
+    setTempBoostEnabled(defaultBoostEnabled)
   }
 
   // Update game logic
