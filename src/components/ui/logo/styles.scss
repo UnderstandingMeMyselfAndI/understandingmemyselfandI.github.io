@@ -10,7 +10,7 @@
   height: fit-content;
   font-size: variables.$logo_lrg_size;
   font-weight: variables.$logo_lrg_weight;
-  // font-variation-settings: 'wght' variables.$logo_lrg_weight;
+  font-variation-settings: 'wght' variables.$logo_lrg_weight;
   color: var(--lightBlue);
   display: flex;
   justify-content: center;
