@@ -35,6 +35,7 @@
       font-size: 1.25rem;
       font-weight: 600;
       font-variation-settings: 'wght' 600;
+      font-variation-settings: 'wght' 600;
       text-align: center;
       color: var(--primary);
       opacity: 0;
@@ -79,6 +80,7 @@
     gap: 12px;
     font-size: 1.2rem;
     font-weight: 400;
+    font-variation-settings: 'wght' 400;
     cursor: pointer;
     padding: 16px 20px;
     border-radius: 6px;
@@ -177,6 +179,7 @@
 
     .radio-text {
       font-weight: 400;
+      font-variation-settings: 'wght' 400;
     }
 
     input[type='radio'] {
@@ -217,6 +220,7 @@
 
     .answer-text {
       font-weight: 400;
+      font-variation-settings: 'wght' 400;
       color: var(--grey);
     }
   }
@@ -227,6 +231,7 @@
 
     .answer-text {
       font-weight: 800;
+      font-variation-settings: 'wght' 800;
       font-variation-settings: 'wght' 700;
       color: var(--primary);
     }
@@ -274,6 +279,7 @@
 
   .option.selected-pending .answer-text {
     font-weight: 600;
+    font-variation-settings: 'wght' 600;
     color: var(--primary);
   }
 
@@ -307,6 +313,7 @@
 
   .option.correct-answer .answer-text {
     font-weight: 600;
+    font-variation-settings: 'wght' 600;
     color: var(--primary);
   }
 
@@ -372,6 +379,7 @@
     font-size: 1.25rem;
     font-weight: 600;
     font-variation-settings: 'wght' 600;
+    font-variation-settings: 'wght' 600;
 
     >span {
       position: relative;
@@ -417,6 +425,7 @@
     text-shadow: var(--textShadow);
     font-size: 1.5rem;
     font-weight: 600;
+    font-variation-settings: 'wght' 600;
     border: none;
     border-radius: 8px;
     cursor: pointer;

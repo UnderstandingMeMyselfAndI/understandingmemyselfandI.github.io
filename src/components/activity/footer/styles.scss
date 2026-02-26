@@ -9,6 +9,7 @@
 .sf-footer-version {
   font-size: variables.$small_size;
   font-weight: 200;
+  font-variation-settings: 'wght' 200;
   color: var(--grey);
 }
 
@@ -16,6 +17,7 @@
   color: var(--primary);
   margin: 0 0.25rem;
   font-weight: 600;
+  font-variation-settings: 'wght' 600;
 }
 
 #share {
@@ -130,6 +132,7 @@ div.activity-footer {
     text-decoration-color: var(--yellow);
     text-decoration-thickness: 4px;
     font-weight: 600;
+    font-variation-settings: 'wght' 600;
 
     img {
       // max-width: 30px;
@@ -179,6 +182,7 @@ div.activity-footer {
   .big2 {
     font-size: variables.$lrg_size;
     font-weight: 800;
+    font-variation-settings: 'wght' 800;
   }
 
   span.big4.r90 {

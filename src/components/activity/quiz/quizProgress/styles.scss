@@ -25,6 +25,7 @@
   align-items: stretch;
   padding: 0.5rem 0;
   font-weight: 400;
+  font-variation-settings: 'wght' 400;
   gap: 0;
   color: var(--lightBlue);
 
@@ -40,11 +41,13 @@
     font-size: 1.25rem;
     font-weight: 600;
     font-variation-settings: 'wght' 600;
+    font-variation-settings: 'wght' 600;
 
     .question-stat-label {
       font-size: 0.85rem;
       padding: 0 0.25rem;
       font-weight: 400;
+      font-variation-settings: 'wght' 400;
       font-variation-settings: 'wght' 400;
     }
   }

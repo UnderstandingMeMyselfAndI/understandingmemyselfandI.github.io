@@ -40,6 +40,8 @@ body {
     BlinkMacSystemFont,
     sans-serif;
   font-weight: 400;
+  font-variation-settings: 'wght' 400;
+
   font-style: normal;
   line-height: variables.$default_line_height;
   -webkit-font-smoothing: antialiased; // antialiased subpixel-antialiased
@@ -83,6 +85,7 @@ body {
       BlinkMacSystemFont,
       sans-serif;
     font-weight: 800;
+    font-variation-settings: 'wght' 800;
     font-variation-settings: 'wght' 800;
     font-style: normal;
     line-height: variables.$default_line_height;
@@ -128,6 +131,7 @@ body {
 
   strong {
     font-weight: 800;
+    font-variation-settings: 'wght' 800;
     font-variation-settings: 'wght' 700;
   }
 
