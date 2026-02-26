@@ -1,13 +1,21 @@
 
 import data from './src/data/tools'
 import { activities } from './src/data/config'
+import {sanitizeStringForUrl} from './src/js/utils'
 // import lingo from './src/data/lingo.js'
 export function getDynamicRoutes() {
     const routes = []
     data.tools.nodes.forEach((tool) => {
        // routes.push('/recovery-tool/' + tool.slug)
        //TODO #48 #47 The slug here is returning undefined
-        console.log("Adding route: " + '/recovery-tool/' + tool.slug)
+       let route = tool.title
+       const lastChar = route.slice(-1);
+
+        if (!/[a-zA-Z0-9]/.test( route.slice(-1))) {
+            route = route.slice(0, -1);
+        }
+        routes.push(route)
+        console.log("Adding route: " + '/recovery-tool/' + sanitizeStringForUrl(route))
     })
     activities.forEach((activity) => {
        activity.menu && routes.push('/' + activity.url)
