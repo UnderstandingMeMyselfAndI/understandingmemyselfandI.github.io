@@ -56,6 +56,7 @@
     h1#age-gate-title {
       font-size: variables.$h3_size;
       font-weight: 800;
+      font-variation-settings: 'wght' 800;
 
       line-height: 1.2;
       width: 100%;
@@ -74,6 +75,7 @@
       &.question {
         font-size: 1.2rem;
         font-weight: 600;
+        font-variation-settings: 'wght' 600;
       }
     }
   }
@@ -90,6 +92,7 @@
       border-radius: 50px;
       font-size: 1rem;
       font-weight: 600;
+      font-variation-settings: 'wght' 600;
       cursor: pointer;
       border: none;
       transition: all 0.2s ease;

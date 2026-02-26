@@ -111,6 +111,7 @@ body .main section.activity.activity-peng-game {
 
 .peng-game-player-score {
     font-weight: 800;
+    font-variation-settings: 'wght' 800;
     font-size: 2.5rem;
     color: var(--yellow);
 }
@@ -173,6 +174,7 @@ body .main section.activity.activity-peng-game {
             text-align: right;
             font-size: 1.25rem;
             font-weight: 600;
+            font-variation-settings: 'wght' 600;
             color: var(--primary);
         }
     }
@@ -184,8 +186,10 @@ body .main section.activity.activity-peng-game {
         height: 4px;
         border-radius: 2px;
         -webkit-appearance: none;
+        appearance: none;
 
         &::-webkit-slider-thumb {
+            appearance: none;
             -webkit-appearance: none;
             width: 22px;
             height: 22px;

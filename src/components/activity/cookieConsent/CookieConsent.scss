@@ -53,6 +53,7 @@ body {
     font-size: variables.$h3_size;
     font-weight: 800;
     font-variation-settings: 'wght' 800;
+    font-variation-settings: 'wght' 800;
     color: var(--blue);
     margin-bottom: 0.5rem;
   }
@@ -80,6 +81,7 @@ body {
     padding: 0.625rem 1.5rem;
     border-radius: 0.5rem;
     font-weight: 600;
+    font-variation-settings: 'wght' 600;
     transition: all 0.2s;
     cursor: pointer;
     border: none;
@@ -166,6 +168,7 @@ body {
   .modal-title {
     font-size: 1.5rem;
     font-weight: 800;
+    font-variation-settings: 'wght' 800;
     color: #111827;
   }
 
@@ -210,6 +213,7 @@ body {
 
   .category-title {
     font-weight: 600;
+    font-variation-settings: 'wght' 600;
     color: #111827;
     margin-bottom: 0.25rem;
   }
@@ -308,6 +312,7 @@ body {
   .demo-title {
     font-size: 1.875rem;
     font-weight: 800;
+    font-variation-settings: 'wght' 800;
     color: #111827;
     margin-bottom: 1rem;
   }
@@ -335,6 +340,7 @@ body {
 
   .info-box-title {
     font-weight: 600;
+    font-variation-settings: 'wght' 600;
     margin-bottom: 0.5rem;
   }
 

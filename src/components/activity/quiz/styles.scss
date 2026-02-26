@@ -69,6 +69,7 @@ body div.main section.activity-quiz {
       cursor: pointer;
       font-size: 0.9rem;
       font-weight: 600;
+      font-variation-settings: 'wght' 600;
       transition: all 0.2s ease;
       box-shadow: none;
 
@@ -138,6 +139,7 @@ body div.main section.activity-quiz {
             gap: 0.25rem;
             font-size: 1.5rem;
             font-weight: 800;
+            font-variation-settings: 'wght' 800;
             color: var(--orange);
 
             &:first-child {
@@ -159,6 +161,7 @@ body div.main section.activity-quiz {
               font-size: 0.8rem;
               color: var(--grey);
               font-weight: 400;
+              font-variation-settings: 'wght' 400;
               text-transform: uppercase;
               letter-spacing: 0.05em;
             }
@@ -208,6 +211,7 @@ body div.main section.activity-quiz {
               font-size: 0.8rem;
               opacity: 0.6;
               font-weight: 600;
+              font-variation-settings: 'wght' 600;
               text-transform: uppercase;
               letter-spacing: 0.05em;
             }
@@ -305,6 +309,7 @@ body div.main section.activity-quiz {
 
                   .level-name {
                     font-weight: 800;
+                    font-variation-settings: 'wght' 800;
                     color: inherit;
                   }
                 }
@@ -447,6 +452,7 @@ body div.main section.activity-quiz {
           min-width: 2.5rem;
           text-align: center;
           font-weight: 600;
+          font-variation-settings: 'wght' 600;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -485,6 +491,7 @@ body div.main section.activity-quiz {
       .status-title {
         font-size: 3rem;
         font-weight: 600;
+        font-variation-settings: 'wght' 600;
         color: var(--primary);
         padding: 2rem 0;
         flex: 1;
@@ -529,6 +536,7 @@ body div.main section.activity-quiz {
               font-size: 3rem;
               color: var(--primary);
               font-weight: 200;
+              font-variation-settings: 'wght' 200;
               font-variation-settings: 'wght' 320;
               color: var(--grey);
               line-height: 1;
@@ -536,6 +544,7 @@ body div.main section.activity-quiz {
 
               span {
                 font-weight: 800;
+                font-variation-settings: 'wght' 800;
                 font-variation-settings: 'wght' 800;
                 color: var(--orange);
               }
@@ -547,6 +556,7 @@ body div.main section.activity-quiz {
           font-size: 2rem;
           color: var(--lightBlue);
           font-weight: 600;
+          font-variation-settings: 'wght' 600;
           font-variation-settings: 'wght' 600;
           margin: 0;
           text-shadow: none;
@@ -564,6 +574,7 @@ body div.main section.activity-quiz {
         text-shadow: var(--textShadow);
         font-size: 1.5rem;
         font-weight: 600;
+        font-variation-settings: 'wght' 600;
         border: none;
         border-radius: 8px;
         cursor: pointer;

@@ -160,6 +160,7 @@ body .main section.acronym-explained-activity {
       line-height: 1;
       font-weight: 800;
       font-variation-settings: 'wght' 800;
+      font-variation-settings: 'wght' 800;
       text-decoration: none !important;
 
       justify-content: center;
@@ -278,6 +279,7 @@ body .main section.acronym-explained-activity {
           margin: 0 inherit;
           font-weight: 600;
           font-variation-settings: 'wght' 600;
+          font-variation-settings: 'wght' 600;
           color: var(--lightBlue);
         }
       }
@@ -324,6 +326,7 @@ body .main section.acronym-explained-activity {
             position: absolute;
             z-index: 10;
             font-weight: 800;
+            font-variation-settings: 'wght' 800;
             font-size: variables.$letter_size;
 
             color: var(--orange);
@@ -446,6 +449,7 @@ body .main section.acronym-explained-activity {
 
           div.Acc-word::first-letter {
             font-weight: 800;
+            font-variation-settings: 'wght' 800;
             font-size: calc(variables.$letter_size * 1.2);
 
             color: var(--orange);
@@ -465,6 +469,7 @@ body .main section.acronym-explained-activity {
           u {
             line-height: variables.$acc_wrd_line_height;
             font-weight: 800;
+            font-variation-settings: 'wght' 800;
             text-decoration: 3px underline var(--yellow);
             color: var(--primary);
           }
@@ -476,6 +481,7 @@ body .main section.acronym-explained-activity {
       div.title {
         font-size: 0.85rem;
         font-weight: 400;
+        font-variation-settings: 'wght' 400;
         font-variation-settings: 'wght' 400;
         text-decoration: none !important;
       }
@@ -528,6 +534,7 @@ body .main section.acronym-explained-activity {
         .title {
           font-size: variables.$h4_size;
           font-weight: 800;
+          font-variation-settings: 'wght' 800;
           font-variation-settings: 'wght' 800;
           text-decoration: none;
           color: var(--primary);
@@ -636,6 +643,7 @@ body .main section.acronym-explained-activity {
 
       .title {
         font-weight: 600;
+        font-variation-settings: 'wght' 600;
         line-height: 1.2;
         color: var(--primary);
         font-size: variables.$h4_size;

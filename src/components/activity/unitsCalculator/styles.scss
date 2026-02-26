@@ -239,6 +239,7 @@ section#ummi-units-calculator {
           text-transform: uppercase;
           color: var(--greyLight);
           font-weight: 600;
+          font-variation-settings: 'wght' 600;
         }
 
         div.no-measures {
@@ -380,6 +381,7 @@ section#ummi-units-calculator {
 
             .units {
               font-weight: 800;
+              font-variation-settings: 'wght' 800;
               font-variation-settings: 'wght' 800;
             }
 
@@ -653,6 +655,7 @@ section#ummi-units-calculator {
           background-color: var(--orange);
           color: var(--primary);
           font-weight: 800;
+          font-variation-settings: 'wght' 800;
           font-variation-settings: 'wght' 700;
           text-shadow: var(--textShadowDarkValue);
         }
@@ -684,6 +687,7 @@ section#ummi-units-calculator {
           font-size: 0.9rem;
           color: var(--grey);
           font-weight: 400;
+          font-variation-settings: 'wght' 400;
           font-variation-settings: 'wght' 400;
         }
       }

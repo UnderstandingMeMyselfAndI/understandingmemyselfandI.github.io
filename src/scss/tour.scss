@@ -31,6 +31,7 @@ body {
   .italic {
     font-family: 'Plus Jakarta Sans', sans-serif !important;
     font-weight: 600;
+    font-variation-settings: 'wght' 600;
     font-size: 3rem;
 
     color: var(--primary);
@@ -64,6 +65,7 @@ body {
       line-height: 1.2;
       font-family: 'Plus Jakarta Sans' !important;
       font-weight: 400;
+      font-variation-settings: 'wght' 400;
     }
 
     .driver-popover-description p {
@@ -90,6 +92,7 @@ body {
           transform: none;
           font-size: 2.75rem;
           font-weight: 800;
+          font-variation-settings: 'wght' 800;
           color: var(--primary);
           width: 100%;
         }
@@ -99,6 +102,7 @@ body {
           color: var(--primary);
           line-height: 0.9;
           font-weight: 400;
+          font-variation-settings: 'wght' 400;
           // transform: rotate(-2.5deg) skew(9deg, 0deg);
           font-size: 2rem;
           margin-left: -20px;
@@ -127,9 +131,11 @@ body {
         text-align: center;
         margin-bottom: 1rem;
         font-weight: 200;
+        font-variation-settings: 'wght' 200;
 
         span.note {
           font-weight: 200;
+          font-variation-settings: 'wght' 200;
           font-size: 2rem;
 
           font-style: italic;
@@ -147,6 +153,7 @@ body {
       line-height: 20px;
       margin-top: -3px;
       font-weight: 200;
+      font-variation-settings: 'wght' 200;
       color: #bebebe !important;
     }
 
