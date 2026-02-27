@@ -6,9 +6,7 @@ import useQuizStore from '../useQuizStore'
 import './styles.scss'
 
 const QuizStart = ({ onStart, levels }) => {
-  const [selectedLevel, setSelectedLevel] = React.useState(
-    Object.keys(levels)[0],
-  )
+  const [selectedLevel, setSelectedLevel] = React.useState(Object.keys(levels)[0])
   const { history, optIn, setOptIn } = useQuizStore()
   const hasStats = history && history.length > 0
 
@@ -23,10 +21,7 @@ const QuizStart = ({ onStart, levels }) => {
       <h1>Welcome to the BIG Recovery Quiz!</h1>
 
       <div className='intro-text'>
-        <p>
-         Choose
-          your level.
-        </p>
+        <p>Choose your level.</p>
       </div>
 
       <div className='level-selection'>
@@ -41,9 +36,7 @@ const QuizStart = ({ onStart, levels }) => {
                 onChange={() => setSelectedLevel(level)}
               />
               <span className='radio-custom' />
-              <span className='radio-text'>
-                {level.charAt(0).toUpperCase() + level.slice(1)}
-              </span>
+              <span className='radio-text'>{level.charAt(0).toUpperCase() + level.slice(1)}</span>
             </label>
           ))}
         </div>
@@ -52,28 +45,16 @@ const QuizStart = ({ onStart, levels }) => {
       <div className='opt-in-section'>
         <div className='stats-row'>
           <div className='opt-in'>
-            <input
-              type='checkbox'
-              id='record-scores'
-              checked={optIn}
-              onChange={(e) => setOptIn(e.target.checked)}
-            />
-            <label htmlFor='record-scores'>
-              Record my scores and track progress
-            </label>
+            <input type='checkbox' id='record-scores' checked={optIn} onChange={(e) => setOptIn(e.target.checked)} />
+            <label htmlFor='record-scores'>Record my scores and track progress</label>
           </div>
           <button
             className='stats-button'
             onClick={() => onStart('stats', false)}
             disabled={!hasStats}
             title={
-              !optIn
-                ? 'Enable tracking to view stats'
-                : !hasStats
-                ? 'No stats recorded yet'
-                : 'View your progress'
-            }
-          >
+              !optIn ? 'Enable tracking to view stats' : !hasStats ? 'No stats recorded yet' : 'View your progress'
+            }>
             Stats
           </button>
         </div>
@@ -84,7 +65,7 @@ const QuizStart = ({ onStart, levels }) => {
           Start Quiz
         </button>
       </div>
-
+      {/* 
       <button
         className='debug-btn'
         onClick={() => {
@@ -125,7 +106,7 @@ const QuizStart = ({ onStart, levels }) => {
         }}
       >
         [Debug] Generate 30 Mock Games
-      </button>
+      </button> */}
     </div>
   )
 }
