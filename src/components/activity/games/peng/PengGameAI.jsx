@@ -582,6 +582,12 @@ const pengGameAI = () => {
   // Keyboard handlers
   const handleKeyDown = useCallback(
     (e) => {
+      // Ignore if the event originated from an input element
+      const target = e.target
+      if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable) {
+        return
+      }
+
       if (e.key === 'w' || e.key === 'W') {
         e.preventDefault()
         if (playerSide === 'left') leftPaddleDir.current = -1
@@ -603,6 +609,11 @@ const pengGameAI = () => {
 
   const handleKeyUp = useCallback(
     (e) => {
+      const target = e.target
+      if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable) {
+        return
+      }
+
       if (e.key === 'w' || e.key === 'W' || e.key === 's' || e.key === 'S') {
         e.preventDefault()
         if (playerSide === 'left') leftPaddleDir.current = 0
@@ -804,39 +815,52 @@ const pengGameAI = () => {
 
   // Lifecycle and event listeners
   useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    resizeCanvas()
+    if (!show) return // Don't attach listeners when game is hidden
+
     window.addEventListener('keydown', handleKeyDown)
     window.addEventListener('keyup', handleKeyUp)
-    canvas.addEventListener('mousedown', handleMouseDown)
-    canvas.addEventListener('mousemove', handleMouseMove)
-    canvas.addEventListener('mouseup', handleMouseUp)
-    canvas.addEventListener('mouseleave', handleMouseLeave)
-    canvas.addEventListener('touchstart', handleTouchStart, { passive: false })
-    canvas.addEventListener('touchmove', handleTouchMove, { passive: false })
-    canvas.addEventListener('touchend', handleTouchEnd)
-    canvas.addEventListener('touchcancel', handleTouchCancel)
+
+    const canvas = canvasRef.current
+    if (canvas) {
+      canvas.addEventListener('mousedown', handleMouseDown)
+      canvas.addEventListener('mousemove', handleMouseMove)
+      canvas.addEventListener('mouseup', handleMouseUp)
+      canvas.addEventListener('mouseleave', handleMouseLeave)
+      canvas.addEventListener('touchstart', handleTouchStart, { passive: false })
+      canvas.addEventListener('touchmove', handleTouchMove, { passive: false })
+      canvas.addEventListener('touchend', handleTouchEnd)
+      canvas.addEventListener('touchcancel', handleTouchCancel)
+    }
+
     const resizeObserver = new ResizeObserver(() => {
       resizeCanvas()
     })
-    resizeObserver.observe(canvas.parentElement)
+    if (canvas?.parentElement) {
+      resizeObserver.observe(canvas.parentElement)
+    }
+
     animationRef.current = requestAnimationFrame(gameLoop)
+
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
       window.removeEventListener('keyup', handleKeyUp)
-      canvas.removeEventListener('mousedown', handleMouseDown)
-      canvas.removeEventListener('mousemove', handleMouseMove)
-      canvas.removeEventListener('mouseup', handleMouseUp)
-      canvas.removeEventListener('mouseleave', handleMouseLeave)
-      canvas.removeEventListener('touchstart', handleTouchStart)
-      canvas.removeEventListener('touchmove', handleTouchMove)
-      canvas.removeEventListener('touchend', handleTouchEnd)
-      canvas.removeEventListener('touchcancel', handleTouchCancel)
+
+      if (canvas) {
+        canvas.removeEventListener('mousedown', handleMouseDown)
+        canvas.removeEventListener('mousemove', handleMouseMove)
+        canvas.removeEventListener('mouseup', handleMouseUp)
+        canvas.removeEventListener('mouseleave', handleMouseLeave)
+        canvas.removeEventListener('touchstart', handleTouchStart)
+        canvas.removeEventListener('touchmove', handleTouchMove)
+        canvas.removeEventListener('touchend', handleTouchEnd)
+        canvas.removeEventListener('touchcancel', handleTouchCancel)
+      }
+
       resizeObserver.disconnect()
       if (animationRef.current) cancelAnimationFrame(animationRef.current)
     }
   }, [
+    show, // 👈 now dependent on show
     handleKeyDown,
     handleKeyUp,
     handleMouseDown,
