@@ -85,7 +85,7 @@ export default defineConfig({
     }),
     Sitemap({
       outDir: 'docs',
-      hostname: 'https://www.ummi.now',
+      hostname: 'https://app.ummi.now',
       dynamicRoutes: getDynamicRoutes(),
       changefreq: 'weekly',
       priority: 0.8,
@@ -120,7 +120,7 @@ export default defineConfig({
         
       },
       manifest: {
-        filename: 'manifest.webmanifest', 
+        filename: 'manifest.json', 
         "name": "Ummi",
         "short_name": "Ummi",
         "description": "Understanding Me Myself & I (Ummi) is a companion app providing support for mental health and addiction recovery. It provides quick access to tools and skills learnt in SMART, Cognitive Behavioural Therapy (CBT), Acceptance Commitment Therapy (ACT), Dialectical Behaviour Therapy (DBT) and others.",
@@ -133,7 +133,7 @@ export default defineConfig({
         "capture_links": "existing_client_event",
         "url_handlers": [
           {
-            "origin": "https://www.ummi.now",
+            "origin": "https://app.ummi.now",
           }
         ],
         "shortcuts": getShortcuts(),
