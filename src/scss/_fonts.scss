@@ -84,14 +84,14 @@ body {
       -apple-system,
       BlinkMacSystemFont,
       sans-serif;
+
+    font-variation-settings: 'wght' 800;
     font-weight: 800;
-    font-variation-settings: 'wght' 800;
-    font-variation-settings: 'wght' 800;
-    font-style: normal;
+    font-style: bold;
     line-height: variables.$default_line_height;
     padding: 0;
     margin: 1rem 0;
-    color: #252020;
+    color: var(--primary);
   }
 
   h1 {
