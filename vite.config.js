@@ -120,7 +120,7 @@ export default defineConfig({
         
       },
       manifest: {
-        filename: 'manifest.webmanifest', 
+        filename: 'manifest.json', 
         "name": "Ummi",
         "short_name": "Ummi",
         "description": "Understanding Me Myself & I (Ummi) is a companion app providing support for mental health and addiction recovery. It provides quick access to tools and skills learnt in SMART, Cognitive Behavioural Therapy (CBT), Acceptance Commitment Therapy (ACT), Dialectical Behaviour Therapy (DBT) and others.",

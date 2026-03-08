@@ -40,6 +40,8 @@ const useAppStore = create(
 
       clearWheelHistory: () => set(() => ({ wheelHistory: [] })),
       // -----------------------------
+      currency: 'USD',
+      setCurrency: (v) => set({ currency: v }),
       // ----------------------------------------
       // Last Version Check
       lvc: '',
@@ -445,7 +447,7 @@ const useAppStore = create(
         lastVersionCheck: state.lastVersionCheck,
         spv: state.spv,
         gae: state.gae,
-
+        currency: state.currency,
         wheelHistory: state.wheelHistory,
         rememberWheels: state.rememberWheels,
         showQExitOnboarding: state.showQExitOnboarding,

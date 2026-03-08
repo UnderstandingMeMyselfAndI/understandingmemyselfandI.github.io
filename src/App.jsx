@@ -44,12 +44,13 @@ import QuizCTA from './components/activity/quiz/QuizCTA'
 import PengGameAI from './components/activity/games/peng/PengGameAI'
 // import { runPersistentStorageTests } from './js/utils.js'
 import './App.scss'
+import './scss/_fonts.scss'
 // import AccessibilitySettings from './components/ui/AccessibilitySettings/AccessibilitySettings'
 //TODO #41 Add Pop up confirm box with disclaimer. with timely reminder.
 //TODO #42 Add setting to remove reminder in settings
 // TODO: #21 "Clear Local Data" functionality
 //TODO #43 Styling of cookie consent
-
+// TODO #67 #66 New features Urges and Cravings logs
 //Need for Service Worker update itself
 window.__APP_LOADED = true
 
