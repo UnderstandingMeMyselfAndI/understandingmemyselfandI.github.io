@@ -14,7 +14,7 @@
 
 @font-face {
   font-family: 'Plus Jakarta Sans';
-  font-weight: 200 300 400 500 600 700 800 900; // necessary for iOS
+  font-weight: 200 900; // necessary for iOS
   font-style: normal;
   font-display: swap;
   src: local('Plus Jakarta Sans'), url('/fonts/PlusJakartaSans-VariableFont_wght.woff') format('woff'), url('/fonts/PlusJakartaSans-VariableFont_wght.woff2') format('woff2');
@@ -87,7 +87,7 @@ body {
 
     font-variation-settings: 'wght' 800;
     font-weight: 800;
-    font-style: bold;
+    font-style: normal;
     line-height: variables.$default_line_height;
     padding: 0;
     margin: 1rem 0;
