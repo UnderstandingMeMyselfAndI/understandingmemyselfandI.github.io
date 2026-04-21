@@ -272,6 +272,12 @@ body #root .main section.days-counter-activity.fixed {
   margin-bottom: 0.5rem;
   text-shadow: var(--textShadowDarkValue);
 
+  input {
+    font-weight: 800;
+    font-variation-settings: 'wght' 800;
+
+  }
+
 }
 
 .days-counter-subtitle {
@@ -411,9 +417,9 @@ button.days-counter-add-first-btn {
   border: none;
   background: transparent;
   font-size: 2.5rem;
-  font-weight: 600;
-  font-variation-settings: 'wght' 600;
-  font-variation-settings: 'wght' 600;
+  font-weight: 800;
+  font-variation-settings: 'wght' 800;
+
   color: var(--lightBlue);
   width: 100%;
   text-align: center;
@@ -422,7 +428,7 @@ button.days-counter-add-first-btn {
   &::placeholder {
     color: var(--grey);
     opacity: 0.75;
-    font-weight: 600;
+    font-weight: 800;
     font-variation-settings: 'wght' 600;
     font-size: 1.75rem;
   }
@@ -854,23 +860,27 @@ body #root .main section .days-counter-cost {
   align-items: center;
   gap: 8px;
 
-  border: 1px solid yellow;
-  width: 100%;
+  // border: 1px solid yellow;
+  width: 80%;
+  margin: 0 auto;
 
   label {
     font-size: 0.9rem;
     color: var(--orange);
-    font-size: 1rem;
+    font-size: 1.25rem;
     width: 100%;
+    text-align: left;
+    display: flex;
+    gap: 6px;
+    justify-content: space-between;
 
   }
 
   input {
     width: 100px;
     padding: 4px 8px;
-
     background: var(--input-bg);
-    border: none;
+    border: 1px solid var(--greyLight);
   }
 
   #currency-selector {
@@ -913,7 +923,7 @@ body #root .main section .days-counter-cost {
 
     >span:first-child {
       text-align: left;
-      background: var(--yellow50Trans);
+      // background: var(--yellow50Trans);
     }
 
     >span:last-child {
