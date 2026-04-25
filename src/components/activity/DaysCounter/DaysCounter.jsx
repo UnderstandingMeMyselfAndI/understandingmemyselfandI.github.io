@@ -345,7 +345,7 @@ const DaysCounter = () => {
                             <div className='days-counter-cost-container'>
                               <div className='days-counter-cost'>
                                 <label htmlFor={`daily-cost-${index}`}>
-                                  <div>Daily cost</div>
+                                  <div>Enter daily cost</div>
                                   <div>{currency}</div>
                                 </label>
                                 <input
