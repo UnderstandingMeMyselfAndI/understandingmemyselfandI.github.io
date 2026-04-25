@@ -1,3 +1,4 @@
+// DaysCounter.jsx (updated version)
 import { useState, useEffect, useRef } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import './styles.scss'
@@ -12,12 +13,25 @@ import useAppStore from '@/store/useAppStore'
 import Dialog from 'components/ui/dialog/Dialog'
 import { activities } from '@/data/config'
 
-//TODO: #65 #64 Expand this so it shows financial savings
-
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc
 }, {})
+
+// Common currency list for the dropdown
+const COMMON_CURRENCIES = [
+  { code: 'USD', symbol: '$', label: 'USD $' },
+  { code: 'EUR', symbol: '€', label: 'EUR €' },
+  { code: 'GBP', symbol: '£', label: 'GBP £' },
+  { code: 'JPY', symbol: '¥', label: 'JPY ¥' },
+  { code: 'CAD', symbol: 'C$', label: 'CAD C$' },
+  { code: 'AUD', symbol: 'A$', label: 'AUD A$' },
+  { code: 'CHF', symbol: 'Fr', label: 'CHF Fr' },
+  { code: 'CNY', symbol: '¥', label: 'CNY ¥' },
+  { code: 'INR', symbol: '₹', label: 'INR ₹' },
+  { code: 'MXN', symbol: '$', label: 'MXN $' },
+  { code: 'BRL', symbol: 'R$', label: 'BRL R$' },
+]
 
 const DaysCounter = () => {
   const name = 'Days Counter'
@@ -35,10 +49,10 @@ const DaysCounter = () => {
   const [showDialog, setShowDialog] = useState(false)
   const [dialogIndex, setDialogIndex] = useState(-1)
   const [editingDateIndex, setEditingDateIndex] = useState(-1)
-  const [currentIndex, setCurrentIndex] = useState(0) // current slide index
+  const [currentIndex, setCurrentIndex] = useState(0)
   const maxNumDates = 6
 
-  // Touch handling for swipe
+  // Touch handling for swipe (unchanged)
   const touchStartX = useRef(0)
   const touchEndX = useRef(0)
   const minSwipeDistance = 50
@@ -139,15 +153,21 @@ const DaysCounter = () => {
     setCurrentTimes(newTimes)
   }, [dates])
 
-  // Adjust current index when dates change
   useEffect(() => {
     if (currentIndex >= dates.length) {
       setCurrentIndex(Math.max(dates.length - 1, 0))
     }
   }, [dates, currentIndex])
 
-  // Auto-detect currency based on browser locale (only once)
+  // Auto-detect currency only once on mount if no currency is set in store
   useEffect(() => {
+    // Only auto-detect if the store hasn't persisted a currency yet
+    // We assume that if currency is 'USD' and we have never set it manually,
+    // we should attempt detection. To avoid overriding user choice, we can check
+    // a local flag, but here we just run it once if currency is falsy or 'USD'
+    // and no manual override exists. For simplicity, we check if the current
+    // currency is the default 'USD' and the user hasn't changed it yet.
+    // The store likely initializes to 'USD' - so we try to detect and update.
     if (currency === 'USD' && navigator.language) {
       try {
         const detected = new Intl.NumberFormat(navigator.language).resolvedOptions().currency
@@ -155,7 +175,7 @@ const DaysCounter = () => {
           setCurrency(detected)
         }
       } catch {
-        // fallback to USD
+        // fallback to USD (do nothing)
       }
     }
   }, [currency, setCurrency])
@@ -168,7 +188,7 @@ const DaysCounter = () => {
           id: Date.now(),
           selectedDate: null,
           label: '',
-          dailyCost: 0, // new field
+          dailyCost: 0,
         },
       ])
       setCurrentIndex(dates.length)
@@ -222,6 +242,14 @@ const DaysCounter = () => {
     }).format(amount)
   }
 
+  const handleCurrencyChange = (e) => {
+    setCurrency(e.target.value)
+  }
+
+  const getCurrencySymbol = (code) => {
+    return COMMON_CURRENCIES.find((curr) => curr.code === code)?.symbol ?? ''
+  }
+
   if (!open) return null
 
   return (
@@ -232,9 +260,8 @@ const DaysCounter = () => {
             <CloseBtn classes='days-counter-close-btn' onClick={handleClose} />
 
             {dates.length > 0 && (
-              <header>
+              <header className='days-counter-header'>
                 <h3>Days Counter</h3>
-                {/* Currency Selector */}
               </header>
             )}
 
@@ -290,11 +317,11 @@ const DaysCounter = () => {
 
                                 <div className='days-counter-stat days-counter-stat-hours'>
                                   <span className='value'>{currentTimes[index]?.hours?.toLocaleString() ?? 0}</span>
-                                  <span className='label'>hours</span>
+                                  <span className='label'>hrs</span>
                                 </div>
                                 <div className='days-counter-stat days-counter-stat-minutes'>
                                   <span className='value'>{currentTimes[index]?.minutes?.toLocaleString() ?? 0}</span>
-                                  <span className='label'>minutes</span>
+                                  <span className='label'>mins</span>
                                 </div>
                               </div>
                             ) : (
@@ -346,8 +373,19 @@ const DaysCounter = () => {
                               <div className='days-counter-cost'>
                                 <label htmlFor={`daily-cost-${index}`}>
                                   <div>Enter daily cost</div>
-                                  <div>{currency}</div>
+                                  {/* Currency Selector */}
                                 </label>
+                                <select
+                                  className='days-counter-currency-selector'
+                                  value={currency}
+                                  onChange={handleCurrencyChange}
+                                  aria-label='Select currency'>
+                                  {COMMON_CURRENCIES.map((curr) => (
+                                    <option key={curr.code} value={curr.code}>
+                                      {curr.label}
+                                    </option>
+                                  ))}
+                                </select>
                                 <input
                                   id={`daily-cost-${index}`}
                                   type='number'
@@ -366,8 +404,8 @@ const DaysCounter = () => {
                                 />
                               </div>
                             </div>
+
                             {/* Savings Rates */}
-                            {/* {date.dailyCost > 0 && ( */}
                             <div className='days-counter-savings-rates'>
                               <div className='savings-rate'>
                                 <span className='rate-label'>Savings per week</span>
@@ -378,9 +416,7 @@ const DaysCounter = () => {
                                 <span className='rate-value'>{formatMoney(date.dailyCost * 30.44)}</span>
                               </div>
                               <div className='savings-rate'>
-                                <span className='rate-label' Savings per>
-                                  Quarter
-                                </span>
+                                <span className='rate-label'>Quarter</span>
                                 <span className='rate-value'>{formatMoney(date.dailyCost * 91.31)}</span>
                               </div>
                               <div className='savings-rate'>
@@ -388,7 +424,6 @@ const DaysCounter = () => {
                                 <span className='rate-value'>{formatMoney(date.dailyCost * 365.25)}</span>
                               </div>
                             </div>
-                            {/* )} */}
                           </div>
                         </div>
                       ))}
