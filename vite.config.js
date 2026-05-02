@@ -36,7 +36,7 @@ export default defineConfig({
     cssCodeSplit: true,
     sourcemap: false,
     rollupOptions: {
-      treeshake: 'smallest',
+      treeshake: true,
       output: {
         manualChunks: {
           'react-dom': ['react-dom'],
