@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-// import metadata from "@/metadata.json";
+import metadata from '@/metadata.json'
 // import {fetchVersionData, compareVersions} from "@/utils/versionData.js";
 import './styles.scss'
 function FooterMetadata() {
@@ -23,10 +23,9 @@ function FooterMetadata() {
   return (
     <div className='version-footer'>
       &copy; {year} <span className='ummi'>Ummi</span>
-      {/* <div className="sf-footer-version">
-				{`Version ${metadata.buildMajor}.${metadata.buildMinor}.${metadata.buildRevision} ${metadata.buildTag}  `}
-				{isUpdateAvailable && <span className="update"> (Update available - go to settings)</span>}
-			</div> */}
+      <div className='sf-footer-version'>
+        {`Version ${metadata.buildMajor}.${metadata.buildMinor}.${metadata.buildRevision}`}
+      </div>
     </div>
   )
 }
