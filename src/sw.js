@@ -19,8 +19,8 @@ cleanupOutdatedCaches()
 // Catch-all navigation handler
 const navigationHandler = async ({ event }) => {
   // Use matchPrecache to find the version of index.html Vite injected
-  const response = await matchPrecache('/index.html')
-  return response || fetch(event.request)
+  const response = await matchPrecache('index.html')
+  return response || fetch('/index.html')
 }
 
 // Handle images 
