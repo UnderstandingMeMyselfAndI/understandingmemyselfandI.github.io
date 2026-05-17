@@ -3,7 +3,7 @@ name: Publish Branch To App
 on:
   push:
     branches:
-      - dev
+      - app
 
 jobs:
   web-deploy:
@@ -13,7 +13,7 @@ jobs:
       - name: 🚚 Get Latest Commit
         uses: actions/checkout@v4
         with:
-          ref: dev
+          ref: app
 
       - name: 📂 Sync Files with hosting server
         uses: easingthemes/ssh-deploy@main
