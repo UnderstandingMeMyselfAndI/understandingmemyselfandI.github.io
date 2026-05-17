@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 🚚 Get Latest Commit
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: dev
 
@@ -19,9 +19,7 @@ jobs:
         uses: easingthemes/ssh-deploy@main
         with:
           SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_DEV_KEY }}
-          ARGS:
-            '-rlgoDzvc -i -av --delete --recursive --force --compress
-            --human-readable'
+          ARGS: '-rlgoDzvc -i -av --delete --recursive --force --compress --human-readable'
           SOURCE: 'docs/'
           REMOTE_HOST: ${{ secrets.DEPLOY_DEV_SERVER }}
           REMOTE_USER: ${{ secrets.DEPLOY_DEV_USER }}
