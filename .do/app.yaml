@@ -6,7 +6,7 @@ alerts:
 domains:
   - domain: ummi.now
     type: PRIMARY
-  - domain: www.ummi.now
+  - domain: app.ummi.now
     type: ALIAS
 features:
   - buildpack-stack=ubuntu-22
@@ -26,7 +26,7 @@ ingress:
         path:
           prefix: /
       redirect:
-        authority: www.ummi.now
+        authority: app.ummi.now
         redirect_code: 302
         scheme: https
 name: ummi-deploy-app

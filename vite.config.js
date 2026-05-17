@@ -85,7 +85,7 @@ export default defineConfig({
     }),
     Sitemap({
       outDir: 'docs',
-      hostname: 'https://www.ummi.now',
+      hostname: 'https://app.ummi.now',
       dynamicRoutes: getDynamicRoutes(),
       changefreq: 'weekly',
       priority: 0.8,
@@ -133,7 +133,7 @@ export default defineConfig({
         "capture_links": "existing_client_event",
         "url_handlers": [
           {
-            "origin": "https://www.ummi.now",
+            "origin": "https://app.ummi.now",
           }
         ],
         "shortcuts": getShortcuts(),

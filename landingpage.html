@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ummi – Your Free Recovery Companion</title>
+    <meta
+      name="description"
+      content="Ummi is the free, private recovery companion with CBT, DBT, ACT & SMART tools, days counter, units calculator, timelines and more." />
+
+    <!-- Google Font: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background: #0f172a;
+        color: #e2e8f0;
+        line-height: 1.5;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* ---------- SCROLL ANIMATIONS ---------- */
+      .animate {
+        opacity: 0;
+        transform: translateY(120px);
+        transition:
+          opacity 0.75s ease-in-out var(--delay, 0s),
+          transform 0.75s ease-in-out var(--delay, 0s);
+      }
+
+      .animate.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.75s ease-in-out var(--delay, 0s),
+          transform 0.75s ease-in-out var(--delay, 0s);
+      }
+
+      /* ---------- HERO / HEADER ---------- */
+      .hero {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 12rem 1.5rem 12rem;
+        background-image: url('https://images.unsplash.com/photo-1504194104404-433180773017?w=1200&q=80');
+        background-size: cover;
+        background-position: center;
+        isolation: isolate;
+        /* overflow: hidden; */
+        margin-bottom: 3rem;
+        min-height: 100vh;
+      }
+
+      .hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.8);
+        z-index: 1;
+      }
+
+      .hero > * {
+        position: relative;
+        z-index: 2;
+      }
+
+      .logo-img {
+        width: 120px;
+        height: auto;
+        margin-bottom: 0rem;
+        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+      }
+
+      .logo-text {
+        font-size: clamp(2rem, 8vw, 4rem);
+        font-weight: 800;
+        background: linear-gradient(135deg, #a78bfa, #c084fc, #efd7f3);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 2.5rem;
+        line-height: 1;
+      }
+
+      .tagline {
+        font-size: 1.4rem;
+        color: #e2e8f0;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        font-weight: 500;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .tagline strong {
+        font-weight: 700;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 1rem 1.75rem;
+        border-radius: 3rem;
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: all 0.3s;
+        cursor: pointer;
+        border: none;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #7c3aed, #c298e9);
+        color: white;
+        box-shadow: 0 10px 25px -10px #7c3aed;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px -5px #7c3aed;
+      }
+
+      .btn-outline {
+        background: transparent;
+        border: 2px solid #a78bfa;
+        color: #e2e8f0;
+      }
+
+      .btn-outline:hover {
+        background: rgba(167, 139, 250, 0.1);
+      }
+
+      /* ---------- FEATURES SECTION ---------- */
+      .section-title {
+        text-align: center;
+        font-size: 2.2rem;
+        margin: 6rem 0;
+        font-weight: 700;
+        color: #8abdff;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3.5rem;
+        margin-top: 2rem;
+      }
+
+      @media (max-width: 768px) {
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .feature-card {
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        outline: 1px solid #2e2e2e;
+        border-radius: 12px;
+        padding: 2.5rem 1.5rem;
+        transition:
+          transform 0.2s,
+          box-shadow 0.3s;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: white;
+        background-color: #1e293b;
+        isolation: isolate;
+        overflow: hidden;
+        min-height: 400px;
+      }
+
+      .feature-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.85);
+        z-index: 1;
+        border-radius: inherit;
+      }
+
+      .feature-card > * {
+        position: relative;
+        z-index: 2;
+      }
+
+      .feature-card:hover {
+        transition: all 0.75s ease-in-out;
+      }
+
+      .feature-card h3 {
+        font-size: 2.5rem;
+        margin-bottom: 0.75rem;
+        color: #f1f5f9;
+        font-weight: 700;
+      }
+
+      .feature-card p {
+        color: #9eb8da;
+        font-size: 1.25rem;
+        line-height: 1.4;
+        font-weight: 300;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+      }
+
+      /* ---------- BOTTOM CTA ---------- */
+      .cta-bottom {
+        text-align: center;
+        padding: 4rem 1.5rem;
+        background: rgba(124, 58, 237, 0.05);
+        margin-top: 4rem;
+        /* border-radius: 2rem; */
+      }
+
+      .cta-bottom h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+        color: #e2e8f0;
+      }
+
+      .ummi-underline {
+        text-decoration: underline;
+        text-decoration-color: #fbbf24;
+        text-underline-offset: 4px;
+      }
+
+      /* ---------- FOOTER ---------- */
+      .footer {
+        text-align: center;
+        padding: 2rem 1.5rem;
+        font-size: 0.9rem;
+        color: #64748b;
+        /* border-top: 1px solid #1e293b; */
+        /* margin-top: 2rem; */
+        font-weight: 500;
+      }
+
+      @media (max-width: 600px) {
+        .hero-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+        .btn {
+          width: 100%;
+          text-align: center;
+        }
+        .hero {
+          padding: 4rem 1.5rem 3rem;
+        }
+        .feature-card {
+          min-height: 240px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ========== HEADER / HERO ========== -->
+    <header class="hero">
+      <img
+        src="https://www.ummi.now/icons/UmmiIcon.svg"
+        alt="Ummi Logo"
+        class="logo-img animate"
+        width="80"
+        height="80"
+        style="--delay: 0s" />
+      <h1 class="logo-text animate" style="--delay: 0.05s">Ummi</h1>
+      <p class="tagline animate" style="--delay: 0.15s">
+        <strong>Understanding Me, Myself, and I</strong>
+        — the free, private recovery companion that puts life‑changing tools in your pocket.
+      </p>
+      <div class="hero-buttons animate" style="--delay: 0.25s">
+        <a href="https://app.ummi.now" class="btn btn-primary">Launch App</a>
+        <a href="#features" class="btn btn-outline">See Features</a>
+      </div>
+    </header>
+
+    <div class="container">
+      <!-- ========== FEATURES ========== -->
+      <section id="features">
+        <h2 class="section-title animate" style="--delay: 0.3s">Everything you need, right at your fingertips</h2>
+        <h3 class="section-title animate" style="--delay: 0.4s">Privacy-first design, complete confidentiality</h3>
+        <div class="features-grid">
+          <!-- Days Counter -->
+          <div
+            class="feature-card animate"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=600&q=80');
+              --delay: 0.4s;
+            ">
+            <h3>Multiple Days Counter</h3>
+            <p>
+              Track multiple recovery dates privately. Celebrate every milestone – your data never leaves your device.
+            </p>
+          </div>
+
+          <!-- Units Calculator -->
+          <div
+            class="feature-card animate"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80');
+              --delay: 0.6s;
+            ">
+            <h3>Alcohol Units Calculator</h3>
+            <p>Calculate units for standard measures or custom drinks. Plan with clarity, not guesswork.</p>
+          </div>
+
+          <!-- Recovery Tools -->
+          <div
+            class="feature-card animate"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1559757175-5700dde675bc?w=600&q=80');
+              --delay: 0.4s;
+            ">
+            <h3>Recovery Tools Explained</h3>
+            <p>
+              Clear explanations of
+              <strong>SMART, CBT, ACT &amp; DBT</strong>
+              tools. Save your favourites to a personal toolbox.
+            </p>
+          </div>
+
+          <!-- Recovery Timeline -->
+          <div
+            class="feature-card animate"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&q=80');
+              --delay: 1.2s;
+            ">
+            <h3>Recovery Timeline</h3>
+            <p>
+              From pre‑detox through the first year. A stage‑by‑stage guide with tips, milestones, and what to expect.
+            </p>
+          </div>
+
+          <!-- Wheel of Life -->
+          <div
+            class="feature-card animate"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&q=80');
+              --delay: 1.35s;
+            ">
+            <h3>Wheel of Life</h3>
+            <p>Assess your life balance in key areas. Save wheels over time and see your progress grow stronger.</p>
+          </div>
+
+          <!-- Recovery Quiz -->
+          <div
+            class="feature-card animate"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80');
+              --delay: 1.5s;
+            ">
+            <h3>The BIG Recovery Quiz</h3>
+            <p>Test your recovery knowledge with three levels. No scores kept – just learning and fun for everyone.</p>
+          </div>
+
+          <!-- Peng Game -->
+          <div
+            class="feature-card animate"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1551103782-f2c71e40c1ba?w=600&q=80');
+              --delay: 1.65s;
+            ">
+            <h3>Peng – A Classic Pong Game</h3>
+            <p>Take a mindful break with a retro Pong game. Play against an AI and reset your focus.</p>
+          </div>
+
+          <!-- Motivational Wallpapers -->
+          <div
+            class="feature-card animate"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&q=80');
+              --delay: 1.8s;
+            ">
+            <h3>Motivational Wallpapers</h3>
+            <p>Download free, inspiring wallpapers straight to your phone. Surround yourself with encouragement.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- ========== BOTTOM CTA ========== -->
+    <div class="cta-bottom">
+      <h2 class="animate" style="--delay: 2.1s">
+        Completely
+        <span class="ummi-underline">free</span>
+        . Completely
+        <span class="ummi-underline">private</span>
+        .
+      </h2>
+      <p
+        class="animate"
+        style="
+          --delay: 2.2s;
+          margin-bottom: 2rem;
+          max-width: 500px;
+          margin-inline: auto;
+          color: #94a3b8;
+          font-weight: 500;
+        ">
+        No accounts. No tracking. You control your data – delete it instantly, anytime. Just pure support when you need
+        it most.
+      </p>
+      <a href="https://app.ummi.now" class="btn btn-primary animate" style="--delay: 2.3s">Open Ummi Now</a>
+    </div>
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+      <p>
+        © 2026
+        <span
+          style="
+            background: linear-gradient(135deg, #a78bfa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          ">
+          Ummi
+        </span>
+        – Understanding Me, Myself, and I
+      </p>
+      <p style="margin-top: 0.5rem">Made with ♡ for everyone walking the recovery path.</p>
+    </footer>
+
+    <!-- ========== SCROLL ANIMATION LOGIC ========== -->
+    <script>
+      ;(function () {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible')
+                observer.unobserve(entry.target)
+              }
+            })
+          },
+          {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px',
+          },
+        )
+
+        const animateElements = document.querySelectorAll('.animate')
+        animateElements.forEach((el) => observer.observe(el))
+      })()
+    </script>
+  </body>
+</html>
