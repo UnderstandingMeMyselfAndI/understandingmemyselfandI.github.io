@@ -17,6 +17,8 @@ section.header#header {
   // margin-top: -6rem; // offset the first row-gap in #main
   text-shadow: var(--textShadowDarkValue);
   transition: height 0.35s ease-in-out;
+  font-weight: 800;
+  font-variation-settings: 'wght' 800;
 
   .home-grp {
     display: flex;
