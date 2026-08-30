@@ -1,6 +1,5 @@
-// @use "../../../scss/Animation.css";
-@use './scss/_variables.scss';
-@import '@/globals.css';
+@use '@scss/_variables.scss';
+@import '@src/globals.css';
 
 section.header#header {
   position: relative;
@@ -29,7 +28,7 @@ section.header#header {
   }
 
   .homelogo {
-    opacity: 0;
+    opacity: 1;
 
     .ummi-logo {
       display: flex;

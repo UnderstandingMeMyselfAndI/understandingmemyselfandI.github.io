@@ -1,9 +1,10 @@
 import { useState } from 'react'
+
 import PropTypes from 'prop-types'
-import useAppStore from '@/store/useAppStore'
+import useAppStore from '@store/useAppStore'
 import HandymanIcon from '@mui/icons-material/Handyman'
 import HandymanOutlinedIcon from '@mui/icons-material/HandymanOutlined'
-import { strings } from 'data/config.js'
+import { strings } from '@data/config.js'
 import './styles.scss'
 
 const ButtonToolbox = ({ id }) => {
@@ -34,13 +35,8 @@ const ButtonToolbox = ({ id }) => {
       className={'btn toolbox' + (inToolbox ? ' active' : '')}
       key='toolbox-btn'
       onClick={handleClick}
-      aria-label='Toggle toolbox'
-    >
-      {inToolbox ? (
-        <HandymanIcon key='toolbox-btn-icon' />
-      ) : (
-        <HandymanOutlinedIcon key='toolbox-btn-icon' />
-      )}
+      aria-label='Toggle toolbox'>
+      {inToolbox ? <HandymanIcon key='toolbox-btn-icon' /> : <HandymanOutlinedIcon key='toolbox-btn-icon' />}
     </div>
   )
 }

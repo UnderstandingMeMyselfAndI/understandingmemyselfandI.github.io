@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from 'react'
 import Draggable from 'react-draggable'
-import useAppStore from '@/store/useAppStore'
+import useAppStore from '@store/useAppStore'
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined'
-import QuickExitOnboarding from '../../exit/QuickExitOnboarding'
+import QuickExitOnboarding from '@ui/exit/QuickExitOnboarding'
 import PropTypes from 'prop-types'
 import './styles.scss'
 

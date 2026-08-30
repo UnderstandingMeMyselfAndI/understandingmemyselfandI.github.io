@@ -1,5 +1,5 @@
-@use '@/scss/_variables.scss';
-@import '@/globals.css';
+@use '@scss/_variables.scss';
+@import '@src/globals.css';
 
 body div.main section.activity-quiz {
   position: absolute;
@@ -17,7 +17,9 @@ body div.main section.activity-quiz {
   max-width: 100%;
   margin: 0 auto;
   padding: 20px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+    sans-serif;
   border-radius: 12px;
   box-shadow: none;
   color: var(--primary);
@@ -365,7 +367,6 @@ body div.main section.activity-quiz {
           z-index: 3;
           pointer-events: none;
           overflow: visible;
-
         }
       }
 

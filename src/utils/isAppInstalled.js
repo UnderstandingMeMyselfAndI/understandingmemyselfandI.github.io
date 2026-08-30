@@ -1,4 +1,4 @@
-import useAppStore from '@/store/useAppStore'
+import useAppStore from '@store/useAppStore'
 export function getPWADisplayMode() {
   if (document.referrer.startsWith('android-app://')) return 'twa'
   if (window.matchMedia('(display-mode: browser)').matches) return 'browser'

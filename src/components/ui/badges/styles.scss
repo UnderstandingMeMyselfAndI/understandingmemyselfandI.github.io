@@ -1,6 +1,6 @@
-@use '@/scss/variables';
-@import '@/globals.css';
-@import '@/scss/Animation.css';
+@use '@scss/_variables.scss';
+@import '@src/globals.css';
+@import '@src/scss/Animation.css';
 
 span.MuiBadge-badge.MuiBadge-standard {
   color: #fff;

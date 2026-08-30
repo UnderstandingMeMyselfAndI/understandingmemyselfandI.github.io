@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import useAppStore from '@/store/useAppStore';
-import { activities } from '@/data/config';
-import { strings } from '@/data/config';
+import useAppStore from '@store/useAppStore';
+import { activities } from '@data/config';
+import { strings } from '@data/config';
 import PropTypes from 'prop-types';
 import './styles.scss';
 

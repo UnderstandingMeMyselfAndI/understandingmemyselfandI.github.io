@@ -1,5 +1,5 @@
-@use '@/scss/_variables.scss';
-@import '@/globals.css';
+@use '@scss/_variables.scss';
+@import '@src/globals.css';
 
 // --- RESET & BASICS ---
 
@@ -155,16 +155,8 @@ $minimap-w: 50px;
   background-position: center top;
 
   // Optional: Fade out at very top and bottom for smoothness
-  -webkit-mask-image: linear-gradient(to bottom,
-      transparent,
-      black 10%,
-      black 90%,
-      transparent);
-  mask-image: linear-gradient(to bottom,
-      transparent,
-      black 10%,
-      black 90%,
-      transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
 
   @media (width <=425px) {
     transform: translateX(calc(-50% - 15px));
@@ -206,7 +198,7 @@ $minimap-w: 50px;
     letter-spacing: 4px;
     text-decoration: underline;
     text-decoration-color: var(--orange30Trans);
-    text-decoration-thickness: 0.70em; //45%; ems used for iOS devices
+    text-decoration-thickness: 0.7em; //45%; ems used for iOS devices
     text-underline-offset: -0.5em; // must use em for iOS
     text-decoration-skip-ink: none;
   }
@@ -317,7 +309,6 @@ $minimap-w: 50px;
   // Make section tall enough to scroll through
   min-height: 150vh;
   width: 100%;
-
 }
 
 // --- PINNED BACKGROUND ---
@@ -357,7 +348,6 @@ $minimap-w: 50px;
   letter-spacing: -0.9;
   font-weight: 00;
   font-variation-settings: 'wght' 900;
-
 }
 
 .huge-title {

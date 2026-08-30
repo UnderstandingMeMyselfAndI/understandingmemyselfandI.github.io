@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { clamp } from '@/js/utils.js'
+import { clamp } from '@src/js/utils.js'
 import FitText from './FitText'
 import './Motivation.css'
 

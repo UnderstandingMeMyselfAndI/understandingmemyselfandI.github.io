@@ -1,6 +1,6 @@
 @use 'sass:color';
-@use './scss/_variables.scss';
-@import '@/globals.css';
+@use '@scss/_variables.scss';
+@import '@src/globals.css';
 // AccessibilitySettings.module.scss
 
 .container {

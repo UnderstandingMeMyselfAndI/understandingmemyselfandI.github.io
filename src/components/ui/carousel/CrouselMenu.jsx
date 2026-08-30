@@ -6,7 +6,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 // import ButtonToolbox from "../buttons/toolbox/ButtonToolbox";
 import Skeleton from '@mui/material/Skeleton'
 import ScenarioDialog from '../dialog/ScenarioDialog'
-import useAppStore from '@/store/useAppStore'
+import useAppStore from '@store/useAppStore'
 import data from '../../../data/data.js'
 
 import { useScrollEffects, SCROLL_EFFECT_CONFIG } from './useScrollEffects'

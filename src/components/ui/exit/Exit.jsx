@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
-import useAppStore from '@/store/useAppStore'
-import ExitButton from 'buttons/exit/ExitButton'
-import Dialog from 'components/ui/dialog/Dialog'
+
+import useAppStore from '@store/useAppStore'
+import ExitButton from '@buttons/exit/ExitButton'
+import Dialog from '@ui/dialog/Dialog'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
 
 import PropTypes from 'prop-types'
 import './styles.scss'
-import { clear } from 'console'
 const Exit = () => {
   const quickExitMessageEnabled = useAppStore((state) => state.quickExitMessageEnabled)
   const [showDialog, setShowDialog] = useState(false)

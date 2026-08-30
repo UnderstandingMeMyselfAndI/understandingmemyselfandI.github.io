@@ -1,10 +1,7 @@
 import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import CurvedLineAnimation from './CurvedLineAnimation'
-import Dialog from 'components/ui/dialog/Dialog'
-import parse from 'html-react-parser'
-import DOMPurify from 'dompurify'
-import useAppStore from '@/store/useAppStore'
+import useAppStore from '@store/useAppStore'
 import './QuickExitOnboarding.scss'
 
 const QuickExitOnboarding = ({ children, showOnboarding = true }) => {

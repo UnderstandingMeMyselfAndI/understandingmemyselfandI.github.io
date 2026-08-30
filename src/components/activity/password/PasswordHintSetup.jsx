@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { setPasswordHint, getPasswordHint } from '@/src/js/utils/secureStorage'
+import { setPasswordHint, getPasswordHint } from '@src/js/utils/secureStorage'
 import PropTypes from 'prop-types'
 const PasswordHintSetup = ({ onSuccess }) => {
   const [hint, setHint] = useState(getPasswordHint())

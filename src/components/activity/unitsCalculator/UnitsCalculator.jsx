@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useShallow } from 'zustand/react/shallow'
-import useAppStore from '@/store/useAppStore'
-import CloseBtn from '../../ui/buttons/close/CloseBtn'
+import useAppStore from '@store/useAppStore'
+import CloseBtn from '@buttons/close/CloseBtn'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
-import { activities } from '@/data/config'
+import { activities } from '@data/config.js'
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc

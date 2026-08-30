@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { setPasswordKey, setPin } from '@/src/js/utils/secureStorage'
+import { setPasswordKey, setPin } from '@src/js/utils/secureStorage'
 import PropTypes from 'prop-types'
 const FirstTimeSetup = ({ onSuccess }) => {
   const [password, setPassword] = useState('')

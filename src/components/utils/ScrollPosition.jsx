@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import useAppStore from '@/store/useAppStore'
+import useAppStore from '@store/useAppStore'
 // import PropTypes from "prop-types";
 import './ScrollPosition.scss'
 function clamp(value, min, max) {

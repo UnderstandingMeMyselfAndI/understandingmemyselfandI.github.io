@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
-import { storeData, retrieveData } from '@/js/utils/secureStorage'
+import { storeData, retrieveData } from '@js/utils/secureStorage'
 
 export const useDrinkLogStore = create(
   persist(

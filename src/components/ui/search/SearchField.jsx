@@ -1,11 +1,11 @@
 import { useState, forwardRef } from 'react'
-import lingo from '@/data/lingo.js'
+
 import { useOnInView } from 'react-intersection-observer'
 import SearchItem from './SearchItem'
-// import { strings } from '@/data/config'
-// import { sanitizeStringForUrl } from '@/js/utils.js'
+import lingo from '@data/lingo.js'
 import PropTypes from 'prop-types'
 import './styles.scss'
+
 function searchLingo(query) {
   if (!query || query.trim() === '') {
     return lingo
@@ -18,10 +18,8 @@ function searchLingo(query) {
     .sort((a, b) => {
       const aTitle = a.title.toLowerCase()
       const bTitle = b.title.toLowerCase()
-      if (aTitle.startsWith(lowerQuery) && !bTitle.startsWith(lowerQuery))
-        return -1
-      if (!aTitle.startsWith(lowerQuery) && bTitle.startsWith(lowerQuery))
-        return 1
+      if (aTitle.startsWith(lowerQuery) && !bTitle.startsWith(lowerQuery)) return -1
+      if (!aTitle.startsWith(lowerQuery) && bTitle.startsWith(lowerQuery)) return 1
       return 0
     })
 }
@@ -69,16 +67,9 @@ const SearchField = forwardRef(({ classes, handleClick }, ref) => {
       />
       <div className='search-list' ref={ref}>
         {filteredLingo.map((item) => (
-          <SearchItem
-            key={item.id}
-            label={item.title}
-            id={item.id}
-            handleClick={handleClick}
-          />
+          <SearchItem key={item.id} label={item.title} id={item.id} handleClick={handleClick} />
         ))}
-        {filteredLingo.length === 0 && (
-          <div className='no-results'>No results found</div>
-        )}
+        {filteredLingo.length === 0 && <div className='no-results'>No results found</div>}
       </div>
     </div>
   )

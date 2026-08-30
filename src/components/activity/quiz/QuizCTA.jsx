@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import ButtonSimple from '@/components/ui/buttons/ButtonSimple'
-import { strings } from '@/data/config'
-import useAppStore from '@/store/useAppStore'
+import ButtonSimple from '@ui/buttons/ButtonSimple'
+import { strings } from '@data/config.js'
+import useAppStore from '@store/useAppStore'
 import QuizOutlinedIcon from '@mui/icons-material/QuizOutlined'
-import CTA from '@/components/ui/cta/CTA'
+import CTA from '@ui/cta/CTA'
 import './stylesCTA.scss'
 
 const QuizCTA = () => {

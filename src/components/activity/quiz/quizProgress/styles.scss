@@ -1,5 +1,5 @@
-@use './scss/_variables.scss';
-@import '@/globals.css';
+@use '@scss/_variables.scss';
+@import '@src/globals.css';
 
 .quiz-progress {
   width: 100%;
@@ -16,7 +16,6 @@
     left: 0;
     transform: translateX(0%);
   }
-
 }
 
 .progress-header {
@@ -28,7 +27,6 @@
   font-variation-settings: 'wght' 400;
   gap: 0;
   color: var(--lightBlue);
-
 
   .question-stat {
     flex: 1;
@@ -55,7 +53,6 @@
   .question-stat:first-child {
     text-align: left;
     align-items: flex-start;
-
   }
 
   .question-stat:last-child {

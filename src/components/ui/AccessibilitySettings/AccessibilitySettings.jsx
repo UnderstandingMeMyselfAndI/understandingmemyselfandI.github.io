@@ -1,5 +1,5 @@
 import React from 'react'
-import useAppStore from '@/store/useAppStore'
+import useAppStore from '@store/useAppStore'
 import styles from './AccessibilitySettings.module.scss'
 
 const AccessibilitySettings = () => {

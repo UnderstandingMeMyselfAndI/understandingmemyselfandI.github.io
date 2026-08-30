@@ -6,7 +6,7 @@ import {
   DrawerFooter,
   DrawerTrigger,
   DrawerTitle,
-} from '@/components/ui/drawer'
+} from '@components/ui/drawer'
 import './styles.css'
 import ButtonFontSize from '../buttons/ButtonFontSize.jsx'
 

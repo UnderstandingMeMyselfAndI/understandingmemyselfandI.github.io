@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useDrinkLogStore } from '@/store/drinkLogStore'
+import { useDrinkLogStore } from '@store/drinkLogStore'
 import { verifyPin, setPasswordKey } from '@src/js/utils/secureStorage'
 
 import PropTypes from 'prop-types'

@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react'
-import ButtonSimple from '@/components/ui/buttons/ButtonSimple'
-import { strings } from '@/data/config'
-import useAppStore from '@/store/useAppStore'
 import FormatLineSpacingOutlinedIcon from '@mui/icons-material/FormatLineSpacingOutlined'
-import AlignHorizontalCenterOutlinedIcon from '@mui/icons-material/AlignHorizontalCenterOutlined'
-import CTA from '@/components/ui/cta/CTA'
+import ButtonSimple from '@buttons/ButtonSimple'
+import { strings } from '@data/config.js'
+import useAppStore from '@store/useAppStore'
+import CTA from '@ui/cta/CTA'
 import './stylesCTA.scss'
 
 const TimelineCTA = () => {
@@ -27,8 +26,7 @@ const TimelineCTA = () => {
     setOpen(activity === id || !isModal)
   }, [activity, isModal, id, setOpen])
 
-  const content =
-    strings.activity.find((activity) => activity.url === activityUrl) || null
+  const content = strings.activity.find((activity) => activity.url === activityUrl) || null
   if (content === null) {
     console.warn('No content found for activity "' + name + '"')
   }
@@ -39,21 +37,9 @@ const TimelineCTA = () => {
   }
 
   return (
-    <section
-      className={
-        `activity cta activity-${activityUrl}-cta` + (open ? ' show' : '')
-      }
-    >
-      <CTA
-        name={name}
-        open={open}
-        title={content?.cta?.title}
-        content={content?.cta?.content}
-      >
-        <ButtonSimple
-          label={content?.cta.btn?.label.unused}
-          handleClick={handleClick}
-        >
+    <section className={`activity cta activity-${activityUrl}-cta` + (open ? ' show' : '')}>
+      <CTA name={name} open={open} title={content?.cta?.title} content={content?.cta?.content}>
+        <ButtonSimple label={content?.cta.btn?.label.unused} handleClick={handleClick}>
           <FormatLineSpacingOutlinedIcon />
         </ButtonSimple>
         <div className='bg-img'>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { strings } from '@/data/config'
-import useAppStore from '@/store/useAppStore'
-import CTA from '@/components/ui/cta/CTA'
+import { strings } from '@data/config.js'
+import useAppStore from '@store/useAppStore'
+import CTA from '@ui/cta/CTA'
 import './styles.scss'
 import './stylesCTA.scss'
 
@@ -27,8 +27,7 @@ const YourPrivacyCTA = () => {
 
   const setActivity = useAppStore((s) => s.setActivity)
 
-  const content =
-    strings.activity.find((activity) => activity.url === activityUrl) || null
+  const content = strings.activity.find((activity) => activity.url === activityUrl) || null
   if (content === null) {
     console.warn('No content found for activity "' + activityName + '"')
   }
@@ -42,26 +41,13 @@ const YourPrivacyCTA = () => {
   }
 
   return (
-    <section
-      className={`activity activity-${activityUrl}-cta` + (open ? ' show' : '')}
-    >
-      <CTA
-        name={activityName}
-        title={content.title}
-        open={open}
-        content={content.cta.content}
-      >
-        <button
-          className={`${activityName}-cta-btn btn`}
-          onClick={() => handlePrivacyClick()}
-        >
+    <section className={`activity activity-${activityUrl}-cta` + (open ? ' show' : '')}>
+      <CTA name={activityName} title={content.title} open={open} content={content.cta.content}>
+        <button className={`${activityName}-cta-btn btn`} onClick={() => handlePrivacyClick()}>
           {content?.cta?.btnLabel}
         </button>
 
-        <button
-          className={`${activityName}-cta-btn btn `}
-          onClick={() => handleSettingsClick()}
-        >
+        <button className={`${activityName}-cta-btn btn `} onClick={() => handleSettingsClick()}>
           Settings
         </button>
         <div className='bg-img'>

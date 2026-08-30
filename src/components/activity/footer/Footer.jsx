@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react'
 
-import QRCode from 'ui/QRCode/QRCode.jsx'
-import FooterMetadata from '@/components/activity/footer/FooterMetadata.jsx'
-import UpdateCTA from '../../ui/updateCTA/updateCTA'
-import useAppStore from '@/store/useAppStore'
-import { activities } from '@/data/config'
+import QRCode from '@ui/qrcode/QRCode.jsx'
+import FooterMetadata from '@activity/footer/FooterMetadata.jsx'
+import UpdateCTA from '@ui/updateCTA/UpdateCTA'
+import useAppStore from '@store/useAppStore'
+import { activities } from '@data/config.js'
+
+import './styles.scss'
+
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc
 }, {})
-import './styles.scss'
 function Footer() {
   const name = 'footer'
   const id = 18

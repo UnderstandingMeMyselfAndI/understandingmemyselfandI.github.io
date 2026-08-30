@@ -1,5 +1,5 @@
-@use '@/scss/variables';
-@import '@/globals.css';
+@use '@scss/_variables.scss';
+@import '@src/globals.css';
 
 #search.search-field {
   position: relative;
@@ -48,7 +48,7 @@
 }
 
 .search-list {
-  > div:not(.no-results) {
+  >div:not(.no-results) {
     padding: 0.25rem 0.5rem 0.35rem 0.5rem;
     margin: 0.25rem 0.2rem;
     border-radius: 0;

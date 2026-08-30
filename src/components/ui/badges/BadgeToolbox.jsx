@@ -1,13 +1,9 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
 import Badge from '@mui/material/Badge'
-// import {createTheme, alpha, getContrastRatio, ThemeProvider} from "@mui/material/styles";
-import useAppStore from '@/store/useAppStore'
 import HandymanIcon from '@mui/icons-material/Handyman'
-
-import { storeKeys, localStore } from 'data/localStore.js'
-import data from 'data/data.js'
-import { strings } from 'data/config.js'
+import useAppStore from '@store/useAppStore'
+import { strings } from '@data/config.js'
 
 import './styles.scss'
 
@@ -69,8 +65,7 @@ export default function BadgeToolbox() {
           anchorOrigin={{
             vertical: 'top',
             horizontal: 'right',
-          }}
-        >
+          }}>
           <HandymanIcon className='icon' />
         </Badge>
       </div>

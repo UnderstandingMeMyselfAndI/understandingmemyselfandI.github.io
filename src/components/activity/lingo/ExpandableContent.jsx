@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { activities } from '@/data/config'
+import { activities } from '@data/config'
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc

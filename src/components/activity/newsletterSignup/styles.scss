@@ -1,5 +1,5 @@
-@use '@/scss/_variables.scss';
-@import '@/globals.css';
+@use '@scss/_variables.scss';
+@import '@src/globals.css';
 
 .input--hidden {
   display: none !important;

@@ -1,5 +1,5 @@
-@use '@/scss/_variables.scss';
-@import '@/globals.css';
+@use '@scss/_variables.scss';
+@import '@src/globals.css';
 
 .age-gate-container {
   position: fixed;
@@ -43,7 +43,6 @@
     .age-gate-logo {
       width: 120px;
       height: auto;
-
     }
   }
 
@@ -64,7 +63,6 @@
       text-align: center;
       margin: 0;
       padding: 0;
-
     }
 
     p {

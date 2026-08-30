@@ -1,5 +1,5 @@
-@use '@/scss/_variables.scss';
-@import '@/globals.css';
+@use '@scss/_variables.scss';
+@import '@src/globals.css';
 
 .version-footer {
   font-size: 1rem;
@@ -215,7 +215,6 @@ div.activity-footer {
       word-break: break-word;
     }
   }
-
 
   u {
     width: fit-content;

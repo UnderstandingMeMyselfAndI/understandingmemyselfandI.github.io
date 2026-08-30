@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
-import ButtonSimple from '@/components/ui/buttons/ButtonSimple'
-import { strings } from '@/data/config'
-import useAppStore from '@/store/useAppStore'
+import ButtonSimple from '@buttons/ButtonSimple'
+import { strings } from '@data/config.js'
+import useAppStore from '@store/useAppStore'
 import FilterTiltShiftOutlinedIcon from '@mui/icons-material/FilterTiltShiftOutlined'
 import HistoryToggleOffOutlinedIcon from '@mui/icons-material/HistoryToggleOffOutlined'
-import CTA from '@/components/ui/cta/CTA'
+import CTA from '@ui/cta/CTA'
 import './stylesCTA.scss'
 
 const WheelOfLifeCTA = () => {
@@ -27,8 +27,7 @@ const WheelOfLifeCTA = () => {
     setOpen(activity === id || !isModal)
   }, [activity, isModal, id, setOpen])
 
-  const content =
-    strings.activity.find((activity) => activity.url === activityUrl) || null
+  const content = strings.activity.find((activity) => activity.url === activityUrl) || null
   if (content === null) {
     console.warn('No content found for activity "' + name + '"')
   }
@@ -38,22 +37,12 @@ const WheelOfLifeCTA = () => {
   }
 
   return (
-    <section
-      className={
-        `activity activity-${activityUrl}-cta cta` + (open ? ' show' : '')
-      }
-    >
-      <CTA
-        name={name}
-        open={open}
-        title={content?.cta?.title}
-        content={content?.cta?.content}
-      >
+    <section className={`activity activity-${activityUrl}-cta cta` + (open ? ' show' : '')}>
+      <CTA name={name} open={open} title={content?.cta?.title} content={content?.cta?.content}>
         <ButtonSimple
           classes={['wheel-of-life-cta-btn']}
           label={content?.cta.btn?.label.unused}
-          handleClick={handleClick}
-        >
+          handleClick={handleClick}>
           <FilterTiltShiftOutlinedIcon />
         </ButtonSimple>
         <div className='bg-img'>

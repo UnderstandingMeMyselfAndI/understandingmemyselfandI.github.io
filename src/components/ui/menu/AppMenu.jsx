@@ -1,9 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
-import useAppStore from '@/store/useAppStore'
-import { activities } from '@/data/config'
-// import requestWakeLock from '@/js/utils/WakeLock'
-import { strings } from '@/data/config'
-import { sanitizeStringForUrl, setBrowserHistory } from '@/js/utils.js'
+import useAppStore from '@store/useAppStore'
+import { activities } from '@data/config.js'
 import './styles.scss'
 export const MenuOpenIcon = () => (
   <svg xmlns='http://www.w3.org/2000/svg' height='40px' width='40px' viewBox='0 -960 960 960' fill='#ffffff'>

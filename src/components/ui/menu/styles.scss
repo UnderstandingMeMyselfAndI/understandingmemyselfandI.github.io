@@ -1,5 +1,5 @@
-@use '@/scss/_variables.scss';
-@import '@/globals.css';
+@use '@scss/_variables.scss';
+@import '@src/globals.css';
 
 .AppMenu {
   position: fixed;
@@ -49,8 +49,8 @@
   .burger-stack {
     position: fixed;
     background: none;
-    top: 0;
-    right: 0;
+    top: 15px;
+    right: 10px;
     border: none;
     padding: 0.5rem;
 

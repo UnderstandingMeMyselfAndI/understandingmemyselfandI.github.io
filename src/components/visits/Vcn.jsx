@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import useAppStore from '@/store/useAppStore'
+
+import useAppStore from '@store/useAppStore'
 
 const Vcn = () => {
   // set first visit date

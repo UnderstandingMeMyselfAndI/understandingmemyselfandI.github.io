@@ -1,16 +1,13 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import SearchField from '@/components/ui/search/SearchField'
-import Dialog from '@/components/ui/dialog/Dialog'
-import lingo from '@/data/lingo.js'
 import { useOnInView } from 'react-intersection-observer'
-
-import { sanitizeStringForUrl, setBrowserHistory, isEmpty } from '@/js/utils.js'
-import { strings } from '@/data/config'
-// import UnfoldMoreDoubleIcon from '@mui/icons-material/UnfoldMoreDouble';
+import { sanitizeStringForUrl, setBrowserHistory, isEmpty } from '@js/utils.js'
+import SearchField from '@ui/search/SearchField'
+import Dialog from '@ui/dialog/Dialog'
+import lingo from '@data/lingo.js'
+import useAppStore from '@store/useAppStore'
+import { activities } from '@data/config.js'
 import './styles.scss'
-import useAppStore from '@/store/useAppStore'
-import { set } from 'idb-keyval'
-import { activities } from '@/data/config'
+
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc

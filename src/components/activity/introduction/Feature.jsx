@@ -1,13 +1,11 @@
 import { useEffect, useState, useRef } from 'react'
-import PropTypes from 'prop-types'
-import { debounce } from '@/js/utils.js'
-
-import './featureStyles.scss'
-import { useOnInView } from 'react-intersection-observer'
-import gsap from 'gsap' // <-- import GSAP
-import { useGSAP } from '@gsap/react' // <-- import the hook from our React package
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
+import PropTypes from 'prop-types'
+import './featureStyles.scss'
+
 gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText)
 
 const Feature = ({ children = null, headline = '', classes = '' }) => {
@@ -31,12 +29,8 @@ const Feature = ({ children = null, headline = '', classes = '' }) => {
   return (
     <div
       className={
-        (!hasDisplayed && componentInView ? ' initial' : '') +
-        (componentInView ? ' in' : ' out') +
-        ' ' +
-        classes
-      }
-    >
+        (!hasDisplayed && componentInView ? ' initial' : '') + (componentInView ? ' in' : ' out') + ' ' + classes
+      }>
       <div className='feature-inner' ref={ref}>
         <div>{headline}</div>
         {children && <div className='st'>{children}</div>}

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useState, useEffect } from 'react'
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch'
-import useAppStore from '@/store/useAppStore'
+import useAppStore from '@store/useAppStore'
 import ToggleButton from '@mui/material/ToggleButton'
 import './styles.scss'
 const EmergencyButton = React.forwardRef(({ className, ...props }, ref) => {

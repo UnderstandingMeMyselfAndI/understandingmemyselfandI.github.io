@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
+
 import './CookieConsent.scss'
-import useAppStore from '@/store/useAppStore'
+import useAppStore from '@store/useAppStore'
 
 const CookieConsent = () => {
   const setGae = useAppStore((state) => state.setGAE)

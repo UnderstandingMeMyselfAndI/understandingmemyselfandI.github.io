@@ -1,7 +1,6 @@
 // quizStart/QuizStart.jsx
 import React from 'react'
 import PropTypes from 'prop-types'
-import useAppStore from '@/store/useAppStore'
 import useQuizStore from '../useQuizStore'
 import './styles.scss'
 

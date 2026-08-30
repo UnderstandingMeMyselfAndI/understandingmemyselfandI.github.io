@@ -1,5 +1,5 @@
-@use '@/scss/_variables.scss';
-@import '@/globals.css';
+@use '@scss/_variables.scss';
+@import '@src/globals.css';
 
 body .activity-units-calculator-cta {
   margin: 0 auto;
@@ -50,8 +50,6 @@ section#ummi-units-calculator {
     justify-content: space-between;
     align-content: stretch;
     align-items: center;
-
-
 
     .content {
       font-size: 0;

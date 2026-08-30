@@ -1,5 +1,5 @@
-@use './scss/_variables.scss';
-@import '@/globals.css';
+@use '@scss/_variables.scss';
+@import '@src/globals.css';
 
 .dialog-backdrop {
   display: none;
@@ -54,7 +54,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
   }
 
   outline: 1px solid rgba(150, 150, 150, 0.15);
@@ -67,7 +66,7 @@
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-evenly;
-    row-gap: 1.0rem;
+    row-gap: 1rem;
     padding: 2rem 1.5rem;
     background-color: rgba(10, 10, 10, 0.15);
 
@@ -108,9 +107,7 @@
     color: var(--primary);
     width: 100%;
     // outline: 1px solid #ccc;
-
   }
-
 
   .dialog-actions {
     justify-content: center;

@@ -1,5 +1,5 @@
-@use '@/scss/_variables.scss';
-@import '@/globals.css';
+@use '@scss/_variables.scss';
+@import '@src/globals.css';
 
 :root {
   --transition: 0.2s cubic-bezier(0.53, 0, 0.54, 1);

@@ -1,5 +1,5 @@
-@use '@/scss/_variables.scss';
-@import '@/globals.css';
+@use '@scss/_variables.scss';
+@import '@src/globals.css';
 
 div.exit-wrap {
   width: 80px;
@@ -17,8 +17,6 @@ div.exit-wrap {
     color: var(--grey);
     pointer-events: auto;
   }
-
-
 
   &::after {
     content: '';

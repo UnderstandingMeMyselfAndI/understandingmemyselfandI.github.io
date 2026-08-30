@@ -1,5 +1,5 @@
-@use './scss/_variables.scss';
-@import '@/globals.css';
+@use '@scss/_variables.scss';
+@import '@src/globals.css';
 /* quizStart/styles.scss */
 
 .quiz-start {
@@ -21,7 +21,6 @@
     left: 50%;
     transform: translateX(-50%);
   }
-
 }
 
 .quiz-start h1 {

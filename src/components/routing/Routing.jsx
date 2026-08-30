@@ -1,10 +1,9 @@
 import { useEffect, useCallback, useRef } from 'react'
-import useAppStore from '@/store/useAppStore'
-import { activities } from '@/data/config'
-import { trackEvent } from '@/js/analytics/analytics'
-import data from '@/data/tools'
-import { getUrlPathSegments, isEmpty, sanitizeStringForUrl, setBrowserHistory } from '@/js/utils.js'
-import { strings } from '@/data/config'
+import useAppStore from '@store/useAppStore'
+import { trackEvent } from '@js/analytics/analytics.js'
+import data from '@data/tools.js'
+import { getUrlPathSegments, isEmpty, sanitizeStringForUrl, setBrowserHistory } from '@js/utils.js'
+import { strings, activities } from '@data/config.js'
 
 // TODO: #14 Ga event names need to be changed phrase_viewed - > [name of phrase]_viewed
 // TODO: #15 Ga event names need to be changed acronym_viewed - > [name of acronym]_tool_viewed

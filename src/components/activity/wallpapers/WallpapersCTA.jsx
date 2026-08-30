@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import { strings } from '@/data/config'
-import useAppStore from '@/store/useAppStore'
-import CTA from '@/components/ui/cta/CTA'
-import ButtonSimple from '@/components/ui/buttons/ButtonSimple'
 import WallpaperOutlinedIcon from '@mui/icons-material/WallpaperOutlined'
+import { strings } from '@data/config.js'
+import useAppStore from '@store/useAppStore'
+import CTA from '@ui/cta/CTA'
+import ButtonSimple from '@buttons/ButtonSimple'
+
 import './styles.scss'
 import './stylesCTA.scss'
 

@@ -1,5 +1,5 @@
 import { getToken } from "firebase/messaging";
-import { messaging } from "@/firebaseConfig"; // You'll need to set this up
+import { messaging } from "@firebaseConfig"; // You'll need to set this up
 
 const subscribeToNotifications = async () => {
   try {

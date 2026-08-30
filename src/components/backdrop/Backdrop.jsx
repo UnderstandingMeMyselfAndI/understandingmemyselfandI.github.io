@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
-import ImageData from 'data/imgData.js'
+import useAppStore from '@store/useAppStore'
+import ImageData from '@data/imgData.js'
 import './Backdrop.scss'
 import PropTypes from 'prop-types'
 
@@ -7,13 +8,7 @@ const allImages = ImageData
 const DEFAULT_INTERVAL = 10000
 const FADE_DURATION = 2000
 
-import useAppStore from '@/store/useAppStore'
-
-export default function Backdrop({
-  initialImageId = null,
-  initialDelay = 0,
-  interval = DEFAULT_INTERVAL,
-}) {
+export default function Backdrop({ initialImageId = null, initialDelay = 0, interval = DEFAULT_INTERVAL }) {
   const [currentImage, setCurrentImage] = useState(null)
   const [nextImage, setNextImage] = useState(null)
   const [isInitializing, setIsInitializing] = useState(true)

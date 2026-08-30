@@ -1,5 +1,5 @@
-import Backdrop from '../backdrop/Backdrop'
-import useAppStore from '@/store/useAppStore'
+import Backdrop from '@components/backdrop/Backdrop'
+import useAppStore from '@store/useAppStore'
 import { useEffect } from 'react'
 import './styles.scss'
 

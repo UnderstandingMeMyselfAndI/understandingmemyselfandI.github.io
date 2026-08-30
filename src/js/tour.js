@@ -5,7 +5,7 @@ import '../scss/tour.scss'
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined'
 import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined'
 
-// import {openMenu, closeMenu} from "@/src/components/ui/menus/settingsMenu/menuController.js";
+// import {openMenu, closeMenu} from "@src/components/ui/menus/settingsMenu/menuController.js";
 
 // const createOnboarding = () => {
 // 	return driver({
@@ -87,8 +87,7 @@ const driverObj = driver({
       popover: {
         title:
           "<div class='intro title'><span class='t'>A tour?</span><span class='italic'>Let's show<br />you around! 👍 </span></div>",
-        description:
-          "<div class='intro'></p><p>Use the arrows below to continue.</p></div>",
+        description: "<div class='intro'></p><p>Use the arrows below to continue.</p></div>",
       },
     },
     {

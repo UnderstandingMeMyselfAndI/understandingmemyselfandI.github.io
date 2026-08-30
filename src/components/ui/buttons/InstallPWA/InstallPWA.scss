@@ -1,6 +1,6 @@
-@use '@/scss/_variables.scss';
-@use 'buttons/buttonStyles.css';
-@import '@/globals.css';
+@use '@scss/_variables.scss';
+@import '@buttons/buttonStyles.css';
+@import '@src/globals.css';
 
 body button.btn.install {
   margin: 1.5rem auto 0.5rem auto;

@@ -1,14 +1,14 @@
 import { useEffect, useState, useMemo } from 'react'
-import useAppStore from '@/store/useAppStore'
-import MenuCarousel from '@/components/activity/tools/menuCarousel/MenuCarousel'
-import BadgeToolbox from 'ui/badges/BadgeToolbox'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
-import CloseBtn from '@/components/ui/buttons/close/CloseBtn.jsx'
-import toolsData from '../../../data/tools.js'
-import { strings } from '@/data/config'
+import useAppStore from '@store/useAppStore'
+import MenuCarousel from '@activity/tools/menuCarousel/MenuCarousel'
+import BadgeToolbox from '@ui/badges/BadgeToolbox'
+import CloseBtn from '@buttons/close/CloseBtn.jsx'
+import toolsData from '@data/tools.js'
+import { strings, activities } from '@data/config.js'
 import PropTypes from 'prop-types'
-import { activities } from '@/data/config'
+
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc
@@ -24,8 +24,7 @@ const Tools = () => {
   const [open, setOpen] = useState(false)
   const activity = useAppStore((s) => s.activity)
 
-  const content =
-    strings.activity.find((activity) => activity.name === name) || null
+  const content = strings.activity.find((activity) => activity.name === name) || null
 
   if (content === null) {
     console.warn(`No content found for activity "${name}"`)
@@ -77,7 +76,7 @@ const Tools = () => {
     </div>
   )
 
-  return (open ? 
+  return open ? (
     <div className={'activity acronym-tools fixed' + (open ? ' show' : ' ')}>
       {toolboxFilterEnabled && <BadgeToolbox />}
 
@@ -86,9 +85,7 @@ const Tools = () => {
           <CloseBtn onClick={handleClose} />
           <header>
             <h2>{parse(DOMPurify.sanitize(content?.title))}</h2>
-            <div className='intro'>
-              {parse(DOMPurify.sanitize(content?.introduction))}
-            </div>
+            <div className='intro'>{parse(DOMPurify.sanitize(content?.introduction))}</div>
           </header>
           <div className='tools-wrapper'>
             <MenuCarousel
@@ -101,8 +98,8 @@ const Tools = () => {
           </div>
         </div>
       </section>
-    </div> : null
-  )
+    </div>
+  ) : null
 }
 Tools.propTypes = {
   handleMenuClick: PropTypes.func,

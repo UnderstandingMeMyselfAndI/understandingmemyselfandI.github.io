@@ -1,11 +1,9 @@
 import React, { useState, useRef, useCallback, useMemo, useEffect } from 'react'
-import useAppStore from '@/store/useAppStore'
-import { activities } from '@/data/config'
-import CloseBtn from '@/components/ui/buttons/close/CloseBtn'
-import { strings } from '@/data/config'
-import parse from 'html-react-parser'
-import DOMPurify from 'dompurify'
-import Confirm from 'ui/confirm/Confirm'
+import useAppStore from '@store/useAppStore'
+import { activities } from '@data/config.js'
+import CloseBtn from '@buttons/close/CloseBtn'
+import { strings } from '@data/config.js'
+import Confirm from '@ui/confirm/Confirm'
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc
@@ -170,9 +168,7 @@ const WheelOfLife = () => {
 
   // User Input State
   const [userNotes, setUserNotes] = useState('')
-  const [scores, setScores] = useState(
-    CATEGORIES.reduce((acc, cat) => ({ ...acc, [cat.id]: null }), {}),
-  )
+  const [scores, setScores] = useState(CATEGORIES.reduce((acc, cat) => ({ ...acc, [cat.id]: null }), {}))
   const [isCompareMode, setIsCompareMode] = useState(false)
 
   // Store Hooks
@@ -196,10 +192,7 @@ const WheelOfLife = () => {
   }
   const handleDoIsCompareMode = (mode) => {
     if (!rememberWheels) {
-      openModal(
-        'Remember wheels',
-        'Remember wheels must be enabled to compare wheels.',
-      )
+      openModal('Remember wheels', 'Remember wheels must be enabled to compare wheels.')
       return
     }
     if (wheelHistory.length === 0) {
@@ -231,9 +224,7 @@ const WheelOfLife = () => {
       message: 'Are you sure you want to clear the current wheel?',
       showConfirm: true,
       onConfirm: () => {
-        setScores(
-          CATEGORIES.reduce((acc, cat) => ({ ...acc, [cat.id]: null }), {}),
-        )
+        setScores(CATEGORIES.reduce((acc, cat) => ({ ...acc, [cat.id]: null }), {}))
         setUserNotes('')
         setIsCompareMode(false)
         setShowConfirm(false)
@@ -267,17 +258,11 @@ const WheelOfLife = () => {
   const handleSaveEntry = () => {
     const isComplete = isWheelComplete() //Object.values(scores).every((v) => v !== null)
     if (!isComplete) {
-      openModal(
-        'Incomplete Wheel',
-        'Please score all areas before saving to history.',
-      )
+      openModal('Incomplete Wheel', 'Please score all areas before saving to history.')
       return
     }
     if (!rememberWheels) {
-      openModal(
-        'Unable to save',
-        'Please check remember wheels to enable saving to history.',
-      )
+      openModal('Unable to save', 'Please check remember wheels to enable saving to history.')
       return
     }
     saveWheelEntry({ scores, notes: userNotes })
@@ -292,8 +277,7 @@ const WheelOfLife = () => {
 
     setConfirmConfig({
       title: 'Delete all saved wheels?',
-      message:
-        'Are you sure you want to delete all saved wheels? This cannot be undone.',
+      message: 'Are you sure you want to delete all saved wheels? This cannot be undone.',
       showConfirm: true,
       onConfirm: () => {
         clearWheelHistory()
@@ -326,9 +310,7 @@ const WheelOfLife = () => {
       const pngUrl = canvas.toDataURL('image/png')
       const downloadLink = document.createElement('a')
       downloadLink.href = pngUrl
-      downloadLink.download = `wheel-of-life-${
-        new Date().toISOString().split('T')[0]
-      }.png`
+      downloadLink.download = `wheel-of-life-${new Date().toISOString().split('T')[0]}.png`
       document.body.appendChild(downloadLink)
       downloadLink.click()
       document.body.removeChild(downloadLink)
@@ -340,37 +322,22 @@ const WheelOfLife = () => {
   const compareBtn = (isCompareMode) => {
     const btn = isCompareMode ? (
       <div
-        className={
-          'btn' + (rememberWheels && wheelHistory.length > 1 ? '' : ' inactive')
-        }
-        onClick={() =>
-          wheelHistory.length > 0 ? handleDoIsCompareMode(!isCompareMode) : null
-        }
-      >
+        className={'btn' + (rememberWheels && wheelHistory.length > 1 ? '' : ' inactive')}
+        onClick={() => (wheelHistory.length > 0 ? handleDoIsCompareMode(!isCompareMode) : null)}>
         <RestoreOutlinedIcon />
       </div>
     ) : (
       <div
-        className={
-          'btn' + (rememberWheels && wheelHistory.length > 1 ? '' : ' inactive')
-        }
-        onClick={() =>
-          wheelHistory.length > 0 ? handleDoIsCompareMode(!isCompareMode) : null
-        }
-      >
+        className={'btn' + (rememberWheels && wheelHistory.length > 1 ? '' : ' inactive')}
+        onClick={() => (wheelHistory.length > 0 ? handleDoIsCompareMode(!isCompareMode) : null)}>
         <LayersIcon />
       </div>
     )
     return btn
   }
 
-  return (show ?
-    <div
-      id={name}
-      className={
-        'activity activity-' + name + (show ? ' show' : ' hide') + ' fixed'
-      }
-    >
+  return show ? (
+    <div id={name} className={'activity activity-' + name + (show ? ' show' : ' hide') + ' fixed'}>
       {showConfirm && (
         <Confirm
           title={confirmConfig.title}
@@ -392,9 +359,8 @@ const WheelOfLife = () => {
           </div>
 
           <div className='wheel-instruction'>
-            Score the areas of your life on a scale of 0-10 to see your life
-            balance. Click <span className='circled-help'>?</span> to view more
-            instructions.
+            Score the areas of your life on a scale of 0-10 to see your life balance. Click{' '}
+            <span className='circled-help'>?</span> to view more instructions.
           </div>
 
           <div className='wheel-preferences'>
@@ -403,18 +369,10 @@ const WheelOfLife = () => {
               <div>Saved Wheels</div>
             </div>
             <label className='checkbox-label'>
-              <input
-                type='checkbox'
-                checked={rememberWheels}
-                onChange={(e) => setRememberWheels(e.target.checked)}
-              />
+              <input type='checkbox' checked={rememberWheels} onChange={(e) => setRememberWheels(e.target.checked)} />
               Remember wheels on this device
             </label>
-            <div
-              className='btn-icon'
-              onClick={() => setShowInstructions(true)}
-              aria-label='Instructions'
-            >
+            <div className='btn-icon' onClick={() => setShowInstructions(true)} aria-label='Instructions'>
               <HelpOutlineOutlinedIcon />
             </div>
           </div>
@@ -436,34 +394,17 @@ const WheelOfLife = () => {
             {compareBtn(isCompareMode)}
 
             <div
-              className={
-                'btn' +
-                (rememberWheels && wheelHistory.length > 1 ? '' : ' inactive')
-              }
-              onClick={() =>
-                wheelHistory.length > 0 ? handleDeleteAll() : null
-              }
-            >
+              className={'btn' + (rememberWheels && wheelHistory.length > 1 ? '' : ' inactive')}
+              onClick={() => (wheelHistory.length > 0 ? handleDeleteAll() : null)}>
               <DeleteForeverIcon />
             </div>
 
             <div
-              className={
-                'btn' +
-                (isWheelComplete()
-                  ? rememberWheels
-                    ? ''
-                    : ' inactive'
-                  : ' inactive')
-              }
-              onClick={handleSaveEntry}
-            >
+              className={'btn' + (isWheelComplete() ? (rememberWheels ? '' : ' inactive') : ' inactive')}
+              onClick={handleSaveEntry}>
               <DoneIcon />
             </div>
-            <div
-              className={'btn' + (isWheelComplete() ? '' : ' inactive')}
-              onClick={handleReset}
-            >
+            <div className={'btn' + (isWheelComplete() ? '' : ' inactive')} onClick={handleReset}>
               <RestartAltOutlinedIcon />
             </div>
           </div>
@@ -488,47 +429,29 @@ const WheelOfLife = () => {
             <h3>Instructions</h3>
             <div className='scrollable-text'>
               <h4>Scoring</h4>
-              <p>
-                Click on any segment to rate that area of your life from 0
-                (center) to 10 (outer edge).
-              </p>
+              <p>Click on any segment to rate that area of your life from 0 (center) to 10 (outer edge).</p>
               <h4>Visualising</h4>
-              <p>
-                Once all areas are scored, a shape will connect them,
-                visualizing your current life balance.
-              </p>
+              <p>Once all areas are scored, a shape will connect them, visualizing your current life balance.</p>
               <h4>Balance</h4>
               <p>The wheel is a visual "heads-up" of your life balance.</p>
               <p>
-                The wheel (and if you save wheels over time) allows you to
-                visually see your life balance, and consider all aspects of your
-                life instead of rummaging around in your head for it.
+                The wheel (and if you save wheels over time) allows you to visually see your life balance, and consider
+                all aspects of your life instead of rummaging around in your head for it.
               </p>
               <p>
-                If areas of your life have a low score this is where your life
-                balance may do with a little help, if that's possible.
+                If areas of your life have a low score this is where your life balance may do with a little help, if
+                that's possible.
               </p>
               <p>If it isn't, that's cool - you're aware of it.</p>
-              <p>
-                If you score high on a few areas but low in the others it maybe
-                that you need a re-balance.
-              </p>
-              <p>
-                The wheel will change shape from time to time and that's
-                natural.{' '}
-              </p>
+              <p>If you score high on a few areas but low in the others it maybe that you need a re-balance.</p>
+              <p>The wheel will change shape from time to time and that's natural. </p>
               <h4>Saving</h4>
               <p>
-                Check "Remember wheels" to save your progress over time. <br />{' '}
-                <br />
-                Add wheels at different days and times to log how you are doing
-                with your life balance.
+                Check "Remember wheels" to save your progress over time. <br /> <br />
+                Add wheels at different days and times to log how you are doing with your life balance.
               </p>
               <h4>Comparison Mode</h4>
-              <p>
-                If you have saved history, click the layer icon to compare your
-                wheels over time.
-              </p>
+              <p>If you have saved history, click the layer icon to compare your wheels over time.</p>
               <ul>
                 <li>
                   <strong>
@@ -540,15 +463,11 @@ const WheelOfLife = () => {
                   <strong>
                     <u className='yellow-ul'>Ghost Lines:</u>{' '}
                   </strong>{' '}
-                  Your past entries. Red on a line = low score, Blue on a line =
-                  high score
+                  Your past entries. Red on a line = low score, Blue on a line = high score
                 </li>
               </ul>
               <h4>Arrows</h4>
-              <p>
-                Arrows indicate the your current life balance compared to your
-                average.
-              </p>
+              <p>Arrows indicate the your current life balance compared to your average.</p>
               <p>
                 <strong>
                   <u className='yellow-ul'>Blue arrow pointing out:</u>
@@ -573,8 +492,7 @@ const WheelOfLife = () => {
                 <strong>
                   <u className='orange-ul'>Tick button</u>
                 </strong>
-                The tick button will save your current wheel (You will need to
-                have checked "remember wheels")
+                The tick button will save your current wheel (You will need to have checked "remember wheels")
               </p>
               <p>
                 <RestoreOutlinedIcon />
@@ -595,126 +513,117 @@ const WheelOfLife = () => {
                 <strong>
                   <u className='orange-ul'>Layers button</u>
                 </strong>
-                The layers button will toggle between comparison mode and
-                current wheel
+                The layers button will toggle between comparison mode and current wheel
               </p>
             </div>
-            <button
-              className='btn-secondary'
-              onClick={() => setShowInstructions(false)}
-            >
+            <button className='btn-secondary' onClick={() => setShowInstructions(false)}>
               Close
             </button>
           </div>
         </div>
       )}
-    </div> : null
-  )
+    </div>
+  ) : null
 }
 
-const WheelCanvas = React.forwardRef(
-  ({ scores, categories, onScoreUpdate, history, isCompareMode }, ref) => {
-    const angleStep = 360 / NUM_CATEGORIES
+const WheelCanvas = React.forwardRef(({ scores, categories, onScoreUpdate, history, isCompareMode }, ref) => {
+  const angleStep = 360 / NUM_CATEGORIES
 
-    // --- HELPER: PATH GENERATOR ---
-    const generatePathString = (scoreData) => {
-      const hasFullData = categories.every(
-        (cat) => scoreData[cat.id] !== null && scoreData[cat.id] !== undefined,
-      )
-      if (!hasFullData) return null
+  // --- HELPER: PATH GENERATOR ---
+  const generatePathString = (scoreData) => {
+    const hasFullData = categories.every((cat) => scoreData[cat.id] !== null && scoreData[cat.id] !== undefined)
+    if (!hasFullData) return null
 
-      const points = categories.map((cat, i) => {
-        const score = scoreData[cat.id]
-        const midAngle = i * angleStep + angleStep / 2
-        const visualRadius = ((score - 0.5) * MAX_RADIUS) / MAX_SCORE
-        return polarToCartesian(CENTER, CENTER, visualRadius, midAngle)
-      })
+    const points = categories.map((cat, i) => {
+      const score = scoreData[cat.id]
+      const midAngle = i * angleStep + angleStep / 2
+      const visualRadius = ((score - 0.5) * MAX_RADIUS) / MAX_SCORE
+      return polarToCartesian(CENTER, CENTER, visualRadius, midAngle)
+    })
 
-      const t = LINE_CONFIG.tension
-      let d = `M ${points[0].x} ${points[0].y}`
+    const t = LINE_CONFIG.tension
+    let d = `M ${points[0].x} ${points[0].y}`
 
-      for (let i = 0; i < points.length; i++) {
-        const p0 = points[(i - 1 + points.length) % points.length]
-        const p1 = points[i]
-        const p2 = points[(i + 1) % points.length]
-        const p3 = points[(i + 2) % points.length]
-        const cp1 = {
-          x: p1.x + (p2.x - p0.x) * t * 0.5,
-          y: p1.y + (p2.y - p0.y) * t * 0.5,
-        }
-        const cp2 = {
-          x: p2.x - (p3.x - p1.x) * t * 0.5,
-          y: p2.y - (p3.y - p1.y) * t * 0.5,
-        }
-        d += ` C ${cp1.x} ${cp1.y}, ${cp2.x} ${cp2.y}, ${p2.x} ${p2.y}`
+    for (let i = 0; i < points.length; i++) {
+      const p0 = points[(i - 1 + points.length) % points.length]
+      const p1 = points[i]
+      const p2 = points[(i + 1) % points.length]
+      const p3 = points[(i + 2) % points.length]
+      const cp1 = {
+        x: p1.x + (p2.x - p0.x) * t * 0.5,
+        y: p1.y + (p2.y - p0.y) * t * 0.5,
       }
-      d += ' Z'
-      return d
+      const cp2 = {
+        x: p2.x - (p3.x - p1.x) * t * 0.5,
+        y: p2.y - (p3.y - p1.y) * t * 0.5,
+      }
+      d += ` C ${cp1.x} ${cp1.y}, ${cp2.x} ${cp2.y}, ${p2.x} ${p2.y}`
     }
+    d += ' Z'
+    return d
+  }
 
-    // --- CALCULATE AVERAGE ---
-    const averages = useMemo(() => {
-      if (!history || history.length === 0) return null
-      const isCurrentComplete = Object.values(scores).every((v) => v !== null)
-      const dataset = [...history, ...(isCurrentComplete ? [{ scores }] : [])]
-      if (dataset.length === 0) return null
+  // --- CALCULATE AVERAGE ---
+  const averages = useMemo(() => {
+    if (!history || history.length === 0) return null
+    const isCurrentComplete = Object.values(scores).every((v) => v !== null)
+    const dataset = [...history, ...(isCurrentComplete ? [{ scores }] : [])]
+    if (dataset.length === 0) return null
 
-      const sum = {}
-      const count = {}
+    const sum = {}
+    const count = {}
 
-      dataset.forEach((entry) => {
-        CATEGORIES.forEach((cat) => {
-          const s = entry.scores[cat.id]
-          if (s) {
-            sum[cat.id] = (sum[cat.id] || 0) + s
-            count[cat.id] = (count[cat.id] || 0) + 1
-          }
-        })
-      })
-
-      const avgVals = {}
+    dataset.forEach((entry) => {
       CATEGORIES.forEach((cat) => {
-        avgVals[cat.id] = sum[cat.id] / count[cat.id] || 0
+        const s = entry.scores[cat.id]
+        if (s) {
+          sum[cat.id] = (sum[cat.id] || 0) + s
+          count[cat.id] = (count[cat.id] || 0) + 1
+        }
       })
+    })
 
-      return avgVals
-    }, [history, scores])
+    const avgVals = {}
+    CATEGORIES.forEach((cat) => {
+      avgVals[cat.id] = sum[cat.id] / count[cat.id] || 0
+    })
 
-    // --- RENDERERS ---
+    return avgVals
+  }, [history, scores])
 
-    const renderTrendArrows = () => {
-      if (!averages) return null
+  // --- RENDERERS ---
 
-      const latestHistory =
-        history && history.length > 0 ? history[history.length - 1] : null
+  const renderTrendArrows = () => {
+    if (!averages) return null
 
-      return categories.map((cat, i) => {
-        let current = scores[cat.id]
-        const avg = averages[cat.id]
+    const latestHistory = history && history.length > 0 ? history[history.length - 1] : null
 
-        if ((current === null || current === undefined) && latestHistory) {
-          current = latestHistory.scores[cat.id]
-        }
+    return categories.map((cat, i) => {
+      let current = scores[cat.id]
+      const avg = averages[cat.id]
 
-        if (avg === undefined || current === null || current === undefined)
-          return null
+      if ((current === null || current === undefined) && latestHistory) {
+        current = latestHistory.scores[cat.id]
+      }
 
-        const delta = current - avg
-        if (Math.abs(delta) < 0.2) return null
+      if (avg === undefined || current === null || current === undefined) return null
 
-        const midAngle = i * angleStep + angleStep / 2
-        const radius = ((avg - 0.5) * MAX_RADIUS) / MAX_SCORE
-        const centerPos = polarToCartesian(CENTER, CENTER, radius, midAngle)
+      const delta = current - avg
+      if (Math.abs(delta) < 0.2) return null
 
-        let rotation = midAngle - 90
-        if (delta < 0) {
-          rotation += 180
-        }
+      const midAngle = i * angleStep + angleStep / 2
+      const radius = ((avg - 0.5) * MAX_RADIUS) / MAX_SCORE
+      const centerPos = polarToCartesian(CENTER, CENTER, radius, midAngle)
 
-        const scale = 1.5 + Math.abs(delta) / 0.65
-        const arrowColor = delta > 0 ? '#846eff' : '#ebb608'
+      let rotation = midAngle - 90
+      if (delta < 0) {
+        rotation += 180
+      }
 
-        const arrowPath = `
+      const scale = 1.5 + Math.abs(delta) / 0.65
+      const arrowColor = delta > 0 ? '#846eff' : '#ebb608'
+
+      const arrowPath = `
             M -12 -4 
             L 1 -4 
             L 1 -8 
@@ -725,453 +634,391 @@ const WheelCanvas = React.forwardRef(
             Z
         `
 
-        return (
-          <g
-            key={`arrow-${cat.id}`}
-            transform={`translate(${centerPos.x}, ${centerPos.y}) rotate(${rotation}) scale(${scale * 1.5})`}
-            style={{ opacity: 0.6, pointerEvents: 'none' }}
-          >
-            <path
-              d={arrowPath}
-              fill={arrowColor}
-              stroke='white'
-              strokeWidth='0.0'
-            />
-          </g>
-        )
-      })
-    }
-
-    const renderComparisonStack = () => {
-      if (!isCompareMode) return null
-
-      const labelPoints = []
-      if (averages) {
-        const indicesToLabel = [0, 3, 6]
-        indicesToLabel.forEach((idx) => {
-          const cat = CATEGORIES[idx]
-          const avgScore = averages[cat.id]
-          const midAngle = idx * angleStep + angleStep / 2
-          const lineRadius = ((avgScore - 0.5) * MAX_RADIUS) / MAX_SCORE
-          const labelRadius = Math.max(0, lineRadius - 25)
-          labelPoints.push(
-            polarToCartesian(CENTER, CENTER, labelRadius, midAngle),
-          )
-        })
-      }
-
       return (
-        <g className='comparison-stack'>
-          {history.map((entry, index) => {
-            const d = generatePathString(entry.scores)
-            if (!d) return null
-            return (
-              <path
-                key={`layer-${index}`}
-                d={d}
-                fill='none'
-                stroke='url(#scoreGradient)'
-                strokeWidth={index === 0 ? '12' : '4'}
-                strokeOpacity='0.65'
-                className='history-line'
-              />
-            )
-          })}
-
-          {averages && (
-            <>
-              <path
-                d={generatePathString(averages)}
-                fill='none'
-                stroke='#D8B4FE'
-                strokeWidth='12'
-                strokeOpacity='0.6'
-                style={{
-                  filter: 'drop-shadow(0 0 4px rgba(216, 180, 254, 0.6))',
-                }}
-              />
-              {renderTrendArrows()}
-              {labelPoints.map((pos, i) => (
-                <text
-                  key={`avg-label-${i}`}
-                  x={pos.x}
-                  y={pos.y}
-                  textAnchor='middle'
-                  dominantBaseline='middle'
-                  fill='#D8B4FE'
-                  fontWeight='bold'
-                  fontSize='1.5rem'
-                  filter='url(#textBackground)'
-                  style={{ pointerEvents: 'none' }}
-                >
-                  AVERAGE
-                </text>
-              ))}
-            </>
-          )}
-
-          {generatePathString(scores) && (
-            <path
-              d={generatePathString(scores)}
-              fill='none'
-              stroke='url(#scoreGradient)'
-              strokeWidth='4'
-              strokeOpacity='1'
-              className='score-line-animated'
-              style={{ filter: 'drop-shadow(0 0 5px rgba(0,0,0,0.5))' }}
-            />
-          )}
+        <g
+          key={`arrow-${cat.id}`}
+          transform={`translate(${centerPos.x}, ${centerPos.y}) rotate(${rotation}) scale(${scale * 1.5})`}
+          style={{ opacity: 0.6, pointerEvents: 'none' }}>
+          <path d={arrowPath} fill={arrowColor} stroke='white' strokeWidth='0.0' />
         </g>
       )
+    })
+  }
+
+  const renderComparisonStack = () => {
+    if (!isCompareMode) return null
+
+    const labelPoints = []
+    if (averages) {
+      const indicesToLabel = [0, 3, 6]
+      indicesToLabel.forEach((idx) => {
+        const cat = CATEGORIES[idx]
+        const avgScore = averages[cat.id]
+        const midAngle = idx * angleStep + angleStep / 2
+        const lineRadius = ((avgScore - 0.5) * MAX_RADIUS) / MAX_SCORE
+        const labelRadius = Math.max(0, lineRadius - 25)
+        labelPoints.push(polarToCartesian(CENTER, CENTER, labelRadius, midAngle))
+      })
     }
 
-    const renderInteractiveSegments = () => {
-      const opacity = isCompareMode ? 0.05 : 1
-
-      return categories.map((cat, catIndex) => {
-        const startAngle = catIndex * angleStep
-        const endAngle = startAngle + angleStep
-        const currentScore = scores[cat.id] || 0
-
-        return Array.from({ length: MAX_SCORE }).map((_, scoreIndex) => {
-          const scoreValue = scoreIndex + 1
-          const innerR = (scoreIndex * MAX_RADIUS) / MAX_SCORE
-          const outerR = ((scoreIndex + 1) * MAX_RADIUS) / MAX_SCORE
-          const isActive = scoreValue <= currentScore
-
+    return (
+      <g className='comparison-stack'>
+        {history.map((entry, index) => {
+          const d = generatePathString(entry.scores)
+          if (!d) return null
           return (
             <path
-              key={`${cat.id}-${scoreValue}`}
-              d={describeArc(
-                CENTER,
-                CENTER,
-                innerR,
-                outerR,
-                startAngle,
-                endAngle,
-              )}
-              className={`wheel-segment ${isActive ? 'active' : ''}`}
-              onClick={() => onScoreUpdate(cat.id, scoreValue)}
-              style={{ opacity }}
+              key={`layer-${index}`}
+              d={d}
+              fill='none'
+              stroke='url(#scoreGradient)'
+              strokeWidth={index === 0 ? '12' : '4'}
+              strokeOpacity='0.65'
+              className='history-line'
             />
           )
-        })
-      })
-    }
+        })}
 
-    const renderCurrentLine = () => {
-      if (isCompareMode) return null
-      const d = generatePathString(scores)
-      if (!d) return null
-
-      return (
-        <path
-          d={d}
-          fill='url(#scoreGradient)'
-          fillOpacity='0.2'
-          stroke='url(#scoreGradient)'
-          strokeWidth='14'
-          className='score-line-animated'
-        />
-      )
-    }
-
-    const renderGrid = () => {
-      const circles = Array.from({ length: MAX_SCORE }).map((_, i) => (
-        <circle
-          key={`grid-c-${i}`}
-          cx={CENTER}
-          cy={CENTER}
-          r={((i + 1) * MAX_RADIUS) / MAX_SCORE}
-          className='grid-circle'
-        />
-      ))
-      const lines = categories.map((_, i) => {
-        const angle = i * angleStep
-        const point = polarToCartesian(CENTER, CENTER, MAX_RADIUS, angle)
-        return (
-          <line
-            key={`grid-l-${i}`}
-            x1={CENTER}
-            y1={CENTER}
-            x2={point.x}
-            y2={point.y}
-            className='grid-line'
-          />
-        )
-      })
-      return [...circles, ...lines]
-    }
-
-    const renderDots = () => {
-      if (isCompareMode) return null
-      return categories.map((cat, i) => {
-        const score = scores[cat.id]
-        if (!score) return null
-        const midAngle = i * angleStep + angleStep / 2
-        const visualRadius = ((score - 0.5) * MAX_RADIUS) / MAX_SCORE
-        const targetPos = polarToCartesian(
-          CENTER,
-          CENTER,
-          visualRadius,
-          midAngle,
-        )
-        const dx = targetPos.x - CENTER
-        const dy = targetPos.y - CENTER
-        return (
-          <circle
-            key={`dot-${cat.id}-${score}`}
-            cx={CENTER}
-            cy={CENTER}
-            r={14}
-            className='score-dot-animated'
-            style={{ '--dx': `${dx}px`, '--dy': `${dy}px` }}
-          />
-        )
-      })
-    }
-
-    // --- REPLACED RENDER LABELS FUNCTION ---
-    const renderLabels = () => {
-      return categories.map((cat, i) => {
-        // 1. Base Angle + Manual Rotation (angleAdjust)
-        // angleAdjust rotates the label position around the wheel center (along the rim)
-        const baseAngle = i * angleStep
-        const angle = baseAngle + (cat.angleAdjust || 0)
-
-        // 2. Position on the Rim
-        const r = MAX_RADIUS - 14
-        const pos = polarToCartesian(CENTER, CENTER, r, angle)
-
-        // 3. Text Rotation (Align with spoke)
-        let rotation = angle - 90
-
-        // 4. Split Lines
-        const lines = cat.label.split(',')
-        const LINE_HEIGHT_PX = 16 // Approx pixel height of one line
-        const stackHeight = (lines.length - 1) * LINE_HEIGHT_PX
-
-        // 5. Orientation Defaults
-        let textAnchor = 'end'
-        let isFlipped = false
-
-        // Check Left Side (90 to 270) based on the original segment angle
-        // We use baseAngle to ensure consistent flipping behavior regardless of small adjustments
-        if (baseAngle > 90 && baseAngle <= 270) {
-          rotation += 180
-          textAnchor = 'start'
-          isFlipped = true
-        }
-
-        // 6. Manual Flip Override
-        if (cat.rotate180) {
-          rotation += 180
-          textAnchor = textAnchor === 'start' ? 'end' : 'start'
-          isFlipped = !isFlipped
-        }
-
-        // 7. Calculate Y-Offset based on "edge" and "offset" props
-        // We calculate where the text block should start (y=0) relative to the anchor point.
-        // SVG Text grows downwards (Positive Y).
-
-        let yPos = 0
-        const userOffset = cat.offset || 0
-        const edge = cat.edge || 'middle' // default to middle if not specified
-
-        if (!isFlipped) {
-          // --- RIGHT SIDE (Standard) ---
-          // Text Top is at 0. Text Bottom is at stackHeight.
-          // Positive offset moves DOWN (Clockwise).
-
-          if (edge === 'top') {
-            // Top of text is at anchor + offset
-            yPos = userOffset
-          } else if (edge === 'middle') {
-            // Middle of text is at anchor + offset
-            yPos = userOffset - stackHeight / 2
-          } else if (edge === 'bottom') {
-            // Bottom of text is at anchor + offset
-            yPos = userOffset - stackHeight
-          }
-        } else {
-          // --- LEFT SIDE (Flipped) ---
-          // Text is rotated 180.
-          // Visually: Positive Y moves UP (Clockwise).
-          // But conceptually, we just apply the same logic relative to the text block.
-
-          if (edge === 'top') {
-            yPos = userOffset
-          } else if (edge === 'middle') {
-            yPos = userOffset - stackHeight / 2
-          } else if (edge === 'bottom') {
-            yPos = userOffset - stackHeight
-          }
-        }
-
-        return (
-          <g
-            key={`label-${cat.id}`}
-            transform={`translate(${pos.x}, ${pos.y})`}
-          >
-            <text
-              transform={`rotate(${rotation})`}
-              className='category-label'
-              textAnchor={textAnchor}
-              dominantBaseline='middle'
-              y={yPos}
-            >
-              {lines.map((line, idx) => (
-                <tspan x='0' dy={idx === 0 ? 0 : '1.1em'} key={idx}>
-                  {line.trim()}
-                </tspan>
-              ))}
-            </text>
-          </g>
-        )
-      })
-    }
-
-    const renderScoreNumbers = () => {
-      return (
-        <g className='score-numbers-layer' pointerEvents='none'>
-          {/* CENTER ZERO */}
-          <text
-            x={CENTER}
-            y={CENTER}
-            textAnchor='middle'
-            dominantBaseline='middle'
-            className='score-number-center'
-            dy='7'
-          >
-            0
-          </text>
-
-          {/* OUTER SCORES */}
-          {categories.map((cat, i) => {
-            const midAngle = i * angleStep + angleStep / 2
-            // Radius adjustment to position the number ring
-            const r = MAX_RADIUS + 28
-            const pos = polarToCartesian(CENTER, CENTER, r, midAngle)
-
-            // Get current score, default to 0 if not set
-            const currentScore = scores[cat.id] || 0
-
-            return (
+        {averages && (
+          <>
+            <path
+              d={generatePathString(averages)}
+              fill='none'
+              stroke='#D8B4FE'
+              strokeWidth='12'
+              strokeOpacity='0.6'
+              style={{
+                filter: 'drop-shadow(0 0 4px rgba(216, 180, 254, 0.6))',
+              }}
+            />
+            {renderTrendArrows()}
+            {labelPoints.map((pos, i) => (
               <text
-                key={`score-label-${cat.id}`}
+                key={`avg-label-${i}`}
                 x={pos.x}
                 y={pos.y}
                 textAnchor='middle'
                 dominantBaseline='middle'
-                className='score-number-outer'
-              >
-                {/* LINE 1: User's Score (Shifted up slightly) */}
-                <tspan className='user-score' x={pos.x} dy='-0.3em'>
-                  {currentScore}
-                </tspan>
-
-                {/* LINE 2: The "/ 10" (Shifted down) */}
-                {/* Note: We reset x to pos.x to center it under the top line */}
-                <tspan className='max-score-group' x={pos.x} dy='1.2em'>
-                  / 10
-                </tspan>
+                fill='#D8B4FE'
+                fontWeight='bold'
+                fontSize='1.5rem'
+                filter='url(#textBackground)'
+                style={{ pointerEvents: 'none' }}>
+                AVERAGE
               </text>
-            )
-          })}
-        </g>
-      )
-    }
+            ))}
+          </>
+        )}
+
+        {generatePathString(scores) && (
+          <path
+            d={generatePathString(scores)}
+            fill='none'
+            stroke='url(#scoreGradient)'
+            strokeWidth='4'
+            strokeOpacity='1'
+            className='score-line-animated'
+            style={{ filter: 'drop-shadow(0 0 5px rgba(0,0,0,0.5))' }}
+          />
+        )}
+      </g>
+    )
+  }
+
+  const renderInteractiveSegments = () => {
+    const opacity = isCompareMode ? 0.05 : 1
+
+    return categories.map((cat, catIndex) => {
+      const startAngle = catIndex * angleStep
+      const endAngle = startAngle + angleStep
+      const currentScore = scores[cat.id] || 0
+
+      return Array.from({ length: MAX_SCORE }).map((_, scoreIndex) => {
+        const scoreValue = scoreIndex + 1
+        const innerR = (scoreIndex * MAX_RADIUS) / MAX_SCORE
+        const outerR = ((scoreIndex + 1) * MAX_RADIUS) / MAX_SCORE
+        const isActive = scoreValue <= currentScore
+
+        return (
+          <path
+            key={`${cat.id}-${scoreValue}`}
+            d={describeArc(CENTER, CENTER, innerR, outerR, startAngle, endAngle)}
+            className={`wheel-segment ${isActive ? 'active' : ''}`}
+            onClick={() => onScoreUpdate(cat.id, scoreValue)}
+            style={{ opacity }}
+          />
+        )
+      })
+    })
+  }
+
+  const renderCurrentLine = () => {
+    if (isCompareMode) return null
+    const d = generatePathString(scores)
+    if (!d) return null
 
     return (
-      <svg
-        ref={ref}
-        className={`wheel-svg ${isCompareMode ? 'neon-mode' : ''}`}
-        viewBox={`0 0 ${SVG_SIZE} ${SVG_SIZE}`}
-        xmlns='http://www.w3.org/2000/svg'
-      >
-        <defs>
-          <style>
-            {`
+      <path
+        d={d}
+        fill='url(#scoreGradient)'
+        fillOpacity='0.2'
+        stroke='url(#scoreGradient)'
+        strokeWidth='14'
+        className='score-line-animated'
+      />
+    )
+  }
+
+  const renderGrid = () => {
+    const circles = Array.from({ length: MAX_SCORE }).map((_, i) => (
+      <circle
+        key={`grid-c-${i}`}
+        cx={CENTER}
+        cy={CENTER}
+        r={((i + 1) * MAX_RADIUS) / MAX_SCORE}
+        className='grid-circle'
+      />
+    ))
+    const lines = categories.map((_, i) => {
+      const angle = i * angleStep
+      const point = polarToCartesian(CENTER, CENTER, MAX_RADIUS, angle)
+      return <line key={`grid-l-${i}`} x1={CENTER} y1={CENTER} x2={point.x} y2={point.y} className='grid-line' />
+    })
+    return [...circles, ...lines]
+  }
+
+  const renderDots = () => {
+    if (isCompareMode) return null
+    return categories.map((cat, i) => {
+      const score = scores[cat.id]
+      if (!score) return null
+      const midAngle = i * angleStep + angleStep / 2
+      const visualRadius = ((score - 0.5) * MAX_RADIUS) / MAX_SCORE
+      const targetPos = polarToCartesian(CENTER, CENTER, visualRadius, midAngle)
+      const dx = targetPos.x - CENTER
+      const dy = targetPos.y - CENTER
+      return (
+        <circle
+          key={`dot-${cat.id}-${score}`}
+          cx={CENTER}
+          cy={CENTER}
+          r={14}
+          className='score-dot-animated'
+          style={{ '--dx': `${dx}px`, '--dy': `${dy}px` }}
+        />
+      )
+    })
+  }
+
+  // --- REPLACED RENDER LABELS FUNCTION ---
+  const renderLabels = () => {
+    return categories.map((cat, i) => {
+      // 1. Base Angle + Manual Rotation (angleAdjust)
+      // angleAdjust rotates the label position around the wheel center (along the rim)
+      const baseAngle = i * angleStep
+      const angle = baseAngle + (cat.angleAdjust || 0)
+
+      // 2. Position on the Rim
+      const r = MAX_RADIUS - 14
+      const pos = polarToCartesian(CENTER, CENTER, r, angle)
+
+      // 3. Text Rotation (Align with spoke)
+      let rotation = angle - 90
+
+      // 4. Split Lines
+      const lines = cat.label.split(',')
+      const LINE_HEIGHT_PX = 16 // Approx pixel height of one line
+      const stackHeight = (lines.length - 1) * LINE_HEIGHT_PX
+
+      // 5. Orientation Defaults
+      let textAnchor = 'end'
+      let isFlipped = false
+
+      // Check Left Side (90 to 270) based on the original segment angle
+      // We use baseAngle to ensure consistent flipping behavior regardless of small adjustments
+      if (baseAngle > 90 && baseAngle <= 270) {
+        rotation += 180
+        textAnchor = 'start'
+        isFlipped = true
+      }
+
+      // 6. Manual Flip Override
+      if (cat.rotate180) {
+        rotation += 180
+        textAnchor = textAnchor === 'start' ? 'end' : 'start'
+        isFlipped = !isFlipped
+      }
+
+      // 7. Calculate Y-Offset based on "edge" and "offset" props
+      // We calculate where the text block should start (y=0) relative to the anchor point.
+      // SVG Text grows downwards (Positive Y).
+
+      let yPos = 0
+      const userOffset = cat.offset || 0
+      const edge = cat.edge || 'middle' // default to middle if not specified
+
+      if (!isFlipped) {
+        // --- RIGHT SIDE (Standard) ---
+        // Text Top is at 0. Text Bottom is at stackHeight.
+        // Positive offset moves DOWN (Clockwise).
+
+        if (edge === 'top') {
+          // Top of text is at anchor + offset
+          yPos = userOffset
+        } else if (edge === 'middle') {
+          // Middle of text is at anchor + offset
+          yPos = userOffset - stackHeight / 2
+        } else if (edge === 'bottom') {
+          // Bottom of text is at anchor + offset
+          yPos = userOffset - stackHeight
+        }
+      } else {
+        // --- LEFT SIDE (Flipped) ---
+        // Text is rotated 180.
+        // Visually: Positive Y moves UP (Clockwise).
+        // But conceptually, we just apply the same logic relative to the text block.
+
+        if (edge === 'top') {
+          yPos = userOffset
+        } else if (edge === 'middle') {
+          yPos = userOffset - stackHeight / 2
+        } else if (edge === 'bottom') {
+          yPos = userOffset - stackHeight
+        }
+      }
+
+      return (
+        <g key={`label-${cat.id}`} transform={`translate(${pos.x}, ${pos.y})`}>
+          <text
+            transform={`rotate(${rotation})`}
+            className='category-label'
+            textAnchor={textAnchor}
+            dominantBaseline='middle'
+            y={yPos}>
+            {lines.map((line, idx) => (
+              <tspan x='0' dy={idx === 0 ? 0 : '1.1em'} key={idx}>
+                {line.trim()}
+              </tspan>
+            ))}
+          </text>
+        </g>
+      )
+    })
+  }
+
+  const renderScoreNumbers = () => {
+    return (
+      <g className='score-numbers-layer' pointerEvents='none'>
+        {/* CENTER ZERO */}
+        <text
+          x={CENTER}
+          y={CENTER}
+          textAnchor='middle'
+          dominantBaseline='middle'
+          className='score-number-center'
+          dy='7'>
+          0
+        </text>
+
+        {/* OUTER SCORES */}
+        {categories.map((cat, i) => {
+          const midAngle = i * angleStep + angleStep / 2
+          // Radius adjustment to position the number ring
+          const r = MAX_RADIUS + 28
+          const pos = polarToCartesian(CENTER, CENTER, r, midAngle)
+
+          // Get current score, default to 0 if not set
+          const currentScore = scores[cat.id] || 0
+
+          return (
+            <text
+              key={`score-label-${cat.id}`}
+              x={pos.x}
+              y={pos.y}
+              textAnchor='middle'
+              dominantBaseline='middle'
+              className='score-number-outer'>
+              {/* LINE 1: User's Score (Shifted up slightly) */}
+              <tspan className='user-score' x={pos.x} dy='-0.3em'>
+                {currentScore}
+              </tspan>
+
+              {/* LINE 2: The "/ 10" (Shifted down) */}
+              {/* Note: We reset x to pos.x to center it under the top line */}
+              <tspan className='max-score-group' x={pos.x} dy='1.2em'>
+                / 10
+              </tspan>
+            </text>
+          )
+        })}
+      </g>
+    )
+  }
+
+  return (
+    <svg
+      ref={ref}
+      className={`wheel-svg ${isCompareMode ? 'neon-mode' : ''}`}
+      viewBox={`0 0 ${SVG_SIZE} ${SVG_SIZE}`}
+      xmlns='http://www.w3.org/2000/svg'>
+      <defs>
+        <style>
+          {`
               .category-label, .score-numbers-layer text {
                 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
               }
             `}
-          </style>
-          <radialGradient
-            id='scoreGradient'
-            gradientUnits='userSpaceOnUse'
-            cx={CENTER}
-            cy={CENTER}
-            r={MAX_RADIUS}
-            fx={CENTER}
-            fy={CENTER}
-          >
-            <stop offset='0%' stopColor='#ff0505ff' />
-            <stop offset='50%' stopColor='#ff9f43ff' />
-            <stop offset='100%' stopColor='#0f0161ff' />
-          </radialGradient>
+        </style>
+        <radialGradient
+          id='scoreGradient'
+          gradientUnits='userSpaceOnUse'
+          cx={CENTER}
+          cy={CENTER}
+          r={MAX_RADIUS}
+          fx={CENTER}
+          fy={CENTER}>
+          <stop offset='0%' stopColor='#ff0505ff' />
+          <stop offset='50%' stopColor='#ff9f43ff' />
+          <stop offset='100%' stopColor='#0f0161ff' />
+        </radialGradient>
 
-          <filter
-            x='-0.1'
-            y='-0.1'
-            width='1.2'
-            height='1.2'
-            id='textBackground'
-          >
-            <feFlood
-              floodColor={isCompareMode ? '#333' : '#fff'}
-              floodOpacity='0.85'
-              result='bg'
-            />
-            <feComposite
-              in='bg'
-              in2='SourceGraphic'
-              operator='in'
-              result='text_bg'
-            />
-            <feMorphology
-              operator='dilate'
-              radius='4'
-              in='SourceAlpha'
-              result='expanded_alpha'
-            />
-            <feFlood
-              floodColor={isCompareMode ? '#000' : '#fff'}
-              floodOpacity='0.8'
-            />
-            <feComposite in2='expanded_alpha' operator='in' />
-            <feMerge>
-              <feMergeNode />
-              <feMergeNode in='SourceGraphic' />
-            </feMerge>
-          </filter>
-        </defs>
+        <filter x='-0.1' y='-0.1' width='1.2' height='1.2' id='textBackground'>
+          <feFlood floodColor={isCompareMode ? '#333' : '#fff'} floodOpacity='0.85' result='bg' />
+          <feComposite in='bg' in2='SourceGraphic' operator='in' result='text_bg' />
+          <feMorphology operator='dilate' radius='4' in='SourceAlpha' result='expanded_alpha' />
+          <feFlood floodColor={isCompareMode ? '#000' : '#fff'} floodOpacity='0.8' />
+          <feComposite in2='expanded_alpha' operator='in' />
+          <feMerge>
+            <feMergeNode />
+            <feMergeNode in='SourceGraphic' />
+          </feMerge>
+        </filter>
+      </defs>
 
-        {/* ... rect background ... */}
+      {/* ... rect background ... */}
 
-        <g className='segments-layer'>{renderInteractiveSegments()}</g>
-        <g className='grid-layer' pointerEvents='none'>
-          {renderGrid()}
-        </g>
+      <g className='segments-layer'>{renderInteractiveSegments()}</g>
+      <g className='grid-layer' pointerEvents='none'>
+        {renderGrid()}
+      </g>
 
-        <g className='comparison-layer' pointerEvents='none'>
-          {renderComparisonStack()}
-        </g>
-        <g className='line-layer' pointerEvents='none'>
-          {renderCurrentLine()}
-        </g>
-        <g className='dots-layer' pointerEvents='none'>
-          {renderDots()}
-        </g>
+      <g className='comparison-layer' pointerEvents='none'>
+        {renderComparisonStack()}
+      </g>
+      <g className='line-layer' pointerEvents='none'>
+        {renderCurrentLine()}
+      </g>
+      <g className='dots-layer' pointerEvents='none'>
+        {renderDots()}
+      </g>
 
-        {/* LABELS LAYER */}
-        <g className='labels-layer' pointerEvents='none'>
-          {renderLabels()}
-        </g>
-        {renderScoreNumbers()}
-      </svg>
-    )
-  },
-)
+      {/* LABELS LAYER */}
+      <g className='labels-layer' pointerEvents='none'>
+        {renderLabels()}
+      </g>
+      {renderScoreNumbers()}
+    </svg>
+  )
+})
 
 export default WheelOfLife

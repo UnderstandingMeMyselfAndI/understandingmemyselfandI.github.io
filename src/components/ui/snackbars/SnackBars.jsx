@@ -1,14 +1,14 @@
 // import * as React from "react";
 import { useEffect, useState } from 'react'
+import useAppStore from '@store/useAppStore'
 import Snackbar from '@mui/material/Snackbar'
-import useAppStore from '@/store/useAppStore'
 import Alert from '@mui/material/Alert'
 import Slide from '@mui/material/Slide'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import HandymanOutlinedIcon from '@mui/icons-material/HandymanOutlined'
 
 // import strings from "data/strings.js";
-import { cnf } from 'data/config.js'
+import { cnf } from '@data/config.js'
 import './styles.scss'
 
 const SnackBars = () => {
@@ -42,8 +42,7 @@ const SnackBars = () => {
         autoHideDuration={cnf?.duration?.hide.snackbar || 2000}
         onClose={handleClose}
         slots={{ transition: Slide }}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-      >
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
         <Alert
           onClose={handleClose}
           severity={severity}
@@ -52,8 +51,7 @@ const SnackBars = () => {
           iconMapping={{
             success: <HandymanOutlinedIcon fontSize='inherit' />,
             info: <CheckCircleOutlineIcon fontSize='inherit' />,
-          }}
-        >
+          }}>
           {message2}
         </Alert>
       </Snackbar>

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import ButtonUpdate from 'buttons/update/ButtonUpdate'
-
-import useAppStore from '@/store/useAppStore'
+import ButtonUpdate from '@buttons/update/ButtonUpdate'
+import useAppStore from '@store/useAppStore'
 import './styles.scss'
+
 import PropTypes from 'prop-types'
 function getDateToday() {
   const today = new Date()
@@ -113,11 +113,7 @@ const UpdateCTA = () => {
     <div className={'update-cta' + (open ? ' open' : '')}>
       <div>{updateMessage}</div>
       <div className={updating ? ' updating' : upToDate ? ' disabled' : ''}>
-        <ButtonUpdate
-          handleUpdate={handleUpdate}
-          updating={updating}
-          label={btnLabel}
-        />
+        <ButtonUpdate handleUpdate={handleUpdate} updating={updating} label={btnLabel} />
       </div>
     </div>
   )

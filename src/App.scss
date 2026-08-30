@@ -1,6 +1,6 @@
-@use './scss/_variables.scss';
-@use './scss/_fonts';
-@import '@/globals.css';
+@use '@scss/_variables.scss';
+@use '@scss/_fonts';
+@import '@src/globals.css';
 
 html {
   width: 100%;
@@ -10,7 +10,6 @@ html {
   background: #000;
   font-size: 16px;
 }
-
 
 .dev-version {
   position: fixed;
@@ -311,7 +310,7 @@ body {
 
   .white-ul {
     text-decoration-color: var(--primary);
-    text-decoration-thickness: 0.10em; //10%; ems used for iOS devices
+    text-decoration-thickness: 0.1em; //10%; ems used for iOS devices
     text-underline-offset: -0.075em; //5.5%;
   }
 

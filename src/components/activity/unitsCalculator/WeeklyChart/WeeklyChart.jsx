@@ -1,4 +1,4 @@
-import { useDrinkLogStore } from '@/store/drinkLogStore'
+import { useDrinkLogStore } from '@store/drinkLogStore'
 
 export default function WeeklyChart() {
   const drinks = useDrinkLogStore((state) => state.drinks)

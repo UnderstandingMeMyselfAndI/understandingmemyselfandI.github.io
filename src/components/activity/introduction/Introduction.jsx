@@ -1,22 +1,21 @@
 import { useEffect, useState, useRef } from 'react'
-import useAppStore from '@/store/useAppStore'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react' // <-- import the hook from our React package
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
 import DoneOutlineIcon from '@mui/icons-material/DoneOutline'
-import { strings } from '@/data/config'
+import useAppStore from '@store/useAppStore'
+import { strings, activities } from '@data/config.js'
 import Feature from './Feature'
-import gsap from 'gsap' // <-- import GSAP
-import { useGSAP } from '@gsap/react' // <-- import the hook from our React package
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-// import { SplitText } from 'gsap/SplitText'
+import '@js/utils/IsMobile.js'
+import './styles.scss'
 gsap.registerPlugin(useGSAP, ScrollTrigger)
-import { activities } from '@/data/config'
+
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc
 }, {})
-import '@/utils/IsMobile.js'
-import './styles.scss'
 
 const Introduction = () => {
   const name = 'introduction'

@@ -4,7 +4,7 @@ import * as React from 'react'
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined'
 import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined'
 
-import { storeKeys, localStore } from '@/data/localStore'
+import { storeKeys, localStore } from '@data/localStore'
 import './styles.css'
 
 const ButtonFavourite = ({ id, className }) => {

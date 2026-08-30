@@ -2,14 +2,14 @@ import React, { useRef, useState, useEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { TIMELINE_DATA } from '@/data/timelineData'
-import useAppStore from '@/store/useAppStore'
-import { activities } from '@/data/config'
-import CloseBtn from '@/components/ui/buttons/close/CloseBtn'
-import { strings } from '@/data/config'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
-import Confirm from 'ui/confirm/Confirm'
+import useAppStore from '@store/useAppStore'
+import CloseBtn from '@buttons/close/CloseBtn'
+import Confirm from '@ui/confirm/Confirm'
+import { TIMELINE_DATA } from '@data/timelineData.js'
+import { strings, activities } from '@data/config.js'
+
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc
@@ -87,9 +87,7 @@ const VerticalTimeline = () => {
       // 2. PINNING SECTIONS
       const sections = gsap.utils.toArray('.timeline-section')
       sections.forEach((section) => {
-        const backgroundLayer = section.querySelector(
-          '.section-background-layer',
-        )
+        const backgroundLayer = section.querySelector('.section-background-layer')
 
         ScrollTrigger.create({
           scroller: scrollContainer,
@@ -115,8 +113,7 @@ const VerticalTimeline = () => {
     const clickY = e.clientY - rect.top
     const percentage = clickY / rect.height
 
-    const targetScroll =
-      (scrollContainer.scrollHeight - scrollContainer.clientHeight) * percentage
+    const targetScroll = (scrollContainer.scrollHeight - scrollContainer.clientHeight) * percentage
 
     gsap.to(scrollContainer, {
       scrollTop: targetScroll,
@@ -128,13 +125,8 @@ const VerticalTimeline = () => {
   // Generate small background ticks
   const minimapTicks = Array.from({ length: 100 }).map((_, i) => i)
 
-  return ( show ?
-    <div
-      id={name}
-      className={
-        'activity activity-' + name + (show ? ' show' : ' hide') + ' fixed'
-      }
-    >
+  return show ? (
+    <div id={name} className={'activity activity-' + name + (show ? ' show' : ' hide') + ' fixed'}>
       {showConfirm ? (
         <Confirm
           title={strings.confirm.title}
@@ -150,11 +142,7 @@ const VerticalTimeline = () => {
           <CloseBtn onClick={handleClose} />
           {/* MINIMAP */}
           <div className='minimap-container'>
-            <div
-              className='minimap-track'
-              ref={minimapRef}
-              onClick={handleClick}
-            >
+            <div className='minimap-track' ref={minimapRef} onClick={handleClick}>
               {/* A. The Moving Marker */}
               <div className='minimap-marker' ref={markerRef}></div>
 
@@ -180,10 +168,7 @@ const VerticalTimeline = () => {
           </div>
 
           {/* SCROLL AREA */}
-          <div
-            className='main-scroll-container scroll-container'
-            ref={containerRef}
-          >
+          <div className='main-scroll-container scroll-container' ref={containerRef}>
             <div className='content-wrapper'>
               {/* 2. NEW: CENTRAL DOTTED LINE */}
               <div className='central-dotted-line'></div>
@@ -205,16 +190,10 @@ const VerticalTimeline = () => {
                 <div key={section.id} className='timeline-section'>
                   <div className='section-background-layer'>
                     <div className='background-content'>
-                      <div className='marker-label start'>
-                        {section.startLabel}
-                      </div>
+                      <div className='marker-label start'>{section.startLabel}</div>
                       <div>
-                        <h1 className='huge-year'>
-                          {parse(DOMPurify.sanitize(section.period))}
-                        </h1>
-                        <h2 className='huge-title'>
-                          {parse(DOMPurify.sanitize(section.title))}
-                        </h2>
+                        <h1 className='huge-year'>{parse(DOMPurify.sanitize(section.period))}</h1>
+                        <h2 className='huge-title'>{parse(DOMPurify.sanitize(section.title))}</h2>
                       </div>
                       <div className='marker-label end'>{section.endLabel}</div>
                     </div>
@@ -230,15 +209,13 @@ const VerticalTimeline = () => {
                 </div>
               ))}
 
-              <div className='global-spacer'>
-                Enjoy being a better version of yourself
-              </div>
+              <div className='global-spacer'>Enjoy being a better version of yourself</div>
             </div>
           </div>
         </>
       )}
-    </div> : null
-  )
+    </div>
+  ) : null
 }
 
 export default VerticalTimeline

@@ -1,12 +1,12 @@
 import { useEffect, useState, useRef, useCallback, useMemo } from 'react'
-import useAppStore from '@/store/useAppStore'
-import { activities } from '@/data/config'
-import CloseBtn from '@/components/ui/buttons/close/CloseBtn'
+import useAppStore from '@store/useAppStore'
+import { activities } from '@data/config.js'
+import CloseBtn from '@ui/buttons/close/CloseBtn'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import CloseIcon from '@mui/icons-material/Close'
 import DownloadForOfflineOutlinedIcon from '@mui/icons-material/DownloadForOfflineOutlined'
-import wallpapers from '@/data/wallpapers'
+import wallpapers from '@data/wallpapers.js'
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc

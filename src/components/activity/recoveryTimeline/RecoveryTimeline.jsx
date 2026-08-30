@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
-import CloseBtn from '@/components/ui/buttons/close/CloseBtn'
+import CloseBtn from '@src/components/ui/buttons/close/CloseBtn'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ScrollSmoother } from 'gsap/ScrollSmoother'
 import RecoveryDayCount from './RecoveryDayCount'
 import { useGSAP } from '@gsap/react'
-import { isOdd } from '@/js/utils.js'
+import { isOdd } from '@src/js/utils.js'
 import './styles.scss'
 function debounce(func, delay) {
   let timeoutId

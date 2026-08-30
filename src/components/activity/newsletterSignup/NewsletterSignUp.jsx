@@ -1,6 +1,6 @@
-import useAppStore from '@/store/useAppStore'
+import useAppStore from '@store/useAppStore'
 import { useState, useEffect } from 'react'
-import { trackEvent } from '@/js/analytics/analytics'
+import { trackEvent } from '@js/analytics/analytics.js'
 import './styles.scss'
 
 const NewsletterSignUp = () => {
@@ -12,7 +12,7 @@ const NewsletterSignUp = () => {
   const setIsModal = useAppStore((s) => s.setIsModal)
   const isModal = useAppStore((s) => s.isModal)
   const gae = useAppStore((s) => s.gae) // Google Analytics Enabled
-  // TODO #22 [ ]: Ensure that Newsletter menu item is removed after user sign up. Should also be recorded in the store
+  // TODO #22 [ ]: Ensure that Newsletter menu item is removed after user sign up. Shjsould also be recorded in the store
   // TODO #23 : Check form validation and UX
   const [open, setOpen] = useState(true)
   const activity = useAppStore((s) => s.activity)

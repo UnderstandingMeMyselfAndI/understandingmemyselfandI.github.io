@@ -2,7 +2,7 @@ import { useRef, useState, useEffect, useCallback, useMemo } from 'react'
 import {
   useGlobalRecalcTrigger,
   triggerGlobalRecalc,
-} from '@/hooks/useGlobalRecalcTrigger.js'
+} from '@hooks/useGlobalRecalcTrigger.js'
 // Configuration constants - easily adjustable
 const SCROLL_EFFECT_CONFIG = {
   minOpacity: 0.25, // Minimum opacity (15%)

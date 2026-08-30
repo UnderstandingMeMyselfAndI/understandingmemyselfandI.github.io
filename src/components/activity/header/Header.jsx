@@ -1,20 +1,22 @@
 import { useState, useRef, useEffect } from 'react'
-import Logo from 'ui/logo/Logo.jsx'
 import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined'
-import useAppStore from '@/store/useAppStore'
 import { ErrorBoundary } from 'react-error-boundary'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useOnInView } from 'react-intersection-observer'
 import { gsap } from 'gsap'
-import { activities } from '@/data/config'
+import { activities } from '@data/config.js'
+import useAppStore from '@store/useAppStore'
+import Logo from '@ui/logo/Logo.jsx'
+
+import './styles.scss'
+
+gsap.registerPlugin(useGSAP, ScrollTrigger)
+
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc
 }, {})
-import './styles.scss'
-
-gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 const Header = () => {
   const name = 'header'
@@ -185,7 +187,7 @@ const Header = () => {
 
         const logoTl = gsap
           .timeline({
-            repeat: 5,
+            repeat: -1,
             repeatDelay: 2,
             yoyo: true,
             defaults: { duration: 0.65, ease: 'power3.inOut' },

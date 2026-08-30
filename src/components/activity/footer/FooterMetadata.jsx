@@ -1,23 +1,7 @@
-import { useEffect, useState } from 'react'
-import metadata from '@/metadata.json'
-// import {fetchVersionData, compareVersions} from "@/utils/versionData.js";
+import metadata from '@src/metadata.json'
 import './styles.scss'
+
 function FooterMetadata() {
-  //const [remoteVersion, setRemoteVersion] = useState(null);
-  // const [isUpdateAvailable, setIsUpdateAvailable] = useState(false);
-
-  // useEffect(() => {
-  // 	const fetchAndCompareVersions = async () => {
-  // 		const remoteVersionData = await fetchVersionData();
-  // 		if (remoteVersionData) {
-  // 			//setRemoteVersion(remoteVersionData);
-
-  // 			// setIsUpdateAvailable(compareVersions(remoteVersionData, metadata));
-  // 		}
-  // 	};
-  // 	fetchAndCompareVersions();
-  // }, []);
-
   const buildMajor = metadata ? (metadata.buildMajor ? metadata.buildMajor : '') : ''
   const buildMinor = metadata ? (metadata.buildMinor ? metadata.buildMinor : '') : ''
   const buildRevision = metadata ? (metadata.buildRevision ? metadata.buildRevision : '') : ''

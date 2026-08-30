@@ -11,7 +11,8 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write \"src/**/*.{js,jsx,json,css,scss,md}\"",
     "format:check": "prettier --check \"src/**/*.{js,jsx,json,css,scss,md}\"",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "clean": "vite --force"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

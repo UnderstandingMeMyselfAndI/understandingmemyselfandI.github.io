@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import useAppStore from '@/store/useAppStore'
-import ButtonSimple from '../buttons/ButtonSimple'
+import useAppStore from '@store/useAppStore'
+import ButtonSimple from '@buttons/ButtonSimple'
 import parse from 'html-react-parser'
-import { isArrayOfStrings } from '@/js/utils'
+import { isArrayOfStrings } from '@js/utils.js'
 import DOMPurify from 'dompurify'
 import './styles.scss'
 

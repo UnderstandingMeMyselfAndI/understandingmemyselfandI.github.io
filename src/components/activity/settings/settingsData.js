@@ -1,5 +1,5 @@
-// import useAppStore from '@/store/useAppStore'
-// import state from '@/store/useAppStore'
+// import useAppStore from '@store/useAppStore'
+// import state from '@store/useAppStore'
 const settingsData = [
     {
         groupTitle: 'Your Tools',

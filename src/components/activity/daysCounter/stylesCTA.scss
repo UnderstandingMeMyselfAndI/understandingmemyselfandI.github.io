@@ -1,0 +1,25 @@
+@use '@scss/_variables.scss';
+@import '@src/globals.css';
+
+body div.main section.activity-days-counter-cta div.cta {
+  .inner {
+    // background-color: var(--blueDark10Trans);
+
+    u {
+      text-decoration-color: var(--blue30Trans);
+    }
+
+    h3.title {
+      color: var(--primary);
+      font-weight: 800;
+      font-variation-settings: 'wght' 800;
+      font-variation-settings: 'wght' 800;
+
+      text-shadow: none;
+    }
+
+    // &::after {
+    //   background-color: var(--greyDark20Trans);
+    // }
+  }
+}

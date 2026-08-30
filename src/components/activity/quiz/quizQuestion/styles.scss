@@ -1,5 +1,5 @@
-@use './scss/_variables.scss';
-@import '@/globals.css';
+@use '@scss/_variables.scss';
+@import '@src/globals.css';
 
 .quiz-container {
   display: flex;
@@ -46,7 +46,6 @@
       flex-flow: column nowrap;
       justify-content: center;
       align-items: center;
-
 
       &.in {
         opacity: 1;
@@ -368,11 +367,10 @@
     }
   }
 
-
   .show p,
   .last-message p,
   .feedback-message p {
-    margin: 0.0rem 0;
+    margin: 0rem 0;
 
     text-align: center;
     line-height: 1.2;

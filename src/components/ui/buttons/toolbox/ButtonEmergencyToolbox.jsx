@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import useAppStore from '@/store/useAppStore'
-import { storeKeys, localStore } from '@/data/localStore.js'
+import useAppStore from '@store/useAppStore'
+import { storeKeys, localStore } from '@data/localStore.js'
 import MedicationIcon from '@mui/icons-material/Medication'
 import MedicationOutlinedIcon from '@mui/icons-material/MedicationOutlined'
 import './styles.scss'
