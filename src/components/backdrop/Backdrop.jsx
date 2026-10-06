@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import ImageData from 'data/imgData.js'
+import ImageData from '@data/bgImgs.js'
 import './Backdrop.scss'
 import PropTypes from 'prop-types'
 
@@ -7,21 +7,14 @@ const allImages = ImageData
 const DEFAULT_INTERVAL = 10000
 const FADE_DURATION = 2000
 
-import useAppStore from '@/store/useAppStore'
-
-export default function Backdrop({
-  initialImageId = null,
-  initialDelay = 0,
-  interval = DEFAULT_INTERVAL,
-}) {
+export default function Backdrop({ initialImageId = 0, initialDelay = 0, interval = DEFAULT_INTERVAL }) {
   const [currentImage, setCurrentImage] = useState(null)
   const [nextImage, setNextImage] = useState(null)
   const [isInitializing, setIsInitializing] = useState(true)
   const usedIds = useRef(new Set())
   const intervalRef = useRef(null)
-  const isModal = useAppStore((state) => state.isModal)
+  const isModal = false
 
-  // Initial image selection
   useEffect(() => {
     const firstImage = initialImageId
       ? allImages.find((i) => i.id === initialImageId) || allImages[0]
@@ -30,7 +23,6 @@ export default function Backdrop({
     setCurrentImage(firstImage)
   }, [initialImageId])
 
-  // Image cycling logic
   useEffect(() => {
     if (!currentImage || isModal) return
 
@@ -55,6 +47,7 @@ export default function Backdrop({
         setNextImage(next)
 
         setTimeout(() => {
+          console.log('next image')
           setCurrentImage(next)
           setNextImage(null)
         }, FADE_DURATION)
@@ -71,12 +64,10 @@ export default function Backdrop({
     }
   }, [currentImage, initialDelay, interval, isModal])
 
-  // Preload next image
   useEffect(() => {
     if (nextImage) {
       let img = new Image()
       img.src = nextImage.url
-      // Ensure the object is eligible for GC soon
       img.onload = () => {
         img = null
       }

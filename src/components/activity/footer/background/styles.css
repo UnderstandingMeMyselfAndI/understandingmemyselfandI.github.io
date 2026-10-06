@@ -1,4 +1,4 @@
-@import '@/globals.css';
+@import '@src/globals.css';
 .settingsDrawer:has(.backgroundOptions) {
   display: flex;
   flex-direction: column;

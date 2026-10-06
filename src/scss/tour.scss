@@ -1,5 +1,5 @@
-@use '@/scss/variables';
-@import '@/globals.css';
+@use '@scss/variables';
+@import '@src/globals.css';
 
 /* -------------------------------------------------
 Onboarding
@@ -47,9 +47,7 @@ body {
 
   .driver-popover.flp-theme {
     background: rgba(104, 79, 128, 0.8);
-    background: linear-gradient(140deg,
-        rgba(27, 134, 158, 1) 0%,
-        rgb(157, 30, 30) 81%);
+    background: linear-gradient(140deg, rgba(27, 134, 158, 1) 0%, rgb(157, 30, 30) 81%);
     margin: -3px;
 
     .driver-popover-title,

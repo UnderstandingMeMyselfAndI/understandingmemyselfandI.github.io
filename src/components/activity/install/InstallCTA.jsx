@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
-import InstallPWA from 'ui/buttons/InstallPWA/InstallPWA'
+import InstallPWA from '@ui/buttons/InstallPWA/InstallPWA'
 import appleShareIcon from '/icons/apple-share-white-40x40.png'
 import appleAddToHomescreen from '/icons/apple-add-to-homescreen-white-40x40.png'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
-import useAppStore from '@/store/useAppStore'
-import { strings } from '@/data/config'
+import useAppStore from '@store/useAppStore'
+import { strings } from '@data/config'
 import { useOnInView } from 'react-intersection-observer'
 
 // import PWAInstall from '@khmyznikov/pwa-install/react-legacy'
 // import { PWAInstallElement } from '@khmyznikov/pwa-install'
-// import UmmiIcon from 'components/icons/UmmiIcon2.svg'
+// import UmmiIcon from '@components/icons/UmmiIcon2.svg'
 
 import './styles.scss'
 

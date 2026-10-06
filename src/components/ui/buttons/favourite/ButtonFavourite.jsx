@@ -4,7 +4,7 @@ import * as React from 'react'
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined'
 import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined'
 
-import { storeKeys, localStore } from '@/data/localStore'
+import { storeKeys, localStore } from '@data/localStore'
 import './styles.css'
 
 const ButtonFavourite = ({ id, className }) => {
@@ -34,16 +34,8 @@ const ButtonFavourite = ({ id, className }) => {
   }
 
   return (
-    <div
-      className={className + ' AccordionItemFavourite '}
-      onClick={handleClick}
-      aria-label='Add to favourites'
-    >
-      <div
-        dangerouslySetInnerHTML={{ __html: icon }}
-        className={imgClassName}
-        alt='Favourite Icon'
-      />
+    <div className={className + ' AccordionItemFavourite '} onClick={handleClick} aria-label='Add to favourites'>
+      <div dangerouslySetInnerHTML={{ __html: icon }} className={imgClassName} alt='Favourite Icon' />
     </div>
   )
 }

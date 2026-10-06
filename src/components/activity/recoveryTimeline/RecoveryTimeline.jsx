@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
-import CloseBtn from '@/components/ui/buttons/close/CloseBtn'
+import CloseBtn from '@components/ui/buttons/close/CloseBtn'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ScrollSmoother } from 'gsap/ScrollSmoother'
 import RecoveryDayCount from './RecoveryDayCount'
 import { useGSAP } from '@gsap/react'
-import { isOdd } from '@/js/utils.js'
+import { isOdd } from '@js/utils.js'
 import './styles.scss'
 function debounce(func, delay) {
   let timeoutId
@@ -46,7 +46,7 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
     try {
       if (data) {
         setTimelineData(data)
-        console.log('data', data)
+        console.log('@data', data)
       }
       setIsLoading(false)
     } catch (err) {
@@ -64,7 +64,7 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
   const setGroup = (i) => {
     const groups = gsap.utils.toArray('.change-group-wrap')
     if (!groups[i]) return
-    const maxDays = parseInt(groups[i].getAttribute('data-day-range'))
+    const maxDays = parseInt(groups[i].getAttribute('@data-day-range'))
     maxDays ? setGroupMaxDays(maxDays) : null
   }
 
@@ -93,8 +93,7 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
 
       // console.log('scrollTop ', scrollTop);
 
-      const pos =
-        scrollTop / (scrollContainer.scrollHeight - window.innerHeight)
+      const pos = scrollTop / (scrollContainer.scrollHeight - window.innerHeight)
       const day = Math.ceil(groupMaxDays * pos)
       day !== currentDay && setCurrentDay(day)
       // console.log('day', day, ' pos ', pos);
@@ -243,11 +242,7 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
       </div>
     )
   }
-  if (
-    !timelineData ||
-    !Array.isArray(timelineData.timeline) ||
-    timelineData.timeline.length === 0
-  ) {
+  if (!timelineData || !Array.isArray(timelineData.timeline) || timelineData.timeline.length === 0) {
     return <div className='timeline-empty'>No timeline data available.</div>
   } else {
     // console.log('timelineData', timelineData);
@@ -258,11 +253,7 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
     const odd = which === 'odd' ? false : true
     return timelineData.timeline.map((period, index) => {
       return (
-        <div
-          className={`symptoms-column ${which} ` + period.id}
-          data-speed='clamp(1.5)'
-          key={index}
-        >
+        <div className={`symptoms-column ${which} ` + period.id} data-speed='clamp(1.5)' key={index}>
           {period.symptoms.map((symptom, i) => {
             if (i === period.symptoms.length - 1 && isOdd(i) === !odd) {
               pushNext = true
@@ -272,10 +263,7 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
 
             symptonCount++
             return isOdd(symptonCount) === odd ? (
-              <div
-                className={'symptom-title' + (pushNext ? ' push' : '')}
-                key={'sym-' + i}
-              >
+              <div className={'symptom-title' + (pushNext ? ' push' : '')} key={'sym-' + i}>
                 <div>{period.id}</div>
                 <div data-period={period.id}>{symptom}</div>
               </div>
@@ -291,12 +279,7 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
   let lastCount = 0
   let lastCountOdd = false
   return (
-    <div
-      className='timeline-container'
-      ref={componentRef}
-      role='feed'
-      aria-busy={isLoading}
-    >
+    <div className='timeline-container' ref={componentRef} role='feed' aria-busy={isLoading}>
       {/* Fixed Header */}
       <header className='timeline-header'>
         <div>
@@ -321,11 +304,7 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
                   // style={{ height: 160 * symptonCount + 'px' }}
                 >
                   {timelineData.timeline.map((period, timeIndex) => (
-                    <div
-                      className='box-column-wrap even '
-                      data-speed='clamp(1.5)'
-                      key={timeIndex}
-                    >
+                    <div className='box-column-wrap even ' data-speed='clamp(1.5)' key={timeIndex}>
                       {period.symptoms.map((symptom, grpIndex) => {
                         boxCount++
 
@@ -341,19 +320,12 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
                   ))}
                 </div>
                 {}
-                <div
-                  className='symptoms-time-period-columns'
-                  data-speed='clamp(1.5)'
-                >
+                <div className='symptoms-time-period-columns' data-speed='clamp(1.5)'>
                   {timelineData.timeline.map((period, pI) => (
                     <div className='symptoms-time-period-column' key={pI}>
                       {period.symptoms.map((symptom, gI) => {
                         return (
-                          <div
-                            key={'sym-' + gI}
-                            data-period={period.id}
-                            className={'period-title'}
-                          >
+                          <div key={'sym-' + gI} data-period={period.id} className={'period-title'}>
                             {period.timePeriod}
                           </div>
                         )
@@ -361,12 +333,8 @@ const RecoveryTimeline = ({ data, config, onClose }) => {
                     </div>
                   ))}
                 </div>
-                <div className={'symptoms-column-wrap odd'}>
-                  {getSymptoms('odd')}
-                </div>
-                <div className={'symptoms-column-wrap even'}>
-                  {getSymptoms('even')}
-                </div>
+                <div className={'symptoms-column-wrap odd'}>{getSymptoms('odd')}</div>
+                <div className={'symptoms-column-wrap even'}>{getSymptoms('even')}</div>
               </div>
             </div>
           </div>
@@ -392,8 +360,7 @@ RecoveryTimeline.propTypes = {
         categories: PropTypes.arrayOf(
           PropTypes.shape({
             id: PropTypes.string.isRequired,
-            type: PropTypes.oneOf(['physical', 'lifestyle', 'mental'])
-              .isRequired,
+            type: PropTypes.oneOf(['physical', 'lifestyle', 'mental']).isRequired,
             title: PropTypes.string.isRequired,
             description: PropTypes.string.isRequired,
           }),

@@ -27,10 +27,7 @@ const useAppStore = create(
 
       saveWheelEntry: (entry) =>
         set((state) => ({
-          wheelHistory: [
-            ...state.wheelHistory,
-            { ...entry, date: new Date().toISOString() },
-          ],
+          wheelHistory: [...state.wheelHistory, { ...entry, date: new Date().toISOString() }],
         })),
 
       removeWheelEntry: (index) =>
@@ -90,7 +87,7 @@ const useAppStore = create(
         set(() => ({ isisn: v }))
       },
       // ----------------------------------------
-      //show burger stack      
+      //show burger stack
       showBurgerStack: true,
       setShowBurgerStack: (v) => set(() => ({ showBurgerStack: v })),
       // ----------------------------------------
@@ -170,7 +167,7 @@ const useAppStore = create(
       quizEnabled: true,
       enableQuiz: (v) => {
         set(() => ({ quiz: v }))
-      },        
+      },
       // ----------------------------------------
       // Units Calculator
       uc: true,
@@ -289,9 +286,7 @@ const useAppStore = create(
       // Adds an ID only if it doesn't already exist (prevents duplicates)
       addTool: (v) =>
         set((state) => ({
-          userToolIDs: state.userToolIDs.includes(v)
-            ? state.userToolIDs
-            : [...state.userToolIDs, v],
+          userToolIDs: state.userToolIDs.includes(v) ? state.userToolIDs : [...state.userToolIDs, v],
         })),
 
       // Removes a specific ID from the array
@@ -341,8 +336,7 @@ const useAppStore = create(
       setShowToolsOnly: (v) => set(() => ({ showToolsOnly: v })),
       // ----------------------------------------
       // Toggles showToolsOnly
-      toggleShowToolsOnly: () =>
-        set((state) => ({ showToolsOnly: !state.showToolsOnly })),
+      toggleShowToolsOnly: () => set((state) => ({ showToolsOnly: !state.showToolsOnly })),
 
       // ----------------------------------------
       // Acronym ID

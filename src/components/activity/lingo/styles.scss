@@ -1,5 +1,5 @@
-@use '@/scss/variables';
-@import '@/globals.css';
+@use '@scss/variables';
+@import '@src/globals.css';
 
 #lingo {
   scroll-margin-top: 25vh;
@@ -108,10 +108,7 @@ div.search-lingo-wrap {
     width: 100dvw;
     height: 100dvh;
 
-
-
     .dialog {
-
       width: 100%;
       height: 100dvh;
       min-height: 100dvh;
@@ -131,14 +128,11 @@ div.search-lingo-wrap {
         .dialog-instruction {
           width: 90%;
           // max-height: 40vh;
-          ;
         }
       }
     }
   }
 }
-
-
 
 // svg.lingo-list-icon {
 //     transform: scale(4);

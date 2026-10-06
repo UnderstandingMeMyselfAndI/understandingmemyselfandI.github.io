@@ -1,6 +1,6 @@
 // @use "../../../scss/Animation.css";
-@use './scss/_variables.scss';
-@import '@/globals.css';
+@use '@scss/variables';
+@import '@src/globals.css';
 
 section.header#header {
   position: relative;

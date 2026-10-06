@@ -1,4 +1,4 @@
-@import '@/globals.css';
+@import '@src/globals.css';
 @import '../buttonStyles.css';
 .settings-icon.btn {
   outline: none;

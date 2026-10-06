@@ -1,6 +1,6 @@
-import useAppStore from '@/store/useAppStore'
+import useAppStore from '@store/useAppStore'
 import { useState, useEffect } from 'react'
-import { trackEvent } from '@/js/analytics/analytics'
+import { trackEvent } from '@js/analytics/analytics'
 import './styles.scss'
 
 const NewsletterSignUp = () => {

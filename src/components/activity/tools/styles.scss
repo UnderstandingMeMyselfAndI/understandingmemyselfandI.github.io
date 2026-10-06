@@ -1,5 +1,5 @@
-@use '@/scss/variables';
-@import '@/globals.css';
+@use '@scss/variables';
+@import '@src/globals.css';
 
 #the-tools {
   scroll-margin-top: 20vh;
@@ -26,7 +26,7 @@ body #the-tools .tools-description {
   padding: 0;
 
   * {
-    font-size: 2.0rem;
+    font-size: 2rem;
     line-height: 1.2;
   }
 }
@@ -98,5 +98,4 @@ body section#the-tools.tools {
       }
     }
   }
-
 }

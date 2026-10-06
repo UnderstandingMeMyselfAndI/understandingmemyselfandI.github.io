@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import useAppStore from '@/store/useAppStore'
+import useAppStore from '@store/useAppStore'
 import PropTypes from 'prop-types'
 import './styles.scss'
 import { id } from 'zod/v4/locales'
@@ -16,10 +16,7 @@ const SearchItem = ({ label, id, handleClick }) => {
   }
 
   return (
-    <div
-      className={'SearchItem' + (clicked && spv ? ' viewed' : '')}
-      onClick={() => clickHandler()}
-    >
+    <div className={'SearchItem' + (clicked && spv ? ' viewed' : '')} onClick={() => clickHandler()}>
       {label}
     </div>
   )

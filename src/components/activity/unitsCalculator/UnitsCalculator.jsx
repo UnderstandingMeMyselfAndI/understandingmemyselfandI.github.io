@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useShallow } from 'zustand/react/shallow'
-import useAppStore from '@/store/useAppStore'
+import useAppStore from '@store/useAppStore'
 import CloseBtn from '../../ui/buttons/close/CloseBtn'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
-import { activities } from '@/data/config'
+import { activities } from '@data/config'
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc
@@ -193,7 +193,7 @@ const UnitsCalculator = () => {
               </div>
               <div className='container-buttons'>
                 <div className='measures-selector'>
-                  <div className='buttons'>
+                  <div className='@buttons'>
                     <button
                       onClick={() => {
                         setType('custom')

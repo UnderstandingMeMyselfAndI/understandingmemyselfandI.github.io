@@ -1,5 +1,5 @@
-@use '@/scss/variables';
-@import '@/globals.css';
+@use '@scss/variables';
+@import '@src/globals.css';
 
 .MuiSnackbar-root,
 .MuiSnackbar-anchorOriginTopCenter,
@@ -10,7 +10,7 @@
 
 .MuiSnackbar-anchorOriginTopCenter,
 .MuiSnackbar-anchorOriginBottomLeft {
-  > div {
+  >div {
     background: var(--mainBackground) !important;
 
     .MuiSnackbarContent-message {

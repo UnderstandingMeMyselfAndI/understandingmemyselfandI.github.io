@@ -1,13 +1,13 @@
 import { useState, useRef, useEffect } from 'react'
-import Logo from 'ui/logo/Logo.jsx'
+import Logo from '@ui/logo/Logo.jsx'
 import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined'
-import useAppStore from '@/store/useAppStore'
+import useAppStore from '@store/useAppStore'
 import { ErrorBoundary } from 'react-error-boundary'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useOnInView } from 'react-intersection-observer'
 import { gsap } from 'gsap'
-import { activities } from '@/data/config'
+import { activities } from '@data/config'
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc

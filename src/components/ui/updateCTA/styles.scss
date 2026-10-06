@@ -1,5 +1,5 @@
-@use '@/scss/_variables.scss';
-@import '@/globals.css';
+@use '@scss/variables';
+@import '@src/globals.css';
 
 .update-cta {
   display: flex;

@@ -139,8 +139,7 @@ export async function runPersistentStorageTests() {
   const supported = 'storage' in navigator
 
   // check if persistent storage is supported
-  const persistentStorageSupported =
-    navigator.storage && navigator.storage.persist
+  const persistentStorageSupported = navigator.storage && navigator.storage.persist
 
   // request persistent storage
   const persist = await navigator.storage.persist()
@@ -213,24 +212,28 @@ export const checkAssetsLoaded = () => {
     // After 5 seconds, if app isn't ready, force clean everything
     setTimeout(() => {
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(registrations => {
-          registrations.forEach(reg => reg.unregister());
-          
+        navigator.serviceWorker.getRegistrations().then((registrations) => {
+          registrations.forEach((reg) => reg.unregister())
+
           // Clear all caches
-          caches.keys().then(names => {
-            names.forEach(name => caches.delete(name));
-          });
-          
+          caches.keys().then((names) => {
+            names.forEach((name) => caches.delete(name))
+          })
+
           // Force reload from server
-          window.location.reload(true);
-        });
+          window.location.reload(true)
+        })
       }
-    }, 5000);
+    }, 5000)
   }
-};
+}
 export const isArrayOfStrings = (value) => {
-  return Array.isArray(value) && value.every(item => typeof item === 'string');
-};
+  return Array.isArray(value) && value.every((item) => typeof item === 'string')
+}
+
+export const getRand = (max) => {
+  return Math.floor(Math.random() * (max - 1 + 1)) + 1
+}
 
 export default {
   clamp,
@@ -256,4 +259,5 @@ export default {
   smoothScroll,
   runPersistentStorageTests,
   applyAccessibilitySettings,
+  getRand,
 }

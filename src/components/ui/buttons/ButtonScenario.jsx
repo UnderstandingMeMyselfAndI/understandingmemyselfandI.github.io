@@ -14,6 +14,6 @@ ButtonScenario.propTypes = {
   label: PropTypes.string.isRequired,
   callback: PropTypes.func,
 }
-ButtonScenario.displayName = 'ButtonScenario'
+ButtonScenario.displayName = '@buttonscenario'
 
 export default ButtonScenario

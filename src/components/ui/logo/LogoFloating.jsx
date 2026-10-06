@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import smartLogo from '@/assets/icons/UmmiIcon.min.svg'
-import smartLogoDark from '@/assets/icons/UmmiIcon.min.svg'
-import { useThemeStore } from '@/store/useThemeStore'
-import useAppStore from '@/store/useAppStore'
+import smartLogo from '@assets/icons/UmmiIcon.min.svg'
+import smartLogoDark from '@assets/icons/UmmiIcon.min.svg'
+import { useThemeStore } from '@store/useThemeStore'
+import useAppStore from '@store/useAppStore'
 import PropTypes from 'prop-types'
 
 import './styles.scss'
@@ -14,8 +14,7 @@ const LogoFloating = ({ showText = true, classes = '', showName = true }) => {
   const showAccCard = useAppStore((s) => s.showAccCard)
 
   const text = showText ? 'Ummi' : ''
-  const componentClasses =
-    show && !showAccCard ? 'logo show ' + classes : 'logo ' + classes
+  const componentClasses = show && !showAccCard ? 'logo show ' + classes : 'logo ' + classes
   useEffect(() => {
     window.addEventListener('scroll', () => {
       window.scrollY > 600 ? setShow(true) : setShow(false)
