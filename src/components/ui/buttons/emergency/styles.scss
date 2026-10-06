@@ -1,4 +1,5 @@
-@import '@/globals.css';
+@import '@scss/globals.css';
+
 // @import "../buttonStyles.css";
 .btn.emergency {
   position: fixed;
@@ -7,9 +8,11 @@
   z-index: 2000;
   width: 50px;
   height: 50px;
+
   button {
     border: none;
     position: relative;
+
     svg {
       fill: #fff;
       width: 30px;
@@ -17,6 +20,7 @@
       user-select: none;
     }
   }
+
   &::before {
     content: '';
     z-index: 0;

@@ -1,0 +1,18 @@
+.icon-dec {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+
+  width: fit-content;
+  height: fit-content;
+}
+.icon-dec > div {
+  width: 200px;
+  height: 200px;
+  transform: translate(-50%, -50%);
+}
+.icon-dec svg {
+  width: 100%;
+  height: 100%;
+}

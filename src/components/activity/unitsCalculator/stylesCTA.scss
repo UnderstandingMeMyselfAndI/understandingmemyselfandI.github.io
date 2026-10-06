@@ -1,9 +1,8 @@
 @use '@/scss/variables';
-@import '@/globals.css';
+@import '@scss/globals.css';
 
 body div.main section.activity-units-calculator-cta div.cta {
   .inner {
-
     // background-color: var(--blueDark10Trans);
 
     u {
@@ -18,5 +17,4 @@ body div.main section.activity-units-calculator-cta div.cta {
       text-decoration-color: var(--lightBlue40Trans);
     }
   }
-
 }

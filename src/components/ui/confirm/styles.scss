@@ -1,5 +1,5 @@
-@use './scss/_variables.scss';
-@import '@/globals.css';
+@use '@scss/_variables';
+@import '@scss/globals.css';
 
 .confirm-pop-up {
   position: fixed;

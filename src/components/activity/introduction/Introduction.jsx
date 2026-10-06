@@ -10,11 +10,11 @@ import { useGSAP } from '@gsap/react' // <-- import the hook from our React pack
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 // import { SplitText } from 'gsap/SplitText'
 gsap.registerPlugin(useGSAP, ScrollTrigger)
-import { activities } from '@/data/config'
-const activitiesById = activities.reduce((acc, activity) => {
-  acc[activity.id] = activity
-  return acc
-}, {})
+// import { activities } from '@/data/config'
+// const activitiesById = activities.reduce((acc, activity) => {
+//   acc[activity.id] = activity
+//   return acc
+// }, {})
 import '@/utils/IsMobile.js'
 import './styles.scss'
 
@@ -24,11 +24,11 @@ const Introduction = () => {
   const [open, setOpen] = useState(true)
   const activity = useAppStore((s) => s.activity)
   const isModal = useAppStore((state) => state.isModal)
-  const setIsModal = useAppStore((s) => s.setIsModal)
+  // const setIsModal = useAppStore((s) => s.setIsModal)
   // TODO: #46 #45 These content thresholds need revisiting
   const curiousThreshold = 16
   const newThreshold = 60
-  const userThreshold = 120
+  // const userThreshold = 120
 
   const sectionRefs = useRef([])
   useEffect(() => {
