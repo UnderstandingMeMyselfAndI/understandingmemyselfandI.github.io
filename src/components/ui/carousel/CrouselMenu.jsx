@@ -10,7 +10,7 @@ import useAppStore from '@store/useAppStore'
 import data from '../../../data/data.js'
 
 import { useScrollEffects, SCROLL_EFFECT_CONFIG } from './useScrollEffects'
-import '../../../globals.css'
+import '@scss/globals.css'
 import './AccordionStyles.scss'
 
 // Configuration constants - easily adjustable

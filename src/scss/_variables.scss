@@ -1,5 +1,5 @@
 @use 'sass:math';
-@use '../globals.css';
+@use '@scss/globals.css';
 
 /**
  * Generates a responsive font size using CSS clamp().

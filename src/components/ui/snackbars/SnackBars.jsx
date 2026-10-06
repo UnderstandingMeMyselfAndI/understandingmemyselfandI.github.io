@@ -4,7 +4,7 @@ import Snackbar from '@mui/material/Snackbar'
 import useAppStore from '@store/useAppStore'
 import Alert from '@mui/material/Alert'
 import Slide from '@mui/material/Slide'
-import IconDoneOutlined from '@icons/IconDoneOutlined'
+import IconTaskComplete from '@icons/IconTaskComplete'
 import HandymanOutlinedIcon from '@mui/icons-material/HandymanOutlined'
 
 // import strings from "data/strings.js";
@@ -50,7 +50,7 @@ const SnackBars = () => {
           sx={{ width: '100%' }}
           iconMapping={{
             success: <HandymanOutlinedIcon fontSize='inherit' />,
-            info: <IconDoneOutlined fontSize='inherit' />,
+            info: <IconTaskComplete fontSize='inherit' />,
           }}>
           {message2}
         </Alert>

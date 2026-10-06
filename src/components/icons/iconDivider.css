@@ -1,0 +1,23 @@
+.icon-divider {
+  width: 100%;
+  height: 0px;
+  position: relative;
+}
+.icon-divider div {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  left: 0%;
+  top: 0%;
+  transform: translate(-50%, -50%) scale(1);
+  z-index: 0;
+  opacity: 0.8;
+}
+.icon-divider div svg {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  fill: var(--bg-grey);
+  opacity: 0.6;
+  stroke-width: 1.5px;
+}

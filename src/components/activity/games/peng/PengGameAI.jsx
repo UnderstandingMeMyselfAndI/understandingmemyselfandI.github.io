@@ -1,14 +1,14 @@
-import { useState, useRef, useCallback, useEffect } from 'react'
+import React, { useState, useRef, useCallback, useEffect } from 'react'
 import useAppStore from '@store/useAppStore'
-import { activities } from '@data/config'
+import { activities } from '@data/config.js'
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
-import CloseBtn from '@components/ui/buttons/close/CloseBtn'
+import CloseBtn from '@ui/buttons/close/CloseBtn'
 
 import DoneIcon from '@mui/icons-material/Done'
 import RestartAltOutlinedIcon from '@mui/icons-material/RestartAltOutlined'
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
 import './pengGameAI.scss'
-import { strings } from '@data/config'
+import { strings } from '@data/config.js'
 
 // Import the persisted store
 import { useGameStore } from '@store/useGameStore'

@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import useAppStore from '@store/useAppStore'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
-import IconDoneOutlined from '@icons/IconDoneOutlined'
+import IconTaskComplete from '@icons/IconTaskComplete'
 import { getRand } from '@js/utils.js'
 import { strings } from '@data/config'
 import Feature from './Feature'
@@ -93,7 +93,7 @@ const Introduction = () => {
                   {cnt?.content?.map((para, k) => {
                     return (
                       <Feature key={'p-' + k}>
-                        {i === 1 && <IconDoneOutlined className='icon' />}
+                        {i === 1 && <IconTaskComplete className='icon' />}
                         <div key={k}>{parse(DOMPurify.sanitize(para))}</div>
                       </Feature>
                     )
