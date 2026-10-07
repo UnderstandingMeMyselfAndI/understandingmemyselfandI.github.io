@@ -12,6 +12,7 @@ import DOMPurify from 'dompurify'
 import useAppStore from '@store/useAppStore'
 import Dialog from '@ui/dialog/Dialog'
 import { activities } from '@data/config.js'
+import { weekPercentageProgress, monthPercentageProgress, yearPercentageProgress } from '@js/utils.js'
 
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
@@ -20,7 +21,7 @@ const activitiesById = activities.reduce((acc, activity) => {
 
 // Common currency list for the dropdown
 const COMMON_CURRENCIES = [
-  { code: 'USD', symbol: '$', label: 'USD $' },
+  { code: 'USD', symbol: '$', label: 'USD <span>$</span>' },
   { code: 'EUR', symbol: '€', label: 'EUR €' },
   { code: 'GBP', symbol: '£', label: 'GBP £' },
   { code: 'JPY', symbol: '¥', label: 'JPY ¥' },
@@ -53,7 +54,8 @@ const DaysCounter = () => {
   const maxNumDates = 6
 
   // Track visibility of savings details per date (by date id)
-  const [visibleSavings, setVisibleSavings] = useState({})
+  // const [visibleSavings, setVisibleSavings] = useState({})
+  const visibleSavings = true
 
   // Touch handling for swipe (unchanged)
   const touchStartX = useRef(0)
@@ -235,13 +237,13 @@ const DaysCounter = () => {
   }
 
   // Format money with selected currency
-  const formatMoney = (amount) => {
+  const formatMoney = (amount, decimalPlaces = 2) => {
     if (typeof amount !== 'number' || isNaN(amount)) return ''
     return new Intl.NumberFormat(undefined, {
       style: 'currency',
       currency: currency,
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
+      minimumFractionDigits: decimalPlaces,
+      maximumFractionDigits: decimalPlaces,
     }).format(amount)
   }
 
@@ -315,16 +317,17 @@ const DaysCounter = () => {
                               <div className='days-counter-values'>
                                 <div className='days-counter-stat days-counter-stat-days'>
                                   <span className='value'>{currentTimes[index]?.days?.toLocaleString() ?? 0}</span>
-                                  <span className='label'>days</span>
+                                  <span className='label days'>days</span>
                                 </div>
-
-                                <div className='days-counter-stat days-counter-stat-hours'>
-                                  <span className='value'>{currentTimes[index]?.hours?.toLocaleString() ?? 0}</span>
-                                  <span className='label'>hrs</span>
-                                </div>
-                                <div className='days-counter-stat days-counter-stat-minutes'>
-                                  <span className='value'>{currentTimes[index]?.minutes?.toLocaleString() ?? 0}</span>
-                                  <span className='label'>mins</span>
+                                <div className='days-counter-stat days-counter-stat-hours-mins'>
+                                  <div className='days-counter-stat-time'>
+                                    <span className='value'>{currentTimes[index]?.hours?.toLocaleString() ?? 0}</span>
+                                    <span className='label'>hrs</span>
+                                  </div>
+                                  <div className='days-counter-stat-time '>
+                                    <span className='value'>{currentTimes[index]?.minutes?.toLocaleString() ?? 0}</span>
+                                    <span className='label'>mins</span>
+                                  </div>
                                 </div>
                               </div>
                             ) : (
@@ -370,79 +373,70 @@ const DaysCounter = () => {
                                 )}
                               </div>
                             </div>
-
-                            {/* Toggle button – always visible */}
-                            <div className='days-counter-savings-button-wrapper'>
-                              <button
-                                onClick={() =>
-                                  setVisibleSavings((prev) => ({
-                                    ...prev,
-                                    [date.id]: !prev[date.id],
-                                  }))
-                                }
-                                className='days-counter-savings-toggle-btn'>
-                                How much am I saving?
-                              </button>
-                            </div>
-
-                            {/* Combined savings container – shown only if toggled */}
-                            {visibleSavings[date.id] && (
-                              <div className='days-counter-savings-container'>
-                                <div className='days-counter-cost-container'>
-                                  <div className='days-counter-cost'>
-                                    <label htmlFor={`daily-cost-${index}`}>
-                                      <div>Enter daily cost</div>
-                                    </label>
-                                    <select
-                                      className='days-counter-currency-selector'
-                                      value={currency}
-                                      onChange={handleCurrencyChange}
-                                      aria-label='Select currency'>
-                                      {COMMON_CURRENCIES.map((curr) => (
-                                        <option key={curr.code} value={curr.code}>
-                                          {curr.label}
-                                        </option>
-                                      ))}
-                                    </select>
-                                    <input
-                                      id={`daily-cost-${index}`}
-                                      type='number'
-                                      min='0'
-                                      step='0.01'
-                                      value={date.dailyCost ?? 0}
-                                      onChange={(e) =>
-                                        updateDate(
-                                          index,
-                                          date.selectedDate,
-                                          date.label,
-                                          false,
-                                          parseFloat(e.target.value) || 0,
-                                        )
-                                      }
-                                    />
-                                  </div>
-                                </div>
-
-                                <div className='days-counter-savings-rates'>
-                                  <div className='savings-rate'>
-                                    <span className='rate-label'>Savings per week</span>
-                                    <span className='rate-value'>{formatMoney(date.dailyCost * 7)}</span>
-                                  </div>
-                                  <div className='savings-rate'>
-                                    <span className='rate-label'>Savings per Month</span>
-                                    <span className='rate-value'>{formatMoney(date.dailyCost * 30.44)}</span>
-                                  </div>
-                                  <div className='savings-rate'>
-                                    <span className='rate-label'>Quarter</span>
-                                    <span className='rate-value'>{formatMoney(date.dailyCost * 91.31)}</span>
-                                  </div>
-                                  <div className='savings-rate'>
-                                    <span className='rate-label'>Year</span>
-                                    <span className='rate-value'>{formatMoney(date.dailyCost * 365.25)}</span>
-                                  </div>
+                            {/* Financial Savings */}
+                            <div className='days-counter-savings-container'>
+                              <div className='days-counter-cost-container'>
+                                <div className='days-counter-cost'>
+                                  <label htmlFor={`daily-cost-${index}`}>
+                                    <div>Daily cost</div>
+                                  </label>
+                                  <select
+                                    className='days-counter-currency-selector'
+                                    value={currency}
+                                    onChange={handleCurrencyChange}
+                                    aria-label='Select currency'>
+                                    {COMMON_CURRENCIES.map((curr) => (
+                                      <option key={curr.code} value={curr.code}>
+                                        {parse(curr.label)}
+                                      </option>
+                                    ))}
+                                  </select>
+                                  <input
+                                    id={`daily-cost-${index}`}
+                                    type='number'
+                                    min='0'
+                                    step='0.01'
+                                    value={date.dailyCost ?? 0}
+                                    onChange={(e) =>
+                                      updateDate(
+                                        index,
+                                        date.selectedDate,
+                                        date.label,
+                                        false,
+                                        parseFloat(e.target.value) || 0,
+                                      )
+                                    }
+                                  />
                                 </div>
                               </div>
-                            )}
+                              <div className='days-counter-savings-rates all'>
+                                <div className='savings-rate-all-time'>
+                                  <span className='total-value'>
+                                    {formatMoney(date.dailyCost * currentTimes[index]?.days, 0)}
+                                  </span>
+                                  <span className='total-label'>Saved</span>
+                                </div>
+                              </div>
+                              <div className='days-counter-savings-rates'>
+                                <div className='savings-rate'>
+                                  <span className='rate-label'>Per week</span>
+                                  <span className='rate-value'>{formatMoney(date.dailyCost * 7)}</span>
+                                  <div className='rate-bg' style={{ width: `${weekPercentageProgress()}%` }}></div>
+                                </div>
+                                <div className='savings-rate'>
+                                  <span className='rate-label'>Per Month</span>
+                                  <span className='rate-value'>{formatMoney(date.dailyCost * 30.44)}</span>
+                                  <div className='rate-bg' style={{ width: `${monthPercentageProgress()}%` }}></div>
+                                </div>
+
+                                <div className='savings-rate'>
+                                  <span className='rate-label'>Per Year</span>
+                                  <span className='rate-value'>{formatMoney(date.dailyCost * 365.25)}</span>
+                                  <div className='rate-bg' style={{ width: `${yearPercentageProgress()}%` }}></div>
+                                </div>
+                              </div>
+                            </div>
+                            {/* )} */}
                           </div>
                         </div>
                       ))}

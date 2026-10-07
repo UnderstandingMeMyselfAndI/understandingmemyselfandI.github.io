@@ -91,6 +91,9 @@ div.AccordionRoot {
               width: fit-content;
               color: #fff;
               margin-right: 2px;
+              text-wrap-style: pretty;
+              text-align: center;
+              word-break: keep-all;
             }
           }
 

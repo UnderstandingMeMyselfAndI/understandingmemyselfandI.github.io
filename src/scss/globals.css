@@ -155,6 +155,7 @@
   --accent: oklch(0.371 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
+  --muted-two: rgba(200, 200, 200, 0.6);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
@@ -189,6 +190,7 @@
   --boxShadowOrangeValue: 0px 0px 6px rgba(255, 187, 0, 0.781);
   --boxShadowOrange: 0px 0px 6px rgba(255, 187, 0, 0.781);
 }
+
 .light {
   --blueBackground: oklch(0.985 0 0);
   --mainBackground: oklch(0.985 0 0);
@@ -234,6 +236,7 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 }
+
 .dark {
   --mainBackground: oklch(0.145 0 0);
   --background: oklch(0.145 0 0);
@@ -276,6 +279,7 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.439 0 0);
 }
+
 .system {
   --blueBackground: #1b869e;
   --mainBackground: linear-gradient(140deg, rgba(27, 134, 158, 1) 0%, rgb(157, 30, 30) 81%);
@@ -317,6 +321,7 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.439 0 0);
 }
+
 /* ========================================= */
 /* HIGH CONTRAST THEME (WCAG AAA)            */
 /* Yellow/White text on Pure Black Background*/
@@ -329,14 +334,17 @@
   --card-outline-dark: 2px solid #ffffff;
 
   /* --- LAYOUT & SPACING (Inherited, but strictly defined if needed) --- */
-  --border-radius: 4px; /* Reduced radius for sharper corners */
+  --border-radius: 4px;
+  /* Reduced radius for sharper corners */
   --border-radius-lrg: 8px;
 
   /* --- CORE BACKGROUNDS --- */
   --blueBackground: #000000;
-  --mainBackground: #000000; /* Replaces Gradient */
+  --mainBackground: #000000;
+  /* Replaces Gradient */
   --background: #000000;
-  --foreground: #ffff00; /* Primary Text: Yellow */
+  --foreground: #ffff00;
+  /* Primary Text: Yellow */
 
   /* --- GREY TRANSPARENCIES (Mapped to Solid Black/Dark Grey) --- */
   /* We remove transparency to avoid contrast issues with overlapping elements */
@@ -358,13 +366,15 @@
 
   /* --- YELLOW SCALE (Mapped to Solid Yellow/Gold) --- */
   --yellow: #ffff00;
-  --yellow2: #ffd700; /* Gold */
+  --yellow2: #ffd700;
+  /* Gold */
   /* Transparencies removed: mapped to solid for borders/text or black for bg */
   --yellow90Trans: #ffff00;
   --yellow80Trans: #ffff00;
   --yellow70Trans: #ffff00;
   --yellow60Trans: #ffff00;
-  --yellow50Trans: #000000; /* Lower opacity backgrounds hide in HC mode */
+  --yellow50Trans: #000000;
+  /* Lower opacity backgrounds hide in HC mode */
   --yellow40Trans: #000000;
   --yellow30Trans: #000000;
   --yellow20Trans: #000000;
@@ -383,7 +393,8 @@
   --orange10Trans: #000000;
 
   /* --- LIGHT BLUE SCALE (Mapped to Cyan/White) --- */
-  --lightBlue: #00ffff; /* Cyan stands out against black */
+  --lightBlue: #00ffff;
+  /* Cyan stands out against black */
   --lightBlue2: #ffffff;
   --lightBlue90Trans: #00ffff;
   --lightBlue80Trans: #00ffff;
@@ -396,7 +407,8 @@
   --lightBlue10Trans: #000000;
 
   /* --- BLUE SCALE (Mapped to Bright Blue/Cyan) --- */
-  --blue: #00bfff; /* Deep Sky Blue */
+  --blue: #00bfff;
+  /* Deep Sky Blue */
   --blue90Trans: #00bfff;
   --blue80Trans: #00bfff;
   --blue70Trans: #00bfff;
@@ -444,7 +456,8 @@
 
   /* --- STATUS COLORS (Pure, Maximum Contrast) --- */
   --red: #ff0000;
-  --green: #00ff00; /* Lime Green */
+  --green: #00ff00;
+  /* Lime Green */
 
   /* --- DARK GREYS (Mapped to Black) --- */
   --greyDark: #000000;
@@ -484,11 +497,16 @@
   --ring: #ffff00;
 
   /* --- CHARTS (High Distinction) --- */
-  --chart-1: #ffff00; /* Yellow */
-  --chart-2: #00ffff; /* Cyan */
-  --chart-3: #ff00ff; /* Magenta */
-  --chart-4: #00ff00; /* Lime */
-  --chart-5: #ffffff; /* White */
+  --chart-1: #ffff00;
+  /* Yellow */
+  --chart-2: #00ffff;
+  /* Cyan */
+  --chart-3: #ff00ff;
+  /* Magenta */
+  --chart-4: #00ff00;
+  /* Lime */
+  --chart-5: #ffffff;
+  /* White */
 
   /* --- SIDEBAR --- */
   --sidebar: #000000;

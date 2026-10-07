@@ -234,6 +234,82 @@ export const isArrayOfStrings = (value) => {
 export const getRand = (max) => {
   return Math.floor(Math.random() * (max - 1 + 1)) + 1
 }
+/**
+ * Number of whole days elapsed between the given date and now.
+ *
+ * @param {Date|string} startDate   - Date object or ISO‑8601 string of the past date.
+ * @returns {number}                - Whole days since that date.
+ */
+export const daysSince = (startDate) => {
+  const start = new Date(startDate).getTime() // milliseconds
+  const now = new Date().getTime() // current time in ms
+  const diffMs = now - start // millisecond delta
+
+  // 24 h × 60 m × 60 s × 1000 ms
+  const msPerDay = 24 * 60 * 60 * 1000
+
+  return Math.floor(diffMs / msPerDay) // integer days
+}
+/**
+ * Percent of the week that has elapsed up to today.
+ *
+ * @returns {number}  Percentage of the week elapsed (0–100).
+ */
+export const weekPercentageProgress = () => {
+  const today = new Date() // current date/time
+
+  /*  getDay() → 0 (Sunday) … 6 (Saturday)
+     Map to 1 (Monday) … 7 (Sunday)   */
+  const dayOfWeek = ((today.getDay() + 6) % 7) + 1
+
+  // (day / 7) * 100  → integer percentage
+  return Math.floor((dayOfWeek / 7) * 100)
+}
+
+Date.prototype.isLeapYear = function () {
+  const y = this.getFullYear()
+  return (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0
+}
+/**
+ * Percentage of the month that has passed up to today.
+ *
+ * @returns {number}  0‑100 integer percentage
+ */
+export const monthPercentageProgress = () => {
+  const now = new Date()
+
+  // getMonth() → 0 (Jan) … 11 (Dec)
+  const monthIndex = now.getMonth() // 0‑based month
+
+  // getDate() → 1‑based day of month
+  const day = now.getDate() // 1‑based
+
+  // total days in the current month
+  const totalInMonth = new Date(now.getFullYear(), monthIndex + 1, 0).getDate() // day 0 of next month => last day of this month
+
+  return Math.floor((day / totalInMonth) * 100)
+}
+
+/**
+ * Percentage of the year that has passed up to today.
+ *
+ * @returns {number}  0‑100 integer percentage
+ */
+export const yearPercentageProgress = () => {
+  const now = new Date()
+
+  // day of year (1‑based)
+  const dayOfYear = now.getMonth() * 31 + now.getDate() // rough; better use
+  // Use a helper to count days from Jan 1
+  const startOfYear = new Date(now.getFullYear(), 0, 1)
+  const diffMs = now.getTime() - startOfYear.getTime()
+  const msPerDay = 24 * 60 * 60 * 1000
+  const day = Math.floor(diffMs / msPerDay) + 1 // 1‑based
+
+  const totalInYear = now.isLeapYear() ? 366 : 365
+
+  return Math.floor((day / totalInYear) * 100)
+}
 
 export default {
   clamp,
@@ -260,4 +336,8 @@ export default {
   runPersistentStorageTests,
   applyAccessibilitySettings,
   getRand,
+  daysSince,
+  weekPercentageProgress,
+  monthPercentageProgress,
+  yearPercentageProgress,
 }
