@@ -22,6 +22,12 @@ const transformJsxInJs = () => ({
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), transformJsxInJs()],
+  build: {
+    // <‑‑‑ change this line
+    outDir: 'docs', // <-- your desired build directory
+    // assetsDir: 'assets', // optional – sub‑folder for static assets
+    sourcemap: false, // keep build size small
+  },
   resolve: {
     alias: {
       // Root level
