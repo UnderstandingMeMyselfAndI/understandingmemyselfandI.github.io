@@ -370,10 +370,16 @@ const useAppStore = create(
       },
       // ----------------------------------------
       // Show Acronym Card
+      sqeo: true,
+      setSqeo: (v) => {
+        set(() => ({ showQuickExitOnboarding: v }))
+        set(() => ({ sqeo: v }))
+      },
       showQuickExitOnboarding: true,
       setShowQuickExitOnboarding: (v) => {
         // console.trace(`setShowAccCard called with value: ${show}`);
         set(() => ({ showQuickExitOnboarding: v }))
+        set(() => ({ sqeo: v }))
       },
       // ----------------------------------------
       // analytics enabled
@@ -439,6 +445,10 @@ const useAppStore = create(
         c: state.c,
         allowCookies: state.allowCookies,
         tpc: state.tpc,
+        sqeo: state.sqeo,
+        showQuickExitOnboarding: state.showQuickExitOnboarding,
+        qeu: state.qeu,
+        quickExitURL: state.quickExitURL,
         allowThirdPartyCookies: state.allowThirdPartyCookies,
         exitButtonPosition: state.exitButtonPosition,
 

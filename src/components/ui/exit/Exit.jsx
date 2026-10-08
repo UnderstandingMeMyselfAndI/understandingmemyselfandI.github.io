@@ -38,32 +38,31 @@ const Exit = () => {
     }
   }
   const exitFullscreen = async () => {
-    console.log('Document.fullscreenElement ', Document.fullscreenElement)
-  if (document.fullscreenElement) {
-    try {
-      await document.exitFullscreen()
-    } catch (e) {
-      console.error(e)
+    if (document.fullscreenElement) {
+      try {
+        await document.exitFullscreen()
+      } catch (e) {
+        console.error(e)
+      }
+    } else if (document.webkitExitFullscreen) {
+      try {
+        await document.webkitExitFullscreen()
+      } catch (e) {
+        console.error(e)
+      }
+    } else if (document.mozCancelFullScreen) {
+      try {
+        await document.mozCancelFullScreen()
+      } catch (e) {
+        console.error(e)
+      }
+    } else if (document.msExitFullscreen) {
+      try {
+        await document.msExitFullscreen()
+      } catch (e) {
+        console.error(e)
+      }
     }
-  } else if (document.webkitExitFullscreen) {
-    try {
-      await document.webkitExitFullscreen()
-    } catch (e) {
-      console.error(e)
-    }
-  } else if (document.mozCancelFullScreen) {
-    try {
-      await document.mozCancelFullScreen()
-    } catch (e) {
-      console.error(e)
-    }
-  } else if (document.msExitFullscreen) {
-    try {
-      await document.msExitFullscreen()
-    } catch (e) {
-      console.error(e)
-    }
-  }
   }
   const doExit = () => {
     const url = 'https://google.com'

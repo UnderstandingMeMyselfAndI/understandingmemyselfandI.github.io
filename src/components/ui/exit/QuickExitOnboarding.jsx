@@ -8,15 +8,15 @@ import useAppStore from '@store/useAppStore'
 import './QuickExitOnboarding.scss'
 
 const QuickExitOnboarding = ({ children, showOnboarding = true }) => {
-  const showQuickExitOnboarding = useAppStore((state) => state.showQuickExitOnboarding)
-  const setShowQuickExitOnboarding = useAppStore((state) => state.setShowQuickExitOnboarding)
+  const showQuickExitOnboarding = useAppStore((s) => s.showQuickExitOnboarding)
+  const setShowQuickExitOnboarding = useAppStore((s) => s.setShowQuickExitOnboarding)
   const [show, setShow] = useState(false)
   const [timeouts, setTimeouts] = useState([])
-
+  console.log('showQuickExitOnboarding ', showQuickExitOnboarding)
   const stopOnboarding = () => {
     console.log('stopOnboarding')
-    setShow(false)
     setShowQuickExitOnboarding(false)
+    setShow(false)
   }
   useEffect(() => {
     if (!showQuickExitOnboarding) stopOnboarding()
