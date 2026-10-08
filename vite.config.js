@@ -33,7 +33,7 @@ export default defineConfig({
   define: {
     __BUILD_METADATA__: JSON.stringify(metadata),
     __BUILD_VERSION__: JSON.stringify(buildVersion),
-  },  
+  },
   server: {
     sourcemap: false,
     host: true, // Listen on all addresses, including LAN
@@ -70,6 +70,7 @@ export default defineConfig({
         type: 'module',
       },
       includeAssets: [
+        'error.html',
         'favicon.ico',
         'apple-touch-icon.png',
         'masked-icon.svg',
