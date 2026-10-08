@@ -58,7 +58,7 @@ export const timelineData = {
     {
       id: 'days-4-7',
       daysSpeed: 1,
-      timePeriod: 'Days 4-7',
+      timePeriod: 'Days 4 to 7',
       numDays: 4,
       phaseTitle: 'Acute Symptoms Subside',
       offset: 600,
@@ -96,7 +96,7 @@ export const timelineData = {
     {
       id: '2-4-weeks',
       numDays: 14,
-      timePeriod: 'Weeks 2-4',
+      timePeriod: 'Weeks 2 to 4',
       phaseTitle: 'Post-Acute Withdrawal Begins',
       offset: 1200,
       symptoms: [
@@ -114,7 +114,7 @@ export const timelineData = {
     {
       id: '1-3-months',
       numDays: 76,
-      timePeriod: 'Months 1-3',
+      timePeriod: 'Months 1 to 3',
       phaseTitle: 'Neurological Rebalancing',
       offset: 1500,
       symptoms: [
@@ -136,7 +136,7 @@ export const timelineData = {
     {
       id: '3-6-months',
       numDays: 110,
-      timePeriod: 'Months 3-6',
+      timePeriod: 'Months 3 to 6',
       phaseTitle: 'Consolidation Phase',
       offset: 1800,
       symptoms: [
@@ -155,7 +155,7 @@ export const timelineData = {
     {
       id: '6-12-months',
       numDays: 255,
-      timePeriod: 'Months 6-12',
+      timePeriod: 'Months 6 to 12',
       phaseTitle: 'Sustained Recovery',
       offset: 2100,
       symptoms: [
@@ -185,18 +185,15 @@ export const timelineData = {
     },
     {
       term: 'Neuroplasticity',
-      definition:
-        "The brain's ability to reorganize neural pathways, allowing healing and new habit formation.",
+      definition: "The brain's ability to reorganize neural pathways, allowing healing and new habit formation.",
     },
     {
       term: 'REM Rebound',
-      definition:
-        'Increased REM sleep after periods of deprivation, often causing vivid dreams in early recovery.',
+      definition: 'Increased REM sleep after periods of deprivation, often causing vivid dreams in early recovery.',
     },
     {
       term: 'Anhedonia',
-      definition:
-        'Temporary inability to feel pleasure, common in early recovery as dopamine systems recalibrate.',
+      definition: 'Temporary inability to feel pleasure, common in early recovery as dopamine systems recalibrate.',
     },
   ],
 

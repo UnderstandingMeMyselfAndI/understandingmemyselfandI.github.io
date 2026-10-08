@@ -47,7 +47,6 @@ export default function Backdrop({ initialImageId = 0, initialDelay = 0, interva
         setNextImage(next)
 
         setTimeout(() => {
-          console.log('next image')
           setCurrentImage(next)
           setNextImage(null)
         }, FADE_DURATION)

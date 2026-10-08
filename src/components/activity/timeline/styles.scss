@@ -340,13 +340,13 @@ $minimap-w: 50px;
 
 .huge-year {
   /* Clamp scales linearly: min 4rem, ideal 15vw, max 12rem */
-  font-size: clamp(5.25rem, 5vw, 8rem);
-  line-height: 0.9;
+  font-size: clamp(5.75rem, 15.5vw, 11rem);
+
   margin-left: 1rem;
   color: var(--orange70Trans);
   min-width: 100%;
-  letter-spacing: -0.9;
-  font-weight: 00;
+  letter-spacing: -6px;
+  font-weight: 900;
   font-variation-settings: 'wght' 900;
 }
 
@@ -396,6 +396,7 @@ $minimap-w: 50px;
     color: $accent;
     margin-top: 0;
     font-size: 1.5rem;
+    text-wrap-style: pretty;
   }
 
   p {
@@ -403,6 +404,7 @@ $minimap-w: 50px;
     line-height: 1.6;
     font-size: 1.1rem;
     margin: 0;
+    text-wrap-style: balance;
   }
 
   &:before {

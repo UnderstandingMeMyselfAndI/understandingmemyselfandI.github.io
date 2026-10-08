@@ -1,5 +1,5 @@
-import data from '@data/tools.js'
-import { activities } from '@data/config.js'
+import data from './src/data/tools.js'
+import { activities } from './src/data/config.js'
 // import { sanitizeStringForUrl } from '@js/utils.js'
 export function getDynamicRoutes() {
   const routes = []
