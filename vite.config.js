@@ -39,7 +39,7 @@ export default defineConfig({
     host: true, // Listen on all addresses, including LAN
   },
   build: {
-    outDir: 'docs',
+    outDir: 'dist',
     // assetsDir: 'assets', // optional sub‑folder for static assets
     sourcemap: false,
   },
@@ -52,7 +52,7 @@ export default defineConfig({
       open: false,
     }),
     Sitemap({
-      outDir: 'docs',
+      outDir: 'dist',
       hostname: 'https://app.ummi.now',
       dynamicRoutes: getDynamicRoutes(),
       changefreq: 'weekly',
