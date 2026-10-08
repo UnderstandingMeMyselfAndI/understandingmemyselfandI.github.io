@@ -16,6 +16,34 @@ const transformJsxInJs = () => ({
     return await transformWithOxc(code, id, {
       lang: 'jsx',
     })
+import path from 'path'
+import fs from 'fs'
+
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { analyzer } from 'vite-bundle-analyzer'
+import Sitemap from 'vite-plugin-sitemap'
+import { VitePWA } from 'vite-plugin-pwa'
+import { getDynamicRoutes, getShortcuts } from './getDynamicRoutes.js'
+import browserslist from 'browserslist'
+import { browserslistToTargets } from 'lightningcss'
+import { nodePolyfills } from 'vite-plugin-node-polyfills'
+//version meta data
+const metadata = JSON.parse(fs.readFileSync('./src/metadata.json', 'utf-8'))
+const buildVersion = `${metadata.buildMajor}.${metadata.buildMinor}.${metadata.buildRevision}${metadata.buildTag ? '-' + metadata.buildTag : ''}`
+
+export default defineConfig({
+  root: './',
+  publicDir: 'public',
+  define: {
+    __BUILD_METADATA__: JSON.stringify(metadata),
+    __BUILD_VERSION__: JSON.stringify(buildVersion),
+  },
+  css: {
+    transformer: 'lightningcss', // Use LightningCSS for transformations
+    lightningcss: {
+      targets: browserslistToTargets(browserslist('>= 0.25%')), // Browser compatibility
+    },
   },
 })
 

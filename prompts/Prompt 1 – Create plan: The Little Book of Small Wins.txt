@@ -1,0 +1,126 @@
+You are a senior software architect and product engineer specializing in privacy-first Progressive Web Apps (PWAs), React + Vite codebases, offline-first architecture, and recovery/mental-health applications. Your task is to produce a clear, actionable, phased development plan for adding **one** new feature to an existing production PWA: **The Little Book of Small Wins**.
+
+============================================================
+1. APPLICATION CONTEXT (do not deviate from these constraints)
+============================================================
+
+App name / URL: UMMI (https://app.ummi.now)
+Purpose: Companion PWA for people in addiction recovery. Extremely privacy-focused – no remote data storage by default. All user data stays on-device.
+
+Tech stack & conventions (MUST be followed):
+- Frontend: React (JSX) + Vite
+- Styling: Sass (.scss). Every component has a matching .scss file with the same name, lowercase first letter (e.g. SmallWins.jsx → smallWins.scss)
+- State management: Zustand
+- Local storage: IndexedDB only (no remote writes unless explicitly consented)
+- Hosting: Cloudflare Workers with GitHub Actions CI/CD
+- Repository: GitHub
+- Existing navigation: controlled by Zustand store + NavBar.jsx
+- New features are implemented as full-screen “Activities”
+  - Location: src/components/activity/<activity-name>/
+  - Must start from the template files in src/components/activity/template/Template.jsx
+  - Rename the template to match the practical function of the activity
+  - All UI code goes between the <section> tags of the template
+  - Register the new activity in the main navigation via the Zustand store / NavBar
+
+Non-negotiable quality requirements:
+- Code must be extensible, reusable where possible, and performant on entry-level mobile handsets through to flagship devices
+- UX/UI must be simple and intuitive. Remove superfluous steps. Prefer sensible defaults over asking the user. Prefer yes/no decisions when a choice is unavoidable.
+- Re-use existing UI elements/assets wherever possible; invent new ones only when strictly necessary
+- All user-facing strings live in flat .js files under src/data/ named <FeatureName>Data.js (or <FeatureName>DataN.js if collision). Objects + arrays only.
+- Data may later move to a headless CMS or remote servers. Design storage layer so that remote backends can be added later without rewriting feature logic. If remote is ever used, the user MUST explicitly confirm; record timestamp, device details, IP, and a descriptive title of the consent.
+- Always save user data to local storage as it changes. Use the least storage possible; compression is allowed only if it has no noticeable impact on read/write.
+- The app must track total storage used and remaining space. Warn the user when space is low and offer concrete management recommendations.
+- Connectivity awareness: if a feature needs the network, monitor connection quality. Surface a simple UI message (max update frequency = 5 s) when connectivity is lost, restored, slow, or problematic.
+- Security (applies to every feature that stores personal data):
+  - All data encrypted at rest and in flight (when remote is used)
+  - GDPR-compliant
+  - Latest encryption standards for personal data
+  - 6-digit passcode OR strong password required to access/view personal data
+  - Passcode/password creation, login, and change flows must be simple and intuitive
+  - User must be warned that forgotten credentials = permanently lost data (because everything is local)
+  - If the user has not set a passcode/password and tries to enter personal data → prompt them to create one
+  - Reminder to set a passcode/password appears at most once per day
+  - Discreet UI indicator when data is currently unsecured
+  - User can enable security at any time
+  - Implement a “dry-run” / test mode for the passcode + encryption system so the developer can verify lock-out behaviour without losing real data
+- Every new feature that stores personal data MUST implement the passcode/password gate.
+
+============================================================
+2. FEATURE TO PLAN – The Little Book of Small Wins
+============================================================
+
+Source content (verbatim from product brief):
+
+“Celebrating small wins in addiction recovery means acknowledging tiny, daily victories that retrain your brain's reward system and create positive momentum for long-term sobriety.
+Recovery is not just one massive choice. It is built on thousands of small, unglamorous decisions made every single day.
+Many of us became experts at self-criticism and inflicting ourselves with harmful thoughts but not so good at accepting praise and taking complements.
+The little book of small wins allows us to record the little, but effective, small wins that we achieve, and often forget on our journey.
+Make a note of your small wins today and help your future self, when you need a reminder of how far you have come.
+
+Why Small Wins Matter
+• Rebuilds the Brain: Addiction changes how your brain handles dopamine. Acknowledging a small success releases natural dopamine, helping your brain heal and learn to enjoy healthy choices again.
+• Stops All-or-Nothing Thinking: People often feel like they are failing if they are not perfect. Small wins remind you that progress happens in steps, not giant leaps.
+• Creates Confidence: A track record of tiny successes gives you proof that you can change. This builds the self-esteem you need to tackle bigger goals later.
+
+Examples of Small Wins
+• Waking up clear-headed without regret or physical pain.
+• Resisting a single craving, even for just a few minutes.
+• Attending a support meeting or calling a counselor.
+• Doing a basic daily task like making your bed or eating a healthy meal.
+• Expressing your true feelings honestly instead of hiding them.
+
+How to Practice Small Wins
+• Notice the moment: Pause and tell yourself that what you just did matters.
+• Write it down: Keep a simple journal to track your daily victories.
+• Share your success: Tell a trusted friend, family member, or peer group about your progress.
+• Be kind to yourself: Read more about how celebrating small wins strengthens your recovery to build self-compassion.”
+
+Additional product requirements:
+- User can record a small successful event.
+- All data inputs must have title text above the input / textarea / date-picker field.
+- “Who with” field: people’s names are stored separately so they can be re-used.
+- As the user types in a “who with” input, previously saved names that match the typed characters must be suggested (type-ahead / autocomplete).
+
+============================================================
+3. YOUR DELIVERABLE
+============================================================
+
+Produce a complete development plan that a senior React engineer can execute. Structure the plan as follows:
+
+1. High-level architecture decisions
+   - How this activity will integrate with existing shared systems (security gate, storage layer, navigation, etc.)
+   - IndexedDB schema design for this feature (object stores, indexes, versioning strategy)
+   - Encryption & passcode integration points
+   - Storage-quota monitoring strategy
+   - Connectivity monitoring strategy (if this feature ever needs network)
+
+2. Feature breakdown
+   - Exact file/folder structure that will be created
+   - Data model (objects/arrays that live in the *Data.js file and in IndexedDB)
+   - Screen / component hierarchy
+   - User flows (happy path + edge cases: no passcode, low storage, offline, forgotten passcode warning, type-ahead, etc.)
+   - Reusable components that should be extracted (especially the type-ahead for names)
+   - Strings that will live in the corresponding *Data.js file
+
+3. Security & privacy implementation plan
+   - Passcode / password creation, login, change, dry-run flows
+   - When and how the “please set a passcode” reminder appears
+   - How unsecured data is indicated in the UI
+   - Encryption key derivation and storage approach (compatible with pure client-side IndexedDB)
+
+4. Implementation phases with concrete tasks
+   Phase 0 – Foundations needed for this feature (shared security, storage utilities, type-ahead component, storage-quota watcher if not already present)
+   Phase 1 – Core MVP of The Little Book of Small Wins
+   Phase 2 – Polish, accessibility, performance on low-end devices, dry-run testing harness, documentation
+
+5. Testing strategy
+   - Unit / integration tests that must be written
+   - Manual test matrix (especially security, offline, low-storage, type-ahead, passcode lock-out)
+
+6. Open questions / risks
+   - Any ambiguities that need product clarification before coding starts
+   - Technical risks (IndexedDB size limits on older Android WebViews, encryption performance on entry-level phones, etc.) and mitigations
+
+Be concrete. Prefer specific file paths, function names, Zustand slice shapes, and IndexedDB object-store names over vague statements. Assume the existing codebase already has a working Template.jsx, NavBar.jsx, and Zustand store – plan only the delta needed for this feature.
+
+Do not invent new product requirements. Stay strictly inside the constraints and feature description given above. If something is underspecified, list it under “Open questions” rather than guessing.

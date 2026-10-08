@@ -25,11 +25,11 @@ const Introduction = () => {
   const [open, setOpen] = useState(true)
   const activity = useAppStore((s) => s.activity)
   const isModal = useAppStore((state) => state.isModal)
-  const setIsModal = useAppStore((s) => s.setIsModal)
+  // const setIsModal = useAppStore((s) => s.setIsModal)
   // TODO: #46 #45 These content thresholds need revisiting
   const curiousThreshold = 16
   const newThreshold = 60
-  const userThreshold = 120
+  // const userThreshold = 120
 
   const sectionRefs = useRef([])
   useEffect(() => {
