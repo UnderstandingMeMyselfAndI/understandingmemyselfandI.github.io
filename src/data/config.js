@@ -1,7 +1,8 @@
-import HandymanIcon from '@mui/icons-material/Handyman'
+// import HandymanIcon from '@mui/icons-material/Handyman'
 // import { isTouchDevice } from '../js/utils.js'
-const isTouchDevice = () => { return true;} 
-
+// export const isTouchDevice = () => {
+//   return true
+// }
 
 const cnf = {
   appName: 'Ummi',
@@ -42,20 +43,20 @@ export const baseActivities = [
     url: '',
     title: 'Home',
     menu: false,
-    shortcuts:false,
+    shortcuts: false,
     modal: false,
     conditions: [],
-    settings:null,
+    settings: null,
   },
   {
     id: 0,
     url: 'introduction',
     title: 'Introduction',
     menu: false,
-    shortcuts:false,
+    shortcuts: false,
     modal: false,
     conditions: [],
-    settings:null,
+    settings: null,
   },
   {
     id: 1,
@@ -63,7 +64,7 @@ export const baseActivities = [
     title: 'Tools',
     menuPosition: 1,
     menu: true,
-    shortcuts:true,
+    shortcuts: true,
     modal: true,
     classes: '',
     anchorID: '',
@@ -75,7 +76,7 @@ export const baseActivities = [
     title: 'Days Counter',
     menuPosition: 2,
     menu: true,
-    shortcuts:true,
+    shortcuts: true,
     modal: true,
     classes: 'new',
     anchorID: '',
@@ -87,7 +88,7 @@ export const baseActivities = [
     title: 'Motivation',
     menuPosition: 8,
     menu: false,
-    shortcuts:false,
+    shortcuts: false,
     modal: false,
     classes: '',
     anchorID: '',
@@ -99,7 +100,7 @@ export const baseActivities = [
     title: 'Inspiration',
     menuPosition: 6,
     menu: false,
-    shortcuts:false,
+    shortcuts: false,
     modal: false,
     classes: '',
     anchorID: '',
@@ -111,7 +112,7 @@ export const baseActivities = [
     title: 'Units Calculator',
     menuPosition: 3,
     menu: true,
-    shortcuts:true,
+    shortcuts: true,
     modal: true,
     classes: 'new',
     anchorID: '',
@@ -123,7 +124,7 @@ export const baseActivities = [
     title: 'Wallpapers',
     menuPosition: 4,
     menu: true,
-    shortcuts:false,
+    shortcuts: false,
     modal: true,
     classes: '',
     anchorID: '',
@@ -135,7 +136,7 @@ export const baseActivities = [
     title: 'About',
     menuPosition: 7,
     menu: false,
-    shortcuts:false,
+    shortcuts: false,
     modal: false,
     classes: '',
     anchorID: '',
@@ -147,7 +148,7 @@ export const baseActivities = [
     title: 'Tour',
     menuPosition: 6,
     menu: false,
-    shortcuts:false,
+    shortcuts: false,
     modal: false,
     classes: '',
     anchorID: '',
@@ -159,7 +160,7 @@ export const baseActivities = [
     title: 'Search',
     menuPosition: 10,
     menu: false,
-    shortcuts:false,
+    shortcuts: false,
     modal: false,
     classes: '',
     anchorID: '',
@@ -171,7 +172,7 @@ export const baseActivities = [
     title: 'Privacy Policy',
     menuPosition: 16,
     menu: false,
-    shortcuts:false,
+    shortcuts: false,
     modal: true,
     classes: '',
     anchorID: '',
@@ -183,7 +184,7 @@ export const baseActivities = [
     title: 'CCPA Privacy Policy',
     menuPosition: 16,
     menu: false,
-    shortcuts:false,
+    shortcuts: false,
     modal: true,
     classes: '',
     anchorID: '',
@@ -195,7 +196,7 @@ export const baseActivities = [
     title: 'Settings',
     menuPosition: 18,
     menu: true,
-    shortcuts:true,
+    shortcuts: true,
     modal: true,
     classes: '',
     anchorID: '',
@@ -207,7 +208,7 @@ export const baseActivities = [
     title: 'Lingo & Phrases',
     menuPosition: 2,
     menu: true,
-    shortcuts:true,
+    shortcuts: true,
     modal: false,
     classes: 'new',
     anchorID: 'lingo',
@@ -219,7 +220,7 @@ export const baseActivities = [
     title: 'Share',
     menuPosition: 7,
     menu: true,
-    shortcuts:false,
+    shortcuts: false,
     modal: false,
     classes: '',
     anchorID: 'share',
@@ -231,7 +232,7 @@ export const baseActivities = [
     title: 'Newsletter',
     menuPosition: 8,
     menu: false,
-    shortcuts:false,
+    shortcuts: false,
     modal: false,
     classes: '',
     anchorID: 'newsletter',
@@ -243,7 +244,7 @@ export const baseActivities = [
     title: 'Install Ummi',
     menuPosition: 7,
     menu: true,
-    shortcuts:false,
+    shortcuts: false,
     modal: false,
     classes: '',
     anchorID: 'install',
@@ -259,7 +260,7 @@ export const baseActivities = [
     title: 'Acronym Exlpained',
     menuPosition: 20,
     menu: false,
-    shortcuts:false,
+    shortcuts: false,
     modal: true,
     classes: '',
     anchorID: '',
@@ -272,7 +273,7 @@ export const baseActivities = [
     title: 'Footer',
     menuPosition: 20,
     menu: false,
-    shortcuts:false,
+    shortcuts: false,
     modal: false,
     classes: '',
     anchorID: 'footer',
@@ -285,7 +286,7 @@ export const baseActivities = [
     title: 'Header',
     menuPosition: 20,
     menu: false,
-    shortcuts:false,
+    shortcuts: false,
     modal: false,
     classes: '',
     anchorID: 'header',
@@ -298,7 +299,7 @@ export const baseActivities = [
     title: 'Your Privacy',
     menuPosition: 20,
     menu: false,
-    shortcuts:false,
+    shortcuts: false,
     modal: false,
     classes: '',
     anchorID: 'your-privacy-cta',
@@ -310,7 +311,7 @@ export const baseActivities = [
     title: 'Recovery Timeline',
     menuPosition: 3,
     menu: true,
-    shortcuts:true,
+    shortcuts: true,
     modal: true,
     classes: 'new',
     anchorID: '',
@@ -322,7 +323,7 @@ export const baseActivities = [
     title: 'Wheel of Life',
     menuPosition: 3,
     menu: true,
-    shortcuts:true,
+    shortcuts: true,
     modal: true,
     classes: 'new',
     anchorID: '',
@@ -405,7 +406,7 @@ const strings = {
         },
         {
           title: 'FEATURES:',
-          icon: HandymanIcon,
+          icon: 'HandymanIcon',
           content: [
             '<b class="yellow">Explanations</b> of <b><u class="yellow-ul">Addiction Recovery</u> <u>tools </u></b>',
             '<u class="yellow-ul yellow"><b>Scenarios</b></u> describing <u>when tools <b>could be useful</b></u>',
@@ -481,9 +482,8 @@ const strings = {
       slug: '#recovery-tools',
       url: 'recovery-tools',
       title: 'The Tools',
-      introduction:
-        (isTouchDevice() ? 'Tap' : 'Click') +
-        ' on a tool to learn more about it',
+      // introduction: (isTouchDevice() ? 'Tap' : 'Click') + ' on a tool to learn more about it',
+      introduction: 'Tap on a tool to learn more about it',
       description: [
         'These tools <u class="yellow-ul"><b>might not </b></u>work for<u><b class="yellow"> everbody.</b></u>',
         'They <u>could work</u> for <b><u class="yellow">one person</u></b> and <u class="yellow-ul">not the next</u>.',
@@ -541,9 +541,7 @@ const strings = {
       content: [],
       cta: {
         title: 'Units Calculator',
-        content: [
-          'Calculate the Alcoholic Units for standard measures and custom drink sizes and ABV.',
-        ],
+        content: ['Calculate the Alcoholic Units for standard measures and custom drink sizes and ABV.'],
         btn: {
           label: {
             unused: 'Calculate Units',
@@ -563,9 +561,9 @@ const strings = {
         title: 'The BIG Recovery Quiz',
         content: [
           'How much do you know about the recovery process and tools?. ',
-          'Nothing? All of it? Either way, it\'s a great way to test your knowledge and learn something new.',
-          'With three difficulty levels to choose from, there\'s something for everyone and nobody noting down scores.',
-          'Unfortunately, there\'s no losers in this quiz, as only winners use tools like Ummi for their recovery!',
+          "Nothing? All of it? Either way, it's a great way to test your knowledge and learn something new.",
+          "With three difficulty levels to choose from, there's something for everyone and nobody noting down scores.",
+          "Unfortunately, there's no losers in this quiz, as only winners use tools like Ummi for their recovery!",
         ],
         btn: {
           label: {
@@ -594,9 +592,7 @@ const strings = {
         },
         postInstall: {
           title: 'Thanks!',
-          content: [
-            "Thanks for installing Ummi. It's now accessible on your device.",
-          ],
+          content: ["Thanks for installing Ummi. It's now accessible on your device."],
         },
       },
     },
@@ -700,9 +696,7 @@ const strings = {
 
       cta: {
         title: 'Recovery Timeline',
-        content: [
-          'The Detox and Recovery Timeline is a support tool to help you understand the recovery journey.',
-        ],
+        content: ['The Detox and Recovery Timeline is a support tool to help you understand the recovery journey.'],
         btn: {
           label: {
             unused: 'Recovery Timeline ',

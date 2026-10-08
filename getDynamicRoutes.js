@@ -13,7 +13,6 @@ export function getDynamicRoutes() {
         route = route.slice(0, -1)
       }
       routes.push(route)
-      // console.log('Adding route: ' + '/recovery-tool/' + sanitizeStringForUrl(route))
     }
   })
   activities.forEach((activity) => {

@@ -1,5 +1,6 @@
-@use '@scss/variables';
-@use '@scss/_fonts';
+@use '@scss/_variables';
+@use './scss/_fonts';
+@import '@scss/globals.css';
 
 html {
   width: 100%;

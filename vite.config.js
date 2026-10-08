@@ -1,3 +1,5 @@
+import path from 'path'
+import fs from 'fs'
 import { defineConfig, transformWithOxc } from 'vite'
 import react from '@vitejs/plugin-react'
 import { analyzer } from 'vite-bundle-analyzer'
@@ -7,8 +9,7 @@ import { getDynamicRoutes, getShortcuts } from './getDynamicRoutes.js'
 // import { browserslistToTargets } from 'lightningcss'
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
 import Sitemap from 'vite-plugin-sitemap'
-import path from 'path'
-import fs from 'fs'
+
 const transformJsxInJs = () => ({
   name: 'transform-jsx-in-js',
   enforce: 'pre',
@@ -22,16 +23,20 @@ const transformJsxInJs = () => ({
     })
   },
 })
+//version meta data
 const metadata = JSON.parse(fs.readFileSync('./src/metadata.json', 'utf-8'))
 const buildVersion = `${metadata.buildMajor}.${metadata.buildMinor}.${metadata.buildRevision}${metadata.buildTag ? '-' + metadata.buildTag : ''}`
 
-// https://vite.dev/config/
 export default defineConfig({
   root: './',
   publicDir: 'public',
   define: {
     __BUILD_METADATA__: JSON.stringify(metadata),
     __BUILD_VERSION__: JSON.stringify(buildVersion),
+  },  
+  server: {
+    sourcemap: false,
+    host: true, // Listen on all addresses, including LAN
   },
   build: {
     outDir: 'docs',
@@ -270,26 +275,35 @@ export default defineConfig({
 
   resolve: {
     alias: {
-      // Root level
-      '@/': path.resolve('./'),
-      '@src': path.resolve('./src'),
-      '@public': path.resolve('./public'),
-      '@data': path.resolve('./src/data'),
-      '@css': path.resolve('./src/css'),
-      '@scss': path.resolve('./src/scss'),
-      '@js': path.resolve('./src/js'),
-      '@store': path.resolve('./src/store'),
-      '@assets': path.resolve('./src/assets'),
-      // Components
-      '@qrcodes': path.resolve('./src/qrcodes'),
-      '@components': path.resolve('./src/components'),
-      '@ui': path.resolve('./src/components/ui'),
-      '@activity': path.resolve('./src/components/activity'),
-      '@icons': path.resolve('./src/components/icons'),
-      '@routing': path.resolve('./src/components/routing'),
-      '@buttons': path.resolve('./src/components/ui/buttons'),
-      '@utils': path.resolve('./src/utils'),
-      '@hooks': path.resolve('./src/hooks'),
+      '@': path.resolve('./src/'),
+      '@icons': path.resolve('./src/components/icons/'),
+      '@buttons': path.resolve('./src/components/ui/buttons/'),
+      '@ui': path.resolve('./src/components/ui/'),
+      '@components': path.resolve('./src/components/'),
+      '@activity': path.resolve('./src/components/activity/'),
+      '@public': path.resolve('./public/'),
+      '@data': path.resolve('./src/data/'),
+      '@scss': path.resolve('./src/scss/'),
+      '@store': path.resolve('./src/store/'),
+      '@js': path.resolve('./src/js/'),
+      '@utils': path.resolve('./src/utils/'),
+      '@assets': path.resolve('./src/assets/'),
+      '@src': path.resolve('./src/'),
     },
   },
 })
+export function createSpaFallback(outputDir) {
+  const indexPath = path.join(outputDir, 'index.html')
+  const fallbackPath = path.join(outputDir, '404.html')
+
+  try {
+    if (fs.existsSync(indexPath)) {
+      fs.copyFileSync(indexPath, fallbackPath)
+      console.log('✅ Created 404.html fallback from index.html')
+    } else {
+      console.log('❌ Could not find index.html to create fallback')
+    }
+  } catch (error) {
+    console.log('❌ Failed to create fallback:', error.message)
+  }
+}

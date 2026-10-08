@@ -1,0 +1,997 @@
+Journal Feature – Development Plan for UMMI PWA
+1. High-level Architecture Decisions
+Integration with existing systems
+
+New activity lives at src/components/activity/journal/.
+Start from src/components/activity/template/Template.jsx. Rename/copy to Journal.jsx (and matching journal.scss). All UI lives inside the template’s <section> tags.
+Register the activity in the existing Zustand navigation store and NavBar.jsx exactly as other activities are registered (add entry to the activities list / route map).
+Use the shared security gate (passcode/password) that every personal-data feature must implement. Journal never renders its list or editor until the gate is satisfied.
+All reads/writes go through a thin storage abstraction layer (IndexedDB only by default). The abstraction must accept a future remote backend without changing feature logic. Any remote write requires explicit user consent (timestamp + device details + IP + descriptive title) recorded locally.
+Storage-quota monitoring is shared; Journal participates by reporting its own usage and reacting to global “low space” events.
+Connectivity monitoring is not required for core Journal (purely local). If a future export/sync is added, it must use the shared connectivity watcher (max UI update every 5 s).
+
+IndexedDB schema
+
+Database name: reuse the existing app database (or create ummi-db if none exists). Version bump strategy: increment on schema change; use onupgradeneeded to create/migrate stores.
+Object store: journalEntries
+Key path: id (UUID string generated client-side).
+Indexes:
+by-created (createdAt, unique: false)
+by-modified (modifiedAt, unique: false)
+by-title (title, unique: false) – optional for future search
+
+Value shape (encrypted at rest):JavaScript{
+  id: string,
+  title: string,
+  content: string,
+  feelings: string[],          // array of feeling keys
+  createdAt: number,          // Unix ms
+  modifiedAt: number,         // Unix ms
+  // future-proof fields
+  version: 1
+}
+
+Encryption: entire value (or sensitive fields) encrypted with a key derived from the user’s passcode/password before put. Decryption on read. Store never holds plaintext personal data.
+Quota tracking: after every write/delete, call shared updateStorageUsage() that sums sizes of all stores and exposes remaining quota via the Storage Manager API (navigator.storage.estimate()).
+
+Encryption & passcode integration points
+
+Key derivation: PBKDF2 / Argon2id (prefer Web Crypto) with high iteration count + random salt stored in a separate non-encrypted store or in the same DB under a protected key.
+Passcode gate wraps the entire Journal activity. On first personal-data access without credentials → force create flow. Subsequent opens → unlock flow.
+Dry-run mode: developer flag (or query param) that uses a temporary in-memory key and never touches real data.
+
+Storage-quota monitoring
+
+Shared utility already (or to be) present: src/utils/storageQuota.js.
+Journal calls it after every mutation. When remaining space < threshold (e.g. 10 % or absolute MB), surface a non-blocking banner with concrete actions (delete old entries, export then delete, clear other activities).
+
+Connectivity
+
+Not required for MVP. If later added, use shared useConnectivity hook that surfaces a simple toast (max once per 5 s).
+
+2. Feature Breakdown
+Exact file/folder structure
+textsrc/components/activity/journal/
+  Journal.jsx                 // main activity (from Template)
+  journal.scss
+  JournalOverview.jsx
+  journalOverview.scss
+  JournalEditor.jsx
+  journalEditor.scss
+  components/
+    FeelingsBadge.jsx
+    feelingsBadge.scss
+    FeelingsPicker.jsx
+    feelingsPicker.scss
+    JournalEntryCard.jsx
+    journalEntryCard.scss
+src/data/
+  JournalData.js              // all user-facing strings + feeling definitions
+src/stores/
+  journalStore.js             // Zustand slice (or extend existing activity store)
+src/utils/
+  journalStorage.js           // IndexedDB CRUD + encryption wrappers
+  // (reuse existing security, storageQuota, connectivity)
+Data model
+
+In JournalData.js (flat objects/arrays only):JavaScriptexport const FEELINGS = [
+  { key: 'happy', label: '...', color: '...' },
+  // …
+];
+export const STRINGS = {
+  overviewTitle: '...',
+  createNew: '...',
+  emptyState: '...',
+  // all UI copy
+};
+IndexedDB value as shown above. Feelings stored as array of keys; labels/colors resolved from JournalData.js at render time (so future CMS can replace the data file without schema change).
+
+Screen / component hierarchy
+
+Journal.jsx (Template shell)
+Security gate (shared)
+Conditional render:
+Overview (JournalOverview) when no entry selected / after save
+Editor (JournalEditor) when creating or editing
+
+
+JournalOverview
+List of JournalEntryCard (title, feelings badges, created/modified dates, edit affordance)
+Persistent “Create new entry” button/icon
+
+JournalEditor
+Title input
+Content textarea
+FeelingsPicker (add/remove)
+Save / Cancel
+
+
+User flows (happy path + edge cases)
+
+Happy create:
+Overview → tap Create → blank Editor (title focused)
+Type title/content, optionally pick feelings → Save
+Encrypt + write IndexedDB → return to Overview (simplest, lowest friction)
+
+Happy edit: Overview → tap card or Edit → Editor pre-filled → Save → Overview
+No passcode: any attempt to open Journal or create → force create-passcode flow; after success continue.
+Low storage: after save attempt → show banner + recommendations; do not lose the draft.
+Offline: fully functional (local only).
+Forgotten passcode: permanent data loss warning on every login/create screen.
+Empty state: clear illustration + “Create your first entry” CTA.
+Cancel create: discard (or soft-save draft if already typed – decide simplest: discard with optional confirm only if content present).
+Unsecured indicator: discreet icon/badge in header while no passcode set.
+
+Reusable components
+
+FeelingsBadge (colour-coded chip)
+FeelingsPicker (multi-select list or chips)
+JournalEntryCard (list item)
+
+Strings – all live in JournalData.js. No hard-coded UI text.
+3. Security & Privacy Implementation Plan
+
+Passcode/password creation, login, change: reuse (or implement once in Phase 0) shared components:
+Create: simple 6-digit or strong-password form + confirmation + “forgotten = data lost forever” warning.
+Login: same fields + unlock.
+Change: current + new + confirm.
+
+Reminder to set passcode: appears at most once per calendar day (store last-shown timestamp in local storage). Triggered on Journal open if no credentials exist.
+Unsecured indicator: small lock-open icon in the activity header (and optionally global nav) when data is unsecured.
+Encryption:
+Derive key from passcode via Web Crypto (PBKDF2 with high iterations + salt).
+Encrypt entry objects with AES-GCM before IndexedDB write.
+Key never persisted in plaintext; kept in memory only while unlocked (or derived on demand).
+Dry-run mode: ?dryRun=true or feature flag that uses a fixed test key and a separate in-memory / temp store so real data is never touched.
+
+
+4. Implementation Phases
+Phase 0 – Foundations (shared)
+
+Confirm / implement shared security gate (create, unlock, change, dry-run, daily reminder, unsecured indicator).
+Confirm / implement storage abstraction + encryption helpers (encrypt, decrypt, key derivation).
+Confirm / implement storage-quota watcher (navigator.storage.estimate + usage reporting).
+Add Journal registration to Zustand navigation store + NavBar.
+Create JournalData.js skeleton with feelings list and all strings.
+
+Phase 1 – Core MVP
+
+Scaffold Journal.jsx from Template + scss.
+Implement journalStorage.js (CRUD with encryption).
+Zustand slice for current view mode (overview | editor), selected entry id, draft state.
+JournalOverview + JournalEntryCard + list from IndexedDB.
+JournalEditor (title, content, feelings picker).
+Create flow: Overview → blank Editor → Save → Overview.
+Edit flow: Overview → pre-filled Editor → Save → Overview.
+Wire security gate so nothing personal is shown until unlocked.
+Empty state and basic low-storage banner.
+
+Phase 2 – Polish
+
+Accessibility (labels, focus management, reduced-motion).
+Performance: virtualise long lists if needed; lazy-load editor; measure on low-end devices.
+Dry-run testing harness.
+Cancel / discard behaviour (minimal friction).
+Documentation (README section + code comments for storage/encryption).
+Final pass on scss consistency and reuse of existing UI primitives.
+
+5. Testing Strategy
+Unit / integration
+
+journalStorage encrypt/decrypt round-trip, CRUD, index queries.
+Zustand slice state transitions.
+FeelingsBadge / FeelingsPicker pure rendering.
+Security gate: create → unlock → change; dry-run isolation.
+Storage quota calculation and low-space event.
+
+Manual test matrix
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ScenarioExpected behaviourFirst open, no passcodeForced create-passcode flowCreate new entryInstant Editor → Save → appears in OverviewEdit existingPre-filled → Save updates modifiedAtEmpty stateClear CTACancel create with contentDiscard (or soft confirm)Low storageBanner + concrete recommendationsOfflineFull functionalityForgotten passcode warningShown on every auth screenUnsecured indicatorVisible until passcode setDaily reminderAppears ≤ once per dayDry-run modeLock-out testable without real data lossFeelings add/removeCorrect badges on OverviewLong list / low-end deviceAcceptable scroll & load times
+6. Open Questions / Risks
+Open questions (need product clarification)
+
+Exact set of feelings (labels + colours) – currently assumed to live in JournalData.js.
+After Save: always return to Overview, or stay on Editor? (Plan defaults to Overview for lowest friction.)
+Soft-draft on cancel if content exists? (Plan defaults to simple discard.)
+Should modified/created dates be relative (“2 h ago”) or absolute?
+Maximum reasonable entry length before we warn about storage?
+
+Technical risks & mitigations
+
+IndexedDB size limits on older Android WebViews → monitor quota aggressively; offer export/delete; compress only if measured impact is zero.
+Encryption performance on entry-level phones → use Web Crypto; measure AES-GCM + PBKDF2 on target devices; fall back to lighter params only if necessary and document.
+Key loss = permanent data loss → repeated clear warnings + dry-run mode for developers.
+Future remote backend → storage abstraction already isolates feature logic; consent recording is mandatory.
+
+This plan stays strictly inside the given constraints and feature description. A senior React engineer can execute it phase-by-phase without inventing additional product requirements.Open questions (need product clarification)
+
+Exact set of feelings (labels + colours) – currently assumed to live in JournalData.js. Answer: These are to be defined so implement ones you suggest + colours
+After Save: always return to Overview, or stay on Editor? (Plan defaults to Overview for lowest friction.) Answer: It should be save as you type in the plan so there is no big "save" event? Is this in the plan?
+Soft-draft on cancel if content exists? (Plan defaults to simple discard.) Answer: If the content exists? This should only be possible when editing as journal entry. Journal entries should have unique rows in indexedb IMO
+Should modified/created dates be relative (“2 h ago”) or absolute? Answer: Relative and then Absolute after 24 hrs
+Maximum reasonable entry length before we warn about storage? Answer: 500 words seems about right. what do you think?
+Updated answers incorporated – revised plan sections
+Below are the clarified decisions and the concrete updates to the original development plan.
+1. Feelings set (labels + colours)
+Suggested set tailored to addiction-recovery context (simple, non-clinical, emotionally useful). All live in JournalData.js:
+JavaScriptexport const FEELINGS = [
+  { key: 'hopeful',   label: 'Hopeful',   color: '#4CAF50' }, // green
+  { key: 'calm',      label: 'Calm',      color: '#2196F3' }, // blue
+  { key: 'grateful',  label: 'Grateful',  color: '#FF9800' }, // orange
+  { key: 'anxious',   label: 'Anxious',   color: '#9C27B0' }, // purple
+  { key: 'sad',       label: 'Sad',       color: '#607D8B' }, // blue-grey
+  { key: 'angry',     label: 'Angry',     color: '#F44336' }, // red
+  { key: 'lonely',    label: 'Lonely',    color: '#795548' }, // brown
+  { key: 'tired',     label: 'Tired',     color: '#9E9E9E' }, // grey
+  { key: 'proud',     label: 'Proud',     color: '#00BCD4' }, // cyan
+  { key: 'overwhelmed', label: 'Overwhelmed', color: '#E91E63' }, // pink
+];
+These can be expanded later without schema changes (feelings are stored as key arrays).
+2. Auto-save (no explicit “Save” button)
+Yes – the original plan is updated.
+
+Journal now uses continuous auto-save:
+
+On every meaningful change (title, content, feelings) a debounced write (300–500 ms) occurs.
+Create flow: tapping “Create new entry” immediately inserts a new unique row in IndexedDB with empty title/content and current timestamps. The Editor opens against that live row.
+Edit flow: opens the existing unique row.
+There is no separate “Save” action or confirmation screen. The only explicit actions are “Done / Back” (returns to Overview) and optional “Delete”.
+Visual feedback: subtle “Saved” indicator that appears briefly after each successful write (or a persistent “Saving…” while the debounce is pending).
+This keeps the create path instantaneous and low-friction as required.
+
+3. Cancel / discard behaviour + unique rows
+
+Every journal entry is a distinct, permanent row in the journalEntries object store (unique id).
+Create always produces a new row immediately.
+“Cancel” is only relevant while editing an existing entry:
+If the user has made changes, a soft confirmation appears (“Discard changes?”) that reverts the in-memory draft to the last-persisted version (or reloads from IndexedDB).
+Empty new entries that the user never typed into can be auto-deleted on leave if desired (optional, low-friction default: leave them; user can delete later).
+
+No soft-draft concept outside of the live unique row.
+
+4. Date display
+
+Relative (“2 h ago”, “Yesterday”, “3 days ago”) when the timestamp is < 24 h old.
+Absolute (e.g. “6 Oct 2026, 14:32”) once ≥ 24 h old.
+Both created and modified dates follow this rule. Implementation: small pure utility formatJournalDate(ts).
+
+5. Maximum entry length
+500 words is a reasonable soft limit for a recovery journal:
+
+Keeps individual entries focused and storage-light.
+Still allows meaningful reflection.
+Recommendation in the plan: soft warning at ~450 words (“Approaching length limit – consider starting a new entry”) and a hard block (or very strong warning) at 500 words.
+Exact word-count utility: simple split on whitespace; ignore pure whitespace.
+Storage impact of 500 words is negligible even on low-end devices, so the limit is primarily UX, not technical.
+
+
+Concrete plan deltas (replace the corresponding sections)
+Data model (IndexedDB) – unchanged shape, but behaviour is now “create row first”:
+JavaScript{
+  id: string,               // UUID, unique
+  title: string,
+  content: string,
+  feelings: string[],       // keys from FEELINGS
+  createdAt: number,
+  modifiedAt: number,
+  version: 1
+}
+User flows (updated)
+
+Create:
+Overview → Create → immediately insert empty row → open Editor focused on title.
+Type / add feelings → auto-save (debounced) updates the same row.
+Back / Done → return to Overview (entry already exists).
+
+Edit: same auto-save behaviour against the existing unique row.
+Empty new entry left behind: optional auto-prune on leave if both title and content are empty.
+Length: soft warn at ~450 words, stronger at 500.
+
+Editor component
+
+No Save button.
+Debounced onChange handlers call journalStorage.updateEntry(id, partial).
+Subtle saved indicator.
+FeelingsPicker writes immediately (or with the same debounce).
+
+Strings to add in JournalData.js
+
+Auto-save feedback (“Saved”, “Saving…”)
+Length warnings
+Discard-changes confirmation (edit only)
+Relative/absolute date labels if needed
+
+Phase 1 tasks – add
+
+Implement debounced auto-save helper.
+“Create → insert empty row → open Editor” path.
+formatJournalDate utility.
+Soft length warning at 450 / 500 words.
+
+Phase 2
+
+Polish the saved indicator so it never feels noisy on low-end devices.
+Confirm empty-entry pruning behaviour with a quick product check if desired.
+
+All other sections of the original plan (architecture, security, file structure, testing matrix, risks) remain valid. The only behavioural change is the move from explicit Save to continuous auto-save against unique IndexedDB rows, plus the concrete feelings list, relative/absolute dates, and 500-word guidance.
+Ready for implementation.Show the full updated planJournal Feature – Complete Updated Development Plan for UMMI PWA
+1. High-level Architecture Decisions
+Integration with existing systems
+
+New activity lives at src/components/activity/journal/.
+Start from src/components/activity/template/Template.jsx. Copy/rename to Journal.jsx + matching journal.scss. All UI lives inside the template’s <section> tags.
+Register the activity in the existing Zustand navigation store and NavBar.jsx exactly as other activities are registered.
+Shared security gate (passcode/password) wraps the entire activity. Journal never shows list or editor until the gate is satisfied.
+All reads/writes go through a thin storage abstraction (journalStorage.js). The abstraction is designed so a remote backend can be added later without rewriting feature logic. Any future remote write requires explicit user consent (timestamp + device details + IP + descriptive title) recorded locally.
+Storage-quota monitoring is shared. Journal reports its usage after every mutation and reacts to global low-space events.
+Connectivity monitoring is not required for core Journal (purely local). Future export/sync would use the shared connectivity watcher (max UI update every 5 s).
+
+IndexedDB schema
+
+Reuse the existing app database (or create ummi-db). Version bump on schema change via onupgradeneeded.
+Object store: journalEntries
+Key path: id (client-generated UUID string – every entry is a unique permanent row).
+Indexes:
+by-created (createdAt)
+by-modified (modifiedAt)
+by-title (title) – optional future search
+
+Value shape (encrypted at rest):JavaScript{
+  id: string,
+  title: string,
+  content: string,
+  feelings: string[],          // array of feeling keys
+  createdAt: number,          // Unix ms
+  modifiedAt: number,         // Unix ms
+  version: 1
+}
+
+Encryption: entire value encrypted with a key derived from the user’s passcode/password before put. Decryption on read. Store never holds plaintext personal data.
+After every write/delete call shared updateStorageUsage() that uses navigator.storage.estimate().
+
+Encryption & passcode integration points
+
+Key derivation: Web Crypto PBKDF2 (high iterations) + random salt.
+Passcode gate wraps the whole Journal activity.
+Dry-run mode: developer flag / query param that uses a temporary in-memory key and never touches real data.
+
+Storage-quota monitoring
+
+Shared utility src/utils/storageQuota.js.
+Journal participates after every mutation. When remaining space is low, surface a non-blocking banner with concrete recommendations (delete old entries, export then delete, clear other activities).
+
+Connectivity
+
+Not required for MVP.
+
+2. Feature Breakdown
+Exact file/folder structure
+textsrc/components/activity/journal/
+  Journal.jsx
+  journal.scss
+  JournalOverview.jsx
+  journalOverview.scss
+  JournalEditor.jsx
+  journalEditor.scss
+  components/
+    FeelingsBadge.jsx
+    feelingsBadge.scss
+    FeelingsPicker.jsx
+    feelingsPicker.scss
+    JournalEntryCard.jsx
+    journalEntryCard.scss
+src/data/
+  JournalData.js
+src/stores/
+  journalStore.js                 // Zustand slice
+src/utils/
+  journalStorage.js               // IndexedDB CRUD + encryption
+  formatJournalDate.js            // relative → absolute after 24 h
+Data model
+
+JournalData.js (flat objects/arrays only):JavaScriptexport const FEELINGS = [
+  { key: 'hopeful',     label: 'Hopeful',     color: '#4CAF50' },
+  { key: 'calm',        label: 'Calm',        color: '#2196F3' },
+  { key: 'grateful',    label: 'Grateful',    color: '#FF9800' },
+  { key: 'anxious',     label: 'Anxious',     color: '#9C27B0' },
+  { key: 'sad',         label: 'Sad',         color: '#607D8B' },
+  { key: 'angry',       label: 'Angry',       color: '#F44336' },
+  { key: 'lonely',      label: 'Lonely',      color: '#795548' },
+  { key: 'tired',       label: 'Tired',       color: '#9E9E9E' },
+  { key: 'proud',       label: 'Proud',       color: '#00BCD4' },
+  { key: 'overwhelmed', label: 'Overwhelmed', color: '#E91E63' },
+];
+
+export const STRINGS = {
+  overviewTitle: 'Journal',
+  createNew: 'New entry',
+  emptyState: 'No entries yet. Start writing…',
+  saved: 'Saved',
+  saving: 'Saving…',
+  lengthWarning: 'Approaching length limit – consider a new entry',
+  lengthLimit: 'Entry is getting long. Start a new one?',
+  discardChanges: 'Discard changes?',
+  // … all other UI copy
+};
+IndexedDB stores the shape shown above. Feelings are stored as key arrays; labels/colours resolved at render time from JournalData.js.
+
+Screen / component hierarchy
+
+Journal.jsx (Template shell)
+Security gate
+Conditional:
+JournalOverview (default)
+JournalEditor (create or edit)
+
+
+JournalOverview
+List of JournalEntryCard (title, feelings badges, relative/absolute dates, edit affordance)
+Always-visible “Create new entry” action
+
+JournalEditor
+Title input
+Content textarea
+FeelingsPicker
+Subtle auto-save indicator
+Done / Back (returns to Overview)
+Optional Delete
+
+
+User flows
+
+Create (happy path)
+Overview → tap Create → immediately insert new unique empty row in IndexedDB → open Editor (title focused).
+Type title/content or change feelings → debounced auto-save (300–500 ms) updates the same row.
+Done / Back → return to Overview (entry already exists).
+
+Edit (happy path)
+Overview → tap card or Edit → open Editor against existing unique row → auto-save on change → Done / Back → Overview.
+Edge cases
+No passcode → force create-passcode flow before any personal data is shown.
+Low storage → banner + concrete recommendations after any write attempt; draft is never lost.
+Offline → fully functional.
+Forgotten passcode → permanent data-loss warning on every auth screen.
+Empty state → clear illustration + Create CTA.
+Cancel / leave while editing with unsaved changes → soft “Discard changes?” confirmation that reverts to last-persisted version.
+Empty new entry left behind → optional auto-prune on leave if both title and content are still empty (default: leave it; user can delete later).
+Length → soft warning ~450 words, stronger prompt at 500 words.
+Unsecured data → discreet indicator in header.
+
+
+Reusable components
+
+FeelingsBadge
+FeelingsPicker
+JournalEntryCard
+
+Date formatting
+
+Utility formatJournalDate(ts):
+< 24 h → relative (“2 h ago”, “Yesterday”, “3 days ago”)
+≥ 24 h → absolute (“6 Oct 2026, 14:32”)
+
+
+Auto-save behaviour
+
+Debounced write on every meaningful change (title, content, feelings).
+No explicit Save button.
+Subtle “Saving…” / “Saved” indicator.
+Create always materialises a unique row first.
+
+3. Security & Privacy Implementation Plan
+
+Passcode/password creation, login, change: shared components (create, unlock, change, dry-run).
+Daily reminder to set a passcode: appears at most once per calendar day (last-shown timestamp stored locally). Triggered on Journal open if no credentials exist.
+Unsecured indicator: small lock-open icon in the activity header while no passcode is set.
+Encryption:
+Derive key from passcode via Web Crypto (PBKDF2 + salt).
+AES-GCM encrypt entire entry before IndexedDB write.
+Key kept in memory only while unlocked.
+
+Dry-run mode: ?dryRun=true or feature flag uses a fixed test key + temporary store so real data is never touched.
+User is warned on every auth screen that forgotten credentials = permanently lost data.
+
+4. Implementation Phases
+Phase 0 – Foundations
+
+Confirm / implement shared security gate (create, unlock, change, dry-run, daily reminder, unsecured indicator).
+Confirm / implement storage abstraction + encryption helpers.
+Confirm / implement storage-quota watcher.
+Register Journal in Zustand navigation store + NavBar.
+Create JournalData.js with the feelings list and all strings.
+Create formatJournalDate.js.
+
+Phase 1 – Core MVP
+
+Scaffold Journal.jsx from Template + scss.
+Implement journalStorage.js (CRUD with encryption, unique-row create).
+Zustand slice: view mode (overview | editor), selected entry id, draft state, auto-save status.
+JournalOverview + JournalEntryCard (list from IndexedDB, relative/absolute dates).
+JournalEditor with debounced auto-save, FeelingsPicker, length warnings, Done/Back.
+Create flow: insert empty unique row → open Editor.
+Edit flow: open existing unique row → auto-save.
+Wire security gate.
+Empty state + basic low-storage banner.
+Soft discard confirmation when leaving an edited entry with changes.
+
+Phase 2 – Polish
+
+Accessibility (labels, focus management, reduced motion).
+Performance: virtualise long lists if needed; measure on low-end devices; keep auto-save lightweight.
+Dry-run testing harness.
+Optional empty-entry auto-prune.
+Final scss consistency and reuse of existing UI primitives.
+Documentation (README section + code comments for storage/encryption/auto-save).
+
+5. Testing Strategy
+Unit / integration
+
+journalStorage encrypt/decrypt round-trip, unique-row create, update, delete, index queries.
+Debounced auto-save helper.
+Zustand slice transitions and auto-save status.
+formatJournalDate (relative vs absolute boundary).
+FeelingsBadge / FeelingsPicker.
+Security gate (create → unlock → change; dry-run isolation).
+Storage-quota calculation and low-space event.
+Word-count utility and length warnings.
+
+Manual test matrix
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ScenarioExpected behaviourFirst open, no passcodeForced create-passcode flowCreate new entryInstant unique row → Editor → auto-save → appears in OverviewEdit existingPre-filled → auto-save updates modifiedAtLeave edit with changesSoft “Discard changes?” confirmationEmpty stateClear CTAEmpty new entry left behindOptional auto-prune or remains (configurable)Low storageBanner + concrete recommendationsOfflineFull functionalityForgotten passcode warningShown on every auth screenUnsecured indicatorVisible until passcode setDaily reminder≤ once per dayDry-run modeLock-out testable without real data lossFeelings add/removeCorrect badges on OverviewDate display < 24 h / ≥ 24 hRelative then absoluteLength ~450 / 500 wordsSoft then stronger warningLong list / low-end deviceAcceptable scroll & auto-save performance
+6. Open Questions / Risks
+Open questions (remaining)
+
+Should completely empty new entries (never typed into) be auto-pruned on leave, or left for the user to delete later? (Current default: leave them.)
+Exact wording of the length warnings and discard confirmation (can be finalised in JournalData.js).
+
+Technical risks & mitigations
+
+IndexedDB size limits on older Android WebViews → aggressive quota monitoring; offer export/delete; 500-word soft limit keeps individual entries small.
+Encryption performance on entry-level phones → Web Crypto AES-GCM + measured PBKDF2; dry-run mode for safe testing.
+Key loss = permanent data loss → repeated clear warnings + dry-run mode.
+Auto-save debounce too aggressive or too slow on low-end devices → measure and tune (default 300–500 ms); visual “Saving…” indicator prevents user confusion.
+Future remote backend → storage abstraction already isolates feature logic; consent recording is mandatory.
+
+This is the complete, actionable plan a senior React engineer can execute. All product clarifications have been incorporated; no new requirements have been invented.Show the full updated plan with all featuresJournal Feature – Complete Updated Development Plan for UMMI PWA
+1. High-level Architecture Decisions
+Integration with existing systems
+
+New activity lives at src/components/activity/journal/.
+Start from src/components/activity/template/Template.jsx. Copy/rename to Journal.jsx + matching journal.scss. All UI lives inside the template’s <section> tags.
+Register the activity in the existing Zustand navigation store and NavBar.jsx exactly as other activities are registered.
+Shared security gate (passcode/password) wraps the entire activity. Journal never shows list or editor until the gate is satisfied.
+All reads/writes go through a thin storage abstraction (journalStorage.js). The abstraction is designed so a remote backend can be added later without rewriting feature logic. Any future remote write requires explicit user consent (timestamp + device details + IP + descriptive title) recorded locally.
+Storage-quota monitoring is shared. Journal reports its usage after every mutation and reacts to global low-space events.
+Connectivity monitoring is not required for core Journal (purely local). Future export/sync would use the shared connectivity watcher (max UI update every 5 s).
+
+IndexedDB schema
+
+Reuse the existing app database (or create ummi-db). Version bump on schema change via onupgradeneeded.
+Object store: journalEntries
+Key path: id (client-generated UUID string – every entry is a unique permanent row).
+Indexes:
+by-created (createdAt)
+by-modified (modifiedAt)
+by-title (title) – optional future search
+
+Value shape (encrypted at rest):JavaScript{
+  id: string,
+  title: string,
+  content: string,
+  feelings: string[],          // array of feeling keys
+  createdAt: number,          // Unix ms
+  modifiedAt: number,         // Unix ms
+  version: 1
+}
+
+Encryption: entire value encrypted with a key derived from the user’s passcode/password before put. Decryption on read. Store never holds plaintext personal data.
+After every write/delete call shared updateStorageUsage() that uses navigator.storage.estimate().
+
+Encryption & passcode integration points
+
+Key derivation: Web Crypto PBKDF2 (high iterations) + random salt.
+Passcode gate wraps the whole Journal activity.
+Dry-run mode: developer flag / query param that uses a temporary in-memory key and never touches real data.
+
+Storage-quota monitoring
+
+Shared utility src/utils/storageQuota.js.
+Journal participates after every mutation. When remaining space is low, surface a non-blocking banner with concrete recommendations (delete old entries, export then delete, clear other activities).
+
+Connectivity
+
+Not required for MVP.
+
+2. Feature Breakdown
+Exact file/folder structure
+textsrc/components/activity/journal/
+  Journal.jsx
+  journal.scss
+  JournalOverview.jsx
+  journalOverview.scss
+  JournalEditor.jsx
+  journalEditor.scss
+  components/
+    FeelingsBadge.jsx
+    feelingsBadge.scss
+    FeelingsPicker.jsx
+    feelingsPicker.scss
+    JournalEntryCard.jsx
+    journalEntryCard.scss
+src/data/
+  JournalData.js
+src/stores/
+  journalStore.js                 // Zustand slice
+src/utils/
+  journalStorage.js               // IndexedDB CRUD + encryption
+  formatJournalDate.js            // relative → absolute after 24 h
+Data model
+
+JournalData.js (flat objects/arrays only):JavaScriptexport const FEELINGS = [
+  { key: 'hopeful',     label: 'Hopeful',     color: '#4CAF50' },
+  { key: 'calm',        label: 'Calm',        color: '#2196F3' },
+  { key: 'grateful',    label: 'Grateful',    color: '#FF9800' },
+  { key: 'anxious',     label: 'Anxious',     color: '#9C27B0' },
+  { key: 'sad',         label: 'Sad',         color: '#607D8B' },
+  { key: 'angry',       label: 'Angry',       color: '#F44336' },
+  { key: 'lonely',      label: 'Lonely',      color: '#795548' },
+  { key: 'tired',       label: 'Tired',       color: '#9E9E9E' },
+  { key: 'proud',       label: 'Proud',       color: '#00BCD4' },
+  { key: 'overwhelmed', label: 'Overwhelmed', color: '#E91E63' },
+];
+
+export const STRINGS = {
+  overviewTitle: 'Journal',
+  createNew: 'New entry',
+  emptyState: 'No entries yet. Start writing…',
+  saved: 'Saved',
+  saving: 'Saving…',
+  lengthWarning: 'Approaching length limit – consider a new entry',
+  lengthLimit: 'Entry is getting long. Start a new one?',
+  discardChanges: 'Discard changes?',
+  // … all other UI copy
+};
+IndexedDB stores the shape shown above. Feelings are stored as key arrays; labels/colours resolved at render time from JournalData.js.
+
+Screen / component hierarchy
+
+Journal.jsx (Template shell)
+Security gate
+Conditional:
+JournalOverview (default)
+JournalEditor (create or edit)
+
+
+JournalOverview
+List of JournalEntryCard (title, feelings badges, relative/absolute dates, edit affordance)
+Always-visible “Create new entry” action
+
+JournalEditor
+Title input
+Content textarea
+FeelingsPicker
+Subtle auto-save indicator
+Done / Back (returns to Overview)
+Optional Delete
+
+
+User flows
+
+Create (happy path)
+Overview → tap Create → immediately insert new unique empty row in IndexedDB → open Editor (title focused).
+Type title/content or change feelings → debounced auto-save (300–500 ms) updates the same row.
+Done / Back → return to Overview (entry already exists).
+
+Edit (happy path)
+Overview → tap card or Edit → open Editor against existing unique row → auto-save on change → Done / Back → Overview.
+Edge cases
+No passcode → force create-passcode flow before any personal data is shown.
+Low storage → banner + concrete recommendations after any write attempt; draft is never lost.
+Offline → fully functional.
+Forgotten passcode → permanent data-loss warning on every auth screen.
+Empty state → clear illustration + Create CTA.
+Cancel / leave while editing with unsaved changes → soft “Discard changes?” confirmation that reverts to last-persisted version.
+Empty new entry left behind → optional auto-prune on leave if both title and content are still empty (default: leave it; user can delete later).
+Length → soft warning ~450 words, stronger prompt at 500 words.
+Unsecured data → discreet indicator in header.
+
+
+Reusable components
+
+FeelingsBadge
+FeelingsPicker
+JournalEntryCard
+
+Date formatting
+
+Utility formatJournalDate(ts):
+< 24 h → relative (“2 h ago”, “Yesterday”, “3 days ago”)
+≥ 24 h → absolute (“6 Oct 2026, 14:32”)
+
+
+Auto-save behaviour
+
+Debounced write on every meaningful change (title, content, feelings).
+No explicit Save button.
+Subtle “Saving…” / “Saved” indicator.
+Create always materialises a unique row first.
+
+3. Security & Privacy Implementation Plan
+
+Passcode/password creation, login, change: shared components (create, unlock, change, dry-run).
+Daily reminder to set a passcode: appears at most once per calendar day (last-shown timestamp stored locally). Triggered on Journal open if no credentials exist.
+Unsecured indicator: small lock-open icon in the activity header while no passcode is set.
+Encryption:
+Derive key from passcode via Web Crypto (PBKDF2 + salt).
+AES-GCM encrypt entire entry before IndexedDB write.
+Key kept in memory only while unlocked.
+
+Dry-run mode: ?dryRun=true or feature flag uses a fixed test key + temporary store so real data is never touched.
+User is warned on every auth screen that forgotten credentials = permanently lost data.
+
+4. Implementation Phases
+Phase 0 – Foundations
+
+Confirm / implement shared security gate (create, unlock, change, dry-run, daily reminder, unsecured indicator).
+Confirm / implement storage abstraction + encryption helpers.
+Confirm / implement storage-quota watcher.
+Register Journal in Zustand navigation store + NavBar.
+Create JournalData.js with the feelings list and all strings.
+Create formatJournalDate.js.
+
+Phase 1 – Core MVP
+
+Scaffold Journal.jsx from Template + scss.
+Implement journalStorage.js (CRUD with encryption, unique-row create).
+Zustand slice: view mode (overview | editor), selected entry id, draft state, auto-save status.
+JournalOverview + JournalEntryCard (list from IndexedDB, relative/absolute dates).
+JournalEditor with debounced auto-save, FeelingsPicker, length warnings, Done/Back.
+Create flow: insert empty unique row → open Editor.
+Edit flow: open existing unique row → auto-save.
+Wire security gate.
+Empty state + basic low-storage banner.
+Soft discard confirmation when leaving an edited entry with changes.
+
+Phase 2 – Polish
+
+Accessibility (labels, focus management, reduced motion).
+Performance: virtualise long lists if needed; measure on low-end devices; keep auto-save lightweight.
+Dry-run testing harness.
+Optional empty-entry auto-prune.
+Final scss consistency and reuse of existing UI primitives.
+Documentation (README section + code comments for storage/encryption/auto-save).
+
+5. Testing Strategy
+Unit / integration
+
+journalStorage encrypt/decrypt round-trip, unique-row create, update, delete, index queries.
+Debounced auto-save helper.
+Zustand slice transitions and auto-save status.
+formatJournalDate (relative vs absolute boundary).
+FeelingsBadge / FeelingsPicker.
+Security gate (create → unlock → change; dry-run isolation).
+Storage-quota calculation and low-space event.
+Word-count utility and length warnings.
+
+Manual test matrix
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ScenarioExpected behaviourFirst open, no passcodeForced create-passcode flowCreate new entryInstant unique row → Editor → auto-save → appears in OverviewEdit existingPre-filled → auto-save updates modifiedAtLeave edit with changesSoft “Discard changes?” confirmationEmpty stateClear CTAEmpty new entry left behindOptional auto-prune or remains (configurable)Low storageBanner + concrete recommendationsOfflineFull functionalityForgotten passcode warningShown on every auth screenUnsecured indicatorVisible until passcode setDaily reminder≤ once per dayDry-run modeLock-out testable without real data lossFeelings add/removeCorrect badges on OverviewDate display < 24 h / ≥ 24 hRelative then absoluteLength ~450 / 500 wordsSoft then stronger warningLong list / low-end deviceAcceptable scroll & auto-save performance
+6. Open Questions / Risks
+Open questions (remaining)
+
+Should completely empty new entries (never typed into) be auto-pruned on leave, or left for the user to delete later? (Current default: leave them.)
+Exact wording of the length warnings and discard confirmation (can be finalised in JournalData.js).
+
+Technical risks & mitigations
+
+IndexedDB size limits on older Android WebViews → aggressive quota monitoring; offer export/delete; 500-word soft limit keeps individual entries small.
+Encryption performance on entry-level phones → Web Crypto AES-GCM + measured PBKDF2; dry-run mode for safe testing.
+Key loss = permanent data loss → repeated clear warnings + dry-run mode.
+Auto-save debounce too aggressive or too slow on low-end devices → measure and tune (default 300–500 ms); visual “Saving…” indicator prevents user confusion.
+Future remote backend → storage abstraction already isolates feature logic; consent recording is mandatory.
+
+This is the complete, actionable plan with every clarified feature incorporated. A senior React engineer can execute it phase-by-phase.
