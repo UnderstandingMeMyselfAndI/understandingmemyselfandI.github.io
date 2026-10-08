@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useDrinkLogStore } from '@/store/drinkLogStore'
+import { useDrinkLogStore } from '@store/drinkLogStore'
 import PropTypes from 'prop-types'
 const LockAfterInactivity = ({ onSuccess }) => {
   const isUnlocked = useDrinkLogStore()

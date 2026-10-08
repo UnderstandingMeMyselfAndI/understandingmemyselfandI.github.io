@@ -1,6 +1,6 @@
 import './icon.scss'
 
-const IconDoneOutlined = ({ className = '' }) => {
+const IconTaskComplete = ({ className = '' }) => {
   return (
     <div className={'icon icon-tick' + className}>
       <div>
@@ -11,4 +11,4 @@ const IconDoneOutlined = ({ className = '' }) => {
     </div>
   )
 }
-export default IconDoneOutlined
+export default IconTaskComplete

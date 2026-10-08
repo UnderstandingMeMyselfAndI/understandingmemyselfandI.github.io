@@ -1,21 +1,22 @@
 import { useEffect, useState, useRef } from 'react'
-import useAppStore from '@/store/useAppStore'
+import useAppStore from '@store/useAppStore'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
-import DoneOutlineIcon from '@mui/icons-material/DoneOutline'
-import { strings } from '@/data/config'
+import IconTaskComplete from '@icons/IconTaskComplete'
+import { getRand } from '@js/utils.js'
+import { strings } from '@data/config'
 import Feature from './Feature'
 import gsap from 'gsap' // <-- import GSAP
 import { useGSAP } from '@gsap/react' // <-- import the hook from our React package
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 // import { SplitText } from 'gsap/SplitText'
 gsap.registerPlugin(useGSAP, ScrollTrigger)
-// import { activities } from '@/data/config'
+import { activities } from '@data/config'
 // const activitiesById = activities.reduce((acc, activity) => {
 //   acc[activity.id] = activity
 //   return acc
 // }, {})
-import '@/utils/IsMobile.js'
+import '@utils/IsMobile.js'
 import './styles.scss'
 
 const Introduction = () => {
@@ -50,10 +51,6 @@ const Introduction = () => {
 
   const isInstalled = useAppStore((state) => state.isInstalled)
   const vc = useAppStore((state) => state.vc) // visit count
-
-  function getRand(max) {
-    return Math.floor(Math.random() * (max - 1 + 1)) + 1
-  }
 
   useGSAP(() => {}, { scope: sectionRefs, revertOnUpdate: true })
 
@@ -96,7 +93,7 @@ const Introduction = () => {
                   {cnt?.content?.map((para, k) => {
                     return (
                       <Feature key={'p-' + k}>
-                        {i === 1 && <DoneOutlineIcon className='icon' />}
+                        {i === 1 && <IconTaskComplete className='icon' />}
                         <div key={k}>{parse(DOMPurify.sanitize(para))}</div>
                       </Feature>
                     )

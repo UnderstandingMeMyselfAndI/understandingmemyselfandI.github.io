@@ -1,73 +1,13 @@
 <!doctype html>
-<html lang="en-GB">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Ummi - Understanding Me, Myself, and I</title>
-    <meta
-      name="description"
-      content="Ummi recovery companion app: Quick access to CBT & DBT tools for addiction recovery, mental health, and wellbeing. Get essential support now."
-    />
-    <meta name="theme-color" content="#819ec9" />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      sizes="any"
-      href="/icons/UmmiIcon.svg"
-    />
-    <link rel="mask-icon" href="/icons/UmmiIcon.svg" color="#FFFFFF" />
-    <link rel="apple-touch-icon" href="/icons/UmmiIcon.svg" sizes="any" />
-
-    <link rel="manifest" href="/manifest.webmanifest" />
-
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <link rel="preconnect" href="https://app.ummi.now" />
-    <link rel="preconnect" href="https://www.ummi.now" />
-
-    <meta
-      name="google-site-verification"
-      content="z1GZV3sgoFTPrtQLwT4cYGE4cMFm58x1oQO_OB7w464"
-    />
-    <script>
-      window.GA_INITIALIZED = false
-    </script>
-    <script>
-  // Emergency recovery for broken service worker caches
-  (function() {
-    // Wait 5 seconds for the app to signal it's loaded
-    setTimeout(function() {
-      if (!window.__APP_LOADED) {
-        console.warn('App failed to load, attempting recovery...');
-        // Unregister all service workers
-        if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.getRegistrations().then(function(registrations) {
-            registrations.forEach(function(registration) {
-              registration.unregister();
-            });
-          });
-        }
-        // Clear all caches
-        if ('caches' in window) {
-          caches.keys().then(function(names) {
-            names.forEach(function(name) {
-              caches.delete(name);
-            });
-          });
-        }
-        // Force reload from server (bypass cache)
-        window.location.reload(true);
-      }
-    }, 5000); // 5 seconds
-  })();
-</script>
+    <title>ummiapp</title>
   </head>
-
   <body>
-   
-    <div id="root">
+    <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

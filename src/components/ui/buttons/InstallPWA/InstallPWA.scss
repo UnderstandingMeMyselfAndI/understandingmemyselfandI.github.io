@@ -1,5 +1,5 @@
-@use '@/scss/_variables.scss';
-@use 'buttons/buttonStyles.css';
+@use '@scss/variables';
+@use '@buttons/buttonStyles.css';
 @import '@scss/globals.css';
 
 body button.btn.install {

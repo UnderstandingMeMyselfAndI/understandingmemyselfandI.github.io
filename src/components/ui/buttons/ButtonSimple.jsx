@@ -5,10 +5,7 @@ import DOMPurify from 'dompurify'
 
 const ButtonSimple = ({ children, label = '', classes = [], handleClick }) => {
   return (
-    <button
-      className={'btn' + classes.map((c) => ' ' + c)}
-      onClick={handleClick}
-    >
+    <button className={'btn' + classes.map((c) => ' ' + c)} onClick={handleClick}>
       {children}
       {parse(DOMPurify.sanitize(label))}
     </button>
@@ -19,5 +16,5 @@ ButtonSimple.propTypes = {
   handleClick: PropTypes.func.isRequired,
   classes: PropTypes.array,
 }
-ButtonSimple.displayName = 'ButtonSimple'
+ButtonSimple.displayName = '@buttonsimple'
 export default ButtonSimple

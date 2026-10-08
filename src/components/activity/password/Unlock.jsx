@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { useDrinkLogStore } from '@/store/drinkLogStore'
-import { verifyPin, setPasswordKey } from '@/src/js/utils/secureStorage'
+import { useDrinkLogStore } from '@store/drinkLogStore'
+import { verifyPin, setPasswordKey } from '@src/js/utils/secureStorage'
 import PropTypes from 'prop-types'
 
 const MAX_RETRIES = 3 // Define max retries as a constant

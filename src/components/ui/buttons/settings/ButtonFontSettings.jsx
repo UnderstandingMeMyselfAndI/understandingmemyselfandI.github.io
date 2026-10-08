@@ -9,5 +9,5 @@ const ButtonFontSettings = () => {
   )
 }
 
-ButtonFontSettings.displayName = 'ButtonSettings'
+ButtonFontSettings.displayName = '@buttonsettings'
 export default ButtonFontSettings

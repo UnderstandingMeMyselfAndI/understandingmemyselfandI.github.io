@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-// import DaysCounterBtn from './DaysCounterBtn'
+import DaysCounterBtn from './DaysCounterBtn'
 import { strings } from '@data/config.js'
 import useAppStore from '@store/useAppStore'
-import ButtonSimple from '@components/ui/buttons/ButtonSimple'
-import CTA from '@components/ui/cta/CTA'
+import ButtonSimple from '@ui/buttons/ButtonSimple'
+import CTA from '@ui/cta/CTA'
 import MoreTimeIcon from '@mui/icons-material/MoreTime'
 import './stylesCTA.scss'
 const DaysCounterCTA = () => {

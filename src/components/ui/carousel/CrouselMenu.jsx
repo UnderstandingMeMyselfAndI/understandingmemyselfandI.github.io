@@ -6,11 +6,11 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 // import ButtonToolbox from "../buttons/toolbox/ButtonToolbox";
 import Skeleton from '@mui/material/Skeleton'
 import ScenarioDialog from '../dialog/ScenarioDialog'
-import useAppStore from '@/store/useAppStore'
+import useAppStore from '@store/useAppStore'
 import data from '../../../data/data.js'
 
 import { useScrollEffects, SCROLL_EFFECT_CONFIG } from './useScrollEffects'
-import '../../../globals.css'
+import '@scss/globals.css'
 import './AccordionStyles.scss'
 
 // Configuration constants - easily adjustable
@@ -23,16 +23,9 @@ import './AccordionStyles.scss'
 // };
 
 // Individual Accordion Item with opacity and scale effects
-const AccordionItemWithEffects = ({
-  item,
-  index,
-  expanded,
-  handleChange,
-  config = SCROLL_EFFECT_CONFIG,
-}) => {
+const AccordionItemWithEffects = ({ item, index, expanded, handleChange, config = SCROLL_EFFECT_CONFIG }) => {
   const isExpanded = expanded === 'panel' + index
-  const [ref, effects, disableScrollEffects, enableScrollEffects] =
-    useScrollEffects(config, isExpanded)
+  const [ref, effects, disableScrollEffects, enableScrollEffects] = useScrollEffects(config, isExpanded)
   const accordionRef = useRef(null)
   const previousExpandedState = useRef(isExpanded)
   const setAcronymnID = useAppStore((state) => state.setAcronymnID)
@@ -72,8 +65,7 @@ const AccordionItemWithEffects = ({
             const windowHeight = window.innerHeight
 
             // Calculate the scroll position to center the element
-            const targetScrollY =
-              elementTop - windowHeight / 2 + elementHeight / 2
+            const targetScrollY = elementTop - windowHeight / 2 + elementHeight / 2
 
             window.scrollTo({
               top: targetScrollY,
@@ -134,11 +126,7 @@ const AccordionItemWithEffects = ({
   }, [effects.opacity, effects.scale, config.transitionSpeed, isExpanded])
 
   return (
-    <div
-      ref={ref}
-      style={wrapperStyle}
-      className={isExpanded ? 'expanded-accordion' : ''}
-    >
+    <div ref={ref} style={wrapperStyle} className={isExpanded ? 'expanded-accordion' : ''}>
       <Accordion
         ref={accordionRef}
         className={'AccordionItem'}
@@ -149,14 +137,12 @@ const AccordionItemWithEffects = ({
           transition: { unmountOnExit: true },
           heading: { component: 'h3' },
         }}
-        sx={expandedStyles}
-      >
+        sx={expandedStyles}>
         <AccordionSummary
           className={'AcronymTitle'}
           expandIcon={<ExpandMoreIcon />}
           aria-controls={'panel' + index + '-content'}
-          id={'panel' + index + '-header'}
-        >
+          id={'panel' + index + '-header'}>
           {/* <ButtonToolbox
 						id={item?.id}
 						className={item?.title?.replaceAll(".", "")}
@@ -231,11 +217,7 @@ export default function AccordionScroll({ expanded, handleChange }) {
             config={customConfig}
           />
         ) : (
-          <Skeleton
-            key={'skeleton-' + index}
-            variant='rounded'
-            animation='wave'
-          />
+          <Skeleton key={'skeleton-' + index} variant='rounded' animation='wave' />
         ),
       )}
     </div>

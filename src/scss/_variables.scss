@@ -1,5 +1,5 @@
 @use 'sass:math';
-@import '@scss/globals.css';
+@use '@scss/globals.css';
 
 /**
  * Generates a responsive font size using CSS clamp().
@@ -362,7 +362,7 @@ $btn_color: var(--text_primary);
 $btn_weight: 400;
 $btn_line_height: 1.4;
 
-$easing_funtion: cubic-bezier(0.81, 0, 0.33, 0.99);
+$easing_function: cubic-bezier(0.81, 0, 0.33, 0.99);
 
 // ------------------------------------------
 // Input fields font size

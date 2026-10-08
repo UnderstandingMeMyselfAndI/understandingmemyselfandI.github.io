@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { activities } from '@/data/config'
+import { activities } from '@data/config'
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc
@@ -33,28 +33,16 @@ const ExpandableContent = ({
 
   return (
     <div className='expandable-content-container'>
-      <div
-        ref={contentRef}
-        className={`expandable-content ${isExpanded ? 'expanded' : ''}`}
-      >
+      <div ref={contentRef} className={`expandable-content ${isExpanded ? 'expanded' : ''}`}>
         {children}
       </div>
 
       {/* Gradient overlay when collapsed */}
-      {!isExpanded && needsExpand && (
-        <div
-          className='content-fade-overlay'
-          style={{ height: `${fadeHeight}px` }}
-        />
-      )}
+      {!isExpanded && needsExpand && <div className='content-fade-overlay' style={{ height: `${fadeHeight}px` }} />}
 
       {/* Toggle button */}
       {showButton && needsExpand && (
-        <button
-          className='expand-toggle-button'
-          onClick={() => setIsExpanded(!isExpanded)}
-          aria-expanded={isExpanded}
-        >
+        <button className='expand-toggle-button' onClick={() => setIsExpanded(!isExpanded)} aria-expanded={isExpanded}>
           {isExpanded ? buttonText.less : buttonText.more}
         </button>
       )}

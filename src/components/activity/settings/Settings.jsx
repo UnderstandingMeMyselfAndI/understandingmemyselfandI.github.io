@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import useAppStore from '@/store/useAppStore'
-import { activities } from '@/data/config'
+import useAppStore from '@store/useAppStore'
+import { activities } from '@data/config'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
-import CloseBtn from '@/components/ui/buttons/close/CloseBtn'
-import Dialog from '@/components/ui/dialog/Dialog'
+import CloseBtn from '@components/ui/buttons/close/CloseBtn'
+import Dialog from '@components/ui/dialog/Dialog'
 import settingsData from './settingsData.js'
 import './styles.scss'
 const activitiesById = activities.reduce((acc, activity) => {
@@ -164,7 +164,7 @@ const Settings = () => {
       />
       <Dialog
         show={showConfirmDeleteDialog}
-        title='Data Cleared'
+        title='@data Cleared'
         instruction='All data has been permanently cleared.'
         confirmLabel='Close'
         cancelLabel=''

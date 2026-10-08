@@ -88,7 +88,6 @@ body #root .main section.days-counter-activity.fixed {
     display: flex;
     transition: transform 0.3s ease-in-out;
     will-change: transform;
-    // height: 100%;
     flex: 1;
   }
 
@@ -191,13 +190,6 @@ body #root .main section.days-counter-activity.fixed {
   .days-counter-button-container {
     width: 100%;
   }
-
-  /* Adjust add-another button position */
-  .days-counter-add-another-btn {
-    margin: 1rem auto;
-    display: block;
-  }
-
   /* Remove old list styles */
 
   .days-counter-close-btn {
@@ -240,8 +232,6 @@ body #root .main section.days-counter-activity.fixed {
   transition: all 0.35s ease-in-out;
   position: relative;
   flex: 1;
-  // height: 80vh;
-
   width: 100%;
   height: 100%;
 
@@ -363,21 +353,6 @@ button.days-counter-add-first-btn {
   height: 1.5rem;
 }
 
-// .days-counter-list {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   gap: 2.5rem;
-//   height: 100%;
-//   width: 100%;
-//   max-width: 100%;
-//   overflow: hidden;
-
-//   &.full {
-//     justify-content: space-evenly;
-//   }
-// }
-
 .days-counter-card {
   padding: 0.25rem;
   transition: all 0.3s;
@@ -406,7 +381,7 @@ button.days-counter-add-first-btn {
 .days-counter-title-input {
   border: none;
   background: transparent;
-  font-size: 2.5rem;
+  font-size: variables.$h2_size;
   font-weight: 800;
   font-variation-settings: 'wght' 800;
 
@@ -474,15 +449,11 @@ input.days-counter-title-input:focus {
   align-items: center;
   gap: 0.25rem;
 
-  // span:last-child {
-  //   font-size: 0.9rem;
-  //   color: var(--grey);
-  // }
 }
 
 .days-counter-selected-date {
-  font-size: 1rem;
-  color: var(--lightGrey);
+  font-size: 0.8rem;
+  color: var(--muted-two);
   white-space: wrap;
   display: flex;
   flex-flow: column wrap;
@@ -491,14 +462,6 @@ input.days-counter-title-input:focus {
   row-gap: 0.5rem;
   max-width: 85%;
   text-shadow: var(--textShadowDarkValue);
-
-  span {
-    // width:70%;
-    // font-weight: 600;
-    // font-variation-settings: 'wght' 600;
-    // color: var(--primary);
-    // font-size: 1.25rem;
-  }
 }
 
 .days-counter-card-date {
@@ -555,7 +518,8 @@ input.days-counter-date-input {
 ********************************************** */
 .days-counter-values {
   display: flex;
-  flex-flow: row wrap;
+  // flex-flow: column;
+  flex-flow: column wrap;
   font-size: 1.125rem;
   margin: 0 auto;
   line-height: 1;
@@ -564,66 +528,63 @@ input.days-counter-date-input {
   row-gap: 0.5rem;
 }
 
+.days-counter-stat.days-counter-stat-days {
+  position: relative;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+
+  .label {
+    left: auto;
+    right: 0%;
+    top: 50%;
+    position: absolute;
+    transform: translate(75%, -30%) rotate(90deg);
+    color: var(--ring);
+  }
+}
+
 .days-counter-stat {
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  font-size: 1.5rem;
-  color: var(--greyLight);
+  font-size: 1rem;
+  color: (--ring);
 
   .value {
     padding: 0;
     margin: 0;
     font-weight: 800;
     font-variation-settings: 'wght' 800;
-    font-variation-settings: 'wght' 800;
-
     line-height: 1;
     letter-spacing: -0.5px;
-
     position: relative;
   }
-
-  // &::after {
-  //   content: 'days';
-  //   position: absolute;
-  //   // font-size: 1.75rem;
-  //   font-weight: 600;
-  //   font-variation-settings: 'wght' 600;
-  //   font-variation-settings: 'wght' 600;
-  //   color: var(--primary);
-  //   bottom: 0;
-  //   left: 50%;
-  //   transform: translate(-50%, 0);
-  //   margin: 0 0 -1.0rem 0;
-  // }
 
   .label {
     letter-spacing: -0.25px;
     z-index: 1;
     font-weight: 800;
     font-variation-settings: 'wght' 800;
-    // color: var(--grey);
-    mix-blend-mode: difference;
   }
 }
 
 .days-counter-stat-days {
-  margin-bottom: 0.5rem;
+  height: fit-content;
 
   .value {
     font-size: 4.75rem;
-    margin: 0;
     font-weight: 800;
     font-variation-settings: 'wght' 800;
     color: var(--lightBlue);
   }
 
   .label {
-    font-size: 2.25rem;
-    color: var(--primary);
+    font-size: 1.75rem;
+    width: fit-content;
+    color: (--ring);
   }
 
   .days-counter-stat {
@@ -633,21 +594,61 @@ input.days-counter-date-input {
   }
 }
 
-.days-counter-stat-minutes,
-.days-counter-stat-hours {
+.days-counter-stat-hours-mins {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   align-content: center;
   justify-content: center;
-  column-gap: 0.5rem;
+  gap: 0.5rem;
+
+  .days-counter-stat-time {
+    display: flex;
+    gap: 0.25rem;
+  }
 
   .label,
   .value {
     height: 100%;
+    font-weight: 400;
+    font-variation-settings: 'wght' 400;
+    font-size: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .value,
+  .label {
+    color: var(--ring);
+    font-weight: 400;
+    font-variation-settings: 'wght' 400;
+  }
+
+  .value {
+    color: var(--lightGrey);
     font-weight: 600;
     font-variation-settings: 'wght' 600;
   }
+
+  .days-counter-stat-minutes,
+  .days-counter-stat-hours {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    column-gap: 0.5rem;
+
+    .label,
+    .value {
+      height: 100%;
+      font-weight: 600;
+      font-variation-settings: 'wght' 600;
+    }
+  }
+}
+
+.days-counter-stat-minutes {
+  font-size: 1rem;
 }
 
 .days-counter-stat-group {
@@ -657,10 +658,7 @@ input.days-counter-date-input {
   align-content: center;
   justify-content: center;
   column-gap: 2rem;
-  // outline: 1px solid yellow;
 
-  // opacity: 0.5;
-  // display: none;
   .days-counter-stat {
     width: 100%;
   }
@@ -745,10 +743,10 @@ input.days-counter-date-input {
 
 .days-counter-delete-btn {
   color: var(--red);
-  width: 45px;
-  height: 45px;
+  width: 55px;
+  height: 55px;
   position: absolute;
-  right: 2rem;
+  left: 0rem;
   top: 2rem;
   box-shadow: none;
 
@@ -764,40 +762,38 @@ input.days-counter-date-input {
   stroke: var(--greyMed);
 
   svg {
-    // fill:#fff;
     stroke: var(--greyMed);
   }
 
   path {
-    // fill:#fff;
     stroke: #666666;
   }
 }
 
 .days-counter-add-another-btn {
   margin: 0 auto;
-
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
+  cursor: pointer;
+  padding: 0;
+  aspect-ratio: 1;
   text-align: center;
   background-color: var(--blue);
   color: var(--primary);
-  padding: 1rem;
-
+  // padding: 1rem;/
   border-radius: 50%;
   transition: all 0.3s;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  font-size: 1.25rem;
+  font-size: 1.75rem;
   font-weight: 600;
   font-variation-settings: 'wght' 600;
   cursor: pointer;
 }
 
 /* Adjust add-another button position */
-// .days-counter-add-another-btn {}
 
 .days-counter-add-another-btn:hover {
   box-shadow: var(--textShadowDarkValue);
@@ -841,29 +837,31 @@ body #root .main section .days-counter-cost {
   align-items: center;
   justify-content: center;
   align-content: center;
-
-  gap: 8px;
-
-  // border: 1px solid yellow;
-  width: 80%;
+  outline: 1px solid var(--blue40Trans);
+  width: fit-content;
+  gap: 0.5rem;
+  text-align: right;
   margin: 0 auto 1rem auto;
+  padding: 0rem 0.75rem;
+  border-radius: 8px;
 
   label {
-    color: var(--orange);
+    color: var(--lightGrey);
     font-size: 1rem;
-    width: 100%;
+    width: fit-content;
     height: 100%;
     text-align: left;
     display: flex;
-    // gap: 6px;
     justify-content: space-between;
   }
 
   input {
     width: 100px;
-    padding: 4px 8px;
+    height: 100%;
+    padding: 0.75rem 0.25rem 0.75rem 0.75rem;
     background: var(--input-bg);
-    border: 1px solid var(--greyLight);
+    border: none;
+    border-left: 1px solid var(--lightBlue30Trans);
   }
 
   #currency-selector {
@@ -886,44 +884,117 @@ body #root .main section .days-counter-cost {
 
 .days-counter-savings-rates {
   display: flex;
-  flex-flow: column nowrap;
-  gap: 8px;
-  // margin-top: 16px;
-
+  flex-flow: column wrap;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
   width: 80%;
+  margin: 0.5rem auto;
+  position: relative;
 
-  margin: 0 auto;
+  &.all {
+    height: 80px;
+  }
+
+  .savings-rate-all-time {
+    outline: none;
+    border: none;
+    font-weight: 800;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    width: fit-content;
+    height: 70px;
+    gap: 0rem;
+
+    .total-label {
+      font-size: 1rem; 
+      text-transform: uppercase;
+      font-variation-settings: 'wght' 600;
+      transform: rotate(90deg) translate(0%, -50%);
+      height: fit-content;
+      color: var(--ring);
+    }
+
+    .total-value {
+      font-size: variables.$h2_size;
+      font-weight: 800;
+      font-variation-settings: 'wght' 800;
+      color: var(--orange);
+      text-align: center;
+      width: fit-content;
+      height: fit-content;
+      margin: 0 auto;
+      transform: translate(20px, 0%);
+      max-width: 255px;
+      overflow: hidden;
+    }
+  }
+
+  .savings-rate:nth-child(1) {
+    width: 72%;
+    outline: 1px solid rgba(255, 165, 0, 0.6);
+    align-self: center;
+  }
+
+  .savings-rate:nth-child(2) {
+    width: 88%;
+    outline: 1px solid rgba(255, 165, 0, 0.6);
+    align-self: center;
+  }
+
+  .savings-rate:nth-child(3) {
+    width: 100%;
+    align-self: center;
+    outline: 1px solid rgba(255, 165, 0, 0.6);
+  }
+
+  .savings-rate:nth-child(4) {
+    width: 100%;
+    align-self: center;
+    outline: 1px solid rgba(255, 165, 0, 0.6);
+  }
 
   .savings-rate {
-    // background: linear-gradient(145deg, var(--card-bg), var(--card-bg-dark));
     padding: 0px;
-    // border-radius: 12px;
-    // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    // transition: transform 0.2s, box-shadow 0.2s;
     display: flex;
-    // flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 100%;
-    // outline: 1px solid #ccc;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+    padding: 0.25rem 0.4rem;
+    overflow: clip;
+    border-radius: 4px;
+    justify-content: space-between;
 
     >span {
-      width: 50%;
+      width: auto;
     }
 
     >span:first-child {
       text-align: left;
-      // background: var(--yellow50Trans);
+      font-variation-settings: 'wght' 500;
     }
 
-    >span:last-child {
+    >span:nth-child(2) {
       text-align: right;
+      font-variation-settings: 'wght' 700;
+      justify-self: flex-end;
     }
 
-    // &:hover {
-    //   transform: translateY(-2px);
-    //   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-    // }
+    div.rate-bg {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 130%;
+      width: 33%;
+      background-color: var(--orange40Trans);
+      z-index: -1;
+      transform: skewX(-15deg) translate(5%, 0%);
+    }
 
     .rate-icon {
       font-size: 1.5rem;
@@ -964,21 +1035,22 @@ body #root .main section .days-counter-cost {
 }
 
 .days-counter-currency-selector {
-  padding: 0.3rem 0.5rem;
+  padding: 0.3rem 0.25rem;
   border-radius: 6px;
-  font-size: 1rem;
+  font-size: 1.35rem;
   margin: 0 0 0 0;
   background: transparent;
   border: 1px solid var(--border-color);
-  // padding: 4px 8px;
   color: var(--text-primary);
-  // margin-left: 12px;
-  width: 76px;
+  color: var(--ring);
+  width: 98px;
   cursor: pointer;
+  text-align: right;
+  font-weight: 800;
+  font-variation-settings: 800;
 
   option {
     background: var(--greyDark50Trans);
-    color: var(--text-primary);
 
     &:hover {
       background: var(--greyMid);

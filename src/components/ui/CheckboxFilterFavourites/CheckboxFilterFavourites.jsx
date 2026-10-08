@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect } from 'react'
-import { Checkbox } from 'ui/checkboxes/checkbox'
-import { Label } from 'ui/label'
+import { Checkbox } from '@ui/checkboxes/checkbox'
+import { Label } from '@ui/label'
 import './styles.css'
 const storageKey = 'filterFavs'
 

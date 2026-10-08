@@ -1,12 +1,5 @@
 'use client'
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerFooter,
-  DrawerTrigger,
-  DrawerTitle,
-} from '@/components/ui/drawer'
+import { Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerTrigger, DrawerTitle } from '@components/ui/drawer'
 import './styles.css'
 import ButtonFontSize from '../buttons/ButtonFontSize.jsx'
 
