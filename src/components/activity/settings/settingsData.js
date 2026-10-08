@@ -2,6 +2,19 @@
 // import state from '@store/useAppStore'
 const settingsData = [
   {
+    groupTitle: 'Tools Enabled',
+    settings: [
+      {
+        name: 'Tools',
+        stateSelector: (state) => state.toolsEnabled,
+        setStateAction: (state) => state.enableTools,
+        label: 'Enable Tools',
+        information: 'Control the display of all tools.',
+        classnames: [''],
+      },
+    ],
+  },
+  {
     groupTitle: 'Your Tools',
     settings: [
       {
@@ -15,7 +28,7 @@ const settingsData = [
 
       {
         name: 'YourTools',
-        stateSelector: (state) => state.yourToolsEnabled,
+        stateSelector: (state) => state.toolsEnabled,
         setStateAction: (state) => state.enableYourTools,
         label: 'Enable "Your Tools"',
         information: 'Favourite tools you like, and add them to your "toolbox" for quick access.',

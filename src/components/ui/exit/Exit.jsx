@@ -37,23 +37,39 @@ const Exit = () => {
       doExit()
     }
   }
-  const exitFullscreen = () => {
-    if (document.exitFullscreen) {
-      document.exitFullscreen()
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen()
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen()
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen()
+  const exitFullscreen = async () => {
+    console.log('Document.fullscreenElement ', Document.fullscreenElement)
+  if (document.fullscreenElement) {
+    try {
+      await document.exitFullscreen()
+    } catch (e) {
+      console.error(e)
     }
+  } else if (document.webkitExitFullscreen) {
+    try {
+      await document.webkitExitFullscreen()
+    } catch (e) {
+      console.error(e)
+    }
+  } else if (document.mozCancelFullScreen) {
+    try {
+      await document.mozCancelFullScreen()
+    } catch (e) {
+      console.error(e)
+    }
+  } else if (document.msExitFullscreen) {
+    try {
+      await document.msExitFullscreen()
+    } catch (e) {
+      console.error(e)
+    }
+  }
   }
   const doExit = () => {
     const url = 'https://google.com'
     window.location.replace(url)
     window.location = url
     exitFullscreen()
-    window.close()
   }
   const handleDialogueCancel = () => {
     setShowDialog(false)

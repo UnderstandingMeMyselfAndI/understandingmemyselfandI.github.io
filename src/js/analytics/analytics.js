@@ -8,12 +8,16 @@ export const trackEvent = (eventName, params = {}, shouldTrack) => {
   //   })
   // }
 
+  console.group(`[Analytics] Attempting to track event: ${eventName}`)
+  console.log('Params:', params)
+  console.log('shouldTrack:', shouldTrack)
+  console.log('process.env.NODE_ENV :', process.env.NODE_ENV)
+  console.log('window.gtag :', window.gtag)
+  console.log('typeof window :', typeof window)
+
   if (!shouldTrack) {
     if (process.env.NODE_ENV === 'development') {
-      console.log(
-        '[Analytics] Tracking disabled (gae=false), event not sent:',
-        eventName,
-      )
+      console.log('[Analytics] Tracking disabled (gae=false), event not sent:', eventName)
     }
     return
   }
@@ -26,4 +30,6 @@ export const trackEvent = (eventName, params = {}, shouldTrack) => {
   } else {
     console.warn('[Analytics] gtag not available – event not sent:', eventName)
   }
+
+  console.groupEnd()
 }

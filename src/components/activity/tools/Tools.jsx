@@ -21,6 +21,8 @@ const Tools = () => {
   const id = 1
   const toolboxFilterEnabled = useAppStore((s) => s.toolboxFilterEnabled)
 
+  console.log('toolboxFilterEnabled', toolboxFilterEnabled)
+
   const [open, setOpen] = useState(false)
   const activity = useAppStore((s) => s.activity)
 

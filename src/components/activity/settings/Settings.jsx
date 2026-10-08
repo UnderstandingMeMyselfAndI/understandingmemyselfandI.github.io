@@ -63,11 +63,9 @@ const Settings = () => {
   const setShowToolsOnly = useAppStore((s) => s.setShowToolsOnly)
   const activity = useAppStore((s) => s.activity)
   const clearIDB = useAppStore((s) => s.clearIDB)
-  const isModal = useAppStore((s) => s.isModal)
-  const activityID = activities.find((activity) => (activity.url === name ? activity.id : null))
+  // const isModal = useAppStore((s) => s.isModal)
+  // const activityID = activities.find((activity) => (activity.url === name ? activity.id : null))
   const setIsModal = useAppStore((s) => s.setIsModal)
-
-  // TODO: The settingsDataWithStateObjects contains the configs that need implements
   const settingsDataWithStateObjects = settingsData.map((group) => {
     return {
       ...group,
@@ -89,7 +87,7 @@ const Settings = () => {
 
   useEffect(() => {
     open && setIsModal(activitiesById[id]?.modal)
-  }, [open, setIsModal, activitiesById, id])
+  }, [open, setIsModal, id])
 
   useEffect(() => {
     setOpen(id === activity)
@@ -104,10 +102,6 @@ const Settings = () => {
   }
 
   const handleClose = () => {
-    console.log(' YourToolsSettings ', settingsDataWithStateObjects)
-
-    const YouurToolsSettings = settingsDataWithStateObjects.find((stateObject) => stateObject.name === 'YourToolbox')
-
     settingsDataWithStateObjects.forEach((settings) => {
       settings.settings.forEach((setting) => {
         setting.stateObject.name === 'YourToolbox' && setShowToolsOnly(setting.stateObject.state)
@@ -116,23 +110,9 @@ const Settings = () => {
 
     settingsDataWithStateObjects.forEach((settings) => {
       settings.settings.forEach((setting) => {
-        console.log(' ----------------------------------------- ')
-        console.log(' setting.stateObject.state ', setting.stateObject.state)
-        console.log(' setting.stateObject.setState ', setting.stateObject.setState)
-
-        console.log(' setting.stateObject.name ', setting.stateObject.name)
         setting.stateObject.setState(setting.stateObject.state)
       })
     })
-
-    // const YourToolsSettings = settingsDataWithStateObjects.settings.find((setting) => setting.name === 'YourToolbox')
-    // console.log(' YourToolsSettings ', YourToolsSettings)
-    // if (!YourToolsSettings.state) {
-    //   setShowToolsOnly(false)
-    // }
-    // Set all state here to avoid repaint when changing individual settings
-
-    // group.settings.map((setting) => setting.stateObject.update())
 
     setOpen(false)
     setActivity(-1)

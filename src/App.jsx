@@ -47,24 +47,29 @@ import './scss/_fonts.scss'
 // import AccessibilitySettings from './components/ui/AccessibilitySettings/AccessibilitySettings'
 //TODO #41 Add Pop up confirm box with disclaimer. with timely reminder.
 //TODO #42 Add setting to remove reminder in settings
-// TODO: #21 "Clear Local Data" functionality
+//TODO #21 "Clear Local Data" functionality
 //TODO #43 Styling of cookie consent
-// TODO #67 #66 New features Urges and Cravings logs
-//Need for Service Worker update itself
+//TODO #67 #66 New features Urges and Cravings logs
+// Needed for Service Worker update itself
 window.__APP_LOADED = true
 
 function App() {
+  // Customise display of features
   const daysCounterEnabled = useAppStore((s) => s.daysCounterEnabled)
-  // const enableYourTools = useAppStore((s) => s.enableYourTools)
   const quickExitEnabled = useAppStore((s) => s.quickExitEnabled)
   const unitsCalculatorEnabled = useAppStore((s) => s.unitsCalculatorEnabled)
-
+  const wheelOfLifeEnabled = useAppStore((s) => s.wheelOfLifeEnabled)
+  const quizEnabled = useAppStore((s) => s.quizEnabled)
+  const toolsEnabled = useAppStore((s) => s.toolsEnabled)
+  const smoothScrollEnabled = useAppStore((s) => s.smoothScrollEnabled)
+  // Verification
   const ageVerified = useAppStore((s) => s.ageVerified)
+  const savedConsent = localStorage.getItem('cookieConsent')
+  // Hydration
   const hasHydrated = useAppStore((s) => s._hasHydrated)
 
-  const savedConsent = localStorage.getItem('cookieConsent')
+  if (smoothScrollEnabled) smoothScroll()
 
-  smoothScroll()
   const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme)
 
   if (theme !== null) {
@@ -86,40 +91,33 @@ function App() {
     <div>
       <div className='main'>
         <AppMenu />
-
         {quickExitEnabled && <Exit />}
-
         <Header />
         <Introduction />
         <WallpaperGallery />
         <VerticalTimeline />
-        <WheelOfLife />
-        <Tools />
+        {wheelOfLifeEnabled && <WheelOfLife />}
+        {toolsEnabled && <Tools />}
         <PrivacyPolicy />
-        <Quiz />
+        {quizEnabled && <Quiz />}
         <PengGameAI />
-
-        <ToolsCTA />
+        {toolsEnabled && <ToolsCTA />}
         {daysCounterEnabled && <DaysCounterCTA />}
         {unitsCalculatorEnabled && <UnitsCalculatorCTA />}
         <TimelineCTA />
-        <WheelOfLifeCTA />
+        {wheelOfLifeEnabled && <WheelOfLifeCTA />}
         <Lingo />
-        <QuizCTA />
+        {quizEnabled && <QuizCTA />}
         <WallpapersCTA />
         <YourPrivacyCTA />
-
         <NewsletterSignUp />
         <InstallCTA />
-
         <Footer />
-
         {quickExitEnabled && <Exit />}
         {unitsCalculatorEnabled && <UnitsCalculator />}
         {daysCounterEnabled && <DaysCounter />}
         <AcronymExplained />
         <Settings />
-
         <SnackBars />
       </div>
       <Backdrop initialImageId={2} initialDelay={3000} interval={6000} parallaxStrength={0} className='backdrop' />

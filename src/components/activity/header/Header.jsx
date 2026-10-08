@@ -270,7 +270,7 @@ const Header = () => {
     { dependencies: [open, isLeaving, isModal], scope: cont },
   )
 
-  // TODO #25 Maybe use ScrollTrigger isInViewport and drop thei library
+  // TODO #25 Maybe use ScrollTrigger isInViewport and drop the library
   //https://gsap.com/docs/v3/Plugins/ScrollTrigger/static.positionInViewport()
   const inViewData = useRef(true)
 

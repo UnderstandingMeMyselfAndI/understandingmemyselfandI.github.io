@@ -1,20 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
 import useAppStore from '@store/useAppStore'
 import { activities } from '@data/config'
+
 // import requestWakeLock from '@js/utils/WakeLock'
 import { strings } from '@data/config'
 import { sanitizeStringForUrl, setBrowserHistory } from '@js/utils.js'
 import './styles.scss'
-export const MenuOpenIcon = () => (
-  <svg xmlns='http://www.w3.org/2000/svg' height='40px' width='40px' viewBox='0 -960 960 960' fill='#ffffff'>
-    <path d='M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z' />
-  </svg>
-)
-export const MenuCloseIcon = () => (
-  <svg xmlns='http://www.w3.org/2000/svg' height='40px' viewBox='0 -960 960 960' width='40px' fill='#ffffff'>
-    <path d='m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z' />
-  </svg>
-)
+
 // TODO: #19 Implement URLS and routing
 export default function AppMenu() {
   // const [anchorEl, setAnchorEl] = useState(null);
@@ -24,8 +16,15 @@ export default function AppMenu() {
 
   const showBurgerStack = useAppStore((state) => state.showBurgerStack)
 
-  const daysCounterEnabled = useAppStore((state) => state.daysCounterEnabled)
+  // Customise display of features
+  const daysCounterEnabled = useAppStore((s) => s.daysCounterEnabled)
   const unitsCalculatorEnabled = useAppStore((s) => s.unitsCalculatorEnabled)
+  const wheelOfLifeEnabled = useAppStore((s) => s.wheelOfLifeEnabled)
+  const quizEnabled = useAppStore((s) => s.quizEnabled)
+  const toolsEnabled = useAppStore((s) => s.toolsEnabled)
+  const smoothScrollEnabled = useAppStore((s) => s.smoothScrollEnabled)
+
+  // ------------------------------------------------------------------
 
   const setActivity = useAppStore((state) => state.setActivity)
   const activity = useAppStore((state) => state.activity)
@@ -46,10 +45,10 @@ export default function AppMenu() {
     setOpen(false)
   }
 
-  function findActivityObj(id) {
-    const obj = activities.find((a) => (parseInt(a.id) === parseInt(id) ? id : null))
-    return obj
-  }
+  // function findActivityObj(id) {
+  //   const obj = activities.find((a) => (parseInt(a.id) === parseInt(id) ? id : null))
+  //   return obj
+  // }
 
   useEffect(() => {
     const obj = activities.find((a) => (parseInt(a.id) === parseInt(activity) ? activity : null))
@@ -64,6 +63,10 @@ export default function AppMenu() {
     const stateMap = {
       daysCounterEnabled,
       unitsCalculatorEnabled,
+      wheelOfLifeEnabled,
+      quizEnabled,
+      toolsEnabled,
+      smoothScrollEnabled,
       isInstalled,
       isInstallable,
       gae,
@@ -84,7 +87,18 @@ export default function AppMenu() {
         const posB = b.menuPosition ?? Infinity
         return posA - posB
       })
-  }, [daysCounterEnabled, unitsCalculatorEnabled, isInstalled, isInstallable, gae, nss])
+  }, [
+    daysCounterEnabled,
+    unitsCalculatorEnabled,
+    wheelOfLifeEnabled,
+    quizEnabled,
+    toolsEnabled,
+    smoothScrollEnabled,
+    isInstalled,
+    isInstallable,
+    gae,
+    nss,
+  ])
 
   return showMenu ? (
     <div className={'AppMenu' + (openMenu ? ' ' : ' hide')}>

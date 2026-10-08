@@ -15,7 +15,6 @@ const indexedDBStorage = {
   },
 }
 
-// TODO[x]: #20 Implement short names for brevity in storage
 const useAppStore = create(
   persist(
     (set, get) => ({
@@ -164,8 +163,13 @@ const useAppStore = create(
       },
       // ----------------------------------------
       // Quiz
+      quiz: true,
+      setQuiz: (v) => {
+        set(() => ({ quiz: v }))
+      },
       quizEnabled: true,
       enableQuiz: (v) => {
+        set(() => ({ quizEnabled: v }))
         set(() => ({ quiz: v }))
       },
       // ----------------------------------------
@@ -178,6 +182,17 @@ const useAppStore = create(
       enableUnitsCalculator: (v) => {
         set(() => ({ unitsCalculatorEnabled: v }))
         set(() => ({ uc: v }))
+      },
+      // ----------------------------------------
+      // Enbale Disable Smooth Scroll
+      Ss: true,
+      setSs: (v) => {
+        set(() => ({ Ss: v }))
+      },
+      smoothScrollEnabled: true,
+      enableSmoothScroll: (v) => {
+        set(() => ({ smoothScrollEnabled: v }))
+        set(() => ({ tf: v }))
       },
       // ----------------------------------------
       // Tools
@@ -405,6 +420,7 @@ const useAppStore = create(
         ageVerified: state.ageVerified,
         wol: state.wol,
         wheelOfLifeEnabled: state.wheelOfLifeEnabled,
+        quiz: state.quiz,
         quizEnabled: state.quizEnabled,
         dc: state.dc,
         daysCounterEnabled: state.daysCounterEnabled,
