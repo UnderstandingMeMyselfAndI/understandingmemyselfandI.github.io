@@ -14,7 +14,7 @@ import './styles.scss'
 const SnackBars = () => {
   const [open, setOpen] = useState(false)
   const [message2, setMessage2] = useState('')
-  const [severity, setSeverity] = useState('info')
+  const [severity, setSeverity] = useState('success')
 
   const message = useAppStore((s) => s.message)
 
@@ -25,7 +25,7 @@ const SnackBars = () => {
     if (!canShow || !message) return
 
     setMessage2(message)
-    setSeverity('info')
+    setSeverity('success')
     setOpen(true)
   }, [message, canShow])
 
@@ -50,7 +50,7 @@ const SnackBars = () => {
           sx={{ width: '100%' }}
           iconMapping={{
             success: <HandymanOutlinedIcon fontSize='inherit' />,
-            info: <IconTaskComplete fontSize='inherit' />,
+            // info: <IconTaskComplete className='snackbar__icon-complete' />,
           }}>
           {message2}
         </Alert>

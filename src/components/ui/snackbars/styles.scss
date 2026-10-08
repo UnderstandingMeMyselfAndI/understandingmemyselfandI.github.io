@@ -29,4 +29,16 @@
   button {
     box-shadow: none;
   }
+
+  .snackbar__icon-complete {
+    width: 14px;
+    height: 14px;
+    outline: 1px solid yellow;
+
+    svg {
+      width: 14px;
+      height: 14px;
+      fill: #000;
+    }
+  }
 }
