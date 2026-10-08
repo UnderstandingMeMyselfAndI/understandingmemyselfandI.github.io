@@ -1,6 +1,6 @@
-import data from '@data/tools.js'
-import { activities } from '@data/config.js'
-// import { sanitizeStringForUrl } from '@js/utils.js'
+import data from './src/data/tools.js'
+import { activities } from './src/data/activities.js'
+
 export function getDynamicRoutes() {
   const routes = []
   data.tools.nodes.forEach((tool) => {
@@ -13,7 +13,6 @@ export function getDynamicRoutes() {
         route = route.slice(0, -1)
       }
       routes.push(route)
-      // console.log('Adding route: ' + '/recovery-tool/' + sanitizeStringForUrl(route))
     }
   })
   activities.forEach((activity) => {

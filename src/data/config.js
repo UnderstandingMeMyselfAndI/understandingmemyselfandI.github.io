@@ -1,8 +1,8 @@
-import HandymanIcon from '@mui/icons-material/Handyman'
+// import HandymanIcon from '@mui/icons-material/Handyman'
 // import { isTouchDevice } from '../js/utils.js'
-const isTouchDevice = () => {
-  return true
-}
+// export const isTouchDevice = () => {
+//   return true
+// }
 
 const cnf = {
   appName: 'Ummi',
@@ -406,7 +406,7 @@ const strings = {
         },
         {
           title: 'FEATURES:',
-          icon: HandymanIcon,
+          icon: 'HandymanIcon',
           content: [
             '<b class="yellow">Explanations</b> of <b><u class="yellow-ul">Addiction Recovery</u> <u>tools </u></b>',
             '<u class="yellow-ul yellow"><b>Scenarios</b></u> describing <u>when tools <b>could be useful</b></u>',
@@ -482,7 +482,8 @@ const strings = {
       slug: '#recovery-tools',
       url: 'recovery-tools',
       title: 'The Tools',
-      introduction: (isTouchDevice() ? 'Tap' : 'Click') + ' on a tool to learn more about it',
+      // introduction: (isTouchDevice() ? 'Tap' : 'Click') + ' on a tool to learn more about it',
+      introduction: 'Tap on a tool to learn more about it',
       description: [
         'These tools <u class="yellow-ul"><b>might not </b></u>work for<u><b class="yellow"> everbody.</b></u>',
         'They <u>could work</u> for <b><u class="yellow">one person</u></b> and <u class="yellow-ul">not the next</u>.',
