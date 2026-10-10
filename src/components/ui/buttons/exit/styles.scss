@@ -57,7 +57,7 @@ div.exit-btn {
     height: 100%;
     border-radius: 50%;
     background: var(--blue-dark-trans-70);
-    outline: 1px solid var(-grey-light30Trans);
+    outline: 1px solid var(--grey-light-trans-30);
     shape-rendering: crispEdges;
     opacity: 0.75;
     filter: blur(0.035rem);

@@ -378,7 +378,7 @@ div#wheel-of-life {
         --wheel-divider-width: 8px;
 
         // 3. Sub-section Lines (The inner circles 1-9)
-        --wheel-subsection-color: var(-grey-light10Trans);
+        --wheel-subsection-color: var(--grey-light-trans-10);
         --wheel-subsection-width: 1px;
 
         // 4. Outer Numbers (The "10"s)
@@ -517,7 +517,7 @@ div#wheel-of-life {
       max-width: var(--max-width);
 
       .btn {
-        outline: 1px solid var(-grey-light20Trans);
+        outline: 1px solid var(--grey-light-trans-20);
         padding: 0.625rem 1.15rem;
       }
 

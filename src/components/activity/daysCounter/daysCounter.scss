@@ -630,7 +630,7 @@ input.days-counter-date-input {
   }
 
   .value {
-    // color: var(-grey-light);
+    // color: var(--grey-light);
     font-weight: 600;
     font-variation-settings: 'wght' 600;
   }
@@ -863,7 +863,7 @@ body #root .main section .days-counter-cost {
   border-radius: 8px;
 
   label {
-    color: var(-grey-light);
+    color: var(--grey-light);
     font-size: 1rem;
     width: fit-content;
     height: 100%;
