@@ -12,7 +12,7 @@ const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc
 }, {})
-import './styles.scss'
+import './header.scss'
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 

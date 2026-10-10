@@ -11,7 +11,7 @@
 .MuiSnackbar-anchorOriginTopCenter,
 .MuiSnackbar-anchorOriginBottomLeft {
   >div {
-    background: var(--mainBackground) !important;
+    background: var(--background-main) !important;
 
     .MuiSnackbarContent-message {
       color: var(--primary);

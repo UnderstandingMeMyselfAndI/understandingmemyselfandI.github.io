@@ -9,7 +9,7 @@ const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc
 }, {})
-import './styles.scss'
+import './unitsCalculator.scss'
 
 const calcUnits = (ml, abv) => (ml * abv) / 1000
 
@@ -20,8 +20,8 @@ const DRINK_PRESETS = [
     drinks: [
       { label: 'Pint', volume: 568, unit: 'ml', abv: 5 },
       { label: 'Half pint ', volume: 284, unit: 'ml', abv: 4.5 },
-      { label: 'Std Can', volume: 440, unit: 'ml', abv: 5 },
-      { label: 'Sml Can', volume: 330, unit: 'ml', abv: 5 },
+      { label: 'Larger Can', volume: 440, unit: 'ml', abv: 5 },
+      { label: 'Larger Can Sml', volume: 330, unit: 'ml', abv: 5 },
       { label: 'Strong Larger', volume: 440, unit: 'ml', abv: 7.5 },
       { label: 'Strong Cider', volume: 440, unit: 'ml', abv: 7.5 },
     ],
@@ -32,9 +32,9 @@ const DRINK_PRESETS = [
     label: 'Wine',
     type: 'wine',
     drinks: [
-      { label: 'Sml Glass', volume: 125, unit: 'ml', abv: 13 },
-      { label: 'Med Glass', volume: 175, unit: 'ml', abv: 13 },
-      { label: 'Lrg Glass', volume: 250, unit: 'ml', abv: 13 },
+      { label: 'Small Glass', volume: 125, unit: 'ml', abv: 13 },
+      { label: 'Medium Glass', volume: 175, unit: 'ml', abv: 13 },
+      { label: 'Large Glass', volume: 250, unit: 'ml', abv: 13 },
       { label: 'Bottle', volume: 750, unit: 'ml', abv: 13 },
     ],
   },
@@ -68,7 +68,7 @@ const UnitsCalculator = () => {
   const [isMeasuresVisible, setIsMeasuresVisible] = useState(false)
   const [multiplier, setMultiplier] = useState(1)
   const [customDrink, setCustomDrink] = useState({
-    label: 'Custom Drink',
+    label: '',
     volume: 440,
     unit: 'ml',
     abv: 5,
@@ -141,182 +141,177 @@ const UnitsCalculator = () => {
 
   return open ? (
     <section id='ummi-units-calculator' className={'activity ummi-units-calculator fixed' + (open ? ' open' : '')}>
+      {!isMeasuresVisible && <CloseBtn className='close-btn-activity' onClick={handleClose} />}
       <div className='inner'>
-        {!isMeasuresVisible && <CloseBtn className='close-btn-activity' onClick={handleClose} />}
-        <div className='content'>
-          <div className='wrap'>
-            <header>
-              <h3>Units Calculator</h3>
-            </header>
-            <section className='calculator-core'>
-              <div className='selected-measures'>
-                {drinks.length > 0 ? <div className='instruction'>Tap row to remove</div> : null}
-                {drinks.length === 0 ? (
-                  <div className='no-measures'>
-                    {' '}
-                    <div className='no-drinks-selected '>{parse(DOMPurify.sanitize(noDrinksMessage))}</div>
-                  </div>
-                ) : (
-                  <ul className={'measures ' + (drinks.length === 0 ? ' none' : '')}>
-                    {[...drinks]
-                      .sort((a, b) => calcUnits(a.volume, a.abv) - calcUnits(b.volume, b.abv))
-                      .map((d) => (
-                        <li key={d.id} className='drinks-entry' onClick={() => removeDrink(d.id)}>
-                          <div className='desc'>
-                            <div className='row-1'>
-                              <div className='multiplier'>{d.count}x</div>{' '}
-                              <div className='label'>
-                                {d.label} <span>({d.type})</span>{' '}
-                              </div>
-                            </div>{' '}
-                            <div className='row-2'>
-                              <div className='vol'>
-                                {d.volume} {d.unit}
-                              </div>{' '}
-                              <div className='pct-abv'>{d.abv} % ABV</div>
-                            </div>
-                          </div>
-                          <div className='equals'>=</div>
-                          <div className='units'>{(calcUnits(d.volume, d.abv) * d.count).toFixed(2)} units</div>
-                        </li>
-                      ))}
-                  </ul>
-                )}
-                <div className='drinks-total'>
-                  <div className='drinks-total-wrap'>
-                    <h3>
-                      Total : <span>{totalUnits.toFixed(2)} units </span>
-                    </h3>{' '}
-                    <div className='drinks-count'>({totalDrinkCount} drinks)</div>
-                  </div>
-                </div>
-              </div>
-              <div className='container-buttons'>
-                <div className='measures-selector'>
-                  <div className='@buttons'>
-                    <button
-                      onClick={() => {
-                        setType('custom')
-                        setIsMeasuresVisible(false)
-                      }}
-                      className={'group' + (type === 'custom' ? ' selected' : ' ')}>
-                      Custom
-                    </button>
-                    <button onClick={() => setIsMeasuresVisible(true)} className='group'>
-                      Measures
-                    </button>
-                  </div>
-                </div>
+        <div className='wrap'>
+          <header>
+            <h3>Units Calculator</h3>
+          </header>
 
-                <div className='measures-container'>
-                  {type === 'custom' && (
-                    <form onSubmit={handleCustomDrinkSubmit} className='custom-drink-form'>
-                      <div className='row'>
-                        {/* <div>Name</div> */}
-                        <label htmlFor='custom-drink-name'>
-                          <input
-                            id='custom-drink-name'
-                            type='text'
-                            name='label'
-                            value={customDrink.label}
-                            onChange={handleCustomDrinkChange}
-                            placeholder='Drink Name'
-                          />
-                        </label>
-                      </div>
-                      <div className='row'>
-                        <label htmlFor='custom-drink-count'>
-                          <input
-                            id='custom-drink-count'
-                            type='number'
-                            name='count'
-                            value={customDrink.count}
-                            onChange={handleCustomDrinkChange}
-                            placeholder='Count'
-                          />
-                          <div>x</div>
-                        </label>
-                        <label htmlFor='custom-drink-volume'>
-                          <input
-                            id='custom-drink-volume'
-                            type='number'
-                            name='volume'
-                            value={customDrink.volume}
-                            onChange={handleCustomDrinkChange}
-                            placeholder='Volume (ml)'
-                          />
-                          <div>(ml)</div>
-                        </label>
-                        <label htmlFor='custom-drink-abv'>
-                          <input
-                            id='custom-drink-abv'
-                            type='number'
-                            name='abv'
-                            value={customDrink.abv}
-                            onChange={handleCustomDrinkChange}
-                            placeholder='ABV (%)'
-                          />
-                          <div>ABV (%)</div>
-                        </label>
-                      </div>
-                      <button type='submit' className='measure custom'>
-                        Add Custom Drink
-                      </button>
-                    </form>
-                  )}
-                </div>
+          <div className='ummi-uc__row ummi-uc__selected-measures'>
+            {drinks.length > 0 ? <div className='ummi-uc__selected-measures-instruction'>Tap row to remove</div> : null}
+            {drinks.length === 0 ? (
+              <div className='ummi-uc__no-measures'>
+                {' '}
+                <div className='ummi-uc__no-selection'>{parse(DOMPurify.sanitize(noDrinksMessage))}</div>
               </div>
-            </section>
-            {isMeasuresVisible && (
-              <div className='measures-scroll-list' onClick={() => setIsMeasuresVisible(false)}>
-                <CloseBtn className='close-btn-measures' handleClick={() => setIsMeasuresVisible(false)} />
-                <div className='measures-scroll-list-inner' onClick={(e) => e.stopPropagation()}>
-                  <div className='multiplier-input'>
-                    <label htmlFor='multiplier'>No of:</label>
-                    <input
-                      type='number'
-                      id='multiplier'
-                      name='multiplier'
-                      value={multiplier}
-                      onChange={(e) => setMultiplier(parseInt(e.target.value, 10) || 1)}
-                      min={1}
-                    />
-                  </div>
-                  {DRINK_PRESETS.map((group) =>
-                    group.type !== 'custom' ? (
-                      <div key={group.label} className='measures-group'>
-                        {/* <div className='measures-group-title'>
-                              {group.label}
-                            </div> */}
-                        <div className='measures-group-buttons'>
-                          {group.drinks.map((preset) => (
-                            <button
-                              key={preset.label}
-                              onClick={() => {
-                                addDrink({ ...preset, type: group.type }, multiplier)
-                                setIsMeasuresVisible(false)
-                              }}
-                              className='measure'>
-                              <span className='measure-title'>{preset.label}</span>
-                              <span className='spec'>
-                                <span className='volume'>
-                                  {preset.volume} {preset.unit}
-                                </span>
-                                <span className='abv'>{preset.abv} %</span>
-                              </span>
-                            </button>
-                          ))}
+            ) : (
+              <ul className={'ummi-uc__measures ' + (drinks.length === 0 ? ' none' : '')}>
+                {[...drinks]
+                  .sort((a, b) => calcUnits(a.volume, a.abv) - calcUnits(b.volume, b.abv))
+                  .map((d) => (
+                    <li key={d.id} className='drinks-entry' onClick={() => removeDrink(d.id)}>
+                      <div className='desc'>
+                        <div className='row-1'>
+                          <div className='multiplier'>{d.count}x</div>{' '}
+                          <div className='label'>
+                            {d.label} <span>({d.type})</span>{' '}
+                          </div>
+                        </div>{' '}
+                        <div className='row-2'>
+                          <div className='vol'>
+                            {d.volume} {d.unit}
+                          </div>{' '}
+                          <div className='pct-abv'>{d.abv} % ABV</div>
                         </div>
                       </div>
-                    ) : null,
-                  )}
-                </div>
-              </div>
+                      <div className='equals'>=</div>
+                      <div className='units'>{(calcUnits(d.volume, d.abv) * d.count).toFixed(2)} units</div>
+                    </li>
+                  ))}
+              </ul>
             )}
-            <div className='calculation-information'>
-              <div>
-                <span>Units calculated</span> = <span>(volume in ml</span> X <span>ABV%)</span> ÷ <span>1000</span>
+          </div>
+          <div className='ummi-uc__row ummi-uc__drinks-total'>
+            <button onClick={() => setIsMeasuresVisible(true)} className='ummi-uc__button-measures'>
+              Standard Measures
+            </button>
+            <div className='ummi-uc__drinks-total-wrap'>
+              <div className='ummi-uc__drinks-count'>
+                <div>Total : </div>
+                <div>({totalDrinkCount} drinks)</div>
               </div>
+              <div>
+                <span>{totalUnits.toFixed(2)} units </span>
+              </div>
+            </div>
+          </div>
+          <div className='ummi-uc__row'>
+            <div className='ummi-uc__measures'>
+              {type === 'custom' && (
+                <form onSubmit={handleCustomDrinkSubmit} className='ummi-uc__custom-drink-form'>
+                  <div className='row name'>
+                    <input
+                      id='custom-drink-name'
+                      className='ummi-uc__custom-drink-name'
+                      type='text'
+                      name='label'
+                      value={customDrink.label}
+                      onChange={handleCustomDrinkChange}
+                      placeholder='Custom Drink Name'
+                    />
+                  </div>
+                  <div className='row'>
+                    <div className='item multiplier'>
+                      <input
+                        id='custom-drink-count'
+                        className='ummi-uc__custom-drink-count'
+                        type='text'
+                        inputmode='numeric'
+                        name='count'
+                        value={customDrink.count}
+                        onChange={handleCustomDrinkChange}
+                        placeholder='Count'
+                      />
+                      <label htmlFor='custom-drink-count'>X</label>
+                    </div>
+                    <div className='item'>
+                      <input
+                        id='custom-drink-volume'
+                        className='ummi-uc__custom-drink-volume'
+                        type='text'
+                        inputmode='numeric'
+                        name='volume'
+                        value={customDrink.volume}
+                        onChange={handleCustomDrinkChange}
+                        placeholder='Volume (ml)'
+                      />
+                      <label htmlFor='custom-drink-volume'>ml</label>
+                    </div>
+                    <div className='item'>
+                      <input
+                        id='custom-drink-abv'
+                        className='ummi-uc__custom-drink-abv'
+                        type='text'
+                        inputmode='numeric'
+                        name='abv'
+                        value={customDrink.abv}
+                        onChange={handleCustomDrinkChange}
+                        placeholder='%'
+                      />
+                      <label htmlFor='custom-drink-abv'>%</label>
+                    </div>
+                  </div>
+                  <button type='submit' className='ummi-uc__button-measure custom'>
+                    Add Custom Drink
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+
+          {isMeasuresVisible && (
+            <div className='ummi-uc__row ummi-uc__measures-list' onClick={() => setIsMeasuresVisible(false)}>
+              <CloseBtn className='close-btn-measures' handleClick={() => setIsMeasuresVisible(false)} />
+              <div className='ummi-uc__measures-list-inner' onClick={(e) => e.stopPropagation()}>
+                <div className='ummi-uc__measure-multiplier'>
+                  <label htmlFor='multiplier'>No of:</label>
+                  <input
+                    className=''
+                    type='number'
+                    id='multiplier'
+                    name='multiplier'
+                    value={multiplier}
+                    onChange={(e) => setMultiplier(parseInt(e.target.value, 10) || 1)}
+                    min={1}
+                  />
+                </div>
+                {DRINK_PRESETS.map((group) =>
+                  group.type !== 'custom' ? (
+                    <div key={group.label} className='ummi-uc__measures-group'>
+                      {/* <div className='measures-group-title'>
+                              {group.label}
+                            </div> */}
+                      <div className='ummi-uc__measures-group-buttons'>
+                        {group.drinks.map((preset) => (
+                          <button
+                            key={preset.label}
+                            onClick={() => {
+                              addDrink({ ...preset, type: group.type }, multiplier)
+                              setIsMeasuresVisible(false)
+                            }}
+                            className={'ummi-uc__measure-button ' + group.type}>
+                            <span className='ummi-uc__measure-title'>{preset.label}</span>
+                            <span className='ummi-uc__measure-spec'>
+                              <span className='abv'>
+                                {preset.abv} <span className='unit'>%</span>
+                              </span>
+                              <span className='volume'>
+                                {preset.volume} <span className='unit'>{preset.unit}</span>
+                              </span>
+                            </span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null,
+                )}
+              </div>
+            </div>
+          )}
+          <div className='ummi-uc__row ummi-uc__calculation-information'>
+            <div>
+              <span>Units calculated</span> = <span>(volume in ml</span> X <span>ABV%)</span> ÷ <span>1000</span>
             </div>
           </div>
         </div>

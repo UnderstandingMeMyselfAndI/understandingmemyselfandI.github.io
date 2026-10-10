@@ -28,7 +28,7 @@ body #root .main section.days-counter-activity.fixed {
     flex-flow: column nowrap;
     align-items: stretch;
     justify-content: space-evenly;
-    padding: 1.75rem 0 0.25rem 0;
+    padding: 0; // 1.75rem 0 0.25rem 0;
     max-width: var(--max-width);
     width: 100%;
 
@@ -82,6 +82,10 @@ body #root .main section.days-counter-activity.fixed {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
+
+    >* {
+      // outline: 1px solid grey;
+    }
   }
 
   .days-counter-carousel-track {
@@ -93,6 +97,7 @@ body #root .main section.days-counter-activity.fixed {
 
   .days-counter-carousel-slide {
     flex: 0 0 100%;
+
     width: 100%;
     // height: 80%;
     box-sizing: border-box;
@@ -101,34 +106,37 @@ body #root .main section.days-counter-activity.fixed {
   .days-counter-card {
     height: 100%;
     display: flex;
-    justify-content: space-evenly;
+
     flex-flow: column nowrap;
-    row-gap: 1rem;
+    row-gap: 0.5rem;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+
+    >* {
+      // outline: 1px solid yellow;
+    }
   }
 
   /* Navigation arrows - hidden on mobile, shown on desktop */
   .days-counter-carousel-arrow {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 30%;
+    // transform: translateY(-50%);
     background: transparent;
     box-shadow: none;
     border: none;
     outline: none;
+    padding: 0;
     width: 44px;
     height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    color: white;
     z-index: 200;
-    opacity: 01;
+    opacity: 1;
     transition: opacity 0.2s;
-
-    svg {
-      transform: scale(3);
-    }
+    // outline: 1px solid pink;
 
     &:disabled {
       opacity: 0.2;
@@ -137,12 +145,13 @@ body #root .main section.days-counter-activity.fixed {
 
     &.left {
       left: 0px;
-      margin-left: -1rem;
+      transform: translatex(-40%);
     }
 
     &.right {
       right: 0px;
-      margin-right: -1rem;
+      left: auto;
+      transform: translatex(40%);
     }
 
     @media (min-width: 768px) {
@@ -168,8 +177,8 @@ body #root .main section.days-counter-activity.fixed {
   }
 
   .days-counter-indicator {
-    width: 20px;
-    height: 20px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     border: 1px solid var(--grey);
     background: transparent;
@@ -190,6 +199,7 @@ body #root .main section.days-counter-activity.fixed {
   .days-counter-button-container {
     width: 100%;
   }
+
   /* Remove old list styles */
 
   .days-counter-close-btn {
@@ -215,7 +225,7 @@ body #root .main section.days-counter-activity.fixed {
     bottom: 0;
     width: 100%;
     height: 100%;
-    background: var(--backgroundActivity);
+    background: var(--background-activity);
     z-index: -1;
   }
 }
@@ -226,14 +236,18 @@ body #root .main section.days-counter-activity.fixed {
   margin-top: 1rem;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
+  justify-content: space-between;
   align-items: stretch;
-  row-gap: 1rem;
+  row-gap: 0.5rem;
   transition: all 0.35s ease-in-out;
   position: relative;
-  flex: 1;
+  // flex: 1;
   width: 100%;
   height: 100%;
+
+  >* {
+    // outline: 1px solid grey;
+  }
 
   &.full {
     justify-content: space-evenly;
@@ -252,7 +266,7 @@ body #root .main section.days-counter-activity.fixed {
   font-variation-settings: 'wght' 800;
   color: white;
   margin-bottom: 0.5rem;
-  text-shadow: var(--textShadowDarkValue);
+  text-shadow: var(--text-shadow-dark);
 
   input {
     font-weight: 800;
@@ -290,7 +304,7 @@ body #root .main section.days-counter-activity.fixed {
 }
 
 .days-counter-empty-text {
-  color: var(--greyDark);
+  color: var(--grey-dark);
   margin-bottom: 1.5rem;
   font-size: 1.125rem;
   overflow: hidden;
@@ -306,12 +320,12 @@ body #root .main section.days-counter-activity.fixed {
 }
 
 .days-counter-add-first-icon {
-  background: var(--blue50Trans);
+  background: var(--blue-trans-50);
   border: none;
   border-radius: 50%;
 
-  background: var(--greyDark30Trans);
-  box-shadow: var(--boxShadowDarkValue);
+  background: var(--grey-dark-trans-30);
+  box-shadow: var(--box-shadow-dark);
   width: 60px;
   height: 60px;
   cursor: pointer;
@@ -325,10 +339,10 @@ body #root .main section.days-counter-activity.fixed {
 button.days-counter-add-first-btn {
   margin: 1.5rem auto;
 
-  background: var(--blue50Trans);
+  background: var(--blue-trans-50);
   border: none;
   padding: 0.75rem 2rem;
-  box-shadow: var(--boxShadowDarkValue);
+  box-shadow: var(--box-shadow-dark);
   display: flex;
   font-size: 1.25rem;
   font-weight: 400;
@@ -344,8 +358,8 @@ button.days-counter-add-first-btn {
 }
 
 .days-counter-add-first-btn:hover {
-  box-shadow: var(--boxShadowLightValue);
-  background: var(--greyDark30Trans);
+  box-shadow: var(--box-shadow-light);
+  background: var(--grey-dark-trans-30);
 }
 
 .days-counter-add-icon {
@@ -361,7 +375,7 @@ button.days-counter-add-first-btn {
   overflow: hidden;
   display: flex;
   flex-flow: column nowrap;
-  row-gap: 1rem;
+  row-gap: 0.5rem;
 }
 
 .days-counter-card-header {
@@ -385,8 +399,8 @@ button.days-counter-add-first-btn {
   font-weight: 800;
   font-variation-settings: 'wght' 800;
 
-  color: var(--lightBlue);
-  width: 100%;
+  color: var(--blue-light);
+  width: 90%;
   text-align: center;
   margin: 0;
 
@@ -400,7 +414,7 @@ button.days-counter-add-first-btn {
 }
 
 input.days-counter-title-input:focus {
-  border-bottom: 1px solid var(--blue30Trans);
+  border-bottom: 1px solid var(--blue-trans-30);
 
   &::placeholder {
     color: transparent;
@@ -419,7 +433,7 @@ input.days-counter-title-input:focus {
   font-size: 1.125rem;
   font-weight: 800;
   font-variation-settings: 'wght' 800;
-  color: var(--lightBlue);
+  color: var(--blue-light);
   border-bottom-width: 2px;
   border-bottom-color: transparent;
   outline: none;
@@ -448,7 +462,6 @@ input.days-counter-title-input:focus {
   justify-content: center;
   align-items: center;
   gap: 0.25rem;
-
 }
 
 .days-counter-selected-date {
@@ -461,7 +474,7 @@ input.days-counter-title-input:focus {
   align-items: center;
   row-gap: 0.5rem;
   max-width: 85%;
-  text-shadow: var(--textShadowDarkValue);
+  text-shadow: var(--text-shadow-dark);
 }
 
 .days-counter-card-date {
@@ -469,7 +482,7 @@ input.days-counter-title-input:focus {
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  row-gap: 0.75rem;
+  row-gap: 0.5rem;
 }
 
 input.days-counter-date-input {
@@ -478,7 +491,7 @@ input.days-counter-date-input {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   outline: none;
-  border: 1px solid var(--primary20Trans);
+  border: 1px solid var(--primary-trans-20);
   border-style: solid;
   text-align: center;
   box-sizing: border-box;
@@ -502,7 +515,7 @@ input.days-counter-date-input {
 }
 
 .days-counter-date-input:focus {
-  box-shadow: var(--boxShadowBlue);
+  box-shadow: var(--box-shadow-blue);
 }
 
 .days-counter-card-actions {
@@ -525,24 +538,7 @@ input.days-counter-date-input {
   line-height: 1;
   letter-spacing: -2.5px;
   justify-content: center;
-  row-gap: 0.5rem;
-}
-
-.days-counter-stat.days-counter-stat-days {
-  position: relative;
-  display: flex;
-  align-items: center;
-  align-content: center;
-  flex-wrap: wrap;
-
-  .label {
-    left: auto;
-    right: 0%;
-    top: 50%;
-    position: absolute;
-    transform: translate(75%, -30%) rotate(90deg);
-    color: var(--ring);
-  }
+  row-gap: 0.25rem;
 }
 
 .days-counter-stat {
@@ -551,7 +547,7 @@ input.days-counter-date-input {
   justify-content: center;
   align-items: center;
   font-size: 1rem;
-  color: (--ring);
+  color: var(--ring);
 
   .value {
     padding: 0;
@@ -571,27 +567,37 @@ input.days-counter-date-input {
   }
 }
 
-.days-counter-stat-days {
+.days-counter-stat.days-counter-stat-days {
+  position: relative;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
   height: fit-content;
 
-  .value {
-    font-size: 4.75rem;
-    font-weight: 800;
-    font-variation-settings: 'wght' 800;
-    color: var(--lightBlue);
-  }
-
   .label {
+    left: auto;
+    right: 0%;
+    top: 50%;
+    position: absolute;
+    transform: translate(75%, -30%) rotate(90deg);
     font-size: 1.75rem;
     width: fit-content;
     color: (--ring);
   }
 
-  .days-counter-stat {
-    &::after {
-      content: 'days';
-    }
+  .value {
+    font-size: variables.$dc_days_size;
+    font-weight: 800;
+    font-variation-settings: 'wght' 800;
+    color: var(--orange);
   }
+
+  // .days-counter-stat {
+  //   &::after {
+  //     content: 'days';
+  //   }
+  // }
 }
 
 .days-counter-stat-hours-mins {
@@ -624,7 +630,7 @@ input.days-counter-date-input {
   }
 
   .value {
-    color: var(--lightGrey);
+    // color: var(-grey-light);
     font-weight: 600;
     font-variation-settings: 'wght' 600;
   }
@@ -738,7 +744,7 @@ input.days-counter-date-input {
 }
 
 .days-counter-reset-btn {
-  color: var(--greyDark);
+  color: var(--grey-dark);
 }
 
 .days-counter-delete-btn {
@@ -759,10 +765,10 @@ input.days-counter-date-input {
 .days-counter-action-icon {
   width: 1.5rem;
   height: 1.5rem;
-  stroke: var(--greyMed);
+  stroke: var(--grey-med);
 
   svg {
-    stroke: var(--greyMed);
+    stroke: var(--grey-med);
   }
 
   path {
@@ -796,8 +802,8 @@ input.days-counter-date-input {
 /* Adjust add-another button position */
 
 .days-counter-add-another-btn:hover {
-  box-shadow: var(--textShadowDarkValue);
-  background: var(--greyDark30Trans);
+  box-shadow: var(--text-shadow-dark);
+  background: var(--grey-dark-trans-30);
 }
 
 .days-counter-note-container {
@@ -824,6 +830,18 @@ input.days-counter-date-input {
 }
 
 /* DaysCounter additional styles */
+.days-counter-savings-container {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 0.75rem;
+  justify-content: space-between;
+  align-self: stretch;
+
+  >* {
+    // outline: 1px solid grey;
+  }
+}
+
 .days-counter-cost-container {
   display: flex;
   width: 100%;
@@ -837,16 +855,15 @@ body #root .main section .days-counter-cost {
   align-items: center;
   justify-content: center;
   align-content: center;
-  outline: 1px solid var(--blue40Trans);
+  outline: 1px solid var(--blue-trans-40);
   width: fit-content;
   gap: 0.5rem;
   text-align: right;
-  margin: 0 auto 1rem auto;
   padding: 0rem 0.75rem;
   border-radius: 8px;
 
   label {
-    color: var(--lightGrey);
+    color: var(-grey-light);
     font-size: 1rem;
     width: fit-content;
     height: 100%;
@@ -861,7 +878,7 @@ body #root .main section .days-counter-cost {
     padding: 0.75rem 0.25rem 0.75rem 0.75rem;
     background: var(--input-bg);
     border: none;
-    border-left: 1px solid var(--lightBlue30Trans);
+    border-left: 1px solid var(--blue-light-trans-30);
   }
 
   #currency-selector {
@@ -878,7 +895,7 @@ body #root .main section .days-counter-cost {
 .days-counter-savings-toggle-btn {
   border-radius: var(--border-radius);
   font-size: 1rem;
-  background: var(--orange50Trans);
+  background: var(--orange-trans-50);
   border-color: var(--orange);
 }
 
@@ -890,12 +907,8 @@ body #root .main section .days-counter-cost {
   flex-wrap: wrap;
   gap: 0.75rem;
   width: 80%;
-  margin: 0.5rem auto;
+  margin: 0rem auto;
   position: relative;
-
-  &.all {
-    height: 80px;
-  }
 
   .savings-rate-all-time {
     outline: none;
@@ -911,7 +924,7 @@ body #root .main section .days-counter-cost {
     gap: 0rem;
 
     .total-label {
-      font-size: 1rem; 
+      font-size: 1rem;
       text-transform: uppercase;
       font-variation-settings: 'wght' 600;
       transform: rotate(90deg) translate(0%, -50%);
@@ -920,7 +933,7 @@ body #root .main section .days-counter-cost {
     }
 
     .total-value {
-      font-size: variables.$h2_size;
+      font-size: variables.$dc_val_size;
       font-weight: 800;
       font-variation-settings: 'wght' 800;
       color: var(--orange);
@@ -934,28 +947,28 @@ body #root .main section .days-counter-cost {
     }
   }
 
-  .savings-rate:nth-child(1) {
-    width: 72%;
+  .savings-rate:nth-child(1),
+  .savings-rate:nth-child(2),
+  .savings-rate:nth-child(3),
+  .savings-rate:nth-child(4) {
     outline: 1px solid rgba(255, 165, 0, 0.6);
     align-self: center;
+  }
+
+  .savings-rate:nth-child(1) {
+    width: 72%;
   }
 
   .savings-rate:nth-child(2) {
     width: 88%;
-    outline: 1px solid rgba(255, 165, 0, 0.6);
-    align-self: center;
   }
 
   .savings-rate:nth-child(3) {
     width: 100%;
-    align-self: center;
-    outline: 1px solid rgba(255, 165, 0, 0.6);
   }
 
   .savings-rate:nth-child(4) {
     width: 100%;
-    align-self: center;
-    outline: 1px solid rgba(255, 165, 0, 0.6);
   }
 
   .savings-rate {
@@ -991,7 +1004,7 @@ body #root .main section .days-counter-cost {
       top: 0;
       height: 130%;
       width: 33%;
-      background-color: var(--orange40Trans);
+      background-color: var(--orange-trans-40);
       z-index: -1;
       transform: skewX(-15deg) translate(5%, 0%);
     }
@@ -1030,8 +1043,14 @@ body #root .main section .days-counter-cost {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  margin-bottom: 1rem;
+  // outline: 1px solid grey;
+  width: calc(100% - 60px);
+
+  h3 {
+    margin: 0;
+    text-align: left;
+    width: 100%;
+  }
 }
 
 .days-counter-currency-selector {
@@ -1050,10 +1069,10 @@ body #root .main section .days-counter-cost {
   font-variation-settings: 800;
 
   option {
-    background: var(--greyDark50Trans);
+    background: var(--grey-dark-trans-50);
 
     &:hover {
-      background: var(--greyMid);
+      background: var(--grey-mid);
     }
   }
 }

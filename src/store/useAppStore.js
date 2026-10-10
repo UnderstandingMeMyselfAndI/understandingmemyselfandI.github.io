@@ -206,7 +206,7 @@ const useAppStore = create(
         set(() => ({ tls: v }))
       },
       // ----------------------------------------
-      // Toolbox Filter
+      // Toolbox Filter - Toggle to filter tools. Controlled by yourToolsEnabled
       tf: true,
       setTf: (v) => {
         set(() => ({ tf: v }))
@@ -432,6 +432,8 @@ const useAppStore = create(
         daysCounterEnabled: state.daysCounterEnabled,
         uc: state.uc,
         unitsCalculatorEnabled: state.unitsCalculatorEnabled,
+        tls: state.tls,
+        toolsEnabled: state.toolsEnabled,
         tf: state.tf,
         toolboxFilterEnabled: state.toolboxFilterEnabled,
         yt: state.yt,

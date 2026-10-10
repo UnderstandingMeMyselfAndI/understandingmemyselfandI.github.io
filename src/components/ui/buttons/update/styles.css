@@ -1,5 +1,5 @@
 @import '@scss/globals.css';
-@import '../buttonStyles.css';
+@import '../buttonStyles.scss';
 
 .update-icon.btn {
   display: flex;

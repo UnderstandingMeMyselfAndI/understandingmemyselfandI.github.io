@@ -12,7 +12,6 @@ const QuickExitOnboarding = ({ children, showOnboarding = true }) => {
   const setShowQuickExitOnboarding = useAppStore((s) => s.setShowQuickExitOnboarding)
   const [show, setShow] = useState(false)
   const [timeouts, setTimeouts] = useState([])
-  console.log('showQuickExitOnboarding ', showQuickExitOnboarding)
   const stopOnboarding = () => {
     console.log('stopOnboarding')
     setShowQuickExitOnboarding(false)

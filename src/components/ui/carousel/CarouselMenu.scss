@@ -35,7 +35,7 @@ div.accBack {
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--mainBackground);
+  background: var(--background-main);
   opacity: 0.1;
   border-radius: var(--border-radius);
 }
@@ -51,7 +51,7 @@ div.MuiPaper-root {
   border-radius: var(--border-radius);
   box-shadow: unset;
   background: none;
-  text-shadow: var(--textShadowDarkValue);
+  text-shadow: var(--text-shadow-dark);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -101,7 +101,7 @@ div.MuiPaper-root {
 h3.MuiAccordion-heading {
   word-break: break-all;
   word-wrap: break-word;
-  color: var(--lightBlue);
+  color: var(--blue-light);
   transition: all 0.3s ease-in-out;
   text-align: center;
 
@@ -308,7 +308,7 @@ h3.MuiAccordion-heading {
   >div {
     margin: 1rem 0;
     text-align: left;
-    color: var(--lightBlue);
+    color: var(--blue-light);
 
     div.Acronym-title {
       width: 90%;

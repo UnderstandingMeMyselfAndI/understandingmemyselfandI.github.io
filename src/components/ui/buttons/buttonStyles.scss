@@ -1,3 +1,4 @@
+@use '@scss/_variables';
 @import '@scss/globals.css';
 
 button {
@@ -12,6 +13,6 @@ button {
   border: none;
   color: var(--primary);
   outline: 1px solid rgba(150, 150, 150, 0.25);
-  box-shadow: var(--boxShadowDarkValue);
+  box-shadow: var(--box-shadow-dark);
   padding: 0.75rem 2.25rem 0.75rem 1.5rem;
 }

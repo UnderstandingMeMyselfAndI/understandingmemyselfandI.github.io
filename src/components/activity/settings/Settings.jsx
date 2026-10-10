@@ -6,7 +6,7 @@ import DOMPurify from 'dompurify'
 import CloseBtn from '@components/ui/buttons/close/CloseBtn'
 import Dialog from '@components/ui/dialog/Dialog'
 import settingsData from './settingsData.js'
-import './styles.scss'
+import './settings.scss'
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc
@@ -155,17 +155,15 @@ const Settings = () => {
       <section className={name}>
         <h3>Settings</h3>
         <div className='head'>
+          <div className='section-title'>
+            <u>Your privacy is very important to us.</u>
+          </div>
+          <p>For complete privacy you can disable and hide all customizable features listed below.</p>
+          <p>Check the tickboxe next to each feature to display them.</p>
+          <p>Un-check the tickbox to hide the feature. </p>
+          <p>Your data is not affected by displaying or hiding features.</p>
           <p>
-            <b>
-              <u>Your privacy is very important to us.</u>
-            </b>
-          </p>
-          <p>For complete privacy you can disable and hide all customisable features.</p>
-          <p>You can show and enable features whenever that feels helpful. </p>
-          <p>Features that are disabled are completely hidden.</p>
-          <p>
-            To remove all data use the &quot;Clear Your Data &quot; button
-            <br /> at the bottom.
+            To remove data, use the <b>"Clear your data"</b> button at the bottom of this screen.
           </p>
         </div>
         <CloseBtn onClick={handleClose} />
@@ -175,8 +173,14 @@ const Settings = () => {
             <div className='title'>{group.groupTitle}</div>
             <div>
               {group.settings.map((setting, index) => (
-                <div className={'row ' + setting.stateObject.classes} key={index}>
-                  <div className={'checkBox-row '}>
+                <div
+                  className={
+                    'row ' +
+                    setting.stateObject.classes +
+                    (setting.stateObject.state ? ' feature-active' : ' feature-inactive')
+                  }
+                  key={index}>
+                  <div className={'check-box-row'}>
                     <label htmlFor={setting.stateObject.name} className={setting.stateObject.state ? 'checked' : ''}>
                       {parse(DOMPurify.sanitize(setting.stateObject.instruction))}
                     </label>
@@ -189,7 +193,7 @@ const Settings = () => {
                     />
                   </div>
                   {setting.stateObject.help && (
-                    <div className='help'>{parse(DOMPurify.sanitize(setting.stateObject.help))}</div>
+                    <div className='info'>{parse(DOMPurify.sanitize(setting.stateObject.help))}</div>
                   )}
                 </div>
               ))}
@@ -200,7 +204,7 @@ const Settings = () => {
         <div className='section'>
           <div className='row'>
             <div className='setting-title'></div>
-            <div className='checkBox-row btns-bottom'>
+            <div className='check-box-row btns-bottom'>
               <button className='btn btn-delete' onClick={handleClearIDB}>
                 Clear Your Data
               </button>
@@ -210,7 +214,7 @@ const Settings = () => {
               </button>
             </div>
 
-            <div className='checkBox-row'>
+            <div className='check-box-row'>
               <div className='help'>The app will reload shortly after data is cleared.</div>
             </div>
           </div>

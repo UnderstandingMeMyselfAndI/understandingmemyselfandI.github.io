@@ -7,7 +7,7 @@ $pause-color: #ff9800;
 $stop-color: #f44336;
 $settings-color: var(--blue);
 $charge-color: #ffff00;
-$border-color: var(--greyMed);
+$border-color: var(--grey-med);
 
 body .main section.activity.activity-peng-game {
     display: flex;
@@ -21,7 +21,7 @@ body .main section.activity.activity-peng-game {
     max-width: 100vw;
     height: 100vh;
     padding-bottom: 1rem;
-    background-color: var(--greyDark60Trans);
+    background-color: var(--grey-dark-trans-60);
 
     color: var(--parimary);
     position: fixed;
@@ -35,7 +35,7 @@ body .main section.activity.activity-peng-game {
         content: '';
         width: 100%;
         height: 100%;
-        background-color: var(--backgroundActivity);
+        background-color: var(--background-activity);
         position: absolute;
         top: 0px;
         left: 0;
@@ -123,7 +123,7 @@ body .main section.activity.activity-peng-game {
 }
 
 .score-board-vs {
-    color: var(--lightBlue);
+    color: var(--blue-light);
     line-height: 1;
     align-self: center;
     align-content: center;
@@ -133,7 +133,7 @@ body .main section.activity.activity-peng-game {
     font-size: 2rem;
     font-weight: 800;
     font-variation-settings: 'wght' 800;
-    color: var(--lightBlue);
+    color: var(--blue-light);
     opacity: 0.5;
     // margin-top: -10px;
 }
@@ -150,7 +150,7 @@ body .main section.activity.activity-peng-game {
     height: 50vh;
     max-height: 500px;
     aspect-ratio: 1.5;
-    border: 1px solid var(--greyMid);
+    border: 1px solid var(--grey-mid);
     overflow: hidden;
 }
 
@@ -158,7 +158,7 @@ body .main section.activity.activity-peng-game {
     display: block;
     width: 100%;
     height: 100%;
-    background-color: var(--blue20Trans);
+    background-color: var(--blue-trans-20);
 }
 
 .slider-control-container {
@@ -177,7 +177,7 @@ body .main section.activity.activity-peng-game {
     margin: 0;
     width: 100%;
     position: relative;
-    color: var(--lightGrey);
+    color: var(-grey-light);
 
     label {
         font-size: 1rem;
@@ -207,7 +207,7 @@ body .main section.activity.activity-peng-game {
     input[type='range'] {
         width: 90%;
         cursor: pointer;
-        background: var(--greyDark20Trans);
+        background: var(--grey-dark-trans-20);
         height: 4px;
         border-radius: 2px;
         -webkit-appearance: none;
@@ -219,7 +219,7 @@ body .main section.activity.activity-peng-game {
             width: 36px;
             height: 22px;
             border-radius: 2px;
-            background: var(--lightBlue50Trans);
+            background: var(--blue-light-trans-50);
             cursor: pointer;
         }
 
@@ -230,7 +230,7 @@ body .main section.activity.activity-peng-game {
 
         &:disabled {
             &::-webkit-slider-thumb {
-                background: var(--greyMid);
+                background: var(--grey-mid);
                 // width: 20px;
             }
         }
@@ -251,7 +251,7 @@ body .main section.activity.activity-peng-game {
     align-self: center;
     height: 120%;
     pointer-events: none;
-    background-color: var(--greyMid80Trans);
+    background-color: var(--grey-mid80Trans);
 
     &::after {
         content: '';
@@ -262,7 +262,7 @@ body .main section.activity.activity-peng-game {
         bottom: 0;
         width: 100%;
         height: 100%;
-        background: var(--backgroundActivity);
+        background: var(--background-activity);
         z-index: -1;
     }
 }
@@ -318,7 +318,7 @@ body .main section.activity.activity-peng-game {
     left: 0;
     right: 0;
     bottom: 0;
-    background: var(--greyDark40Trans);
+    background: var(--grey-dark-trans-40);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -350,7 +350,7 @@ body .main section.activity.activity-peng-game {
     // }
 
     .modal-inner {
-        background-color: var(--backgroundActivity);
+        background-color: var(--background-activity);
         padding: 2rem 0.5rem;
         width: 100%;
         height: 100%;
@@ -365,7 +365,7 @@ body .main section.activity.activity-peng-game {
             content: '';
             width: 100%;
             height: 100%;
-            background-color: var(--greyDark);
+            background-color: var(--grey-dark);
             position: absolute;
             top: 0px;
             left: 0;

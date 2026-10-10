@@ -6,7 +6,7 @@
   border-radius: var(--border-radius);
 
   .inner {
-    // background-color: var(--blueDark10Trans);
+    // background-color: var(--blue-dark-trans-10);
   }
 
   h3.title,
@@ -16,7 +16,7 @@
 
   .cta-content {
     text-align: center;
-    text-shadow: var(--textShadowDarkStrong);
+    text-shadow: var(--text-shadow-dark-strong);
     font-weight: 400;
     font-variation-settings: 'wght' 400;
     font-variation-settings: 'wght' 400;
@@ -54,6 +54,6 @@
       z-index: -1;
     }
 
-    background-color: var(--lightBlue);
+    background-color: var(--blue-light);
   }
 }

@@ -1,4 +1,4 @@
-import './buttonStyles.css'
+import './buttonStyles.scss'
 import PropTypes from 'prop-types'
 
 const RegisterBtn = ({ handleClick }) => {

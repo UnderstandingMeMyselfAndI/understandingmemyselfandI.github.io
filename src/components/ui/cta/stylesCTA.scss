@@ -28,7 +28,7 @@ body div.main section.activity div.cta {
     }
 
     .cta-content {
-      text-shadow: var(--textShadowDarkStrong);
+      text-shadow: var(--text-shadow-dark-strong);
       font-weight: 400;
       font-variation-settings: 'wght' 400;
       font-variation-settings: 'wght' 400;
@@ -82,16 +82,16 @@ body div.main section.activity div.cta {
       z-index: -1;
     }
 
-    background-color: var(--lightBlue);
+    background-color: var(--blue-light);
   }
 
   .inner {
     padding: 1rem 1rem;
     width: 100%;
     height: 100%;
-    background-color: var(--greyDark20Trans);
+    background-color: var(--grey-dark-trans-20);
     outline: var(--card-outline-med);
-    box-shadow: var(--boxShadowDarkValue);
+    box-shadow: var(--box-shadow-dark);
     border-radius: var(--border-radius-sml);
 
     position: relative;
@@ -104,9 +104,9 @@ body div.main section.activity div.cta {
       top: 0;
       z-index: 1;
       opacity: 1;
-      background-color: var(--greyDark);
+      background-color: var(--grey-dark);
       outline: var(--card-outline);
-      box-shadow: var(--boxShadowDarkValue);
+      box-shadow: var(--box-shadow-dark);
       border-radius: var(--border-radius-sml);
     }
 
@@ -124,7 +124,7 @@ body div.main section.activity div.cta {
       text-transform: uppercase;
       // text-decoration: none;
       color: var(--orange);
-      text-decoration-color: var(--yellow30Trans);
+      text-decoration-color: var(--yellow-trans-30);
       text-underline-offset: -0.45em; // must use em for iOS
       text-decoration-thickness: 0.55em; //45%; ems used for iOS devices
     }
@@ -152,8 +152,8 @@ body div.main section.activity div.cta {
         align-content: center;
         text-align: center;
         justify-content: center;
-        box-shadow: var(--boxShadowDarkValue);
-        background-color: var(--blue80Trans);
+        box-shadow: var(--box-shadow-dark);
+        background-color: var(--blue-trans-80);
         // width: 100%;
         text-transform: uppercase;
 

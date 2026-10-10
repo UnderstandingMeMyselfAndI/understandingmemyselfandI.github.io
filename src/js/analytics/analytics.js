@@ -8,12 +8,12 @@ export const trackEvent = (eventName, params = {}, shouldTrack) => {
   //   })
   // }
 
-  console.group(`[Analytics] Attempting to track event: ${eventName}`)
-  console.log('Params:', params)
-  console.log('shouldTrack:', shouldTrack)
-  console.log('process.env.NODE_ENV :', process.env.NODE_ENV)
-  console.log('window.gtag :', window.gtag)
-  console.log('typeof window :', typeof window)
+  // console.group(`[Analytics] Attempting to track event: ${eventName}`)
+  // console.log('Params:', params)
+  // console.log('shouldTrack:', shouldTrack)
+  // console.log('process.env.NODE_ENV :', process.env.NODE_ENV)
+  // console.log('window.gtag :', window.gtag)
+  // console.log('typeof window :', typeof window)
 
   if (!shouldTrack) {
     if (process.env.NODE_ENV === 'development') {

@@ -1,18 +1,19 @@
 // DaysCounter.jsx (updated version)
 import { useState, useEffect, useRef } from 'react'
 import { useShallow } from 'zustand/react/shallow'
-import './styles.scss'
-import AddIcon from '@mui/icons-material/Add'
+
+// import AddIcon from '@mui/icons-material/Add'
 import CloseBtn from '@ui/buttons/close/CloseBtn'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
-import ChevronRightIcon from '@mui/icons-material/ChevronRight'
+import IconArrowChevronLeft from '@icons/IconArrowChevronLeft'
+import IconArrowChevronRight from '@icons/IconArrowChevronRight'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
 import useAppStore from '@store/useAppStore'
 import Dialog from '@ui/dialog/Dialog'
 import { activities } from '@data/config.js'
 import { weekPercentageProgress, monthPercentageProgress, yearPercentageProgress } from '@js/utils.js'
+import './daysCounter.scss'
 
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
@@ -448,14 +449,14 @@ const DaysCounter = () => {
                       onClick={goToPrev}
                       disabled={currentIndex === 0}
                       aria-label='Previous date'>
-                      <ChevronLeftIcon />
+                      <IconArrowChevronLeft />
                     </button>
                     <button
                       className='days-counter-carousel-arrow right'
                       onClick={goToNext}
                       disabled={currentIndex === dates.length - 1}
                       aria-label='Next date'>
-                      <ChevronRightIcon />
+                      <IconArrowChevronRight />
                     </button>
                   </div>
 
@@ -483,14 +484,13 @@ const DaysCounter = () => {
               )}
             </div>
 
-            <div className='days-counter-note-container'>
+            {/* <div className='days-counter-note-container'>
               <div className='days-counter-note'>
                 <p>
-                  * All dates are on <u>only on your device</u>.
+                  * All data is saved <u>only on your device</u>. Show and hide this feature in settings.
                 </p>
-                <p>Show and hide this features and controls available in settings.</p>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

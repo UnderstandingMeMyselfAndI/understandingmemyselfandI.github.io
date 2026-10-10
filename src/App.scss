@@ -17,7 +17,7 @@ html {
   top: 0;
   left: 0;
   background-color: var(--orange);
-  color: var(--greyDark);
+  color: var(--grey-dark);
   padding: 0.5rem;
   font-size: 0.8rem;
   text-align: left;
@@ -61,7 +61,7 @@ body {
 
   button {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: variables.$btn_size;
     font-weight: 600;
     font-variation-settings: 'wght' 600;
     width: fit-content;
@@ -71,8 +71,8 @@ body {
     border: none;
     color: var(--primary);
     outline: 1px solid var(--blue);
-    box-shadow: 0px 0px 12px 3px rgba(10, 10, 10, 0.25);
-    padding: 0.75rem 2.25rem 0.75rem 1.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--border-radius);
 
     &:focus,
     &:focus-within,
@@ -276,11 +276,11 @@ body {
   }
 
   .ummi {
-    color: var(--lightBlue);
+    color: var(--blue-light);
   }
 
   .ummi-blue {
-    color: var(--lightBlue);
+    color: var(--blue-light);
   }
 
   u,
@@ -289,7 +289,7 @@ body {
   .orange-ul,
   .white-ul {
     width: auto;
-    text-decoration-color: var(--lightBlue50Trans);
+    text-decoration-color: var(--blue-light-trans-50);
     text-decoration-thickness: 0.55em; //45%; ems used for iOS devices
     text-underline-offset: -0.355em; // roughtly 35.5%
     /* -25.5% of font-size (approx) */
@@ -297,15 +297,15 @@ body {
   }
 
   .yellow-ul {
-    text-decoration-color: var(--yellow40Trans);
+    text-decoration-color: var(--yellow-trans-40);
   }
 
   .blue-ul {
-    text-decoration-color: var(--lightBlue50Trans);
+    text-decoration-color: var(--blue-light-trans-50);
   }
 
   .orange-ul {
-    text-decoration-color: var(--orange40Trans);
+    text-decoration-color: var(--orange-trans-40);
   }
 
   .white-ul {
@@ -345,13 +345,11 @@ body {
     b {
       font-weight: 600;
       font-variation-settings: 'wght' 600;
-      font-variation-settings: 'wght' 600;
     }
 
     .title {
       font-size: variables.$h3_size;
       font-weight: 800;
-      font-variation-settings: 'wght' 800;
       font-variation-settings: 'wght' 800;
     }
   }
@@ -365,7 +363,7 @@ body {
   }
 
   .yellow2 {
-    color: var(--yellow2);
+    color: var(--yellow-2);
   }
 
   .blue {
@@ -374,11 +372,11 @@ body {
 
   .light-blue,
   .lightBlue {
-    color: var(--lightBlue);
+    color: var(--blue-light);
   }
 
   .grey {
-    color: var(--greyDark);
+    color: var(--grey-dark);
   }
 
   strong,

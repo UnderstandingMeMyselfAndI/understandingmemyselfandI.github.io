@@ -10,7 +10,7 @@
 .tools-inner {
   position: relative;
   margin: 0 auto;
-  padding: 1.5rem 1.5rem 0 1.5rem;
+  padding: 1.5rem 0.5rem 0 0.5rem;
   width: 100%;
 }
 
@@ -19,7 +19,7 @@ body .activity-recovery-tools-cta {
 }
 
 .acronym-tools {
-  background: var(--blue20Trans);
+  background: var(--blue-trans-20);
 }
 
 body #the-tools .tools-description {
@@ -82,6 +82,7 @@ body section#the-tools.tools {
       text-align: left;
       width: 100%;
       font-size: variables.$h1_size;
+      color: var(--orange);
 
       @media screen and (width>=768px) {
         text-align: center;
@@ -92,6 +93,7 @@ body section#the-tools.tools {
       margin: 0;
       text-align: left;
       width: 100%;
+      font-size: variables.$sml_size;
 
       @media screen and (width>=768px) {
         text-align: center;

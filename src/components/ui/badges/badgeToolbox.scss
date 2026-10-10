@@ -10,8 +10,8 @@ $width: 28px;
 
 .badge-cont {
   position: fixed;
-  top: 1.5rem;
-  left: 1.5rem;
+  top: 6.5rem;
+  right: 1.5rem;
   opacity: 1;
   transition: all 0.25s cubic-bezier(0.3, 0, 0.74, 1);
   z-index: 6010;
@@ -34,7 +34,7 @@ span.tooltip {
 
 .badge-toolbox {
   user-select: none;
-  visibility: hidden;
+  // visibility: hidden;
 
   &.open {
     visibility: visible;
@@ -43,15 +43,15 @@ span.tooltip {
 }
 
 .badge.toolbox {
-  text-shadow: var(--textShadowDarkValue);
+  text-shadow: var(--text-shadow-dark);
   opacity: 0.5;
-  transition: all var(--transition2);
+  transition: all var(--transition-2);
   // animation: bounce-out 0.25s ease-in-out;
   position: relative;
   z-index: 6001;
 
   .MuiBadge-badge {
-    background: var(--greyDark);
+    background: var(--grey-dark);
   }
 
   svg {
@@ -75,16 +75,16 @@ span.tooltip {
     width: 125%;
     height: 125%;
     border-radius: 50%;
-    background-color: var(--lightBlue);
+    background-color: var(--blue-light);
   }
 
   &.active {
-    transition: all var(--transition2);
+    transition: all var(--transition-2);
     opacity: 1;
     animation: bounce-in 0.25s ease-in-out;
 
     &::after {
-      transition: all var(--transition2);
+      transition: all var(--transition-2);
       background-color: var(--orange);
       opacity: 1;
     }
@@ -112,7 +112,7 @@ span.tooltip {
 // 		// 	border-radius: 0;
 // 		// 	top: 0;
 // 		// 	left: 0;
-// 		// 	background: var(--mainBackground);
+// 		// 	background: var(--background-main);
 // 		// 	opacity: 1;
 // 		// 	border-radius: 8px;
 // 		// }

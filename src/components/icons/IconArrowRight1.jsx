@@ -1,5 +1,5 @@
 import React from 'react'
-import './IconBox.css'
+import './iconBox.css'
 import './iconDec.css'
 const IconArrowRight1 = ({ className = '' }) => {
   return (

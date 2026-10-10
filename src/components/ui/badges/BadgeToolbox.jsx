@@ -5,17 +5,17 @@ import Badge from '@mui/material/Badge'
 import useAppStore from '@store/useAppStore'
 import HandymanIcon from '@mui/icons-material/Handyman'
 
-import { storeKeys, localStore } from '@data/localStore.js'
-import data from '@data/data.js'
+// import { storeKeys, localStore } from '@data/localStore.js'
+// import data from '@data/data.js'
 import { strings } from '@data/config.js'
 
-import './styles.scss'
+import './badgeToolbox.scss'
 
-export default function BadgeToolbox() {
+export default function BadgeToolbox({ showBadge = true }) {
   const activeIDs = useAppStore((state) => state.userToolIDs)
   const showAccCard = useAppStore((s) => s.showAccCard)
   const toolsInView = useAppStore((s) => s.toolsInView)
-  const activityID = useAppStore((s) => s.activityID)
+  // const activityID = useAppStore((s) => s.activityID)
   const activity = useAppStore((s) => s.activity)
   const [show, setShow] = React.useState(false)
   const [open, setOpen] = useState(false)
@@ -61,7 +61,7 @@ export default function BadgeToolbox() {
 
   return (
     <div className={'badge-toolbox' + (open ? ' open' : '')}>
-      <div className={'badge-cont ' + (show ? '' : ' hide')}>
+      <div className={'badge-cont ' + (showBadge ? '' : ' hide')}>
         <Badge
           className={'badge toolbox' + (showToolsOnly ? ' active' : '')}
           badgeContent={activeIDs.length}

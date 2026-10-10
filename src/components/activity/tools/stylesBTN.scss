@@ -1,4 +1,4 @@
-@use '@buttons/buttonStyles.css';
+@use '@buttons/buttonStyles.scss';
 
 button.days-counter {
   font-size: 1rem;
@@ -8,7 +8,7 @@ button.days-counter {
   margin: 1.5rem auto;
   padding: 1.25rem 1.5rem;
   outline: 1px solid rgba(150, 150, 150, 0.25);
-  box-shadow: var(--boxShadowDarkValue);
+  box-shadow: var(--box-shadow-dark);
 
   .icon {
     width: 40px;

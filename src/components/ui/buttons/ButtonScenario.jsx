@@ -1,6 +1,6 @@
 // import iconIncreaseFontSize from '/src/assets/text_increase_24dp.svg';
 // import iconDescreaseFontSize from '/src/assets/text_decrease_24dp.svg';
-import './buttonStyles.css'
+import './buttonStyles.scss'
 import PropTypes from 'prop-types'
 
 const ButtonScenario = ({ label, callback }) => {

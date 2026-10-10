@@ -6,8 +6,14 @@ section.header#header {
   position: relative;
   top: 0;
   left: 0;
+  -webkit-user-select: none;
+  /* Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* IE10+/Edge */
   user-select: none;
-  pointer-events: none;
+  /* Standard */
   height: 100dvh;
   width: 100%;
   max-width: 100%;
@@ -15,7 +21,7 @@ section.header#header {
   padding: 0;
   margin: 0;
   // margin-top: -6rem; // offset the first row-gap in #main
-  text-shadow: var(--textShadowDarkValue);
+  text-shadow: var(--text-shadow-dark);
   transition: height 0.35s ease-in-out;
 
   .home-grp {
@@ -82,7 +88,7 @@ section.header#header {
   }
 
   .w1.leaving {
-    color: var(--lightBlue);
+    color: var(--blue-light);
   }
 
   .w0w {
@@ -174,7 +180,7 @@ section.header#header {
 
     .w3 {
       transform: rotateY(720deg);
-      color: var(--lightBlue);
+      color: var(--blue-light);
     }
 
     .w4 {
@@ -201,7 +207,7 @@ section.header#header {
       width: 34px;
       height: 34px;
       opacity: 0.75;
-      fill: var(--lightBlue);
+      fill: var(--blue-light);
     }
   }
 }

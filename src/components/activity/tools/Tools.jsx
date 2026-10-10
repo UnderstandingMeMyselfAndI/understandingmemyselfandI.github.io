@@ -9,19 +9,19 @@ import toolsData from '../../../data/tools.js'
 import { strings } from '@data/config'
 import PropTypes from 'prop-types'
 import { activities } from '@data/config'
+//--------------------------------------------------------------------
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc
 }, {})
-import './styles.scss'
 
+//--------------------------------------------------------------------
+import './tools.scss'
 const Tools = () => {
   const data = toolsData.tools.nodes
   const name = 'tools'
   const id = 1
   const toolboxFilterEnabled = useAppStore((s) => s.toolboxFilterEnabled)
-
-  console.log('toolboxFilterEnabled', toolboxFilterEnabled)
 
   const [open, setOpen] = useState(false)
   const activity = useAppStore((s) => s.activity)
@@ -33,7 +33,7 @@ const Tools = () => {
   }
 
   const showToolsOnly = useAppStore((s) => s.showToolsOnly)
-  const getActiveToolIDs = useAppStore((state) => state.getActiveToolIDs)
+  const getActiveToolIDs = useAppStore((s) => s.getActiveToolIDs)
   const yourToolsEnabled = useAppStore((s) => s.yourToolsEnabled)
 
   const activeIDs = getActiveToolIDs()
@@ -78,10 +78,12 @@ const Tools = () => {
     </div>
   )
 
+  // console.log('yourtoolsEnabled ', yourToolsEnabled)
+  // console.log('open ', open)
   return open ? (
     <div className={'activity acronym-tools fixed' + (open ? ' show' : ' ')}>
-      {toolboxFilterEnabled && <BadgeToolbox />}
-
+      {/* {yourToolsEnabled && <BadgeToolbox />} */}
+      <BadgeToolbox showBadge={yourToolsEnabled} />
       <section className='tools' id='the-tools'>
         <div className='tools-inner'>
           <CloseBtn onClick={handleClose} />

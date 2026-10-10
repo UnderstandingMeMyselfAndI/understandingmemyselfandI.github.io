@@ -6,7 +6,7 @@
 div#recovery-timeline {
   position: fixed;
   pointer-events: all;
-  background: var(--backgroundActivity);
+  background: var(--background-activity);
   width: 100dvw;
   height: 100dvh;
   /* Mobile fix */
@@ -28,7 +28,7 @@ div#recovery-timeline {
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--greyDark40Trans);
+    background: var(--grey-dark-trans-40);
     z-index: -1;
   }
 }
@@ -45,7 +45,7 @@ div#recovery-timeline {
 
 $dot-color: rgba(255, 255, 255, 0.86); // Adjust opacity as needed
 $bg-color: #0b0b0b;
-$card-bg: var(--blue30Trans);
+$card-bg: var(--blue-trans-30);
 $accent: #64ffda;
 $text: #e6e6e6;
 $minimap-w: 50px;
@@ -88,7 +88,7 @@ $minimap-w: 50px;
 .minimap-marker {
   width: 8px;
   height: 30px;
-  background: var(--lightBlue60Trans);
+  background: var(--blue-light-trans-60);
   border-radius: 4px;
   position: absolute;
   right: 4px; // Stick to right edge
@@ -131,7 +131,7 @@ $minimap-w: 50px;
   right: 0;
   width: 25px; // Much wider than ticks
   height: 2px; // Thicker
-  background-color: var(--yellow30Trans);
+  background-color: var(--yellow-trans-30);
   z-index: 10;
   margin-right: -3.5px;
 }
@@ -192,12 +192,12 @@ $minimap-w: 50px;
 
   h1 {
     font-size: clamp(3rem, 8vw, 6rem);
-    color: var(--lightBlue80Trans);
+    color: var(--blue-light-trans-80);
     margin: 0;
     text-transform: uppercase;
     letter-spacing: 4px;
     text-decoration: underline;
-    text-decoration-color: var(--orange30Trans);
+    text-decoration-color: var(--orange-trans-30);
     text-decoration-thickness: 0.7em; //45%; ems used for iOS devices
     text-underline-offset: -0.5em; // must use em for iOS
     text-decoration-skip-ink: none;
@@ -213,7 +213,7 @@ $minimap-w: 50px;
 
 .scroll-indicator {
   font-size: 2.75rem;
-  color: var(--orange70Trans);
+  color: var(--orange-trans-70);
   animation: bounce 2s infinite;
   width: 100%;
   font-weight: 800;
@@ -343,7 +343,7 @@ $minimap-w: 50px;
   font-size: clamp(5.75rem, 15.5vw, 11rem);
 
   margin-left: 1rem;
-  color: var(--orange70Trans);
+  color: var(--orange-trans-70);
   min-width: 100%;
   letter-spacing: -6px;
   font-weight: 900;
@@ -352,7 +352,7 @@ $minimap-w: 50px;
 
 .huge-title {
   font-size: clamp(2.5rem, 5vw, 4rem);
-  color: var(--lightBlue60Trans);
+  color: var(--blue-light-trans-60);
   letter-spacing: -0.2;
   line-height: 1;
   margin-left: 1rem;
@@ -385,7 +385,7 @@ $minimap-w: 50px;
 }
 
 .event-card {
-  background: var(--blue60Trans);
+  background: var(--blue-trans-60);
   padding: 2rem 1rem;
   max-width: 325px;
   width: 100%;
@@ -416,7 +416,7 @@ $minimap-w: 50px;
     transform: translate(-50%, -50%);
     height: 20px;
     border-radius: 50%;
-    outline: 2px solid var(--lightBlue80Trans);
+    outline: 2px solid var(--blue-light-trans-80);
   }
 
   &:after {
@@ -426,7 +426,7 @@ $minimap-w: 50px;
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--greyDark60Trans);
+    background: var(--grey-dark-trans-60);
     z-index: -1;
     border-radius: var(--border-radius);
   }

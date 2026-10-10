@@ -14,7 +14,7 @@ div.activity-explained-bg {
     content: '';
     width: 100%;
     height: 100%;
-    background-color: var(--backgroundActivity);
+    background-color: var(--background-activity);
     position: absolute;
     top: 0px;
     left: 0;
@@ -24,25 +24,22 @@ div.activity-explained-bg {
 
 body .main section.acronym-explained-activity {
   width: 100%;
-  // max-width: var(--appMaxWidth);
   height: 100vh;
   max-height: 100vh;
   padding: 0;
   margin: 0 auto;
 
   &.show {
-    background: var(--backgroundActivity);
+    background: var(--background-activity);
     min-width: 100%;
   }
 
   .inner {
     left: 50%;
     transform: translate(-50%, 0);
-    background: var(--backgroundGrayTrans20);
+    background: var(--background-gray-trans20);
     padding: 0 1rem;
   }
-
-  // background: var(--backgroundActivity);
 
   ul {
     list-style: none;
@@ -76,7 +73,7 @@ body .main section.acronym-explained-activity {
   }
 
   u {
-    text-decoration-color: var(--lightBlue);
+    text-decoration-color: var(--blue-light);
     text-decoration-thickness: 3px;
     color: var(--primary);
   }
@@ -95,7 +92,7 @@ body .main section.acronym-explained-activity {
     height: 100dvh;
     width: 100%;
 
-    text-shadow: var(--textShadowDarkValue);
+    text-shadow: var(--text-shadow-dark);
     transition: var(--transition);
     max-width: var(--max-width);
     margin: 0 auto;
@@ -122,16 +119,66 @@ body .main section.acronym-explained-activity {
     font-weight: variables.$acc_title_weight;
     line-height: variables.$acc_title_line_height;
     position: relative;
-    // overflow-x: clip;
     flex: 0 0;
 
-    .icon {
-      fill: var(--yellow);
+    outline: 1px solid grey;
+
+    .toolbox-label {
+      display: flex;
+      flex-wrap: wrap;
+      align-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      text-align: left;
+      font-size: variables.$sml_size;
+
+      span {
+        display: inline;
+      }
+
+      .icon {
+        fill: var(--yellow);
+        width: 20px;
+        height: 20px;
+      }
+
       position: absolute;
-      right: -0.5rem;
-      top: 0.75rem;
-      width: 20px;
-      height: 20px;
+      left: 0;
+      bottom: 0;
+
+      transform: translate(0, 100%);
+    }
+
+    button.close-btn {
+      // opacity: 0.2;
+      // transform: scale(1.4);
+
+      .close-btn-wrap {
+        // transform: scale(1.4);
+
+        .close-btn-inner {
+          transform: scale(0.6) rotate(45deg);
+        }
+      }
+    }
+
+    .btn.close {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      outline: 1px solid yellow;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 40px;
+      height: 40px;
+      transform: translate(0%, -50%);
+      z-index: 65000;
+
+      .close-btn-inner {
+        // transform: translate(-50%, -50%);
+      }
     }
 
     div.toolboxes {
@@ -151,29 +198,26 @@ body .main section.acronym-explained-activity {
       position: relative;
       z-index: 10;
       display: flex;
-      flex-flow: row nowrap;
+      flex-flow: row wrap;
       opacity: 1;
-
-      font-size: variables.$h2_size;
+      // outline: 1px solid grey;
+      font-size: variables.$h3_size;
       color: var(--primary);
       // -webkit-text-stroke: 1px var(--primary);
       line-height: 1;
       font-weight: 800;
       font-variation-settings: 'wght' 800;
-      font-variation-settings: 'wght' 800;
       text-decoration: none !important;
 
-      justify-content: center;
-      align-items: center;
+      // justify-content: flex-start;
+      // align-items: center;
       text-align: left;
-      column-gap: 0.65rem;
+      gap: 0.65rem;
 
-      width: fit-content;
+      width: calc(100% - 80px);
+      width: 100%;
+      min-width: calc(100% - 80px);
       height: fit-content;
-
-      // letter-spacing: 4px;
-      margin-top: 0.75rem;
-      margin-bottom: 0.75rem;
 
       &.long {
         //reduce font-size as we have a long title
@@ -185,19 +229,19 @@ body .main section.acronym-explained-activity {
         height: 100%;
         margin-right: 0px;
 
-        &::after {
-          content: '';
-          position: absolute;
-          z-index: -1;
-          bottom: 3px;
-          right: 0;
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          opacity: 0.5;
-          background-color: var(--primary);
-          transform: translate(85%, 0%);
-        }
+        // &::after {
+        //   content: '';
+        //   position: absolute;
+        //   z-index: -1;
+        //   bottom: 3px;
+        //   right: 0;
+        //   width: 6px;
+        //   height: 6px;
+        //   border-radius: 50%;
+        //   opacity: 0.5;
+        //   background-color: var(--primary);
+        //   transform: translate(85%, 0%);
+        // }
       }
     }
 
@@ -232,7 +276,7 @@ body .main section.acronym-explained-activity {
       height: fit-content;
       text-align: left;
 
-      padding: 0 1.25rem;
+      // padding: 0 1.25rem;
       margin: 0 auto;
 
       blockquote {
@@ -250,6 +294,7 @@ body .main section.acronym-explained-activity {
       p {
         padding-right: 0;
         padding-left: 0;
+        text-wrap-style: balance;
       }
 
       b,
@@ -259,7 +304,7 @@ body .main section.acronym-explained-activity {
         color: var(--yellow);
         position: relative;
         text-decoration: underline;
-        text-decoration-color: var(--lightBlue40Trans);
+        text-decoration-color: var(--blue-light-trans-40);
         text-decoration-thickness: 0.55em; //45%; ems used for iOS devices
         text-underline-offset: -0.355em; // must use em for iOS
         text-decoration-skip-ink: none;
@@ -280,7 +325,7 @@ body .main section.acronym-explained-activity {
           font-weight: 600;
           font-variation-settings: 'wght' 600;
           font-variation-settings: 'wght' 600;
-          color: var(--lightBlue);
+          color: var(--blue-light);
         }
       }
     }
@@ -295,7 +340,7 @@ body .main section.acronym-explained-activity {
         sans-serif !important;
       font-weight: 300;
       min-height: fit-content;
-      height: 100%;
+      // height: 100%;
       width: 100%;
       margin: 0 auto;
       margin-bottom: 2rem;
@@ -314,6 +359,7 @@ body .main section.acronym-explained-activity {
         margin: 1rem 0 0 0;
         text-align: left;
         color: var(--primary);
+        text-wrap-style: balance;
 
         div.Acc-letter-group {
           // width: 92%;
@@ -335,6 +381,7 @@ body .main section.acronym-explained-activity {
             min-width: 10.5%;
             text-align: center;
             opacity: 0;
+            text-wrap-style: balance;
 
             &::after {
               content: '';
@@ -458,8 +505,6 @@ body .main section.acronym-explained-activity {
         }
 
         div.Acc-definition {
-          // margin: 1.5rem 0 0 1.75rem;
-          // width: 88%;
           margin-left: 1rem;
 
           >div div {
@@ -482,7 +527,6 @@ body .main section.acronym-explained-activity {
         font-size: 0.85rem;
         font-weight: 400;
         font-variation-settings: 'wght' 400;
-        font-variation-settings: 'wght' 400;
         text-decoration: none !important;
       }
 
@@ -498,20 +542,6 @@ body .main section.acronym-explained-activity {
         color: var(--grey);
       }
     }
-
-    // &::after {
-    // 	content: "";
-    // 	width: 100%;
-    // 	height: 100%;
-    // 	position: absolute;
-    // 	top: 0px;
-    // 	left: 0;
-    // 	z-index: -1;
-    // 	opacity: 0.15;
-    // 	background-color: var(--backgroundGrayTrans15);
-    // 	;
-    // 	// background: linear-gradient(-8deg, rgba(0, 0, 0, 0) 60%, rgb(10, 10, 10, 1) 100%);
-    // }
   }
 
   .scenarios {
@@ -534,7 +564,6 @@ body .main section.acronym-explained-activity {
         .title {
           font-size: variables.$h4_size;
           font-weight: 800;
-          font-variation-settings: 'wght' 800;
           font-variation-settings: 'wght' 800;
           text-decoration: none;
           color: var(--primary);
@@ -571,7 +600,7 @@ body .main section.acronym-explained-activity {
             content: ' ';
             width: 120%;
             height: 110%;
-            background-color: var(--greyDark);
+            background-color: var(--grey-dark);
             opacity: 0.5;
             position: absolute;
             top: 0;
@@ -602,7 +631,6 @@ body .main section.acronym-explained-activity {
       width: 92%;
       height: fit-content;
       margin: 0 auto 1rem auto;
-      // background-color: rgba(10, 10, 10, 0.6);
       position: relative;
 
       .duration {
@@ -647,7 +675,7 @@ body .main section.acronym-explained-activity {
         line-height: 1.2;
         color: var(--primary);
         font-size: variables.$h4_size;
-        text-shadow: var(--textShadowDarkValue);
+        text-shadow: var(--text-shadow-dark);
         padding: 1.25rem 0.75rem 0 0.75rem;
         position: relative;
         width: 90%;
@@ -666,7 +694,6 @@ body .main section.acronym-explained-activity {
       .player {
         width: 100%;
         min-width: 100%;
-        // background-color: #12121b;
         aspect-ratio: 16/9;
         position: relative;
         z-index: 1;
@@ -685,7 +712,6 @@ body .main section.acronym-explained-activity {
         iframe {
           width: 100%;
           min-height: 100%;
-          // background-color: #12121b;
         }
       }
 
@@ -763,17 +789,6 @@ body .main section.acronym-explained-activity {
         height: 1.75rem;
         width: 1.75rem;
       }
-    }
-
-    .btn.close {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      align-content: center;
-      // outline: 1px solid yellow;
-      position: relative;
-      width: 100%;
-      height: 100%;
     }
   }
 }

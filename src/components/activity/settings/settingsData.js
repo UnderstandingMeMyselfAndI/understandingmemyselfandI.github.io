@@ -9,29 +9,15 @@ const settingsData = [
         stateSelector: (state) => state.toolsEnabled,
         setStateAction: (state) => state.enableTools,
         label: 'Enable Tools',
-        information: 'Control the display of all tools.',
+        information: 'Control the display of the Tools Feature.',
         classnames: [''],
       },
-    ],
-  },
-  {
-    groupTitle: 'Your Tools',
-    settings: [
       {
         name: 'YourToolbox',
         stateSelector: (state) => state.toolboxFilterEnabled,
         setStateAction: (state) => state.enableToolboxFilter,
-        label: 'Enable "Your Toolbox" filter',
-        information: 'Shows a button that filters "the tools" so you see only the tools you favourited.',
-        classnames: [],
-      },
-
-      {
-        name: 'YourTools',
-        stateSelector: (state) => state.toolsEnabled,
-        setStateAction: (state) => state.enableYourTools,
-        label: 'Enable "Your Tools"',
-        information: 'Favourite tools you like, and add them to your "toolbox" for quick access.',
+        label: 'Enable Your Toolbox',
+        information: 'Displays a button that shows only the tools added to Your Toolbox or all tools.',
         classnames: [],
       },
     ],

@@ -15,7 +15,7 @@ import Skeleton from '@mui/material/Skeleton'
 import { extractYouTubeId } from '@js/utils.js'
 import { activities } from '@data/config'
 
-import './styles.scss'
+import './acronymExplained.scss'
 
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
@@ -45,11 +45,11 @@ const AcronymExplained = () => {
   const yourToolsEnabled = useAppStore((state) => state.yourToolsEnabled)
   const acronymID = useAppStore((s) => s.acronymID)
   const activity = useAppStore((s) => s.activity)
-  const showAccCard = useAppStore((s) => s.showAccCard)
+  // const showAccCard = useAppStore((s) => s.showAccCard)
   const setShowAccCard = useAppStore((s) => s.setShowAccCard)
   const setActivity = useAppStore((s) => s.setActivity)
   const setIsModal = useAppStore((s) => s.setIsModal)
-  const isModal = useAppStore((s) => s.isModal)
+  // const isModal = useAppStore((s) => s.isModal)
   const [isUserTool, setIsUserTool] = useState(userToolIDs.includes(acronymID))
 
   const gae = useAppStore((s) => s.gae) // Google analytics enabled
@@ -117,7 +117,15 @@ const AcronymExplained = () => {
               <div>{acronymData?.title && parse(DOMPurify.sanitize(acronymData?.title))}</div>
             )}
           </div>
-          {isUserTool && yourToolsEnabled && <HandymanIcon className='icon' />}
+          <div className='btn close' onClick={handleClose}>
+            <CloseBtn />
+          </div>
+          {isUserTool && yourToolsEnabled && (
+            <div className='toolbox-label'>
+              <HandymanIcon className='icon' />
+              <div>In toolbox</div>
+            </div>
+          )}
         </div>
         <section className='AccContent' id='AccContent' ref={contentRef}>
           <div className='AccGroup'>
@@ -228,10 +236,6 @@ const AcronymExplained = () => {
               <HdrAutoOutlinedIcon key={`goto-top-icon-${acronymData?.id}`} />
             </button>
           )}
-
-          <div className='btn close' onClick={handleClose}>
-            <CloseBtn />
-          </div>
         </div>
       </div>
     </section>

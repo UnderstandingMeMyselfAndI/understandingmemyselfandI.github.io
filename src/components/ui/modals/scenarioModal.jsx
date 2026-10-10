@@ -19,7 +19,7 @@ const style = {
   bgcolor: 'background.paper',
   border: 'none',
   outline: 'none',
-  boxShadow: 24,
+  --box-shadow: 24,
   p: 4,
 }
 

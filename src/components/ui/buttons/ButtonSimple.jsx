@@ -1,4 +1,4 @@
-import './buttonStyles.css'
+import './buttonStyles.scss'
 import PropTypes from 'prop-types'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'

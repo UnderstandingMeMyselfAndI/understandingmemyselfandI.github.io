@@ -26,7 +26,7 @@
   font-weight: 400;
   font-variation-settings: 'wght' 400;
   gap: 0;
-  color: var(--lightBlue);
+  color: var(--blue-light);
 
   .question-stat {
     flex: 1;
@@ -69,16 +69,16 @@
 }
 
 .question-counter {
-  color: var(--lightBlue);
+  color: var(--blue-light);
 }
 
 .score-display {
-  color: var(--lightBlue);
+  color: var(--blue-light);
 }
 
 .progress-bar-container {
   height: 6px;
-  background-color: var(--greyDark20Trans);
+  background-color: var(--grey-dark-trans-20);
 
   border-radius: 2px;
   overflow: hidden;
@@ -91,7 +91,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    border: 1px solid var(--lightGrey30Trans);
+    border: 1px solid var(-grey-light30Trans);
     opacity: 0.75;
     z-index: -1;
   }

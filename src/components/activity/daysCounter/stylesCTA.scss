@@ -3,10 +3,10 @@
 
 body div.main section.activity-days-counter-cta div.cta {
   .inner {
-    // background-color: var(--blueDark10Trans);
+    // background-color: var(--blue-dark-trans-10);
 
     u {
-      text-decoration-color: var(--blue30Trans);
+      text-decoration-color: var(--blue-trans-30);
     }
 
     h3.title {
@@ -19,7 +19,7 @@ body div.main section.activity-days-counter-cta div.cta {
     }
 
     // &::after {
-    //   background-color: var(--greyDark20Trans);
+    //   background-color: var(--grey-dark-trans-20);
     // }
   }
 }

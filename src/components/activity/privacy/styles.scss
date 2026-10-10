@@ -24,7 +24,7 @@ body section.activity-privacy {
   width: 100%;
   min-height: 100vh;
 
-  background: var(--backgroundGrayTrans90);
+  background: var(--background-gray-trans90);
   color: var(--primary);
   text-shadow: none;
   text-align: left;
@@ -110,10 +110,10 @@ section.your-privacy {
     position: relative;
     margin: 2rem auto;
     padding: 1.25rem 2rem;
-    box-shadow: var(--textShadowDarkValue);
+    box-shadow: var(--text-shadow-dark);
 
     &::after {
-      outline: 1px solid var(--lightBlue);
+      outline: 1px solid var(--blue-light);
       position: absolute;
       content: '';
       width: 100%;

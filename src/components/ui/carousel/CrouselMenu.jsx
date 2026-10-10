@@ -91,8 +91,8 @@ const AccordionItemWithEffects = ({ item, index, expanded, handleChange, config 
 
     return {
       position: 'relative',
-      backgroundColor: 'var(--mainBackground)',
-      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)',
+      backgroundColor: 'var(--background-main)',
+      --box-shadow: '0 4px 20px rgba(0, 0, 0, 0.15)',
       // maxHeight: "calc(90vh - 40px)",
       // minHeight: "100%",
       // height: "fit-content",

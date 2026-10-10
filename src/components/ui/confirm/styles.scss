@@ -9,7 +9,7 @@
   bottom: 2rem;
   // width: 100dvw;
   // height: 100dvh;
-  background-color: var(--backgroundActivity);
+  background-color: var(--background-activity);
   z-index: 9999;
   display: flex;
   justify-content: center;
@@ -39,8 +39,8 @@
 
     .confirm-pop-up-inner {
       border-radius: var(--border-radius);
-      box-shadow: var(--boxShadowDark);
-      background: var(--blue60Trans);
+      box-shadow: var(--box-shadow-dark);
+      background: var(--blue-trans-60);
 
       position: relative;
 
@@ -51,7 +51,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: var(--greyDark90Trans);
+        background: var(--grey-dark-trans-90);
         z-index: -1;
         border-radius: var(--border-radius);
         opacity: 1;
@@ -104,11 +104,11 @@
     }
 
     u.yellow-ul {
-      text-decoration-color: var(--yellow30Trans);
+      text-decoration-color: var(--yellow-trans-30);
     }
 
     u {
-      text-decoration-color: var(--lightBlue40Trans);
+      text-decoration-color: var(--blue-light-trans-40);
     }
   }
 
@@ -128,11 +128,11 @@
     }
 
     button.confirm {
-      // border: 1px solid var(--lightBlue50Trans)
+      // border: 1px solid var(--blue-light-trans-50)
     }
 
     button.cancel {
-      background-color: var(--blue60Trans);
+      background-color: var(--blue-trans-60);
 
       position: relative;
 
@@ -143,7 +143,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: var(--greyDark);
+        background-color: var(--grey-dark);
         z-index: -1;
         border-radius: var(--border-radius);
       }

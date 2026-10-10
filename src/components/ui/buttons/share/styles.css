@@ -1,5 +1,5 @@
 @import '@scss/globals.css';
-@import '../buttonStyles.css';
+@import '../buttonStyles.scss';
 
 .share-icon {
   width: 40px;

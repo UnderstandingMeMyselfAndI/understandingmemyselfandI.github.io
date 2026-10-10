@@ -17,7 +17,7 @@ import { activities } from '@data/config'
 //   return acc
 // }, {})
 import '@utils/IsMobile.js'
-import './styles.scss'
+import './introduction.scss'
 //TODO: This is preventing touch events
 
 const Introduction = () => {
