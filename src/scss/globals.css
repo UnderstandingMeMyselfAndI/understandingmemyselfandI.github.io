@@ -42,6 +42,18 @@
   --btn-bg-wine: #7ba04b;
   --btn-bg-spirits: #9b3a33;
   --chip-bg: #473e999c;
+
+  --btn-accept: #b3ade7;
+  --btn-accept-hover: #ffffff;
+
+  --btn-accept-bg: #3d3585;
+  --btn-accept-hover-bg: #3d3585;
+
+  --btn-reject: #9896b3;
+  --btn-reject-hover: #5d5a77;
+  --btn-reject-bg-hover: #312f49;
+  --btn-reject-bg: #484569;
+
   --yellow: #e4e021;
   --yellow-2: #7dbd38;
   --yellow-trans-90: rgba(255, 255, 0, 0.9);
