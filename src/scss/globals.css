@@ -13,7 +13,10 @@
   --border-radius-sml: 4px;
   --border-radius: 6px;
   --border-radius-lrg: 12px;
-  --background-blue: #036075;
+  --background-blue: #2e24688f;
+  --background-inactive: #332d538f;
+  --background-disabled: #706a918f;
+  --background-bright: #e3e3fc;
   --background-gray-trans-5: rgba(10, 10, 10, 0.05);
   --background-gray-trans-10: rgba(10, 10, 10, 0.1);
   --background-gray-trans-15: rgba(10, 10, 10, 0.15);
@@ -33,6 +36,8 @@
   --background: rgba(27, 134, 158, 1);
   --foreground: oklch(0.985 0 0);
   --placeholder: rgba(69, 56, 100, 0.95);
+  --btn-bg: #3d3585;
+  --btn-bg-hover: #4b4396;
   --btn-bg-beer: #544ba0;
   --btn-bg-wine: #7ba04b;
   --btn-bg-spirits: #9b3a33;

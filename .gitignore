@@ -10,6 +10,10 @@ yarn-error.log*
 lerna-debug.log*
 
 plans
+plans/*
+
+.wrangler
+.dev.vars*
 
 data
 data/*

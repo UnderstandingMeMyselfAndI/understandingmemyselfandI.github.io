@@ -6,9 +6,7 @@ import { analyzer } from 'vite-bundle-analyzer'
 import { VitePWA } from 'vite-plugin-pwa'
 import { cspProxyPlugin } from 'vite-plugin-content-security-policy'
 import { getDynamicRoutes, getShortcuts } from './getDynamicRoutes.js'
-// import browserslist from 'browserslist'
-// import { browserslistToTargets } from 'lightningcss'
-// import { nodePolyfills } from 'vite-plugin-node-polyfills'
+import { cloudflare } from '@cloudflare/vite-plugin'
 import Sitemap from 'vite-plugin-sitemap'
 
 export const ENVIRONMENTS = ['production', 'staging', 'development']
@@ -50,6 +48,7 @@ export default defineConfig({
   },
   plugins: [
     react(),
+    cloudflare({ viteEnvironment: { name: 'worker' } }),
     cspProxyPlugin({
       // Optional: tell which configuration to apply when running vite serve (default is used if undefined)
       developmentKey: 'development',
