@@ -117,9 +117,9 @@ const AcronymExplained = () => {
               <div>{acronymData?.title && parse(DOMPurify.sanitize(acronymData?.title))}</div>
             )}
           </div>
-          <div className='btn close' onClick={handleClose}>
-            <CloseBtn />
-          </div>
+          {/* <div className='btn close'> */}
+          <CloseBtn onClick={handleClose} />
+          {/* </div> */}
           {isUserTool && yourToolsEnabled && (
             <div className='toolbox-label'>
               <HandymanIcon className='icon' />
@@ -176,8 +176,7 @@ const AcronymExplained = () => {
                 // const video = videos?.data?.videos?.nodes.find(
                 //   (v) => v.id === linkedVideo.id,
                 // )
-                console.log('linkedVideo.id id ', linkedVideo.id)
-                console.log('linkedVideo ', linkedVideo)
+
                 const video = videosByDatabaseID[linkedVideo.id]
 
                 return (

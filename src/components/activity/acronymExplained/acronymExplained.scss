@@ -121,8 +121,6 @@ body .main section.acronym-explained-activity {
     position: relative;
     flex: 0 0;
 
-    outline: 1px solid grey;
-
     .toolbox-label {
       display: flex;
       flex-wrap: wrap;
@@ -145,40 +143,7 @@ body .main section.acronym-explained-activity {
       position: absolute;
       left: 0;
       bottom: 0;
-
       transform: translate(0, 100%);
-    }
-
-    button.close-btn {
-      // opacity: 0.2;
-      // transform: scale(1.4);
-
-      .close-btn-wrap {
-        // transform: scale(1.4);
-
-        .close-btn-inner {
-          transform: scale(0.6) rotate(45deg);
-        }
-      }
-    }
-
-    .btn.close {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      align-content: center;
-      outline: 1px solid yellow;
-      position: absolute;
-      right: 0;
-      top: 50%;
-      width: 40px;
-      height: 40px;
-      transform: translate(0%, -50%);
-      z-index: 65000;
-
-      .close-btn-inner {
-        // transform: translate(-50%, -50%);
-      }
     }
 
     div.toolboxes {
@@ -228,20 +193,6 @@ body .main section.acronym-explained-activity {
         position: relative;
         height: 100%;
         margin-right: 0px;
-
-        // &::after {
-        //   content: '';
-        //   position: absolute;
-        //   z-index: -1;
-        //   bottom: 3px;
-        //   right: 0;
-        //   width: 6px;
-        //   height: 6px;
-        //   border-radius: 50%;
-        //   opacity: 0.5;
-        //   background-color: var(--primary);
-        //   transform: translate(85%, 0%);
-        // }
       }
     }
 
