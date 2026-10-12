@@ -3,9 +3,9 @@ import useAppStore from '@store/useAppStore'
 import { activities } from '@data/config'
 
 // import requestWakeLock from '@js/utils/WakeLock'
-import { strings } from '@data/config'
-import { sanitizeStringForUrl, setBrowserHistory } from '@js/utils.js'
-import './styles.scss'
+// import { strings } from '@data/config'
+// import { sanitizeStringForUrl, setBrowserHistory } from '@js/utils.js'
+import './appMenu.scss'
 
 // TODO: #19 Implement URLS and routing
 export default function AppMenu() {
@@ -41,15 +41,9 @@ export default function AppMenu() {
     setOpen(!open)
     // requestWakeLock() TODO The emeroy useage of this needs checking
   }
-  const handleClose = (obj) => {
+  const handleClose = () => {
     setOpen(false)
   }
-
-  // function findActivityObj(id) {
-  //   const obj = activities.find((a) => (parseInt(a.id) === parseInt(id) ? id : null))
-  //   return obj
-  // }
-
   useEffect(() => {
     const obj = activities.find((a) => (parseInt(a.id) === parseInt(activity) ? activity : null))
     const showMenu = activity === -1 ? true : obj.modal ? false : true
@@ -101,9 +95,9 @@ export default function AppMenu() {
   ])
 
   return showMenu ? (
-    <div className={'AppMenu' + (openMenu ? ' ' : ' hide')}>
+    <div className={'app-menu' + (openMenu ? ' ' : ' hide')}>
       {showBurgerStack && (
-        <div className='burger-stack' id='burger-button'>
+        <div className='app-menu__burger-stack' id='burger-button'>
           <input
             type='checkbox'
             id='checkbox1'
@@ -122,29 +116,31 @@ export default function AppMenu() {
           </label>
         </div>
       )}
-      <ul className={open ? ' open' : ' closed'} id='app-menu' onClick={handleClose}>
-        {filteredActivities.map((activityForMenu, i) => {
-          return activityForMenu.menu ? (
-            <li
-              className={activityForMenu?.classes}
-              key={i}
-              onClick={() => {
-                if (!activityForMenu.modal) {
-                  requestAnimationFrame(() => {
-                    const el = document.getElementById(activityForMenu.anchorID)
-                    el.scrollIntoView(true)
-                  })
-                }
-                setIsModal(activityForMenu.modal)
-                handleClose()
-                setActivity(activityForMenu.id)
-              }}>
-              {activityForMenu.title}
-            </li>
-          ) : null
-        })}
-      </ul>
-      <div className='app-nemu-bg' onClick={handleClose}></div>
+      <div className='app-menu__wrapper'>
+        <ul className={'app-menu__menu' + (open ? ' open' : ' closed')} id='app-menu__menu' onClick={handleClose}>
+          {filteredActivities.map((activityForMenu, i) => {
+            return activityForMenu.menu ? (
+              <li
+                className={activityForMenu?.classes}
+                key={i}
+                onClick={() => {
+                  if (!activityForMenu.modal) {
+                    requestAnimationFrame(() => {
+                      const el = document.getElementById(activityForMenu.anchorID)
+                      el.scrollIntoView(true)
+                    })
+                  }
+                  setIsModal(activityForMenu.modal)
+                  handleClose()
+                  setActivity(activityForMenu.id)
+                }}>
+                {activityForMenu.title}
+              </li>
+            ) : null
+          })}
+        </ul>
+      </div>
+      <div className='app-menu__bg' onClick={handleClose}></div>
     </div>
   ) : null
 }

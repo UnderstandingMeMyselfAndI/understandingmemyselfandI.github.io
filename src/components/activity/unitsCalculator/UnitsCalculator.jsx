@@ -89,7 +89,7 @@ const UnitsCalculator = () => {
   }, [activity, id])
 
   const handleClose = () => {
-    console.log('handleClose')
+
     if (isMeasuresVisible) {
       setIsMeasuresVisible(false)
     } else {

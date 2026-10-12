@@ -1,0 +1,295 @@
+@use '@scss/variables';
+@import '@scss/globals.css';
+
+.security-gate {
+    $root: &;
+    height: 100%;
+
+    &--centered {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem 1rem;
+        min-height: 60vh;
+    }
+
+    &__card {
+        width: 100%;
+        max-width: var(--max-width);
+        // background: var(--surface, #fff);
+        border: 1px solid var(--border, #e3e6ea);
+        border-radius: var(--border-radius-lrg);
+        padding: 0.75rem 1rem;
+        box-shadow: var(--box-shadow);
+
+        &--inline {
+            margin: 0.75rem 1rem 0;
+            max-width: none;
+            box-shadow: none;
+        }
+    }
+
+    &__title {
+        margin: 0 0 6px;
+        font-size: variables.$h3_size;
+        line-height: 1.25;
+        color: var(--primary);
+    }
+
+    &__lede {
+        margin: 0 0 14px;
+        font-size: variables.$default_size;
+        color: var(--primary, #5b6472);
+    }
+
+    &__warning {
+        margin: 0 0 1rem;
+        padding: 10px 12px;
+        border-radius: 10px;
+        // background: #fff5e5;
+        border: 1px solid var(--blue-trans-50);
+        color: var(--warning);
+        font-size: variables.$default_size;
+        font-variation-settings: 'wght' 700;
+        line-height: 1.45;
+    }
+
+    &__reminder {
+        margin: 0 0 14px;
+        font-size: 12.5px;
+        color: var(--text-muted, #5b6472);
+    }
+
+    &__label {
+        display: block;
+        margin: 12px 0 6px;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    // Row layout: input grows, toggle sits to the right as a separate control.
+    &__password {
+        display: flex;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    &__input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px 12px;
+        border: 1px solid var(--border, #cfd5dd);
+        border-radius: 10px;
+        font: inherit;
+        font-size: 15px;
+        background: var(--field, #fff);
+        color: inherit;
+
+        &:focus-visible {
+            outline: 2px solid #2f5fd0;
+            outline-offset: 1px;
+        }
+
+        // Inside the password row, let the input shrink to share space with the button.
+        &--password {
+            flex: 1;
+            min-width: 0;
+            letter-spacing: 0.18em; // numeric PINs read better with a little tracking
+            font-variant-numeric: tabular-nums;
+        }
+    }
+
+    &__toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        width: 42px;
+        padding: 0;
+        border: 1px solid var(--border, #cfd5dd);
+        border-radius: 10px;
+        background: var(--field, #fff);
+        color: var(--text-muted, #5b6472);
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+
+        &:hover {
+            color: #2f5fd0;
+            border-color: #2f5fd0;
+            background: rgba(47, 95, 208, 0.06);
+        }
+
+        &:focus-visible {
+            outline: 2px solid #2f5fd0;
+            outline-offset: 1px;
+        }
+    }
+
+    &__hint {
+        margin: 6px 0 0;
+        font-size: 12px;
+        color: var(--text-muted, #5b6472);
+    }
+
+    &__submit {
+        width: 100%;
+        margin-top: 18px;
+        padding: 11px 16px;
+        border: none;
+        border-radius: 10px;
+        background: #2f5fd0;
+        color: #fff;
+        font: inherit;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: default;
+        }
+    }
+
+    &__cancel {
+        margin-top: 18px;
+        padding: 11px 16px;
+        border: 1px solid var(--border, #cfd5dd);
+        border-radius: 10px;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+    }
+
+    &__actions {
+        display: flex;
+        gap: 10px;
+
+        #{$root}__submit,
+        #{$root}__cancel {
+            flex: 1;
+        }
+    }
+
+    &__error {
+        margin: 12px 0 0;
+        color: #b3261e;
+        font-size: 13px;
+    }
+
+    &__dryrun {
+        margin: 14px 0 0;
+        font-size: 12px;
+        color: #7a5310;
+    }
+
+    &__bar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 16px;
+        border-bottom: 1px solid var(--border, #e3e6ea);
+        font-size: 12.5px;
+    }
+
+    &__lock {
+        font-size: 13px;
+    }
+
+    &__badge {
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: #fff5e5;
+        color: #7a5310;
+        border: 1px solid #f2d7a8;
+        font-size: 11px;
+        font-weight: 600;
+    }
+
+    &__link {
+        margin-left: auto;
+        padding: 4px 8px;
+        border: none;
+        background: none;
+        color: #2f5fd0;
+        font: inherit;
+        font-size: 12.5px;
+        cursor: pointer;
+
+        &+#{$root}__link {
+            margin-left: 0;
+        }
+    }
+
+    &__content {
+        min-width: 0;
+        height: 100%;
+    }
+
+    &__lede {
+        margin: 0 0 14px;
+        font-size: 13.5px;
+        color: var(--text-muted, #5b6472);
+    }
+
+    &__warning--strong {
+        background: #fdeceb;
+        border-color: #f2c3bf;
+        color: #8f221b;
+    }
+
+    &__link {
+        display: block;
+        margin: 14px auto 0;
+        padding: 4px 8px;
+        border: none;
+        background: none;
+        color: #2f5fd0;
+        font: inherit;
+        font-size: 12.5px;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__modal {
+        position: fixed;
+        inset: 0;
+        z-index: 1500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: rgba(16, 20, 28, 0.45);
+    }
+
+    &__modal-panel {
+        position: relative;
+        width: 100%;
+        max-width: 360px;
+        padding: 20px;
+        border-radius: 16px;
+        background: var(--surface, #fff);
+        box-shadow: 0 16px 40px rgba(16, 20, 28, 0.24);
+    }
+
+    &__danger {
+        flex: 1;
+        padding: 11px 14px;
+        border-radius: 10px;
+        border: none;
+        background: #b3261e;
+        color: #fff;
+        font: inherit;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: default;
+        }
+    }
+}

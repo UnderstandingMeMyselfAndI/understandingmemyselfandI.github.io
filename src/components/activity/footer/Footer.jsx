@@ -31,7 +31,7 @@ function Footer() {
           </b>
         </p>
         <QRCode label='' />
-        <p>www.ummi.now</p>
+        <p>app.ummi.now</p>
       </section>
 
       <section id='gratitude'>

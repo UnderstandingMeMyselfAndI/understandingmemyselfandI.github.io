@@ -48,7 +48,7 @@ body {
     // font-weight: 400 !important;
     font-style: normal;
     line-height: variables.$default_line_height;
-    font-size: variables.$p_size;
+    font-size: variables.$default_size;
   }
 
   input::placeholder {

@@ -4,11 +4,14 @@ import { defineConfig, transformWithOxc } from 'vite'
 import react from '@vitejs/plugin-react'
 import { analyzer } from 'vite-bundle-analyzer'
 import { VitePWA } from 'vite-plugin-pwa'
+import { cspProxyPlugin } from 'vite-plugin-content-security-policy'
 import { getDynamicRoutes, getShortcuts } from './getDynamicRoutes.js'
 // import browserslist from 'browserslist'
 // import { browserslistToTargets } from 'lightningcss'
-import { nodePolyfills } from 'vite-plugin-node-polyfills'
+// import { nodePolyfills } from 'vite-plugin-node-polyfills'
 import Sitemap from 'vite-plugin-sitemap'
+
+export const ENVIRONMENTS = ['production', 'staging', 'development']
 
 const transformJsxInJs = () => ({
   name: 'transform-jsx-in-js',
@@ -37,7 +40,9 @@ export default defineConfig({
   server: {
     sourcemap: false,
     host: true, // Listen on all addresses, including LAN
+    csp: false, // Disable Vite‑generated CSP
   },
+
   build: {
     outDir: 'dist',
     // assetsDir: 'assets', // optional sub‑folder for static assets
@@ -45,6 +50,20 @@ export default defineConfig({
   },
   plugins: [
     react(),
+    cspProxyPlugin({
+      // Optional: tell which configuration to apply when running vite serve (default is used if undefined)
+      developmentKey: 'development',
+      rules: {
+        'default-src': "'self'",
+        'script-src': "'self' 'unsafe-inline'",
+        'style-src': "'self' 'unsafe-inline'",
+        'img-src': "'self' data:",
+        'font-src': "'self' data:",
+        'connect-src': "'self' http://localhost/ https://app.ummi.now",
+      },
+      // Optional: Use 'report' for report-only mode, 'strict' for enforcement (default)
+      reportType: 'report',
+    }),
     transformJsxInJs(),
     // nodePolyfills(),
     analyzer({
@@ -290,6 +309,7 @@ export default defineConfig({
       '@utils': path.resolve('./src/utils/'),
       '@assets': path.resolve('./src/assets/'),
       '@src': path.resolve('./src/'),
+      '@security': path.resolve('./src/components/security/'),
     },
   },
 })

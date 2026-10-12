@@ -72,7 +72,7 @@ const AccessibilitySettings=()=> {
           style= {
               {
               padding: '8px 16px',
-              background: theme===t ? 'var(--blue)' : 'var(--background-gray-trans10)',
+              background: theme===t ? 'var(--blue)' : 'var(--background-gray-trans-10)',
               color: theme===t ? 'white' : 'var(--foreground)',
               border: 'none',
               borderRadius: 'var(--border-radius)',

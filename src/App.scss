@@ -29,10 +29,8 @@ html {
 }
 
 body {
-  scroll-behavior: smooth;
   overscroll-behavior: none;
-  // overscroll-behavior-y: contain;
-  background: #000 !important;
+  background: var(--main-background);
   width: 100%;
   max-width: 100dvw;
   height: 100%;
@@ -67,7 +65,7 @@ body {
     width: fit-content;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    background: rgba(164, 120, 245, 0.35);
+    background: var(--btn-bg);
     border: none;
     color: var(--primary);
     outline: 1px solid var(--blue);
@@ -78,51 +76,9 @@ body {
     &:focus-within,
     &:hover,
     &:active {
-      outline: none;
-      border: none;
+      // outline: none;
+      // border: none;
       -webkit-tap-highlight-color: transparent;
-    }
-  }
-
-  .new,
-  .soon {
-    position: relative;
-
-    .register::after {
-      opacity: 0.2;
-    }
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      font-size: 0.65rem;
-      color: var(--primary);
-      background-color: red;
-      padding: 0.1rem 0.25rem;
-      font-weight: 600;
-      font-variation-settings: 'wght' 600;
-      font-variation-settings: 'wght' 600;
-    }
-  }
-
-  .new {
-    &::before {
-      content: 'new';
-      color: var(--primary);
-      background-color: var(--orange);
-    }
-  }
-
-  .soon {
-    text-decoration: line-through;
-    color: rgba(10, 10, 10, 0.3);
-
-    &::before {
-      content: 'soon';
-      color: var(--primary);
-      background-color: grey;
     }
   }
 
@@ -170,32 +126,20 @@ body {
     div.activity {
       position: relative;
       visibility: hidden;
-      // outline: 1px solid #ccc;
       pointer-events: none;
 
       z-index: -10;
       top: 0;
       left: 0;
-      // right: 0;
 
-      // margin: 0 var(--gutters);
       max-width: var(--max-width);
       padding: 0 var(--gutters);
       width: 100dvw;
-      // min-height: 60dvh;
 
       flex-flow: column wrap;
       align-content: center;
       align-items: center;
       justify-content: center;
-
-      button.close-btn {
-        position: absolute;
-        right: 0.5rem;
-        top: 0.75rem;
-        left: auto;
-        z-index: 6005;
-      }
 
       &.hide,
       &.close {
@@ -218,6 +162,7 @@ body {
       }
 
       header {
+        padding-top: calc(env(safe-area-inset-top));
         width: 100%;
 
         h2 {
@@ -392,20 +337,6 @@ body {
 :before,
 :after {
   box-sizing: border-box;
-}
-
-:focus {
-  outline: none;
-  box-shadow: none;
-}
-
-svg:focus,
-button:focus,
-svg:focus-visible,
-button:focus-visible {
-  outline: none;
-  border: none;
-  box-shadow: none;
 }
 
 section {

@@ -325,11 +325,21 @@ const useAppStore = create(
       // ----------------------------------------
       // Message
       message: '',
-      setMessage: (v) => set(() => ({ message: v })),
+      messageId: 0,
+      setMessage: (v) => set((s) => ({ message: v, messageId: s.messageId + 1 })),
+      clearSnackbar: () => set({ message: '', snackbarAction: null }),
       // ----------------------------------------
       // Snackbar
       showSnackbar: false,
       setShowSnackbar: (v) => set(() => ({ showSnackbar: v })),
+      // Snackbar action button (optional)
+      snackbarAction: null,
+      setSnackbarAction: (v) => set({ snackbarAction: v }),
+
+      // Global passcode-dialog request. Bumping this opens the dialog mounted
+      // by <PasscodeDialogController> anywhere in the app.
+      passcodeDialogRequest: 0,
+      requestPasscodeDialog: () => set((s) => ({ passcodeDialogRequest: s.passcodeDialogRequest + 1 })),
       // ----------------------------------------
       // Activity ID
       activity: -1,

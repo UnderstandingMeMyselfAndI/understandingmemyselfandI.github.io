@@ -1,0 +1,104 @@
+@use '@scss/variables';
+@import '@scss/globals.css';
+
+.small-win-card {
+    list-style: none;
+    margin: 0 0.5rem;
+
+    &__button {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 1rem;
+        text-align: left;
+        background: var(--blue-gradient-bg);
+        border-radius: var(--border-radius-sml);
+
+        transition:
+            box-shadow 0.15s ease,
+            transform 0.15s ease;
+
+        &:hover {
+            box-shadow: var(--box-shadow);
+        }
+
+        &:active {
+            transform: scale(0.995);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--blue-light);
+            outline-offset: 2px;
+        }
+    }
+
+    &__date {
+        font-size: variables.$sml_size;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: var(--muted);
+    }
+
+    &__title {
+        font-size: variables.$default_size;
+        font-weight: 600;
+        font-variation-settings: 'wght' 600;
+        color: var(--orange);
+
+        &--untitled {
+            color: var(--secondary);
+            font-weight: 500;
+            // font-style: italic;
+        }
+    }
+
+    &__preview {
+        font-size: variables.$default_size;
+        // line-height: 1.45;
+        color: var(--secondary);
+        font-weight: 500;
+        font-variation-settings: 'wght' 500;
+    }
+
+    &__people {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 2px;
+    }
+
+    &__chip {
+        padding: 3px 9px;
+        border-radius: 999px;
+        background: var(--chip-bg);
+        font-size: variables.$sml_size;
+        color: var(--orange-trans-60);
+    }
+}
+
+li.small-win-card:nth-child(1n) {
+    .small-win-card__button {
+        background: var(--blue-gradient-bg);
+    }
+}
+
+li.small-win-card:nth-child(2n) {
+    .small-win-card__button {
+        background: var(--blue-pink-gradient-bg);
+    }
+}
+
+li.small-win-card:nth-child(3n) {
+    .small-win-card__button {
+        background: var(--blue-orange-gradient-bg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .small-win-card__button {
+        transition: none;
+    }
+}

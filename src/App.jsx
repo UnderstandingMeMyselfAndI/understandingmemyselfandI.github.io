@@ -16,6 +16,7 @@ import WallpapersCTA from '@activity/wallpapers/WallpapersCTA'
 import Backdrop from '@components/backdrop/Backdrop'
 
 import SnackBars from '@ui/snackbars/SnackBars.jsx'
+import PasscodeDialogController from './components/security/PasscodeDialogController'
 import InstallCTA from '@activity/install/InstallCTA'
 // import AcronymCard from "ui/cards/AcronymCard.jsx";
 import AcronymExplained from '@activity/acronymExplained/AcronymExplained'
@@ -41,6 +42,7 @@ import TimelineCTA from '@activity/timeline/TimelineCTA'
 import Quiz from '@activity/quiz/Quiz'
 import QuizCTA from '@activity/quiz/QuizCTA'
 import PengGameAI from '@activity/games/peng/PengGameAI'
+// import SmallWins from './components/activity/smallWins/SmallWins'
 // import { runPersistentStorageTests } from './js/utils.js'
 import './App.scss'
 import './scss/_fonts.scss'
@@ -94,6 +96,7 @@ function App() {
         {quickExitEnabled && <Exit />}
         <Header />
         <Introduction />
+        {/* <SmallWins /> */}
         <WallpaperGallery />
         <VerticalTimeline />
         {wheelOfLifeEnabled && <WheelOfLife />}
@@ -119,6 +122,7 @@ function App() {
         <AcronymExplained />
         <Settings />
         <SnackBars />
+        <PasscodeDialogController />
       </div>
       <Backdrop initialImageId={2} initialDelay={3000} interval={6000} parallaxStrength={0} className='backdrop' />
       <Routing />

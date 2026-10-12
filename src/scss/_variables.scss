@@ -110,8 +110,8 @@ $font_family: 'Plus Jakarta Sans', sans-serif;
 // Default fields font size
 // ------------------------------------------
 
-$default_size_min: 18px;
-$default_size_max: 20px;
+$default_size_min: 14px;
+$default_size_max: 16px;
 $default_size: responsiveFontSize($default_size_min, $default_size_max, $minDeviceWidth, $maxDeviceWidth);
 
 $default_text_color: var(--text_primary);
@@ -272,13 +272,19 @@ $subtitle_style: normal;
 // Menu font size
 // ------------------------------------------
 
-$menu_size_min: 25px;
-$menu_size_max: 38px;
+$menu_size_min: 20px;
+$menu_size_max: 30px;
 $menu_size: responsiveFontSize($menu_size_min, $menu_size_max, $minDeviceWidth, $maxDeviceWidth);
 $menu_color: var(--text_primary);
 $menu_weight: 100;
-$menu_line_height: 1.1;
+$menu_line_height: 1;
+// ------------------------------------------
+// Micro font size
+// ------------------------------------------
+$micro_size_min: 8px;
+$micro_size_max: 12px;
 
+$micro_size: responsiveFontSize($micro_size_min, $micro_size_max, $minDeviceWidth, $maxDeviceWidth);
 // ------------------------------------------
 // Small font size
 // ------------------------------------------

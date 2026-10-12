@@ -1,28 +1,28 @@
 @use '@scss/variables';
 @import '@scss/globals.css';
 
-.AppMenu {
+.app-menu {
   position: fixed;
   z-index: 10000;
   top: 0;
-
   left: 100%;
   width: 100%;
   height: 100dvh;
 
-  &.show {
+  --burger-stack-height: 70px;
+
+  &__show {
     left: 0%;
   }
 
   overflow-x: clip;
-
   display: flex;
   flex-flow: column wrap;
   row-gap: 0rem;
   align-items: flex-end;
   justify-content: flex-start;
 
-  .app-nemu-bg {
+  &__bg {
     width: 100%;
     height: 100vh;
     z-index: 1;
@@ -34,7 +34,7 @@
   &:has(.checkbox1:checked) {
     left: 0;
 
-    .app-nemu-bg {
+    .app-menu__bg {
       width: 100%;
       height: 100vh;
       left: 0;
@@ -46,14 +46,13 @@
     }
   }
 
-  .burger-stack {
+  &__burger-stack {
     position: fixed;
     background: none;
-    top: 0;
-    right: 0;
+    top: calc(env(safe-area-inset-top));
+    right: calc(env(safe-area-inset-top));
     border: none;
-    padding: 0.5rem;
-
+    padding: 0.25rem;
     display: flex;
     flex-flow: column wrap;
     align-content: center;
@@ -79,10 +78,11 @@
     .hamburger {
       margin: 0 auto;
       margin: 1rem 1rem;
-      width: 40px;
+      width: 30px;
       height: 30px;
       position: relative;
       z-index: 75001;
+      transform: scale(0.8);
     }
 
     .hamburger .bar {
@@ -91,7 +91,7 @@
       height: 3px;
       background-color: #fff;
       display: block;
-      border-radius: 4px;
+      border-radius: 3px;
       transition: all 0.4s ease-in-out;
       position: absolute;
     }
@@ -116,7 +116,13 @@
 
     /* HAMBURGER 1 */
     .checkbox1+label>.hamburger1 {
-      transform: translateX(5px);
+      transform: translateX(0px) scale(0.8);
+      transition: transform 0.3s ease;
+    }
+
+    .checkbox1:checked+label>.hamburger1 {
+      transform: translateX(0px) scale(0.8);
+      transition: transform 0.3s ease;
     }
 
     .checkbox1:checked+label>.hamburger1>.bar1 {
@@ -148,7 +154,7 @@
   &:has(.open) {
     position: fixed;
 
-    ul#app-menu {
+    .app-menu__menu {
       margin-right: 0;
       transition: all 0.25s cubic-bezier(0.5, 0, 0.25, 1);
 
@@ -165,20 +171,28 @@
     }
   }
 
-  ul#app-menu {
+  &__wrapper {
+    display: flex;
+    width: 100%;
+    height: calc(100% - var(--burger-stack-height));
+    flex-flow: column wrap;
+    justify-content: center;
     position: fixed;
+    top: var(--burger-stack-height);
+    right: 0;
+    transition: right 0.35s cubic-bezier(0.5, 0, 0.25, 1);
+  }
 
-    top: 50%;
-    transform: translateY(-50%);
+  &__wrapper:has(.closed) {
+    right: -100%;
+    transition: right 0.35s cubic-bezier(0.5, 0, 0.25, 1);
+  }
 
+  ul#app-menu__menu {
     margin: 0;
-    margin-right: -100%;
-    transition: all 0.35s cubic-bezier(0.5, 0, 0.25, 1);
-
     list-style: none;
     width: 100%;
     border-radius: 0;
-    left: auto !important;
     width: 100%;
     display: flex;
     flex-flow: column wrap;
@@ -190,7 +204,7 @@
     li.strikethrough {
       user-select: none;
 
-      color: rgba(10, 10, 10, 0.3);
+      color: var(--grey);
       position: relative;
 
       .register::after {
@@ -202,56 +216,34 @@
         position: absolute;
         top: 0;
         left: 0;
-        font-size: 0.65rem;
+        font-size: variables.$micro_size;
         color: var(--primary);
-        background-color: grey;
+        background-color: var(--grey);
         padding: 0.1rem 0.25rem;
         font-weight: 600;
-        font-variation-settings: 'wght' 600;
         font-variation-settings: 'wght' 600;
       }
     }
 
-    // li.new{
-
-    //     position:relative;
-    //     .register::after{
-    //         opacity:0.2;
-    //     }
-    //     &::before{
-    //         content:"new";
-    //         position:absolute;
-    //         top:0;
-    //         left:0;
-    //         font-size:0.65rem;
-    //         color:var(--primary);
-    //         background-color:red;
-    //         padding:0.1rem 0.25rem;
-    //         font-weight:600;
-    //         font-variation-settings: "wght" 600;
-    //         // border-bottom-right-radius: 6px;
-    //     }
-
-    // }
     li {
       font-size: variables.$menu_size;
       font-family: variables.$font_family;
       font-weight: variables.$menu_weight;
       font-variation-settings: 'wght' variables.$menu_weight;
       text-align: right;
-      color: #313131;
+      color: var(--grey-med);
       padding: 0.65rem 1.5rem 0.65rem 1.5rem;
 
       margin: 0;
       width: fit-content;
-      background: rgba(255, 255, 255, 0.95);
+      background: var(--primary);
       height: fit-content;
       outline: none;
       border: none;
       box-shadow: none;
       border-image: none;
       border-image-width: 0;
-      border-bottom: 1px solid rgba(40, 40, 40, 0.1);
+      border-bottom: 1px solid var(--grey-light);
 
       .loginRegister {
         width: 100%;
@@ -264,6 +256,45 @@
           color: var(--grey);
         }
       }
+    }
+  }
+
+  .new,
+  .soon {
+    position: relative;
+
+    .register::after {
+      opacity: 0.2;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: variables.$micro_size;
+      color: var(--primary);
+      background-color: var(--orange);
+      padding: 0.1rem 0.25rem;
+      font-weight: 600;
+      font-variation-settings: 'wght' 600;
+    }
+  }
+
+  .new {
+    &::before {
+      content: 'new';
+    }
+  }
+
+  .soon {
+    text-decoration: line-through;
+    color: var(--grey-dark-trans-30);
+
+    &::before {
+      content: 'soon';
+      color: var(--primary);
+      background-color: var(--grey-light);
     }
   }
 }

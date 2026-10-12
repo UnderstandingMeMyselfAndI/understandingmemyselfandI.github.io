@@ -86,35 +86,35 @@ const Header = () => {
             ease: 'power4.out',
           }, // Logo
           {
-            y: 710,
             rotateX: '0',
             autoAlpha: 0.95,
             rotateY: '0deg',
             rotateZ: '90deg',
             scale: 2,
             x: -55,
+            y: 410,
             duration: 0.35,
             transformOrigin: '100% 10%',
             ease: 'power4.out',
           }, // Understanding
           {
-            y: 0,
             rotateX: '0deg',
             autoAlpha: 0,
             rotateY: '0deg',
             rotateZ: '0deg',
             x: 0,
+            y: 0,
             duration: 0.85,
             ease: 'power4.out',
           }, // Me
           {
-            y: 570,
             rotateX: '0deg',
             autoAlpha: 0.95,
             rotateY: '0',
             rotateZ: '90deg',
             scale: 2,
             x: -75,
+            y: 270,
             duration: 0.35,
             transformOrigin: '100% 10%',
             ease: 'power4.out',
