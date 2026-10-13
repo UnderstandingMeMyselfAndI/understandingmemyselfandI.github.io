@@ -10,7 +10,6 @@ body {
     align-items: flex-end;
     justify-content: center;
     padding: 1rem;
-    //pointer-events: none;
   }
 
   .cookie-banner {
@@ -19,99 +18,120 @@ body {
     border-radius: var(--border-radius);
     max-width: var(--max-width);
     width: 100%;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      background: var(--background-main);
+      opacity: 0.85;
+    }
+
+    &__content {
+      padding: 1.5rem;
+    }
+
+    &__header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    &__wrapper {
+      background: var(--background-main);
+      border-radius: 9999px;
+      padding: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    // .cookie-icon {
+    //   width: 1.5rem;
+    //   height: 1.5rem;
+    //   color: var(--orange);
+    // }
+
+    &__text {
+      flex: 1;
+    }
+
+    &__title {
+      font-size: variables.$h3_size;
+      font-weight: 800;
+      font-variation-settings: 'wght' 800;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    &__subtitle {
+      font-size: variables.$h5_size;
+      color: var(--grey-light);
+    }
+
+    &__description {
+      color: var(--secondary);
+      font-size: variables.$default_size;
+      margin: 0.25rem 0 1rem 0;
+      text-wrap-style: balance;
+    }
+
+    &__actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      padding: 0.625rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      font-variation-settings: 'wght' 600;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+      font-size: variables.$default_size;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    &__btn-primary {
+      background: var(--btn-accept-bg);
+      color: var(--btn-accept);
+      transition: all 0.3s ease;
+    }
+
+    &__btn-primary:hover {
+      background: var(--btn-accept-hover-bg);
+      color: var(--btn-accept-hover);
+      transition: all 0.3s ease;
+    }
+
+    &__btn-reject {
+      background: var(--btn-reject-bg);
+      color: var(--btn-reject);
+      transition: all 0.3s ease;
+    }
+
+    &__btn-reject:hover {
+      color: var(--btn-reject-hover);
+      background: var(--btn-reject-bg-hover);
+      transition: all 0.3s ease;
+    }
   }
 
-  .cookie-banner-content {
-    padding: 1.5rem;
-  }
-
-  .cookie-banner-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .cookie-icon-wrapper {
-    background: var(--background-main);
-    border-radius: 9999px;
-    padding: 0.75rem;
-    flex-shrink: 0;
-  }
-
-  .cookie-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    color: var(--orange);
-  }
-
-  .cookie-banner-text {
-    flex: 1;
-  }
-
-  h2.cookie-banner-title {
-    font-size: variables.$h3_size;
-    font-weight: 800;
-    font-variation-settings: 'wght' 800;
-    color: var(--primary);
-    margin-bottom: 0.5rem;
-  }
-
-  .cookie-banner-title-sml,
-  h4.cookie-banner-title-sml {
-    font-size: variables.$h5_size;
-    color: var(--grey-light);
-  }
-
-  .cookie-banner-description {
-    color: var(--secondary);
-    font-size: variables.$default_size;
-    margin: 0.25rem 0 1rem 0;
-  }
-
-  .cookie-banner-actions {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-
-  .btn {
-    padding: 0.625rem 1.5rem;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    font-variation-settings: 'wght' 600;
-    transition: all 0.2s;
-    cursor: pointer;
-    border: none;
-    font-size: variables.$default_size;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .btn-primary {
-    background: var(--btn-bg);
-    color: var(--primary);
-  }
-
-  .btn-primary:hover {
-    background: var(--btn-bg);
-  }
-
-  .btn-secondary {
-    background: #e5e7eb;
-    color: var(--blue);
-  }
-
-  .btn-secondary:hover {
-    background: var(--btn-bg-hover);
-  }
-
-  .btn-outline {
-    border: 1px solid var(--border);
-    background: transparent;
-    color: var(--blue);
-  }
+  // .btn-outline {
+  //   border: 1px solid var(--border);
+  //   background: transparent;
+  //   color: var(--blue);
+  // }
 
   .btn-outline:hover {
     background: var(--blue-light);
@@ -122,7 +142,7 @@ body {
     height: 1rem;
   }
 
-  .modal-overlay {
+  .modal {
     position: fixed;
     inset: 0;
     background: var(--grey-dark-trans-20);
@@ -132,57 +152,56 @@ body {
     padding: 1rem;
     pointer-events: auto;
     z-index: 60;
-  }
 
-  .modal {
-    background: var(--background-blue);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    max-width: var(--max-width);
-    width: 100%;
-    max-height: 90vh;
-    // overflow: auto;
-  }
+    &__wrap {
+      background: var(--background-blue);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      max-width: var(--max-width);
+      width: 100%;
+      max-height: 90vh;
+    }
 
-  .modal-header {
-    position: sticky;
-    top: 0;
-    // background: white;
-    border-bottom: 1px solid var(--border);
-    padding: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+    &__header {
+      position: sticky;
+      top: 0;
+      // background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-  .modal-header-content {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
+    &__header-content {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
 
-  .modal-title {
-    font-size: variables.$default_size;
-    font-weight: 800;
-    font-variation-settings: 'wght' 800;
-    color: var(--primary);
-  }
+    &__title {
+      font-size: variables.$default_size;
+      font-weight: 800;
+      font-variation-settings: 'wght' 800;
+      color: var(--primary);
+    }
 
-  .modal-close {
-    color: var(--primary);
-    cursor: pointer;
-    border: none;
-    background: transparent;
-    padding: 0;
-    transition: color 0.2s;
-  }
+    &__close {
+      color: var(--primary);
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      padding: 0;
+      transition: color 0.2s;
+    }
 
-  .modal-close:hover {
-    color: var(--primary);
-  }
+    &__close:hover {
+      color: var(--primary);
+    }
 
-  .modal-body {
-    padding: 1.5rem;
+    &__body {
+      padding: 1.5rem;
+    }
   }
 
   .cookie-category {
@@ -190,33 +209,34 @@ body {
     border-radius: var(--border-radius);
     padding: 1rem;
     margin-bottom: 1.5rem;
-  }
 
-  .cookie-category:last-child {
-    margin-bottom: 0;
-  }
+    &__header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
 
-  .category-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-bottom: 0.5rem;
-  }
+    &__content {
+      flex: 1;
+    }
 
-  .category-content {
-    flex: 1;
-  }
+    &__title {
+      font-weight: 600;
+      font-variation-settings: 'wght' 600;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
 
-  .category-title {
-    font-weight: 600;
-    font-variation-settings: 'wght' 600;
-    color: var(--primary);
-    margin-bottom: 0.25rem;
-  }
+    &__description {
+      font-size: variables.$sml_size;
+      color: var(--secondary);
+      text-wrap-style: balance;
+    }
 
-  .category-description {
-    font-size: variables.$sml_size;
-    color: var(--secondary);
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   .toggle-wrapper {
@@ -282,8 +302,8 @@ body {
   }
 
   button.btn {
-    background: var(--background-blue);
-    color: var(--primary);
+    // background: var(--background-blue);
+    // color: var(--primary);
   }
 
   // .demo-container {
