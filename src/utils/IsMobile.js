@@ -1,4 +1,4 @@
-import useAppStore from '@/store/useAppStore'
+import useAppStore from '@store/useAppStore'
 const IsMobile = () => {
   window.addEventListener('resize', () => {
     useAppStore.setState({ isMobile: window.innerWidth < 768 })

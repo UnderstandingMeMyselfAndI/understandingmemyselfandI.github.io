@@ -2,7 +2,7 @@ import iconIncreaseFontSize from '/src/components/icons/iconFontSizeIncrease.jsx
 import iconDescreaseFontSize from '/src/components/icons/iconFontSizeDecrease.jsx'
 
 import PropTypes from 'prop-types'
-import './buttonStyles.css'
+import './buttonStyles.scss'
 const stepFontSizePx = 1
 const storageKeyBaseFontSize = 'baseFontSize'
 let rootFontSize = 16
@@ -15,14 +15,8 @@ const getStoredBaseFontSize = () => {
 }
 
 const setBaseFontSize = (size) => {
-  rootFontSize =
-    size === 'increase'
-      ? rootFontSize + stepFontSizePx
-      : rootFontSize - stepFontSizePx
-  const newBaseFontSize = Math.min(
-    Math.max(rootFontSize, minFontSize),
-    maxFontSize,
-  )
+  rootFontSize = size === 'increase' ? rootFontSize + stepFontSizePx : rootFontSize - stepFontSizePx
+  const newBaseFontSize = Math.min(Math.max(rootFontSize, minFontSize), maxFontSize)
   if (newBaseFontSize >= maxFontSize) rootFontSize = maxFontSize
   if (newBaseFontSize <= minFontSize) rootFontSize = minFontSize
   document.documentElement.style.fontSize = newBaseFontSize + 'px'
@@ -30,18 +24,14 @@ const setBaseFontSize = (size) => {
 }
 
 const ButtonFontSize = ({ size, label }) => {
-  const icon =
-    size === 'increase' ? iconIncreaseFontSize : iconDescreaseFontSize
+  const icon = size === 'increase' ? iconIncreaseFontSize : iconDescreaseFontSize
   const alt = size === 'increase' ? 'increase font size' : 'decrease font size'
   const handleClick = () => {
     setBaseFontSize(size)
   }
   return (
     <div className='btn' onClick={handleClick}>
-      <button
-        className={'font-size-btn-' + size}
-        aria-label={'Font Size ' + label}
-      >
+      <button className={'font-size-btn-' + size} aria-label={'Font Size ' + label}>
         <div dangerouslySetInnerHTML={{ __html: icon }} alt={alt} />
       </button>
       <div>{label}</div>
@@ -52,8 +42,7 @@ const ButtonFontSize = ({ size, label }) => {
 const applyStoredScale = () => {
   const storedBaseFontSize = getStoredBaseFontSize()
 
-  storedBaseFontSize &&
-    (document.documentElement.style.fontSize = storedBaseFontSize + 'px')
+  storedBaseFontSize && (document.documentElement.style.fontSize = storedBaseFontSize + 'px')
 }
 
 applyStoredScale()

@@ -1,5 +1,6 @@
-@use '@/scss/_variables.scss';
-@import '@/globals.css';
+<<<<<<< HEAD @use '@scss/variables';
+=======@use '@/scss/_variables.scss';
+>>>>>>>7d356b0fe0daeea01c6389549b7709009b4158cf @import '@scss/globals.css';
 
 section.podcasts {
   position: relative;
@@ -13,7 +14,7 @@ section.podcasts {
   }
 
   .podcast:nth-child(even) a {
-    text-decoration-color: var(--lightBlue);
+    text-decoration-color: var(--blue-light);
     text-decoration-thickness: 6px;
   }
 }
@@ -35,7 +36,7 @@ section.podcasts {
 
   img {
     width: 100%;
-    box-shadow: var(--textShadowDarkValue);
+    box-shadow: var(--text-shadow-dark);
   }
 
   a {
@@ -60,7 +61,7 @@ section.podcasts {
         // fill: var(--orange);
         // stroke: var(--orange);
         path {
-          box-shadow: var(--textShadowDarkValue);
+          box-shadow: var(--text-shadow-dark);
         }
       }
     }

@@ -1,4 +1,4 @@
-import { usePlannerStore } from '@/store/usePlannerStore'
+import { usePlannerStore } from '@store/usePlannerStore'
 import { calcUnits } from '.@/src//js/utils/alcoholUtils'
 
 export default function FuturePlanner() {
@@ -23,16 +23,13 @@ export default function FuturePlanner() {
       <ul>
         {plans.map((p) => (
           <li key={p.id}>
-            <strong>{p.date}</strong> — {p.label || 'Planned drink'} (
-            {calcUnits(p.volume, p.abv).toFixed(1)} units)
+            <strong>{p.date}</strong> — {p.label || 'Planned drink'} ({calcUnits(p.volume, p.abv).toFixed(1)} units)
             <button onClick={() => removePlan(p.id)}>✕</button>
           </li>
         ))}
       </ul>
 
-      <p>
-        Planned drinks don’t affect totals. This is for thinking ahead only.
-      </p>
+      <p>Planned drinks don’t affect totals. This is for thinking ahead only.</p>
     </div>
   )
 }

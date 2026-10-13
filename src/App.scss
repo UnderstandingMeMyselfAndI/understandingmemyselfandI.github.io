@@ -1,6 +1,6 @@
-@use './scss/_variables.scss';
+@use '@scss/_variables';
 @use './scss/_fonts';
-@import '@/globals.css';
+@import '@scss/globals.css';
 
 html {
   width: 100%;
@@ -11,14 +11,13 @@ html {
   font-size: 16px;
 }
 
-
 .dev-version {
   position: fixed;
   z-index: 99999;
   top: 0;
   left: 0;
   background-color: var(--orange);
-  color: var(--greyDark);
+  color: var(--grey-dark);
   padding: 0.5rem;
   font-size: 0.8rem;
   text-align: left;
@@ -30,10 +29,8 @@ html {
 }
 
 body {
-  scroll-behavior: smooth;
   overscroll-behavior: none;
-  // overscroll-behavior-y: contain;
-  background: #000 !important;
+  background: var(--main-background);
   width: 100%;
   max-width: 100dvw;
   height: 100%;
@@ -62,68 +59,26 @@ body {
 
   button {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: variables.$btn_size;
     font-weight: 600;
     font-variation-settings: 'wght' 600;
     width: fit-content;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    background: rgba(164, 120, 245, 0.35);
+    background: var(--btn-bg);
     border: none;
     color: var(--primary);
     outline: 1px solid var(--blue);
-    box-shadow: 0px 0px 12px 3px rgba(10, 10, 10, 0.25);
-    padding: 0.75rem 2.25rem 0.75rem 1.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--border-radius);
 
     &:focus,
     &:focus-within,
     &:hover,
     &:active {
-      outline: none;
-      border: none;
+      // outline: none;
+      // border: none;
       -webkit-tap-highlight-color: transparent;
-    }
-  }
-
-  .new,
-  .soon {
-    position: relative;
-
-    .register::after {
-      opacity: 0.2;
-    }
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      font-size: 0.65rem;
-      color: var(--primary);
-      background-color: red;
-      padding: 0.1rem 0.25rem;
-      font-weight: 600;
-      font-variation-settings: 'wght' 600;
-      font-variation-settings: 'wght' 600;
-    }
-  }
-
-  .new {
-    &::before {
-      content: 'new';
-      color: var(--primary);
-      background-color: var(--orange);
-    }
-  }
-
-  .soon {
-    text-decoration: line-through;
-    color: rgba(10, 10, 10, 0.3);
-
-    &::before {
-      content: 'soon';
-      color: var(--primary);
-      background-color: grey;
     }
   }
 
@@ -171,32 +126,20 @@ body {
     div.activity {
       position: relative;
       visibility: hidden;
-      // outline: 1px solid #ccc;
       pointer-events: none;
 
       z-index: -10;
       top: 0;
       left: 0;
-      // right: 0;
 
-      // margin: 0 var(--gutters);
       max-width: var(--max-width);
       padding: 0 var(--gutters);
       width: 100dvw;
-      // min-height: 60dvh;
 
       flex-flow: column wrap;
       align-content: center;
       align-items: center;
       justify-content: center;
-
-      button.close-btn {
-        position: absolute;
-        right: 0.5rem;
-        top: 0.75rem;
-        left: auto;
-        z-index: 6005;
-      }
 
       &.hide,
       &.close {
@@ -219,6 +162,7 @@ body {
       }
 
       header {
+        padding-top: calc(env(safe-area-inset-top));
         width: 100%;
 
         h2 {
@@ -277,11 +221,11 @@ body {
   }
 
   .ummi {
-    color: var(--lightBlue);
+    color: var(--blue-light);
   }
 
   .ummi-blue {
-    color: var(--lightBlue);
+    color: var(--blue-light);
   }
 
   u,
@@ -290,7 +234,7 @@ body {
   .orange-ul,
   .white-ul {
     width: auto;
-    text-decoration-color: var(--lightBlue50Trans);
+    text-decoration-color: var(--blue-light-trans-50);
     text-decoration-thickness: 0.55em; //45%; ems used for iOS devices
     text-underline-offset: -0.355em; // roughtly 35.5%
     /* -25.5% of font-size (approx) */
@@ -298,20 +242,20 @@ body {
   }
 
   .yellow-ul {
-    text-decoration-color: var(--yellow40Trans);
+    text-decoration-color: var(--yellow-trans-40);
   }
 
   .blue-ul {
-    text-decoration-color: var(--lightBlue50Trans);
+    text-decoration-color: var(--blue-light-trans-50);
   }
 
   .orange-ul {
-    text-decoration-color: var(--orange40Trans);
+    text-decoration-color: var(--orange-trans-40);
   }
 
   .white-ul {
     text-decoration-color: var(--primary);
-    text-decoration-thickness: 0.10em; //10%; ems used for iOS devices
+    text-decoration-thickness: 0.1em; //10%; ems used for iOS devices
     text-underline-offset: -0.075em; //5.5%;
   }
 
@@ -346,13 +290,11 @@ body {
     b {
       font-weight: 600;
       font-variation-settings: 'wght' 600;
-      font-variation-settings: 'wght' 600;
     }
 
     .title {
       font-size: variables.$h3_size;
       font-weight: 800;
-      font-variation-settings: 'wght' 800;
       font-variation-settings: 'wght' 800;
     }
   }
@@ -366,7 +308,7 @@ body {
   }
 
   .yellow2 {
-    color: var(--yellow2);
+    color: var(--yellow-2);
   }
 
   .blue {
@@ -375,11 +317,11 @@ body {
 
   .light-blue,
   .lightBlue {
-    color: var(--lightBlue);
+    color: var(--blue-light);
   }
 
   .grey {
-    color: var(--greyDark);
+    color: var(--grey-dark);
   }
 
   strong,
@@ -395,20 +337,6 @@ body {
 :before,
 :after {
   box-sizing: border-box;
-}
-
-:focus {
-  outline: none;
-  box-shadow: none;
-}
-
-svg:focus,
-button:focus,
-svg:focus-visible,
-button:focus-visible {
-  outline: none;
-  border: none;
-  box-shadow: none;
 }
 
 section {

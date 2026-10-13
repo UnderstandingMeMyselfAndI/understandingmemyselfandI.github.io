@@ -10,5 +10,5 @@ const ButtonSettings = () => {
   )
 }
 
-ButtonSettings.displayName = 'ButtonSettings'
+ButtonSettings.displayName = '@buttonsettings'
 export default ButtonSettings

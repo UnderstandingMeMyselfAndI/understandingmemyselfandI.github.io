@@ -1,6 +1,6 @@
 @use 'sass:color';
-@use './scss/_variables.scss';
-@import '@/globals.css';
+@use '@scss/variables';
+@import '@scss/globals.css';
 
 // --- 1. Global Variables ---
 $color-bg: #ffffff;
@@ -17,7 +17,7 @@ $color-btn-border: #ddd;
 div#wheel-of-life {
   position: fixed;
   pointer-events: all;
-  background: var(--backgroundActivity);
+  background: var(--background-activity);
   width: 100dvw;
   height: 100dvh;
   /* Mobile fix */
@@ -30,19 +30,19 @@ div#wheel-of-life {
   /* --- CUSTOMIZATION VARIABLES (Tweak these!) --- */
 
   // 1. Outer Diameter (The circle at score 10)
-  --wheel-outer-border-color: var(--lightBlue30Trans);
+  --wheel-outer-border-color: var(--blue-light-trans-30);
   --wheel-outer-border-width: 12px;
 
   // 2. Segment Divider Lines (The spokes)
-  --wheel-divider-color: var(--lightBlue90Trans);
+  --wheel-divider-color: var(--blue-light-trans-90);
   --wheel-divider-width: 1px;
 
   // 3. Sub-section Lines (The inner circles 1-9)
-  --wheel-subsection-color: var(--lightBlue60Trans);
+  --wheel-subsection-color: var(--blue-light-trans-60);
   --wheel-subsection-width: 1px;
 
   // 4. Outer Numbers (The "10"s)
-  --wheel-number-color: var(--orange70Trans);
+  --wheel-number-color: var(--orange-trans-70);
   --wheel-number-size: 1.5rem;
   --wheel-number-weight: 800;
 
@@ -59,7 +59,7 @@ div#wheel-of-life {
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--greyDark40Trans);
+    background: var(--grey-dark-trans-40);
     z-index: -1;
   }
 }
@@ -77,10 +77,10 @@ div#wheel-of-life {
   align-items: center;
 
   .modal-content {
-    background: var(--blue60Trans);
+    background: var(--blue-trans-60);
     padding: 2.5rem 1rem;
     border-radius: var(--border-radius);
-    box-shadow: var(--boxShadowDark);
+    box-shadow: var(--box-shadow-dark);
     max-width: var(--max-width);
     width: 100%;
     text-align: center;
@@ -135,7 +135,7 @@ div#wheel-of-life {
 
     button {
       padding: 1rem 2rem;
-      font-size: 1rem;
+      font-size: variables.$btn_size;
       border-radius: 4px;
       color: white;
       border: none;
@@ -164,7 +164,7 @@ div#wheel-of-life {
       left: 0;
       width: 100%;
       height: 100%;
-      background: var(--greyDark90Trans);
+      background: var(--grey-dark-trans-90);
       z-index: -1;
     }
   }
@@ -252,11 +252,9 @@ div#wheel-of-life {
       max-width: var(--max-width);
       margin: 0 auto;
     }
-
   }
 
   &.mode-compare {
-
     .wheel-header {
 
       h1,
@@ -345,7 +343,7 @@ div#wheel-of-life {
         max-width: 50px;
         font-size: 0.75rem;
         text-align: left;
-        color: var(--lightBlue);
+        color: var(--blue-light);
       }
     }
   }
@@ -372,19 +370,19 @@ div#wheel-of-life {
       }
 
       &.neon-mode {
-        --wheel-outer-border-color: var(--lightBlue30Trans);
+        --wheel-outer-border-color: var(--blue-light-trans-30);
         --wheel-outer-border-width: 12px;
 
         // 2. Segment Divider Lines (The spokes)
-        --wheel-divider-color: var(--lightBlue20Trans);
+        --wheel-divider-color: var(--blue-light-trans-20);
         --wheel-divider-width: 8px;
 
         // 3. Sub-section Lines (The inner circles 1-9)
-        --wheel-subsection-color: var(--lightGrey10Trans);
+        --wheel-subsection-color: var(--grey-light-trans-10);
         --wheel-subsection-width: 1px;
 
         // 4. Outer Numbers (The "10"s)
-        --wheel-number-color: var(--orange60Trans);
+        --wheel-number-color: var(--orange-trans-60);
         --wheel-number-size: 2.5rem;
         --wheel-number-weight: 600;
 
@@ -519,8 +517,8 @@ div#wheel-of-life {
       max-width: var(--max-width);
 
       .btn {
-        outline: 1px solid var(--lightGrey20Trans);
-        padding: .625rem 1.15rem;
+        outline: 1px solid var(--grey-light-trans-20);
+        padding: 0.625rem 1.15rem;
       }
 
       svg {
@@ -534,8 +532,8 @@ div#wheel-of-life {
           stroke: var(--grey);
 
           path {
-            fill: var(--greyMed);
-            stroke: var(--greyMed);
+            fill: var(--grey-med);
+            stroke: var(--grey-med);
           }
         }
       }
@@ -581,7 +579,7 @@ div#wheel-of-life {
 
     button {
       padding: 0.5rem 1rem;
-      font-size: 1rem;
+
       border-radius: 6px;
       cursor: pointer;
       font-weight: 600;

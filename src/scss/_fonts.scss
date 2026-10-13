@@ -1,17 +1,6 @@
 @use '_variables';
 @use 'sass:math';
 
-// @font-face {
-//   font-display: swap;
-//   /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-//   font-family: 'Plus Jakarta Sans';
-//   font-style: normal;
-//   src:
-//     local('Plus Jakarta Sans'),
-//     url('/fonts/PlusJakartaSans-VariableFont_wght.woff') format('woff'),
-//     url('/fonts/PlusJakartaSans-VariableFont_wght.woff2') format('woff2');
-// }
-
 @font-face {
   font-family: 'Plus Jakarta Sans';
   font-weight: 200 800; // necessary for iOS
@@ -20,14 +9,11 @@
   src: url('/fonts/PlusJakartaSans-VariableFont_wght.woff2') format('woff2');
 }
 
-
 @font-face {
   font-display: swap;
   font-family: 'Plus Jakarta Sans Italic';
   font-style: italic;
-  src:
-
-    url('/fonts/PlusJakartaSans-Italic-VariableFont_wght.woff') format('woff2');
+  src: url('/fonts/PlusJakartaSans-Italic-VariableFont_wght.woff') format('woff2');
   /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
@@ -62,7 +48,7 @@ body {
     // font-weight: 400 !important;
     font-style: normal;
     line-height: variables.$default_line_height;
-    font-size: variables.$p_size;
+    font-size: variables.$default_size;
   }
 
   input::placeholder {
@@ -96,7 +82,7 @@ body {
   h1 {
     font-size: variables.$h1_size;
     font-weight: variables.$h1_weight;
-    color: var(--lightBlue2);
+    color: var(--blue-light-2);
     max-width: 90%;
     width: 90%;
   }

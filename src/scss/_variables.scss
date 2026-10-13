@@ -1,5 +1,5 @@
 @use 'sass:math';
-@use '../globals.css';
+@use '@scss/globals.css';
 
 /**
  * Generates a responsive font size using CSS clamp().
@@ -33,31 +33,27 @@ output
 }
 // --- END Usage Example ---
  */
-@function responsiveFontSize($minFontSize,
-        $maxFontSize,
-        $minDeviceWidth,
-        $maxDeviceWidth) {
-        // Convert all inputs to base units (e.g., px) for consistent calculation
-        $minFontSizePx: math.div(math.div($minFontSize, 1), 1px) * 1px;
-        $maxFontSizePx: math.div(math.div($maxFontSize, 1), 1px) * 1px;
-        $minDeviceWidthPx: math.div(math.div($minDeviceWidth, 1), 1px) * 1px;
-        $maxDeviceWidthPx: math.div(math.div($maxDeviceWidth, 1), 1px) * 1px;
+@function responsiveFontSize($minFontSize, $maxFontSize, $minDeviceWidth, $maxDeviceWidth) {
+  // Convert all inputs to base units (e.g., px) for consistent calculation
+  $minFontSizePx: math.div(math.div($minFontSize, 1), 1px) * 1px;
+  $maxFontSizePx: math.div(math.div($maxFontSize, 1), 1px) * 1px;
+  $minDeviceWidthPx: math.div(math.div($minDeviceWidth, 1), 1px) * 1px;
+  $maxDeviceWidthPx: math.div(math.div($maxDeviceWidth, 1), 1px) * 1px;
 
-        // Calculate the slope (unitless)
-        $slope: math.div($maxFontSizePx - $minFontSizePx,
-                        $maxDeviceWidthPx - $minDeviceWidthPx );
+  // Calculate the slope (unitless)
+  $slope: math.div($maxFontSizePx - $minFontSizePx, $maxDeviceWidthPx - $minDeviceWidthPx);
 
-        // Calculate the Y-axis intersection (in a base unit like rem, assuming 1rem = 16px here)
-        // To keep it simple in pure Sass math, we keep it in px first and then add the unit later
-        $yAxisIntersectionPx: -$minDeviceWidthPx * $slope + $minFontSizePx;
+  // Calculate the Y-axis intersection (in a base unit like rem, assuming 1rem = 16px here)
+  // To keep it simple in pure Sass math, we keep it in px first and then add the unit later
+  $yAxisIntersectionPx: -$minDeviceWidthPx * $slope + $minFontSizePx;
 
-        // Format the intermediate value for the clamp function
-        // Convert px Y-axis intersection to rem for standard best practice
-        $yAxisIntersectionRem: math.div($yAxisIntersectionPx, 16px) * 1rem;
-        $slopeVw: $slope * 100%; // Convert unitless slope to vw percentage
+  // Format the intermediate value for the clamp function
+  // Convert px Y-axis intersection to rem for standard best practice
+  $yAxisIntersectionRem: math.div($yAxisIntersectionPx, 16px) * 1rem;
+  $slopeVw: $slope * 100%; // Convert unitless slope to vw percentage
 
-        // Return the final clamp string
-        @return clamp($minFontSize, $yAxisIntersectionRem + $slopeVw, $maxFontSize);
+  // Return the final clamp string
+  @return clamp($minFontSize, $yAxisIntersectionRem + $slopeVw, $maxFontSize);
 }
 
 $breakpoint-small: 425px;
@@ -114,12 +110,9 @@ $font_family: 'Plus Jakarta Sans', sans-serif;
 // Default fields font size
 // ------------------------------------------
 
-$default_size_min: 18px;
-$default_size_max: 20px;
-$default_size: responsiveFontSize($default_size_min,
-                $default_size_max,
-                $minDeviceWidth,
-                $maxDeviceWidth);
+$default_size_min: 14px;
+$default_size_max: 16px;
+$default_size: responsiveFontSize($default_size_min, $default_size_max, $minDeviceWidth, $maxDeviceWidth);
 
 $default_text_color: var(--text_primary);
 $default_line_height: 1.2;
@@ -130,10 +123,7 @@ $default_line_height: 1.2;
 
 $logo_lrg_size_min: 40px;
 $logo_lrg_size_max: 56px;
-$logo_lrg_size: responsiveFontSize($logo_lrg_size_min,
-                $logo_lrg_size_max,
-                $minDeviceWidth,
-                $maxDeviceWidth);
+$logo_lrg_size: responsiveFontSize($logo_lrg_size_min, $logo_lrg_size_max, $minDeviceWidth, $maxDeviceWidth);
 $logo_lrg_color: var(--text_primary);
 $logo_lrg_weight: 800;
 $logo_lrg_line_height: 1.2;
@@ -144,10 +134,7 @@ $logo_lrg_line_height: 1.2;
 
 $acc_title_size_min: 54px;
 $acc_title_size_max: 60px;
-$acc_title_size: responsiveFontSize($acc_title_size_min,
-                $acc_title_size_max,
-                $minDeviceWidth,
-                $maxDeviceWidth);
+$acc_title_size: responsiveFontSize($acc_title_size_min, $acc_title_size_max, $minDeviceWidth, $maxDeviceWidth);
 $acc_title_color: var(--text_primary);
 $acc_title_weight: 800;
 $acc_title_line_height: 1.1;
@@ -155,9 +142,9 @@ $acc_title_line_height: 1.1;
 $acc_title_size_sml_min: 38px;
 $acc_title_size_sml_max: 60px;
 $acc_title_size_sml: responsiveFontSize($acc_title_size_sml_min,
-                $acc_title_size_sml_max,
-                $minDeviceWidth,
-                $maxDeviceWidth);
+    $acc_title_size_sml_max,
+    $minDeviceWidth,
+    $maxDeviceWidth);
 
 // ------------------------------------------
 // Ancronym letter font size
@@ -165,10 +152,7 @@ $acc_title_size_sml: responsiveFontSize($acc_title_size_sml_min,
 
 $letter_size_min: 44px;
 $letter_size_max: 66px;
-$letter_size: responsiveFontSize($letter_size_min,
-                $letter_size_max,
-                $minDeviceWidth,
-                $maxDeviceWidth);
+$letter_size: responsiveFontSize($letter_size_min, $letter_size_max, $minDeviceWidth, $maxDeviceWidth);
 $letter_color: var(--text_primary);
 $letter_weight: 800;
 $letter_line_height: 1;
@@ -179,10 +163,7 @@ $letter_line_height: 1;
 
 $acc_wrd_size_min: 40px;
 $acc_wrd_size_max: 60px;
-$acc_wrd_size: responsiveFontSize($acc_wrd_size_min,
-                $acc_wrd_size_max,
-                $minDeviceWidth,
-                $maxDeviceWidth);
+$acc_wrd_size: responsiveFontSize($acc_wrd_size_min, $acc_wrd_size_max, $minDeviceWidth, $maxDeviceWidth);
 $acc_wrd_color: var(--text_primary);
 $acc_wrd_weight: 800;
 $acc_wrd_line_height: 1;
@@ -194,23 +175,36 @@ $acc_wrd_line_height: 1;
 $section_title_size_min: 62px;
 $section_title_size_max: 120px;
 $section_title_size: responsiveFontSize($section_title_size_min,
-                $section_title_size_max,
-                $minDeviceWidth,
-                $maxDeviceWidth);
+    $section_title_size_max,
+    $minDeviceWidth,
+    $maxDeviceWidth);
 $section_title_color: var(--text_primary);
 $section_title_weight: 800;
 $section_title_line_height: 1.1;
 
 // ------------------------------------------
-// H5 font size
+// Days Counter - Number of Days
 // ------------------------------------------
 
-$h1_size_min: 38px;
-$h1_size_max: 80px;
-$h1_size: responsiveFontSize($h1_size_min,
-                $h1_size_max,
-                $minDeviceWidth,
-                $maxDeviceWidth);
+$dc_days_size_min: 72px;
+$dc_days_size_max: 80px;
+$dc_days_size: responsiveFontSize($dc_days_size_min, $dc_days_size_max, $minDeviceWidth, $maxDeviceWidth);
+
+// ------------------------------------------
+// Days Counter - Financial Value
+// ------------------------------------------
+
+$dc_val_size_min: 42px;
+$dc_val_size_max: 60px;
+$dc_val_size: responsiveFontSize($dc_val_size_min, $dc_val_size_max, $minDeviceWidth, $maxDeviceWidth);
+
+// ------------------------------------------
+// H1 font size
+// ------------------------------------------
+
+$h1_size_min: 34px;
+$h1_size_max: 70px;
+$h1_size: responsiveFontSize($h1_size_min, $h1_size_max, $minDeviceWidth, $maxDeviceWidth);
 $h1_color: var(--text_primary);
 $h1_weight: 800;
 $h1_line_height: 1.2;
@@ -221,10 +215,7 @@ $h1_line_height: 1.2;
 
 $h2_size_min: 50px;
 $h2_size_max: 88px;
-$h2_size: responsiveFontSize($h2_size_min,
-                $h2_size_max,
-                $minDeviceWidth,
-                $maxDeviceWidth);
+$h2_size: responsiveFontSize($h2_size_min, $h2_size_max, $minDeviceWidth, $maxDeviceWidth);
 
 $h2_color: var(--text_primary);
 $h2_weight: 800;
@@ -234,12 +225,9 @@ $h2_line_height: 1.4;
 // H3 font size
 // ------------------------------------------
 
-$h3_size_min: 38px;
-$h3_size_max: 62px;
-$h3_size: responsiveFontSize($h3_size_min,
-                $h3_size_max,
-                $minDeviceWidth,
-                $maxDeviceWidth);
+$h3_size_min: 32px;
+$h3_size_max: 56px;
+$h3_size: responsiveFontSize($h3_size_min, $h3_size_max, $minDeviceWidth, $maxDeviceWidth);
 $h3_color: var(--text_primary);
 $h3_weight: 800;
 $h3_line_height: 1.2;
@@ -250,10 +238,7 @@ $h3_line_height: 1.2;
 
 $h4_size_min: 28px;
 $h4_size_max: 42px;
-$h4_size: responsiveFontSize($h4_size_min,
-                $h4_size_max,
-                $minDeviceWidth,
-                $maxDeviceWidth);
+$h4_size: responsiveFontSize($h4_size_min, $h4_size_max, $minDeviceWidth, $maxDeviceWidth);
 
 $h4_color: var(--text_primary);
 $h4_weight: 700;
@@ -265,10 +250,7 @@ $h4_line_height: 1.2;
 
 $h5_size_min: 24px;
 $h5_size_max: 34px;
-$h5_size: responsiveFontSize($h5_size_min,
-                $h5_size_max,
-                $minDeviceWidth,
-                $maxDeviceWidth);
+$h5_size: responsiveFontSize($h5_size_min, $h5_size_max, $minDeviceWidth, $maxDeviceWidth);
 
 $h5_color: var(--text_primary);
 $h5_weight: 600;
@@ -280,10 +262,7 @@ $h5_line_height: 1.2;
 
 $subtitle_size_min: 14px;
 $subtitle_size_max: 16px;
-$subtitle_size: responsiveFontSize($subtitle_size_min,
-                $subtitle_size_max,
-                $minDeviceWidth,
-                $maxDeviceWidth);
+$subtitle_size: responsiveFontSize($subtitle_size_min, $subtitle_size_max, $minDeviceWidth, $maxDeviceWidth);
 
 $subtitle_color: var(--text_primary);
 $subtitle_weight: 400;
@@ -293,16 +272,19 @@ $subtitle_style: normal;
 // Menu font size
 // ------------------------------------------
 
-$menu_size_min: 25px;
-$menu_size_max: 38px;
-$menu_size: responsiveFontSize($menu_size_min,
-                $menu_size_max,
-                $minDeviceWidth,
-                $maxDeviceWidth);
+$menu_size_min: 20px;
+$menu_size_max: 30px;
+$menu_size: responsiveFontSize($menu_size_min, $menu_size_max, $minDeviceWidth, $maxDeviceWidth);
 $menu_color: var(--text_primary);
 $menu_weight: 100;
-$menu_line_height: 1.1;
+$menu_line_height: 1;
+// ------------------------------------------
+// Micro font size
+// ------------------------------------------
+$micro_size_min: 8px;
+$micro_size_max: 12px;
 
+$micro_size: responsiveFontSize($micro_size_min, $micro_size_max, $minDeviceWidth, $maxDeviceWidth);
 // ------------------------------------------
 // Small font size
 // ------------------------------------------
@@ -310,25 +292,24 @@ $menu_line_height: 1.1;
 $small_size_min: 10px;
 $small_size_max: 16px;
 
-$small_size: responsiveFontSize($small_size_min,
-                $small_size_max,
-                $minDeviceWidth,
-                $maxDeviceWidth);
+$small_size: responsiveFontSize($small_size_min, $small_size_max, $minDeviceWidth, $maxDeviceWidth);
 
 $small_color: var(--text_primary);
 $small_weight: 400;
 $small_style: normal;
 
+$sml_size_min: 12px;
+$sml_size_max: 14px;
+
+$sml_size: responsiveFontSize($sml_size_min, $sml_size_max, $minDeviceWidth, $maxDeviceWidth);
+
 // ------------------------------------------
 // Medium font size
 // ------------------------------------------
 
-$med_size_min: 14px;
-$med_size_max: 20px;
-$med_size: responsiveFontSize($med_size_min,
-                $med_size_max,
-                $minDeviceWidth,
-                $maxDeviceWidth);
+$med_size_min: 24px;
+$med_size_max: 30px;
+$med_size: responsiveFontSize($med_size_min, $med_size_max, $minDeviceWidth, $maxDeviceWidth);
 
 $med_color: var(--text_primary);
 $med_weight: 700;
@@ -340,10 +321,7 @@ $med_line_height: 1.2;
 
 $lrg_size_min: 36px;
 $lrg_size_max: 158px;
-$lrg_size: responsiveFontSize($lrg_size_min,
-                $lrg_size_max,
-                $minDeviceWidth,
-                $maxDeviceWidth);
+$lrg_size: responsiveFontSize($lrg_size_min, $lrg_size_max, $minDeviceWidth, $maxDeviceWidth);
 
 $lrg_color: var(--text_primary);
 $lrg_weight: 600;
@@ -354,12 +332,17 @@ $lrg_line_height: 1.2;
 // Large font size
 // ------------------------------------------
 
+$pg_title_size_min: 28px;
+$pg_title_size_max: 50px;
+$pg_title_size: responsiveFontSize($pg_title_size_min, $pg_title_size_max, $minDeviceWidth, $maxDeviceWidth);
+
+// ------------------------------------------
+// Large font size
+// ------------------------------------------
+
 $lrg_title_size_min: 40px;
 $lrg_title_size_max: 158px;
-$lrg_title_size: responsiveFontSize($lrg_title_size_min,
-                $lrg_title_size_max,
-                $minDeviceWidth,
-                $maxDeviceWidth);
+$lrg_title_size: responsiveFontSize($lrg_title_size_min, $lrg_title_size_max, $minDeviceWidth, $maxDeviceWidth);
 
 $lrg_title_color: var(--text_primary);
 $lrg_title_weight: 600;
@@ -372,10 +355,7 @@ $lrg_title_line_height: 1.2;
 
 $date_size_min: 12px;
 $date_size_max: 14px;
-$date_size: responsiveFontSize($date_size_min,
-                $date_size_max,
-                $minDeviceWidth,
-                $maxDeviceWidth);
+$date_size: responsiveFontSize($date_size_min, $date_size_max, $minDeviceWidth, $maxDeviceWidth);
 
 $date_color: var(--text_primary);
 $date_weight: 200;
@@ -387,10 +367,7 @@ $date_style: normal;
 
 $p_size_min: 22px;
 $p_size_max: 22px;
-$p_size: responsiveFontSize($p_size_min,
-                $p_size_max,
-                $minDeviceWidth,
-                $maxDeviceWidth);
+$p_size: responsiveFontSize($p_size_min, $p_size_max, $minDeviceWidth, $maxDeviceWidth);
 
 $p_color: var(--text_primary);
 $p_weight: 400;
@@ -402,31 +379,33 @@ $p_line_height: 1.4;
 
 $ummi_size_min: 22px;
 $ummi_size_max: 26px;
-$ummi_size: responsiveFontSize($ummi_size_min,
-                $ummi_size_max,
-                $minDeviceWidth,
-                $maxDeviceWidth);
+$ummi_size: responsiveFontSize($ummi_size_min, $ummi_size_max, $minDeviceWidth, $maxDeviceWidth);
 
-$ummi_color: var(--lightBlue);
+$ummi_color: var(--blue-light);
 $ummi_weight: 400;
 $ummi_line_height: 1.4;
+
+// ------------------------------------------
+// Inputs and textfields size
+// ------------------------------------------
+
+$input_size_min: 14px;
+$input_size_max: 18px;
+$input_size: responsiveFontSize($input_size_min, $input_size_max, $minDeviceWidth, $maxDeviceWidth);
 
 // ------------------------------------------
 // Button font size
 // ------------------------------------------
 
-$btn_size_min: 14px;
-$btn_size_max: 18px;
-$btn_size: responsiveFontSize($btn_size_min,
-                $btn_size_max,
-                $minDeviceWidth,
-                $maxDeviceWidth);
+$btn_size_min: 12px;
+$btn_size_max: 16px;
+$btn_size: responsiveFontSize($btn_size_min, $btn_size_max, $minDeviceWidth, $maxDeviceWidth);
 
 $btn_color: var(--text_primary);
 $btn_weight: 400;
 $btn_line_height: 1.4;
 
-$easing_funtion: cubic-bezier(0.81, 0, 0.33, 0.99);
+$easing_function: cubic-bezier(0.81, 0, 0.33, 0.99);
 
 // ------------------------------------------
 // Input fields font size
@@ -437,3 +416,12 @@ $input_color: var(--text_primary);
 $input_font_family: 'Plus Jakarta Sans', sans-serif;
 $input_font_size: $default_size;
 $input_font-weight: 400;
+
+// ------------------------------------------
+// Label font size
+// ------------------------------------------
+
+$label_size_min: 14px;
+$label_size_max: 18px;
+
+$label_size: responsiveFontSize($label_size_min, $label_size_max, $minDeviceWidth, $maxDeviceWidth);

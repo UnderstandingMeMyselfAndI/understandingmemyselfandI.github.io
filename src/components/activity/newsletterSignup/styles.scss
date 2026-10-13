@@ -1,5 +1,5 @@
-@use '@/scss/_variables.scss';
-@import '@/globals.css';
+@use '@scss/variables';
+@import '@scss/globals.css';
 
 .input--hidden {
   display: none !important;
@@ -84,7 +84,7 @@ body div.activity-newsletter-signup-form div.sib-form div#sib-form-container div
     position: relative;
     padding: 1rem 0 3rem 0;
     margin: 0;
-    box-shadow: var(--boxShadowDark);
+    box-shadow: var(--box-shadow-dark);
 
     div.wrap {
       row-gap: 4rem;
@@ -92,7 +92,7 @@ body div.activity-newsletter-signup-form div.sib-form div#sib-form-container div
       h3,
       p,
       p u {
-        text-shadow: var(--textShadowDarkValue);
+        text-shadow: var(--text-shadow-dark);
         box-shadow: none;
         color: var(--orange);
       }
@@ -139,7 +139,7 @@ body div.activity-newsletter-signup-form div.sib-form div#sib-form-container div
         z-index: -2;
       }
 
-      background-color: var(--lightBlue);
+      background-color: var(--blue-light);
     }
   }
 }
@@ -245,9 +245,9 @@ body div.activity-newsletter-signup-form div.sib-form div#sib-form-container div
           z-index: -1;
 
           opacity: 0.3;
-          background-color: var(--greyDark);
+          background-color: var(--grey-dark);
           outline: var(--card-outline);
-          box-shadow: var(--boxShadowDarkValue);
+          box-shadow: var(--box-shadow-dark);
         }
 
         p {
@@ -284,7 +284,7 @@ body div.activity-newsletter-signup-form div.sib-form div#sib-form-container div
           a {
             margin: 0 0.25rem;
             text-decoration: none;
-            color: var(--lightBlue);
+            color: var(--blue-light);
           }
         }
 
@@ -418,7 +418,7 @@ body div.activity-newsletter-signup-form div.sib-form div#sib-form-container div
 
         a {
           text-decoration: underline;
-          color: var(--lightBlue);
+          color: var(--blue-light);
         }
 
         // Error states for validation

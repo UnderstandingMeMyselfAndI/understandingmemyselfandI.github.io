@@ -1,0 +1,300 @@
+@use '@scss/variables';
+@import '@scss/globals.css';
+
+.app-menu {
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100dvh;
+
+  --burger-stack-height: 70px;
+
+  &__show {
+    left: 0%;
+  }
+
+  overflow-x: clip;
+  display: flex;
+  flex-flow: column wrap;
+  row-gap: 0rem;
+  align-items: flex-end;
+  justify-content: flex-start;
+
+  &__bg {
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    position: absolute;
+    background-color: transparent;
+    transition: background-color 0.25s cubic-bezier(0.9, 0, 0.5, 1);
+  }
+
+  &:has(.checkbox1:checked) {
+    left: 0;
+
+    .app-menu__bg {
+      width: 100%;
+      height: 100vh;
+      left: 0;
+      top: 0;
+      z-index: -1;
+      transition: background-color 0.25s cubic-bezier(0.9, 0, 0.5, 1);
+      background-color: rgba(20, 20, 20, 0.75);
+      outline: 10px solid rgb(243, 243, 3, 0.7);
+    }
+  }
+
+  &__burger-stack {
+    position: fixed;
+    background: none;
+    top: calc(env(safe-area-inset-top));
+    right: calc(env(safe-area-inset-top));
+    border: none;
+    padding: 0.25rem;
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    z-index: 75001;
+
+    svg {
+      fill: #fff;
+    }
+
+    input[type='checkbox'] {
+      position: absolute;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      width: 1px;
+      margin: -1px;
+      padding: 0;
+      border: 0;
+    }
+
+    .hamburger {
+      margin: 0 auto;
+      margin: 1rem 1rem;
+      width: 30px;
+      height: 30px;
+      position: relative;
+      z-index: 75001;
+      transform: scale(0.8);
+    }
+
+    .hamburger .bar {
+      padding: 0;
+      width: 40px;
+      height: 3px;
+      background-color: #fff;
+      display: block;
+      border-radius: 3px;
+      transition: all 0.4s ease-in-out;
+      position: absolute;
+    }
+
+    .bar1 {
+      top: 0;
+    }
+
+    .bar2,
+    .bar3 {
+      top: 13.5px;
+    }
+
+    .bar3 {
+      right: 0;
+      transition: all 0.35s cubic-bezier(0.5, 0, 0.25, 1);
+    }
+
+    .bar4 {
+      bottom: 0;
+    }
+
+    /* HAMBURGER 1 */
+    .checkbox1+label>.hamburger1 {
+      transform: translateX(0px) scale(0.8);
+      transition: transform 0.3s ease;
+    }
+
+    .checkbox1:checked+label>.hamburger1 {
+      transform: translateX(0px) scale(0.8);
+      transition: transform 0.3s ease;
+    }
+
+    .checkbox1:checked+label>.hamburger1>.bar1 {
+      transform: rotate(45deg) translateX(1px);
+      transform-origin: 5%;
+      width: 41px;
+    }
+
+    .checkbox1:checked+label>.hamburger1>.bar2 {
+      transform: translateX(-40px);
+      background-color: transparent;
+      transition: all 0.35s cubic-bezier(0.5, 0, 0.25, 1);
+    }
+
+    .checkbox1:checked+label>.hamburger1>.bar3 {
+      transform: translateX(40px);
+      background-color: transparent;
+      transition: all 0.35s cubic-bezier(0.5, 0, 0.25, 1);
+    }
+
+    .checkbox1:checked+label>.hamburger1>.bar4 {
+      transform-origin: 5%;
+      transform: rotate(-45deg);
+      transition: all 0.35s cubic-bezier(0.5, 0, 0.25, 1);
+      width: 41px;
+    }
+  }
+
+  &:has(.open) {
+    position: fixed;
+
+    .app-menu__menu {
+      margin-right: 0;
+      transition: all 0.25s cubic-bezier(0.5, 0, 0.25, 1);
+
+      width: fit-content;
+      pointer-events: auto;
+      position: relative;
+      z-index: 0;
+
+      li {
+        pointer-events: all;
+        position: relative;
+        z-index: 20;
+      }
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    width: 100%;
+    height: calc(100% - var(--burger-stack-height));
+    flex-flow: column wrap;
+    justify-content: center;
+    position: fixed;
+    top: var(--burger-stack-height);
+    right: 0;
+    transition: right 0.35s cubic-bezier(0.5, 0, 0.25, 1);
+  }
+
+  &__wrapper:has(.closed) {
+    right: -100%;
+    transition: right 0.35s cubic-bezier(0.5, 0, 0.25, 1);
+  }
+
+  ul#app-menu__menu {
+    margin: 0;
+    list-style: none;
+    width: 100%;
+    border-radius: 0;
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    padding: 0;
+    align-items: flex-end;
+    overflow-y: auto;
+    z-index: 5600;
+
+    li.strikethrough {
+      user-select: none;
+
+      color: var(--grey);
+      position: relative;
+
+      .register::after {
+        opacity: 0.2;
+      }
+
+      &::before {
+        content: 'soon';
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: variables.$micro_size;
+        color: var(--primary);
+        background-color: var(--grey);
+        padding: 0.1rem 0.25rem;
+        font-weight: 600;
+        font-variation-settings: 'wght' 600;
+      }
+    }
+
+    li {
+      font-size: variables.$menu_size;
+      font-family: variables.$font_family;
+      font-weight: variables.$menu_weight;
+      font-variation-settings: 'wght' variables.$menu_weight;
+      text-align: right;
+      color: var(--grey-med);
+      padding: 0.65rem 1.5rem 0.65rem 1.5rem;
+
+      margin: 0;
+      width: fit-content;
+      background: var(--primary);
+      height: fit-content;
+      outline: none;
+      border: none;
+      box-shadow: none;
+      border-image: none;
+      border-image-width: 0;
+      border-bottom: 1px solid var(--grey-light);
+
+      .loginRegister {
+        width: 100%;
+        display: flex;
+        column-gap: 1rem;
+
+        .register::after {
+          content: '/';
+          margin-left: 0.75rem;
+          color: var(--grey);
+        }
+      }
+    }
+  }
+
+  .new,
+  .soon {
+    position: relative;
+
+    .register::after {
+      opacity: 0.2;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: variables.$micro_size;
+      color: var(--primary);
+      background-color: var(--orange);
+      padding: 0.1rem 0.25rem;
+      font-weight: 600;
+      font-variation-settings: 'wght' 600;
+    }
+  }
+
+  .new {
+    &::before {
+      content: 'new';
+    }
+  }
+
+  .soon {
+    text-decoration: line-through;
+    color: var(--grey-dark-trans-30);
+
+    &::before {
+      content: 'soon';
+      color: var(--primary);
+      background-color: var(--grey-light);
+    }
+  }
+}

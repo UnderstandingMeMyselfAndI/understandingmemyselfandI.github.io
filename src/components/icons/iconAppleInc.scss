@@ -1,0 +1,15 @@
+.icon {
+    // background: yellow;
+    // outline: 1px solid grey;
+
+    &.icon-apple-inc {
+        // fill: #fff;
+        // opacity: 0;
+        // outline: 1px solid grey;
+
+        svg {
+            fill: #fff;
+            transform: scale(1.35);
+        }
+    }
+}

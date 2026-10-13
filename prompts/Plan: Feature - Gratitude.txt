@@ -1,0 +1,247 @@
+Development Plan: The Little Book of Small Wins (UMMI PWA)
+1. High-level architecture decisions
+Integration with existing systems
+
+Activity lives at src/components/activity/smallWins/SmallWins.jsx (renamed from template/Template.jsx).
+All UI content is placed strictly between the existing <section> tags of the template.
+Register the activity in the existing Zustand navigation store (the same place other activities are registered) and surface it in NavBar.jsx. Use a stable activity key such as "smallWins".
+Reuse the shared security gate (passcode/password + encryption) that every personal-data feature must implement. The activity never renders personal content until the gate is satisfied.
+All persistence goes through a thin local storage abstraction layer that currently writes only to IndexedDB. The abstraction is designed so a remote backend can later be plugged in without touching feature logic; any remote write requires explicit user consent (timestamp, device details, IP, descriptive title) which is recorded locally first.
+Always write on every change (create / edit / delete). Prefer the smallest possible JSON payload; compression is allowed only if it has zero noticeable latency on read/write for entry-level devices.
+Storage-quota monitoring is a shared utility (see Phase 0). The activity subscribes to it and surfaces the existing low-space warning + concrete management recommendations when remaining space is low.
+Connectivity: this feature is fully offline-first. No network calls are required. If a future remote-sync option is added, the shared connectivity monitor (update frequency ≤ 5 s) will surface the standard “connection lost / restored / slow” UI messages.
+
+IndexedDB schema (versioned)
+
+Object store: smallWins
+Key path: id (UUID string)
+Indexes: date (ISO date string, for chronological listing), createdAt, updatedAt
+
+Object store: smallWinsPeople (names stored separately for reuse)
+Key path: id (UUID string)
+Index: nameLower (for case-insensitive type-ahead)
+
+Object store: smallWinsMeta (optional single-record store for feature-level flags if needed later)
+Versioning: bump the shared IndexedDB version number when these stores are added. Migration simply creates the new stores; existing data is left untouched. The storage abstraction exposes getDB(), put(), getAll(), delete(), queryByIndex() so the feature never talks to IndexedDB directly.
+
+Encryption & passcode integration points
+
+Before any read or write of smallWins / smallWinsPeople data, the shared security gate is checked.
+Encryption key is derived client-side from the user’s passcode/password (see section 3). Ciphertext is what is written to IndexedDB.
+Dry-run mode (developer-only) uses a separate key and a throw-away IndexedDB database so lock-out behaviour can be verified without touching real data.
+
+Storage-quota monitoring strategy
+
+Shared utility (src/utils/storageQuota.js) that periodically (or on every write) calls navigator.storage.estimate() and exposes { used, remaining, percent } via a Zustand slice or a React context.
+When remaining space falls below a configurable threshold the activity (and any other personal-data feature) shows the existing low-space banner with concrete recommendations (delete old wins, clear other activities, etc.).
+
+Connectivity monitoring strategy
+
+Not required for the core feature. If a future “share” or “remote backup” path is added, reuse the existing shared connectivity monitor (max 5 s update frequency) and surface the standard UI messages.
+
+2. Feature breakdown
+Exact file / folder structure
+textsrc/
+  components/
+    activity/
+      smallWins/
+        SmallWins.jsx          // main activity (from Template.jsx)
+        smallWins.scss         // matching stylesheet
+        components/
+          WinForm.jsx + winForm.scss
+          WinList.jsx + winList.scss
+          WinCard.jsx + winCard.scss
+          PeopleTypeAhead.jsx + peopleTypeAhead.scss   // reusable
+    // (no changes to NavBar.jsx beyond the registration call)
+  data/
+    SmallWinsData.js           // all user-facing strings + static content
+  stores/
+    // extend existing navigation store + any shared security / storage slices
+  utils/
+    // shared: encryption, storage abstraction, storageQuota, connectivity
+Data model
+In src/data/SmallWinsData.js (flat objects/arrays only)
+JavaScriptexport const smallWinsStrings = {
+  title: "The Little Book of Small Wins",
+  // all labels, buttons, empty states, warnings, educational copy, etc.
+};
+
+export const whySmallWinsMatter = [ /* array of { title, body } */ ];
+export const examples = [ /* array of strings */ ];
+export const howToPractice = [ /* array of strings */ ];
+In IndexedDB (encrypted)
+JavaScript// smallWins record
+{
+  id: string,                // UUID
+  title: string,             // required, short
+  description: string,       // optional free text
+  date: string,              // ISO date (YYYY-MM-DD)
+  whoWith: string[],         // array of people ids (or denormalised names for display)
+  createdAt: number,
+  updatedAt: number
+}
+
+// smallWinsPeople record
+{
+  id: string,
+  name: string,
+  nameLower: string,         // for index
+  createdAt: number
+}
+Screen / component hierarchy
+
+SmallWins.jsx (full-screen activity)
+Security gate wrapper (shared)
+Header (activity title + optional “Why this matters” expandable section using static content from SmallWinsData.js)
+Primary action: “Add a small win” → opens WinForm
+WinList (chronological, newest first) → each item is a WinCard (tap to edit / long-press or overflow to delete)
+Low-storage banner (shared)
+Discreet unsecured-data indicator (shared)
+
+
+User flows
+
+Happy path: open activity → gate passes → list of previous wins → “Add” → fill form (title, description, date default today, who-with type-ahead) → save → list updates, data written encrypted.
+No passcode set: first attempt to enter personal data → prompt to create passcode/password (shared flow). Reminder appears at most once per day.
+Low storage: after any write that crosses threshold → banner with concrete recommendations.
+Offline: fully functional; no network dependency.
+Forgotten passcode: shared warning on login screen (“forgotten credentials = permanently lost data”).
+Type-ahead: as user types in “Who with”, matching names from smallWinsPeople appear; selecting one reuses the existing person record; typing a new name creates a new person record on save.
+Edit / delete: same form for edit; delete requires a simple confirmation (yes/no).
+Empty state: friendly copy + single prominent “Add your first small win” button.
+
+Reusable components to extract
+
+PeopleTypeAhead – pure controlled component that accepts value, onChange, suggestions, onSelect. Suggestions come from a small Zustand slice or direct IndexedDB query filtered by the typed prefix. This component is designed for reuse by any future activity that needs people names.
+
+Strings (all live in SmallWinsData.js)
+
+Activity title, form labels (“Title”, “What happened?”, “Date”, “Who with”), buttons (“Save”, “Cancel”, “Delete”), empty states, educational sections (“Why Small Wins Matter”, “Examples”, “How to Practice”), low-storage messages, security prompts (reuse shared strings where possible), type-ahead placeholder, confirmation dialogs.
+
+3. Security & privacy implementation plan
+
+Passcode / password flows (shared, already required by every personal-data feature)
+Creation: simple 6-digit passcode or strong password; confirmation step; immediate encryption of any existing unsecured data.
+Login: on every app start / activity open that needs personal data.
+Change: current credential → new credential → re-encrypt.
+Dry-run / test mode: separate key material + throw-away IndexedDB database; accessible only in development builds.
+
+Reminder: “Please set a passcode” appears at most once per calendar day (persisted flag in local meta store). Never blocks the user; just a gentle banner.
+Unsecured-data indicator: discreet icon / subtle text in the activity header (and globally if desired) when personal data exists but no credential is set.
+Encryption approach (pure client-side)
+Derive a master key from the user’s passcode/password using a memory-hard KDF (Argon2id or PBKDF2 with high iteration count – choose the strongest that still performs acceptably on entry-level Android WebViews).
+Store only the salt + encrypted data keys in IndexedDB. The derived key never leaves memory for longer than needed.
+Encrypt each record with AES-GCM before writing; decrypt on read after the gate has passed.
+Compatible with the existing IndexedDB abstraction; the feature code never sees plaintext outside of the React component tree while the gate is open.
+
+
+4. Implementation phases with concrete tasks
+Phase 0 – Foundations (shared, do first if not already present)
+
+Confirm / implement shared security gate (passcode creation, login, change, dry-run, daily reminder, unsecured indicator).
+Confirm / implement IndexedDB abstraction + versioning + encryption layer.
+Implement / confirm storage-quota watcher (navigator.storage.estimate) + low-space UI.
+Extract / create reusable PeopleTypeAhead component + associated Zustand slice or query helper.
+Add activity registration point in the navigation Zustand store + NavBar.
+
+Phase 1 – Core MVP
+
+Create folder src/components/activity/smallWins/, copy Template.jsx → SmallWins.jsx, create smallWins.scss.
+Create src/data/SmallWinsData.js with all strings and static educational content.
+Implement IndexedDB stores smallWins and smallWinsPeople (migration in shared DB open).
+Build WinForm (title, description, date picker defaulting to today, PeopleTypeAhead) with labels above every field.
+Build WinList + WinCard (display, edit, delete).
+Wire create / update / delete → always encrypt + write immediately.
+Integrate security gate so the activity never shows personal data until unlocked.
+Register activity in navigation store / NavBar.
+Basic empty state + “Add a small win” primary action.
+
+Phase 2 – Polish, accessibility, performance, dry-run, documentation
+
+Accessibility: proper labels, focus management, ARIA for type-ahead, keyboard navigation, sufficient contrast.
+Performance: virtualise long lists if needed; keep encryption off the main thread if measurable lag appears on low-end devices; minimise re-renders.
+Dry-run harness: document how a developer enables test mode and verifies lock-out without data loss.
+Edge-case polish: low-storage banner, daily reminder, forgotten-credential warning, type-ahead edge cases (empty, exact match, new name).
+Short developer note in the activity folder describing the data model and how to extend it later for remote backends.
+Manual verification on entry-level Android WebView + flagship devices.
+
+5. Testing strategy
+Unit / integration tests (must write)
+
+Storage abstraction: put / get / delete / index queries for both stores.
+Encryption round-trip (with dry-run keys).
+PeopleTypeAhead: filtering logic, selection, new-name creation.
+Form validation (title required, date valid).
+Security gate: blocks access when locked; allows when unlocked; daily-reminder frequency.
+Storage-quota watcher: correctly reports low space and triggers UI.
+
+Manual test matrix
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ScenarioExpected behaviourFirst open, no passcodePrompt to create passcode before any data entryDaily reminderAppears ≤ once per dayAdd win with new personPerson record created, appears in future type-aheadType-ahead partial matchCorrect suggestions, case-insensitiveEdit / deleteImmediate encrypted write; list updatesLow storageBanner + concrete recommendationsOfflineFully functionalForgotten passcodeClear warning that data is permanently lostDry-run modeLock-out can be tested without touching real dataLow-end deviceAcceptable encryption / list performanceUnsecured indicatorVisible when data exists but no credential set
+6. Open questions / risks
+Open questions (need product clarification before coding)
+
+Exact visual treatment of the educational sections (“Why Small Wins Matter”, Examples, How to Practice) – always visible, expandable, or behind a secondary button? Answer: They should be accessible behind a secondary button
+Should “Who with” allow multiple people per win, or only one? (Current model supports an array; confirm.)Answer: Multiple people
+Default sort order of the list (newest first is assumed) and whether any filter/search is required in MVP.Answer: Date order newest first and yes include a search/filter sub-feature
+Exact wording and placement of the unsecured-data indicator and the daily reminder banner. Answer Exact working to-be-decidedd. Use filler text for now. Answer: PLacement somewhere not in the way and I will change it
+Whether a simple “export / share as text” action is desired later (out of scope for this plan). Answer: Yes implement it and we can hide it for now
+
+Technical risks & mitigations
+
+IndexedDB size limits / quota on older Android WebViews → storage-quota watcher + concrete management recommendations; keep payloads tiny.
+Encryption performance on entry-level phones → choose a KDF that still finishes in < 300 ms on low-end hardware; measure; fall back to a slightly weaker but still acceptable parameter set if necessary; keep key derivation off the critical path after first unlock.
+Type-ahead query latency when the people store grows large → index on nameLower + limit results to top N matches; virtualise if ever needed.
+Accidental data loss from forgotten credentials → very clear, repeated warning on the login and creation screens (already required by the security constraints).

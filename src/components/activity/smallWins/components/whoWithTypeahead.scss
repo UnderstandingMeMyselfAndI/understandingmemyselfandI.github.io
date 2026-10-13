@@ -1,0 +1,146 @@
+@use '@scss/variables';
+@import '@scss/globals.css';
+
+.who-with {
+    position: relative;
+
+    &__label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: variables.$default_size;
+        font-weight: 600;
+    }
+
+    &__chips {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 0 0 0.5rem;
+        padding: 0;
+    }
+
+    &__chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 4px 6px 4px 10px;
+        border-radius: 999px;
+        background: var(--chip-bg);
+        font-size: variables.$default_size;
+    }
+
+    &__chip-text {
+        max-width: var(--max-width);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    &__chip-remove {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1rem;
+        height: 1rem;
+        padding: 0;
+        border-radius: 50%;
+        background: transparent;
+        font: inherit;
+        font-size: variables.$default_size;
+        line-height: 0.6;
+        color: var(--secondary);
+        cursor: pointer;
+        position: relative;
+        z-index: 2;
+        transform: translate(0, -3px);
+        outline: none;
+        box-shadow: none;
+
+        &:hover {
+            &::after {
+                background: var(--grey-dark-trans-80);
+                transition: background-color var(--transition);
+            }
+        }
+
+        &::after {
+            transform: translate(0, 3px);
+            position: absolute;
+            content: '';
+            left: 0;
+            top: 0;
+            z-index: -01;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 50%;
+            background: var(--blue-dark-trans-50);
+            box-shadow: var(--box-shadow);
+            transition: background-color var(--transition);
+        }
+    }
+
+    &__field {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    &__input {
+        flex: 1;
+        min-width: 0;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid var(--border);
+        border-radius: var(--border-radius-sml);
+        font-size: variables.$default_size;
+        background: var(--input);
+
+        &:focus-visible {
+            outline: 2px solid var(--orange-trans-50);
+            outline-offset: 1px;
+        }
+
+        &:disabled {
+            opacity: 0.6;
+        }
+    }
+
+    &__add {
+        padding: 0 1rem;
+        border: 1px solid var(--border);
+        border-radius: var(--border-radius);
+        background: transparent;
+        font-size: variables.$default_size;
+        color: var(--blue-light);
+        cursor: pointer;
+    }
+
+    &__suggestions {
+        position: absolute;
+        z-index: 20;
+        left: 0;
+        right: 0;
+        top: 100%;
+        margin: 0.25rem 0 0;
+        padding: 0.25rem;
+        list-style: none;
+        max-height: 220px;
+        overflow-y: auto;
+        // background: var(--surface, #fff);
+        border: 1px solid var(--border);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+    }
+
+    &__suggestion {
+        padding: 0.5rem;
+        border-radius: var(--border-radius-sml);
+        font-size: variables.$default_size;
+        cursor: pointer;
+
+        &.is-active,
+        &:hover {
+            background: var(--chip-bg, #eef2f7);
+        }
+    }
+}

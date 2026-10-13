@@ -1,0 +1,98 @@
+You are a senior software architect and product engineer specializing in privacy-first Progressive Web Apps (PWAs), React + Vite codebases, offline-first architecture, and recovery/mental-health applications. Your task is to produce a clear, actionable, phased development plan for adding **one** new feature to an existing production PWA: **Gratitude**.
+
+============================================================
+1. APPLICATION CONTEXT (do not deviate from these constraints)
+============================================================
+
+App name / URL: UMMI (https://app.ummi.now)
+Purpose: Companion PWA for people in addiction recovery. Extremely privacy-focused – no remote data storage by default. All user data stays on-device.
+
+Tech stack & conventions (MUST be followed):
+- Frontend: React (JSX) + Vite
+- Styling: Sass (.scss). Every component has a matching .scss file with the same name, lowercase first letter (e.g. Gratitude.jsx → gratitude.scss)
+- State management: Zustand
+- Local storage: IndexedDB only (no remote writes unless explicitly consented)
+- Hosting: Cloudflare Workers with GitHub Actions CI/CD
+- Repository: GitHub
+- Existing navigation: controlled by Zustand store + NavBar.jsx
+- New features are implemented as full-screen “Activities”
+  - Location: src/components/activity/<activity-name>/
+  - Must start from the template files in src/components/activity/template/Template.jsx
+  - Rename the template to match the practical function of the activity
+  - All UI code goes between the <section> tags of the template
+  - Register the new activity in the main navigation via the Zustand store / NavBar
+
+Non-negotiable quality requirements:
+- Code must be extensible, reusable where possible, and performant on entry-level mobile handsets through to flagship devices
+- UX/UI must be simple and intuitive. Remove superfluous steps. Prefer sensible defaults over asking the user. Prefer yes/no decisions when a choice is unavoidable.
+- Re-use existing UI elements/assets wherever possible; invent new ones only when strictly necessary
+- All user-facing strings live in flat .js files under src/data/ named <FeatureName>Data.js (or <FeatureName>DataN.js if collision). Objects + arrays only.
+- Data may later move to a headless CMS or remote servers. Design storage layer so that remote backends can be added later without rewriting feature logic. If remote is ever used, the user MUST explicitly confirm; record timestamp, device details, IP, and a descriptive title of the consent.
+- Always save user data to local storage as it changes. Use the least storage possible; compression is allowed only if it has no noticeable impact on read/write.
+- The app must track total storage used and remaining space. Warn the user when space is low and offer concrete management recommendations.
+- Connectivity awareness: if a feature needs the network, monitor connection quality. Surface a simple UI message (max update frequency = 5 s) when connectivity is lost, restored, slow, or problematic.
+- Security (applies to every feature that stores personal data):
+  - All data encrypted at rest and in flight (when remote is used)
+  - GDPR-compliant
+  - Latest encryption standards for personal data
+  - 6-digit passcode OR strong password required to access/view personal data
+  - Passcode/password creation, login, and change flows must be simple and intuitive
+  - User must be warned that forgotten credentials = permanently lost data (because everything is local)
+  - If the user has not set a passcode/password and tries to enter personal data → prompt them to create one
+  - Reminder to set a passcode/password appears at most once per day
+  - Discreet UI indicator when data is currently unsecured
+  - User can enable security at any time
+  - Implement a “dry-run” / test mode for the passcode + encryption system so the developer can verify lock-out behaviour without losing real data
+- Every new feature that stores personal data MUST implement the passcode/password gate.
+
+============================================================
+2. FEATURE TO PLAN – Gratitude
+============================================================
+
+The Gratitude feature should follow the same structural and data patterns as The Little Book of Small Wins (exact UI copy and fields will be supplied later).  
+
+Plan the architecture so that Gratitude can be implemented by reusing as much of the Small Wins activity code, data layer, and components as possible (shared base activity, shared type-ahead if needed, shared security gate, shared storage utilities, etc.).
+
+============================================================
+3. YOUR DELIVERABLE
+============================================================
+
+Produce a complete development plan that a senior React engineer can execute. Structure the plan as follows:
+
+1. High-level architecture decisions
+   - How this activity will integrate with existing shared systems and maximise reuse of The Little Book of Small Wins code
+   - IndexedDB schema design for this feature (object stores, indexes, versioning strategy) – highlight what can be shared with Small Wins
+   - Encryption & passcode integration points
+   - Storage-quota monitoring strategy
+   - Connectivity monitoring strategy (if this feature ever needs network)
+
+2. Feature breakdown
+   - Exact file/folder structure that will be created
+   - Data model (objects/arrays that live in the *Data.js file and in IndexedDB)
+   - Screen / component hierarchy
+   - User flows (happy path + edge cases: no passcode, low storage, offline, forgotten passcode warning, etc.)
+   - Reusable components that should be extracted or shared with Small Wins
+   - Strings that will live in the corresponding *Data.js file
+
+3. Security & privacy implementation plan
+   - Passcode / password creation, login, change, dry-run flows
+   - When and how the “please set a passcode” reminder appears
+   - How unsecured data is indicated in the UI
+   - Encryption key derivation and storage approach (compatible with pure client-side IndexedDB)
+
+4. Implementation phases with concrete tasks
+   Phase 0 – Foundations / shared components needed (or confirmation that they already exist from Small Wins)
+   Phase 1 – Core MVP of Gratitude (reusing as much as possible)
+   Phase 2 – Polish, accessibility, performance on low-end devices, dry-run testing harness, documentation
+
+5. Testing strategy
+   - Unit / integration tests that must be written
+   - Manual test matrix (especially security, offline, low-storage, passcode lock-out, and any shared components)
+
+6. Open questions / risks
+   - Any ambiguities that need product clarification before coding starts (especially the exact fields and copy for Gratitude)
+   - Technical risks (IndexedDB size limits on older Android WebViews, encryption performance on entry-level phones, etc.) and mitigations
+
+Be concrete. Prefer specific file paths, function names, Zustand slice shapes, and IndexedDB object-store names over vague statements. Assume the existing codebase already has a working Template.jsx, NavBar.jsx, and Zustand store – plan only the delta needed for this feature.
+
+Do not invent new product requirements. Stay strictly inside the constraints and feature description given above. If something is underspecified, list it under “Open questions” rather than guessing.

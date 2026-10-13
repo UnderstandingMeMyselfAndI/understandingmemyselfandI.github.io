@@ -24,13 +24,9 @@ body .main div#RecoveryTimelineParent {
 
 /* --- Scrollable Area --- */
 .timeline-scroll-container {
-  height: 100dvh; //calc( - 90px);
+  height: 100dvh;
   width: 100%;
-
-  // -webkit-overflow-scrolling: touch;
-  // outline: 10px solid yellow;
   position: relative;
-  // margin-top: 90px;
   padding: 0;
 }
 

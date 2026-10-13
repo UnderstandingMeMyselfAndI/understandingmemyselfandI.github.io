@@ -1,0 +1,17 @@
+@use '@scss/_variables';
+@import '@scss/globals.css';
+
+button {
+  margin: 1.5rem auto;
+  font-weight: 600;
+  font-variation-settings: 'wght' 600;
+  width: fit-content;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  background: rgba(164, 120, 245, 0.35);
+  border: none;
+  color: var(--primary);
+  outline: 1px solid rgba(150, 150, 150, 0.25);
+  box-shadow: var(--box-shadow-dark);
+  padding: 0.75rem 2.25rem 0.75rem 1.5rem;
+}

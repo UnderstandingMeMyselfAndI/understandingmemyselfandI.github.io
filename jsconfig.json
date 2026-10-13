@@ -1,28 +1,16 @@
 {
-	"compilerOptions": {
-		"target": "ES2020",
-		"lib": ["ES2020", "DOM", "DOM.Iterable"],
-		"module": "ESNext",
-		"skipLibCheck": true,
-		"moduleResolution": "bundler",
-		"allowImportingTsExtensions": false,
-		"resolveJsonModule": true,
-		"isolatedModules": true,
-		"noEmit": true,
-		"jsx": "react-jsx",
-		"baseUrl": ".",
-		"paths": {
-			"@/*": ["./src/*", "./docs/*", "./dist/*", ""],
-			"activitiy/*": ["src/components/activity/*"],
-			"icons/*": ["src/components/ui/icons/*"],
-			"buttons/*": ["src/components/ui/buttons/*"],
-			"ui/*": ["src/components/ui/*"],
-			"components/*": ["src/components/*"],
-			"public/*": ["public/*"],
-			"data/*": ["src/data/*"],
-			"js/*": ["src/js/*"]
-		}
-	},
-	"include": ["src"],
-	"exclude": ["node_modules", "dist", "build"]
+  "compilerOptions": {
+    "paths": {
+      "@": ["./"],
+      "@activity": ["./src/components/activity"],
+      "@buttons": ["./src/components/ui/buttons"],
+      "@components": ["./src/components"],
+      "@scss": ["./src/scss"],
+      "@data": ["./src/data"],
+      "@icons": ["./src/components/icons"],
+      "@js": ["./src/js"],
+      "@qrcodes": ["./src/qrcodes"],
+      "@ui": ["./src/components/ui"]
+    }
+  }
 }

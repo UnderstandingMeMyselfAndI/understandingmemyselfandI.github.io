@@ -15,7 +15,6 @@ const indexedDBStorage = {
   },
 }
 
-// TODO[x]: #20 Implement short names for brevity in storage
 const useAppStore = create(
   persist(
     (set, get) => ({
@@ -27,10 +26,7 @@ const useAppStore = create(
 
       saveWheelEntry: (entry) =>
         set((state) => ({
-          wheelHistory: [
-            ...state.wheelHistory,
-            { ...entry, date: new Date().toISOString() },
-          ],
+          wheelHistory: [...state.wheelHistory, { ...entry, date: new Date().toISOString() }],
         })),
 
       removeWheelEntry: (index) =>
@@ -90,7 +86,7 @@ const useAppStore = create(
         set(() => ({ isisn: v }))
       },
       // ----------------------------------------
-      //show burger stack      
+      //show burger stack
       showBurgerStack: true,
       setShowBurgerStack: (v) => set(() => ({ showBurgerStack: v })),
       // ----------------------------------------
@@ -167,10 +163,15 @@ const useAppStore = create(
       },
       // ----------------------------------------
       // Quiz
+      quiz: true,
+      setQuiz: (v) => {
+        set(() => ({ quiz: v }))
+      },
       quizEnabled: true,
       enableQuiz: (v) => {
+        set(() => ({ quizEnabled: v }))
         set(() => ({ quiz: v }))
-      },        
+      },
       // ----------------------------------------
       // Units Calculator
       uc: true,
@@ -181,6 +182,17 @@ const useAppStore = create(
       enableUnitsCalculator: (v) => {
         set(() => ({ unitsCalculatorEnabled: v }))
         set(() => ({ uc: v }))
+      },
+      // ----------------------------------------
+      // Enbale Disable Smooth Scroll
+      Ss: true,
+      setSs: (v) => {
+        set(() => ({ Ss: v }))
+      },
+      smoothScrollEnabled: true,
+      enableSmoothScroll: (v) => {
+        set(() => ({ smoothScrollEnabled: v }))
+        set(() => ({ tf: v }))
       },
       // ----------------------------------------
       // Tools
@@ -194,7 +206,7 @@ const useAppStore = create(
         set(() => ({ tls: v }))
       },
       // ----------------------------------------
-      // Toolbox Filter
+      // Toolbox Filter - Toggle to filter tools. Controlled by yourToolsEnabled
       tf: true,
       setTf: (v) => {
         set(() => ({ tf: v }))
@@ -289,9 +301,7 @@ const useAppStore = create(
       // Adds an ID only if it doesn't already exist (prevents duplicates)
       addTool: (v) =>
         set((state) => ({
-          userToolIDs: state.userToolIDs.includes(v)
-            ? state.userToolIDs
-            : [...state.userToolIDs, v],
+          userToolIDs: state.userToolIDs.includes(v) ? state.userToolIDs : [...state.userToolIDs, v],
         })),
 
       // Removes a specific ID from the array
@@ -315,11 +325,21 @@ const useAppStore = create(
       // ----------------------------------------
       // Message
       message: '',
-      setMessage: (v) => set(() => ({ message: v })),
+      messageId: 0,
+      setMessage: (v) => set((s) => ({ message: v, messageId: s.messageId + 1 })),
+      clearSnackbar: () => set({ message: '', snackbarAction: null }),
       // ----------------------------------------
       // Snackbar
       showSnackbar: false,
       setShowSnackbar: (v) => set(() => ({ showSnackbar: v })),
+      // Snackbar action button (optional)
+      snackbarAction: null,
+      setSnackbarAction: (v) => set({ snackbarAction: v }),
+
+      // Global passcode-dialog request. Bumping this opens the dialog mounted
+      // by <PasscodeDialogController> anywhere in the app.
+      passcodeDialogRequest: 0,
+      requestPasscodeDialog: () => set((s) => ({ passcodeDialogRequest: s.passcodeDialogRequest + 1 })),
       // ----------------------------------------
       // Activity ID
       activity: -1,
@@ -341,8 +361,7 @@ const useAppStore = create(
       setShowToolsOnly: (v) => set(() => ({ showToolsOnly: v })),
       // ----------------------------------------
       // Toggles showToolsOnly
-      toggleShowToolsOnly: () =>
-        set((state) => ({ showToolsOnly: !state.showToolsOnly })),
+      toggleShowToolsOnly: () => set((state) => ({ showToolsOnly: !state.showToolsOnly })),
 
       // ----------------------------------------
       // Acronym ID
@@ -361,10 +380,16 @@ const useAppStore = create(
       },
       // ----------------------------------------
       // Show Acronym Card
+      sqeo: true,
+      setSqeo: (v) => {
+        set(() => ({ showQuickExitOnboarding: v }))
+        set(() => ({ sqeo: v }))
+      },
       showQuickExitOnboarding: true,
       setShowQuickExitOnboarding: (v) => {
         // console.trace(`setShowAccCard called with value: ${show}`);
         set(() => ({ showQuickExitOnboarding: v }))
+        set(() => ({ sqeo: v }))
       },
       // ----------------------------------------
       // analytics enabled
@@ -411,11 +436,14 @@ const useAppStore = create(
         ageVerified: state.ageVerified,
         wol: state.wol,
         wheelOfLifeEnabled: state.wheelOfLifeEnabled,
+        quiz: state.quiz,
         quizEnabled: state.quizEnabled,
         dc: state.dc,
         daysCounterEnabled: state.daysCounterEnabled,
         uc: state.uc,
         unitsCalculatorEnabled: state.unitsCalculatorEnabled,
+        tls: state.tls,
+        toolsEnabled: state.toolsEnabled,
         tf: state.tf,
         toolboxFilterEnabled: state.toolboxFilterEnabled,
         yt: state.yt,
@@ -429,6 +457,10 @@ const useAppStore = create(
         c: state.c,
         allowCookies: state.allowCookies,
         tpc: state.tpc,
+        sqeo: state.sqeo,
+        showQuickExitOnboarding: state.showQuickExitOnboarding,
+        qeu: state.qeu,
+        quickExitURL: state.quickExitURL,
         allowThirdPartyCookies: state.allowThirdPartyCookies,
         exitButtonPosition: state.exitButtonPosition,
 

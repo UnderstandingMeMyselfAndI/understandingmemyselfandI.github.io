@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './CookieConsent.scss'
-import useAppStore from '@/store/useAppStore'
+import useAppStore from '@store/useAppStore'
 
 const CookieConsent = () => {
   const setGae = useAppStore((state) => state.setGAE)
@@ -27,9 +27,6 @@ const CookieConsent = () => {
 
   const loadScripts = (consentData) => {
     const id = 'G-YWBEQ7E972'
-
-    // console.log('loadScripts consentData ', consentData)
-    // console.log('loadScripts window.GA_INITIALIZED ', window.GA_INITIALIZED)
 
     if (consentData.analytics && !window.GA_INITIALIZED) {
       var head = document.getElementsByTagName('head')[0]
@@ -112,20 +109,20 @@ const CookieConsent = () => {
     <div className={'activity activity-cookie-consent-overlay' + (show ? ' show' : '')}>
       {show && !showSettings && (
         <div className='cookie-banner'>
-          <div className='cookie-banner-content'>
-            <div className='cookie-banner-header'>
-              <div className='cookie-banner-text'>
-                <h2 className='cookie-banner-title'>Our Cookies. Yum. </h2>
-                <h4 className='cookie-banner-title-sml'>We Value Your Privacy</h4>
-                <p className='cookie-banner-description'>
+          <div className='cookie-banner__content'>
+            <div className='cookie-banner__header'>
+              <div className='cookie-banner__text'>
+                <h2 className='cookie-banner__title'>Our Cookies. Yum.</h2>
+                <h4 className='cookie-banner__subtitle'>We Value Your Privacy</h4>
+                <p className='cookie-banner__description'>
                   We use cookies to enhance your browsing experience, serve personalized content, and analyze our
                   traffic. By clicking Accept All, you consent to our use of cookies.
                 </p>
-                <div className='cookie-banner-actions'>
-                  <button onClick={handleAcceptAll} className='btn btn-primary' id='accept-all-btn'>
+                <div className='cookie-banner__actions'>
+                  <button onClick={handleAcceptAll} className='btn cookie-banner__btn-primary' id='accept-all-btn'>
                     Accept All
                   </button>
-                  <button onClick={handleRejectAll} className='btn btn-secondary'>
+                  <button onClick={handleRejectAll} className='btn cookie-banner__btn-reject'>
                     Reject All
                   </button>
                 </div>
@@ -136,23 +133,23 @@ const CookieConsent = () => {
       )}
 
       {showSettings && (
-        <div className='modal-overlay'>
-          <div className='modal'>
-            <div className='modal-header'>
-              <div className='modal-header-content'>
-                <h2 className='modal-title'>Privacy Settings</h2>
+        <div className='modal'>
+          <div className='modal__wrap'>
+            <div className='modal__header'>
+              <div className='modal__header-content'>
+                <h2 className='modal__title'>Privacy Settings</h2>
               </div>
-              <button onClick={() => setShowSettings(false)} className='modal-close'>
+              <button onClick={() => setShowSettings(false)} className='modal__close'>
                 X
               </button>
             </div>
 
-            <div className='modal-body'>
+            <div className='modal__body'>
               <div className='cookie-category'>
-                <div className='category-header'>
-                  <div className='category-content'>
-                    <h3 className='category-title'>Necessary Cookies</h3>
-                    <p className='category-description'>
+                <div className='cookie-category__header'>
+                  <div className='cookie-category__content'>
+                    <h3 className='cookie-category__title'>Necessary Cookies</h3>
+                    <p className='cookie-category__description'>
                       Essential for the website to function properly. Cannot be disabled.
                     </p>
                   </div>
@@ -165,10 +162,10 @@ const CookieConsent = () => {
               </div>
 
               <div className='cookie-category'>
-                <div className='category-header'>
-                  <div className='category-content'>
-                    <h3 className='category-title'>Analytics Cookies</h3>
-                    <p className='category-description'>
+                <div className='cookie-category__header'>
+                  <div className='cookie-category__content'>
+                    <h3 className='cookie-category__title'>Analytics Cookies</h3>
+                    <p className='cookie-category__description'>
                       Help us understand how visitors interact with our website. Includes Google Analytics.
                     </p>
                   </div>
@@ -181,11 +178,11 @@ const CookieConsent = () => {
                 </div>
               </div>
 
-              <div className='cookie-category'>
-                <div className='category-header'>
-                  <div className='category-content'>
-                    <h3 className='category-title'>Marketing Cookies</h3>
-                    <p className='category-description'>
+              <div className='cookie-category__category'>
+                <div className='cookie-category__header'>
+                  <div className='cookie-category__content'>
+                    <h3 className='cookie-category__title'>Marketing Cookies</h3>
+                    <p className='cookie-category__description'>
                       Used to track visitors across websites to display relevant ads.
                     </p>
                   </div>
@@ -199,10 +196,10 @@ const CookieConsent = () => {
               </div>
 
               <div className='cookie-category'>
-                <div className='category-header'>
-                  <div className='category-content'>
-                    <h3 className='category-title'>Preference Cookies</h3>
-                    <p className='category-description'>
+                <div className='cookie-category__header'>
+                  <div className='cookie-category__content'>
+                    <h3 className='cookie-category__title'>Preference Cookies</h3>
+                    <p className='cookie-category__description'>
                       Remember your settings and preferences for a better experience.
                     </p>
                   </div>
@@ -217,10 +214,10 @@ const CookieConsent = () => {
             </div>
 
             <div className='modal-footer'>
-              <button onClick={handleSaveSettings} className='btn btn-primary btn-full'>
+              <button onClick={handleSaveSettings} className='btn cookie-banner__btn-primary btn-full'>
                 Save Preferences
               </button>
-              <button onClick={handleAcceptAll} className='btn btn-secondary btn-full'>
+              <button onClick={handleAcceptAll} className='btn cookie-banner__btn-reject btn-full'>
                 Accept All
               </button>
             </div>

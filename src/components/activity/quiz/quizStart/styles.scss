@@ -1,5 +1,5 @@
-@use './scss/_variables.scss';
-@import '@/globals.css';
+@use '@scss/variables';
+@import '@scss/globals.css';
 /* quizStart/styles.scss */
 
 .quiz-start {
@@ -21,7 +21,6 @@
     left: 50%;
     transform: translateX(-50%);
   }
-
 }
 
 .quiz-start h1 {
@@ -72,7 +71,7 @@
   padding: 10px 16px;
   border-radius: 4px;
   width: 100%;
-  background-color: var(--greyDark30Trans);
+  background-color: var(--grey-dark-trans-30);
   transition: all 0.2s ease;
   position: relative;
 
@@ -113,10 +112,10 @@
   background: transparent;
 
   &::after {
-    box-shadow: var(--boxShadowLightValue);
+    box-shadow: var(--box-shadow-light);
     color: var(--blue);
     transition: all 0.5s ease;
-    background: var(--mainBackground);
+    background: var(--background-main);
 
     opacity: 0.9;
     z-index: -1;
@@ -147,12 +146,12 @@
 }
 
 .radio-option input:checked+.radio-custom {
-  border-color: var(--lightBlue);
-  background-color: var(--lightBlue);
+  border-color: var(--blue-light);
+  background-color: var(--blue-light);
   outline-color: var(--primary);
   outline-width: 4px;
   background-color: transparent;
-  box-shadow: var(--boxShadowDarkValue);
+  box-shadow: var(--box-shadow-dark);
 }
 
 .radio-option input+.radio-custom::after {
@@ -229,7 +228,7 @@
 .start-button {
   padding: 1rem 2rem;
   color: var(--primary);
-  text-shadow: var(--textShadowDark);
+  text-shadow: var(--text-shadow-dark);
   font-size: 1.5rem;
   font-weight: 600;
   font-variation-settings: 'wght' 600;
@@ -237,9 +236,9 @@
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  background-color: var(--greyDark30Trans);
+  background-color: var(--grey-dark-trans-30);
   position: relative;
-  box-shadow: var(--boxShadow);
+  box-shadow: var(--box-shadow);
 
   &::after {
     position: absolute;
@@ -273,7 +272,7 @@
 }
 
 .stats-button {
-  background: var(--orange70Trans);
+  background: var(--orange-trans-70);
   border: none;
   outline: none;
   box-shadow: none;
@@ -287,7 +286,7 @@
   flex-shrink: 0;
 
   &:hover {
-    background: var(--orange80Trans);
+    background: var(--orange-trans-80);
   }
 
   &:disabled {

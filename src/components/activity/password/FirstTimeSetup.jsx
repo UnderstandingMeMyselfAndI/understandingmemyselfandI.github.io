@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { setPasswordKey, setPin } from '@/src/js/utils/secureStorage'
+import { setPasswordKey, setPin } from '@src/js/utils/secureStorage'
 import PropTypes from 'prop-types'
 const FirstTimeSetup = ({ onSuccess }) => {
   const [password, setPassword] = useState('')
@@ -36,36 +36,19 @@ const FirstTimeSetup = ({ onSuccess }) => {
   return (
     <div className='setup'>
       <h2>Secure your data</h2>
-      <p>
-        Password is required to encrypt your data. PIN is optional for fast
-        unlock.
-      </p>
+      <p>Password is required to encrypt your data. PIN is optional for fast unlock.</p>
       <form onSubmit={handleSubmit}>
         <label>
           Password
-          <input
-            type='password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} required />
         </label>
         <label>
           Confirm Password
-          <input
-            type='password'
-            value={confirm}
-            onChange={(e) => setConfirm(e.target.value)}
-            required
-          />
+          <input type='password' value={confirm} onChange={(e) => setConfirm(e.target.value)} required />
         </label>
         <label>
           PIN (optional, 4-6 digits)
-          <input
-            type='text'
-            value={pin}
-            onChange={(e) => setPinInput(e.target.value)}
-          />
+          <input type='text' value={pin} onChange={(e) => setPinInput(e.target.value)} />
         </label>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <button type='submit'>Continue</button>

@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
-import useAppStore from '@/store/useAppStore'
-import ExitButton from 'buttons/exit/ExitButton'
-import Dialog from 'components/ui/dialog/Dialog'
+import useAppStore from '@store/useAppStore'
+import ExitButton from '@buttons/exit/ExitButton'
+import Dialog from '@components/ui/dialog/Dialog'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
 
 import PropTypes from 'prop-types'
 import './styles.scss'
-import { clear } from 'console'
+
 const Exit = () => {
   const quickExitMessageEnabled = useAppStore((state) => state.quickExitMessageEnabled)
   const [showDialog, setShowDialog] = useState(false)
@@ -37,15 +37,31 @@ const Exit = () => {
       doExit()
     }
   }
-  const exitFullscreen = () => {
-    if (document.exitFullscreen) {
-      document.exitFullscreen()
+  const exitFullscreen = async () => {
+    if (document.fullscreenElement) {
+      try {
+        await document.exitFullscreen()
+      } catch (e) {
+        console.error(e)
+      }
     } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen()
+      try {
+        await document.webkitExitFullscreen()
+      } catch (e) {
+        console.error(e)
+      }
     } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen()
+      try {
+        await document.mozCancelFullScreen()
+      } catch (e) {
+        console.error(e)
+      }
     } else if (document.msExitFullscreen) {
-      document.msExitFullscreen()
+      try {
+        await document.msExitFullscreen()
+      } catch (e) {
+        console.error(e)
+      }
     }
   }
   const doExit = () => {
@@ -53,7 +69,6 @@ const Exit = () => {
     window.location.replace(url)
     window.location = url
     exitFullscreen()
-    window.close()
   }
   const handleDialogueCancel = () => {
     setShowDialog(false)

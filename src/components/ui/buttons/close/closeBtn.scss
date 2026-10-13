@@ -1,0 +1,74 @@
+button.close-btn {
+  position: absolute;
+  left: auto;
+  z-index: 6005;
+  top: calc(env(safe-area-inset-top));
+  right: calc(env(safe-area-inset-top));
+  width: 66px;
+  height: 66px;
+  cursor: pointer;
+  z-index: 15501;
+  margin: 0.25rem;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  box-shadow: none;
+  transform: translate(3px, -2px);
+
+  .close-btn-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    width: 40px;
+    height: 40px;
+    left: 50%;
+    top: 50%;
+    margin: 0;
+    transform: translate(-50%, calc(-50% - 12px));
+  }
+
+  .close-btn-inner {
+    transform-origin: 50% 50%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: rotate(45deg) scale(0.8);
+
+    div {
+      background-color: var(--primary);
+      position: absolute;
+      transform-origin: 50% 50%;
+    }
+
+    div:first-child {
+      width: 100%;
+      height: 2px;
+      top: calc(50% - 2px);
+      // transform: translate(-0px, -0px);
+    }
+
+    div:last-child {
+      width: 2px;
+      height: 100%;
+      left: calc(50% - 2px);
+      // transform: translate(-0px, -0px);
+    }
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+
+    path {
+      fill: var(--primary);
+    }
+  }
+}
+
+button.close-btn {
+  position: absolute;
+  left: auto;
+  z-index: 6005;
+}

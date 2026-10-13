@@ -1,7 +1,7 @@
 'use client'
 
-import { Checkbox } from '@/components/ui/checkbox'
-import { Label } from '@/components/ui/label'
+import { Checkbox } from '@components/ui/checkbox'
+import { Label } from '@components/ui/label'
 import './styles.css'
 export function CheckboxOffline() {
   return (
@@ -14,9 +14,8 @@ export function CheckboxOffline() {
       </div>
       <div>
         <p>
-          By clicking this checkbox, you will be able to use this app offline
-          but you will need to use the update button to get the latest version
-          when they are released.
+          By clicking this checkbox, you will be able to use this app offline but you will need to use the update button
+          to get the latest version when they are released.
         </p>
       </div>
     </div>

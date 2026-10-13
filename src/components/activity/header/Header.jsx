@@ -1,18 +1,18 @@
 import { useState, useRef, useEffect } from 'react'
-import Logo from 'ui/logo/Logo.jsx'
+import Logo from '@ui/logo/Logo.jsx'
 import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined'
-import useAppStore from '@/store/useAppStore'
+import useAppStore from '@store/useAppStore'
 import { ErrorBoundary } from 'react-error-boundary'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useOnInView } from 'react-intersection-observer'
 import { gsap } from 'gsap'
-import { activities } from '@/data/config'
+import { activities } from '@data/config'
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc
 }, {})
-import './styles.scss'
+import './header.scss'
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
@@ -86,35 +86,35 @@ const Header = () => {
             ease: 'power4.out',
           }, // Logo
           {
-            y: 710,
             rotateX: '0',
             autoAlpha: 0.95,
             rotateY: '0deg',
             rotateZ: '90deg',
             scale: 2,
             x: -55,
+            y: 410,
             duration: 0.35,
             transformOrigin: '100% 10%',
             ease: 'power4.out',
           }, // Understanding
           {
-            y: 0,
             rotateX: '0deg',
             autoAlpha: 0,
             rotateY: '0deg',
             rotateZ: '0deg',
             x: 0,
+            y: 0,
             duration: 0.85,
             ease: 'power4.out',
           }, // Me
           {
-            y: 570,
             rotateX: '0deg',
             autoAlpha: 0.95,
             rotateY: '0',
             rotateZ: '90deg',
             scale: 2,
             x: -75,
+            y: 270,
             duration: 0.35,
             transformOrigin: '100% 10%',
             ease: 'power4.out',
@@ -270,7 +270,7 @@ const Header = () => {
     { dependencies: [open, isLeaving, isModal], scope: cont },
   )
 
-  // TODO #25 Maybe use ScrollTrigger isInViewport and drop thei library
+  // TODO #25 Maybe use ScrollTrigger isInViewport and drop the library
   //https://gsap.com/docs/v3/Plugins/ScrollTrigger/static.positionInViewport()
   const inViewData = useRef(true)
 

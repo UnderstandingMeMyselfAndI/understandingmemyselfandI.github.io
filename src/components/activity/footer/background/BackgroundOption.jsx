@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types'
 import './styles.css'
 
-import { useThemeStore } from '@/store/useThemeStore'
+import { useThemeStore } from '@store/useThemeStore'
 export function BackgroundOption({ icon, option, label }) {
   const theme = useThemeStore.getState().theme
   const classActive = option === theme ? 'active' : ''
@@ -15,8 +15,7 @@ export function BackgroundOption({ icon, option, label }) {
         const target = e.currentTarget
         target.classList.add('active')
         useThemeStore.setState({ theme: option })
-      }}
-    >
+      }}>
       <div data-option={option} dangerouslySetInnerHTML={{ __html: icon }} />
       <div>{label && <p>{label}</p>}</div>
     </button>
@@ -27,5 +26,5 @@ BackgroundOption.propTypes = {
   option: PropTypes.string.isRequired,
   label: PropTypes.string,
 }
-BackgroundOption.displayName = 'ButtonScenario'
+BackgroundOption.displayName = '@buttonscenario'
 export default BackgroundOption

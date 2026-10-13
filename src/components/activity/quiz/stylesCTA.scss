@@ -1,9 +1,9 @@
-@use '@/scss/variables';
-@import '@/globals.css';
+@use '@scss/variables';
+@import '@scss/globals.css';
 
 body div.main section.activity-wallpapers-cta div.cta {
   .cta-content {
-    text-shadow: var(--textShadowDarkStrong);
+    text-shadow: var(--text-shadow-dark-strong);
     font-weight: 400;
     font-variation-settings: 'wght' 400;
     font-variation-settings: 'wght' 400;
@@ -17,6 +17,6 @@ body div.main section.activity-wallpapers-cta div.cta {
       opacity: 0.85;
     }
 
-    background-color: var(--lightBlue);
+    background-color: var(--blue-light);
   }
 }

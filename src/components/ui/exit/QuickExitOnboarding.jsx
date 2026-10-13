@@ -1,22 +1,21 @@
 import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import CurvedLineAnimation from './CurvedLineAnimation'
-import Dialog from 'components/ui/dialog/Dialog'
+import Dialog from '@components/ui/dialog/Dialog'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
-import useAppStore from '@/store/useAppStore'
+import useAppStore from '@store/useAppStore'
 import './QuickExitOnboarding.scss'
 
 const QuickExitOnboarding = ({ children, showOnboarding = true }) => {
-  const showQuickExitOnboarding = useAppStore((state) => state.showQuickExitOnboarding)
-  const setShowQuickExitOnboarding = useAppStore((state) => state.setShowQuickExitOnboarding)
+  const showQuickExitOnboarding = useAppStore((s) => s.showQuickExitOnboarding)
+  const setShowQuickExitOnboarding = useAppStore((s) => s.setShowQuickExitOnboarding)
   const [show, setShow] = useState(false)
   const [timeouts, setTimeouts] = useState([])
-
   const stopOnboarding = () => {
     console.log('stopOnboarding')
-    setShow(false)
     setShowQuickExitOnboarding(false)
+    setShow(false)
   }
   useEffect(() => {
     if (!showQuickExitOnboarding) stopOnboarding()

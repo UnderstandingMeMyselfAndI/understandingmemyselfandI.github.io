@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
-import useAppStore from '@/store/useAppStore'
-import { activities } from '@/data/config'
+import useAppStore from '@store/useAppStore'
+import { activities } from '@data/config'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
-import CloseBtn from '@/components/ui/buttons/close/CloseBtn'
-import Dialog from '@/components/ui/dialog/Dialog'
+import CloseBtn from '@components/ui/buttons/close/CloseBtn'
+import Dialog from '@components/ui/dialog/Dialog'
 import settingsData from './settingsData.js'
-import './styles.scss'
+import './settings.scss'
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc
@@ -63,11 +63,9 @@ const Settings = () => {
   const setShowToolsOnly = useAppStore((s) => s.setShowToolsOnly)
   const activity = useAppStore((s) => s.activity)
   const clearIDB = useAppStore((s) => s.clearIDB)
-  const isModal = useAppStore((s) => s.isModal)
-  const activityID = activities.find((activity) => (activity.url === name ? activity.id : null))
+  // const isModal = useAppStore((s) => s.isModal)
+  // const activityID = activities.find((activity) => (activity.url === name ? activity.id : null))
   const setIsModal = useAppStore((s) => s.setIsModal)
-
-  // TODO: The settingsDataWithStateObjects contains the configs that need implements
   const settingsDataWithStateObjects = settingsData.map((group) => {
     return {
       ...group,
@@ -89,7 +87,7 @@ const Settings = () => {
 
   useEffect(() => {
     open && setIsModal(activitiesById[id]?.modal)
-  }, [open, setIsModal, activitiesById, id])
+  }, [open, setIsModal, id])
 
   useEffect(() => {
     setOpen(id === activity)
@@ -104,10 +102,6 @@ const Settings = () => {
   }
 
   const handleClose = () => {
-    console.log(' YourToolsSettings ', settingsDataWithStateObjects)
-
-    const YouurToolsSettings = settingsDataWithStateObjects.find((stateObject) => stateObject.name === 'YourToolbox')
-
     settingsDataWithStateObjects.forEach((settings) => {
       settings.settings.forEach((setting) => {
         setting.stateObject.name === 'YourToolbox' && setShowToolsOnly(setting.stateObject.state)
@@ -116,23 +110,9 @@ const Settings = () => {
 
     settingsDataWithStateObjects.forEach((settings) => {
       settings.settings.forEach((setting) => {
-        console.log(' ----------------------------------------- ')
-        console.log(' setting.stateObject.state ', setting.stateObject.state)
-        console.log(' setting.stateObject.setState ', setting.stateObject.setState)
-
-        console.log(' setting.stateObject.name ', setting.stateObject.name)
         setting.stateObject.setState(setting.stateObject.state)
       })
     })
-
-    // const YourToolsSettings = settingsDataWithStateObjects.settings.find((setting) => setting.name === 'YourToolbox')
-    // console.log(' YourToolsSettings ', YourToolsSettings)
-    // if (!YourToolsSettings.state) {
-    //   setShowToolsOnly(false)
-    // }
-    // Set all state here to avoid repaint when changing individual settings
-
-    // group.settings.map((setting) => setting.stateObject.update())
 
     setOpen(false)
     setActivity(-1)
@@ -164,7 +144,7 @@ const Settings = () => {
       />
       <Dialog
         show={showConfirmDeleteDialog}
-        title='Data Cleared'
+        title='@data Cleared'
         instruction='All data has been permanently cleared.'
         confirmLabel='Close'
         cancelLabel=''
@@ -175,17 +155,15 @@ const Settings = () => {
       <section className={name}>
         <h3>Settings</h3>
         <div className='head'>
+          <div className='section-title'>
+            <u>Your privacy is very important to us.</u>
+          </div>
+          <p>For complete privacy you can disable and hide all customizable features listed below.</p>
+          <p>Check the tickboxe next to each feature to display them.</p>
+          <p>Un-check the tickbox to hide the feature. </p>
+          <p>Your data is not affected by displaying or hiding features.</p>
           <p>
-            <b>
-              <u>Your privacy is very important to us.</u>
-            </b>
-          </p>
-          <p>For complete privacy you can disable and hide all customisable features.</p>
-          <p>You can show and enable features whenever that feels helpful. </p>
-          <p>Features that are disabled are completely hidden.</p>
-          <p>
-            To remove all data use the &quot;Clear Your Data &quot; button
-            <br /> at the bottom.
+            To remove data, use the <b>"Clear your data"</b> button at the bottom of this screen.
           </p>
         </div>
         <CloseBtn onClick={handleClose} />
@@ -195,8 +173,14 @@ const Settings = () => {
             <div className='title'>{group.groupTitle}</div>
             <div>
               {group.settings.map((setting, index) => (
-                <div className={'row ' + setting.stateObject.classes} key={index}>
-                  <div className={'checkBox-row '}>
+                <div
+                  className={
+                    'row ' +
+                    setting.stateObject.classes +
+                    (setting.stateObject.state ? ' feature-active' : ' feature-inactive')
+                  }
+                  key={index}>
+                  <div className={'check-box-row'}>
                     <label htmlFor={setting.stateObject.name} className={setting.stateObject.state ? 'checked' : ''}>
                       {parse(DOMPurify.sanitize(setting.stateObject.instruction))}
                     </label>
@@ -209,7 +193,7 @@ const Settings = () => {
                     />
                   </div>
                   {setting.stateObject.help && (
-                    <div className='help'>{parse(DOMPurify.sanitize(setting.stateObject.help))}</div>
+                    <div className='info'>{parse(DOMPurify.sanitize(setting.stateObject.help))}</div>
                   )}
                 </div>
               ))}
@@ -220,7 +204,7 @@ const Settings = () => {
         <div className='section'>
           <div className='row'>
             <div className='setting-title'></div>
-            <div className='checkBox-row btns-bottom'>
+            <div className='check-box-row btns-bottom'>
               <button className='btn btn-delete' onClick={handleClearIDB}>
                 Clear Your Data
               </button>
@@ -230,7 +214,7 @@ const Settings = () => {
               </button>
             </div>
 
-            <div className='checkBox-row'>
+            <div className='check-box-row'>
               <div className='help'>The app will reload shortly after data is cleared.</div>
             </div>
           </div>

@@ -1,5 +1,5 @@
-@use './scss/_variables.scss';
-@import '@/globals.css';
+@use '@scss/variables';
+@import '@scss/globals.css';
 
 .point:first-child {
   max-width: 100%;
@@ -16,7 +16,7 @@ section.intro .feature {
   flex-flow: row nowrap;
 
   text-align: left;
-  text-shadow: var(--textShadowDarkValue);
+  text-shadow: var(--text-shadow-dark);
 
   .feature-inner {
     display: flex;

@@ -1,5 +1,5 @@
-@use '@/scss/_variables.scss';
-@import '@/globals.css';
+@use '@scss/variables';
+@import '@scss/globals.css';
 
 :root {
   --transition: 0.2s cubic-bezier(0.53, 0, 0.54, 1);
@@ -91,6 +91,9 @@ div.AccordionRoot {
               width: fit-content;
               color: #fff;
               margin-right: 2px;
+              text-wrap-style: pretty;
+              text-align: center;
+              word-break: keep-all;
             }
           }
 
@@ -148,7 +151,7 @@ div.AccordionRoot {
       max-width: 800px;
       margin: 0 auto;
       padding: 2rem;
-      // background: var(--backgroundActivity);
+      // background: var(--background-activity);
       border-radius: var(--border-radius);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 

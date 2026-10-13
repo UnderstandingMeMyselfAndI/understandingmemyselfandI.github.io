@@ -1,0 +1,82 @@
+@use '@scss/variables';
+@import '@scss/globals.css';
+
+section#book-of-small-wins {
+    fixed {
+        top: 0;
+        translate: unset;
+    }
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100dvh;
+    overflow-y: hidden;
+    width: 100dvw;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    text-align: left;
+    max-width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+
+    text-wrap-style: balance;
+
+    .inner {
+        max-width: var(--max-width);
+        width: 100%;
+    }
+}
+
+.small-wins {
+    display: block;
+    min-height: 100%;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--background-activity);
+        z-index: -1;
+    }
+
+    &__status {
+        padding: 1.5rem 1rem;
+        font-size: variables.$default_size;
+        color: var(--muted, );
+
+        &--error {
+            color: var(--editor);
+        }
+    }
+
+    &__status-detail {
+        font-size: variables.$default_size;
+        opacity: 0.8;
+    }
+
+    &__button {
+        cursor: pointer;
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: default;
+        }
+
+        &--ghost {
+            background: transparent;
+            color: var(--blue-light);
+            border: 1px solid var(--border);
+        }
+    }
+}

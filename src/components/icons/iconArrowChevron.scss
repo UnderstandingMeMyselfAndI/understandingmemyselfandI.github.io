@@ -1,0 +1,16 @@
+.icon {
+    --width: 44px;
+    --height: 44px;
+    width: var(--width);
+    height: var(--height);
+
+    &.icon-arrow-chevron-left,
+    &.icon-arrow-chevron-right {
+        width: var(--width);
+        height: var(--height);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+}

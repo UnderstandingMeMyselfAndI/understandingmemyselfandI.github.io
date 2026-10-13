@@ -1,13 +1,10 @@
-@use '@/scss/_variables.scss';
-@import '@/globals.css';
-
 .backdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0;
+  z-index: 1;
   overflow: hidden;
 
   .vignette {
@@ -16,11 +13,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(
-      ellipse at center,
-      rgba(0, 0, 0, 0) 50%,
-      rgba(0, 0, 0, 0.9) 100%
-    );
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.9) 100%);
     z-index: 8;
     opacity: 0.75;
   }
@@ -31,7 +24,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.5;
+    opacity: 0.25;
     z-index: 1;
   }
 
@@ -78,8 +71,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--mainBackground);
+    background: var(--bg-grey);
     z-index: 0;
-    opacity: 0.75;
+    opacity: 1;
   }
 }

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useState, useEffect } from 'react'
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch'
-import useAppStore from '@/store/useAppStore'
+import useAppStore from '@store/useAppStore'
 import ToggleButton from '@mui/material/ToggleButton'
 import './styles.scss'
 const EmergencyButton = React.forwardRef(({ className, ...props }, ref) => {
@@ -18,11 +18,7 @@ const EmergencyButton = React.forwardRef(({ className, ...props }, ref) => {
     <></>
   ) : (
     <div className='btn emergency'>
-      <ToggleButton
-        value='check'
-        selected={isEmergency}
-        onChange={() => setIsEmergency((isEmergency) => !isEmergency)}
-      >
+      <ToggleButton value='check' selected={isEmergency} onChange={() => setIsEmergency((isEmergency) => !isEmergency)}>
         <RocketLaunchIcon className={isEmergency ? 'active' : ''} />
       </ToggleButton>
     </div>

@@ -1,5 +1,5 @@
-@use '@/scss/variables';
-@import '@/globals.css';
+@use '@scss/variables';
+@import '@scss/globals.css';
 
 .MuiSnackbar-root,
 .MuiSnackbar-anchorOriginTopCenter,
@@ -10,8 +10,8 @@
 
 .MuiSnackbar-anchorOriginTopCenter,
 .MuiSnackbar-anchorOriginBottomLeft {
-  > div {
-    background: var(--mainBackground) !important;
+  >div {
+    background: var(--background-main) !important;
 
     .MuiSnackbarContent-message {
       color: var(--primary);
@@ -28,5 +28,17 @@
 
   button {
     box-shadow: none;
+  }
+
+  .snackbar__icon-complete {
+    width: 14px;
+    height: 14px;
+    outline: 1px solid yellow;
+
+    svg {
+      width: 14px;
+      height: 14px;
+      fill: #000;
+    }
   }
 }

@@ -1,14 +1,9 @@
-import Backdrop from '@/components/backdrop/Backdrop'
+import Backdrop from '@components/backdrop/Backdrop'
 import './styles.scss'
 
 const AppLoading = () => {
   return (
-    <div
-      className='app-loading-container'
-      role='status'
-      aria-live='polite'
-      aria-label='Loading application'
-    >
+    <div className='app-loading-container' role='status' aria-live='polite' aria-label='Loading application'>
       <Backdrop
         initialImageId={2}
         initialDelay={0}
@@ -18,11 +13,7 @@ const AppLoading = () => {
         staticImage={'/bgs/3.avif'} // Match Age Gate for seamless transition if needed, or use default
       />
       <div className='loading-content'>
-        <img
-          src='/icons/UmmiIcon2.svg'
-          alt='Ummi Logo'
-          className='loading-logo'
-        />
+        <img src='/icons/UmmiIcon2.svg' alt='Ummi Logo' className='loading-logo' />
         <span
           className='sr-only'
           style={{
@@ -35,8 +26,7 @@ const AppLoading = () => {
             clip: 'rect(0, 0, 0, 0)',
             whiteSpace: 'nowrap',
             border: '0',
-          }}
-        >
+          }}>
           Loading application, please wait...
         </span>
       </div>

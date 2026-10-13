@@ -1,22 +1,22 @@
-@use '@/scss/variables';
-@import '@/globals.css';
+@use '@scss/variables';
+@import '@scss/globals.css';
 
 body div.main section.activity-wheel-of-life-cta div.cta {
   div.inner {
     u {
-      text-decoration-color: var(--orange30Trans);
+      text-decoration-color: var(--orange-trans-30);
 
       h3.title {
         color: var(--pink);
-        text-decoration-color: var(--orange40Trans);
+        text-decoration-color: var(--orange-trans-40);
       }
 
       .cta-content {
-        color: var(--orange40Trans);
+        color: var(--orange-trans-40);
       }
     }
 
-    // background-color: var(--blueDark10Trans);
+    // background-color: var(--blue-dark-trans-10);
   }
 
   .bg-img {

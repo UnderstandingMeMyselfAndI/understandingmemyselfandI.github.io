@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { clamp } from '@/js/utils.js'
+import { clamp } from '@js/utils.js'
 import FitText from './FitText'
 import './Motivation.css'
 
@@ -67,8 +67,7 @@ const Motivation = () => {
     return input < min ? min : input > max ? max : input
   }
   function map(current, in_min, in_max, out_min, out_max) {
-    const mapped =
-      ((current - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
+    const mapped = ((current - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
     return clamp(mapped, out_min, out_max)
   }
   const boundingBox = document.querySelector('.motivation-trigger')
@@ -104,12 +103,7 @@ const Motivation = () => {
                 // console.log('opacity ', i, ' ', opacity);
                 // console.log('rotation ', i, ' ', rotation);
                 // console.log('scale ', i, ' ', scale);
-                console.log(
-                  'progress ',
-                  i,
-                  ' ',
-                  Math.abs(Math.sin(floatToRadians(progress))),
-                )
+                console.log('progress ', i, ' ', Math.abs(Math.sin(floatToRadians(progress))))
               }
 
               // console.log('rotation ', i, ' ', rotation);
@@ -142,12 +136,7 @@ const Motivation = () => {
       <div ref={container} className='motivation-container'>
         <div className='motivation-words'>
           {phrases.map((word, i) => (
-            <div
-              key={i}
-              ref={addToRefs}
-              className='motivation-word'
-              style={{ transform: 'translateY(100vh)' }}
-            >
+            <div key={i} ref={addToRefs} className='motivation-word' style={{ transform: 'translateY(100vh)' }}>
               {/* {word} */}
               <FitText text={word} containerRef={container} />
             </div>

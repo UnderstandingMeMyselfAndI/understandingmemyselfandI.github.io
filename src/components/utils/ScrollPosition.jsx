@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import useAppStore from '@/store/useAppStore'
+import useAppStore from '@store/useAppStore'
 // import PropTypes from "prop-types";
 import './ScrollPosition.scss'
 function clamp(value, min, max) {
@@ -11,11 +11,7 @@ const ScrollPosition = () => {
   const scrollStage = useAppStore((state) => state.scrollStage)
   useEffect(() => {
     window.addEventListener('scroll', () => {
-      const nextStage = clamp(
-        Math.floor(window.scrollY / (window.innerHeight * 0.25)),
-        0,
-        20,
-      )
+      const nextStage = clamp(Math.floor(window.scrollY / (window.innerHeight * 0.25)), 0, 20)
       setStage(nextStage)
       // console.log("stage", stage);
       // setActivity(stage);

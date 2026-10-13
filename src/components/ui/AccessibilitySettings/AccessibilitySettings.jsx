@@ -1,5 +1,5 @@
 import React from 'react'
-import useAppStore from '@/store/useAppStore'
+import useAppStore from '@store/useAppStore'
 import styles from './AccessibilitySettings.module.scss'
 
 const AccessibilitySettings = () => {
@@ -42,8 +42,7 @@ const AccessibilitySettings = () => {
             <button
               key={t}
               className={`${styles.themeButton} ${theme === t ? styles.active : ''}`}
-              onClick={() => handleThemeChange(t)}
-            >
+              onClick={() => handleThemeChange(t)}>
               {t.replace('-', ' ')}
             </button>
           ))}
@@ -53,10 +52,7 @@ const AccessibilitySettings = () => {
       {/* Text Scaling Section */}
       <section className={`${styles.section} ${styles.sliderContainer}`}>
         <div className={styles.labelRow}>
-          <button
-            className={styles.resetButton}
-            onClick={() => handleScaleChange({ target: { value: 100 } })}
-          >
+          <button className={styles.resetButton} onClick={() => handleScaleChange({ target: { value: 100 } })}>
             Reset
           </button>
         </div>
@@ -72,10 +68,7 @@ const AccessibilitySettings = () => {
           onChange={handleScaleChange}
           className={styles.rangeInput}
         />
-        <p className={styles.hint}>
-          Change your settings to your suit your visibity and accessibility
-          needs
-        </p>
+        <p className={styles.hint}>Change your settings to your suit your visibity and accessibility needs</p>
       </section>
     </div>
   )

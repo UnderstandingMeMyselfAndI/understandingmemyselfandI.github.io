@@ -1,8 +1,5 @@
 import { useRef, useState, useEffect, useCallback, useMemo } from 'react'
-import {
-  useGlobalRecalcTrigger,
-  triggerGlobalRecalc,
-} from '@/hooks/useGlobalRecalcTrigger.js'
+import { useGlobalRecalcTrigger, triggerGlobalRecalc } from '@hooks/useGlobalRecalcTrigger.js'
 // Configuration constants - easily adjustable
 const SCROLL_EFFECT_CONFIG = {
   minOpacity: 0.25, // Minimum opacity (15%)
@@ -13,11 +10,7 @@ const SCROLL_EFFECT_CONFIG = {
 }
 
 // Custom hook for scroll-based opacity and scale
-const useScrollEffects = (
-  config = SCROLL_EFFECT_CONFIG,
-  isExpanded = false,
-  offsetTop = 0,
-) => {
+const useScrollEffects = (config = SCROLL_EFFECT_CONFIG, isExpanded = false, offsetTop = 0) => {
   const ref = useRef(null)
   const [effects, setEffects] = useState({ opacity: 1, scale: 1 })
   const [windowHeight, setWindowHeight] = useState(0)
@@ -62,10 +55,7 @@ const useScrollEffects = (
     const innerFadeEndDistance = viewportCenter * config.innerFadeBoundary
 
     // Calculate progress with inner boundary (no effect until past inner boundary)
-    const effectiveDistance = Math.max(
-      0,
-      distanceFromCenter - innerFadeEndDistance,
-    )
+    const effectiveDistance = Math.max(0, distanceFromCenter - innerFadeEndDistance)
     const progress = Math.min(1, effectiveDistance / fadeEndDistance)
 
     // Calculate both opacity and scale based on the same progress
@@ -158,13 +148,7 @@ const useScrollEffects = (
   }, [calculateEffects])
 
   return useMemo(
-    () => [
-      ref,
-      effects,
-      disableScrollEffects,
-      enableScrollEffects,
-      forceRecalculate,
-    ],
+    () => [ref, effects, disableScrollEffects, enableScrollEffects, forceRecalculate],
     [effects, disableScrollEffects, enableScrollEffects, forceRecalculate],
   )
 }

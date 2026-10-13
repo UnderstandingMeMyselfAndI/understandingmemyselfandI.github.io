@@ -1,0 +1,195 @@
+@use '@scss/variables';
+@import '@scss/globals.css';
+
+.small-wins-editor {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    width: 100%;
+    // outline: 1px solid grey;
+    max-width: var(--max-width);
+    min-width: 100%;
+    padding: 1rem 1rem 2rem;
+
+    &__header {
+        margin-bottom: 1.75rem;
+        font-size: variables.$h3_size;
+        font-weight: 700;
+        font-variation-settings: 'wght' 700;
+        // height: 120px;
+        // margin-top: 3rem;
+    }
+
+    &__bar {
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: 5;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding: 0 0rem 0.75rem;
+        // background: var(--blue-light);
+        border-bottom: 1px solid var(--border);
+    }
+
+    &__back {
+        padding: 0.5rem 0.75rem;
+        font-size: variables.$sml_size;
+        font-weight: 600;
+        font-variation-settings: 'wght' 600;
+        // background-color: var(--blue-light);
+        cursor: pointer;
+    }
+
+    &__status {
+        font-size: variables.$sml_size;
+        color: var(--secondary);
+        min-height: 1em;
+
+        &--error {
+            color: var(--error);
+        }
+    }
+
+    &__delete {
+        padding: 0.5rem 0.75rem;
+        border: none;
+        outline: none;
+        background: none;
+        // font: inherit;
+        font-size: variables.$default_size;
+        font-weight: 600;
+        font-variation-settings: 'wght' 600;
+        background-color: var(--delete);
+        cursor: pointer;
+    }
+
+    &__fields {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1rem 0;
+        width: 100%;
+    }
+
+    &__field {
+        position: relative;
+    }
+
+    &__label {
+        display: block;
+        margin-bottom: 7px;
+        font-size: variables.$default_size;
+        font-weight: 600;
+    }
+
+    &__input,
+    &__textarea {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.75rem;
+        border: 1px solid var(--border);
+        border-radius: var(--border-radius-sml);
+        // font: inherit;
+        font-size: variables.$default_size;
+        line-height: 1.5;
+        background: var(--input);
+        // color: inherit;
+        resize: vertical;
+
+        &:focus-visible {
+            outline: 2px solid var(--orange-trans-50);
+            outline-offset: 1px;
+        }
+    }
+
+    &__input--date {
+        // max-width: 220px;
+    }
+
+    &__counter {
+        display: block;
+        // margin-top: 5px;
+        text-align: right;
+        font-size: variables.$small_size;
+        color: var(--muted);
+
+        &.is-near-limit {
+            color: var(--warning);
+        }
+    }
+}
+
+.small-wins-confirm {
+    position: fixed;
+    inset: 0;
+    z-index: 1500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+
+    &__backdrop {
+        position: absolute;
+        inset: 0;
+        background: var(--background-gray-trans-90);
+    }
+
+    &__panel {
+        position: relative;
+        width: 100%;
+        // max-width: var(--max-width);
+        padding: 1rem;
+        border-radius: var(--border-radius);
+        // background: var(--surface, #fff);
+        box-shadow: var(--box-shadow);
+    }
+
+    &__title {
+        margin: 0 0 0.5rem;
+        font-size: variables.$h3_size;
+    }
+
+    &__body {
+        margin: 0 0 1rem;
+        font-size: variables.$default_size;
+
+        line-height: 1.5;
+        color: var(--secondary);
+    }
+
+    &__actions {
+        display: flex;
+        gap: 0.75rem;
+    }
+
+    &__cancel,
+    &__confirm {
+        flex: 1;
+        padding: 0.5rem 0.75rem;
+        border-radius: var(--border-radius);
+        // font: inherit;
+        font-size: variables.$default_size;
+        cursor: pointer;
+    }
+
+    &__cancel {
+        border: 1px solid var(--border);
+        background: transparent;
+        color: inherit;
+    }
+
+    &__confirm {
+        border: none;
+        color: var(--secondary);
+        font-weight: 700;
+        font-variation-settings: 'wght' 700;
+        font-size: variables.$default_size;
+
+        &.is-destructive {
+            background: var(--destructive);
+        }
+    }
+}

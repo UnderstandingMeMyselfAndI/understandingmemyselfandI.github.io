@@ -1,4 +1,4 @@
-import { cnf } from 'data/config'
+import { cnf } from '@data/config'
 ;(function () {
   const _childList = true,
     _attributes = false,

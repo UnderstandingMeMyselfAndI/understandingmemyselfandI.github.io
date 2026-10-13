@@ -1,10 +1,10 @@
-@use '@/scss/variables';
-@import '@/globals.css';
+@use '@scss/variables';
+@import '@scss/globals.css';
 
 body div.main section.activity.activity-privacy-cta div.cta {
   div.inner {
     u {
-      text-decoration-color: var(--orange50Trans);
+      text-decoration-color: var(--orange-trans-50);
 
       h3.title {
         text-align: center;

@@ -1,17 +1,14 @@
 import { useEffect, useState } from 'react'
-import useAppStore from '@/store/useAppStore'
-import { activities } from '@/data/config'
-import CloseBtn from '@/components/ui/buttons/close/CloseBtn'
-import { strings } from '@/data/config'
-import PropTypes from 'prop-types'
-import { activities } from '@/data/config'
+import useAppStore from '@store/useAppStore'
+import { activities } from '@data/config'
+import CloseBtn from '@components/ui/buttons/close/CloseBtn'
+import { activities } from '@data/config'
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc
 }, {})
 
 import './styles.scss'
-import { is } from 'zod/v4/locales'
 
 const Template = () => {
   const name = 'name-to-go-here'
@@ -26,7 +23,7 @@ const Template = () => {
 
   useEffect(() => {
     open && setIsModal(activitiesById[id]?.modal)
-  }, [open])
+  }, [open])s
   useEffect(() => {
     setOpen(id === activity || !isModal)
   }, [activity, isModal])

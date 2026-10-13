@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import PropTypes from 'prop-types'
-import { debounce } from '@/js/utils.js'
+import { debounce } from '@js/utils.js'
 
 import './featureStyles.scss'
 import { useOnInView } from 'react-intersection-observer'
@@ -31,12 +31,8 @@ const Feature = ({ children = null, headline = '', classes = '' }) => {
   return (
     <div
       className={
-        (!hasDisplayed && componentInView ? ' initial' : '') +
-        (componentInView ? ' in' : ' out') +
-        ' ' +
-        classes
-      }
-    >
+        (!hasDisplayed && componentInView ? ' initial' : '') + (componentInView ? ' in' : ' out') + ' ' + classes
+      }>
       <div className='feature-inner' ref={ref}>
         <div>{headline}</div>
         {children && <div className='st'>{children}</div>}

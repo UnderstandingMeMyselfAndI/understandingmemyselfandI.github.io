@@ -1,71 +1,77 @@
 'use client'
 // import React from "react";
 
-import Routing from './components/routing/Routing'
-import { useThemeStore } from '@/store/useThemeStore'
-import useAppStore from './store/useAppStore'
-import applyTheme from 'components/theme/applyTheme'
-import ScrollPosition from 'components/utils/ScrollPosition'
-import Header from '@/components/activity/header/Header.jsx'
-import Footer from '@/components/activity/footer/Footer'
-import PrivacyPolicy from './components/activity/privacy/PrivacyPolicy'
-import Introduction from '@/components/activity/introduction/Introduction'
-import YourPrivacyCTA from './components/activity/privacy/YourPrivacyCTA'
-import Tools from 'components/activity/tools/Tools.jsx'
-import ToolsCTA from 'components/activity/tools/ToolsCTA.jsx'
-import WallpapersCTA from './components/activity/wallpapers/WallpapersCTA'
-import Backdrop from '@/components/backdrop/Backdrop'
+import Routing from '@components/routing/Routing'
+import { useThemeStore } from '@store/useThemeStore'
+import useAppStore from '@store/useAppStore'
+import applyTheme from '@components/theme/applyTheme'
+import Header from '@activity/header/Header.jsx'
+import Footer from '@activity/footer/Footer'
+import PrivacyPolicy from '@activity/privacy/PrivacyPolicy'
+import Introduction from '@activity/introduction/Introduction'
+import YourPrivacyCTA from '@activity/privacy/YourPrivacyCTA'
+import Tools from '@activity/tools/Tools.jsx'
+import ToolsCTA from '@activity/tools/ToolsCTA.jsx'
+import WallpapersCTA from '@activity/wallpapers/WallpapersCTA'
+import Backdrop from '@components/backdrop/Backdrop'
 
-import SnackBars from 'ui/snackbars/SnackBars.jsx'
-import InstallCTA from '@/components/activity/install/InstallCTA'
+import SnackBars from '@ui/snackbars/SnackBars.jsx'
+import PasscodeDialogController from './components/security/PasscodeDialogController'
+import InstallCTA from '@activity/install/InstallCTA'
 // import AcronymCard from "ui/cards/AcronymCard.jsx";
-import AcronymExplained from './components/activity/acronymExplained/AcronymExplained'
-import DaysCounter from './components/activity/daysCounter/DaysCounter'
-import DaysCounterCTA from './components/activity/daysCounter/DaysCounterCTA'
-import AppMenu from './components/ui/menu/AppMenu'
-import CookieConsent from './components/activity/cookieConsent/CookieConsent'
-import UmmiAgeGate from './components/ageGate/UmmiAgeGate'
-import AppLoading from '@/components/ui/loading/AppLoading'
-import { smoothScroll } from './js/utils.js'
-import NewsletterSignUp from './components/activity/newsletterSignup/NewsletterSignUp'
-import Exit from './components/ui/exit/Exit'
-import Settings from './components/activity/settings/Settings'
-import Vcn from './components/visits/Vcn.jsx'
-import Lingo from './components/activity/lingo/Lingo'
-import UnitsCalculator from './components/activity/unitsCalculator/UnitsCalculator'
-import UnitsCalculatorCTA from './components/activity/unitsCalculator/UnitsCalculatorCTA'
-import WallpaperGallery from './components/activity/wallpapers/WallpaperGallery'
-import WheelOfLife from './components/activity/wheeloflife/WheelOfLife'
-import WheelOfLifeCTA from './components/activity/wheeloflife/WheelOfLifeCTA'
-import VerticalTimeline from './components/activity/timeline/VerticalTimeline'
-import TimelineCTA from './components/activity/timeline/TimelineCTA'
-import Quiz from './components/activity/quiz/Quiz'
-import QuizCTA from './components/activity/quiz/QuizCTA'
-import PengGameAI from './components/activity/games/peng/PengGameAI'
+import AcronymExplained from '@activity/acronymExplained/AcronymExplained'
+import DaysCounter from '@activity/daysCounter/DaysCounter'
+import DaysCounterCTA from '@activity/daysCounter/DaysCounterCTA'
+import AppMenu from '@ui/menu/AppMenu'
+import CookieConsent from '@activity/cookieConsent/CookieConsent'
+import UmmiAgeGate from '@components/ageGate/UmmiAgeGate'
+import AppLoading from '@ui/loading/AppLoading'
+import { smoothScroll } from '@js/utils.js'
+import NewsletterSignUp from '@activity/newsletterSignup/NewsletterSignUp'
+import Exit from '@ui/exit/Exit'
+import Settings from '@activity/settings/Settings'
+import Vcn from '@components/visits/Vcn.jsx'
+import Lingo from '@activity/lingo/Lingo'
+import UnitsCalculator from '@activity/unitsCalculator/UnitsCalculator'
+import UnitsCalculatorCTA from '@activity/unitsCalculator/UnitsCalculatorCTA'
+import WallpaperGallery from '@activity/wallpapers/WallpaperGallery'
+import WheelOfLife from '@activity/wheeloflife/WheelOfLife'
+import WheelOfLifeCTA from '@activity/wheeloflife/WheelOfLifeCTA'
+import VerticalTimeline from '@activity/timeline/VerticalTimeline'
+import TimelineCTA from '@activity/timeline/TimelineCTA'
+import Quiz from '@activity/quiz/Quiz'
+import QuizCTA from '@activity/quiz/QuizCTA'
+import PengGameAI from '@activity/games/peng/PengGameAI'
+// import SmallWins from './components/activity/smallWins/SmallWins'
 // import { runPersistentStorageTests } from './js/utils.js'
 import './App.scss'
 import './scss/_fonts.scss'
 // import AccessibilitySettings from './components/ui/AccessibilitySettings/AccessibilitySettings'
 //TODO #41 Add Pop up confirm box with disclaimer. with timely reminder.
 //TODO #42 Add setting to remove reminder in settings
-// TODO: #21 "Clear Local Data" functionality
+//TODO #21 "Clear Local Data" functionality
 //TODO #43 Styling of cookie consent
-// TODO #67 #66 New features Urges and Cravings logs
-//Need for Service Worker update itself
+//TODO #67 #66 New features Urges and Cravings logs
+// Needed for Service Worker update itself
 window.__APP_LOADED = true
 
 function App() {
+  // Customise display of features
   const daysCounterEnabled = useAppStore((s) => s.daysCounterEnabled)
-  // const enableYourTools = useAppStore((s) => s.enableYourTools)
   const quickExitEnabled = useAppStore((s) => s.quickExitEnabled)
   const unitsCalculatorEnabled = useAppStore((s) => s.unitsCalculatorEnabled)
-
+  const wheelOfLifeEnabled = useAppStore((s) => s.wheelOfLifeEnabled)
+  const quizEnabled = useAppStore((s) => s.quizEnabled)
+  const toolsEnabled = useAppStore((s) => s.toolsEnabled)
+  const smoothScrollEnabled = useAppStore((s) => s.smoothScrollEnabled)
+  // Verification
   const ageVerified = useAppStore((s) => s.ageVerified)
+  const savedConsent = localStorage.getItem('cookieConsent')
+  // Hydration
   const hasHydrated = useAppStore((s) => s._hasHydrated)
 
-  const savedConsent = localStorage.getItem('cookieConsent')
+  if (smoothScrollEnabled) smoothScroll()
 
-  smoothScroll()
   const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme)
 
   if (theme !== null) {
@@ -87,41 +93,36 @@ function App() {
     <div>
       <div className='main'>
         <AppMenu />
-
         {quickExitEnabled && <Exit />}
-
         <Header />
         <Introduction />
+        {/* <SmallWins /> */}
         <WallpaperGallery />
         <VerticalTimeline />
-        <WheelOfLife />
-        <Tools />
+        {wheelOfLifeEnabled && <WheelOfLife />}
+        {toolsEnabled && <Tools />}
         <PrivacyPolicy />
-        <Quiz />
+        {quizEnabled && <Quiz />}
         <PengGameAI />
-
-        <ToolsCTA />
+        {toolsEnabled && <ToolsCTA />}
         {daysCounterEnabled && <DaysCounterCTA />}
         {unitsCalculatorEnabled && <UnitsCalculatorCTA />}
         <TimelineCTA />
-        <WheelOfLifeCTA />
+        {wheelOfLifeEnabled && <WheelOfLifeCTA />}
         <Lingo />
-        <QuizCTA />
+        {quizEnabled && <QuizCTA />}
         <WallpapersCTA />
         <YourPrivacyCTA />
-
         <NewsletterSignUp />
         <InstallCTA />
-
         <Footer />
-
         {quickExitEnabled && <Exit />}
         {unitsCalculatorEnabled && <UnitsCalculator />}
         {daysCounterEnabled && <DaysCounter />}
         <AcronymExplained />
         <Settings />
-
         <SnackBars />
+        <PasscodeDialogController />
       </div>
       <Backdrop initialImageId={2} initialDelay={3000} interval={6000} parallaxStrength={0} className='backdrop' />
       <Routing />

@@ -1,5 +1,5 @@
-@use '@/scss/_variables.scss';
-@import '@/globals.css';
+@use '@scss/variables';
+@import '@scss/globals.css';
 
 div.quick-exit {
   position: fixed;
@@ -45,7 +45,7 @@ div.quick-exit {
     }
 
     .dialog-inner::after {
-      background: var(--backgroundGrayTrans75);
+      background: var(--background-gray-trans-75);
       border-radius: 6px;
     }
   }
