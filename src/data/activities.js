@@ -314,6 +314,18 @@ export const baseActivities = [
     anchorID: '',
     conditions: [],
   },
+  {
+    id: 25,
+    url: 'book-of-small-wins',
+    title: 'Book of Small Wins',
+    menuPosition: 1,
+    menu: true,
+    shortcuts: true,
+    modal: true,
+    classes: 'new',
+    anchorID: '',
+    conditions: [],
+  },
 ]
 export const activities = baseActivities.map((item) => ({
   ...item,
@@ -691,6 +703,28 @@ export const strings = {
           label: {
             unused: 'The Wheel of Life',
             used: 'The Wheel of Life',
+          },
+        },
+      },
+    },
+    {
+      name: 'book-of-small-wins',
+      title: 'Book Of Small Wins',
+      slug: 'book-of-small-wins',
+      url: 'book-of-small-wins',
+      btnLabel: 'Book of Small Wins',
+      anchorID: '',
+      content: [],
+      cta: {
+        title: 'Book of Small Wins',
+        content: [
+          "It's easy to forget the small wins and gains we make in our recovery journey. ",
+          "Jot them down and use them to remind yourself how far you've come. Read them back if your day is a bit grey and glum.",
+        ],
+        btn: {
+          label: {
+            unused: 'Book of Small Wins',
+            used: 'Record the small wins',
           },
         },
       },

@@ -37,6 +37,8 @@ export default defineConfig({
   server: {
     sourcemap: false,
     host: true, // Listen on all addresses, including LAN
+    csp: false, // Disable Vite‑generated CSP
+    port: 5174,
   },
   build: {
     outDir: 'dist',
