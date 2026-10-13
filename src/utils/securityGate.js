@@ -215,7 +215,7 @@ export async function createPasscode(passcode) {
   const newKey = await deriveKey(trimmed, salt, iterations)
 
   if (oldKey) {
-    const { reencryptAll } = await import('./smallWinsStorage')
+const { reencryptAll } = await import('./smallWinsStorage')
     await reencryptAll(oldKey, newKey)
   }
 

@@ -28,6 +28,7 @@ const transformJsxInJs = () => ({
 //version meta data
 const metadata = JSON.parse(fs.readFileSync('./src/metadata.json', 'utf-8'))
 const buildVersion = `${metadata.buildMajor}.${metadata.buildMinor}.${metadata.buildRevision}${metadata.buildTag ? '-' + metadata.buildTag : ''}`
+// const isDev = process.env.NODE_ENV === 'development'
 
 export default defineConfig({
   root: './',
@@ -77,7 +78,7 @@ export default defineConfig({
       dynamicRoutes: getDynamicRoutes(),
       changefreq: 'weekly',
       priority: 0.8,
-      robots: [{ userAgent: '*', allow: '/' }],
+      robots: [], //isDev ? [{ userAgent: '*', allow: '/' }] : false,
     }),
     VitePWA({
       strategies: 'injectManifest', // Required for custom push logic
