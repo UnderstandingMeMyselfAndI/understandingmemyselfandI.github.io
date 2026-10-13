@@ -55,7 +55,7 @@ body .main section.acronym-explained-activity {
   strong {
     position: relative;
     display: inline-block;
-    color: var(--yellow);
+    // color: var(--yellow);
   }
 
   b::after {
@@ -98,7 +98,6 @@ body .main section.acronym-explained-activity {
     margin: 0 auto;
     display: flex;
     flex-flow: column nowrap;
-    justify-content: center;
     color: var(--primary);
   }
 
@@ -106,7 +105,6 @@ body .main section.acronym-explained-activity {
     display: flex;
     position: relative;
     align-items: center;
-    justify-content: center;
 
     text-align: center;
     transition: var(--transition);
@@ -163,10 +161,11 @@ body .main section.acronym-explained-activity {
       position: relative;
       z-index: 10;
       display: flex;
+      justify-content: flex-start;
       flex-flow: row wrap;
       opacity: 1;
       font-size: variables.$h3_size;
-      color: var(--primary);
+      color: var(--tool-title);
       line-height: 1;
       font-weight: 800;
       font-variation-settings: 'wght' 800;
@@ -175,7 +174,7 @@ body .main section.acronym-explained-activity {
       gap: 0.65rem;
 
       width: calc(100% - 80px);
-      width: 100%;
+      // width: 100%;
       min-width: calc(100% - 80px);
       height: fit-content;
 
@@ -204,9 +203,9 @@ body .main section.acronym-explained-activity {
   }
 
   section.AccContent {
-    font-size: variables.$p_size;
-    font-weight: variables.$p_weight;
-    line-height: variables.$p_line_height;
+    font-size: variables.$default_size;
+    // font-weight: variables.$p_weight;
+    // line-height: variables.$p_line_height;
     position: static;
     overflow-y: scroll;
     height: fit-content;
@@ -236,16 +235,17 @@ body .main section.acronym-explained-activity {
         padding-right: 0;
         padding-left: 0;
         text-wrap-style: balance;
+        font-size: variables.$p_size;
       }
 
       b,
       p b,
       strong,
       p strong {
-        color: var(--yellow);
+        color: var(--yellow-2);
         position: relative;
         text-decoration: underline;
-        text-decoration-color: var(--blue-light-trans-40);
+        text-decoration-color: var(--blue-light-trans-20);
         text-decoration-thickness: 0.55em; //45%; ems used for iOS devices
         text-underline-offset: -0.355em; // must use em for iOS
         text-decoration-skip-ink: none;
@@ -462,7 +462,7 @@ body .main section.acronym-explained-activity {
 
     div.tags {
       div.title {
-        font-size: 0.85rem;
+        font-size: variables.$sml_size;
         font-weight: 400;
         font-variation-settings: 'wght' 400;
         text-decoration: none !important;
@@ -475,7 +475,7 @@ body .main section.acronym-explained-activity {
         column-gap: 0.5rem;
         width: 90%;
         margin: 0 auto;
-        font-size: 0.85rem;
+        font-size: variables.$sml_size;
         padding: 0 0 2rem 0;
         color: var(--grey);
       }
@@ -580,7 +580,7 @@ body .main section.acronym-explained-activity {
         column-gap: 0.05rem;
         padding: 0.5rem 0;
         color: var(--grey);
-        font-size: 1rem;
+        font-size: variables.$default_size;
 
         .hours::after {
           content: '';

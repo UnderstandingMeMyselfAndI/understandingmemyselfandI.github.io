@@ -1,0 +1,550 @@
+:root {
+  --card-outline: 1px solid rgba(200, 200, 200, 0.5);
+  --card-outline-med: 1px solid rgba(100, 100, 100, 0.5);
+  --card-outline-dark: 1px solid rgba(50, 50, 50, 0.5);
+  --breakpoint-desktop: 1200px;
+  --breakpoint-tablet: 900px;
+  --breakpoint-mobile: 600px;
+  --max-width: 430px;
+  --max-width-lrg-screen: 600px;
+  --gutters: 1.25rem;
+  --app-max-width: 430px;
+  --max-width: var(--app-max-width);
+  --border-radius-sml: 4px;
+  --border-radius: 6px;
+  --border-radius-lrg: 12px;
+  --background-blue: #2e24688f;
+  --background-inactive: #332d538f;
+  --background-disabled: #706a918f;
+  --background-bright: #e3e3fc;
+  --background-gray-trans-5: rgba(10, 10, 10, 0.05);
+  --background-gray-trans-10: rgba(10, 10, 10, 0.1);
+  --background-gray-trans-15: rgba(10, 10, 10, 0.15);
+  --background-gray-trans-20: rgba(10, 10, 10, 0.2);
+  --background-gray-trans-25: rgba(10, 10, 10, 0.25);
+  --background-gray-trans-30: rgba(10, 10, 10, 0.3);
+  --background-gray-trans-35: rgba(10, 10, 10, 0.35);
+  --background-gray-trans-40: rgba(10, 10, 10, 0.4);
+  --background-gray-trans-45: rgba(10, 10, 10, 0.45);
+  --background-gray-trans-50: rgba(10, 10, 10, 0.5);
+  --background-gray-trans-75: rgba(10, 10, 10, 0.75);
+  --background-gray-trans-85: rgba(10, 10, 10, 0.85);
+  --background-gray-trans-90: rgba(10, 10, 10, 0.9);
+  --background-gray-trans-95: rgba(10, 10, 10, 0.95);
+  --background-activity: rgba(57, 51, 104, 0.5);
+  --background-main: linear-gradient(140deg, rgba(27, 134, 158, 1) 0%, rgb(157, 30, 30, 1) 81%);
+  --background: rgba(27, 134, 158, 1);
+  --foreground: oklch(0.985 0 0);
+  --placeholder: rgba(69, 56, 100, 0.95);
+  --btn-bg: #3d3585;
+  --btn-bg-hover: #4b4396;
+  --btn-bg-beer: #544ba0;
+  --btn-bg-wine: #7ba04b;
+  --btn-bg-spirits: #9b3a33;
+  --chip-bg: #473e999c;
+
+  --btn-accept: #b3ade7;
+  --btn-accept-hover: #ffffff;
+
+  --btn-accept-bg: #3d3585;
+  --btn-accept-hover-bg: #3d3585;
+
+  --btn-reject: #9896b3;
+  --btn-reject-hover: #5d5a77;
+  --btn-reject-bg-hover: #312f49;
+  --btn-reject-bg: #484569;
+
+  --yellow: #e4e021;
+  --yellow-2: #7dbd38;
+  --yellow-trans-90: rgba(255, 255, 0, 0.9);
+  --yellow-trans-80: rgba(255, 255, 0, 0.8);
+  --yellow-trans-70: rgba(255, 255, 0, 0.7);
+  --yellow-trans-60: rgba(255, 255, 0, 0.6);
+  --yellow-trans-50: rgba(255, 255, 0, 0.5);
+  --yellow-trans-40: rgba(255, 255, 0, 0.4);
+  --yellow-trans-30: rgba(255, 255, 0, 0.3);
+  --yellow-trans-20: rgba(255, 255, 0, 0.2);
+  --yellow-trans-10: rgba(255, 255, 0, 0.1);
+  --orange: rgba(255, 165, 0, 1);
+  --orange-trans-90: rgba(255, 165, 0, 0.9);
+  --orange-trans-80: rgba(255, 165, 0, 0.8);
+  --orange-trans-70: rgba(255, 165, 0, 0.7);
+  --orange-trans-60: rgba(255, 165, 0, 0.6);
+  --orange-trans-50: rgba(255, 165, 0, 0.5);
+  --orange-trans-40: rgba(255, 165, 0, 0.4);
+  --orange-trans-30: rgba(255, 165, 0, 0.3);
+  --orange-trans-20: rgba(255, 165, 0, 0.2);
+  --orange-trans-10: rgba(255, 165, 0, 0.1);
+
+  --blue-light-trans-90: rgba(188, 182, 234, 0.9);
+  --blue-light-trans-80: rgba(188, 182, 234, 0.8);
+  --blue-light-trans-70: rgba(188, 182, 234, 0.7);
+  --blue-light-trans-60: rgba(188, 182, 234, 0.6);
+  --blue-light-trans-50: rgba(188, 182, 234, 0.5);
+  --blue-light-trans-40: rgba(188, 182, 234, 0.4);
+  --blue-light-trans-30: rgba(188, 182, 234, 0.3);
+  --blue-light-trans-20: rgba(188, 182, 234, 0.2);
+  --blue-light-trans-10: rgba(188, 182, 234, 0.1);
+
+  --blue-light: #bcb6ea;
+  --blue-light-2: #c8c3ee;
+  --blue: #4d477c;
+
+  --blue-trans-90: rgba(77, 71, 124, 0.9);
+  --blue-trans-80: rgba(77, 71, 124, 0.8);
+  --blue-trans-70: rgba(77, 71, 124, 0.7);
+  --blue-trans-60: rgba(77, 71, 124, 0.6);
+  --blue-trans-50: rgba(77, 71, 124, 0.5);
+  --blue-trans-40: rgba(77, 71, 124, 0.4);
+  --blue-trans-30: rgba(77, 71, 124, 0.3);
+  --blue-trans-20: rgba(77, 71, 124, 0.2);
+  --blue-trans-10: rgba(77, 71, 124, 0.1);
+  --blue-dark: #1e184b;
+  --blue-dark-trans-90: rgba(30, 24, 75, 0.9);
+  --blue-dark-trans-80: rgba(30, 24, 75, 0.8);
+  --blue-dark-trans-70: rgba(30, 24, 75, 0.7);
+  --blue-dark-trans-60: rgba(30, 24, 75, 0.6);
+  --blue-dark-trans-50: rgba(30, 24, 75, 0.5);
+  --blue-dark-trans-40: rgba(30, 24, 75, 0.4);
+  --blue-dark-trans-30: rgba(30, 24, 75, 0.3);
+  --blue-dark-trans-20: rgba(30, 24, 75, 0.2);
+  --blue-dark-trans-10: rgba(30, 24, 75, 0.1);
+  --blue-gradient-bg: radial-gradient(ellipse at 95% 5%, var(--blue-trans-20) 30%, var(--blue-dark-trans-10) 90%);
+  --blue-pink-gradient-bg: radial-gradient(ellipse at 95% 5%, var(--blue-dark-trans-20) 20%, var(--pink-trans-10) 80%);
+  --blue-orange-gradient-bg: radial-gradient(ellipse at 25% 95%,
+      var(--blue-dark-trans-20) 40%,
+      var(--orange-trans-10) 100%);
+  --grey-light: #ccc;
+  --grey-light-trans-90: rgb(204, 204, 204, 0.9);
+  --grey-light-trans-80: rgb(204, 204, 204, 0.8);
+  --grey-light-trans-70: rgb(204, 204, 204, 0.7);
+  --grey-light-trans-60: rgb(204, 204, 204, 0.6);
+  --grey-light-trans-50: rgb(204, 204, 204, 0.5);
+  --grey-light-trans-40: rgb(204, 204, 204, 0.4);
+  --grey-light-trans-30: rgb(204, 204, 204, 0.3);
+  --grey-light-trans-20: rgb(204, 204, 204, 0.2);
+  --grey-light-trans-10: rgb(204, 204, 204, 0.1);
+
+  --light-grey-bg: #819ec9;
+  --red: #e83737;
+  --green: #257e94;
+  --grey-dark: #0a0a0a;
+  --grey-dark-trans-90: rgba(10, 10, 10, 0.9);
+  --grey-dark-trans-80: rgba(10, 10, 10, 0.8);
+  --grey-dark-trans-70: rgba(10, 10, 10, 0.7);
+  --grey-dark-trans-60: rgba(10, 10, 10, 0.6);
+  --grey-dark-trans-50: rgba(10, 10, 10, 0.5);
+  --grey-dark-trans-40: rgba(10, 10, 10, 0.4);
+  --grey-dark-trans-30: rgba(10, 10, 10, 0.3);
+  --grey-dark-trans-20: rgba(10, 10, 10, 0.2);
+  --grey-dark-trans-10: rgba(10, 10, 10, 0.1);
+  /* --greyLight: #7a7a7a; */
+  --grey-light-2: #535353;
+  --grey-mid: #535353;
+  --grey-med: #535353;
+  --grey: #999;
+  --pink: rgb(255, 192, 203);
+  --pink-trans-90: rgb(255, 192, 203, 0.9);
+  --pink-trans-80: rgb(255, 192, 203, 0.8);
+  --pink-trans-70: rgb(255, 192, 203, 0.7);
+  --pink-trans-60: rgb(255, 192, 203, 0.6);
+  --pink-trans-50: rgb(255, 192, 203, 0.5);
+  --pink-trans-40: rgb(255, 192, 203, 0.4);
+  --pink-trans-30: rgb(255, 192, 203, 0.3);
+  --pink-trans-20: rgb(255, 192, 203, 0.2);
+  --pink-trans-10: rgb(255, 192, 203, 0.1);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.269 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-trans-90: rgba(255, 255, 255, 0.9);
+  --primary-trans-80: rgba(255, 255, 255, 0.8);
+  --primary-trans-70: rgba(255, 255, 255, 0.7);
+  --primary-trans-60: rgba(255, 255, 255, 0.6);
+  --primary-trans-50: rgba(255, 255, 255, 0.5);
+  --primary-trans-40: rgba(255, 255, 255, 0.4);
+  --primary-trans-30: rgba(255, 255, 255, 0.3);
+  --primary-trans-20: rgba(255, 255, 255, 0.2);
+  --primary-trans-10: rgba(255, 255, 255, 0.1);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(76.993% 0.00009 271.152);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: #5b6472;
+  --muted-foreground: oklch(0.708 0 0);
+  --muted-two: rgba(200, 200, 200, 0.6);
+  --accent: oklch(0.371 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: rgb(240, 39, 42);
+
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(23.909% 0.06675 283.913 / 0.521);
+  --ring: oklch(0.556 0 0);
+  --delete: rgba(179, 38, 30, 0.7);
+  --warning: rgb(156, 103, 33);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.439 0 0);
+  --transition: 0.35s cubic-bezier(0.53, 0, 0.54, 1);
+  --transition-2: 0.35s cubic-bezier(0.3, 0, 0.74, 1);
+  --text-shadow-dark: 0px 0px 6px rgba(10, 10, 10, 0.5);
+  --text-shadow: 0px 0px 24px rgba(50, 50, 50, 0.5), 0px 0px 12px rgba(50, 50, 50, 0.85);
+  --text-shadow-dark-strong: 0px 0px 4px rgba(10, 10, 10, 1);
+  --text-shadow-light: 0px 0px 6px rgba(200, 200, 200, 0.25);
+  --box-shadow: 0px 0px 12px rgba(10, 10, 10, 0.2);
+  --box-shadow-dark: 0px 0px 6px rgba(10, 10, 10, 0.5);
+  --box-shadow-light: 0px 0px 6px rgba(200, 200, 200, 0.5);
+  --box-shadow-blue: 0px 0px 6px rgba(10, 10, 200, 0.5);
+  --box-shadow-orange: 0px 0px 6px rgba(255, 187, 0, 0.781);
+}
+
+/*
+.light {
+  --background-blue: oklch(0.985 0 0);
+  --background-main: oklch(0.985 0 0);
+  --background: oklch(1 0 0);
+  --background-blue: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --yellow: oklch(0.145 0 0);
+  --grey: oklch(0.145 0 0);
+  --grey-dark: #0a0a0a;
+  --greyLight: #4b4b4b;
+  --red: #868686;
+  --blue-light: oklch(0.145 0 0);
+  --blue-light-2: oklch(0.145 0 0);
+  --grey-mid: #535353;
+  --grey-lightBg: oklch(63.676% 0.00007 271.152);
+  --secondary: oklch(0.145 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background-main: oklch(0.145 0 0);
+  --background: oklch(0.145 0 0);
+  --background-blue: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --yellow: oklch(0.985 0 0);
+  --blue-light: oklch(0.985 0 0);
+  --blue-light-2: oklch(0.985 0 0);
+  --grey-light: oklch(0.985 0 0);
+  --grey-lightBg: oklch(0.409, 0%, 0.89876);
+  --grey: oklch(0.985 0 0);
+  --red: #868686;
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.269 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+--muted-foreground: oklch(0.708 0 0);
+--accent: oklch(0.371 0 0);
+--accent-foreground: oklch(0.985 0 0);
+--destructive: oklch(0.704 0.191 22.216);
+--border: oklch(1 0 0 / 10%);
+--input: oklch(1 0 0 / 15%);
+--ring: oklch(0.556 0 0);
+--chart-1: oklch(0.488 0.243 264.376);
+--chart-2: oklch(0.696 0.17 162.48);
+--chart-3: oklch(0.769 0.188 70.08);
+--chart-4: oklch(0.627 0.265 303.9);
+--chart-5: oklch(0.645 0.246 16.439);
+--sidebar: oklch(0.205 0 0);
+--sidebar-foreground: oklch(0.985 0 0);
+--sidebar-primary: oklch(0.488 0.243 264.376);
+--sidebar-primary-foreground: oklch(0.985 0 0);
+--sidebar-accent: oklch(0.269 0 0);
+--sidebar-accent-foreground: oklch(0.985 0 0);
+--sidebar-border: oklch(1 0 0 / 10%);
+--sidebar-ring: oklch(0.439 0 0);
+}
+
+.system {
+  --background-blue: #1b869e;
+  --background-main: linear-gradient(140deg, rgba(27, 134, 158, 1) 0%, rgb(157, 30, 30) 81%);
+  --background: oklch(32.109% 0.00004 271.152);
+  --foreground: oklch(0.985 0 0);
+  --yellow: #8dff71;
+  --blue-light: #bcb6ea;
+
+  --grey-light: #ccc;
+  --grey: #999;
+  --light-grey-bg: #3232324d;
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.269 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+--muted-foreground: oklch(0.708 0 0);
+--accent: oklch(0.371 0 0);
+--accent-foreground: oklch(0.985 0 0);
+--destructive: oklch(0.704 0.191 22.216);
+--border: oklch(1 0 0 / 10%);
+--input: oklch(1 0 0 / 15%);
+--ring: oklch(0.556 0 0);
+--chart-1: oklch(0.488 0.243 264.376);
+--chart-2: oklch(0.696 0.17 162.48);
+--chart-3: oklch(0.769 0.188 70.08);
+--chart-4: oklch(0.627 0.265 303.9);
+--chart-5: oklch(0.645 0.246 16.439);
+--sidebar: oklch(0.205 0 0);
+--sidebar-foreground: oklch(0.985 0 0);
+--sidebar-primary: oklch(0.488 0.243 264.376);
+--sidebar-primary-foreground: oklch(0.985 0 0);
+--sidebar-accent: oklch(0.269 0 0);
+--sidebar-accent-foreground: oklch(0.985 0 0);
+--sidebar-border: oklch(1 0 0 / 10%);
+--sidebar-ring: oklch(0.439 0 0);
+}
+
+*/
+
+/* ========================================= */
+/* HIGH CONTRAST THEME (WCAG AAA)            */
+/* Yellow/White text on Pure Black Background*/
+/* ========================================= */
+.high-contrast {
+  /* --- BORDERS & OUTLINES --- */
+  /* Increased to 2px for better definition */
+  --card-outline: 2px solid #ffffff;
+  --card-outline-med: 2px solid #ffffff;
+  --card-outline-dark: 2px solid #ffffff;
+
+  /* --- LAYOUT & SPACING (Inherited, but strictly defined if needed) --- */
+  --border-radius: 4px;
+  /* Reduced radius for sharper corners */
+  --border-radius-lrg: 8px;
+
+  /* --- CORE BACKGROUNDS --- */
+  --background-blue: #000000;
+  --background-main: #000000;
+  /* Replaces Gradient */
+  --background: #000000;
+  --foreground: #ffff00;
+  /* Primary Text: Yellow */
+
+  /* --- GREY TRANSPARENCIES (Mapped to Solid Black/Dark Grey) --- */
+  /* We remove transparency to avoid contrast issues with overlapping elements */
+  --background-gray-trans-5: #000000;
+  --background-gray-trans-10: #000000;
+  --background-gray-trans-15: #000000;
+  --background-gray-trans20: #000000;
+  --background-gray-trans-25: #000000;
+  --background-gray-trans-30: #000000;
+  --background-gray-trans-35: #000000;
+  --background-gray-trans-40: #000000;
+  --background-gray-trans-45: #000000;
+  --background-gray-trans-50: #000000;
+  --background-gray-trans-75: #000000;
+  --background-gray-trans-85: #000000;
+  --background-gray-trans-90: #000000;
+  --background-gray-trans-95: #000000;
+  --background-activity: #000000;
+
+  /* --- YELLOW SCALE (Mapped to Solid Yellow/Gold) --- */
+  --yellow: #ffff00;
+  --yellow-2: #ffd700;
+  /* Gold */
+  /* Transparencies removed: mapped to solid for borders/text or black for bg */
+  --yellow-trans-90: #ffff00;
+  --yellow-trans-80: #ffff00;
+  --yellow-trans-70: #ffff00;
+  --yellow-trans-60: #ffff00;
+  --yellow-trans-50: #000000;
+  /* Lower opacity backgrounds hide in HC mode */
+  --yellow-trans-40: #000000;
+  --yellow-trans-30: #000000;
+  --yellow-trans-20: #000000;
+  --yellow-trans-10: #000000;
+
+  /* --- ORANGE SCALE (Mapped to Solid Orange) --- */
+  --orange: #ffa500;
+  --orange-trans-90: #ffa500;
+  --orange-trans-80: #ffa500;
+  --orange-trans-70: #ffa500;
+  --orange-trans-60: #ffa500;
+  --orange-trans-50: #000000;
+  --orange-trans-40: #000000;
+  --orange-trans-30: #000000;
+  --orange-trans-20: #000000;
+  --orange-trans-10: #000000;
+
+  /* --- LIGHT BLUE SCALE (Mapped to Cyan/White) --- */
+  --blue-light: #00ffff;
+  /* Cyan stands out against black */
+  --blue-light-2: #ffffff;
+  --blue-light-trans-90: #00ffff;
+  --blue-light-trans-80: #00ffff;
+  --blue-light-trans-70: #00ffff;
+  --blue-light-trans-60: #00ffff;
+  --blue-light-trans-50: #000000;
+  --blue-light-trans-40: #000000;
+  --blue-light-trans-30: #000000;
+  --blue-light-trans-20: #000000;
+  --blue-light-trans-10: #000000;
+
+  /* --- BLUE SCALE (Mapped to Bright Blue/Cyan) --- */
+  --blue: #00bfff;
+  /* Deep Sky Blue */
+  --blue-trans-90: #00bfff;
+  --blue-trans-80: #00bfff;
+  --blue-trans-70: #00bfff;
+  --blue-trans-60: #00bfff;
+  --blue-trans-50: #000000;
+  --blue-trans-40: #000000;
+  --blue-trans-30: #000000;
+  --blue-trans-20: #000000;
+  --blue-trans-10: #000000;
+
+  /* --- DARK BLUE SCALE (Mapped to Black/White) --- */
+  --blue-dark: #000000;
+  --blue-dark-trans-90: #000000;
+  --blue-dark-trans-80: #000000;
+  --blue-dark-trans-70: #000000;
+  --blue-dark-trans-60: #000000;
+  --blue-dark-trans-50: #000000;
+  --blue-dark-trans-40: #000000;
+  --blue-dark-trans-30: #000000;
+  --blue-dark-trans-20: #000000;
+  --blue-dark-trans-10: #000000;
+
+  /* --- GREY SCALE (Mapped to White/Black) --- */
+  --grey-light: #ffffff;
+  --grey-light-trans-90: #ffffff;
+  --grey-light-trans-80: #ffffff;
+  --grey-light-trans-70: #ffffff;
+  --grey-light-trans-60: #ffffff;
+  --grey-light-trans-50: #000000;
+  --grey-light-trans-40: #000000;
+  --grey-light-trans-30: #000000;
+  --grey-light-trans-20: #000000;
+  --grey-light-trans-10: #000000;
+  --light-grey-bg: #000000;
+
+  /* --- STATUS COLORS (Pure, Maximum Contrast) --- */
+  --red: #ff0000;
+  --green: #00ff00;
+  /* Lime Green */
+
+  /* --- DARK GREYS (Mapped to Black) --- */
+  --grey-dark: #000000;
+  --grey-dark-trans-90: #000000;
+  --grey-dark-trans-80: #000000;
+  --grey-dark-trans-70: #000000;
+  --grey-dark-trans-60: #000000;
+  --grey-dark-trans-50: #000000;
+  --grey-dark-trans-40: #000000;
+  --grey-dark-trans-30: #000000;
+  --grey-dark-trans-20: #000000;
+  --grey-dark-trans-10: #000000;
+
+  /* --- MID GREYS --- */
+  --greyLight: #ffffff;
+  --grey-light-2: #ffffff;
+  --grey-mid: #ffffff;
+  --grey-med: #ffffff;
+  --grey: #ffffff;
+
+  /* --- COMPONENT COLORS (Shadcn/UI tokens) --- */
+  --card: #000000;
+  --card-foreground: #ffff00;
+  --popover: #000000;
+  --popover-foreground: #ffff00;
+  --primary: #ffff00;
+  --primary-foreground: #000000;
+  --secondary: #ffffff;
+  --secondary-foreground: #000000;
+  --muted: #000000;
+  --muted-foreground: #00ff00;
+  --accent: #00ffff;
+  --accent-foreground: #000000;
+  --destructive: #ff0000;
+  --border: #ffffff;
+  --input: #ffffff;
+  --ring: #ffff00;
+
+  /* --- CHARTS (High Distinction) --- */
+  --chart-1: #ffff00;
+  /* Yellow */
+  --chart-2: #00ffff;
+  /* Cyan */
+  --chart-3: #ff00ff;
+  /* Magenta */
+  --chart-4: #00ff00;
+  /* Lime */
+  --chart-5: #ffffff;
+  /* White */
+
+  /* --- SIDEBAR --- */
+  --sidebar: #000000;
+  --sidebar-foreground: #ffff00;
+  --sidebar-primary: #ffff00;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #000000;
+  --sidebar-accent-foreground: #ffff00;
+  --sidebar-border: #ffffff;
+  --sidebar-ring: #ffff00;
+
+  /* --- ANIMATIONS --- */
+  /* Usually disabled in accessibility modes */
+  --transition: none;
+  --transition-2: none;
+
+  /* --- SHADOWS (Disabled for Clarity) --- */
+  --text-shadow-dark: none;
+  --text-shadow-dark: none;
+  --text-shadow-dark-strong: none;
+  --text-shadow-light: none;
+  --text-shadow-light: none;
+  --box-shadow-dark: none;
+  --box-shadow-dark: none;
+  --box-shadow-light: none;
+  --box-shadow-light: none;
+  --box-shadow-blue: none;
+  --box-shadow-blue: none;
+  --box-shadow-orange: none;
+  --box-shadow-orange: none;
+}

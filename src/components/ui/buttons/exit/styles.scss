@@ -69,3 +69,13 @@ div.exit-btn {
     height: 32px;
   }
 }
+
+.light {
+  div.exit-btn {
+    background: var(--orange-trans-60);
+
+    svg {
+      fill: #fff;
+    }
+  }
+}

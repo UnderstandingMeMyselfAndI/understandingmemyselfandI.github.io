@@ -4,7 +4,7 @@ import useAppStore from '@store/useAppStore'
 import HandymanIcon from '@mui/icons-material/Handyman'
 import HandymanOutlinedIcon from '@mui/icons-material/HandymanOutlined'
 import { strings } from '@data/config.js'
-import './styles.scss'
+import './buttonToolbox.scss'
 
 const ButtonToolbox = ({ id }) => {
   const isEnabled = useAppStore((state) => state.userToolIDs.includes(id))

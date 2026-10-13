@@ -298,3 +298,28 @@
     }
   }
 }
+
+// when menu items double into two columns
+@media (min-device-width: 275px) and (max-device-width: 425px) and (min-device-height: 120px) and (max-device-height: 600px) {
+  .app-menu {
+    ul#app-menu__menu {
+      column-count: 2;
+      column-gap: 0.05rem;
+      column-fill: balance;
+      justify-content: space-between;
+      display: block;
+
+      li {
+        // display: inline-block;
+        width: 100%;
+        // text-align: left;
+        break-inside: avoid;
+        border-right: 1px solid var(--grey-light);
+        // min-height: 70px;
+        align-content: center;
+      }
+    }
+  }
+
+  /* styles for iPhone X‑class */
+}

@@ -51,7 +51,6 @@ div.AccordionRoot {
 
         .inner.item {
           width: 100%;
-          // outline: 1px solid #ccc;
         }
 
         .title {
@@ -125,10 +124,7 @@ div.AccordionRoot {
           background-color: var(--blue);
           border-radius: var(--border-radius);
           outline: 1px solid rgba(126, 126, 126, 0.7);
-          box-shadow:
-            0px 0px 6px rgba(20, 20, 20, 0.9),
-            0px 0px 9px rgba(20, 20, 20, 0.9),
-            0px 0px 20px rgba(30, 30, 30, 0.4);
+          box-shadow: var(--box-shadow-wide);
         }
       }
 
@@ -178,6 +174,14 @@ div.AccordionRoot {
         opacity: 1 !important;
         transform: none !important;
       }
+    }
+  }
+}
+
+.light {
+  .carousel-item {
+    &::after {
+      opacity: 0.85;
     }
   }
 }
