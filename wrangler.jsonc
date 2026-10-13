@@ -1,7 +1,6 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "ummi-app",
-  // Set this to today's date
   "compatibility_date": "2026-10-12",
   "assets": {
     "not_found_handling": "single-page-application",
@@ -12,5 +11,20 @@
       "invocation_logs": true,
       "persist": true,
     },
+  },
+  "queues": {
+    "producers": [
+      {
+        "binding": "UMMI_APP_FAILED_BUILDS",
+        "queue": "worker-failed-builds-ummi-app",
+      },
+    ],
+    "consumers": [
+      {
+        "queue": "worker-failed-builds-ummi-app",
+        "max_batch_size": 10,
+        "dead_letter_queue": "my-queue-dlq",
+      },
+    ],
   },
 }
