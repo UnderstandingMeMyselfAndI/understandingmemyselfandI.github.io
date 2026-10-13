@@ -7,6 +7,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 import { cspProxyPlugin } from 'vite-plugin-content-security-policy'
 import { getDynamicRoutes, getShortcuts } from './getDynamicRoutes.js'
 import { cloudflare } from '@cloudflare/vite-plugin'
+
 import Sitemap from 'vite-plugin-sitemap'
 
 export const ENVIRONMENTS = ['production', 'staging', 'development']
