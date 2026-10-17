@@ -1,6 +1,19 @@
 // src/utils/formatSmallWinDate.js
 // Consistent, local-timezone-safe date formatting for Small Wins.
-
+const MONTHS = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+]
 const MONTHS_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 const DAYS_SHORT = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
@@ -29,20 +42,21 @@ export function isFutureIso(iso) {
   return String(iso) > todayIso()
 }
 
-export function formatSmallWinDate(iso, now = new Date()) {
+export function formatSmallWinDate(iso, now = new Date(), useShortMonths = false) {
   const date = fromIsoDate(iso)
   if (!date) return ''
 
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
   const diffDays = Math.round((today.getTime() - date.getTime()) / 86400000)
+  const month = useShortMonths ? MONTHS_SHORT[date.getMonth()] : MONTHS[date.getMonth()]
 
   if (diffDays === 0) return 'Today'
   if (diffDays === 1) return 'Yesterday'
   if (diffDays > 1 && diffDays < 7) return DAYS_SHORT[date.getDay()]
   if (date.getFullYear() === now.getFullYear()) {
-    return `${date.getDate()} ${MONTHS_SHORT[date.getMonth()]}`
+    return `${date.getDate()} ${month}`
   }
-  return `${date.getDate()} ${MONTHS_SHORT[date.getMonth()]} ${date.getFullYear()}`
+  return `${date.getDate()} ${month} ${date.getFullYear()}`
 }
 
 export function formatSmallWinTimestamp(ms) {

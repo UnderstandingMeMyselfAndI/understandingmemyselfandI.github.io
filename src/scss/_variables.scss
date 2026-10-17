@@ -295,7 +295,7 @@ $menu_line_height: 1;
 // ------------------------------------------
 // Micro font size
 // ------------------------------------------
-$micro_size_min: 8px;
+$micro_size_min: 10px;
 $micro_size_max: 12px;
 
 $micro_size: responsiveFontSize($micro_size_min, $micro_size_max, $minDeviceWidth, $maxDeviceWidth);

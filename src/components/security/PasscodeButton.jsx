@@ -13,8 +13,8 @@ import './passcodeControls.scss'
 export default function PasscodeButton({
   className = '',
   variant = 'default', // 'default' | 'ghost' | 'compact'
-  createLabel = 'Enable Security',
-  settingsLabel = 'Passcode Settings',
+  createLabel = 'Secure', // 'Security'
+  settingsLabel = 'Passcode', // 'Passcode settings'
 }) {
   const requestOpen = useAppStore((s) => s.requestPasscodeDialog)
   const [state, setState] = useState(() => ({

@@ -25,22 +25,27 @@
 
     &__count {
         font-size: variables.$sml_size;
-        color: var(--muted);
+        color: var(--orange-dark);
         white-space: nowrap;
         align-self: flex-end;
+        font-weight: 600;
+        font-variation-settings: 'wght' 600;
     }
 
     &__tabs {
         display: flex;
         gap: 6px;
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.5rem;
+
+        >button {
+            width: fit-content;
+        }
     }
 
     &__tab {
         padding: 0.5rem 0.75rem;
         border: none;
         background: none;
-        font: inherit;
         font-size: variables.$sml_size;
         color: var(--primary);
         cursor: pointer;
@@ -94,16 +99,11 @@
     }
 
     &__search {
-        margin-bottom: 0.75rem;
+        flex: 2;
     }
 
     &__search-label {
-        display: block;
-        margin-bottom: 6px;
-        font-size: 12.5px;
-        font-weight: 600;
-        font-variation-settings: 'wght' 600;
-        color: var(--muted);
+        display: none;
     }
 
     &__search-row {
@@ -112,16 +112,17 @@
     }
 
     &__search-input {
-        flex: 1;
+        // flex: 1;
         min-width: 0;
+        width: 100%;
         padding: 0.5rem 0.75rem;
-        border: 1px solid var(--border);
-        border-radius: var(--border-radius);
+        border: 1px solid transparent;
+        border-radius: var(--border-radius-sml);
         font-size: variables.$default_size;
         background: var(--input);
 
         &:focus-visible {
-            outline: 2px solid var(--orange-trans-60);
+            outline: 1px solid var(--orange-trans-30);
             outline-offset: 1px;
         }
     }
@@ -136,16 +137,180 @@
         color: var(--blue-light);
     }
 
+    // --- Current date (sticky below search) -----------------------------
+
+    &__current-date {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        align-self: flex-start;
+        padding: 0.375rem 0.375rem;
+        flex-shrink: 0;
+        font-size: variables.$sml_size;
+        font-weight: 500;
+        font-variation-settings: 'wght' 500;
+    }
+
+    &__current-date-label {
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+        line-height: 1;
+        padding: 0;
+        margin: 0.2rem 0 0;
+        font-size: variables.$micro_size;
+    }
+
+    &__current-date-value {
+        color: var(--secondary);
+        font-size: variables.$sml_size;
+    }
+
+    &__current-date-count {
+        color: var(--secondary);
+        font-size: variables.$sml_size;
+        padding-left: 0.5rem;
+        border-left: 1px solid var(--border);
+    }
+
+    // No longer uses flex gap: spacing is handled per date-group so the
+    // divider can have its own breathing room.
     &__list {
         list-style: none;
         margin: 0;
         padding: 0;
+        padding: 0.5rem 0;
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+        flex: 1;
+        border-top: 1px solid var(--grey-dark-trans-30);
+    }
+
+    // --- Date grouping --------------------------------------------------
+
+    &__date-group {
+        list-style: none;
+        margin: 0 0 1.25rem 0;
+        padding: 0;
+    }
+
+    &__date-divider {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 0.25rem 0.5rem;
+        font-size: variables.$sml_size;
+        font-weight: 500;
+        font-variation-settings: 'wght' 500;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--secondary);
+        opacity: 0.75;
+
+        &::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        &::before {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+    }
+
+    // The very first divider sits directly under the search box, so drop
+    // its top padding; the list's own padding already provides separation.
+    &__date-group:first-child &__date-divider {
+        padding-top: 0;
+    }
+
+    &__group-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
         display: flex;
         flex-direction: column;
         gap: 0.75rem;
-        overflow-y: scroll;
-        flex: 1;
+    }
+
+    // --- Pagination -----------------------------------------------------
+
+    &__pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
         padding: 0.5rem 0;
+        flex-shrink: 0;
+    }
+
+    &__pages {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__page,
+    &__page-btn {
+        min-width: 2.25rem;
+        height: 2.25rem;
+        padding: 0 0.625rem;
+        border: 1px solid var(--border);
+        border-radius: var(--border-radius);
+        background: var(--input);
+        color: var(--primary);
+        font: inherit;
+        font-size: variables.$sml_size;
+        cursor: pointer;
+        transition:
+            border-color 0.3s 0.05s ease-in-out,
+            color 0.3s 0.05s ease-in-out;
+
+        &:hover:not(:disabled) {
+            border-color: var(--orange);
+            color: var(--orange);
+            transition:
+                border-color 0.3s 0.2s ease-in-out,
+                color 0.3s 0.2s ease-in-out;
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--orange-trans-60);
+            outline-offset: 1px;
+            transition:
+                border-color 0.3s 0.2s ease-in-out,
+                color 0.3s 0.2s ease-in-out;
+        }
+
+        &:disabled {
+            opacity: 0.45;
+            cursor: default;
+        }
+    }
+
+    &__page.is-active {
+        // background: var(--orange);
+        border-color: var(--orange-dark);
+        color: #fff;
+        font-weight: 800;
+        font-variation-settings: 'wght' 800;
+    }
+
+    &__page-info {
+        margin: 0;
+        text-align: center;
+        font-size: variables.$sml_size;
+        color: var(--muted);
+        flex-shrink: 0;
     }
 
     &__no-results {
@@ -160,8 +325,8 @@
         bottom: 1rem;
         display: block;
         width: 100%;
-        margin-top: 1rem;
-        padding: 13px 1rem;
+        margin-top: 0.5rem;
+        padding: 0.75rem 1rem;
         border: none;
         border-radius: var(--border-radius);
         color: #fff;
@@ -233,20 +398,16 @@
 
 .small-wins-why {
     padding: 0.25rem 0 1.5rem;
-    // margin-bottom: 2rem;
     text-align: left;
     display: flex;
     flex-flow: column wrap;
     align-content: stretch;
     gap: 0.5rem;
-    // height: 100%;
     flex: 1;
     overflow-y: scroll;
     width: 100%;
 
     &__title {
-        // margin: 0.25rem 0 0.75rem;
-        // flex: 1;
         font-weight: 700;
         font-variation-settings: 'wght' 700;
         font-size: variables.$med_size;
@@ -254,7 +415,6 @@
     }
 
     &__list {
-        // flex: 1;
         list-style: none;
         margin: 0;
         padding: 0;
@@ -262,7 +422,6 @@
         flex-direction: column;
         gap: 0.75rem;
         height: 50%;
-        // max-height: 60vh;
     }
 
     &__item {
@@ -273,7 +432,6 @@
         border-radius: var(--border-radius);
         padding: 0.5rem 0.75rem;
         background: var(--background-activity);
-        // background: var(--background);
 
         &:last-child {
             margin-bottom: 2rem;

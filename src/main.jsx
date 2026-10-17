@@ -2,6 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
+if (import.meta.env.DEV) {
+  import('@utils/seedSmallWins').then((m) => m.attachToWindow())
+}
 
 if ('serviceWorker' in navigator) {
   // Register the service worker (VitePWA handles this automatically, but we can listen for updates)

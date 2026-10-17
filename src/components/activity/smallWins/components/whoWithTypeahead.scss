@@ -24,10 +24,10 @@
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        padding: 4px 6px 4px 10px;
+        padding: 0.25rem 0.5rem;
         border-radius: 999px;
         background: var(--chip-bg);
-        font-size: variables.$default_size;
+        font-size: variables.$sml_size;
     }
 
     &__chip-text {
@@ -46,7 +46,7 @@
         padding: 0;
         border-radius: 50%;
         background: transparent;
-        font: inherit;
+        // font: inherit;
         font-size: variables.$default_size;
         line-height: 0.6;
         color: var(--secondary);

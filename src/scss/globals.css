@@ -7,9 +7,11 @@
   --gutters: 1.25rem;
   --app-max-width: 430px;
   --max-width: var(--app-max-width);
-  --border-radius-sml: 4px;
+
   --border-radius: 6px;
   --border-radius-lrg: 12px;
+  --border-radius-sml: 4px;
+  --border-radius-micro: 4px;
   --transition: 0.35s cubic-bezier(0.53, 0, 0.54, 1);
   --transition-2: 0.35s cubic-bezier(0.3, 0, 0.74, 1);
 
@@ -40,8 +42,11 @@
   --background-gray-trans-40: rgba(10, 10, 10, 0.4);
   --background-gray-trans-45: rgba(10, 10, 10, 0.45);
   --background-gray-trans-50: rgba(10, 10, 10, 0.5);
+  --background-gray-trans-60: rgba(10, 10, 10, 0.6);
+  --background-gray-trans-70: rgba(10, 10, 10, 0.7);
   --background-gray-trans-75: rgba(10, 10, 10, 0.75);
   --background-gray-trans-85: rgba(10, 10, 10, 0.85);
+  --background-gray-trans-80: rgba(10, 10, 10, 0.8);
   --background-gray-trans-90: rgba(10, 10, 10, 0.9);
   --background-gray-trans-95: rgba(10, 10, 10, 0.95);
 
@@ -61,8 +66,8 @@
   --btn-bg-wine: #7ba04b;
   --btn-bg-spirits: #9b3a33;
 
-  --chip: var(--primary);
-  --chip-bg: var(--orange-dark);
+  --chip: var(--grey-light-trans-70);
+  --chip-bg: var(--grey-dark-trans-20);
 
   --btn-accept: #b3ade7;
   --btn-accept-hover: #ffffff;
@@ -172,8 +177,18 @@
   --grey-mid: #535353;
   --grey-med: #535353;
 
-  --grey: #999;
+  --grey: rgb(153, 153, 153);
   --pink: rgb(255, 192, 203);
+
+  --grey-trans-90: rgba(60, 60, 60, 0.9);
+  --grey-trans-80: rgba(60, 60, 60, 0.8);
+  --grey-trans-70: rgba(60, 60, 60, 0.7);
+  --grey-trans-60: rgba(60, 60, 60, 0.6);
+  --grey-trans-50: rgba(60, 60, 60, 0.5);
+  --grey-trans-40: rgba(60, 60, 60, 0.4);
+  --grey-trans-30: rgba(60, 60, 60, 0.3);
+  --grey-trans-20: rgba(60, 60, 60, 0.2);
+  --grey-trans-10: rgba(60, 60, 60, 0.1);
 
   --pink-trans-90: rgb(255, 192, 203, 0.9);
   --pink-trans-80: rgb(255, 192, 203, 0.8);
@@ -304,7 +319,7 @@
   --btn-bg-wine: #e0f0d6;
   --btn-bg-spirits: #f5d9d6;
 
-  --chip-bg: #e8e6f8cc;
+  --chip-bg: var(--grey-light-trans-10);
 
   --btn-accept: #1e184b;
   --btn-accept-hover: #2e2468;
