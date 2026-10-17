@@ -96,7 +96,7 @@ function App() {
         {quickExitEnabled && <Exit />}
         <Header />
         <Introduction />
-        {/* <SmallWins /> */}
+        <SmallWins />
         <WallpaperGallery />
         <VerticalTimeline />
         {wheelOfLifeEnabled && <WheelOfLife />}

@@ -34,7 +34,6 @@
         display: flex;
         gap: 6px;
         margin-bottom: 0.75rem;
-        // border-bottom: 1px solid var(--border);
     }
 
     &__tab {
@@ -43,16 +42,24 @@
         background: none;
         font: inherit;
         font-size: variables.$sml_size;
-        color: var(--blue-light);
+        color: var(--primary);
         cursor: pointer;
         border-bottom: 2px solid transparent;
         margin-bottom: -1px;
+        transition: border-bottom-color 0.3s ease;
+        font-weight: 600;
+        font-variation-settings: 'wght' 600;
 
         &.is-active {
             color: var(--secondary);
-            border-bottom-color: var(--blue-light);
-            font-weight: 600;
-            font-variation-settings: 'wght' 600;
+            border-bottom-color: var(--orange);
+            transition: border-bottom-color 0.3s ease;
+        }
+
+        &:hover {
+            color: var(--secondary);
+            border-bottom-color: var(--orange-trans-70);
+            transition: border-bottom-color 0.3s ease;
         }
     }
 
@@ -63,12 +70,10 @@
         margin-bottom: 0.75rem;
         padding: 12px 0.75rem;
         border-radius: var(--border-radius);
-        // background: #fff5e5;
         border: 1px solid var(--blue);
         color: var(--orange);
 
         &--critical {
-            // background: #fdeceb;
             border-color: var(--border);
             color: var(--warning);
         }
@@ -112,9 +117,7 @@
         padding: 0.5rem 0.75rem;
         border: 1px solid var(--border);
         border-radius: var(--border-radius);
-        font: inherit;
         font-size: variables.$default_size;
-        color: inherit;
         background: var(--input);
 
         &:focus-visible {
@@ -128,7 +131,6 @@
         border: 1px solid var(--border);
         border-radius: var(--border-radius);
         background: transparent;
-        font: inherit;
         font-size: variables.$sml_size;
         cursor: pointer;
         color: var(--blue-light);
@@ -162,9 +164,7 @@
         padding: 13px 1rem;
         border: none;
         border-radius: var(--border-radius);
-        // background: #2f5fd0;
         color: #fff;
-        font: inherit;
         font-size: variables.$default_size;
         font-weight: 600;
         cursor: pointer;
@@ -181,7 +181,11 @@
 .small-wins-empty {
     padding: 2rem 1rem;
     text-align: center;
+    display: flex;
+    flex-flow: column wrap;
     flex: 1;
+    justify-content: space-evenly;
+    align-items: center;
 
     &__title {
         margin: 0 0 0.5rem;
@@ -198,7 +202,7 @@
 
     &__examples-label {
         margin: 0 0 0.5rem;
-        font-size: variables.$sml_size;
+        font-size: variables.$med_size;
         font-weight: 600;
         font-variation-settings: 'wght' 600;
         color: var(--primary);
@@ -220,7 +224,10 @@
         border-radius: 999px;
         background: var(--chip-bg);
         font-size: variables.$default_size;
-        color: var(--secondary);
+        font-weight: 700;
+        font-variation-settings: 'wght' 700;
+        text-shadow: var(--text-shadow-light);
+        color: var(--chip);
     }
 }
 
@@ -240,8 +247,8 @@
     &__title {
         // margin: 0.25rem 0 0.75rem;
         // flex: 1;
-        font-weight: 500;
-        font-variation-settings: 'wght' 500;
+        font-weight: 700;
+        font-variation-settings: 'wght' 700;
         font-size: variables.$med_size;
         color: var(--orange);
     }
@@ -262,7 +269,7 @@
         display: flex;
         flex-flow: column wrap;
         gap: 0.25rem;
-        margin: 0 0.75rem;
+        margin: 0;
         border-radius: var(--border-radius);
         padding: 0.5rem 0.75rem;
         background: var(--background-activity);
@@ -274,13 +281,13 @@
     }
 
     &__heading {
-        font-size: variables.$med_size;
+        font-size: variables.$subtitle_size;
         font-weight: 600;
         font-variation-settings: 'wght' 600;
         color: var(--blue-light);
         border-bottom: 1px solid var(--border);
         text-decoration: none;
-        margin: 0.5rem 0;
+        margin: 0;
         padding: 0.5rem 0;
     }
 
@@ -293,9 +300,4 @@
         font-size: variables.$default_size;
         color: var(--primary);
     }
-}
-
-.small-wins-overview {
-    // opacity: 0.2;
-    // background: yellow;
 }

@@ -3,7 +3,9 @@
 // PasscodeDialog. Owns its own visibility state.
 
 import { useRef, useState } from 'react'
-
+import IconView from '@icons/IconView'
+import IconViewOff from '@icons/IconViewOff'
+import './passcodeField.scss'
 export const MAX_LENGTH = 12
 
 function digitsOnly(value) {
@@ -73,10 +75,22 @@ export default function PasscodeField({ id, label, value, onChange, autoFocus = 
 
   return (
     <>
-      <label className='pc-field__label' htmlFor={id}>
-        {label}
-      </label>
       <div className='pc-field__row'>
+        <div className='pc-field__field-title'>
+          <label className='pc-field__label' htmlFor={id}>
+            {label}
+            {hint && <span className='pc-field__hint'>{hint}</span>}
+          </label>
+          <button
+            type='button'
+            className={'pc-field__toggle' + (visible ? ' view' : '')}
+            onClick={toggle}
+            aria-label={visible ? `Hide ${label || 'passcode'}` : `Show ${label || 'passcode'}`}
+            aria-pressed={visible}
+            aria-controls={id}>
+            {visible ? <IconView /> : <IconViewOff />}
+          </button>
+        </div>
         <input
           id={id}
           ref={inputRef}
@@ -94,17 +108,7 @@ export default function PasscodeField({ id, label, value, onChange, autoFocus = 
           autoCapitalize='off'
           autoCorrect='off'
         />
-        <button
-          type='button'
-          className='pc-field__toggle'
-          onClick={toggle}
-          aria-label={visible ? `Hide ${label || 'passcode'}` : `Show ${label || 'passcode'}`}
-          aria-pressed={visible}
-          aria-controls={id}>
-          {visible ? <EyeOffIcon /> : <EyeIcon />}
-        </button>
       </div>
-      {hint && <p className='pc-field__hint'>{hint}</p>}
     </>
   )
 }

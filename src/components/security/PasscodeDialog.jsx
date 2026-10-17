@@ -10,22 +10,23 @@ import {
 } from '../../utils/securityGate'
 import { useRegisterModal } from '../../utils/modalDepth'
 import PasscodeField, { MAX_LENGTH } from './PasscodeField'
+import CloseBtn from '@ui/buttons/close/CloseBtn'
+
 import './passcodeControls.scss'
 
 function DialogShell({ title, onClose, children }) {
   return (
-    <div className='pc-dialog' role='dialog' aria-modal='true' aria-label={title}>
+    <section className='pc-dialog' role='dialog' aria-modal='true' aria-label={title}>
       <div className='pc-dialog__backdrop' onClick={onClose} />
       <div className='pc-dialog__panel'>
         <header className='pc-dialog__head'>
           <h3 className='pc-dialog__title'>{title}</h3>
-          <button type='button' className='pc-dialog__close' onClick={onClose} aria-label='Close'>
-            ×
-          </button>
+          <CloseBtn onClick={onClose} aria-label='Close' />
         </header>
+
         <div className='pc-dialog__body'>{children}</div>
       </div>
-    </div>
+    </section>
   )
 }
 
@@ -59,35 +60,42 @@ function CreateView({ onDone, onCancel }) {
 
   return (
     <form onSubmit={submit}>
-      <p className='pc-dialog__lede'>
-        Your wins are already encrypted on this device. A passcode adds a lock only you know.
-      </p>
-      <div className='pc-dialog__warning'>
-        If you forget your passcode, your data cannot be recovered. There is no reset.
-      </div>
-
-      <PasscodeField
-        id='pc-create'
-        label='Passcode'
-        value={passcode}
-        onChange={setPasscode}
-        hint={`${MIN_PASSCODE_LENGTH}–${MAX_LENGTH} digits`}
-        autoFocus
-      />
-      <PasscodeField id='pc-create-confirm' label='Confirm passcode' value={confirm} onChange={setConfirm} />
-
-      {error && (
-        <p className='pc-dialog__error' role='alert'>
-          {error}
+      <div className='pc-dialog__header'>
+        <div className='pc-dialog__subtitle'>Further secure your data.</div>
+        <p className='pc-dialog__lede'>
+          Using a passcode means you will need to enter it before you can read your data.
         </p>
-      )}
-
+      </div>
+      <div className='pc-dialog__warning'>
+        Only you know your passcode. <br /> <br />
+        If you forget it, it cannot be recovered or reset.
+      </div>{' '}
+      <div className='pc-dialog__fields'>
+        <div>
+          <PasscodeField
+            id='pc-create'
+            label='Passcode'
+            value={passcode}
+            onChange={setPasscode}
+            hint={`${MIN_PASSCODE_LENGTH}–${MAX_LENGTH} digits`}
+            autoFocus
+          />
+        </div>
+        <div>
+          <PasscodeField id='pc-create-confirm' label='Confirm passcode' value={confirm} onChange={setConfirm} />
+        </div>
+        {error && (
+          <p className='pc-dialog__error' role='alert'>
+            {error}
+          </p>
+        )}{' '}
+      </div>
       <div className='pc-dialog__actions'>
         <button type='button' className='pc-dialog__btn pc-dialog__btn--ghost' onClick={onCancel}>
           Cancel
         </button>
         <button type='submit' className='pc-dialog__btn pc-dialog__btn--primary' disabled={busy}>
-          {busy ? 'Creating…' : 'Create passcode'}
+          {busy ? 'Creating…' : 'Create a passcode'}
         </button>
       </div>
     </form>
@@ -97,7 +105,7 @@ function CreateView({ onDone, onCancel }) {
 function SettingsView({ onNavigate, onClose }) {
   return (
     <>
-      <p className='pc-dialog__lede'>Your passcode protects this activity on this device.</p>
+      <p className='pc-dialog__lede'>Your passcode further protects the data on this device.</p>
       <ul className='pc-dialog__menu'>
         <li>
           <button type='button' className='pc-dialog__menu-item' onClick={() => onNavigate('change')}>
@@ -108,7 +116,7 @@ function SettingsView({ onNavigate, onClose }) {
         <li>
           <button type='button' className='pc-dialog__menu-item' onClick={() => onNavigate('disable')}>
             <span className='pc-dialog__menu-title'>Disable passcode</span>
-            <span className='pc-dialog__menu-sub'>Keep your data, remove the lock.</span>
+            <span className='pc-dialog__menu-sub'>Keep your data, remove the passcode lock.</span>
           </button>
         </li>
         <li>
@@ -316,7 +324,7 @@ export default function PasscodeDialog({ startView = 'settings', onClose }) {
   const [doneMessage, setDoneMessage] = useState('')
 
   const titles = {
-    create: 'Create passcode',
+    create: 'Create a passcode',
     settings: 'Passcode settings',
     change: 'Change passcode',
     disable: 'Disable passcode',
@@ -333,15 +341,11 @@ export default function PasscodeDialog({ startView = 'settings', onClose }) {
 
   return (
     <DialogShell title={titles[view]} onClose={onClose}>
-      {view === 'create' && (
-        <CreateView onDone={() => finish('Passcode is set. Your wins are now protected.')} onCancel={onClose} />
-      )}
+      {view === 'create' && <CreateView onDone={() => finish('Passcode is set..')} onCancel={onClose} />}
       {view === 'settings' && <SettingsView onNavigate={setView} onClose={onClose} />}
       {view === 'change' && <ChangeView onDone={() => finish('Passcode changed.')} onBack={goBack} />}
-      {view === 'disable' && (
-        <DisableView onDone={() => finish('Passcode disabled. Your wins remain on this device.')} onBack={goBack} />
-      )}
-      {view === 'reset' && <ResetView onDone={() => finish('Everything has been reset.')} onBack={goBack} />}
+      {view === 'disable' && <DisableView onDone={() => finish('Passcode disabled')} onBack={goBack} />}
+      {view === 'reset' && <ResetView onDone={() => finish('Passcode reset.')} onBack={goBack} />}
       {view === 'done' && <DoneView message={doneMessage} onClose={onClose} />}
     </DialogShell>
   )

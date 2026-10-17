@@ -64,10 +64,6 @@ export default function SmallWins() {
 
   const reset = useSmallWinsStore((s) => s.reset)
 
-  console.log('activity', activity)
-  console.log('activityID', activityID)
-  console.log('open', open)
-
   useEffect(() => {
     open && setIsModal(activitiesById[id]?.modal)
   }, [open])

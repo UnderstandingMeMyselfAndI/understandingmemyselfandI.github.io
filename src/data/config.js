@@ -358,7 +358,7 @@ export const baseActivities = [
     url: 'book-of-small-wins',
     title: 'Book of Small Wins',
     menuPosition: 2,
-    menu: false,
+    menu: true,
     shortcuts: true,
     modal: true,
     classes: 'new',

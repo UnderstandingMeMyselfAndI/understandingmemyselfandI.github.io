@@ -116,7 +116,13 @@ $default_size: responsiveFontSize($default_size_min, $default_size_max, $minDevi
 
 $default_text_color: var(--text_primary);
 $default_line_height: 1.2;
+// ------------------------------------------
+// Bold fields font size
+// ------------------------------------------
 
+$bold_size_min: 15px;
+$bold_size_max: 17px;
+$bold_size: responsiveFontSize($bold_size_min, $bold_size_max, $minDeviceWidth, $maxDeviceWidth);
 // ------------------------------------------
 // Logo font size
 // ------------------------------------------
@@ -150,8 +156,8 @@ $acc_title_size_sml: responsiveFontSize($acc_title_size_sml_min,
 // Ancronym letter font size
 // ------------------------------------------
 
-$letter_size_min: 44px;
-$letter_size_max: 66px;
+$letter_size_min: 34px;
+$letter_size_max: 46px;
 $letter_size: responsiveFontSize($letter_size_min, $letter_size_max, $minDeviceWidth, $maxDeviceWidth);
 $letter_color: var(--text_primary);
 $letter_weight: 800;
@@ -161,8 +167,8 @@ $letter_line_height: 1;
 // Ancronym word font size
 // ------------------------------------------
 
-$acc_wrd_size_min: 40px;
-$acc_wrd_size_max: 60px;
+$acc_wrd_size_min: 34px;
+$acc_wrd_size_max: 40px;
 $acc_wrd_size: responsiveFontSize($acc_wrd_size_min, $acc_wrd_size_max, $minDeviceWidth, $maxDeviceWidth);
 $acc_wrd_color: var(--text_primary);
 $acc_wrd_weight: 800;
@@ -260,13 +266,21 @@ $h5_line_height: 1.2;
 // Subtitle font size
 // ------------------------------------------
 
-$subtitle_size_min: 14px;
-$subtitle_size_max: 16px;
+$subtitle_size_min: 18px;
+$subtitle_size_max: 20px;
 $subtitle_size: responsiveFontSize($subtitle_size_min, $subtitle_size_max, $minDeviceWidth, $maxDeviceWidth);
 
 $subtitle_color: var(--text_primary);
 $subtitle_weight: 400;
 $subtitle_style: normal;
+
+// ------------------------------------------
+// Dialog / Warnings font size
+// ------------------------------------------
+
+$dialog_size_min: 18px;
+$dialog_size_max: 20px;
+$dialog_size: responsiveFontSize($dialog_size_min, $dialog_size_max, $minDeviceWidth, $maxDeviceWidth);
 
 // ------------------------------------------
 // Menu font size

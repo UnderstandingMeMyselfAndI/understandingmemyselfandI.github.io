@@ -33,7 +33,7 @@ body {
   -moz-osx-font-smoothing: grayscale; // grayscale auto
   text-rendering: geometricPrecision; // optimizeLegibility geometricPrecision
 
-  font-size: variables.$p_size;
+  font-size: variables.$default_size;
 
   button,
   input,
@@ -109,7 +109,7 @@ body {
   }
 
   p {
-    font-size: variables.$p_size;
+    font-size: variables.$default_size;
     font-weight: variables.$p_weight;
     line-height: 1.4;
   }

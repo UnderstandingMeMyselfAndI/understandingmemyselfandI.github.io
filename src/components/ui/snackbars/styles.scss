@@ -15,8 +15,9 @@
 
     .MuiSnackbarContent-message {
       color: var(--primary);
-      font-weight: variables.$p_weight;
-      font-size: variables.$p_size;
+      // font-weight: variables.$default_weight;
+      // font-variation-settings: 'wght' variables.$default_weight;
+      font-size: variables.$default_size;
       padding: 0.74rem 1rem;
     }
   }

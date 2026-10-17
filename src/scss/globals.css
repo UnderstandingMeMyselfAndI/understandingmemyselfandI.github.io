@@ -61,7 +61,8 @@
   --btn-bg-wine: #7ba04b;
   --btn-bg-spirits: #9b3a33;
 
-  --chip-bg: #473e999c;
+  --chip: var(--primary);
+  --chip-bg: var(--orange-dark);
 
   --btn-accept: #b3ade7;
   --btn-accept-hover: #ffffff;
@@ -79,7 +80,7 @@
   --yellow-trans-90: rgba(255, 255, 0, 0.9);
   --yellow-trans-80: rgba(255, 255, 0, 0.8);
   --yellow-trans-70: rgba(255, 255, 0, 0.7);
-  --yellow-trans-60: rgba(255, 255, 0, 0.6);
+  --yellow-trans-60: rgba(255, 255, 123, 0.6);
   --yellow-trans-50: rgba(255, 255, 0, 0.5);
   --yellow-trans-40: rgba(255, 255, 0, 0.4);
   --yellow-trans-30: rgba(255, 255, 0, 0.3);
@@ -87,6 +88,8 @@
   --yellow-trans-10: rgba(255, 255, 0, 0.1);
 
   --orange: rgba(255, 165, 0, 1);
+  --orange-dark: rgb(197, 135, 19, 0.9);
+  --orange-light: rgb(202, 189, 163);
   --orange-trans-90: rgba(255, 165, 0, 0.9);
   --orange-trans-80: rgba(255, 165, 0, 0.8);
   --orange-trans-70: rgba(255, 165, 0, 0.7);
@@ -108,7 +111,7 @@
   --blue-light-trans-10: rgba(188, 182, 234, 0.1);
 
   --blue-light: #8378d6;
-  --blue-light-2: #8479d6;
+  --blue-light-2: #aba1f8;
   --blue: #4d477c;
 
   --blue-trans-90: rgba(77, 71, 124, 0.9);
@@ -220,6 +223,7 @@
   --input: oklch(23.909% 0.06675 283.913 / 0.521);
   --ring: oklch(0.556 0 0);
   --delete: rgba(179, 38, 30, 0.7);
+  --error: rgba(179, 38, 30, 0.7);
   --warning: rgb(156, 103, 33);
 
   --chart-1: oklch(0.488 0.243 264.376);
@@ -240,7 +244,7 @@
   --text-shadow-dark: 0px 0px 6px rgba(10, 10, 10, 0.5);
   --text-shadow: 0px 0px 24px rgba(50, 50, 50, 0.5), 0px 0px 12px rgba(50, 50, 50, 0.85);
   --text-shadow-dark-strong: 0px 0px 4px rgba(10, 10, 10, 1);
-  --text-shadow-light: 0px 0px 6px rgba(200, 200, 200, 0.25);
+  --text-shadow-light: 0px 0px 6px rgba(60, 60, 60, 0.5);
   --box-shadow: 0px 0px 12px rgba(10, 10, 10, 0.2);
   --box-shadow-dark: 0px 0px 6px rgba(10, 10, 10, 0.5);
   --box-shadow-wide: 0px 0px 16px rgba(10, 10, 10, 0.75);

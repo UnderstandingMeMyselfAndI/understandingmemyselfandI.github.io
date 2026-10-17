@@ -47,6 +47,26 @@ body .main section.acronym-explained-activity {
 
     li {
       margin: 1rem 0;
+      position: relative;
+      padding-left: 1rem;
+      font-variation-settings: 'wght' 700;
+      color: var(--blue-light-2);
+
+      &::before {
+        content: '\2794';
+        color: var(--orange-trans-80);
+        position: absolute;
+        left: 0;
+        top: 50%;
+        font-size: variables.$default_size;
+        transform: translate(0, -50%);
+        margin-left: -8px;
+        display: inline-block;
+      }
+    }
+
+    li:nth-child(even) {
+      color: var(--orange-light);
     }
   }
 
@@ -55,7 +75,6 @@ body .main section.acronym-explained-activity {
   strong {
     position: relative;
     display: inline-block;
-    // color: var(--yellow);
   }
 
   b::after {
@@ -83,7 +102,7 @@ body .main section.acronym-explained-activity {
     margin: 0;
 
     li {
-      margin-left: 1rem;
+      margin-left: 1.5rem;
     }
   }
 
@@ -97,7 +116,7 @@ body .main section.acronym-explained-activity {
     max-width: var(--max-width);
     margin: 0 auto;
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: column wrap;
     color: var(--primary);
   }
 
@@ -105,17 +124,17 @@ body .main section.acronym-explained-activity {
     display: flex;
     position: relative;
     align-items: center;
-
     text-align: center;
     transition: var(--transition);
     width: 100%;
-    height: 100px;
-    min-height: 100px;
-    padding: 0;
+    // min-height: 100px;
+    // height: fit-content;
+    padding: 0.75rem 1.25rem 1.5rem;
+    // outline: 1px solid yellow;
     margin: 0;
-    font-size: variables.$h4_size;
-    font-weight: variables.$acc_title_weight;
-    line-height: variables.$acc_title_line_height;
+    // font-size: variables.$h4_size;
+    // font-weight: variables.$acc_title_weight;
+    // line-height: variables.$acc_title_line_height;
     position: relative;
     flex: 0 0;
 
@@ -159,33 +178,35 @@ body .main section.acronym-explained-activity {
 
     >.title.cont {
       position: relative;
-      z-index: 10;
+      // top: 0;
+      // z-index: 10;
       display: flex;
       justify-content: flex-start;
       flex-flow: row wrap;
       opacity: 1;
-      font-size: variables.$h3_size;
+
       color: var(--tool-title);
       line-height: 1;
       font-weight: 800;
       font-variation-settings: 'wght' 800;
       text-decoration: none !important;
       text-align: left;
-      gap: 0.65rem;
+      font-size: variables.$h2_size;
+      // gap: 0rem;
 
-      width: calc(100% - 80px);
-      // width: 100%;
-      min-width: calc(100% - 80px);
-      height: fit-content;
+      width: calc(100% - 80px); // 80px width of closeBtn
+      // height: fit-content;
+      // padding: 1.25rem 0.5rem;
+      // outline: 1px solid yellow;
 
       &.long {
         font-size: variables.$h3_size;
       }
 
       >div {
-        position: relative;
-        height: 100%;
-        margin-right: 0px;
+        // position: relative;
+        // height: 100%;
+        // margin-right: 0px;
       }
     }
 
@@ -194,11 +215,12 @@ body .main section.acronym-explained-activity {
       width: 100%;
       height: 100%;
       position: absolute;
-      top: 0%;
-      left: 0%;
-      z-index: 0;
+      top: 0;
+      left: 0;
+      z-index: -1;
       opacity: 1;
-      border-bottom: 1px solid var(--grey-dark-trans-30);
+      background-color: var(--background-activity);
+      // border-bottom: 1px solid var(--grey-dark-trans-30);
     }
   }
 
@@ -218,6 +240,11 @@ body .main section.acronym-explained-activity {
       height: fit-content;
       text-align: left;
       margin: 0 auto;
+      padding: 0 0.5rem;
+
+      >div {
+        margin: 0.75rem 0;
+      }
 
       blockquote {
         font-style: italic;
@@ -235,7 +262,7 @@ body .main section.acronym-explained-activity {
         padding-right: 0;
         padding-left: 0;
         text-wrap-style: balance;
-        font-size: variables.$p_size;
+        font-size: variables.$default_size;
       }
 
       b,
@@ -245,10 +272,18 @@ body .main section.acronym-explained-activity {
         color: var(--yellow-2);
         position: relative;
         text-decoration: underline;
-        text-decoration-color: var(--blue-light-trans-20);
-        text-decoration-thickness: 0.55em; //45%; ems used for iOS devices
-        text-underline-offset: -0.355em; // must use em for iOS
+        text-decoration-color: var(--blue-dark-trans-60);
+        text-decoration-thickness: 0.85em; //45%; ems used for iOS devices
+        text-underline-offset: -0.65em; // must use em for iOS
         text-decoration-skip-ink: none;
+      }
+
+      p strong {
+        font-size: variables.$bold_size;
+      }
+
+      strong {
+        margin-right: 0.4rem;
       }
 
       h2,
@@ -258,27 +293,35 @@ body .main section.acronym-explained-activity {
       }
 
       ul {
-        margin: 3rem 0;
+        margin: 1rem 0;
+        list-style-type: none;
 
-        li {
+        list li {
           padding: 0;
           margin: 0 inherit;
-          font-weight: 600;
-          font-variation-settings: 'wght' 600;
-          color: var(--blue-light);
+          font-weight: 700;
+          font-variation-settings: 'wght' 700;
+
+          // color: var(--blue-light);
+          &::before {
+            content: '\2192';
+            margin-left: 8px;
+            /* Adds space between text and arrow */
+            display: inline-block;
+          }
         }
       }
     }
 
     div.AccGroup {
       color: var(--primary);
-      font-family:
-        'Plus Jakarta Sans',
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        sans-serif !important;
-      font-weight: 300;
+      // font-family:
+      //   'Plus Jakarta Sans',
+      //   system-ui,
+      //   -apple-system,
+      //   BlinkMacSystemFont,
+      //   sans-serif !important;
+      // font-weight: 300;
       min-height: fit-content;
       width: 100%;
       margin: 0 auto;
@@ -303,7 +346,7 @@ body .main section.acronym-explained-activity {
         div.Acc-letter-group {
           margin: 0 auto 1.25rem auto;
           position: relative;
-          line-height: 1;
+          // line-height: 1;
           height: fit-content;
 
           div.Acc-letter {
@@ -331,7 +374,7 @@ body .main section.acronym-explained-activity {
               transform: translate(-30%, -80%);
               z-index: -2;
               transform: rotateZ(-6deg) skew(0.03turn, 12deg) translate(-12px, -6px) scale(0.9, 0.5);
-              outline: 1px solid var(--grey-light-trans-50);
+              // outline: 1px solid var(--grey-light-trans-50);
             }
           }
 
@@ -339,27 +382,28 @@ body .main section.acronym-explained-activity {
             &::before {
               content: '';
               width: 100%; //calc(10% * var(--len));
-              height: 200%;
+              height: 100%;
               position: absolute;
               top: -60%;
               left: -15%;
-              z-index: 1;
-              transform: rotateZ(-2deg) skew(-0.09turn, 6deg) translate(-20px, 10px) scale(0.9, 0.5);
-              outline: 1px solid rgba(150, 150, 150, 0.5);
+              z-index: -1;
+              transform: skew(-0.09turn, 6deg) scale(1, 1.2) translate(-25%, 65%);
+              background: var(--blue-dark-trans-40);
             }
           }
 
           $f: 13%;
+          // $f: 0%;
 
           div.Acc-word[data-len='2'] {
             &::before {
-              width: calc($f * 3);
+              width: calc($f * 4);
             }
           }
 
           div.Acc-word[data-len='3'] {
             &::before {
-              width: calc($f * 4);
+              width: calc($f * 5);
             }
           }
 
@@ -371,7 +415,7 @@ body .main section.acronym-explained-activity {
 
           div.Acc-word[data-len='5'] {
             &::before {
-              width: calc($f * 5);
+              width: calc($f * 6);
             }
           }
 
@@ -420,9 +464,10 @@ body .main section.acronym-explained-activity {
           div.Acc-word {
             font-size: variables.$acc_wrd_size;
             font-weight: variables.$acc_wrd_weight;
+            font-variation-settings: 'wght' variables.$acc_wrd_weight;
             line-height: variables.$acc_wrd_line_height;
             margin: 0;
-            color: rgba(250, 250, 250, 1);
+            // color: var(--orange-trans-60);
             // -webkit-text-stroke: 1px rgba(255, 255, 255, 0.45);
             position: relative;
             transform: translate(0px, 4.5px);
@@ -444,6 +489,7 @@ body .main section.acronym-explained-activity {
 
         div.Acc-definition {
           margin-left: 1rem;
+          line-height: 1.3;
 
           >div div {
             margin: 1rem 0;
@@ -687,6 +733,7 @@ body .main section.acronym-explained-activity {
     position: relative;
     z-index: 10;
     margin-top: 0;
+    background-color: var(--background-activity);
 
     >div,
     >button {

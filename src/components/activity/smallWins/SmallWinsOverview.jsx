@@ -13,10 +13,10 @@ import './smallWinsOverview.scss'
 function EmptyState({ onRecord }) {
   return (
     <div className='small-wins-empty'>
-      <h3 className='small-wins-empty__title'>{STRINGS.emptyStateTitle}</h3>
-      <p className='small-wins-empty__body'>{STRINGS.emptyState}</p>
+      <h3 className='small-wins-empty__title'>{parse(STRINGS.emptyStateTitle)}</h3>
+      <p className='small-wins-empty__body'>{parse(STRINGS.emptyState)}</p>
 
-      <p className='small-wins-empty__examples-label'>{STRINGS.emptyStateExamples}</p>
+      <p className='small-wins-empty__examples-label'>{parse(STRINGS.emptyStateExamples)}</p>
       <ul className='small-wins-empty__examples'>
         {EXAMPLE_WINS.slice(0, 4).map((example) => (
           <li key={example} className='small-wins-empty__example'>
@@ -35,11 +35,11 @@ function EmptyState({ onRecord }) {
 function WhyMatters() {
   return (
     <div className='small-wins-why'>
-      <h3 className='small-wins-why__title'>{STRINGS.whyMattersTitle}</h3>
+      <h3 className='small-wins-why__title'>{parse(STRINGS.whyMattersTitle)}</h3>
       <ul className='small-wins-why__list'>
         {WHY_SMALL_WINS.map((section) => (
           <li key={section.heading} className='small-wins-why__item'>
-            <h4 className='small-wins-why__heading'>{section.heading}</h4>
+            <h4 className='small-wins-why__heading'>{parse(section.heading)}</h4>
             <div className='small-wins-why__body'>{parse(section.body)}</div>
           </li>
         ))}
