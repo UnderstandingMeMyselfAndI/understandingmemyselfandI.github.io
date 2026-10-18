@@ -5,7 +5,7 @@ import { decryptJson, encryptJson } from './crypto'
 import { ensureKey, isDryRun } from './securityGate'
 import { updateStorageUsage } from './storageQuota'
 import { todayIso } from './formatSmallWinDate'
-
+import { LIMITS } from '@data/smallWinsData.js'
 export const ENTRIES_STORE = 'smallWinsEntries'
 export const PEOPLE_STORE = 'smallWinsPeople'
 
@@ -276,9 +276,14 @@ export async function upsertPerson(rawName) {
         return putPerson({ ...existing, name: display, lastUsedAt: Date.now() }, key)
       }
     } catch {
-      /* ignore */
+      /* ignore corrupt row */
     }
   }
+
+  // Store is at capacity: existing people can still be reused (handled
+  // above), but we won't create any new ones. The caller may still attach
+  // this name to a win entry; it just won't become a suggestion going forward.
+  if (records.length >= LIMITS.peopleMax) return null
 
   const now = Date.now()
   return putPerson({ id: makeId(), name: display, createdAt: now, lastUsedAt: now }, key)

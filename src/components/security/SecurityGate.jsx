@@ -1,16 +1,22 @@
 // src/components/security/SecurityGate.jsx
 
-import { useCallback, useState } from 'react'
-import { hasPasscode, isUnlocked, lock, resetPasscode, unlock } from '../../utils/securityGate'
+import { useEffect, useRef, useState } from 'react'
+import {
+  hasPasscode,
+  isBiometricEnabled,
+  isUnlocked,
+  resetPasscode,
+  unlock,
+  unlockWithBiometric,
+} from '../../utils/securityGate'
 import { cryptoAvailable } from '../../utils/crypto'
 import { useRegisterModal } from '../../utils/modalDepth'
-import { MIN_PASSCODE_LENGTH } from '../../utils/securityGate'
 import PasscodeField from './PasscodeField'
 import './securityGate.scss'
 
 function initialMode() {
   if (!cryptoAvailable()) return 'unsupported'
-  if (!hasPasscode()) return 'open' // passcode is optional
+  if (!hasPasscode()) return 'open'
   if (isUnlocked()) return 'open'
   return 'locked'
 }
@@ -22,9 +28,34 @@ export default function SecurityGate({ children, activityName = 'this activity',
   const [busy, setBusy] = useState(false)
   const [resetting, setResetting] = useState(false)
   const [resetConfirm, setResetConfirm] = useState(false)
+  const [biometricEnabled] = useState(isBiometricEnabled)
+  const [biometricBusy, setBiometricBusy] = useState(false)
+  const biometricAttempted = useRef(false)
 
-  // Register the reset modal so the passcode reminder won't fire behind it.
   useRegisterModal(resetting)
+
+  // Auto-attempt biometric on first mount if it is enabled.
+  useEffect(() => {
+    if (mode !== 'locked' || !biometricEnabled || biometricAttempted.current) return
+    biometricAttempted.current = true
+
+    let cancelled = false
+    ;(async () => {
+      setBiometricBusy(true)
+      try {
+        const ok = await unlockWithBiometric()
+        if (!cancelled && ok) setMode('open')
+      } catch {
+        // Silent — user can fall back to the passcode.
+      } finally {
+        if (!cancelled) setBiometricBusy(false)
+      }
+    })()
+
+    return () => {
+      cancelled = true
+    }
+  }, [mode, biometricEnabled])
 
   const handleUnlock = async (event) => {
     event.preventDefault()
@@ -46,11 +77,19 @@ export default function SecurityGate({ children, activityName = 'this activity',
     }
   }
 
-  const handleLock = useCallback(() => {
-    lock()
-    if (onLocked) onLocked()
-    setMode(hasPasscode() ? 'locked' : 'open')
-  }, [onLocked])
+  const handleBiometricUnlock = async () => {
+    setError('')
+    setBiometricBusy(true)
+    try {
+      const ok = await unlockWithBiometric()
+      if (!ok) setError('Biometric unlock was cancelled.')
+      else setMode('open')
+    } catch (err) {
+      setError(String(err?.message || err))
+    } finally {
+      setBiometricBusy(false)
+    }
+  }
 
   const handleReset = async () => {
     setBusy(true)
@@ -87,7 +126,25 @@ export default function SecurityGate({ children, activityName = 'this activity',
             Forgotten passcodes cannot be recovered. Your data would be permanently lost.
           </div>
 
-          <PasscodeField id='sg-unlock-pass' label='Passcode' value={passcode} onChange={setPasscode} autoFocus />
+          {biometricEnabled && (
+            <button
+              type='button'
+              className='security-gate__biometric'
+              onClick={handleBiometricUnlock}
+              disabled={biometricBusy}>
+              {biometricBusy ? 'Waiting for biometrics…' : 'Unlock with biometrics'}
+            </button>
+          )}
+
+          <div className='security-gate__divider'>or enter passcode</div>
+
+          <PasscodeField
+            id='sg-unlock-pass'
+            label='Passcode'
+            value={passcode}
+            onChange={setPasscode}
+            autoFocus={!biometricEnabled}
+          />
 
           {error && (
             <p className='security-gate__error' role='alert'>
@@ -153,7 +210,6 @@ export default function SecurityGate({ children, activityName = 'this activity',
     )
   }
 
-  // mode === 'open'
   return (
     <div className='security-gate security-gate--open'>
       <div className='security-gate__content'>{children}</div>

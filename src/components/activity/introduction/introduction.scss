@@ -9,7 +9,7 @@
   left: 0%;
 }
 
-body section.activity.intro {
+body section.activity-introduction {
   // position: relative;
   color: var(--primary);
 
@@ -239,7 +239,7 @@ body section.activity.intro {
   @media (width >=variables.$breakpoint-desktop) {
 
     /* DESKTOP */
-    body section.intro {
+    body section.activity-introduction {
       .introduction-inner {
         .inner {
           width: 100%;
@@ -268,7 +268,7 @@ body section.activity.intro {
 
     /* MOBILE */
     body {
-      section.intro {
+      section.activity-introduction {
 
         .subsection,
         .subsection.notinstalled {

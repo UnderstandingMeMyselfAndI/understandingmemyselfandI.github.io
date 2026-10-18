@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import useAppStore from '@store/useAppStore'
 import ButtonToolbox from '@buttons/toolbox/ButtonToolbox'
 import LiteYouTubeEmbed from 'react-lite-youtube-embed'
@@ -13,64 +13,36 @@ import OndemandVideoOutlinedIcon from '@mui/icons-material/OndemandVideoOutlined
 import HdrAutoOutlinedIcon from '@mui/icons-material/HdrAutoOutlined'
 import Skeleton from '@mui/material/Skeleton'
 import { extractYouTubeId } from '@js/utils.js'
-import { activities } from '@data/config'
 
 import './acronymExplained.scss'
-
-const activitiesById = activities.reduce((acc, activity) => {
-  acc[activity.id] = activity
-  return acc
-}, {})
 
 const videosByDatabaseID = videos?.data?.videos?.nodes?.reduce((obj, video) => {
   obj[video.databaseId] = video
   return obj
 }, {})
-// TODO [x]: Show hide favourites
-// TODO [x]: Add videos
 
-// TODO [ ]: Implement sharing
 function getAccData(id) {
   return data.tools.nodes.find((acc) => acc.id === id)
 }
 
 const AcronymExplained = () => {
-  const name = 'AcronymExplained'
-  const id = 17
-  // TODO: Intergrate data from CMS
-  const [open, setOpen] = useState(false)
-  const [acronymData, setAcronymData] = useState(null)
-  const getActiveToolIDs = useAppStore((state) => state.getActiveToolIDs)
-  const userToolIDs = useAppStore((state) => state.userToolIDs)
-  const yourToolsEnabled = useAppStore((state) => state.yourToolsEnabled)
   const acronymID = useAppStore((s) => s.acronymID)
-  const activity = useAppStore((s) => s.activity)
-  // const showAccCard = useAppStore((s) => s.showAccCard)
+  const userToolIDs = useAppStore((s) => s.userToolIDs)
+  const yourToolsEnabled = useAppStore((s) => s.yourToolsEnabled)
   const setShowAccCard = useAppStore((s) => s.setShowAccCard)
   const setActivity = useAppStore((s) => s.setActivity)
-  const setIsModal = useAppStore((s) => s.setIsModal)
-  // const isModal = useAppStore((s) => s.isModal)
-  const [isUserTool, setIsUserTool] = useState(userToolIDs.includes(acronymID))
 
-  const gae = useAppStore((s) => s.gae) // Google analytics enabled
-  useEffect(() => {
-    open && setIsModal(activitiesById[id]?.modal)
-  }, [open, activitiesById, id])
-
-  useEffect(() => {
-    setOpen(activity === id)
-  }, [activity, id, setOpen])
-
-  useEffect(() => {
-    setIsUserTool(userToolIDs.includes(acronymID))
-  }, [getActiveToolIDs, setIsUserTool, acronymID, userToolIDs])
+  // Derived, not stored. No setState-in-effect, no cascading render.
+  const acronymData = useMemo(() => getAccData(acronymID), [acronymID])
+  const isUserTool = userToolIDs.includes(acronymID)
 
   const contentRef = useRef(null)
+
+  // Reset scroll when the tool changes. This is a DOM side-effect, not state,
+  // so it legitimately belongs in an effect.
   useEffect(() => {
-    const acronymData = getAccData(acronymID)
-    setAcronymData(acronymData)
-    if (contentRef && contentRef.current) contentRef.current.scrollTop = 0
-  }, [acronymID, gae])
+    if (contentRef.current) contentRef.current.scrollTop = 0
+  }, [acronymID])
 
   const handleClose = () => {
     setShowAccCard(false)
@@ -80,27 +52,19 @@ const AcronymExplained = () => {
   const smoothScrollTo = (e) => {
     e.preventDefault()
     const element = document.getElementById('videos')
-    element.scrollIntoView({
-      block: 'start',
-      behavior: 'smooth', // smooth scroll
-    })
+    element?.scrollIntoView({ block: 'start', behavior: 'smooth' })
   }
+
   const smoothToAccronym = (e) => {
     e.preventDefault()
-    const element = document.getElementById('AccContent')
-    element.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth', // smooth scroll
-    })
+    contentRef.current?.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
   }
 
   const isAcronym = acronymData?.toolFieldGroup?.isAcronym
-
   const titleLength = acronymData?.title.length
 
-  return open ? (
-    <section className={'activity acronym-explained-activity fixed' + (open ? ' show' : '')} key='acronym-card'>
+  return (
+    <section className='activity acronym-explained-activity fixed show'>
       <div className='inner'>
         <div className='header'>
           <div className={'title cont' + (titleLength >= 14 ? ' long' : '')}>
@@ -117,9 +81,7 @@ const AcronymExplained = () => {
               <div>{acronymData?.title && parse(DOMPurify.sanitize(acronymData?.title))}</div>
             )}
           </div>
-          {/* <div className='btn close'> */}
           <CloseBtn onClick={handleClose} />
-          {/* </div> */}
           {isUserTool && yourToolsEnabled && (
             <div className='toolbox-label'>
               <HandymanIcon className='icon' />
@@ -151,6 +113,7 @@ const AcronymExplained = () => {
                 </div>
               ))}
           </div>
+
           {acronymData?.toolFieldGroup?.scenariosField?.nodes?.length > 0 &&
             acronymData?.toolFieldGroup?.scenariosField?.nodes[0].scenariosFieldGroup && (
               <div className='scenarios'>
@@ -171,41 +134,38 @@ const AcronymExplained = () => {
             )}
 
           {acronymData?.toolFieldGroup?.videosField?.nodes.length > 0 && (
-            <div className='videos' id='videos' key='videos'>
+            <div className='videos' id='videos'>
               {acronymData?.toolFieldGroup?.videosField?.nodes.map((linkedVideo, index) => {
-                // const video = videos?.data?.videos?.nodes.find(
-                //   (v) => v.id === linkedVideo.id,
-                // )
-
                 const video = videosByDatabaseID[linkedVideo.id]
 
                 return (
                   <div className='video' key={'video-' + index}>
-                    <div className='title'>{video?.title && parse(DOMPurify.sanitize(video?.title))}</div>
-                    {video?.videosFieldGroup?.duration && (
-                      <div className='duration'>
-                        {video.videosFieldGroup?.duration?.hours && (
-                          <div className='hours'>{video.videosFieldGroup?.duration?.hours}</div>
-                        )}
-                        {video.videosFieldGroup?.duration?.minutes && (
-                          <div className='mins'>{video.videosFieldGroup?.duration?.minutes}</div>
-                        )}
-                        {video.videosFieldGroup?.duration?.seconds && (
-                          <div className='secs'>
-                            {video.videosFieldGroup?.duration?.seconds < 10
-                              ? '0' + video.videosFieldGroup?.duration?.seconds
-                              : video.videosFieldGroup?.duration?.seconds}
-                          </div>
-                        )}
-                      </div>
-                    )}
+                    <div className='title'>
+                      <div>{video?.title && parse(DOMPurify.sanitize(video?.title))}</div>
+                      {video?.videosFieldGroup?.duration && (
+                        <div className='duration'>
+                          {video.videosFieldGroup?.duration?.hours && (
+                            <div className='hours'>{video.videosFieldGroup?.duration?.hours}</div>
+                          )}
+                          {video.videosFieldGroup?.duration?.minutes && (
+                            <div className='mins'>{video.videosFieldGroup?.duration?.minutes}</div>
+                          )}
+                          {video.videosFieldGroup?.duration?.seconds && (
+                            <div className='secs'>
+                              {video.videosFieldGroup?.duration?.seconds < 10
+                                ? '0' + video.videosFieldGroup?.duration?.seconds
+                                : video.videosFieldGroup?.duration?.seconds}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
 
                     <div className='player'>
                       {video ? (
                         <LiteYouTubeEmbed
                           id={extractYouTubeId(video.videosFieldGroup.url)}
                           title={video.title}
-                          key={'video-' + index}
                           poster='hqdefault'
                         />
                       ) : (
@@ -223,23 +183,25 @@ const AcronymExplained = () => {
             </div>
           )}
         </section>
-        <div className='footer acronym-card-footer' key='acronym-card-footer'>
-          <ButtonToolbox id={acronymData?.id} key={`toolbox-btn-${acronymData?.id}`} />
+
+        <div className='footer acronym-card-footer'>
+          <ButtonToolbox id={acronymData?.id} />
           {acronymData?.toolFieldGroup?.videosField?.nodes.length > 0 && (
-            <button onClick={smoothScrollTo} className='btn video' key={`video-btn-${acronymData?.id}`}>
-              <OndemandVideoOutlinedIcon key={`video-icon-${acronymData?.id}`} />
+            <button onClick={smoothScrollTo} className='btn video'>
+              <OndemandVideoOutlinedIcon />
             </button>
           )}
           {acronymData?.toolFieldGroup?.videosField?.nodes.length > 0 && (
-            <button onClick={smoothToAccronym} className='btn top' key={`goto-top-btn-${acronymData?.id}`}>
-              <HdrAutoOutlinedIcon key={`goto-top-icon-${acronymData?.id}`} />
+            <button onClick={smoothToAccronym} className='btn top'>
+              <HdrAutoOutlinedIcon />
             </button>
           )}
         </div>
       </div>
     </section>
-  ) : null
+  )
 }
+
 AcronymExplained.displayName = 'AcronymExplained'
 
 export default AcronymExplained

@@ -131,17 +131,13 @@ export default function SmallWinsOverview() {
   const storage = useStorageQuota()
 
   const listRef = useRef(null)
-  const [page, setPage] = useState(1)
-  const [stickyDate, setStickyDate] = useState(null)
+  const page = useSmallWinsStore((s) => s.page)
+  const setPage = useSmallWinsStore((s) => s.setPage)
+  const [stickyDateRaw, setStickyDate] = useState(null)
 
   const visible = useMemo(() => sortEntries(filterEntries(entries, query)), [entries, query])
   const hasQuery = query.trim().length > 0
   const isLow = storage && (storage.level === 'low' || storage.level === 'critical')
-
-  // Reset to the first page whenever the search query changes.
-  useEffect(() => {
-    setPage(1)
-  }, [query])
 
   const totalPages = Math.max(1, Math.ceil(visible.length / PAGE_SIZE))
   const safePage = Math.min(Math.max(1, page), totalPages)
@@ -187,12 +183,8 @@ export default function SmallWinsOverview() {
   // useLayoutEffect so the initial measurement happens before the browser
   // paints — this avoids a frame where the sticky date is empty.
   useLayoutEffect(() => {
-    if (tab !== 'wins') {
-      setStickyDate(null)
-      return undefined
-    }
+    if (tab !== 'wins') return undefined
     const el = listRef.current
-    if (!el) return undefined
 
     const update = () => {
       const dividers = el.querySelectorAll('[data-date-divider]')
@@ -225,8 +217,9 @@ export default function SmallWinsOverview() {
   const showPagination = tab === 'wins' && visible.length > PAGE_SIZE
   const showingStart = visible.length === 0 ? 0 : start + 1
   const showingEnd = Math.min(start + PAGE_SIZE, visible.length)
-  const showStickyDate = tab === 'wins' && stickyDate && entries.length > 0
-
+  const stickyDate = tab === 'wins' && visible.length > 0 ? stickyDateRaw : null
+  const showStickyDate = Boolean(stickyDate)
+  
   return (
     <div className='small-wins-overview'>
       <header className='small-wins-overview__header'>
@@ -241,7 +234,6 @@ export default function SmallWinsOverview() {
       </header>
 
       <div className='small-wins-overview__tabs' role='tablist' aria-label={STRINGS.overviewTitle}>
-        {console.log('query ', query)}
         {!query && (
           <>
             <button

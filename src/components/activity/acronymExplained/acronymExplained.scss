@@ -49,6 +49,7 @@ body .main section.acronym-explained-activity {
       margin: 1rem 0;
       position: relative;
       padding-left: 1rem;
+      font-weight: 700;
       font-variation-settings: 'wght' 700;
       color: var(--blue-light-2);
 
@@ -127,14 +128,8 @@ body .main section.acronym-explained-activity {
     text-align: center;
     transition: var(--transition);
     width: 100%;
-    // min-height: 100px;
-    // height: fit-content;
     padding: 0.75rem 1.25rem 1.5rem;
-    // outline: 1px solid yellow;
     margin: 0;
-    // font-size: variables.$h4_size;
-    // font-weight: variables.$acc_title_weight;
-    // line-height: variables.$acc_title_line_height;
     position: relative;
     flex: 0 0;
 
@@ -152,15 +147,18 @@ body .main section.acronym-explained-activity {
       }
 
       .icon {
-        fill: var(--yellow);
+        fill: var(--orange-dark);
         width: 20px;
         height: 20px;
       }
 
       position: absolute;
-      left: 0;
+      right: 0;
       bottom: 0;
-      transform: translate(0, 100%);
+      transform: translate(-15%, -50%);
+      color: var(--orange-dark);
+      font-weight: 600;
+      font-variation-settings: 'wght' 600;
     }
 
     div.toolboxes {
@@ -178,8 +176,6 @@ body .main section.acronym-explained-activity {
 
     >.title.cont {
       position: relative;
-      // top: 0;
-      // z-index: 10;
       display: flex;
       justify-content: flex-start;
       flex-flow: row wrap;
@@ -192,21 +188,14 @@ body .main section.acronym-explained-activity {
       text-decoration: none !important;
       text-align: left;
       font-size: variables.$h2_size;
-      // gap: 0rem;
-
       width: calc(100% - 80px); // 80px width of closeBtn
-      // height: fit-content;
-      // padding: 1.25rem 0.5rem;
-      // outline: 1px solid yellow;
 
       &.long {
         font-size: variables.$h3_size;
       }
 
       >div {
-        // position: relative;
-        // height: 100%;
-        // margin-right: 0px;
+        color: var(--orange-dark);
       }
     }
 
@@ -626,7 +615,12 @@ body .main section.acronym-explained-activity {
         column-gap: 0.05rem;
         padding: 0.5rem 0;
         color: var(--grey);
-        font-size: variables.$default_size;
+        font-size: variables.$micro_size;
+        position: absolute;
+        z-index: 10;
+        bottom: 0;
+        right: 0;
+        transform: translate(15px, 0);
 
         .hours::after {
           content: '';
@@ -658,14 +652,15 @@ body .main section.acronym-explained-activity {
         font-variation-settings: 'wght' 600;
         line-height: 1.2;
         color: var(--primary);
-        font-size: variables.$h4_size;
+        font-size: variables.$med_size;
         text-shadow: var(--text-shadow-dark);
-        padding: 1.25rem 0.75rem 0 0.75rem;
+        padding: 0.75rem 0.5rem;
         position: relative;
         width: 90%;
         margin: 0 auto;
         z-index: 1;
         text-decoration: none !important;
+        position: relative;
       }
 
       .description {
@@ -701,7 +696,7 @@ body .main section.acronym-explained-activity {
 
       .controls {
         min-width: 100%;
-        background-color: #12121b;
+        background-color: var(--background-gray-trans-60);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -709,10 +704,10 @@ body .main section.acronym-explained-activity {
 
       &::after {
         content: '';
+        position: absolute;
         width: 100%;
         height: 100%;
-        background-color: rgba(20, 20, 20, 0.8);
-        position: absolute;
+        background-color: var(--blue-dark-trans-40);
         left: 0;
         top: 0;
         z-index: -1;

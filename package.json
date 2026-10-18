@@ -21,6 +21,7 @@
     "gsap": "^3.15.0",
     "html-react-parser": "^6.1.8",
     "idb-keyval": "^6.3.0",
+    "keystore-kit": "^0.2.1",
     "postcss-import": "^17.0.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",

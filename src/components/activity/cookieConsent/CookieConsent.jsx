@@ -1,63 +1,66 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import './CookieConsent.scss'
 import useAppStore from '@store/useAppStore'
 
+const GA_ID = 'G-YWBEQ7E972'
+
+const DEFAULT_CONSENT = {
+  necessary: true,
+  analytics: false,
+  marketing: false,
+  preferences: false,
+}
+
+// Pure helper
+const readStoredConsent = () => {
+  if (typeof window === 'undefined') return null
+  try {
+    const raw = localStorage.getItem('cookieConsent')
+    return raw ? { ...DEFAULT_CONSENT, ...JSON.parse(raw) } : null
+  } catch {
+    return null
+  }
+}
+
+// Pure side-effect helper
+const loadScripts = (consentData) => {
+  if (consentData.analytics && !window.GA_INITIALIZED) {
+    const gaScript = document.createElement('script')
+    gaScript.async = true
+    gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`
+    document.head.appendChild(gaScript)
+
+    gaScript.onload = () => {
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        window.dataLayer.push(arguments)
+      }
+      window.gtag = gtag
+      gtag('js', new Date())
+      gtag('config', GA_ID, {
+        anonymize_ip: true,
+        cookie_flags: 'SameSite=None;Secure',
+      })
+      window.GA_INITIALIZED = true
+    }
+  }
+}
+
 const CookieConsent = () => {
   const setGae = useAppStore((state) => state.setGAE)
-  const [show, setShow] = useState(false)
+
+  // Lazy initializers — read localStorage during render, no effect needed.
+  const [consent, setConsent] = useState(() => readStoredConsent() ?? DEFAULT_CONSENT)
+  const [show, setShow] = useState(() => readStoredConsent() === null)
   const [showSettings, setShowSettings] = useState(false)
-  const [consent, setConsent] = useState({
-    necessary: true,
-    analytics: false,
-    marketing: false,
-    preferences: false,
-  })
 
+  // Effect now only talks to external systems (zustand + <head>).
   useEffect(() => {
-    const savedConsent = localStorage.getItem('cookieConsent')
-    if (savedConsent) {
-      const parsed = JSON.parse(savedConsent)
-      setConsent(parsed)
-      setGae(parsed.analytics) // Sync gae with saved analytics consent
-      loadScripts(parsed)
-    } else {
-      setShow(true)
-    }
-  }, [])
-
-  const loadScripts = (consentData) => {
-    const id = 'G-YWBEQ7E972'
-
-    if (consentData.analytics && !window.GA_INITIALIZED) {
-      var head = document.getElementsByTagName('head')[0]
-      const gaScript = document.createElement('script')
-      gaScript.async = true
-      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + id
-      document.head.appendChild(gaScript)
-
-      gaScript.onload = () => {
-        window.dataLayer = window.dataLayer || []
-        function gtag() {
-          window.dataLayer.push(arguments)
-        }
-        window.gtag = gtag
-        gtag('js', new Date())
-        gtag('config', id, {
-          anonymize_ip: true,
-          cookie_flags: 'SameSite=None;Secure',
-        })
-        window.GA_INITIALIZED = true
-      }
-    }
-
-    if (consentData.marketing && !window.MARKETING_INITIALIZED) {
-      window.MARKETING_INITIALIZED = true
-    }
-
-    // if (consentData.preferences) {
-    //   console.log('Preference cookies enabled');
-    // }
-  }
+    const saved = readStoredConsent()
+    if (!saved) return
+    setGae(saved.analytics)
+    loadScripts(saved)
+  }, [setGae])
 
   const saveConsent = (consentData) => {
     localStorage.setItem('cookieConsent', JSON.stringify(consentData))
@@ -87,25 +90,22 @@ const CookieConsent = () => {
       preferences: false,
     }
     saveConsent(minimalConsent)
-    setGae(false) // Explicitly disable analytics tracking
+    setGae(false)
   }
 
   const handleSaveSettings = () => {
     saveConsent(consent)
-    setGae(consent.analytics) // Sync gae with analytics setting
+    setGae(consent.analytics)
   }
 
   const handleToggle = (key) => {
     if (key === 'necessary') return
-    setConsent((prev) => ({
-      ...prev,
-      [key]: !prev[key],
-    }))
+    setConsent((prev) => ({ ...prev, [key]: !prev[key] }))
   }
 
   if (!show && !showSettings) return null
 
-  return show ? (
+  return (
     <div className={'activity activity-cookie-consent-overlay' + (show ? ' show' : '')}>
       {show && !showSettings && (
         <div className='cookie-banner'>
@@ -225,7 +225,7 @@ const CookieConsent = () => {
         </div>
       )}
     </div>
-  ) : null
+  )
 }
 
 export default CookieConsent

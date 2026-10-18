@@ -4,9 +4,11 @@
 
 span.MuiBadge-badge.MuiBadge-standard {
   color: #fff;
+  color: var(--blue);
 }
 
-$width: 28px;
+$width: 40px;
+$icon_width: 20px;
 
 .badge-cont {
   position: fixed;
@@ -26,6 +28,34 @@ $width: 28px;
     transform: translateX(-30px) scale(0.7);
     transition: all 0.25s cubic-bezier(0.3, 0, 0.74, 1);
   }
+
+  .badge__label {
+    color: var(--grey-trans-80);
+
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    height: 20px;
+    width: 100%;
+    font-weight: 800;
+    font-variation-settings: 'wght' 800;
+    z-index: 10;
+    font-size: variables.$sml_size;
+    text-shadow: none;
+    line-height: 0.8;
+  }
+
+  // .badge-toolbox {
+  //   // .icon {
+  //   //   font-size: 0.7rem; // was inheriting 1.5rem
+  //   // }
+  // }
+
+  &:has(.active) {
+    .badge__label {
+      color: var(--blue-light);
+    }
+  }
 }
 
 span.tooltip {
@@ -35,6 +65,8 @@ span.tooltip {
 .badge-toolbox {
   user-select: none;
   // visibility: hidden;
+  display: flex;
+  flex-flow: column wrap;
 
   &.open {
     visibility: visible;
@@ -49,17 +81,24 @@ span.tooltip {
   // animation: bounce-out 0.25s ease-in-out;
   position: relative;
   z-index: 6001;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: er;
 
   .MuiBadge-badge {
-    background: var(--grey-dark);
+    background: var(--blue-light);
+    color: var(--primary);
+    font-weight: 800;
+    font-variation-settings: 'wght' 800;
   }
 
   svg {
     width: $width;
     height: $width;
     margin: 0.5rem;
-
-    fill: #fff;
+    fill: var(--grey-trans-80);
   }
 
   .icon {
@@ -83,6 +122,10 @@ span.tooltip {
     opacity: 1;
     animation: bounce-in 0.25s ease-in-out;
 
+    svg {
+      fill: var(--blue-light);
+    }
+
     &::after {
       transition: all var(--transition-2);
       background-color: var(--orange);
@@ -90,31 +133,3 @@ span.tooltip {
     }
   }
 }
-
-// .snackBar.alert {
-// 	z-index: 4000;
-// 	height: fit-content;
-// 	div.MuiPaper-root {
-// 		height: fit-content;
-// 		max-height: fit-content;
-// 		margin: 0;
-// 		flex-direction: row;
-// 		position: relative;
-// 		// color: var(--secondary);
-// 		// &::after {
-// 		// 	content: "";
-// 		// 	width: 100%;
-// 		// 	height: 100%;
-// 		// 	position: absolute;
-// 		// 	top: 0;
-// 		// 	left: 0;
-// 		// 	z-index: -1;
-// 		// 	border-radius: 0;
-// 		// 	top: 0;
-// 		// 	left: 0;
-// 		// 	background: var(--background-main);
-// 		// 	opacity: 1;
-// 		// 	border-radius: 8px;
-// 		// }
-// 	}
-// }

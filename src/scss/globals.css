@@ -51,7 +51,7 @@
   --background-gray-trans-95: rgba(10, 10, 10, 0.95);
 
   --background-activity: rgba(57, 51, 104, 0.5);
-  --background-main: linear-gradient(140deg, rgb(32, 26, 88) 0%, rgb(54, 16, 16) 81%);
+  --background-main: linear-gradient(-120deg, rgb(48, 42, 102) 0%, rgb(150, 3, 101) 80%);
 
   --background: rgb(49, 38, 88);
   --foreground: oklch(0.985 0 0);

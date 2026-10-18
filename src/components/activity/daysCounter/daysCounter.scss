@@ -1,7 +1,7 @@
 @use '@scss/variables';
 @import '@scss/globals.css';
 
-body #root .main section.days-counter-activity.fixed {
+.activity-days-counter {
   &.fixed {
     top: 0;
     translate: unset;
@@ -12,17 +12,41 @@ body #root .main section.days-counter-activity.fixed {
   right: 0;
   bottom: 0;
   height: 100dvh;
-  overflow-y: hidden;
   width: 100dvw;
+  overflow-y: hidden;
   overflow-x: hidden;
-  margin: 0;
+  max-width: 100%;
+  margin: 0 auto;
   padding: 0;
   background: transparent;
   text-align: center;
-  max-width: 100%;
+  // position: relative;
+  display: flex;
+  position: fixed;
 
+  // background: var(--grey-dark);
 
-  .days-counter-wrapper {
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100dvh;
+    height: 100dvh;
+    background: var(--background-activity);
+    background: var(--grey-dark);
+    z-index: -1;
+  }
+}
+
+.activity-days-counter {
+  &__close-btn {
+    display: block;
+  }
+
+  &__wrapper {
     margin: 0 auto;
     flex: 1;
     display: flex;
@@ -51,7 +75,7 @@ body #root .main section.days-counter-activity.fixed {
     }
   }
 
-  .days-counter-wrap {
+  &__wrap {
     margin: 0 auto;
     flex: 1;
     display: flex;
@@ -61,7 +85,7 @@ body #root .main section.days-counter-activity.fixed {
     width: 100%;
   }
 
-  .days-counter-inner {
+  &__inner {
     width: 100%;
     height: 100%;
     padding: 1rem;
@@ -72,7 +96,7 @@ body #root .main section.days-counter-activity.fixed {
   }
 
   /* Carousel container */
-  .days-counter-carousel {
+  &__carousel {
     width: 100%;
     flex: 1;
     height: 100%;
@@ -83,28 +107,23 @@ body #root .main section.days-counter-activity.fixed {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
-
-    >* {
-      // outline: 1px solid grey;
-    }
   }
 
-  .days-counter-carousel-track {
+  &__carousel-track {
     display: flex;
     transition: transform 0.3s ease-in-out;
     will-change: transform;
     flex: 1;
   }
 
-  .days-counter-carousel-slide {
+  &__carousel-slide {
     flex: 0 0 100%;
 
     width: 100%;
-    // height: 80%;
     box-sizing: border-box;
   }
 
-  .days-counter-card {
+  &__card {
     height: 100%;
     display: flex;
 
@@ -112,14 +131,10 @@ body #root .main section.days-counter-activity.fixed {
     row-gap: 0.5rem;
     flex-flow: column wrap;
     justify-content: space-evenly;
-
-    >* {
-      // outline: 1px solid yellow;
-    }
   }
 
   /* Navigation arrows - hidden on mobile, shown on desktop */
-  .days-counter-carousel-arrow {
+  &__carousel-arrow {
     position: absolute;
     top: 30%;
     // transform: translateY(-50%);
@@ -170,14 +185,14 @@ body #root .main section.days-counter-activity.fixed {
   }
 
   /* Indicator circles */
-  .days-counter-indicators {
+  &__indicators {
     display: flex;
     justify-content: center;
     gap: 1rem;
     width: 100%;
   }
 
-  .days-counter-indicator {
+  &__indicator {
     width: 12px;
     height: 12px;
     border-radius: 50%;
@@ -197,689 +212,650 @@ body #root .main section.days-counter-activity.fixed {
     }
   }
 
-  .days-counter-button-container {
+  &__button-container {
     width: 100%;
   }
 
   /* Remove old list styles */
 
-  .days-counter-close-btn {
-    display: none;
-  }
-
-  &.open,
-  &.show {
+  &__container {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
     display: flex;
-    position: fixed;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+    row-gap: 0.5rem;
+    transition: all 0.35s ease-in-out;
+    position: relative;
+    width: 100%;
+    height: 100%;
 
-    .days-counter-close-btn {
-      display: block;
+    &.full {
+      justify-content: space-evenly;
+      transition: all 0.35s ease-in-out;
     }
   }
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--background-activity);
-    z-index: -1;
-  }
-}
-
-.days-counter-container {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 1rem;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-between;
-  align-items: stretch;
-  row-gap: 0.5rem;
-  transition: all 0.35s ease-in-out;
-  position: relative;
-  // flex: 1;
-  width: 100%;
-  height: 100%;
-
-  >* {
-    // outline: 1px solid grey;
+  &__card-title::placeholder {
+    font-size: 1rem;
+    color: #666;
   }
 
-  &.full {
-    justify-content: space-evenly;
-    transition: all 0.35s ease-in-out;
-  }
-}
-
-.days-counter-card-title::placeholder {
-  font-size: 1rem;
-  color: #666;
-}
-
-.days-counter-title {
-  font-size: 2rem;
-  font-weight: 800;
-  font-variation-settings: 'wght' 800;
-  color: white;
-  margin-bottom: 0.5rem;
-  text-shadow: var(--text-shadow-dark);
-
-  input {
+  &__title {
+    font-size: 2rem;
     font-weight: 800;
     font-variation-settings: 'wght' 800;
+    color: white;
+    margin-bottom: 0.5rem;
+    text-shadow: var(--text-shadow-dark);
+
+    input {
+      font-weight: 800;
+      font-variation-settings: 'wght' 800;
+    }
   }
-}
 
-.days-counter-subtitle {
-  font-size: 1.25rem;
-  color: rgba(255, 255, 255, 0.9);
-}
+  &__subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
 
-.days-counter-empty-state {
-  display: flex;
-  flex-flow: column row;
-  justify-content: center;
-  align-content: center;
-  row-gap: 2rem;
-  padding: 3rem;
-  text-align: center;
-  height: 100%;
-}
-
-.days-counter-empty-title {
-  font-size: variables.$h4_size;
-}
-
-.days-counter-empty-icon {
-  width: 5rem;
-  height: 5rem;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 1rem;
-  color: #9ca3af;
-}
-
-.days-counter-empty-text {
-  color: var(--grey-dark);
-  margin-bottom: 1.5rem;
-  font-size: 1.125rem;
-  overflow: hidden;
-}
-
-.days-counter-empty-state,
-.days-counter-add-first {
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-  align-items: center;
-  row-gap: 2.5rem;
-}
-
-.days-counter-add-first-icon {
-  background: var(--blue-trans-50);
-  border: none;
-  border-radius: 50%;
-
-  background: var(--grey-dark-trans-30);
-  box-shadow: var(--box-shadow-dark);
-  width: 60px;
-  height: 60px;
-  cursor: pointer;
-
-  svg {
-    width: 100%;
+  &__empty-state {
+    display: flex;
+    flex-flow: column row;
+    justify-content: center;
+    align-content: center;
+    row-gap: 2rem;
+    padding: 3rem;
+    text-align: center;
     height: 100%;
   }
-}
 
-button.days-counter-add-first-btn {
-  margin: 1.5rem auto;
+  &__empty-title {
+    font-size: variables.$h4_size;
+  }
 
-  background: var(--blue-trans-50);
-  border: none;
-  padding: 0.75rem 2rem;
-  box-shadow: var(--box-shadow-dark);
-  display: flex;
-  font-size: 1.25rem;
-  font-weight: 400;
-  font-variation-settings: 'wght' 400;
-  color: var(--primary);
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
+  &__empty-icon {
+    width: 5rem;
+    height: 5rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+    color: #9ca3af;
+  }
 
-.days-counter-add-first-btn:hover {
-  box-shadow: var(--box-shadow-light);
-  background: var(--grey-dark-trans-30);
-}
+  &__empty-text {
+    color: var(--grey-dark);
+    margin-bottom: 1.5rem;
+    font-size: 1.125rem;
+    overflow: hidden;
+  }
 
-.days-counter-add-icon {
-  width: 1.5rem;
-  height: 1.5rem;
-}
+  &__empty-state,
+  &__add-first {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    row-gap: 2.5rem;
+  }
 
-.days-counter-card {
-  padding: 0.25rem;
-  transition: all 0.3s;
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  flex-flow: column nowrap;
-  row-gap: 0.5rem;
-}
+  &__add-first-icon {
+    background: var(--blue-trans-50);
+    border: none;
+    border-radius: 50%;
 
-.days-counter-card-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  max-width: 50%;
-}
+    background: var(--grey-dark-trans-30);
+    box-shadow: var(--box-shadow-dark);
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
 
-/* **********************************************
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__add-first-btn {
+    margin: 1.5rem auto;
+
+    background: var(--blue-trans-50);
+    border: none;
+    padding: 0.75rem 2rem;
+    box-shadow: var(--box-shadow-dark);
+    display: flex;
+    font-size: 1.25rem;
+    font-weight: 400;
+    font-variation-settings: 'wght' 400;
+    color: var(--primary);
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+
+  &__add-first-btn:hover {
+    box-shadow: var(--box-shadow-light);
+    background: var(--grey-dark-trans-30);
+  }
+
+  &__add-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  &__card {
+    padding: 0.25rem;
+    transition: all 0.3s;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-flow: column nowrap;
+    row-gap: 0.5rem;
+  }
+
+  &__card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    max-width: 50%;
+  }
+
+  /* **********************************************
 * Inputs
 ********************************************** */
 
-.days-counter-title-input {
-  border: none;
-  background: transparent;
-  font-size: variables.$h2_size;
-  font-weight: 800;
-  font-variation-settings: 'wght' 800;
-
-  color: var(--blue-light);
-  width: 90%;
-  text-align: center;
-  margin: 0;
-
-  &::placeholder {
-    color: var(--grey);
-    opacity: 0.75;
-    font-weight: 800;
-    font-variation-settings: 'wght' 600;
-    font-size: 1.75rem;
-  }
-}
-
-input.days-counter-title-input:focus {
-  border-bottom: 1px solid var(--blue-trans-30);
-
-  &::placeholder {
-    color: transparent;
-  }
-}
-
-.days-counter-card-info {
-  flex: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-}
-
-.days-counter-label-input {
-  width: 100%;
-  font-size: 1.125rem;
-  font-weight: 800;
-  font-variation-settings: 'wght' 800;
-  color: var(--blue-light);
-  border-bottom-width: 2px;
-  border-bottom-color: transparent;
-  outline: none;
-  padding-bottom: 0.25rem;
-  margin-bottom: 0.75rem;
-  border: none;
-  background: transparent;
-}
-
-.days-counter-label-input::placeholder {
-  color: #9ca3af;
-  font-size: 1rem;
-}
-
-.days-counter-date-controls {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  justify-content: center;
-  color: var(--grey);
-}
-
-.days-counter-date-display {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.days-counter-selected-date {
-  font-size: 0.8rem;
-  color: var(--muted-two);
-  white-space: wrap;
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-  align-items: center;
-  row-gap: 0.5rem;
-  max-width: 85%;
-  text-shadow: var(--text-shadow-dark);
-}
-
-.days-counter-card-date {
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-  align-items: center;
-  row-gap: 0.5rem;
-}
-
-input.days-counter-date-input {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  outline: none;
-  border: 1px solid var(--primary-trans-20);
-  border-style: solid;
-  text-align: center;
-  box-sizing: border-box;
-  padding: 0.75rem;
-  position: relative;
-  width: 100%;
-  min-width: 220px;
-
-  &::-webkit-calendar-picker-indicator {
+  &__title-input {
+    border: none;
     background: transparent;
-    bottom: 0;
-    color: transparent;
-    cursor: pointer;
-    height: auto;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: auto;
-  }
-}
+    font-size: variables.$h2_size;
+    font-weight: 800;
+    font-variation-settings: 'wght' 800;
 
-.days-counter-date-input:focus {
-  box-shadow: var(--box-shadow-blue);
-}
-
-.days-counter-card-actions {
-  display: flex;
-  gap: 0.5rem;
-  top: 0%;
-  right: 0%;
-  position: absolute;
-}
-
-/* **********************************************
-* Values and Labels
-********************************************** */
-.days-counter-values {
-  display: flex;
-  // flex-flow: column;
-  flex-flow: column wrap;
-  font-size: 1.125rem;
-  margin: 0 auto;
-  line-height: 1;
-  letter-spacing: -2.5px;
-  justify-content: center;
-  row-gap: 0.25rem;
-}
-
-.days-counter-stat {
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-  align-items: center;
-  font-size: 1rem;
-  color: var(--ring);
-
-  .value {
-    padding: 0;
+    color: var(--blue-light);
+    width: 90%;
+    text-align: center;
     margin: 0;
+
+    &::placeholder {
+      color: var(--grey);
+      opacity: 0.75;
+      font-weight: 800;
+      font-variation-settings: 'wght' 600;
+      font-size: 1.75rem;
+    }
+  }
+
+  &__title-input:focus {
+    border-bottom: 1px solid var(--blue-trans-30);
+
+    &::placeholder {
+      color: transparent;
+    }
+  }
+
+  &__card-info {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  &__label-input {
+    width: 100%;
+    font-size: 1.125rem;
     font-weight: 800;
     font-variation-settings: 'wght' 800;
-    line-height: 1;
-    letter-spacing: -0.5px;
-    position: relative;
+    color: var(--blue-light);
+    border-bottom-width: 2px;
+    border-bottom-color: transparent;
+    outline: none;
+    padding-bottom: 0.25rem;
+    margin-bottom: 0.75rem;
+    border: none;
+    background: transparent;
   }
 
-  .label {
-    letter-spacing: -0.25px;
-    z-index: 1;
-    font-weight: 800;
-    font-variation-settings: 'wght' 800;
-  }
-}
-
-.days-counter-stat.days-counter-stat-days {
-  position: relative;
-  display: flex;
-  align-items: center;
-  align-content: center;
-  flex-wrap: wrap;
-  height: fit-content;
-
-  .label {
-    left: auto;
-    right: 0%;
-    top: 50%;
-    position: absolute;
-    transform: translate(75%, -30%) rotate(90deg);
-    font-size: 1.75rem;
-    width: fit-content;
-    color: (--ring);
+  &__label-input::placeholder {
+    color: #9ca3af;
+    font-size: 1rem;
   }
 
-  .value {
-    font-size: variables.$dc_days_size;
-    font-weight: 800;
-    font-variation-settings: 'wght' 800;
-    color: var(--orange);
-  }
-
-  // .days-counter-stat {
-  //   &::after {
-  //     content: 'days';
-  //   }
-  // }
-}
-
-.days-counter-stat-hours-mins {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-  gap: 0.5rem;
-
-  .days-counter-stat-time {
+  &__date-controls {
     display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+    color: var(--grey);
+  }
+
+  &__date-display {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
     gap: 0.25rem;
   }
 
-  .label,
-  .value {
-    height: 100%;
-    font-weight: 400;
-    font-variation-settings: 'wght' 400;
+  &__selected-date {
+    font-size: 0.8rem;
+    color: var(--muted-two);
+    white-space: wrap;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    row-gap: 0.5rem;
+    max-width: 85%;
+    text-shadow: var(--text-shadow-dark);
+  }
+
+  &__card-date {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    row-gap: 0.5rem;
+  }
+
+  &__date-input {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    outline: none;
+    border: 1px solid var(--primary-trans-20);
+    border-style: solid;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0.75rem;
+    position: relative;
+    width: 100%;
+    min-width: 220px;
+
+    &::-webkit-calendar-picker-indicator {
+      background: transparent;
+      bottom: 0;
+      color: transparent;
+      cursor: pointer;
+      height: auto;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: auto;
+    }
+  }
+
+  &__date-input:focus {
+    box-shadow: var(--box-shadow-blue);
+  }
+
+  &__card-actions {
+    display: flex;
+    gap: 0.5rem;
+    top: 0%;
+    right: 0%;
+    position: absolute;
+  }
+
+  /* **********************************************
+* Values and Labels
+********************************************** */
+  &__values {
+    display: flex;
+    // flex-flow: column;
+    flex-flow: column wrap;
+    font-size: 1.125rem;
+    margin: 0 auto;
+    line-height: 1;
+    letter-spacing: -2.5px;
+    justify-content: center;
+    row-gap: 0.25rem;
+  }
+
+  &__stat {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
     font-size: 1rem;
-    font-size: 0.9rem;
-  }
-
-  .value,
-  .label {
     color: var(--ring);
-    font-weight: 400;
-    font-variation-settings: 'wght' 400;
+
+    .value {
+      padding: 0;
+      margin: 0;
+      font-weight: 800;
+      font-variation-settings: 'wght' 800;
+      line-height: 1;
+      letter-spacing: -0.5px;
+      position: relative;
+    }
+
+    .label {
+      letter-spacing: -0.25px;
+      z-index: 1;
+      font-weight: 800;
+      font-variation-settings: 'wght' 800;
+    }
   }
 
-  .value {
-    // color: var(--grey-light);
-    font-weight: 600;
-    font-variation-settings: 'wght' 600;
+  &__stat.days-counter-stat-days {
+    position: relative;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    height: fit-content;
+
+    .label {
+      left: auto;
+      right: 0%;
+      top: 50%;
+      position: absolute;
+      transform: translate(75%, -30%) rotate(90deg);
+      font-size: 1.75rem;
+      width: fit-content;
+      color: (--ring);
+    }
+
+    .value {
+      font-size: variables.$dc_days_size;
+      font-weight: 800;
+      font-variation-settings: 'wght' 800;
+      color: var(--orange);
+    }
   }
 
-  .days-counter-stat-minutes,
-  .days-counter-stat-hours {
+  &__stat-hours-mins {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
     align-content: center;
     justify-content: center;
-    column-gap: 0.5rem;
+    gap: 0.5rem;
+
+    &__stat-time {
+      display: flex;
+      gap: 0.25rem;
+    }
 
     .label,
     .value {
       height: 100%;
+      font-weight: 400;
+      font-variation-settings: 'wght' 400;
+      font-size: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .value,
+    .label {
+      color: var(--ring);
+      font-weight: 400;
+      font-variation-settings: 'wght' 400;
+    }
+
+    .value {
+      // color: var(--grey-light);
       font-weight: 600;
       font-variation-settings: 'wght' 600;
     }
+
+    &__stat-minutes,
+    &__stat-hours {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      align-content: center;
+      justify-content: center;
+      column-gap: 0.5rem;
+
+      .label,
+      .value {
+        height: 100%;
+        font-weight: 600;
+        font-variation-settings: 'wght' 600;
+      }
+    }
   }
-}
 
-.days-counter-stat-minutes {
-  font-size: 1rem;
-}
+  &__stat-minutes {
+    font-size: 1rem;
+  }
 
-.days-counter-stat-group {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-  column-gap: 2rem;
-
-  .days-counter-stat {
+  &__stat-group {
     width: 100%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    column-gap: 2rem;
+
+    &__stat {
+      width: 100%;
+    }
+
+    .value {
+      font-size: 2.125rem;
+    }
+
+    .label {
+      font-size: 1.125rem;
+      margin-bottom: -13px;
+    }
   }
 
-  .value {
-    font-size: 2.125rem;
-  }
-
-  .label {
-    font-size: 1.125rem;
-    margin-bottom: -13px;
-  }
-}
-
-/* **********************************************
+  /* **********************************************
 * Date
 ********************************************** */
 
-.days-counter-no-date {
-  text-align: center;
-  padding: 3rem 0;
-  color: var(--grey);
-}
+  &__no-date {
+    text-align: center;
+    padding: 3rem 0;
+    color: var(--grey);
+  }
 
-.days-counter-no-date-icon {
-  width: 4rem;
-  height: 4rem;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 0.75rem;
-  opacity: 0.5;
-}
+  &__no-date-icon {
+    width: 4rem;
+    height: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.75rem;
+    opacity: 0.5;
+  }
 
-.days-counter-no-date-text {
-  font-size: 1.125rem;
+  &__no-date-text {
+    font-size: 1.125rem;
+  }
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .days-counter-title {
-    font-size: 2.25rem;
-  }
+  .activity-days-counter {
+    &__title {
+      font-size: 2.25rem;
+    }
 
-  .days-counter-values {
-    grid-template-columns: 1fr;
-  }
+    &__values {
+      grid-template-columns: 1fr;
+    }
 
-  .days-counter-card-header {
-    flex-direction: column;
-  }
+    &__card-header {
+      flex-direction: column;
+    }
 
-  .days-counter-card-actions {
-    align-self: flex-end;
+    &__card-actions {
+      align-self: flex-end;
+    }
   }
 }
 
 /* **********************************************
 * Buttons
 ********************************************** */
-
-.days-counter-card-actions {
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-}
-
-.days-counter-reset-btn,
-.days-counter-delete-btn {
-  padding: 0.5rem;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-}
-
-.days-counter-reset-btn {
-  color: var(--grey-dark);
-}
-
-.days-counter-delete-btn {
-  color: var(--red);
-  width: 55px;
-  height: 55px;
-  position: absolute;
-  left: 0rem;
-  top: 2rem;
-  box-shadow: none;
-
-  svg {
+.activity-days-counter {
+  &__card-actions {
+    position: relative;
     width: 100%;
-    height: 100%;
-  }
-}
-
-.days-counter-action-icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  stroke: var(--grey-med);
-
-  svg {
-    stroke: var(--grey-med);
+    max-width: 100%;
   }
 
-  path {
-    stroke: #666666;
-  }
-}
-
-.days-counter-add-another-btn {
-  margin: 0 auto;
-  width: 90px;
-  height: 90px;
-  cursor: pointer;
-  padding: 0;
-  aspect-ratio: 1;
-  text-align: center;
-  background-color: var(--blue);
-  color: var(--primary);
-  // padding: 1rem;/
-  border-radius: 50%;
-  transition: all 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  font-size: 1.75rem;
-  font-weight: 600;
-  font-variation-settings: 'wght' 600;
-  cursor: pointer;
-}
-
-/* Adjust add-another button position */
-
-.days-counter-add-another-btn:hover {
-  box-shadow: var(--text-shadow-dark);
-  background: var(--grey-dark-trans-30);
-}
-
-.days-counter-note-container {
-  position: relative;
-  margin: 1.5vh auto 0 auto;
-
-  u {
-    text-decoration: none;
-  }
-}
-
-.days-counter-note {
-  padding: 0.75rem 0;
-
-  max-width: 240px;
-  margin: 0 auto;
-  color: var(--grey);
-
-  p {
-    font-size: 0.75rem;
-    margin: 0.25rem 0;
-    font-style: italic;
-  }
-}
-
-/* DaysCounter additional styles */
-.days-counter-savings-container {
-  display: flex;
-  flex-flow: column wrap;
-  gap: 0.75rem;
-  justify-content: space-between;
-  align-self: stretch;
-
-  >* {
-    // outline: 1px solid grey;
-  }
-}
-
-.days-counter-cost-container {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-}
-
-body #root .main section .days-counter-cost {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  outline: 1px solid var(--blue-trans-40);
-  width: fit-content;
-  gap: 0.5rem;
-  text-align: right;
-  padding: 0rem 0.75rem;
-  border-radius: 8px;
-
-  label {
-    color: var(--grey-light);
-    font-size: 1rem;
-    width: fit-content;
-    height: 100%;
-    text-align: left;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  input {
-    width: 100px;
-    height: 100%;
-    padding: 0.75rem 0.25rem 0.75rem 0.75rem;
-    background: var(--input-bg);
+  &__reset-btn,
+  &__delete-btn {
+    padding: 0.5rem;
     border: none;
-    border-left: 1px solid var(--blue-light-trans-30);
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+  }
+
+  &__reset-btn {
+    color: var(--grey-dark);
+  }
+
+  &__delete-btn {
+    color: var(--red);
+    width: 55px;
+    height: 55px;
+    position: absolute;
+    left: 0rem;
+    top: 2rem;
+    box-shadow: none;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__action-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    stroke: var(--grey-med);
+
+    svg {
+      stroke: var(--grey-med);
+    }
+
+    path {
+      stroke: #666666;
+    }
+  }
+
+  &__add-another-btn {
+    margin: 0 auto;
+    width: 90px;
+    height: 90px;
+    cursor: pointer;
+    padding: 0;
+    aspect-ratio: 1;
+    text-align: center;
+    background-color: var(--blue);
+    color: var(--primary);
+    // padding: 1rem;/
+    border-radius: 50%;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: 1.75rem;
+    font-weight: 600;
+    font-variation-settings: 'wght' 600;
+    cursor: pointer;
+  }
+
+  /* Adjust add-another button position */
+
+  &__add-another-btn:hover {
+    box-shadow: var(--text-shadow-dark);
+    background: var(--grey-dark-trans-30);
+  }
+
+  &__note-container {
+    position: relative;
+    margin: 1.5vh auto 0 auto;
+
+    u {
+      text-decoration: none;
+    }
+  }
+
+  &__note {
+    padding: 0.75rem 0;
+
+    max-width: 240px;
+    margin: 0 auto;
+    color: var(--grey);
+
+    p {
+      font-size: 0.75rem;
+      margin: 0.25rem 0;
+      font-style: italic;
+    }
+  }
+
+  /* DaysCounter additional styles */
+  &__savings-container {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 0.75rem;
+    justify-content: space-between;
+    align-self: stretch;
+  }
+
+  &__cost-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+  }
+
+  &__cost {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    outline: 1px solid var(--blue-trans-40);
+    width: fit-content;
+    gap: 0.5rem;
+    text-align: right;
+    padding: 0rem 0.75rem;
+    border-radius: 8px;
+
+    label {
+      color: var(--grey-light);
+      font-size: 1rem;
+      width: fit-content;
+      height: 100%;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    input {
+      width: 100px;
+      height: 100%;
+      padding: 0.75rem 0.25rem 0.75rem 0.75rem;
+      background: var(--input-bg);
+      border: none;
+      border-left: 1px solid var(--blue-light-trans-30);
+    }
   }
 
   #currency-selector {
@@ -891,27 +867,75 @@ body #root .main section .days-counter-cost {
       font-size: 1rem;
     }
   }
-}
 
-.days-counter-savings-toggle-btn {
-  border-radius: var(--border-radius);
-  font-size: 1rem;
-  background: var(--orange-trans-50);
-  border-color: var(--orange);
-}
+  &__savings-toggle-btn {
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    background: var(--orange-trans-50);
+    border-color: var(--orange);
+  }
 
-.days-counter-savings-rates {
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  align-content: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  width: 80%;
-  margin: 0rem auto;
-  position: relative;
+  &__currency-selector {
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 4px 8px;
+    color: var(--text-primary);
+    margin-left: 12px;
+    cursor: pointer;
+  }
 
-  .savings-rate-all-time {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // outline: 1px solid grey;
+    width: calc(100% - 60px);
+
+    h3 {
+      margin: 0;
+      text-align: left;
+      width: 100%;
+    }
+  }
+
+  &__currency-selector {
+    padding: 0.3rem 0.25rem;
+    border-radius: 6px;
+    font-size: 1.35rem;
+    margin: 0 0 0 0;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    color: var(--ring);
+    width: 98px;
+    cursor: pointer;
+    text-align: right;
+    font-weight: 800;
+    font-variation-settings: 800;
+
+    option {
+      background: var(--grey-dark-trans-50);
+
+      &:hover {
+        background: var(--grey-mid);
+      }
+    }
+  }
+
+  &__savings-rates {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    width: 80%;
+    margin: 0rem auto;
+    position: relative;
+  }
+
+  &__savings-rate-all-time {
     outline: none;
     border: none;
     font-weight: 800;
@@ -948,31 +972,31 @@ body #root .main section .days-counter-cost {
     }
   }
 
-  .savings-rate:nth-child(1),
-  .savings-rate:nth-child(2),
-  .savings-rate:nth-child(3),
-  .savings-rate:nth-child(4) {
+  &__savings-rate:nth-child(1),
+  &__savings-rate:nth-child(2),
+  &__savings-rate:nth-child(3),
+  &__savings-rate:nth-child(4) {
     outline: 1px solid rgba(255, 165, 0, 0.6);
     align-self: center;
   }
 
-  .savings-rate:nth-child(1) {
+  &__savings-rate:nth-child(1) {
     width: 72%;
   }
 
-  .savings-rate:nth-child(2) {
+  &__savings-rate:nth-child(2) {
     width: 88%;
   }
 
-  .savings-rate:nth-child(3) {
+  &__savings-rate:nth-child(3) {
     width: 100%;
   }
 
-  .savings-rate:nth-child(4) {
+  &__savings-rate:nth-child(4) {
     width: 100%;
   }
 
-  .savings-rate {
+  &__savings-rate {
     padding: 0px;
     display: flex;
     align-items: center;
@@ -998,82 +1022,34 @@ body #root .main section .days-counter-cost {
       font-variation-settings: 'wght' 700;
       justify-self: flex-end;
     }
-
-    div.rate-bg {
-      position: absolute;
-      right: 0;
-      top: 0;
-      height: 130%;
-      width: 33%;
-      background-color: var(--orange-trans-40);
-      z-index: -1;
-      transform: skewX(-15deg) translate(5%, 0%);
-    }
-
-    .rate-icon {
-      font-size: 1.5rem;
-      margin-bottom: 4px;
-    }
-
-    .rate-label {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text-secondary);
-    }
-
-    .rate-value {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--accent-color);
-    }
   }
-}
 
-.currency-selector {
-  background: var(--input-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  padding: 4px 8px;
-  color: var(--text-primary);
-  margin-left: 12px;
-  cursor: pointer;
-}
-
-.days-counter-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  // outline: 1px solid grey;
-  width: calc(100% - 60px);
-
-  h3 {
-    margin: 0;
-    text-align: left;
-    width: 100%;
+  &__savings-rate-bg {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 130%;
+    width: 33%;
+    background-color: var(--orange-trans-40);
+    z-index: -1;
+    transform: skewX(-15deg) translate(5%, 0%);
   }
-}
 
-.days-counter-currency-selector {
-  padding: 0.3rem 0.25rem;
-  border-radius: 6px;
-  font-size: 1.35rem;
-  margin: 0 0 0 0;
-  background: transparent;
-  border: 1px solid var(--border-color);
-  color: var(--text-primary);
-  color: var(--ring);
-  width: 98px;
-  cursor: pointer;
-  text-align: right;
-  font-weight: 800;
-  font-variation-settings: 800;
+  &__savings-rate-rate-icon {
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+  }
 
-  option {
-    background: var(--grey-dark-trans-50);
+  &__savings-rate-rate-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+  }
 
-    &:hover {
-      background: var(--grey-mid);
-    }
+  &__savings-rate-rate-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent-color);
   }
 }

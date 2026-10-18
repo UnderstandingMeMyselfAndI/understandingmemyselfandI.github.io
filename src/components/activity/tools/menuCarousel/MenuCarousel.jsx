@@ -1,5 +1,4 @@
-import React from 'react'
-import { useRef, useEffect, useCallback, useMemo, useState } from 'react'
+import { useRef, useEffect, useLayoutEffect, useCallback, useMemo } from 'react'
 import Skeleton from '@mui/material/Skeleton'
 import HandymanIcon from '@mui/icons-material/Handyman'
 import PropTypes from 'prop-types'
@@ -21,21 +20,21 @@ const useScrollEffects = (config = DEFAULT_CONFIG, scrollContainer = null) => {
   const itemsRef = useRef([])
   const rafId = useRef(null)
   const isActive = useRef(false)
+  // Ref indirection: the RAF loop and `start` always call the latest
+  // version of the effect calculator, without needing to memoize it.
+  const calculateEffectsRef = useRef(null)
 
-  const calculateEffects = useCallback(() => {
+  const calculateEffects = () => {
     if (!isActive.current) return
 
-    // Use provided container or window
     const container = scrollContainer?.current || window
-    const viewportHeight =
-      container === window ? window.innerHeight : container.clientHeight
+    const viewportHeight = container === window ? window.innerHeight : container.clientHeight
 
     itemsRef.current.forEach((item) => {
       if (!item?.element || !item.isCarouselItem) return
 
       const rect = item.element.getBoundingClientRect()
 
-      // Get element position relative to container
       let elementTop, elementHeight
       if (container === window) {
         elementTop = rect.top
@@ -49,7 +48,6 @@ const useScrollEffects = (config = DEFAULT_CONFIG, scrollContainer = null) => {
       const elementCenter = elementTop + elementHeight / 2
       const viewportCenter = viewportHeight / 2
 
-      // Calculate boundaries
       const fadeBoundaryPixels = viewportHeight * config.fadeBoundary
       const centerZonePixels = viewportHeight * config.centerZoneHeight
       const centerZoneTop = viewportCenter - centerZonePixels / 2
@@ -58,37 +56,37 @@ const useScrollEffects = (config = DEFAULT_CONFIG, scrollContainer = null) => {
       let opacity = 1
       let scale = 1
 
-      // Check if element is outside center zone
       if (elementCenter < centerZoneTop || elementCenter > centerZoneBottom) {
-        let distance = 0
-
+        let distance
         if (elementCenter < centerZoneTop) {
           distance = (centerZoneTop - elementCenter) / fadeBoundaryPixels
         } else {
           distance = (elementCenter - centerZoneBottom) / fadeBoundaryPixels
         }
-
-        // Exponential falloff
         const progress = Math.min(1, Math.max(0, distance))
         const exponentialProgress = progress * progress
-
         opacity = 1 - (1 - config.minOpacity) * exponentialProgress
         scale = 1 - (1 - config.minScale) * exponentialProgress
       }
 
-      // Apply styles with transition
       item.element.style.opacity = opacity
       item.element.style.transform = `scale(${scale})`
     })
 
-    rafId.current = requestAnimationFrame(calculateEffects)
-  }, [config, scrollContainer])
+    rafId.current = requestAnimationFrame(() => calculateEffectsRef.current?.())
+  }
+
+  // Keep the ref pointing at the latest calculator. Runs before the mount
+  // effect below (declaration order), so `start()` never sees a null ref.
+  useEffect(() => {
+    calculateEffectsRef.current = calculateEffects
+  })
 
   const start = useCallback(() => {
     if (isActive.current) return
     isActive.current = true
-    rafId.current = requestAnimationFrame(calculateEffects)
-  }, [calculateEffects])
+    rafId.current = requestAnimationFrame(() => calculateEffectsRef.current?.())
+  }, [])
 
   const stop = useCallback(() => {
     isActive.current = false
@@ -120,34 +118,27 @@ const useScrollEffects = (config = DEFAULT_CONFIG, scrollContainer = null) => {
 }
 
 // Individual list item component for carousel items
-const CarouselListItem = ({
-  children,
-  index,
-  registerItem,
-  unregisterItem,
-  style = {},
-}) => {
+const CarouselListItem = ({ children, index, registerItem, unregisterItem, style = {} }) => {
   const elementRef = useRef(null)
 
   useEffect(() => {
     if (elementRef.current) {
       registerItem(index, elementRef.current, true)
     }
-
     return () => unregisterItem(index)
   }, [index, registerItem, unregisterItem])
 
   return (
     <div
       ref={elementRef}
+      data-index={index}
       className={'list-item carousel-item-wrapper'}
       style={{
         width: '100%',
         transition: 'opacity 0.2s, transform 0.2s',
         transformOrigin: 'center center',
         ...style,
-      }}
-    >
+      }}>
       {children}
     </div>
   )
@@ -169,7 +160,6 @@ const DescriptionItem = ({ children, registerItem, unregisterItem, index }) => {
     if (elementRef.current) {
       registerItem(index, elementRef.current, false)
     }
-
     return () => unregisterItem(index)
   }, [index, registerItem, unregisterItem])
 
@@ -196,20 +186,11 @@ const CUSTOM_CONFIG = {
 }
 
 // Main carousel component
-const MenuCarousel = ({
-  data,
-  filterIDs,
-  showFavourites,
-  handleClick,
-  description,
-}) => {
-  const [open, setOpen] = useState(false)
+const MenuCarousel = ({ data, filterIDs, showFavourites, handleClick, description }) => {
   const scrollContainerRef = useRef(null)
+  const initialScrollDoneRef = useRef(false)
 
-  const { start, stop, registerItem, unregisterItem } = useScrollEffects(
-    CUSTOM_CONFIG,
-    scrollContainerRef,
-  )
+  const { start, stop, registerItem, unregisterItem } = useScrollEffects(CUSTOM_CONFIG, scrollContainerRef)
 
   // Control scroll listener
   useEffect(() => {
@@ -217,20 +198,56 @@ const MenuCarousel = ({
     return () => stop()
   }, [start, stop])
 
+  // Position the carousel on load:
+  //  - If an item is already selected, center that item.
+  //  - Otherwise, center the midpoint of the carousel as a whole.
+  // useLayoutEffect so the scroll happens before first paint (no visible jump).
+  // We measure item offsets directly from the DOM via querySelectorAll, which
+  // avoids needing mutable ref containers shared across components.
+  useLayoutEffect(() => {
+    if (initialScrollDoneRef.current) return
+    if (!data || data.length === 0) return
+
+    const container = scrollContainerRef.current
+    if (!container) return
+
+    const containerHeight = container.clientHeight
+    if (containerHeight === 0) return
+
+    const wrappers = container.querySelectorAll('.carousel-item-wrapper')
+    if (wrappers.length === 0) return
+
+    // Find the selected item, if any.
+    let targetEl = null
+    if (filterIDs && filterIDs.size > 0) {
+      const selectedIndex = data.findIndex((item) => item && filterIDs.has(item.id))
+      if (selectedIndex >= 0) {
+        targetEl = Array.from(wrappers).find((el) => Number(el.getAttribute('data-index')) === selectedIndex) || null
+      }
+    }
+
+    if (targetEl) {
+      const targetTop = targetEl.offsetTop
+      const targetHeight = targetEl.offsetHeight
+      container.scrollTop = targetTop - (containerHeight - targetHeight) / 2
+    } else {
+      const firstEl = wrappers[0]
+      const lastEl = wrappers[wrappers.length - 1]
+      const carouselTop = firstEl.offsetTop
+      const carouselBottom = lastEl.offsetTop + lastEl.offsetHeight
+      const carouselCenter = (carouselTop + carouselBottom) / 2
+      container.scrollTop = carouselCenter - containerHeight / 2
+    }
+
+    initialScrollDoneRef.current = true
+  }, [data, filterIDs])
+
   const carouselItems = useMemo(() => {
     return data.map((item, index) => {
       const isSelected = filterIDs.has(item.id)
 
       if (!item) {
-        return (
-          <Skeleton
-            key={`skeleton-${index}`}
-            variant='rounded'
-            width='100%'
-            height={200}
-            animation='wave'
-          />
-        )
+        return <Skeleton key={`skeleton-${index}`} variant='rounded' width='100%' height={200} animation='wave' />
       }
 
       return (
@@ -239,32 +256,13 @@ const MenuCarousel = ({
           index={index}
           registerItem={registerItem}
           unregisterItem={unregisterItem}
-          style={{ marginBottom: '4px' }}
-        >
-          <div
-            className={'carousel-item' + (isSelected ? ' selected' : '')}
-            onClick={handleClick(item.id)}
-          >
-            <div
-              className='AccordionItem inner item'
-              style={{ cursor: 'pointer' }}
-            >
-              <div
-                className='title'
-                aria-controls={`Accronym-${index}-content`}
-                id={`panel${item?.id}-header`}
-              >
-                {showFavourites && (
-                  <HandymanIcon
-                    className={'icon' + (isSelected ? ' active' : '')}
-                  />
-                )}
+          style={{ marginBottom: '4px' }}>
+          <div className={'carousel-item' + (isSelected ? ' selected' : '')} onClick={handleClick(item.id)}>
+            <div className='AccordionItem inner item' style={{ cursor: 'pointer' }}>
+              <div className='title' aria-controls={`Accronym-${index}-content`} id={`panel${item?.id}-header`}>
+                {showFavourites && <HandymanIcon className={'icon' + (isSelected ? ' active' : '')} />}
 
-                <div
-                  className={
-                    'letters-cont' + (item.title.length > 12 ? ' long' : '')
-                  }
-                >
+                <div className={'letters-cont' + (item.title.length > 12 ? ' long' : '')}>
                   {item.title.split('.').map(
                     (subItem, i) =>
                       subItem && (
@@ -280,44 +278,31 @@ const MenuCarousel = ({
         </CarouselListItem>
       )
     })
-  }, [
-    data,
-    filterIDs,
-    showFavourites,
-    handleClick,
-    registerItem,
-    unregisterItem,
-  ])
+  }, [data, filterIDs, showFavourites, handleClick, registerItem, unregisterItem])
 
   return (
     <div
-      className={'AccordionRoot' + (open ? ' expanded' : '')}
+      className='AccordionRoot'
       ref={scrollContainerRef}
       style={{
         height: '100%',
         overflowY: 'auto',
         position: 'relative',
         WebkitOverflowScrolling: 'touch',
-      }}
-    >
-      {/* Top padding to center first items */}
-      <div style={{ paddingTop: '40vh' }} />
+      }}>
+      {/* Top padding: 50vh so any single item (including the first) can be centered */}
+      <div style={{ paddingTop: '50vh' }} />
 
       <div className='accronym-menu'>{carouselItems}</div>
 
-      {/* Add description at the bottom with its own padding */}
       {description && (
-        <DescriptionItem
-          index={data.length} // Use data length as index to avoid conflicts
-          registerItem={registerItem}
-          unregisterItem={unregisterItem}
-        >
+        <DescriptionItem index={data.length} registerItem={registerItem} unregisterItem={unregisterItem}>
           <div className='content'>{description}</div>
         </DescriptionItem>
       )}
 
-      {/* Bottom padding for scrolling space */}
-      <div style={{ paddingBottom: '20vh' }} />
+      {/* Bottom padding: 50vh so any single item (including the last) can be centered */}
+      <div style={{ paddingBottom: '50vh' }} />
     </div>
   )
 }

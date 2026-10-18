@@ -5,7 +5,7 @@
   max-width: 100%;
 }
 
-section.intro .feature {
+section.activity-introduction.feature {
   position: relative;
   margin: 8dvh 0;
   width: 100%;
@@ -56,7 +56,7 @@ section.intro .feature {
   }
 }
 
-section.intro.feature.out {
+section.activity-introduction.feature.out {
   .icon {
     transform: scale(1.5);
     filter: blur(250px);

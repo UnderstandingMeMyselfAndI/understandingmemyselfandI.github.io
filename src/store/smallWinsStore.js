@@ -70,7 +70,9 @@ const INITIAL = {
   baseline: null,
   saveStatus: 'idle',
   query: '',
+  page: 1,
   busy: false,
+  editorMode: null, // 'create' | 'edit' | null
 }
 
 export const useSmallWinsStore = create((set, get) => {
@@ -133,7 +135,8 @@ export const useSmallWinsStore = create((set, get) => {
     },
 
     setTab: (tab) => set({ tab }),
-    setQuery: (query) => set({ query }),
+    setQuery: (query) => set({ query, page: 1 }),
+    setPage: (page) => set({ page }),
     setSaveStatus: (saveStatus) => set({ saveStatus }),
 
     openCreate: async () => {
@@ -146,6 +149,7 @@ export const useSmallWinsStore = create((set, get) => {
           draft: entry,
           baseline: entry,
           view: 'editor',
+          editorMode: 'create',
           saveStatus: 'idle',
           busy: false,
         }))
@@ -164,6 +168,7 @@ export const useSmallWinsStore = create((set, get) => {
         draft: { ...entry },
         baseline: entry,
         view: 'editor',
+        editorMode: 'edit',
         saveStatus: 'idle',
       })
     },
@@ -219,6 +224,7 @@ export const useSmallWinsStore = create((set, get) => {
         set((state) => ({
           entries: state.entries.filter((e) => e.id !== id),
           view: 'overview',
+          editorMode: null,
           draft: null,
           baseline: null,
           selectedId: null,
@@ -235,18 +241,28 @@ export const useSmallWinsStore = create((set, get) => {
       await get().saveAndClose()
       return true
     },
-
+    closeSession: async () => {
+      const saved = await get().saveAndClose()
+      if (!saved) {
+        // Don't clear decrypted state if the draft didn't make it to disk.
+        // The user can retry close, or we can prompt.
+        throw new Error('Could not save before closing.')
+      }
+      get().reset()
+      const { lock, hasPasscode } = await import('../utils/securityGate')
+      if (hasPasscode()) lock()
+    },
     saveAndClose: async () => {
-      scheduleSave.flush()
-      if (scheduleSave.pending()) return
+      scheduleSave.cancel()
 
       const { draft } = get()
       if (draft) {
         try {
           const saved = await storage.saveEntry(draft)
           set((state) => ({ entries: sortEntries(mergeEntry(state.entries, saved)) }))
-        } catch {
-          /* keep the in-memory copy */
+        } catch (err) {
+          set({ error: String(err?.message || err), saveStatus: 'error' })
+          return false
         }
 
         if (AUTO_PRUNE_EMPTY_DRAFT && isEmptyDraft(draft)) {
@@ -261,11 +277,13 @@ export const useSmallWinsStore = create((set, get) => {
 
       set({
         view: 'overview',
+        editorMode: null,
         draft: null,
         baseline: null,
         selectedId: null,
         saveStatus: 'idle',
       })
+      return true
     },
 
     discardAndClose: async () => {
@@ -285,6 +303,7 @@ export const useSmallWinsStore = create((set, get) => {
 
       set({
         view: 'overview',
+        editorMode: null,
         draft: null,
         baseline: null,
         selectedId: null,

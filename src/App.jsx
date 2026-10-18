@@ -1,16 +1,13 @@
 'use client'
-// import React from "react";
-
+import { useEffect } from 'react'
 import Routing from '@components/routing/Routing'
 import { useThemeStore } from '@store/useThemeStore'
 import useAppStore from '@store/useAppStore'
 import applyTheme from '@components/theme/applyTheme'
 import Header from '@activity/header/Header.jsx'
 import Footer from '@activity/footer/Footer'
-import PrivacyPolicy from '@activity/privacy/PrivacyPolicy'
 import Introduction from '@activity/introduction/Introduction'
 import YourPrivacyCTA from '@activity/privacy/YourPrivacyCTA'
-import Tools from '@activity/tools/Tools.jsx'
 import ToolsCTA from '@activity/tools/ToolsCTA.jsx'
 import WallpapersCTA from '@activity/wallpapers/WallpapersCTA'
 import Backdrop from '@components/backdrop/Backdrop'
@@ -18,9 +15,6 @@ import Backdrop from '@components/backdrop/Backdrop'
 import SnackBars from '@ui/snackbars/SnackBars.jsx'
 import PasscodeDialogController from './components/security/PasscodeDialogController'
 import InstallCTA from '@activity/install/InstallCTA'
-// import AcronymCard from "ui/cards/AcronymCard.jsx";
-import AcronymExplained from '@activity/acronymExplained/AcronymExplained'
-import DaysCounter from '@activity/daysCounter/DaysCounter'
 import DaysCounterCTA from '@activity/daysCounter/DaysCounterCTA'
 import AppMenu from '@ui/menu/AppMenu'
 import CookieConsent from '@activity/cookieConsent/CookieConsent'
@@ -29,34 +23,22 @@ import AppLoading from '@ui/loading/AppLoading'
 import { smoothScroll } from '@js/utils.js'
 import NewsletterSignUp from '@activity/newsletterSignup/NewsletterSignUp'
 import Exit from '@ui/exit/Exit'
-import Settings from '@activity/settings/Settings'
 import Vcn from '@components/visits/Vcn.jsx'
 import Lingo from '@activity/lingo/Lingo'
-import UnitsCalculator from '@activity/unitsCalculator/UnitsCalculator'
 import UnitsCalculatorCTA from '@activity/unitsCalculator/UnitsCalculatorCTA'
-import WallpaperGallery from '@activity/wallpapers/WallpaperGallery'
-import WheelOfLife from '@activity/wheeloflife/WheelOfLife'
 import WheelOfLifeCTA from '@activity/wheeloflife/WheelOfLifeCTA'
-import VerticalTimeline from '@activity/timeline/VerticalTimeline'
 import TimelineCTA from '@activity/timeline/TimelineCTA'
-import Quiz from '@activity/quiz/Quiz'
 import QuizCTA from '@activity/quiz/QuizCTA'
-import PengGameAI from '@activity/games/peng/PengGameAI'
-import SmallWins from './components/activity/smallWins/SmallWins'
-// import { runPersistentStorageTests } from './js/utils.js'
+import ActivityHost from '@components/activity/ActivityHost'
+import Home from '@activity/home/Home'
+import { prefetchAllActivities } from './components/activity/activityLoaders'
 import './App.scss'
 import './scss/_fonts.scss'
-// import AccessibilitySettings from './components/ui/AccessibilitySettings/AccessibilitySettings'
-//TODO #41 Add Pop up confirm box with disclaimer. with timely reminder.
-//TODO #42 Add setting to remove reminder in settings
-//TODO #21 "Clear Local Data" functionality
-//TODO #43 Styling of cookie consent
-//TODO #67 #66 New features Urges and Cravings logs
-// Needed for Service Worker update itself
+
 window.__APP_LOADED = true
 
 function App() {
-  // Customise display of features
+  // Feature flags
   const daysCounterEnabled = useAppStore((s) => s.daysCounterEnabled)
   const quickExitEnabled = useAppStore((s) => s.quickExitEnabled)
   const unitsCalculatorEnabled = useAppStore((s) => s.unitsCalculatorEnabled)
@@ -64,66 +46,80 @@ function App() {
   const quizEnabled = useAppStore((s) => s.quizEnabled)
   const toolsEnabled = useAppStore((s) => s.toolsEnabled)
   const smoothScrollEnabled = useAppStore((s) => s.smoothScrollEnabled)
+
   // Verification
   const ageVerified = useAppStore((s) => s.ageVerified)
-  const savedConsent = localStorage.getItem('cookieConsent')
+  const savedConsent = localStorage.getItem('cookieConsent') ? localStorage.getItem('cookieConsent') : false
+
   // Hydration
   const hasHydrated = useAppStore((s) => s._hasHydrated)
 
-  if (smoothScrollEnabled) smoothScroll()
+  // All hooks must run before any early return. Side effects live in effects.
+  useEffect(() => {
+    if (!smoothScrollEnabled) return undefined
+    smoothScroll()
+  }, [smoothScrollEnabled])
 
-  const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme)
+  useEffect(() => {
+    const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme)
+    if (theme === null) return
+    applyTheme({ theme })
+    useThemeStore.setState({ theme })
+  }, [])
 
-  if (theme !== null) {
-    applyTheme({ theme: theme })
-    useThemeStore.setState({
-      theme: theme,
-    })
-  }
+  useEffect(() => {
+    if (!hasHydrated) return undefined
 
-  if (!hasHydrated) {
-    return <AppLoading />
-  }
+    // Respect the user's data-saver preference. If set, prefetching still
+    // happens, but only on user intent (menu open, tap) — see AppMenu.
+    if (navigator.connection?.saveData === true) return undefined
 
-  if (!ageVerified) {
-    return <UmmiAgeGate />
-  }
+    const effectiveType = navigator.connection?.effectiveType
+    const delay = effectiveType === 'slow-2g' || effectiveType === '2g' ? 4000 : 0
+
+    const schedule = window.requestIdleCallback
+      ? (cb) => window.requestIdleCallback(cb, { timeout: 5000 })
+      : (cb) => setTimeout(cb, 1500 + delay)
+    const cancel = window.cancelIdleCallback ?? clearTimeout
+
+    const handle = schedule(() => prefetchAllActivities())
+    return () => cancel(handle)
+  }, [hasHydrated])
+
+  // Early returns must come after all hooks.
+  if (!hasHydrated) return <AppLoading />
+  if (!ageVerified) return <UmmiAgeGate />
 
   return (
     <div>
       <div className='main'>
         <AppMenu />
         {quickExitEnabled && <Exit />}
-        <Header />
-        <Introduction />
-        <SmallWins />
-        <WallpaperGallery />
-        <VerticalTimeline />
-        {wheelOfLifeEnabled && <WheelOfLife />}
-        {toolsEnabled && <Tools />}
-        <PrivacyPolicy />
-        {quizEnabled && <Quiz />}
-        <PengGameAI />
-        {toolsEnabled && <ToolsCTA />}
-        {daysCounterEnabled && <DaysCounterCTA />}
-        {unitsCalculatorEnabled && <UnitsCalculatorCTA />}
-        <TimelineCTA />
-        {wheelOfLifeEnabled && <WheelOfLifeCTA />}
-        <Lingo />
-        {quizEnabled && <QuizCTA />}
-        <WallpapersCTA />
-        <YourPrivacyCTA />
-        <NewsletterSignUp />
-        <InstallCTA />
-        <Footer />
+
+        {/* All modal activities mount through here, one at a time. */}
+        <ActivityHost />
+        <Home>
+          <Header />
+          <Introduction />
+          {toolsEnabled && <ToolsCTA />}
+          {daysCounterEnabled && <DaysCounterCTA />}
+          {unitsCalculatorEnabled && <UnitsCalculatorCTA />}
+          <TimelineCTA />
+          {wheelOfLifeEnabled && <WheelOfLifeCTA />}
+          <Lingo />
+          {quizEnabled && <QuizCTA />}
+          <WallpapersCTA />
+          <YourPrivacyCTA />
+          <NewsletterSignUp />
+          <InstallCTA />
+          <Footer />
+        </Home>
         {quickExitEnabled && <Exit />}
-        {unitsCalculatorEnabled && <UnitsCalculator />}
-        {daysCounterEnabled && <DaysCounter />}
-        <AcronymExplained />
-        <Settings />
+
         <SnackBars />
         <PasscodeDialogController />
       </div>
+
       <Backdrop initialImageId={2} initialDelay={3000} interval={6000} parallaxStrength={0} className='backdrop' />
       <Routing />
       <Vcn />

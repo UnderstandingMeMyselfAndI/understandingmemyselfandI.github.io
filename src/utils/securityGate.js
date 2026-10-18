@@ -1,28 +1,21 @@
 // src/utils/securityGate.js
-// Passcode lifecycle + in-memory key custody.
-//
-// Two key sources:
-//   1. Passcode-derived key (PBKDF2 + salt) — used when a passcode is set.
-//   2. Device key (random 32 bytes, base64 in localStorage) — used when no
-//      passcode is set. Data is still encrypted; it is not protected against
-//      anyone with access to this device's storage.
+// Passcode + biometric lifecycle via keystore-kit.
+// PIN and biometric are independent slots; both may be usable at once.
+// When neither is configured, the existing device-key fallback applies.
 
-import {
-  PBKDF2_ITERATIONS,
-  SALT_BYTES,
-  base64ToBytes,
-  bytesToBase64,
-  checkVerifier,
-  deriveKey,
-  makeVerifier,
-  randomBytes,
-} from './crypto'
+import { Keystore, browserStorage, browserWebAuthn } from 'keystore-kit'
 
 export const MIN_PASSCODE_LENGTH = 6
 export const MAX_PASSCODE_LENGTH = 12
 
-const DEVICE_KEY_BYTES = 32
+// 32-byte app-constant PRF salt. Must never change for a given app.
+const APP_PRF_SALT = new Uint8Array([
+  0x55, 0x4d, 0x4d, 0x49, 0x2d, 0x73, 0x6d, 0x61, 0x6c, 0x6c, 0x2d, 0x77, 0x69, 0x6e, 0x73, 0x2d, 0x70, 0x72, 0x66,
+  0x2d, 0x73, 0x61, 0x6c, 0x74, 0x2d, 0x76, 0x31, 0x2d, 0x30, 0x30, 0x30, 0x31,
+])
 
+const BIOMETRIC_FLAG = 'ummi.biometric.enabled'
+const DEVICE_KEY_BYTES = 32
 const memoryFallback = new Map()
 
 function readRaw(key) {
@@ -52,6 +45,8 @@ function removeRaw(key) {
   }
 }
 
+// --- dry-run -------------------------------------------------------------
+
 let dryRun = false
 
 export function initDryRunFromLocation() {
@@ -67,22 +62,58 @@ export function initDryRunFromLocation() {
 export function isDryRun() {
   return dryRun
 }
+
 export function setDryRun(value) {
   dryRun = !!value
   activeKey = null
+  keystoreInstance = null
 }
 
 function prefix() {
   return dryRun ? 'ummi.dryrun.' : 'ummi.'
 }
 
-const KEYS = {
-  salt: () => `${prefix()}security.salt`,
-  verifier: () => `${prefix()}security.verifier`,
-  iterations: () => `${prefix()}security.iterations`,
-  reminder: () => `${prefix()}security.reminderShownAt`,
-  deviceKey: () => `${prefix()}security.deviceKey`,
+// --- keystore ------------------------------------------------------------
+
+let keystoreInstance = null
+
+function getKeystore() {
+  if (keystoreInstance) return keystoreInstance
+
+  const config = {
+    rpId: typeof location !== 'undefined' ? location.hostname : 'localhost',
+    rpName: 'UMMI',
+    prfSalt: APP_PRF_SALT,
+    namespace: dryRun ? 'ummi-dryrun' : 'ummi',
+  }
+
+  let webauthn
+  try {
+    webauthn = browserWebAuthn()
+  } catch {
+    webauthn = undefined
+  }
+
+  keystoreInstance = new Keystore(browserStorage(), config, webauthn)
+  return keystoreInstance
 }
+
+// --- biometric flag ------------------------------------------------------
+
+function hasBiometricFlag() {
+  return readRaw(BIOMETRIC_FLAG) === 'true'
+}
+
+function setBiometricFlag(value) {
+  if (value) writeRaw(BIOMETRIC_FLAG, 'true')
+  else removeRaw(BIOMETRIC_FLAG)
+}
+
+function clearBiometricFlag() {
+  setBiometricFlag(false)
+}
+
+// --- in-memory key custody ----------------------------------------------
 
 let activeKey = null
 const subscribers = new Set()
@@ -107,213 +138,224 @@ export function isUnlocked() {
 }
 
 export function lock() {
-  if (!hasPasscode()) return // nothing to lock with
+  if (!hasPasscode()) return
   activeKey = null
   notify()
 }
 
-// --- credentials --------------------------------------------------------
-
-export function hasPasscode() {
-  return Boolean(readRaw(KEYS.salt()) && readRaw(KEYS.verifier()))
+export function getActiveKey() {
+  if (!activeKey) {
+    const err = new Error('Vault is locked')
+    err.code = 'LOCKED'
+    throw err
+  }
+  return activeKey
 }
 
-export function getStoredIterations() {
-  return Number(readRaw(KEYS.iterations())) || PBKDF2_ITERATIONS
+// --- secret ↔ CryptoKey -------------------------------------------------
+
+async function importSecretAsKey(secretHex) {
+  const bytes = new Uint8Array(secretHex.match(/.{1,2}/g).map((byte) => parseInt(byte, 16)))
+  return crypto.subtle.importKey('raw', bytes, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt'])
 }
 
-// --- device key ---------------------------------------------------------
+// --- device key (no-security fallback) ----------------------------------
 
 async function importRawAesKey(bytes) {
   return crypto.subtle.importKey('raw', bytes, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt'])
 }
 
 async function getOrCreateDeviceKey() {
-  const raw = readRaw(KEYS.deviceKey())
+  const raw = readRaw(`${prefix()}security.deviceKey`)
   if (raw) {
     try {
       return await importRawAesKey(base64ToBytes(raw))
     } catch {
-      /* fall through and regenerate */
+      /* regenerate */
     }
   }
-  const bytes = randomBytes(DEVICE_KEY_BYTES)
-  writeRaw(KEYS.deviceKey(), bytesToBase64(bytes))
+  const bytes = crypto.getRandomValues(new Uint8Array(DEVICE_KEY_BYTES))
+  writeRaw(`${prefix()}security.deviceKey`, bytesToBase64(bytes))
   return importRawAesKey(bytes)
 }
 
-/**
- * Return the active key, deriving one from the device when no passcode is set.
- * Storage layers call this instead of getActiveKey() so the same code path
- * works in both protected and unprotected mode.
- */
+function bytesToBase64(bytes) {
+  let binary = ''
+  const chunk = 0x8000
+  for (let i = 0; i < bytes.length; i += chunk) {
+    binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk))
+  }
+  return btoa(binary)
+}
+
+function base64ToBytes(base64) {
+  const binary = atob(base64)
+  const out = new Uint8Array(binary.length)
+  for (let i = 0; i < binary.length; i += 1) out[i] = binary.charCodeAt(i)
+  return out
+}
+
+// --- lifecycle -----------------------------------------------------------
+
+export function hasPasscode() {
+  return getKeystore().isSetUp()
+}
+
 export async function ensureKey() {
   if (activeKey) return activeKey
-  if (hasPasscode()) {
-    const err = new Error('Vault requires passcode')
+
+  const ks = getKeystore()
+  if (ks.isSetUp()) {
+    const err = new Error('Vault requires unlock')
     err.code = 'LOCKED'
     throw err
   }
+
   activeKey = await getOrCreateDeviceKey()
   notify()
   return activeKey
 }
 
-// --- passcode lifecycle -------------------------------------------------
+// --- PIN -----------------------------------------------------------------
 
-async function deriveFromStored(passcode) {
-  const saltB64 = readRaw(KEYS.salt())
-  if (!saltB64) return null
-  return deriveKey(passcode, base64ToBytes(saltB64), getStoredIterations())
-}
-
-export async function verifyPasscode(passcode) {
-  const verifierRaw = readRaw(KEYS.verifier())
-  if (!verifierRaw) return false
-  const key = await deriveFromStored(passcode)
-  if (!key) return false
-  return checkVerifier(key, JSON.parse(verifierRaw))
-}
-
-export async function unlock(passcode) {
-  const verifierRaw = readRaw(KEYS.verifier())
-  if (!verifierRaw) return false
-  const key = await deriveFromStored(passcode)
-  if (!key) return false
-  const ok = await checkVerifier(key, JSON.parse(verifierRaw))
-  if (ok) {
-    activeKey = key
-    notify()
-  }
-  return ok
-}
-
-/**
- * Enable or replace the passcode.
- *
- * When there is existing data encrypted under the device key, it is
- * re-encrypted with the new passcode key. If re-encryption fails, we abort
- * before writing credentials, so the previous state is preserved.
- */
 export async function createPasscode(passcode) {
-  const trimmed = String(passcode || '')
-  if (trimmed.length < MIN_PASSCODE_LENGTH) {
+  if (passcode.length < MIN_PASSCODE_LENGTH) {
     throw new Error(`Passcode must be at least ${MIN_PASSCODE_LENGTH} digits.`)
   }
-  if (trimmed.length > MAX_PASSCODE_LENGTH) {
-    throw new Error(`Passcode must be at most ${MAX_PASSCODE_LENGTH} digits.`)
-  }
-  if (!/^\d+$/.test(trimmed)) {
+  if (!/^\d+$/.test(passcode)) {
     throw new Error('Passcode must be digits only.')
   }
 
-  const wasUnprotected = !hasPasscode()
+  const ks = getKeystore()
+  const wasUnprotected = !ks.isSetUp()
   const oldKey = wasUnprotected ? await getOrCreateDeviceKey() : null
 
-  const salt = randomBytes(SALT_BYTES)
-  const iterations = PBKDF2_ITERATIONS
-  const newKey = await deriveKey(trimmed, salt, iterations)
+  const secret = ks.generateSecret()
+  const newKey = await importSecretAsKey(secret)
 
   if (oldKey) {
-const { reencryptAll } = await import('./smallWinsStorage')
+    const { reencryptAll } = await import('./smallWinsStorage')
     await reencryptAll(oldKey, newKey)
   }
 
-  writeRaw(KEYS.salt(), bytesToBase64(salt))
-  writeRaw(KEYS.iterations(), String(iterations))
-  writeRaw(KEYS.verifier(), JSON.stringify(await makeVerifier(newKey)))
-
+  await ks.setupPIN(passcode, secret)
   activeKey = newKey
   notify()
   return true
+}
+
+export async function unlock(passcode) {
+  const ks = getKeystore()
+  const secret = await ks.unlockPIN(passcode)
+  if (!secret) return false
+
+  activeKey = await importSecretAsKey(secret)
+  notify()
+  return true
+}
+
+export async function verifyPasscode(passcode) {
+  const ks = getKeystore()
+  const secret = await ks.unlockPIN(passcode)
+  return secret !== null
 }
 
 export async function changePasscode(currentPasscode, newPasscode) {
-  const trimmedNew = String(newPasscode || '')
-  if (trimmedNew.length < MIN_PASSCODE_LENGTH) {
+  if (newPasscode.length < MIN_PASSCODE_LENGTH) {
     throw new Error(`New passcode must be at least ${MIN_PASSCODE_LENGTH} digits.`)
   }
-  if (!/^\d+$/.test(trimmedNew)) {
+  if (!/^\d+$/.test(newPasscode)) {
     throw new Error('New passcode must be digits only.')
   }
 
-  const oldKey = await deriveFromStored(currentPasscode)
-  if (!oldKey) throw new Error('Vault is not initialised.')
-
-  const verifierRaw = readRaw(KEYS.verifier())
-  const ok = await checkVerifier(oldKey, JSON.parse(verifierRaw))
+  const ks = getKeystore()
+  const ok = await ks.changePIN(currentPasscode, newPasscode)
   if (!ok) throw new Error('Current passcode is incorrect.')
-
-  const salt = randomBytes(SALT_BYTES)
-  const iterations = PBKDF2_ITERATIONS
-  const newKey = await deriveKey(trimmedNew, salt, iterations)
-
-  const { reencryptAll } = await import('./smallWinsStorage')
-  await reencryptAll(oldKey, newKey)
-
-  writeRaw(KEYS.salt(), bytesToBase64(salt))
-  writeRaw(KEYS.iterations(), String(iterations))
-  writeRaw(KEYS.verifier(), JSON.stringify(await makeVerifier(newKey)))
-
-  activeKey = newKey
-  notify()
   return true
 }
 
-/**
- * Remove the passcode and re-encrypt existing data with the device key.
- * Requires the current passcode so someone who finds an unlocked device
- * cannot silently downgrade protection.
- */
 export async function disablePasscode(currentPasscode) {
-  if (!hasPasscode()) return true
+  const ks = getKeystore()
+  const secret = await ks.unlockPIN(currentPasscode)
+  if (!secret) throw new Error('Current passcode is incorrect.')
 
-  const oldKey = await deriveFromStored(currentPasscode)
-  if (!oldKey) throw new Error('Vault is not initialised.')
-
-  const verifierRaw = readRaw(KEYS.verifier())
-  const ok = await checkVerifier(oldKey, JSON.parse(verifierRaw))
-  if (!ok) throw new Error('Current passcode is incorrect.')
-
+  const oldKey = await importSecretAsKey(secret)
   const deviceKey = await getOrCreateDeviceKey()
 
   const { reencryptAll } = await import('./smallWinsStorage')
   await reencryptAll(oldKey, deviceKey)
 
-  removeRaw(KEYS.salt())
-  removeRaw(KEYS.verifier())
-  removeRaw(KEYS.iterations())
+  await ks.burn()
+  clearBiometricFlag()
 
   activeKey = deviceKey
   notify()
   return true
 }
 
-/**
- * Wipe all encrypted data and clear the passcode. Data is unrecoverable.
- */
 export async function resetPasscode() {
+  const ks = getKeystore()
   const { deleteAllData, resetDbConnection } = await import('./smallWinsStorage')
+
   await deleteAllData()
   resetDbConnection()
-
-  removeRaw(KEYS.salt())
-  removeRaw(KEYS.verifier())
-  removeRaw(KEYS.iterations())
+  await ks.burn()
+  clearBiometricFlag()
 
   activeKey = null
   notify()
   return true
 }
 
-// --- daily reminder -----------------------------------------------------
+// --- biometric -----------------------------------------------------------
 
-function isSameLocalDay(a, b) {
-  const da = new Date(a)
-  const db = new Date(b)
-  return da.getFullYear() === db.getFullYear() && da.getMonth() === db.getMonth() && da.getDate() === db.getDate()
+export async function isBiometricAvailable() {
+  try {
+    return await getKeystore().isBiometricAvailable()
+  } catch {
+    return false
+  }
 }
-// --- passcode-set reminder (once per calendar day) ----------------------
+
+export function isBiometricEnabled() {
+  return hasBiometricFlag()
+}
+
+export async function enableBiometric(passcode) {
+  const ks = getKeystore()
+  const secret = await ks.unlockPIN(passcode)
+  if (!secret) throw new Error('Current passcode is incorrect.')
+
+  const result = await ks.enableBiometric(secret)
+  if (result.ok) {
+    setBiometricFlag(true)
+  }
+  return result
+}
+
+export async function unlockWithBiometric() {
+  const ks = getKeystore()
+  const secret = await ks.unlockBiometric()
+  if (!secret) return false
+
+  activeKey = await importSecretAsKey(secret)
+  notify()
+  return true
+}
+
+export async function disableBiometric(currentPasscode) {
+  const ks = getKeystore()
+  const secret = await ks.unlockPIN(currentPasscode)
+  if (!secret) throw new Error('Current passcode is incorrect.')
+
+  await ks.disableBiometric(secret, currentPasscode)
+  clearBiometricFlag()
+  return true
+}
+
+// --- reminder ------------------------------------------------------------
+
+const REMINDER_KEY = () => `${prefix()}security.reminderShownAt`
 
 function sameLocalDay(a, b) {
   const da = new Date(a)
@@ -322,18 +364,19 @@ function sameLocalDay(a, b) {
 }
 
 export function hasPasscodeReminderBeenShownToday(now = Date.now()) {
-  const last = Number(readRaw(KEYS.reminder())) || 0
+  const last = Number(readRaw(REMINDER_KEY())) || 0
   return last > 0 && sameLocalDay(last, now)
 }
 
 export function markPasscodeReminderShown(now = Date.now()) {
-  writeRaw(KEYS.reminder(), String(now))
+  writeRaw(REMINDER_KEY(), String(now))
 }
 
+// --- misc ----------------------------------------------------------------
+
 export function clearCredentials() {
-  removeRaw(KEYS.salt())
-  removeRaw(KEYS.verifier())
-  removeRaw(KEYS.iterations())
+  keystoreInstance = null
+  clearBiometricFlag()
   activeKey = null
   notify()
 }

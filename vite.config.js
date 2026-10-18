@@ -62,6 +62,7 @@ export default defineConfig({
         'img-src': "'self' data:",
         'font-src': "'self' data:",
         'connect-src': "'self' http://localhost/ https://app.ummi.now",
+        'report-uri': '/csp-report',
       },
       // Optional: Use 'report' for report-only mode, 'strict' for enforcement (default)
       reportType: 'report',

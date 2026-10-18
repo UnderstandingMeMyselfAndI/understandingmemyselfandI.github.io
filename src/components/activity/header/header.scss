@@ -2,7 +2,7 @@
 @use '@scss/variables';
 @import '@scss/globals.css';
 
-section.header#header {
+section.activiy-header#header {
   position: relative;
   top: 0;
   left: 0;
@@ -208,13 +208,13 @@ section.header#header {
   }
 }
 
-section.header.stage-3 {
+section.activiy-header.stage-3 {
   height: auto;
   transition: height 0.35s ease-in-out;
 }
 
 .light {
-  section.header#header {
+  section.activiy-header#header {
     .wgrp {
       div.logoType {
         color: var(--orange);

@@ -37,7 +37,10 @@ const cnf = {
 // ---------------------------------------------------------------
 // Icon ids are fixed and should not be mutated as they are used as reference
 //
-export const baseActivities = [
+// ---------------------------------------------------------------
+// Icon ids are fixed and should not be mutated as they are used as reference
+//
+const activities = [
   {
     id: -1,
     url: '',
@@ -253,11 +256,10 @@ export const baseActivities = [
       { state: 'isInstallable', value: true },
     ],
   },
-
   {
     id: 17,
-    url: 'AcronymExlpained',
-    title: 'Acronym Exlpained',
+    url: 'AcronymExplained',
+    title: 'Acronym Explained',
     menuPosition: 20,
     menu: false,
     shortcuts: false,
@@ -266,7 +268,6 @@ export const baseActivities = [
     anchorID: '',
     conditions: [],
   },
-
   {
     id: 18,
     url: 'footer',
@@ -279,7 +280,6 @@ export const baseActivities = [
     anchorID: 'footer',
     conditions: [],
   },
-
   {
     id: 19,
     url: 'header',
@@ -292,7 +292,6 @@ export const baseActivities = [
     anchorID: 'header',
     conditions: [],
   },
-
   {
     id: 20,
     url: 'your-privacy-cta',
@@ -365,11 +364,7 @@ export const baseActivities = [
     anchorID: '',
     conditions: [],
   },
-]
-const activities = baseActivities.map((item) => ({
-  ...item,
-  icon: null, // add the sequential icon
-}))
+].map((item) => ({ ...item, icon: null }))
 
 const strings = {
   app: {
@@ -495,7 +490,7 @@ const strings = {
       url: 'recovery-tools',
       title: 'The Tools',
       // introduction: (isTouchDevice() ? 'Tap' : 'Click') + ' on a tool to learn more about it',
-      introduction: 'Tap on a tool to learn more about it',
+      introduction: 'Tap on a tool to learn more about it <br />and add them to your toolbox',
       description: [
         'These tools <u class="yellow-ul"><b>might not </b></u>work for<u><b class="yellow"> everbody.</b></u>',
         'They <u>could work</u> for <b><u class="yellow">one person</u></b> and <u class="yellow-ul">not the next</u>.',

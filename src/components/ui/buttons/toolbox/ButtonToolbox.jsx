@@ -36,6 +36,7 @@ const ButtonToolbox = ({ id }) => {
       onClick={handleClick}
       aria-label='Toggle toolbox'>
       {inToolbox ? <HandymanIcon key='toolbox-btn-icon' /> : <HandymanOutlinedIcon key='toolbox-btn-icon' />}
+      <div>{inToolbox ? 'Remove' : 'Add'}</div>
     </div>
   )
 }

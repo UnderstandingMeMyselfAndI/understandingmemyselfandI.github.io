@@ -1,6 +1,6 @@
 // DaysCounter.jsx (updated version)
 import { useState, useEffect, useRef } from 'react'
-import { useShallow } from 'zustand/react/shallow'
+// import { useShallow } from 'zustand/react/shallow'
 
 // import AddIcon from '@mui/icons-material/Add'
 import CloseBtn from '@ui/buttons/close/CloseBtn'
@@ -11,14 +11,14 @@ import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
 import useAppStore from '@store/useAppStore'
 import Dialog from '@ui/dialog/Dialog'
-import { activities } from '@data/config.js'
+// import { activities } from '@data/config.js'
 import { weekPercentageProgress, monthPercentageProgress, yearPercentageProgress } from '@js/utils.js'
 import './daysCounter.scss'
 
-const activitiesById = activities.reduce((acc, activity) => {
-  acc[activity.id] = activity
-  return acc
-}, {})
+// const activitiesById = activities.reduce((acc, activity) => {
+//   acc[activity.id] = activity
+//   return acc
+// }, {})
 
 // Common currency list for the dropdown
 const COMMON_CURRENCIES = [
@@ -34,29 +34,49 @@ const COMMON_CURRENCIES = [
   { code: 'MXN', symbol: '$', label: 'MXN $' },
   { code: 'BRL', symbol: 'R$', label: 'BRL R$' },
 ]
-
+const setTimes = (dates) => {
+  const now = Date.now()
+  const newTimes = {}
+  dates.forEach((date, index) => {
+    if (date.selectedDate) {
+      const diff = now - new Date(date.selectedDate).getTime()
+      newTimes[index] = {
+        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+        hours: Math.floor(diff / (1000 * 60 * 60)),
+        minutes: Math.floor(diff / (1000 * 60)),
+      }
+    }
+  })
+  return newTimes
+}
+const getInitialDates = () => {
+  try {
+    const saved = localStorage.getItem('daysCounterDates')
+    return saved ? JSON.parse(saved) : []
+  } catch {
+    return []
+  }
+}
 const DaysCounter = () => {
-  const name = 'Days Counter'
-  const id = 2
+  const name = 'days-counter'
+
   const setActivity = useAppStore((state) => state.setActivity)
-  const { activity } = useAppStore(useShallow((state) => ({ activity: state.activity })))
-  const setIsModal = useAppStore((s) => s.setIsModal)
-  const isModal = useAppStore((s) => s.isModal)
+  // const { activity } = useAppStore(useShallow((state) => ({ activity: state.activity })))
+  // const setIsModal = useAppStore((s) => s.setIsModal)
+  // const isModal = useAppStore((s) => s.isModal)
 
   // Currency from store
   const currency = useAppStore((s) => s.currency)
   const setCurrency = useAppStore((s) => s.setCurrency)
 
-  const [open, setOpen] = useState(false)
   const [showDialog, setShowDialog] = useState(false)
   const [dialogIndex, setDialogIndex] = useState(-1)
   const [editingDateIndex, setEditingDateIndex] = useState(-1)
   const [currentIndex, setCurrentIndex] = useState(0)
   const maxNumDates = 6
 
-  // Track visibility of savings details per date (by date id)
-  // const [visibleSavings, setVisibleSavings] = useState({})
-  const visibleSavings = true
+  const [dates, setDates] = useState(getInitialDates())
+  const currentTimes = useState(() => setTimes(dates) === null)
 
   // Touch handling for swipe (unchanged)
   const touchStartX = useRef(0)
@@ -97,33 +117,12 @@ const DaysCounter = () => {
   }
 
   const handleClose = () => {
-    setOpen(false)
     setActivity(-1)
   }
 
   const handleCloseDialog = () => {
     setShowDialog(false)
   }
-
-  useEffect(() => {
-    open && setIsModal(activitiesById[id]?.modal)
-  }, [open])
-
-  useEffect(() => {
-    setOpen(activity === id)
-  }, [activity, isModal, id])
-
-  const getInitialDates = () => {
-    try {
-      const saved = localStorage.getItem('daysCounterDates')
-      return saved ? JSON.parse(saved) : []
-    } catch (e) {
-      return []
-    }
-  }
-
-  const [dates, setDates] = useState(getInitialDates())
-  const [currentTimes, setCurrentTimes] = useState({})
 
   const getTenYearsAgo = () => {
     const date = new Date()
@@ -143,27 +142,27 @@ const DaysCounter = () => {
     }
   }, [dates])
 
-  useEffect(() => {
-    const now = Date.now()
-    const newTimes = {}
-    dates.forEach((date, index) => {
-      if (date.selectedDate) {
-        const diff = now - new Date(date.selectedDate).getTime()
-        newTimes[index] = {
-          days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-          hours: Math.floor(diff / (1000 * 60 * 60)),
-          minutes: Math.floor(diff / (1000 * 60)),
-        }
-      }
-    })
-    setCurrentTimes(newTimes)
-  }, [dates])
+  // useEffect(() => {
+  // const now = Date.now()
+  // const newTimes = {}
+  // dates.forEach((date, index) => {
+  //   if (date.selectedDate) {
+  //     const diff = now - new Date(date.selectedDate).getTime()
+  //     newTimes[index] = {
+  //       days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+  //       hours: Math.floor(diff / (1000 * 60 * 60)),
+  //       minutes: Math.floor(diff / (1000 * 60)),
+  //     }
+  //   }
+  // })
+  // setCurrentTimes(newTimes)
+  // }, [dates])
 
-  useEffect(() => {
-    if (currentIndex >= dates.length) {
-      setCurrentIndex(Math.max(dates.length - 1, 0))
-    }
-  }, [dates, currentIndex])
+  // useEffect(() => {
+  //   if (currentIndex >= dates.length) {
+  //     setCurrentIndex(Math.max(dates.length - 1, 0))
+  //   }
+  // }, [dates, currentIndex])
 
   // Auto-detect currency only once on mount if no currency is set in store
   useEffect(() => {
@@ -207,14 +206,14 @@ const DaysCounter = () => {
   }
 
   const deleteDate = (index) => {
-    const dateId = dates[index].id
+    // const dateId = dates[index].id
     setDates(dates.filter((_, i) => i !== index))
     // clean up visibility state for the deleted date
-    setVisibleSavings((prev) => {
-      const next = { ...prev }
-      delete next[dateId]
-      return next
-    })
+    // setVisibleSavings((prev) => {
+    //   const next = { ...prev }
+    //   delete next[dateId]
+    //   return next
+    // })
     setShowDialog(false)
   }
 
@@ -252,21 +251,19 @@ const DaysCounter = () => {
     setCurrency(e.target.value)
   }
 
-  const getCurrencySymbol = (code) => {
-    return COMMON_CURRENCIES.find((curr) => curr.code === code)?.symbol ?? ''
-  }
-
-  if (!open) return null
+  // const getCurrencySymbol = (code) => {
+  //   return COMMON_CURRENCIES.find((curr) => curr.code === code)?.symbol ?? ''
+  // }
 
   return (
-    <section className={`activity days-counter-activity fixed ${open ? 'show' : ''}`}>
-      <div className={`days-counter-wrapper ${open ? 'open' : ''}`}>
-        <div className='days-counter-wrap'>
-          <div className='days-counter-inner'>
-            <CloseBtn classes='days-counter-close-btn' onClick={handleClose} />
+    <section className={`activity activity-${name} fixed`}>
+      <div className={`days-counter__wrapper`}>
+        <div className='days-counter__wrap'>
+          <div className='days-counter__inner'>
+            <CloseBtn classes='days-counter__close-btn' onClick={handleClose} />
 
             {dates.length > 0 && (
-              <header className='days-counter-header'>
+              <header className='days-counter__header'>
                 <h3>Days Counter</h3>
               </header>
             )}
@@ -281,12 +278,12 @@ const DaysCounter = () => {
               />
             )}
 
-            <div className='days-counter-container'>
+            <div className='days-counter__container'>
               {dates.length === 0 ? (
-                <div className='days-counter-empty-state'>
+                <div className='days-counter__empty-state'>
                   <h3>Days Counter</h3>
-                  <div className='days-counter-empty-title'>Tap to add a date</div>
-                  <button onClick={addDate} className='days-counter-add-another-btn'>
+                  <div className='days-counter__empty-title'>Tap to add a date</div>
+                  <button onClick={addDate} className='days-counter__add-another-btn'>
                     ({dates.length}/{maxNumDates})
                   </button>
                 </div>
@@ -294,53 +291,53 @@ const DaysCounter = () => {
                 <>
                   {/* Carousel track */}
                   <div
-                    className='days-counter-carousel'
+                    className='days-counter__carousel'
                     onTouchStart={handleTouchStart}
                     onTouchMove={handleTouchMove}
                     onTouchEnd={handleTouchEnd}>
                     <div
-                      className='days-counter-carousel-track'
+                      className='days-counter__carousel-track'
                       style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                       {dates.map((date, index) => (
-                        <div key={date.id} className='days-counter-carousel-slide'>
-                          <div className='days-counter-card'>
+                        <div key={date.id} className='days-counter__carousel-slide'>
+                          <div className='days-counter__card'>
                             <button
                               onClick={() => {
                                 setDialogIndex(index)
                                 setShowDialog(true)
                               }}
-                              className='days-counter-delete-btn'
+                              className='days-counter__delete-btn'
                               title='Delete'>
                               <DeleteForeverIcon />
                             </button>
 
                             {date.selectedDate ? (
-                              <div className='days-counter-values'>
-                                <div className='days-counter-stat days-counter-stat-days'>
+                              <div className='days-counter__values'>
+                                <div className='days-counter__stat days-counter__stat-days'>
                                   <span className='value'>{currentTimes[index]?.days?.toLocaleString() ?? 0}</span>
                                   <span className='label days'>days</span>
                                 </div>
-                                <div className='days-counter-stat days-counter-stat-hours-mins'>
-                                  <div className='days-counter-stat-time'>
+                                <div className='days-counter-stat days-counter__stat-hours-mins'>
+                                  <div className='days-counter__stat-time'>
                                     <span className='value'>{currentTimes[index]?.hours?.toLocaleString() ?? 0}</span>
                                     <span className='label'>hrs</span>
                                   </div>
-                                  <div className='days-counter-stat-time '>
+                                  <div className='days-counter__stat-time '>
                                     <span className='value'>{currentTimes[index]?.minutes?.toLocaleString() ?? 0}</span>
                                     <span className='label'>mins</span>
                                   </div>
                                 </div>
                               </div>
                             ) : (
-                              <div className='days-counter-stat-group-new'>
-                                <div className='days-counter-stat'>
+                              <div className='days-counter__stat-group-new'>
+                                <div className='days-counter__stat'>
                                   <span className='value'></span>
                                 </div>
                               </div>
                             )}
 
-                            <div className='days-counter-card-date'>
-                              <div className='days-counter-card-title'>
+                            <div className='days-counter__card-date'>
+                              <div className='days-counter__card-title'>
                                 <input
                                   id={`Days-Counter-Title-${index}`}
                                   type='text'
@@ -348,13 +345,13 @@ const DaysCounter = () => {
                                   value={date.label}
                                   maxLength='10'
                                   onChange={(e) => updateDate(index, date.selectedDate, e.target.value, false)}
-                                  className='days-counter-title-input'
+                                  className='days-counter__title-input'
                                 />
                               </div>
-                              <div className='days-counter-selected-date'>
+                              <div className='days-counter__selected-date'>
                                 {date.selectedDate && editingDateIndex !== index ? (
                                   <span
-                                    className='days-counter-date-display'
+                                    className='days-counter__date-display'
                                     onClick={() => handleDateClick(index)}
                                     style={{ cursor: 'pointer' }}>
                                     {parse(formatDate(DOMPurify.sanitize(date.selectedDate)))}
@@ -368,21 +365,21 @@ const DaysCounter = () => {
                                     onBlur={() => setEditingDateIndex(-1)}
                                     min={getTenYearsAgo()}
                                     max={getToday()}
-                                    className='days-counter-date-input'
+                                    className='days-counter__date-input'
                                     autoFocus={editingDateIndex === index}
                                   />
                                 )}
                               </div>
                             </div>
                             {/* Financial Savings */}
-                            <div className='days-counter-savings-container'>
-                              <div className='days-counter-cost-container'>
-                                <div className='days-counter-cost'>
+                            <div className='days-counter__savings-container'>
+                              <div className='days-counter__cost-container'>
+                                <div className='days-counter__cost'>
                                   <label htmlFor={`daily-cost-${index}`}>
                                     <div>Daily cost</div>
                                   </label>
                                   <select
-                                    className='days-counter-currency-selector'
+                                    className='days-counter__currency-selector'
                                     value={currency}
                                     onChange={handleCurrencyChange}
                                     aria-label='Select currency'>
@@ -410,30 +407,42 @@ const DaysCounter = () => {
                                   />
                                 </div>
                               </div>
-                              <div className='days-counter-savings-rates all'>
-                                <div className='savings-rate-all-time'>
-                                  <span className='total-value'>
+                              <div className='days-counter__savings-rates all'>
+                                <div className='days-counter__savings-rate-all-time'>
+                                  <span className='days-counter__total-value'>
                                     {formatMoney(date.dailyCost * currentTimes[index]?.days, 0)}
                                   </span>
-                                  <span className='total-label'>Saved</span>
+                                  <span className='days-counter__total-label'>Saved</span>
                                 </div>
                               </div>
-                              <div className='days-counter-savings-rates'>
-                                <div className='savings-rate'>
-                                  <span className='rate-label'>Per week</span>
-                                  <span className='rate-value'>{formatMoney(date.dailyCost * 7)}</span>
-                                  <div className='rate-bg' style={{ width: `${weekPercentageProgress()}%` }}></div>
+                              <div className='days-counter__savings-rates'>
+                                <div className='days-counter__savings-rate'>
+                                  <span className='days-counter__savings-rate-label'>Per week</span>
+                                  <span className='days-counter__savings-rate-value'>
+                                    {formatMoney(date.dailyCost * 7)}
+                                  </span>
+                                  <div
+                                    className='days-counter__rate-bg'
+                                    style={{ width: `${weekPercentageProgress()}%` }}></div>
                                 </div>
-                                <div className='savings-rate'>
-                                  <span className='rate-label'>Per Month</span>
-                                  <span className='rate-value'>{formatMoney(date.dailyCost * 30.44)}</span>
-                                  <div className='rate-bg' style={{ width: `${monthPercentageProgress()}%` }}></div>
+                                <div className='days-counter__savings-rate'>
+                                  <span className='days-counter__savings-rate-label'>Per Month</span>
+                                  <span className='days-counter__savings-rate-value'>
+                                    {formatMoney(date.dailyCost * 30.44)}
+                                  </span>
+                                  <div
+                                    className='days-counter__savings-rate-bg'
+                                    style={{ width: `${monthPercentageProgress()}%` }}></div>
                                 </div>
 
-                                <div className='savings-rate'>
-                                  <span className='rate-label'>Per Year</span>
-                                  <span className='rate-value'>{formatMoney(date.dailyCost * 365.25)}</span>
-                                  <div className='rate-bg' style={{ width: `${yearPercentageProgress()}%` }}></div>
+                                <div className='days-counter__savings-rate'>
+                                  <span className='days-counter__savings-ate-label'>Per Year</span>
+                                  <span className='days-counter__savings-rate-value'>
+                                    {formatMoney(date.dailyCost * 365.25)}
+                                  </span>
+                                  <div
+                                    className='days-counter__savings-rate-bg'
+                                    style={{ width: `${yearPercentageProgress()}%` }}></div>
                                 </div>
                               </div>
                             </div>
@@ -445,14 +454,14 @@ const DaysCounter = () => {
 
                     {/* Navigation Arrows */}
                     <button
-                      className='days-counter-carousel-arrow left'
+                      className='days-counter__carousel-arrow left'
                       onClick={goToPrev}
                       disabled={currentIndex === 0}
                       aria-label='Previous date'>
                       <IconArrowChevronLeft />
                     </button>
                     <button
-                      className='days-counter-carousel-arrow right'
+                      className='days-counter__carousel-arrow right'
                       onClick={goToNext}
                       disabled={currentIndex === dates.length - 1}
                       aria-label='Next date'>
@@ -461,11 +470,11 @@ const DaysCounter = () => {
                   </div>
 
                   {/* Indicator Circles */}
-                  <div className='days-counter-indicators'>
+                  <div className='days-counter__indicators'>
                     {dates.map((_, index) => (
                       <button
                         key={index}
-                        className={`days-counter-indicator ${index === currentIndex ? 'active' : ''}`}
+                        className={`days-counter__indicator ${index === currentIndex ? 'active' : ''}`}
                         onClick={() => goToIndex(index)}
                         aria-label={`Go to date ${index + 1}`}
                       />
@@ -474,8 +483,8 @@ const DaysCounter = () => {
 
                   {/* Add another button */}
                   {dates.length < maxNumDates && (
-                    <div className='days-counter-button-container'>
-                      <button onClick={addDate} className='days-counter-add-another-btn'>
+                    <div className='days-counter__button-container'>
+                      <button onClick={addDate} className='days-counter__add-another-btn'>
                         ({dates.length}/{maxNumDates})
                       </button>
                     </div>
@@ -483,14 +492,6 @@ const DaysCounter = () => {
                 </>
               )}
             </div>
-
-            {/* <div className='days-counter-note-container'>
-              <div className='days-counter-note'>
-                <p>
-                  * All data is saved <u>only on your device</u>. Show and hide this feature in settings.
-                </p>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>

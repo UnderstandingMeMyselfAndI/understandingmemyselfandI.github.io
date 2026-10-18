@@ -49,7 +49,7 @@ export default function SmallWinsEditor() {
   const requestClose = useSmallWinsStore((s) => s.requestClose)
   const discardAndClose = useSmallWinsStore((s) => s.discardAndClose)
   const deleteEntry = useSmallWinsStore((s) => s.deleteEntry)
-
+  const editorMode = useSmallWinsStore((s) => s.editorMode)
   const [confirmLeave, setConfirmLeave] = useState(false)
   const [confirmDelete, setConfirmDelete] = useState(false)
   const titleRef = useRef(null)
@@ -88,7 +88,10 @@ export default function SmallWinsEditor() {
 
   return (
     <div className='small-wins-editor'>
-      <header className='small-wins-editor__header'>Edit your win</header>
+      <header className='small-wins-editor__header'>
+        {' '}
+        {editorMode === 'create' ? STRINGS.editorCreateTitle : STRINGS.editorEditTitle}
+      </header>
       <div className='small-wins-editor__bar'>
         <button type='button' className='small-wins-editor__back' onClick={handleBack}>
           ← {STRINGS.done}

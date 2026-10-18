@@ -1,29 +1,25 @@
 import { useState, useRef, useEffect } from 'react'
 import Logo from '@ui/logo/Logo.jsx'
 import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined'
-import useAppStore from '@store/useAppStore'
+// import useAppStore from '@store/useAppStore'
 import { ErrorBoundary } from 'react-error-boundary'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useOnInView } from 'react-intersection-observer'
 import { gsap } from 'gsap'
-import { activities } from '@data/config'
-const activitiesById = activities.reduce((acc, activity) => {
-  acc[activity.id] = activity
-  return acc
-}, {})
+// import { activities } from '@data/config'
+// const activitiesById = activities.reduce((acc, activity) => {
+//   acc[activity.id] = activity
+//   return acc
+// }, {})
 import './header.scss'
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 const Header = () => {
   const name = 'header'
-  const id = 19
-  const [open, setOpen] = useState(false)
   const [isLeaving, setIsLeaving] = useState(false)
   const [isFirstCall, setIsFirstCall] = useState(true)
-  const isModal = useAppStore((state) => state.isModal)
-  const setIsModal = useAppStore((s) => s.setIsModal)
   const cont = useRef()
   const groupRef = useRef()
   const arrowsCont = useRef()
@@ -32,9 +28,9 @@ const Header = () => {
   const aniLeaveRefs = useRef([])
   const loopTimelines = useRef([])
   const leaveTimeline = useRef()
-  const activity = useAppStore((s) => s.activity)
-  aniLoopRefs.current = []
-  aniLeaveRefs.current = []
+  // const activity = useAppStore((s) => s.activity)
+  // aniLoopRefs.current = []
+  // aniLeaveRefs.current = []
 
   const addLeaveRef = (el) => {
     if (el && !aniLeaveRefs.current.includes(el)) {
@@ -48,9 +44,6 @@ const Header = () => {
     }
   }
 
-  useEffect(() => {
-    setOpen(activity === id || !isModal)
-  }, [activity, isModal, id, setOpen])
   useGSAP(
     () => {
       if (!open) return
@@ -267,7 +260,7 @@ const Header = () => {
         })
       }
     },
-    { dependencies: [open, isLeaving, isModal], scope: cont },
+    { dependencies: [isLeaving], scope: cont },
   )
 
   // TODO #25 Maybe use ScrollTrigger isInViewport and drop the library
@@ -281,7 +274,7 @@ const Header = () => {
         setIsFirstCall(false)
         return
       }
-      setIsLeaving(!inView || isModal)
+      setIsLeaving(!inView)
     },
     {
       threshold: 0.1,
@@ -291,11 +284,11 @@ const Header = () => {
 
   // Sync isLeaving when isModal changes
   useEffect(() => {
-    setIsLeaving(!inViewData.current || isModal)
-  }, [isModal])
+    setIsLeaving(!inViewData.current)
+  }, [])
 
   return (
-    <section id='header' className={'activity header' + (open ? ' show' : ' hide')} ref={cont}>
+    <section id='header' className={`activity activity-${name}`} ref={cont}>
       <div className='leavingWrap' ref={inViewRef}>
         <div className={'group-wrap'}>
           <div className='home-grp'>
@@ -311,7 +304,7 @@ const Header = () => {
                 <div className='logoType'>
                   <ErrorBoundary FallbackComponent={<></>}>
                     <div className='w0w' ref={addLeaveRef}>
-                      <div className={'r1 w0' + (isLeaving || isModal ? ' leaving' : '')} ref={addLoopRef}>
+                      <div className={'r1 w0' + (isLeaving ? ' leaving' : '')} ref={addLoopRef}>
                         Understanding
                       </div>
                     </div>
@@ -319,14 +312,14 @@ const Header = () => {
                   <div className='r2'>
                     <ErrorBoundary FallbackComponent={<></>}>
                       <div className='w1w' ref={addLeaveRef}>
-                        <div className={'w1' + (isLeaving || isModal ? ' leaving' : '')} ref={addLoopRef}>
+                        <div className={'w1' + (isLeaving ? ' leaving' : '')} ref={addLoopRef}>
                           Me
                         </div>
                       </div>
                     </ErrorBoundary>
                     <ErrorBoundary FallbackComponent={<></>}>
                       <div className='w2w' ref={addLeaveRef}>
-                        <div className={'w2' + (isLeaving || isModal ? ' leaving' : '')} ref={addLoopRef}>
+                        <div className={'w2' + (isLeaving ? ' leaving' : '')} ref={addLoopRef}>
                           Myself
                         </div>
                       </div>

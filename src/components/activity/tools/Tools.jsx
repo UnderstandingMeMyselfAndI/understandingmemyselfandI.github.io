@@ -1,75 +1,56 @@
-import { useEffect, useState, useMemo } from 'react'
+import { useMemo, useEffect } from 'react'
 import useAppStore from '@store/useAppStore'
-import MenuCarousel from '@components/activity/tools/menuCarousel/MenuCarousel'
+import MenuCarousel from '@activity/tools/menuCarousel/MenuCarousel'
 import BadgeToolbox from '@ui/badges/BadgeToolbox'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
-import CloseBtn from '@components/ui/buttons/close/CloseBtn.jsx'
-import toolsData from '../../../data/tools.js'
-import { strings } from '@data/config'
-import PropTypes from 'prop-types'
-import { activities } from '@data/config'
-//--------------------------------------------------------------------
-const activitiesById = activities.reduce((acc, activity) => {
-  acc[activity.id] = activity
-  return acc
-}, {})
-
-//--------------------------------------------------------------------
+import { prefetchActivity } from '@activity/activityLoaders'
+import CloseBtn from '@buttons/close/CloseBtn'
+import toolsData from '@data/tools.js'
+import { strings } from '@data/config.js'
 import './tools.scss'
+
+const COMPONENT_NAME = 'tools'
+const COMPONENT_ID = 17
+
 const Tools = () => {
   const data = toolsData.tools.nodes
-  const name = 'tools'
-  const id = 1
-  const toolboxFilterEnabled = useAppStore((s) => s.toolboxFilterEnabled)
-
-  const [open, setOpen] = useState(false)
-  const activity = useAppStore((s) => s.activity)
-
-  const content = strings.activity.find((activity) => activity.name === name) || null
-
-  if (content === null) {
-    console.warn(`No content found for activity "${name}"`)
-  }
 
   const showToolsOnly = useAppStore((s) => s.showToolsOnly)
-  const getActiveToolIDs = useAppStore((s) => s.getActiveToolIDs)
   const yourToolsEnabled = useAppStore((s) => s.yourToolsEnabled)
+  const getActiveToolIDs = useAppStore((s) => s.getActiveToolIDs)
+  const setActivity = useAppStore((s) => s.setActivity)
+  const setAcronymID = useAppStore((s) => s.setAcronymID)
+
+  const content = strings.activity.find((a) => a.name === COMPONENT_NAME) || null
+
+  if (content === null) {
+    console.warn(`No content found for activity "${COMPONENT_NAME}"`)
+  }
+
+  useEffect(() => {
+    // The only way out of Tools is a tap on a tool, which opens AcronymExplained.
+    // Prefetch it so the tap is instant.
+    prefetchActivity('AcronymExlpained')
+  }, [])
 
   const activeIDs = getActiveToolIDs()
   const positiveIDsSet = useMemo(() => new Set(activeIDs), [activeIDs])
 
-  // Memoize the final carouselData
   const carouselData = useMemo(() => {
     const filteredData = data.filter((obj) => activeIDs.includes(obj.id))
     return showToolsOnly ? filteredData : data
   }, [showToolsOnly, activeIDs, data])
 
-  const setActivity = useAppStore((s) => s.setActivity)
-  const setAcronymID = useAppStore((s) => s.setAcronymID)
-  const setIsModal = useAppStore((s) => s.setIsModal)
-  // const isModal = useAppStore((s) => s.isModal)
-  useEffect(() => {
-    open && setIsModal(activitiesById[id]?.modal)
-  }, [open, setIsModal, id, activitiesById])
-
-  useEffect(() => {
-    setOpen(activity === id)
-  }, [activity])
-
   const handleClick = (id) => () => {
-    setActivity(17)
+    setActivity(COMPONENT_ID)
     setAcronymID(id)
-    // setShowAccCard(true)
-    setOpen(false)
   }
 
   const handleClose = () => {
-    setOpen(false)
     setActivity(-1)
   }
 
-  // Render description content
   const descriptionContent = content?.description && (
     <div className='tools-description'>
       {content.description.map((html, i) => (
@@ -78,11 +59,8 @@ const Tools = () => {
     </div>
   )
 
-  // console.log('yourtoolsEnabled ', yourToolsEnabled)
-  // console.log('open ', open)
-  return open ? (
-    <div className={'activity acronym-tools fixed' + (open ? ' show' : ' ')}>
-      {/* {yourToolsEnabled && <BadgeToolbox />} */}
+  return (
+    <div className='activity acronym-tools fixed show'>
       <BadgeToolbox showBadge={yourToolsEnabled} />
       <section className='tools' id='the-tools'>
         <div className='tools-inner'>
@@ -103,9 +81,7 @@ const Tools = () => {
         </div>
       </section>
     </div>
-  ) : null
+  )
 }
-Tools.propTypes = {
-  handleMenuClick: PropTypes.func,
-}
+
 export default Tools

@@ -1,3 +1,4 @@
+@use '@scss/variables';
 @import '@scss/globals.css';
 
 .btn.toolbox {
@@ -5,14 +6,35 @@
   border: none;
   background: none;
   margin: 0;
+  display: flex;
+  flex-flow: column nowrap;
+  min-width: 70px;
+  max-width: 150px;
+  gap: 0.1rem;
+  font-size: variables.$sml_size;
+  font-weight: 700;
+  font-variation-settings: 'wght' 700;
+  color: var(--primary);
+  transition: color 0.3s ease;
+  outline: 1px solid yellow;
+
+  >div {
+    width: 100%;
+  }
 
   svg {
     color: var(--primary);
+    transform: translate(0, 8px);
+    transition: color 0.3s ease;
   }
 
   &.active {
+    color: var(--orange-dark);
+    transition: color 0.3s ease;
+
     svg {
-      color: var(--yellow);
+      color: var(--orange-dark);
+      transition: color 0.3s ease;
     }
   }
 }
