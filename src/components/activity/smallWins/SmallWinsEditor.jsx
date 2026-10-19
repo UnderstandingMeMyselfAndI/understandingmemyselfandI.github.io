@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useSmallWinsStore } from '@store/smallWinsStore'
-import { LIMITS, STRINGS } from '@data/SmallWinsData.js'
+import { LIMITS, STRINGS } from '@data/smallWinsData.js'
 import { isFutureIso, todayIso } from '@utils/formatSmallWinDate.js'
 import WhoWithTypeahead from './components/WhoWithTypeahead'
 import { useRegisterModal } from '@utils/modalDepth'

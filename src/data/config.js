@@ -398,7 +398,7 @@ const strings = {
         {
           title: '',
           content: [
-            'If you\'re <b>looking</b> for <u class="yellow-ul lrg yellow">information</u> about <b><u class="orange-ul">Alcohol Recovery </u></b>',
+            'If you\'re <b>looking</b> for <u class="yellow-ul lrg yellow">information</u> about <b><u class="orange-ul">Addiction Recovery</u></b>',
             '<b class="taify">this app is for <span>you</span</b>',
             'If you\'re <b>learning</b> <b><u class="orange-ul">recovery tools</u></b> <br />at groups using <br /><u class="blue-ul"><b>ACT, CBT, DBT, REBT,</b> or <b>SMART</b> therapies?</u>',
             '<b class="taify">this app is for <span>you </span></b>',
