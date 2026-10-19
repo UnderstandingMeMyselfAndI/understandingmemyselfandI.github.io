@@ -22,7 +22,7 @@ export const timelineData = {
         '2 Anxiety over the future',
         '3 Heightened anxiety',
         '4 Symptom 7-days-before',
-        '5 Symptom 7-days-before',
+        // '5 Symptom 7-days-before',
       ],
     },
     {
@@ -46,7 +46,7 @@ export const timelineData = {
       phaseTitle: 'Peak Withdrawal Phase',
       offset: 300,
       symptoms: [
-        '11 Physical symptoms peak',
+        '11 Physical withdrawal symptoms peak',
         '12 Appetite remains suppressed',
         '13 Blood pressure may be higher',
         '14 Heart rate may increase',
@@ -160,7 +160,7 @@ export const timelineData = {
       offset: 2100,
       symptoms: [
         'Physical healing reaches completion',
-        'Body fully adapts to alcohol-free state',
+        'Body fully adapts to substance-free state',
         'Exercise fully possible',
         'Benefits of nutrition clear',
         'Emotional baseline stabilizes',
