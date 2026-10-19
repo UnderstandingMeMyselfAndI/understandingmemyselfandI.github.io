@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import ImageData from '@data/bgImgs.js'
-import './Backdrop.scss'
+import './backdrop.scss'
 import PropTypes from 'prop-types'
 
 const allImages = ImageData

@@ -524,7 +524,27 @@ const strings = {
       slug: 'days-counter',
       url: 'days-counter',
       btnLabel: 'Days Counter',
-      content: [],
+      content: {},
+      counter: {
+        placeholders: {
+          name: 'Enter Counter Name',
+        },
+        labels: {
+          daily_amount: 'Daily Cost',
+          total_saved: 'saved',
+          week: 'Per Week',
+          month: 'Per Month',
+          year: 'Per Year',
+        },
+        add: 'Add Counter',
+        delete: {
+          confirm_delete: {
+            title: 'Delete Counter',
+            msg: 'Are you sure you want to delete this counter?',
+          },
+        },
+      },
+
       cta: {
         title: 'Days Counter',
         content: [

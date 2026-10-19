@@ -15,23 +15,16 @@ import { useOnInView } from 'react-intersection-observer'
 import './styles.scss'
 
 const InstallCTA = () => {
-  const name = 'install'
-  const id = 16
+  const name = 'installCTA'
+  // const id = 16
 
   //TODO: #16 Check this is working - don't show if already installed
   const content = strings.activity.find((activity) => activity.name === name) || null
   if (content === null) {
     console.warn('No content found for activity "Install"')
   }
-  const activity = useAppStore((state) => state.activity)
-  const isModal = useAppStore((state) => state.isModal)
-  const setActivity = useAppStore((state) => state.setActivity)
-  const setIsModal = useAppStore((state) => state.setIsModal)
-  const [open, setOpen] = useState(false)
 
-  useEffect(() => {
-    setOpen(activity === id || !isModal)
-  }, [activity, isModal, id, setOpen])
+  const setActivity = useAppStore((state) => state.setActivity)
 
   const inViewRef = useOnInView(
     (inView) => {
@@ -50,25 +43,11 @@ const InstallCTA = () => {
 
   const setIsInstalled = useAppStore((state) => state.setIsInstalled)
   const setIsInstallable = useAppStore((state) => state.setIsInstallable)
-  const isInstalled = useAppStore((state) => state.isInstalled)
-  const isInstallable = useAppStore((state) => state.isInstallable)
+  // const isInstalled = useAppStore((state) => state.isInstalled)
+  // const isInstallable = useAppStore((state) => state.isInstallable)
   const [deferredPrompt, setDeferredPrompt] = useState(null)
   const [showInstallBtn, setShowInstallBtn] = useState(true)
   const [showInstallCTA, setShowInstalCTA] = useState(false)
-
-  // const [promptEvent, setPromptEvent] = useState(null)
-  // const pwaInstallRef = (useRef < PWAInstallElement) | (null > null)
-
-  // function handleBeforeInstallPrompt(event) {
-  //   event.preventDefault() // Prevent automatic prompt
-  //   // app is installable
-  //   setDeferredPrompt(event) // Store the event
-
-  //   //  Show the install button
-  //   setShowInstallBtn(true)
-  //   setShowInstalCTA(true)
-  //   setIsInstallable(true)
-  // }
 
   useEffect(() => {
     setIsInstallable(showInstallCTA)
@@ -108,7 +87,7 @@ const InstallCTA = () => {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
       window.removeEventListener('appinstalled', handleAppInstalled)
     }
-  }, [])
+  }, [setIsInstalled, setShowInstallBtn, setIsInstallable])
 
   const handleClick = async () => {
     if (!deferredPrompt) return
@@ -135,41 +114,39 @@ const InstallCTA = () => {
   //TODO: #17 Check install process is working for all platform
   //TODO: #18 Create wide screen screenshots for install prompt
 
-  return open
-    ? !isInstalled && isInstallable && showInstallCTA && (
-        <section className={'activity activity-installCTA ' + (open ? ' show' : ' hide')} ref={inViewRef}>
-          <div id='install'>
-            <h3>
-              <u className='yellow-ul'>{!showInstallBtn ? content?.cta?.postInstall?.title : content?.cta?.title}</u>
-            </h3>
+  return (
+    <section className={`activity activity-${name} show`} ref={inViewRef}>
+      <div id='install'>
+        <h3>
+          <u className='yellow-ul'>{!showInstallBtn ? content?.cta?.postInstall?.title : content?.cta?.title}</u>
+        </h3>
 
-            {showInstallBtn && (
-              <div>
-                {content?.cta?.content?.map((html, i) => {
-                  return <p key={i}>{parse(DOMPurify.sanitize(html))}</p>
-                })}
+        {showInstallBtn && (
+          <div>
+            {content?.cta?.content?.map((html, i) => {
+              return <p key={i}>{parse(DOMPurify.sanitize(html))}</p>
+            })}
 
-                <InstallPWA handleClick={handleClick} label={content?.cta?.btn?.label.unused} />
-                <div className='title'>Apple users:</div>
-                <p>
-                  <span>{parse(DOMPurify.sanitize(appleUsersContent))}</span>
-                  <img src={appleShareIcon} className='shareIcon' alt='apple share icon' />
-                  <span>{parse(DOMPurify.sanitize(appleUsersContent2))}</span>
-                  <img src={appleAddToHomescreen} className='homescreenIcon' alt='apple add to homescreen icon' />
-                </p>
-              </div>
-            )}
-            {!showInstallBtn && (
-              <div>
-                {content?.cta?.postInstall?.content?.map((html, i) => {
-                  return <p key={i}>{parse(DOMPurify.sanitize(html))}</p>
-                })}
-              </div>
-            )}
+            <InstallPWA handleClick={handleClick} label={content?.cta?.btn?.label.unused} />
+            <div className='title'>Apple users:</div>
+            <p>
+              <span>{parse(DOMPurify.sanitize(appleUsersContent))}</span>
+              <img src={appleShareIcon} className='shareIcon' alt='apple share icon' />
+              <span>{parse(DOMPurify.sanitize(appleUsersContent2))}</span>
+              <img src={appleAddToHomescreen} className='homescreenIcon' alt='apple add to homescreen icon' />
+            </p>
           </div>
-        </section>
-      )
-    : null
+        )}
+        {!showInstallBtn && (
+          <div>
+            {content?.cta?.postInstall?.content?.map((html, i) => {
+              return <p key={i}>{parse(DOMPurify.sanitize(html))}</p>
+            })}
+          </div>
+        )}
+      </div>
+    </section>
+  )
 }
 
 export default InstallCTA

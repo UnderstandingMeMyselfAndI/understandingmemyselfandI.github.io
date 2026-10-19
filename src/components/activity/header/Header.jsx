@@ -289,51 +289,51 @@ const Header = () => {
 
   return (
     <section id='header' className={`activity activity-${name}`} ref={cont}>
-      <div className='leavingWrap' ref={inViewRef}>
-        <div className={'group-wrap'}>
-          <div className='home-grp'>
+      <div className='header' ref={inViewRef}>
+        <div className={'header__group-wrap'}>
+          <div className='header__home-group'>
             <ErrorBoundary FallbackComponent={<>Logo had an error</>}>
-              <div className='home-logo-wrap' ref={addLeaveRef}>
-                <div className='home-logo homelogo' ref={addLoopRef}>
+              <div className='header__home-logo-wrap' ref={addLeaveRef}>
+                <div className='header__home-logo' ref={addLoopRef}>
                   <Logo />
                 </div>
               </div>
             </ErrorBoundary>
-            <div className={`wgrp ss-0`} ref={groupRef}>
+            <div className={`header__wgrp ss-0`} ref={groupRef}>
               <div>
-                <div className='logoType'>
+                <div className='header__logo-type'>
                   <ErrorBoundary FallbackComponent={<></>}>
-                    <div className='w0w' ref={addLeaveRef}>
-                      <div className={'r1 w0' + (isLeaving ? ' leaving' : '')} ref={addLoopRef}>
+                    <div className='header__w0w' ref={addLeaveRef}>
+                      <div className={'header__r1 header__w0' + (isLeaving ? ' leaving' : '')} ref={addLoopRef}>
                         Understanding
                       </div>
                     </div>
                   </ErrorBoundary>
-                  <div className='r2'>
+                  <div className='header__r2'>
                     <ErrorBoundary FallbackComponent={<></>}>
-                      <div className='w1w' ref={addLeaveRef}>
-                        <div className={'w1' + (isLeaving ? ' leaving' : '')} ref={addLoopRef}>
+                      <div className='header__w1w' ref={addLeaveRef}>
+                        <div className={'header__w1' + (isLeaving ? ' leaving' : '')} ref={addLoopRef}>
                           Me
                         </div>
                       </div>
                     </ErrorBoundary>
                     <ErrorBoundary FallbackComponent={<></>}>
-                      <div className='w2w' ref={addLeaveRef}>
-                        <div className={'w2' + (isLeaving ? ' leaving' : '')} ref={addLoopRef}>
+                      <div className='header__w2w' ref={addLeaveRef}>
+                        <div className={'header__w2' + (isLeaving ? ' leaving' : '')} ref={addLoopRef}>
                           Myself
                         </div>
                       </div>
                     </ErrorBoundary>
                     <ErrorBoundary FallbackComponent={<></>}>
-                      <div className='w3w' ref={addLeaveRef}>
-                        <div className='w3' ref={addLoopRef}>
+                      <div className='header__w3w' ref={addLeaveRef}>
+                        <div className='header__w3' ref={addLoopRef}>
                           &
                         </div>
                       </div>
                     </ErrorBoundary>
                     <ErrorBoundary FallbackComponent={<></>}>
-                      <div className='w4w' ref={addLeaveRef}>
-                        <div className='w4' ref={addLoopRef}>
+                      <div className='header__w4w' ref={addLeaveRef}>
+                        <div className='header__w4' ref={addLoopRef}>
                           I
                         </div>
                       </div>
@@ -342,9 +342,9 @@ const Header = () => {
                 </div>
               </div>
             </div>
-            <div className='arrow-grp-1' ref={arrowsCont}>
-              <div className='arrow-cont a1'>
-                <ArrowDownwardOutlinedIcon className='arrow' />
+            <div className='header__arrow-group-1' ref={arrowsCont}>
+              <div className='header__arrow-cont a1'>
+                <ArrowDownwardOutlinedIcon className='header__arrow' />
               </div>
             </div>
           </div>

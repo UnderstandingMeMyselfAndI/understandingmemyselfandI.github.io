@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import useQuizStore from '../useQuizStore'
 
-import '../styles.scss'
+import '../quiz.scss'
 
 const SimpleLineGraph = ({ data, visibleLevels, zoom }) => {
   const scrollRef = React.useRef(null)

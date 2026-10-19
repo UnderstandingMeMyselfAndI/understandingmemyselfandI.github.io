@@ -5,7 +5,7 @@ import ButtonSimple from '../buttons/ButtonSimple'
 import parse from 'html-react-parser'
 import { isArrayOfStrings } from '@js/utils'
 import DOMPurify from 'dompurify'
-import './styles.scss'
+import './dialog.scss'
 
 const Dialog = ({
   children,

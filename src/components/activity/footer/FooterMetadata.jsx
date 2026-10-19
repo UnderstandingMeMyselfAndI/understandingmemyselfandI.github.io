@@ -1,5 +1,5 @@
 import metadata from '@src/metadata.json'
-import './styles.scss'
+import './footer.scss'
 function FooterMetadata() {
   const buildMajor = metadata ? (metadata.buildMajor ? metadata.buildMajor : '') : ''
   const buildMinor = metadata ? (metadata.buildMinor ? metadata.buildMinor : '') : ''

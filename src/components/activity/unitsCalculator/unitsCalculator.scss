@@ -5,21 +5,19 @@ body .activity-units-calculator-cta {
   margin: 0 auto;
 }
 
-section#ummi-units-calculator {
+body section#activity-units-calculator {
   position: fixed;
   top: 0%;
   left: 0%;
   width: 100vw;
   height: 100vh;
   max-width: 100%;
-  // transform: translate(-50%, 0);
   flex-flow: column wrap;
   align-items: center;
   align-content: center;
   justify-content: center;
-  margin: 0;
-  padding: 1rem;
-  // position: absolute;
+  margin: 0 auto;
+  padding: 0rem;
   color: var(--primary);
   overflow: hidden;
   align-items: center;
@@ -44,12 +42,11 @@ section#ummi-units-calculator {
     position: relative;
     width: 100%;
     height: 100%;
-    // padding: 0 1.5rem;
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
-    // align-content: stretch;
     align-items: center;
+    max-width: var(--max-width);
 
     >* {
       // outline: 1px solid grey;
@@ -57,8 +54,7 @@ section#ummi-units-calculator {
 
     .wrap {
       position: relative;
-      top: 0;
-      left: 0;
+      padding: 1rem;
       z-index: 100;
       width: 100%;
       height: 100%;
@@ -77,25 +73,22 @@ section#ummi-units-calculator {
         flex: 0;
         width: 100%;
 
-        @media screen and (width>=768px) {
-          width: var(--max-width-lrg-screen);
-        }
+        // @media screen and (width>=768px) {
+        //   width: var(--max-width-lrg-screen);
+        // }
 
         h3 {
           font-size: variables.$h1_size;
           line-height: 1;
           text-align: left;
           margin: 0;
+          padding: 0;
           width: 100%;
           // outline: 1px solid blue;
 
-          @media screen and (width>=768px) {
-            text-align: center;
-          }
-        }
-
-        .intro {
-          // padding: 0 2rem;
+          // @media screen and (width>=768px) {
+          //   text-align: center;
+          // }
         }
       }
 
@@ -113,7 +106,6 @@ section#ummi-units-calculator {
           flex: 1;
           display: flex;
           flex-flow: column wrap;
-          // background: rgb(173, 216, 230, 0.1);
           width: 100%;
         }
 
@@ -588,17 +580,16 @@ section#ummi-units-calculator {
             justify-content: center;
             font-size: 1rem;
             column-gap: 0;
-            flex: 1;
           }
 
           .item.multiplier label {
             text-align: center;
             align-content: center;
             width: 30%;
-            font-weight: 700;
-            font-variation-settings: 'wght' 600;
+            font-weight: 500;
+            font-variation-settings: 'wght' 500;
             flex: 1;
-            color: var(--grey-med);
+            color: var(--grey-light);
             display: block;
           }
 
@@ -674,7 +665,8 @@ section#ummi-units-calculator {
       margin-right: 6px;
       transition: border 0.25s ease-in-out;
       border-radius: 4px;
-      font-variation-settings: 'wght' 700;
+      font-weight: 500;
+      font-variation-settings: 'wght' 500;
       text-align: center;
 
       &:focus,
@@ -858,12 +850,12 @@ section#ummi-units-calculator {
 }
 
 @media (orientation: landscape) {
-  section.ummi-units-calculator {
+  section.activity-units-calculator {
     .inner {
-      max-width: 96vw;
+      // max-width: 96vw;
       min-width: 0;
-      margin: 1.5rem 0;
-      height: calc(100% - 3rem);
+      // margin: 1rem 0;
+      height: 100%;
 
       .content {
         width: 100%;
@@ -871,11 +863,11 @@ section#ummi-units-calculator {
         justify-content: space-evenly;
 
         header {
-          font-size: 1rem;
+          font-size: variables.$default_size;
           color: var(--primary);
 
           h2 {
-            margin: 1rem 0 0.5rem 0;
+            margin: 0; //1rem 0 0.5rem 0;
             font-size: variables.$h5_size;
             flex: 0;
           }

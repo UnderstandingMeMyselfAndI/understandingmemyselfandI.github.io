@@ -1,6 +1,5 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import useAppStore from '@store/useAppStore'
-import { activities } from '@data/config.js'
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
 import CloseBtn from '@ui/buttons/close/CloseBtn'
 
@@ -8,39 +7,25 @@ import DoneIcon from '@mui/icons-material/Done'
 import RestartAltOutlinedIcon from '@mui/icons-material/RestartAltOutlined'
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
 import './pengGameAI.scss'
-import { strings } from '@data/config.js'
+// import { strings } from '@data/config.js'
 
 // Import the persisted store
 import { useGameStore } from '@store/useGameStore'
 
-const activitiesById = activities.reduce((acc, activity) => {
-  acc[activity.id] = activity
-  return acc
-}, {})
-const activityStringsByName = strings.activity.reduce((acc, activity) => {
-  acc[activity.name] = activity
-  return acc
-}, {})
+// const activityStringsByName = strings.activity.reduce((acc, activity) => {
+//   acc[activity.name] = activity
+//   return acc
+// }, {})
 
-const pengGameAI = () => {
+const PengGameAI = () => {
   const name = 'peng-game'
-  const id = 24
-  const [show, setShow] = useState(true)
-  const activity = useAppStore((s) => s.activity)
+  // const id = 24
   const setActivity = useAppStore((s) => s.setActivity)
 
   const canvasRef = useRef(null)
   const animationRef = useRef(null)
 
-  const strings = activityStringsByName[name]
-  const setIsModal = useAppStore((s) => s.setIsModal)
-
-  useEffect(() => {
-    setShow(id === activity)
-  }, [activity])
-
   const handleClose = () => {
-    setShow(false)
     setActivity(-1)
   }
 
@@ -262,31 +247,6 @@ const pengGameAI = () => {
     freezeUntil.current = 0
   }
 
-  // Stop game and reset
-  const stopGame = () => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    gameState.current.gameActive = false
-    setIsPaused(false)
-    setIsCharging(false)
-    setIsFrozen(false)
-    gameState.current.leftScore = 0
-    gameState.current.rightScore = 0
-    setScores({ left: 0, right: 0 })
-    gameState.current.leftPaddleY = (canvas.height - paddleHeight) / 2
-    gameState.current.rightPaddleY = (canvas.height - paddleHeight) / 2
-    gameState.current.ballX = canvas.width / 2
-    gameState.current.ballY = canvas.height / 2
-    gameState.current.ballVX = 0
-    gameState.current.ballVY = 0
-    leftPaddleDir.current = 0
-    rightPaddleDir.current = 0
-    activeTouchId.current = null
-    isMouseDown.current = false
-    freezeUntil.current = 0
-    drawCanvas()
-  }
-
   // Toggle pause
   const togglePause = () => {
     if (gameState.current.gameActive) setIsPaused((prev) => !prev)
@@ -307,7 +267,75 @@ const pengGameAI = () => {
     setTempTouchAreaVerticalExtra(touchAreaVerticalExtra) // NEW
     setShowSettings(true)
   }
+  const drawCanvas = () => {
+    const canvas = canvasRef.current
+    const ctx = canvas?.getContext('2d')
+    if (!canvas || !ctx) return
 
+    ctx.fillStyle = '#00000033'
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+    ctx.strokeStyle = '#83838333'
+    ctx.setLineDash([10, 15])
+    ctx.beginPath()
+    ctx.moveTo(canvas.width / 2, 0)
+    ctx.lineTo(canvas.width / 2, canvas.height)
+    ctx.stroke()
+    ctx.setLineDash([])
+
+    // Left paddle
+    if (playerSide === 'left') {
+      if (isFrozen && boostEnabled) {
+        ctx.fillStyle = '#808080'
+        ctx.fillRect(0, gameState.current.leftPaddleY, paddleWidth, paddleHeight)
+      } else if (isCharging && boostEnabled) {
+        ctx.fillStyle = '#ffff00'
+        ctx.fillRect(0, gameState.current.leftPaddleY, paddleWidth * 0.85, paddleHeight)
+      } else {
+        ctx.fillStyle = 'white'
+        ctx.fillRect(0, gameState.current.leftPaddleY, paddleWidth, paddleHeight)
+      }
+    } else {
+      ctx.fillStyle = 'white'
+      ctx.fillRect(0, gameState.current.leftPaddleY, paddleWidth, paddleHeight)
+    }
+
+    // Right paddle
+    if (playerSide === 'right') {
+      if (isFrozen && boostEnabled) {
+        ctx.fillStyle = '#808080'
+        ctx.fillRect(canvas.width - paddleWidth, gameState.current.rightPaddleY, paddleWidth, paddleHeight)
+      } else if (isCharging && boostEnabled) {
+        ctx.fillStyle = '#ffff00'
+        ctx.fillRect(canvas.width - paddleWidth, gameState.current.rightPaddleY, paddleWidth * 0.85, paddleHeight)
+      } else {
+        ctx.fillStyle = 'white'
+        ctx.fillRect(canvas.width - paddleWidth, gameState.current.rightPaddleY, paddleWidth, paddleHeight)
+      }
+    } else {
+      ctx.fillStyle = 'white'
+      ctx.fillRect(canvas.width - paddleWidth, gameState.current.rightPaddleY, paddleWidth, paddleHeight)
+    }
+
+    // Ball
+    ctx.fillStyle = 'white'
+    ctx.beginPath()
+    ctx.arc(
+      gameState.current.ballX + ballSize / 2,
+      gameState.current.ballY + ballSize / 2,
+      ballSize / 2,
+      0,
+      2 * Math.PI,
+    )
+    ctx.fill()
+
+    if (isPaused) {
+      ctx.font = 'bold 40px Arial'
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.7)'
+      ctx.textAlign = 'center'
+      ctx.fillText('PAUSED', canvas.width / 2, canvas.height / 2)
+    }
+  }
   // Apply temporary settings (updated with new values)
   const applySettings = () => {
     setBallSize(tempBallSize)
@@ -472,6 +500,9 @@ const pengGameAI = () => {
     }
     drawCanvas()
   }, [
+    drawCanvas,
+    resetAIPaddle,
+    resetBall,
     speedFactor,
     aiSkill,
     isPaused,
@@ -479,80 +510,34 @@ const pengGameAI = () => {
     ballSize,
     paddleWidth,
     paddleHeight,
-    maxHoldTime,
-    freezeCooldown,
     playerSide,
   ])
 
   // Draw canvas (unchanged)
-  const drawCanvas = () => {
+
+  // Stop game and reset
+  const stopGame = () => {
     const canvas = canvasRef.current
-    const ctx = canvas?.getContext('2d')
-    if (!canvas || !ctx) return
-
-    ctx.fillStyle = '#00000033'
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-    ctx.strokeStyle = '#83838333'
-    ctx.setLineDash([10, 15])
-    ctx.beginPath()
-    ctx.moveTo(canvas.width / 2, 0)
-    ctx.lineTo(canvas.width / 2, canvas.height)
-    ctx.stroke()
-    ctx.setLineDash([])
-
-    // Left paddle
-    if (playerSide === 'left') {
-      if (isFrozen && boostEnabled) {
-        ctx.fillStyle = '#808080'
-        ctx.fillRect(0, gameState.current.leftPaddleY, paddleWidth, paddleHeight)
-      } else if (isCharging && boostEnabled) {
-        ctx.fillStyle = '#ffff00'
-        ctx.fillRect(0, gameState.current.leftPaddleY, paddleWidth * 0.85, paddleHeight)
-      } else {
-        ctx.fillStyle = 'white'
-        ctx.fillRect(0, gameState.current.leftPaddleY, paddleWidth, paddleHeight)
-      }
-    } else {
-      ctx.fillStyle = 'white'
-      ctx.fillRect(0, gameState.current.leftPaddleY, paddleWidth, paddleHeight)
-    }
-
-    // Right paddle
-    if (playerSide === 'right') {
-      if (isFrozen && boostEnabled) {
-        ctx.fillStyle = '#808080'
-        ctx.fillRect(canvas.width - paddleWidth, gameState.current.rightPaddleY, paddleWidth, paddleHeight)
-      } else if (isCharging && boostEnabled) {
-        ctx.fillStyle = '#ffff00'
-        ctx.fillRect(canvas.width - paddleWidth, gameState.current.rightPaddleY, paddleWidth * 0.85, paddleHeight)
-      } else {
-        ctx.fillStyle = 'white'
-        ctx.fillRect(canvas.width - paddleWidth, gameState.current.rightPaddleY, paddleWidth, paddleHeight)
-      }
-    } else {
-      ctx.fillStyle = 'white'
-      ctx.fillRect(canvas.width - paddleWidth, gameState.current.rightPaddleY, paddleWidth, paddleHeight)
-    }
-
-    // Ball
-    ctx.fillStyle = 'white'
-    ctx.beginPath()
-    ctx.arc(
-      gameState.current.ballX + ballSize / 2,
-      gameState.current.ballY + ballSize / 2,
-      ballSize / 2,
-      0,
-      2 * Math.PI,
-    )
-    ctx.fill()
-
-    if (isPaused) {
-      ctx.font = 'bold 40px Arial'
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.7)'
-      ctx.textAlign = 'center'
-      ctx.fillText('PAUSED', canvas.width / 2, canvas.height / 2)
-    }
+    if (!canvas) return
+    gameState.current.gameActive = false
+    setIsPaused(false)
+    setIsCharging(false)
+    setIsFrozen(false)
+    gameState.current.leftScore = 0
+    gameState.current.rightScore = 0
+    setScores({ left: 0, right: 0 })
+    gameState.current.leftPaddleY = (canvas.height - paddleHeight) / 2
+    gameState.current.rightPaddleY = (canvas.height - paddleHeight) / 2
+    gameState.current.ballX = canvas.width / 2
+    gameState.current.ballY = canvas.height / 2
+    gameState.current.ballVX = 0
+    gameState.current.ballVY = 0
+    leftPaddleDir.current = 0
+    rightPaddleDir.current = 0
+    activeTouchId.current = null
+    isMouseDown.current = false
+    freezeUntil.current = 0
+    drawCanvas()
   }
 
   // Animation loop
@@ -577,7 +562,7 @@ const pengGameAI = () => {
       gameState.current.ballY = Math.max(0, Math.min(height - ballSize, gameState.current.ballY))
     }
     drawCanvas()
-  }, [ballSize, paddleHeight])
+  }, [drawCanvas, ballSize, paddleHeight])
 
   // Keyboard handlers
   const handleKeyDown = useCallback(
@@ -815,8 +800,6 @@ const pengGameAI = () => {
 
   // Lifecycle and event listeners
   useEffect(() => {
-    if (!show) return // Don't attach listeners when game is hidden
-
     window.addEventListener('keydown', handleKeyDown)
     window.addEventListener('keyup', handleKeyUp)
 
@@ -860,7 +843,6 @@ const pengGameAI = () => {
       if (animationRef.current) cancelAnimationFrame(animationRef.current)
     }
   }, [
-    show, // 👈 now dependent on show
     handleKeyDown,
     handleKeyUp,
     handleMouseDown,
@@ -877,7 +859,7 @@ const pengGameAI = () => {
 
   // JSX – added new sliders in settings modal
   return (
-    <section id={name} className={'activity activity-' + name + (show ? ' show' : ' hide') + ' fixed'}>
+    <section id={name} className={`activity activity-${name} show fixed`}>
       {!showSettings && <CloseBtn onClick={handleClose} />}
       <div className='peng-game-inner'>
         <div className='peng-game-header'>
@@ -1152,4 +1134,4 @@ const pengGameAI = () => {
   )
 }
 
-export default pengGameAI
+export default PengGameAI

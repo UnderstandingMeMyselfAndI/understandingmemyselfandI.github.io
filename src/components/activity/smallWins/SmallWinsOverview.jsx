@@ -51,7 +51,7 @@ function WhyMatters() {
   )
 }
 
-function PageNumbers({ page, totalPages, onChange, size = 6 }) {
+function PageNumbers({ page, totalPages, onChange, size = 5 }) {
   const pages = useMemo(() => {
     if (totalPages <= size) {
       return Array.from({ length: totalPages }, (_, i) => i + 1)
@@ -185,8 +185,9 @@ export default function SmallWinsOverview() {
   useLayoutEffect(() => {
     if (tab !== 'wins') return undefined
     const el = listRef.current
-
+    if (!el) return
     const update = () => {
+      if (!el) return
       const dividers = el.querySelectorAll('[data-date-divider]')
       if (dividers.length === 0) {
         setStickyDate(null)
@@ -219,7 +220,7 @@ export default function SmallWinsOverview() {
   const showingEnd = Math.min(start + PAGE_SIZE, visible.length)
   const stickyDate = tab === 'wins' && visible.length > 0 ? stickyDateRaw : null
   const showStickyDate = Boolean(stickyDate)
-  
+
   return (
     <div className='small-wins-overview'>
       <header className='small-wins-overview__header'>

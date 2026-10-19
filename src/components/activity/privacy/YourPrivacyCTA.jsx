@@ -1,29 +1,30 @@
-import { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
 import { strings } from '@data/config'
 import useAppStore from '@store/useAppStore'
 import CTA from '@components/ui/cta/CTA'
-import './styles.scss'
+import './privacyPolicy.scss'
 import './stylesCTA.scss'
 
 const YourPrivacyCTA = () => {
-  const id = 20
+  // const id = 20
   const activityName = 'privacy'
+  const name = 'privacy-cta'
   const activityUrl = 'privacy'
-  const activityID = -1
+  // const activityID = -1
 
-  const isModal = useAppStore((state) => state.isModal)
-  const setIsModal = useAppStore((state) => state.setIsModal)
-  const activity = useAppStore((state) => state.activity)
-  const [open, setOpen] = useState(false)
+  // const isModal = useAppStore((state) => state.isModal)
+  // const setIsModal = useAppStore((state) => state.setIsModal)
+  // const activity = useAppStore((state) => state.activity)
+  // const [open, setOpen] = useState(false)
 
   const bgImg = {
     src: '/ui/bg-privacy.avif',
     alt: 'Picture of a martial arts master bowing before pupil',
   }
 
-  useEffect(() => {
-    setOpen(activity === id || !isModal)
-  }, [activity, isModal])
+  // useEffect(() => {
+  //   setOpen(activity === id || !isModal)
+  // }, [activity, isModal])
 
   const setActivity = useAppStore((s) => s.setActivity)
 
@@ -41,7 +42,7 @@ const YourPrivacyCTA = () => {
   }
 
   return (
-    <section className={`activity activity-${activityUrl}-cta` + (open ? ' show' : '')}>
+    <section className={`activity activity-${name}`}>
       <CTA name={activityName} title={content.title} open={open} content={content.cta.content}>
         <button className={`${activityName}-cta-btn btn`} onClick={() => handlePrivacyClick()}>
           {content?.cta?.btnLabel}

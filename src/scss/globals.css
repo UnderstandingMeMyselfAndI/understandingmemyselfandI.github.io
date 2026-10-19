@@ -56,7 +56,7 @@
   --background: rgb(49, 38, 88);
   --foreground: oklch(0.985 0 0);
 
-  --placeholder: rgba(69, 56, 100, 0.95);
+  --placeholder: rgba(130, 115, 167, 0.95);
 
   --btn-bg: #3d3585;
   --btn-bg-hover: #4b4396;
@@ -236,6 +236,7 @@
 
   --border: oklch(1 0 0 / 10%);
   --input: oklch(23.909% 0.06675 283.913 / 0.521);
+  --input-bg: var(--input);
   --ring: oklch(0.556 0 0);
   --delete: rgba(179, 38, 30, 0.7);
   --error: rgba(179, 38, 30, 0.7);

@@ -1,9 +1,9 @@
 // quizStart/QuizStart.jsx
 import React from 'react'
 import PropTypes from 'prop-types'
-import useAppStore from '@store/useAppStore'
+// import useAppStore from '@store/useAppStore'
 import useQuizStore from '../useQuizStore'
-import './styles.scss'
+import './quizStart.scss'
 
 const QuizStart = ({ onStart, levels }) => {
   const [selectedLevel, setSelectedLevel] = React.useState(Object.keys(levels)[0])

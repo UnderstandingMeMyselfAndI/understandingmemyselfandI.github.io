@@ -4,17 +4,21 @@ import useAppStore from '@store/useAppStore'
 import PropTypes from 'prop-types'
 import './home.scss'
 
+const display = (activity, id) => {
+  return activity === id
+}
+
 const Home = ({ children }) => {
   const componentName = 'home'
   const id = -1
-  const activity = useAppStore((s) => s.setActivity)
+  const activity = useAppStore((s) => s.activity)
   const isHome = useRef(false)
 
   useEffect(() => {
     isHome.current = activity === id
   }, [id, activity])
 
-  if (activity !== id) return
+  if (!display(activity, id)) return
 
   return (
     <div id={componentName} className={`activity activity-${componentName}`}>

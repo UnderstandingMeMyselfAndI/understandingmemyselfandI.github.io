@@ -1,17 +1,17 @@
 // @import "@css/globals.css";
 
-header {
+.header {
   opacity: 1;
-}
 
-.home-grp,
-.w0,
-.w1,
-.w2,
-.w3,
-.w4,
-.w5,
-.arrow-cont {
-  opacity: 0;
-  transition: all 1s ease-in-out;
+  &__home-grp,
+  &__w0,
+  &__w1,
+  &__w2,
+  &__w3,
+  &__w4,
+  &__w5,
+  &__arrow-cont {
+    opacity: 0;
+    transition: all 1s ease-in-out;
+  }
 }

@@ -1,24 +1,13 @@
-import { useEffect, useState } from 'react'
-
 import QRCode from '@ui/QRCode/QRCode.jsx'
 import FooterMetadata from '@components/activity/footer/FooterMetadata.jsx'
 import UpdateCTA from '@ui/updateCTA/UpdateCTA'
-import useAppStore from '@store/useAppStore'
-// import { activities } from '@data/config'
-import './styles.scss'
+import './footer.scss'
 function Footer() {
-  // const name = 'footer'
-  const id = 18
-  const activity = useAppStore((state) => state.activity)
-  const [open, setOpen] = useState(false)
-  const isModal = useAppStore((state) => state.isModal)
+  const name = 'footer'
   // const setIsModal = useAppStore((s) => s.setIsModal)
 
-  useEffect(() => {
-    setOpen(activity === id || !isModal)
-  }, [activity, isModal, id, setOpen])
   return (
-    <div id='footer' className={'activity activity-footer' + (open ? ' show' : '')}>
+    <div id='footer' className={`activity activity-${name} show`}>
       <section className='qr' id='share'>
         <h3>
           <u className='yellow-ul'>Spread the love</u>

@@ -21,37 +21,31 @@ const phrasesByURL = lingo.reduce((acc, phrase) => {
 }, {})
 //TODO #52 #51 Lingo Description not scrolling
 const Lingo = () => {
-  const name = 'lingo'
+  const name = 'search-lingo'
   const id = 13
   const [showDialog, setShowDialog] = useState(false)
   const [isFirstLoad, setIsFirstLoad] = useState(true)
   const [showAll, setShowAll] = useState(false)
   const [content, setContent] = useState([])
-  const gae = useAppStore((s) => s.gae)
-  const [open, setOpen] = useState(false)
+  // const gae = useAppStore((s) => s.gae)
+  // const [open, setOpen] = useState(false)
   const initialHeight = 310
   const [elHeight, setElHeight] = useState(initialHeight)
   const [elHeightExpanded, setElExpandedHeight] = useState(initialHeight)
-  const activity = useAppStore((s) => s.activity)
+  // const activity = useAppStore((s) => s.activity)
   const setActivity = useAppStore((s) => s.setActivity)
   // const setPhraseID = useAppStore((s) => s.setPhraseID)
   const setPhrase = useAppStore((state) => state.setPhrase)
   const phrase = useAppStore((state) => state.phrase)
-  const isModal = useAppStore((state) => state.isModal)
+  // const isModal = useAppStore((state) => state.isModal)
   const setIsModal = useAppStore((state) => state.setIsModal)
   const listRef = useRef(null)
 
   const activityObj = activitiesById[id]
-  useEffect(() => {
-    // setIsModal(showDialog)
-  })
-  useEffect(() => {
-    setOpen(activity === id || !isModal)
-  }, [activity, isModal, id, setOpen])
 
-  useEffect(() => {
-    open && setIsModal(activitiesById[id].modal)
-  }, [open, setIsModal, id, activitiesById])
+  // useEffect(() => {
+  //   open && setIsModal(activitiesById[id].modal)
+  // }, [open, setIsModal, id])
 
   function getContent(id) {
     if (!id) return
@@ -111,7 +105,6 @@ const Lingo = () => {
         setActivity(-1)
         setIsModal(false)
       }
-      console.log('inView', inView)
     },
     {
       threshold: 0.1,
@@ -122,7 +115,7 @@ const Lingo = () => {
   const listHeight = showAll ? elHeightExpanded : elHeight
 
   return (
-    <section id='lingo' className={'activity activity-search-lingo' + (open ? ' show' : ' hide')} ref={inViewRef}>
+    <section id='lingo' className={`activity activity-${name} show`} ref={inViewRef}>
       <div className='search-lingo-wrap'>
         <Dialog
           show={showDialog}

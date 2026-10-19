@@ -5,7 +5,7 @@
   max-width: 100%;
 }
 
-section.activity-introduction.feature {
+.feature {
   position: relative;
   margin: 8dvh 0;
   width: 100%;
@@ -18,7 +18,7 @@ section.activity-introduction.feature {
   text-align: left;
   text-shadow: var(--text-shadow-dark);
 
-  .feature-inner {
+  &__inner {
     display: flex;
     flex-flow: row nowrap;
     align-items: flex-start;
@@ -38,12 +38,11 @@ section.activity-introduction.feature {
     }
   }
 
-  .icon {
+  &__icon {
     position: absolute;
     left: auto; // right: 50%;
     top: 20px;
     left: 0;
-    // bottom: 50%;
     width: 60px;
     max-width: 240px;
     height: auto;
@@ -56,8 +55,8 @@ section.activity-introduction.feature {
   }
 }
 
-section.activity-introduction.feature.out {
-  .icon {
+&.out {
+  .feature__icon {
     transform: scale(1.5);
     filter: blur(250px);
     -webkit-filter: blur(250px);
@@ -70,5 +69,16 @@ section.activity-introduction.feature.out {
     .icon {
       transform: translate(-50%, 40%) scale(1.5);
     }
+  }
+}
+
+.introduction {
+  &__icon {
+    transform: scale(1.5);
+    filter: blur(250px);
+    -webkit-filter: blur(250px);
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+    transform: translate(-50%, -100%) scale(1.5);
   }
 }

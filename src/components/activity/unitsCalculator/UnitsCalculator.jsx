@@ -57,14 +57,15 @@ const DRINK_PRESETS = [
 ]
 
 const noDrinksMessage =
-  ' <h5 class="yellow"><b>No measures selected. </b> </h5><br /><br /> Add a <br /><b>Measure</b> <br /> or <br /><b>Custom Drink</b>.'
+  ' <h5 class="yellow"><b>No measures selected. </b> </h5><br /><br /> Add a <br /><b>Standard Measure</b> <br /> or <br /><b>Custom Drink</b>.'
 
 const UnitsCalculator = () => {
-  const name = 'unitsCalculator'
+  const name = 'units-calculator'
   const id = 5
   const setActivity = useAppStore((s) => s.setActivity)
-  const isModal = useAppStore((s) => s.isModal)
-  const [type, setType] = useState('custom')
+  // const isModal = useAppStore((s) => s.isModal)
+  // const [type, setType] = useState('custom')
+  const type = 'custom'
   const [isMeasuresVisible, setIsMeasuresVisible] = useState(false)
   const [multiplier, setMultiplier] = useState(1)
   const [customDrink, setCustomDrink] = useState({
@@ -80,16 +81,15 @@ const UnitsCalculator = () => {
 
   const { activity } = useAppStore(useShallow((s) => ({ activity: s.activity })))
   const setIsModal = useAppStore((s) => s.setIsModal)
-  useEffect(() => {
-    open && setIsModal(activitiesById[id]?.modal)
-  }, [open, activitiesById, id, setIsModal])
+  // useEffect(() => {
+  //   open && setIsModal(activitiesById[id]?.modal)
+  // }, [open, activitiesById, id, setIsModal])
 
-  useEffect(() => {
-    setOpen(activity === id)
-  }, [activity, id])
+  // useEffect(() => {
+  //   setOpen(activity === id)
+  // }, [activity, id])
 
   const handleClose = () => {
-
     if (isMeasuresVisible) {
       setIsMeasuresVisible(false)
     } else {
@@ -139,10 +139,10 @@ const UnitsCalculator = () => {
 
   const totalDrinkCount = drinks.reduce((sum, d) => sum + d.count, 0)
 
-  return open ? (
-    <section id='ummi-units-calculator' className={'activity ummi-units-calculator fixed' + (open ? ' open' : '')}>
-      {!isMeasuresVisible && <CloseBtn className='close-btn-activity' onClick={handleClose} />}
+  return (
+    <section id='activity-units-calculator' className={`activity activity-${name} fixed open `}>
       <div className='inner'>
+        {!isMeasuresVisible && <CloseBtn className='close-btn-activity' onClick={handleClose} />}
         <div className='wrap'>
           <header>
             <h3>Units Calculator</h3>
@@ -217,7 +217,7 @@ const UnitsCalculator = () => {
                         id='custom-drink-count'
                         className='ummi-uc__custom-drink-count'
                         type='text'
-                        inputmode='numeric'
+                        inputMode='numeric'
                         name='count'
                         value={customDrink.count}
                         onChange={handleCustomDrinkChange}
@@ -230,7 +230,7 @@ const UnitsCalculator = () => {
                         id='custom-drink-volume'
                         className='ummi-uc__custom-drink-volume'
                         type='text'
-                        inputmode='numeric'
+                        inputMode='numeric'
                         name='volume'
                         value={customDrink.volume}
                         onChange={handleCustomDrinkChange}
@@ -243,7 +243,7 @@ const UnitsCalculator = () => {
                         id='custom-drink-abv'
                         className='ummi-uc__custom-drink-abv'
                         type='text'
-                        inputmode='numeric'
+                        inputMode='numeric'
                         name='abv'
                         value={customDrink.abv}
                         onChange={handleCustomDrinkChange}
@@ -317,8 +317,6 @@ const UnitsCalculator = () => {
         </div>
       </div>
     </section>
-  ) : (
-    <></>
   )
 }
 

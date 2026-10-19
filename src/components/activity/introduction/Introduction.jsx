@@ -45,8 +45,8 @@ const Introduction = () => {
 
   return (
     <section id='intro' className={`activity activity-${name}`}>
-      <div className='introduction-inner'>
-        <div className='inner'>
+      <div className='introduction__wrap'>
+        <div className='introduction__inner'>
           <h1 style={{ fontSize: '68px' }}>
             {(!isInstalled || (isInstalled && vc < curiousThreshold)) && (
               <b>
@@ -64,15 +64,14 @@ const Introduction = () => {
               </u>
             )}
           </h1>
-
           {isInstalled &&
             vc > newThreshold &&
             vc < curiousThreshold &&
             content?.installed.content?.map((cnt, i) => {
               return (
-                <div key={`intro-${i}`} className={'subsection installed'} ref={addToRefs}>
+                <div key={`intro-${i}`} className={'introduction__subsection installed'} ref={addToRefs}>
                   {cnt?.title && (
-                    <div className='subsection-title'>
+                    <div className='introduction__subsection-title'>
                       <h2>{parse(DOMPurify.sanitize(cnt?.title))}</h2>
                     </div>
                   )}
@@ -80,7 +79,7 @@ const Introduction = () => {
                   {cnt?.content?.map((para, k) => {
                     return (
                       <Feature key={'p-' + k}>
-                        {i === 1 && <IconTaskComplete className='icon' />}
+                        {i === 1 && <IconTaskComplete className='feature__icon' />}
                         <div key={k}>{parse(DOMPurify.sanitize(para))}</div>
                       </Feature>
                     )
@@ -90,8 +89,8 @@ const Introduction = () => {
             })}
 
           {isInstalled && vc >= newThreshold && (
-            <div key={`intro`} className={'subsection'}>
-              <div className=' returning'>
+            <div key={`intro`} className={'introduction__subsection'}>
+              <div className='introduction__returning'>
                 <h1>
                   {parse(
                     DOMPurify.sanitize(
@@ -102,21 +101,20 @@ const Introduction = () => {
               </div>
             </div>
           )}
-
           {(!isInstalled || (isInstalled && vc < newThreshold)) &&
             content?.content &&
             content?.content?.map((cnt, i) => {
               return (
-                <div key={`intro-${i}`} className={'subsection notinstalled '} ref={addToRefs}>
+                <div key={`intro-${i}`} className={'introduction__subsection notinstalled '} ref={addToRefs}>
                   {cnt?.title && (
-                    <div className='subsection-title'>
-                      <h2 className='intro-title'>{parse(DOMPurify.sanitize(cnt?.title))}</h2>
+                    <div className='introduction__subsection-title'>
+                      <h2 className='introduction__intro-title'>{parse(DOMPurify.sanitize(cnt?.title))}</h2>
                     </div>
                   )}
                   {cnt?.content?.map((para, k) => {
                     return para ? (
-                      <Feature classes={'feature'} key={'feat-' + k}>
-                        <div key={'p-' + k} className='st'>
+                      <Feature classes={'introduction__feature'} key={'feat-' + k}>
+                        <div key={'p-' + k} className='introduction__st'>
                           {parse(DOMPurify.sanitize(para))}
                         </div>
                       </Feature>

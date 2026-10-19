@@ -1,40 +1,14 @@
-import { useState, useEffect } from 'react'
-import { activities } from '@data/config'
 import useAppStore from '@store/useAppStore'
 import CloseBtn from '@buttons/close/CloseBtn'
 import Backdrop from '@components/backdrop/Backdrop'
-const activitiesById = activities.reduce((acc, activity) => {
-  acc[activity.id] = activity
-  return acc
-}, {})
-import './styles.scss'
+
+import './privacyPolicy.scss'
 // TODO: #13 Add in newsletter supplier privacy
 const PrivacyPolicy = () => {
   const name = 'privacy-policy'
-  const id = 10
-
-  const [open, setOpen] = useState(false)
-  const activity = useAppStore((s) => s.activity)
   const setActivity = useAppStore((s) => s.setActivity)
-  const setIsModal = useAppStore((s) => s.setIsModal)
-  const isModal = useAppStore((s) => s.isModal)
-  const activityObj = activities.find((activity) => (activity.url === name ? activity.id : null))
-  const el = document.getElementById('privacy')
 
-  useEffect(() => {
-    open && setIsModal(activitiesById[id]?.modal)
-  }, [open, setIsModal, activitiesById, id])
-
-  useEffect(() => {
-    setOpen(activity === id)
-  }, [activity, id, setOpen])
-
-  // const handleCCPAClick = () => {
-  // 	setActivity(12)
-  // }
   const handleClose = () => {
-    handleScrollTop()
-    setOpen(false)
     setActivity(-1)
   }
 
@@ -43,8 +17,8 @@ const PrivacyPolicy = () => {
     el.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  return open ? (
-    <div id='privacy' className={'activity activity-privacy fixed' + (open ? ' show' : '')}>
+  return (
+    <div id='privacy' className={`activity activity-${name} fixed show`}>
       <CloseBtn onClick={handleClose} className='close-btn' />
       <div className='inner'>
         <h1>Privacy Policy</h1>
@@ -352,6 +326,6 @@ const PrivacyPolicy = () => {
       </div>
       <Backdrop className='backdrop' />
     </div>
-  ) : null
+  )
 }
 export default PrivacyPolicy

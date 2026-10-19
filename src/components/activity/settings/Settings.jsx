@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import useAppStore from '@store/useAppStore'
-import { activities } from '@data/config'
+// import { activities } from '@data/config'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
 import CloseBtn from '@components/ui/buttons/close/CloseBtn'
 import Dialog from '@components/ui/dialog/Dialog'
 import settingsData from './settingsData.js'
 import './settings.scss'
-const activitiesById = activities.reduce((acc, activity) => {
-  acc[activity.id] = activity
-  return acc
-}, {})
+// const activitiesById = activities.reduce((acc, activity) => {
+//   acc[activity.id] = activity
+//   return acc
+// }, {})
 const Setting = (name, getStateSelector, setStateAction, instruction, help = '', classNames) => {
   const settingName = name
   const appState = useAppStore(getStateSelector)
@@ -53,19 +53,19 @@ const Setting = (name, getStateSelector, setStateAction, instruction, help = '',
 
 const Settings = () => {
   const name = 'settings'
-  const id = 12
-  const [open, setOpen] = useState(false)
+  // const id = 12
+  // const [open, setOpen] = useState(false)
   // const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [showDeleteIDBDialog, setShowDeleteIDBDialog] = useState(false)
   const [showConfirmDeleteDialog, setShowConfirmDeleteDialog] = useState(false)
   const setActivity = useAppStore((s) => s.setActivity)
   // const showToolsOnly = useAppStore((s) => s.showToolsOnly)
   const setShowToolsOnly = useAppStore((s) => s.setShowToolsOnly)
-  const activity = useAppStore((s) => s.activity)
+  // const activity = useAppStore((s) => s.activity)
   const clearIDB = useAppStore((s) => s.clearIDB)
   // const isModal = useAppStore((s) => s.isModal)
   // const activityID = activities.find((activity) => (activity.url === name ? activity.id : null))
-  const setIsModal = useAppStore((s) => s.setIsModal)
+  // const setIsModal = useAppStore((s) => s.setIsModal)
   const settingsDataWithStateObjects = settingsData.map((group) => {
     return {
       ...group,
@@ -85,13 +85,13 @@ const Settings = () => {
     }
   })
 
-  useEffect(() => {
-    open && setIsModal(activitiesById[id]?.modal)
-  }, [open, setIsModal, id])
+  // useEffect(() => {
+  //   open && setIsModal(activitiesById[id]?.modal)
+  // }, [open, setIsModal, id])
 
-  useEffect(() => {
-    setOpen(id === activity)
-  }, [activity, id])
+  // useEffect(() => {
+  //   setOpen(id === activity)
+  // }, [activity, id])
 
   //--------------------------------------------------------------------------
   // Settings
@@ -114,7 +114,7 @@ const Settings = () => {
       })
     })
 
-    setOpen(false)
+    // setOpen(false)
     setActivity(-1)
   }
   const handleCloseConfirmDeleteDialog = () => {
@@ -130,8 +130,8 @@ const Settings = () => {
     setShowDeleteIDBDialog(false)
   }
 
-  return open ? (
-    <div id='settings' className={'activity activity-settings fixed' + ' ' + name + (open ? ' show' : ' hide')}>
+  return (
+    <div id='settings' className={`activity activity-${name} fixed show`}>
       <Dialog
         show={showDeleteIDBDialog}
         title='Confirm Clear Data'
@@ -221,7 +221,7 @@ const Settings = () => {
         </div>
       </section>
     </div>
-  ) : null
+  )
 }
 
 export default Settings

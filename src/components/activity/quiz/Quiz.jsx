@@ -1,7 +1,7 @@
 // Quiz.jsx (updated with stats)
 import { useState, useEffect } from 'react'
-import { useShallow } from 'zustand/react/shallow'
-import QuizProgress from './quizProgress/QuizProgress'
+// import { useShallow } from 'zustand/react/shallow'
+// import QuizProgress from './quizProgress/QuizProgress'
 import QuizQuestion from './quizQuestion/QuizQuestion'
 import QuizStart from './quizStart/QuizStart'
 import QuizStats from './quizStats/QuizStats'
@@ -11,23 +11,22 @@ import useQuizStore from './useQuizStore'
 import { strings } from '@data/config'
 import useAppStore from '@store/useAppStore'
 import { trackEvent } from '@js/analytics/analytics'
-import { activities } from '@data/config'
+// import { activities } from '@data/config'
 
-const activitiesById = activities.reduce((acc, activity) => {
-  acc[activity.id] = activity
-  return acc
-}, {})
-const activityStringsByName = strings.activity.reduce((acc, activity) => {
-  acc[activity.name] = activity
-  return acc
-}, {})
+// const activitiesById = activities.reduce((acc, activity) => {
+//   acc[activity.id] = activity
+//   return acc
+// }, {})
+// const activityStringsByName = strings.activity.reduce((acc, activity) => {
+//   acc[activity.name] = activity
+//   return acc
+// }, {})
 
-import './styles.scss'
+import './quiz.scss'
 
 const Quiz = () => {
-  const name = 'recovery-quiz'
-  const id = 23
-  const [open, setOpen] = useState(false)
+  const name = 'quiz'
+  // const id = 23
   const [started, setStarted] = useState(false)
   const [view, setView] = useState('start') // 'start', 'question', 'stats'
   const [currentLevel, setCurrentLevel] = useState(null)
@@ -37,10 +36,10 @@ const Quiz = () => {
   const [totalAnswered, setTotalAnswered] = useState(0)
   const [activeQuestions, setActiveQuestions] = useState([])
   const setActivity = useAppStore((state) => state.setActivity)
-  const setIsModal = useAppStore((s) => s.setIsModal)
-  const isModal = useAppStore((s) => s.isModal)
-  const strings = activityStringsByName[name]
-  const { activity } = useAppStore(useShallow((state) => ({ activity: state.activity })))
+  // const setIsModal = useAppStore((s) => s.setIsModal)
+  // const isModal = useAppStore((s) => s.isModal)
+  // const strings = activityStringsByName[name]
+  // const { activity } = useAppStore(useShallow((state) => ({ activity: state.activity })))
 
   const totalQuestions = activeQuestions.length
 
@@ -51,13 +50,13 @@ const Quiz = () => {
   }
 
   // Track when the quiz component is mounted (page view equivalent)
-  useEffect(() => {
-    open && setIsModal(activitiesById[id]?.modal)
-  }, [open])
+  // useEffect(() => {
+  //   open && setIsModal(activitiesById[id]?.modal)
+  // }, [open])
 
-  useEffect(() => {
-    setOpen(activity === id)
-  }, [activity, isModal, id, setOpen])
+  // useEffect(() => {
+  //   setOpen(activity === id)
+  // }, [activity, isModal, id, setOpen])
 
   const handleStart = (level, analyticsOptIn) => {
     if (level === 'stats') {
@@ -144,16 +143,16 @@ const Quiz = () => {
         })
       }
     }
-  }, [isComplete])
+  }, [isComplete, addToHistory, currentLevel, getPlayCount, optIn, saveScore, score, totalQuestions])
 
   const handleClose = () => {
     resetQuiz()
-    setOpen(false)
+    // setOpen(false)
     setActivity(-1)
   }
 
-  return open ? (
-    <section id={name} className={'activity activity-quiz fixed' + (open ? ' show' : ' hide')}>
+  return (
+    <section id={name} className={`activity activity-${name} fixed show`}>
       <div className='inner'>
         <CloseBtn className='close-btn' onClick={view === 'stats' ? () => setView('start') : handleClose} />
         {started && (
@@ -206,7 +205,7 @@ const Quiz = () => {
         )}
       </div>
     </section>
-  ) : null
+  )
 }
 
 export default Quiz
