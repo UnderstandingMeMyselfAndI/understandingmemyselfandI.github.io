@@ -22,11 +22,7 @@
   --card-outline: 1px solid rgba(200, 200, 200, 0.5);
   --card-outline-med: 1px solid rgba(100, 100, 100, 0.5);
   --card-outline-dark: 1px solid rgba(50, 50, 50, 0.5);
-
-  --background-vignette: radial-gradient(ellipse at 50% 50%,
-      rgba(255, 255, 255, 0.05) 55%,
-      var(--grey-dark-trans-30) 80%);
-
+  --background-vignette: radial-gradient(ellipse at 50% 50%, rgba(3, 1, 7, 0.25) 15%, rgba(3, 1, 7, 0.65) 85%);
   --background-blue: #2e24688f;
   --background-inactive: #332d538f;
   --background-disabled: #706a918f;
@@ -51,7 +47,7 @@
   --background-gray-trans-95: rgba(10, 10, 10, 0.95);
 
   --background-activity: rgba(57, 51, 104, 0.5);
-  --background-main: linear-gradient(-120deg, rgb(48, 42, 102) 0%, rgb(150, 3, 101) 80%);
+  --background-main: linear-gradient(-120deg, rgb(48, 42, 102) 10%, rgb(202, 0, 142) 80%);
 
   --background: rgb(49, 38, 88);
   --foreground: oklch(0.985 0 0);
@@ -303,7 +299,7 @@
 
   /* Light teal → light warm gradient */
   --background-main: linear-gradient(140deg, rgba(200, 240, 245, 1) 0%, rgba(250, 220, 220, 1) 81%);
-  --background-main: linear-gradient(140deg, rgb(227, 224, 255) 0%, rgb(255, 208, 208) 81%);
+  /* --background-main: linear-gradient(140deg, rgb(227, 224, 255) 0%, rgb(255, 208, 208) 81%); */
 
   --background: #e6f4f7;
   /* pale teal tint */

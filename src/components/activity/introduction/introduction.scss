@@ -7,6 +7,7 @@
   padding-top: 40px;
   position: relative;
   left: 0%;
+  outline: 1px solid grey;
 }
 
 body section.activity-introduction {
@@ -37,7 +38,7 @@ body section.activity-introduction {
   }
 
   .notinstalled {
-    max-width: 100%;
+    // max-width: 100%;
     margin: 0 auto;
     display: flex;
     flex-flow: column nowrap;
@@ -67,8 +68,8 @@ body section.activity-introduction {
   h1,
   &__st {
     padding: 0;
-    width: 100%;
-    max-width: none;
+    // width: 100%;
+    // max-width: none;
     line-height: 1.3;
     text-transform: uppercase;
     margin: 0 auto;
@@ -120,30 +121,6 @@ body section.activity-introduction {
     width: 100%;
     font-size: variables.$lrg_size;
   }
-
-  // .circle-bg {
-  //   position: absolute;
-  //   width: 80%;
-  //   aspect-ratio: 1/1;
-  //   border-radius: 50%;
-  //   background: var(--blue-dark-trans-30);
-  //   top: 50%;
-  //   left: 50%;
-  //   transform: translate(-50%, -50%);
-  //   z-index: -1;
-
-  //   &::after {
-  //     content: '';
-  //     position: absolute;
-  //     width: 90%;
-  //     aspect-ratio: 1/1;
-  //     border-radius: 50%;
-  //     border: 2px solid var(--orange-trans-90);
-  //     top: 50%;
-  //     left: 50%;
-  //     opacity: 0.25;
-  //     transform: translate(-52.5%, -50%);
-  //   }
 }
 
 /* This app is for you */
@@ -155,8 +132,8 @@ body section.activity-introduction {
   text-decoration-thickness: 0.55em; //45%; ems used for iOS devices
   text-underline-offset: -0.355em; // must use em for iOS
   text-decoration-skip-ink: none;
-
-  position: relative;
+  width: 100%;
+  // position: relative;
 
   span {
     color: var(--primary);
@@ -200,16 +177,6 @@ body section.activity-introduction {
           }
         }
       }
-
-      /*mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
-      mask-mode: alpha;
-      position: relative;*/
-
-      // &__subsection.notinstalled {
-
-      //   .quick-access,
-      //   .days-section {}
-      // }
 
       &__subsection-title {
         max-width: 80%;
@@ -258,7 +225,7 @@ body section.activity-introduction {
 
       &__subsection,
       &__subsection.notinstalled {
-        width: var(--max-width);
+        width: 100%;
 
         h1 {
           font-size: variables.$h1_size;

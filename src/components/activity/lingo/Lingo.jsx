@@ -1,16 +1,14 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
-import SearchField from '@components/ui/search/SearchField'
-import Dialog from '@components/ui/dialog/Dialog'
+import { useState, useLayoutEffect, useRef, useEffect } from 'react'
+import SearchField from '@ui/search/SearchField'
+import Dialog from '@ui/dialog/Dialog'
 import lingo from '@data/lingo.js'
 import { useOnInView } from 'react-intersection-observer'
-
-import { sanitizeStringForUrl, setBrowserHistory, isEmpty } from '@js/utils.js'
-import { strings } from '@data/config'
-// import UnfoldMoreDoubleIcon from '@mui/icons-material/UnfoldMoreDouble';
-import './styles.scss'
 import useAppStore from '@store/useAppStore'
-import { set } from 'idb-keyval'
-import { activities } from '@data/config'
+import { activities } from '@data/config.js'
+import { sanitizeStringForUrl, setBrowserHistory, isEmpty } from '@js/utils.js'
+
+import './lingo.scss'
+
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
   return acc
@@ -24,28 +22,20 @@ const Lingo = () => {
   const name = 'search-lingo'
   const id = 13
   const [showDialog, setShowDialog] = useState(false)
-  const [isFirstLoad, setIsFirstLoad] = useState(true)
   const [showAll, setShowAll] = useState(false)
   const [content, setContent] = useState([])
-  // const gae = useAppStore((s) => s.gae)
-  // const [open, setOpen] = useState(false)
+  const contentRef = useRef(setContent)
+  const showDialogRef = useRef(setShowDialog)
   const initialHeight = 310
-  const [elHeight, setElHeight] = useState(initialHeight)
+  const elHeight = initialHeight
   const [elHeightExpanded, setElExpandedHeight] = useState(initialHeight)
-  // const activity = useAppStore((s) => s.activity)
   const setActivity = useAppStore((s) => s.setActivity)
-  // const setPhraseID = useAppStore((s) => s.setPhraseID)
   const setPhrase = useAppStore((state) => state.setPhrase)
   const phrase = useAppStore((state) => state.phrase)
-  // const isModal = useAppStore((state) => state.isModal)
   const setIsModal = useAppStore((state) => state.setIsModal)
   const listRef = useRef(null)
 
   const activityObj = activitiesById[id]
-
-  // useEffect(() => {
-  //   open && setIsModal(activitiesById[id].modal)
-  // }, [open, setIsModal, id])
 
   function getContent(id) {
     if (!id) return
@@ -57,6 +47,14 @@ const Lingo = () => {
   function getElementHeight(node) {
     return node ? node.getBoundingClientRect().height : 0
   }
+
+  useEffect(() => {
+    contentRef.current = setContent
+  }, [contentRef, setContent])
+
+  useEffect(() => {
+    showDialogRef.current = setShowDialog
+  }, [showDialogRef, setShowDialog])
 
   useEffect(() => {
     if (!showAll && listRef.current) {
@@ -72,10 +70,13 @@ const Lingo = () => {
     }
   }, [listRef, showAll, elHeightExpanded, initialHeight])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (isEmpty(phrase)) return
-    phrasesByURL[sanitizeStringForUrl(phrase)] && setContent(phrasesByURL[sanitizeStringForUrl(phrase)])
-    setShowDialog(true)
+    if (contentRef.current) {
+      const result = phrasesByURL[sanitizeStringForUrl(phrase)]
+      if (result) contentRef.current(result)
+    }
+    showDialogRef.current?.(true)
   }, [phrase])
 
   const handleClick = (id) => {
@@ -84,7 +85,6 @@ const Lingo = () => {
       setContent(search)
       setPhrase(search.title)
     }
-    setIsFirstLoad(false)
   }
 
   const handleExpandClick = () => {

@@ -22,7 +22,7 @@ const Home = ({ children }) => {
 
   return (
     <div id={componentName} className={`activity activity-${componentName}`}>
-      <section className={componentName}>{children}</section>
+      {children}
     </div>
   )
 }

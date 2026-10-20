@@ -2,8 +2,8 @@
 @use '@scss/variables';
 @import '@scss/globals.css';
 
-section.activiy-header#header {
-  position: relative;
+section#header {
+  // position: relative;
 
   -webkit-user-select: none;
   /* Safari */
@@ -13,13 +13,14 @@ section.activiy-header#header {
   /* IE10+/Edge */
   user-select: none;
   /* Standard */
-  height: 100dvh;
-  width: 100%;
-  max-width: var(--max-width);
+  // height: 100%;
+  // min-height: 100vh;
+  // width: 100%;
+  // max-width: var(--max-width);
   padding: 0;
   margin: 0;
   text-shadow: var(--text-shadow-dark);
-  transition: height 0.35s ease-in-out;
+  margin-bottom: 50dvh; // added to give room for animation "Understanding myself" when scrolling down
 
   u {
     text-decoration-color: var(--yellow);
@@ -28,46 +29,66 @@ section.activiy-header#header {
 }
 
 .header {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  text-shadow: var(--text-shadow-dark);
+  margin: 0;
+  padding: 0;
+
   &__group-wrap {
     position: absolute;
-    width: fit-content;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 6500;
   }
 
   &__home-group {
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: column wrap;
     align-items: center;
     justify-content: center;
     row-gap: 1.25rem;
+    height: 100%;
   }
 
   &__home-logo-wrap {
     will-change: transform, opacity;
   }
 
-  &__home-logo {
-    margin-top: -20vh;
-    opacity: 1;
-    transform: scale(1.6);
+  &__logo-animation-wrap {
+    width: fit-content;
+    height: fit-content;
+    will-change: transform, opacity;
+    opacity: 0; //must match animartion initial state
+    transform: scale(0.9); //must match animartion initial state
 
     .ummi-logo {
-      display: flex;
-      flex-flow: column wrap;
-      justify-content: center;
-      align-items: center;
-      align-content: center;
-      max-width: 100%;
+      transform-origin: 50% 85%;
+      transform: rotate('45deg'); //must match animartion initial state
+    }
+  }
 
-      img {
-        width: 20vw;
-        height: auto;
-        min-width: 140px;
-        min-height: 120px;
-        aspect-ratio: 1;
-      }
+  .ummi-logo {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 0.75rem;
+
+    .img {
+      width: 96px;
+    }
+
+    img {
+      width: 200px;
+      height: auto;
+
+      aspect-ratio: 1;
     }
   }
 
@@ -77,12 +98,10 @@ section.activiy-header#header {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    margin-bottom: -20vh;
-    opacity: 0;
     text-shadow: var(--text-shadow);
   }
 
-  &__wgrp.ss-0 {}
+  // &__wgrp.ss-0 {}
 
   &__logo-type {
     display: flex;
@@ -114,7 +133,7 @@ section.activiy-header#header {
   }
 
   &__w0 {
-    opacity: 0;
+    // opacity: 0;
 
     &.leaving {
       color: var(--orange);
@@ -128,7 +147,7 @@ section.activiy-header#header {
   }
 
   &__w1 {
-    opacity: 0;
+    // opacity: 0;
     transform-origin: 0% 0%;
 
     &:after {
@@ -148,7 +167,7 @@ section.activiy-header#header {
   }
 
   &__w2 {
-    opacity: 0;
+    // opacity: 0;
 
     &.leaving {
       color: var(--orange);
@@ -162,11 +181,11 @@ section.activiy-header#header {
   }
 
   &__w3 {
-    opacity: 0;
+    // opacity: 0;
     transform: rotateY(720deg);
     color: var(--orange);
 
-    &.leaving {}
+    // &.leaving {}
   }
 
   &__w4w {
@@ -176,10 +195,10 @@ section.activiy-header#header {
   }
 
   &__w4 {
-    opacity: 0;
+    // opacity: 0;
     transform-origin: 0% 100%;
 
-    &.leaving {}
+    // &.leaving {}
   }
 
   &__arrow-group-1 {

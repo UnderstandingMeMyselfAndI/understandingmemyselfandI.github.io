@@ -18,7 +18,6 @@
     height: 100vh;
     background: var(--background-vignette);
     z-index: 8;
-    // opacity: 0;
   }
 
   .image-container {
@@ -74,7 +73,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--background-main);
+    // background: var(--background-main);
     z-index: 0;
     opacity: 1;
   }

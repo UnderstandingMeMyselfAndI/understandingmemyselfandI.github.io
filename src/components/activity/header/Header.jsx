@@ -1,12 +1,13 @@
 import { useState, useRef, useEffect } from 'react'
 import Logo from '@ui/logo/Logo.jsx'
-import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined'
+// import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined'
 // import useAppStore from '@store/useAppStore'
 import { ErrorBoundary } from 'react-error-boundary'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import gsap from 'gsap'
 import { useOnInView } from 'react-intersection-observer'
-import { gsap } from 'gsap'
+
 // import { activities } from '@data/config'
 // const activitiesById = activities.reduce((acc, activity) => {
 //   acc[activity.id] = activity
@@ -22,15 +23,13 @@ const Header = () => {
   const [isFirstCall, setIsFirstCall] = useState(true)
   const cont = useRef()
   const groupRef = useRef()
-  const arrowsCont = useRef()
 
-  const aniLoopRefs = useRef([])
+  const aninamtionRefs = useRef([])
   const aniLeaveRefs = useRef([])
-  const loopTimelines = useRef([])
+  const timelines = useRef([])
   const leaveTimeline = useRef()
-  // const activity = useAppStore((s) => s.activity)
-  // aniLoopRefs.current = []
-  // aniLeaveRefs.current = []
+  const logoRef = useRef()
+  const logoImgRef = useRef()
 
   const addLeaveRef = (el) => {
     if (el && !aniLeaveRefs.current.includes(el)) {
@@ -39,22 +38,55 @@ const Header = () => {
   }
 
   const addLoopRef = (el) => {
-    if (el && !aniLoopRefs.current.includes(el)) {
-      aniLoopRefs.current.push(el)
+    if (el && !aninamtionRefs.current.includes(el)) {
+      aninamtionRefs.current.push(el)
     }
   }
 
   useGSAP(
     () => {
-      if (!open) return
-
+      console.log('logoTimeline')
+      const config = {
+        repeat: -1,
+        repeatDelay: 2,
+        delay: 0,
+        yoyo: false,
+        defaults: { duration: 0.65, ease: 'power3.inOut' },
+      }
+      let logoTimeline = gsap.timeline(config)
+      // let tl = gsap.timeline()
+      logoTimeline
+        // .to('.ummi-logo-img', { autoAlpha: 0, rotation: -45, duration: 0.01, delay: 0 })
+        // .to(logoRef.current, { autoAlpha: 0, scale: 0.95, duration: 0.01 }, '-=0.1')
+        .to('.ummi-logo-img', { autoAlpha: 1, rotation: 0, duration: 0.6, delay: 0, ease: 'power3.inOut' })
+        .to(logoRef.current, { autoAlpha: 1, scale: 1, duration: 0.85, delay: 0, ease: 'power3.inOut' }, '-=0.6')
+        .to(logoRef.current, { autoAlpha: 1, delay: 6 })
+        .to('.ummi-logo-img', { rotation: 35, duration: 0.3, delay: 0, ease: 'elastic.inOut' }, '-=0.3')
+        .to('.ummi-logo-img', { rotation: -15, duration: 0.3, delay: 0, ease: 'elastic.inOut' }, '-=0.0')
+        .to('.ummi-logo-img', { rotation: 0, duration: 0.3, delay: 0, ease: 'elastic.inOut' }, '-=0.0')
+        .to(
+          logoRef.current,
+          {
+            autoAlpha: 0,
+            scale: 0.9,
+            duration: 0.6,
+          },
+          '-=0.2',
+        )
+    },
+    { dependencies: [logoRef, logoImgRef] },
+  )
+  useGSAP(
+    () => {
+      // if (!open) return
+      console.log('isLeaving', isLeaving)
       if (!isLeaving && leaveTimeline.current) {
         leaveTimeline.current.kill()
       }
 
       if (isLeaving) {
         // --- SMOOTHLY END LOOP ANIMATIONS ---
-        loopTimelines.current.forEach((tl) => {
+        timelines.current.forEach((tl) => {
           if (tl) {
             gsap.to(tl, {
               progress: 1,
@@ -70,27 +102,20 @@ const Header = () => {
         // --- LEAVE ANIMATION ---
         const leaveAnimations = [
           {
-            y: -60,
-            rotateX: '60deg',
-            rotateY: '0',
-            rotateZ: '0deg',
-            x: 0,
-            duration: 0.5,
-            ease: 'power4.out',
-          }, // Logo
-          {
+            // Understanding
             rotateX: '0',
             autoAlpha: 0.95,
             rotateY: '0deg',
             rotateZ: '90deg',
             scale: 2,
             x: -55,
-            y: 410,
-            duration: 0.35,
+            y: '80vh',
+            duration: 0.75,
             transformOrigin: '100% 10%',
-            ease: 'power4.out',
-          }, // Understanding
+            ease: 'circ.inOut',
+          },
           {
+            // Me
             rotateX: '0deg',
             autoAlpha: 0,
             rotateY: '0deg',
@@ -99,31 +124,34 @@ const Header = () => {
             y: 0,
             duration: 0.85,
             ease: 'power4.out',
-          }, // Me
+          },
           {
+            // Myself
             rotateX: '0deg',
             autoAlpha: 0.95,
             rotateY: '0',
             rotateZ: '90deg',
             scale: 2,
             x: -75,
-            y: 270,
-            duration: 0.35,
+            y: '60vh',
+            duration: 0.75,
             transformOrigin: '100% 10%',
-            ease: 'power4.out',
-          }, // Myself
+            ease: 'circ.inOut',
+          },
           {
-            y: 0,
+            // &
             rotateX: '0deg',
             autoAlpha: 0,
             rotateY: '0',
             rotateZ: '0deg',
             x: 0,
+            y: 0,
             duration: 0.85,
             transformOrigin: '100% 10%',
             ease: 'power4.out',
-          }, // &
+          },
           {
+            // I
             y: 0,
             rotateX: '0',
             autoAlpha: 0,
@@ -133,7 +161,7 @@ const Header = () => {
             duration: 0.85,
             transformOrigin: '100% 10%',
             ease: 'power4.out',
-          }, // I
+          },
         ]
 
         leaveTimeline.current = gsap.timeline()
@@ -154,6 +182,9 @@ const Header = () => {
           y: (i) => leaveAnimations[i].y,
         })
       } else {
+        // console.log('start aniLeaveRefs ', aniLeaveRefs)
+        // console.log('start aniLeaveRefs.current ', aniLeaveRefs.current)
+        // console.log('start loopTimelines.current.length ', timelines.current.length)
         // --- RETURN ANIMATION ---
         gsap.killTweensOf(aniLeaveRefs.current)
         gsap.to(aniLeaveRefs.current, {
@@ -170,34 +201,9 @@ const Header = () => {
           stagger: 0.05,
           force3D: 'auto',
         })
+        // --- Logo Timelines ---
 
-        // --- LOOP ANIMATIONS ---
-        loopTimelines.current.forEach((tl) => tl && tl.restart())
-
-        if (loopTimelines.current.length > 0) return
-
-        const logoTl = gsap
-          .timeline({
-            repeat: 5,
-            repeatDelay: 2,
-            yoyo: true,
-            defaults: { duration: 0.65, ease: 'power3.inOut' },
-          })
-          .fromTo(
-            aniLoopRefs.current[0],
-            { autoAlpha: 0, scale: 1.2 },
-            { autoAlpha: 1, scale: 1, duration: 0.85, ease: 'back.inOut' },
-          )
-          .to(aniLoopRefs.current[0], { autoAlpha: 1, delay: 9.4 })
-          .to(aniLoopRefs.current[0], {
-            autoAlpha: 0,
-            scale: 0.8,
-            duration: 0.6,
-          })
-        loopTimelines.current[0] = logoTl
-
-        const loopAnimations = [
-          null, // logo handled above
+        const animations = [
           [
             // Understanding
             { autoAlpha: 0, rotateX: '-80deg', y: -50 },
@@ -250,13 +256,14 @@ const Header = () => {
           defaults: { duration: 0.5, ease: 'power3.out', force3D: 'auto' },
         }
 
-        aniLoopRefs.current.forEach((el, i) => {
-          if (i === 0) return // Skip logo
+        aninamtionRefs.current.forEach((el, i) => {
           const tl = gsap.timeline({ ...config, delay: 2 })
-          tl.fromTo(el, loopAnimations[i][0], loopAnimations[i][1])
-          if (loopAnimations[i][2]) tl.to(el, loopAnimations[i][2])
-          if (loopAnimations[i][3]) tl.to(el, loopAnimations[i][3])
-          loopTimelines.current[i] = tl
+          if (i !== 0) {
+            tl.fromTo(el, animations[i][0], animations[i][1])
+            if (animations[i][2]) tl.to(el, animations[i][2])
+            if (animations[i][3]) tl.to(el, animations[i][3])
+            timelines.current[i] = tl
+          }
         })
       }
     },
@@ -274,11 +281,11 @@ const Header = () => {
         setIsFirstCall(false)
         return
       }
-      setIsLeaving(!inView)
+      setIsLeaving((prev) => !prev)
     },
     {
       threshold: 0.1,
-      rootMargin: '-35% 0% -45% 0%',
+      rootMargin: '-55% 0% 5% 0%',
     },
   )
 
@@ -292,13 +299,12 @@ const Header = () => {
       <div className='header' ref={inViewRef}>
         <div className={'header__group-wrap'}>
           <div className='header__home-group'>
-            <ErrorBoundary FallbackComponent={<>Logo had an error</>}>
-              <div className='header__home-logo-wrap' ref={addLeaveRef}>
-                <div className='header__home-logo' ref={addLoopRef}>
-                  <Logo />
-                </div>
+            <div className='header__home-logo-wrap'>
+              <div className='header__logo-animation-wrap' ref={logoRef}>
+                <Logo ref={logoImgRef} />
               </div>
-            </ErrorBoundary>
+            </div>
+
             <div className={`header__wgrp ss-0`} ref={groupRef}>
               <div>
                 <div className='header__logo-type'>
@@ -342,11 +348,11 @@ const Header = () => {
                 </div>
               </div>
             </div>
-            <div className='header__arrow-group-1' ref={arrowsCont}>
+            {/* <div className='header__arrow-group-1' ref={arrowsCont}>
               <div className='header__arrow-cont a1'>
                 <ArrowDownwardOutlinedIcon className='header__arrow' />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

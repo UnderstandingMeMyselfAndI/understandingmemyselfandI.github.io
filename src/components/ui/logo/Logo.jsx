@@ -1,18 +1,16 @@
-import './styles.scss'
+import './logo.scss'
 
-import smartLogo from '@assets/icons/UmmiIcon.min.svg'
-import smartLogoDark from '@assets/icons/UmmiIcon.min.svg'
+import logoSVG from '@assets/icons/UmmiIcon.svg'
 
-import { useThemeStore } from '@store/useThemeStore'
-const Logo = ({ showText = true, classes = '' }) => {
-  const theme = useThemeStore((state) => state.theme)
+// import { useThemeStore } from '@store/useThemeStore'
+const Logo = ({ showText = true, classes = '', ref }) => {
   const text = showText ? 'Ummi' : ''
   return (
     <div className={'ummi-logo' + (classes ? ' ' + classes : '')}>
-      <div className={'img'}>
-        <img src={theme === 'light' ? smartLogoDark : smartLogo} alt='Your Recovery toolbox logo' />
+      <div ref={ref}>
+        <img src={logoSVG} alt='Your Recovery toolbox logo' className={'img ummi-logo-img'} />
       </div>
-      <div>{text}</div>
+      <div className='ummi'>{text}</div>
     </div>
   )
 }

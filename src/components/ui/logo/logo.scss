@@ -1,0 +1,36 @@
+@use '@scss/variables';
+@import '@scss/globals.css';
+
+.ummi-logo {
+  text-align: center;
+  height: fit-content;
+  font-size: variables.$logo_lrg_size;
+  font-weight: variables.$logo_lrg_weight;
+  font-variation-settings: 'wght' variables.$logo_lrg_weight;
+  color: var(--blue-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex-flow: column wrap;
+  z-index: 4000;
+
+  .img {
+    width: 50px;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+
+    // svg {
+    //   width: 100%;
+    //   aspect-ratio: 1;
+    // }
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      aspect-ratio: 1;
+    }
+  }
+}
