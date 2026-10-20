@@ -133,8 +133,8 @@ export function simpleCopySync(filePaths, sourceDir, outputDir) {
 //---------------------------------------
 // Copy files Post Build
 //---------------------------------------
-// const filesToBeCopied = [[['./robots.txt'], './', './dist/']]
-const filesToBeCopied = []
+const filesToBeCopied = [[['./src/robots.txt', './src/sitemap.xml'], './', './dist/']]
+// const filesToBeCopied = []
 //---------------------------------------
 filesToBeCopied.map((files) => {
   simpleCopySync(files[0], files[1], files[2])

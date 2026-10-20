@@ -56,15 +56,15 @@ export default defineConfig(() => {
     },
     plugins: [
       react(),
-      Sitemap({
-        outDir: 'dist',
-        hostname: 'https://app.ummi.now',
-        dynamicRoutes: getDynamicRoutes(),
-        changefreq: 'weekly',
-        priority: 0.8,
-        generateRobotsTxt: true,
-        robots: [{ userAgent: '*', allow: '/' }],
-      }),
+      // Sitemap({
+      //   outDir: 'dist',
+      //   hostname: 'https://app.ummi.now',
+      //   dynamicRoutes: getDynamicRoutes(),
+      //   changefreq: 'weekly',
+      //   priority: 0.8,
+      //   generateRobotsTxt: true,
+      //   robots: [{ userAgent: '*', allow: '/' }],
+      // }),
 
       cspProxyPlugin({
         // Optional: tell which configuration to apply when running vite serve (default is used if undefined)
