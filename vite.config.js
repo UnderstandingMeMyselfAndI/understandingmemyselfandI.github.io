@@ -65,7 +65,7 @@ export default defineConfig(() => {
         generateRobotsTxt: true,
         robots: [{ userAgent: '*', allow: '/' }],
       }),
-      cloudflare({ viteEnvironment: { name: 'worker' } }),
+
       cspProxyPlugin({
         // Optional: tell which configuration to apply when running vite serve (default is used if undefined)
         developmentKey: 'development',
@@ -300,6 +300,7 @@ export default defineConfig(() => {
           ],
         },
       }),
+      cloudflare({ viteEnvironment: { name: 'worker' } }),
     ],
 
     resolve: {

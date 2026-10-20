@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "cp ./src/robots.txt ./dist/robots.txt && vite build",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "post-build": "node post-build.js"
