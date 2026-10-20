@@ -4,7 +4,7 @@
 import { create } from 'zustand'
 import * as storage from '@utils/smallWinsStorage.js'
 import { debounce } from '@utils/debounce.js'
-import { AUTOSAVE_DEBOUNCE_MS, AUTO_PRUNE_EMPTY_DRAFT, LIMITS } from '@data/smallWinsData.js'
+import { AUTOSAVE_DEBOUNCE_MS, AUTO_PRUNE_EMPTY_DRAFT, LIMITS } from '@data/dataSmallWins.js'
 import { todayIso } from '@utils/formatSmallWinDate'
 import { schedulePasscodeReminder, cancelPasscodeReminder } from '@utils/passcodeReminder.js'
 function mergeEntry(list, entry) {

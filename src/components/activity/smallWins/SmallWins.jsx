@@ -7,7 +7,7 @@ import CloseBtn from '@components/ui/buttons/close/CloseBtn'
 
 import SecurityGate from '@security/SecurityGate'
 import { useSmallWinsStore } from '@store/smallWinsStore'
-import { STRINGS } from '@data/smallWinsData.js'
+import { STRINGS } from '@data/dataSmallWins.js'
 import SmallWinsOverview from './SmallWinsOverview'
 import SmallWinsEditor from './SmallWinsEditor'
 

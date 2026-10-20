@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react'
 import { filterEntries, sortEntries, useSmallWinsStore } from '@store/smallWinsStore'
-import { EXAMPLE_WINS, STRINGS, WHY_SMALL_WINS } from '@data/smallWinsData.js'
+import { EXAMPLE_WINS, STRINGS, WHY_SMALL_WINS } from '@data/dataSmallWins.js'
 import { formatBytes, storageAdvice } from '@utils/storageQuota.js'
 import { useStorageQuota } from '@utils/useStorageQuota.js'
 import SmallWinCard from './components/SmallWinCard'

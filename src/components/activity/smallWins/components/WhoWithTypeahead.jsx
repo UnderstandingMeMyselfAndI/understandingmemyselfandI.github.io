@@ -1,7 +1,7 @@
 // src/components/activity/smallWins/components/WhoWithTypeahead.jsx
 
 import { useId, useMemo, useRef, useState } from 'react'
-import { LIMITS, STRINGS } from '@data/smallWinsData.js'
+import { LIMITS, STRINGS } from '@data/dataSmallWins.js'
 import { normaliseName } from '@utils/smallWinsStorage'
 import { rankSuggestions } from '@utils/rankSuggestions'
 import './whoWithTypeahead.scss'

@@ -2,7 +2,7 @@
 // Pure ranking logic for the "Who with" type-ahead.
 // Lives here (not in the component file) so Fast Refresh keeps working.
 
-import { LIMITS } from '@data/smallWinsData.js'
+import { LIMITS } from '@data/dataSmallWins.js'
 import { normaliseName, nameKey } from './smallWinsStorage.js'
 
 export function rankSuggestions(suggestions, query, selected) {
