@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 import { analyzer } from 'vite-bundle-analyzer'
 import { VitePWA } from 'vite-plugin-pwa'
 import { cspProxyPlugin } from 'vite-plugin-content-security-policy'
-// import { getDynamicRoutes, getShortcuts } from './getDynamicRoutes.js'
+import { getDynamicRoutes, getShortcuts } from './getDynamicRoutes.js'
 import { cloudflare } from '@cloudflare/vite-plugin'
 
 import Sitemap from 'vite-plugin-sitemap'
