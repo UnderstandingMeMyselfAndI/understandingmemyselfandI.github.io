@@ -12,19 +12,4 @@
       "persist": true,
     },
   },
-  "queues": {
-    "producers": [
-      {
-        "binding": "UMMI_APP_FAILED_BUILDS",
-        "queue": "worker-failed-builds-ummi-app",
-      },
-    ],
-    "consumers": [
-      {
-        "queue": "worker-failed-builds-ummi-app",
-        "max_batch_size": 10,
-        "dead_letter_queue": "my-queue-dlq",
-      },
-    ],
-  },
 }
