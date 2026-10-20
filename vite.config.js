@@ -1,6 +1,6 @@
 import path from 'path'
 import fs from 'fs'
-import { defineConfig, transformWithOxc, loadEnv } from 'vite'
+import { defineConfig, transformWithOxc } from 'vite'
 import react from '@vitejs/plugin-react'
 import { analyzer } from 'vite-bundle-analyzer'
 import { VitePWA } from 'vite-plugin-pwa'
@@ -32,7 +32,7 @@ const buildVersion = `${metadata.buildMajor}.${metadata.buildMinor}.${metadata.b
 // const env = loadEnv(mode, process.cwd(), '')
 // const isProduction = mode === 'production'
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(() => {
   // console.log('mode ', mode)
   // const isProduction = mode === 'production'
   return {
