@@ -33,8 +33,8 @@ const buildVersion = `${metadata.buildMajor}.${metadata.buildMinor}.${metadata.b
 // const isProduction = mode === 'production'
 
 export default defineConfig(({ mode }) => {
-  console.log('mode ', mode)
-  const isProduction = mode === 'production'
+  // console.log('mode ', mode)
+  // const isProduction = mode === 'production'
   return {
     root: './',
     publicDir: 'public',
@@ -56,6 +56,15 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       react(),
+      Sitemap({
+        outDir: 'dist',
+        hostname: 'https://app.ummi.now',
+        dynamicRoutes: getDynamicRoutes(),
+        changefreq: 'weekly',
+        priority: 0.8,
+        generateRobotsTxt: true,
+        robots: [{ userAgent: '*', allow: '/' }],
+      }),
       cloudflare({ viteEnvironment: { name: 'worker' } }),
       cspProxyPlugin({
         // Optional: tell which configuration to apply when running vite serve (default is used if undefined)
@@ -77,14 +86,7 @@ export default defineConfig(({ mode }) => {
         analyzerMode: 'static',
         open: false,
       }),
-      Sitemap({
-        outDir: 'dist',
-        hostname: 'https://app.ummi.now',
-        dynamicRoutes: getDynamicRoutes(),
-        changefreq: 'weekly',
-        priority: 0.8,
-        robots: [{ userAgent: '*', allow: '/' }],
-      }),
+
       VitePWA({
         strategies: 'injectManifest', // Required for custom push logic
         srcDir: 'src',
