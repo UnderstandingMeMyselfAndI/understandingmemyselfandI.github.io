@@ -7,6 +7,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 import { cspProxyPlugin } from 'vite-plugin-content-security-policy'
 import { getDynamicRoutes, getShortcuts } from './getDynamicRoutes.js'
 import { cloudflare } from '@cloudflare/vite-plugin'
+import { robots } from 'vite-plugin-robots'
 
 import Sitemap from 'vite-plugin-sitemap'
 
@@ -29,12 +30,9 @@ const transformJsxInJs = () => ({
 const metadata = JSON.parse(fs.readFileSync('./src/metadata.json', 'utf-8'))
 const buildVersion = `${metadata.buildMajor}.${metadata.buildMinor}.${metadata.buildRevision}${metadata.buildTag ? '-' + metadata.buildTag : ''}`
 // const isDev = process.env.NODE_ENV === 'development'
-// const env = loadEnv(mode, process.cwd(), '')
-// const isProduction = mode === 'production'
 
-export default defineConfig(() => {
-  // console.log('mode ', mode)
-  // const isProduction = mode === 'production'
+export default defineConfig(({ mode }) => {
+  const isProduction = mode === 'production'
   return {
     root: './',
     publicDir: 'public',
@@ -56,16 +54,8 @@ export default defineConfig(() => {
     },
     plugins: [
       react(),
-      // Sitemap({
-      //   outDir: 'dist',
-      //   hostname: 'https://app.ummi.now',
-      //   dynamicRoutes: getDynamicRoutes(),
-      //   changefreq: 'weekly',
-      //   priority: 0.8,
-      //   generateRobotsTxt: true,
-      //   robots: [{ userAgent: '*', allow: '/' }],
-      // }),
-
+      robots(),
+      cloudflare({ viteEnvironment: { name: 'worker' } }),
       cspProxyPlugin({
         // Optional: tell which configuration to apply when running vite serve (default is used if undefined)
         developmentKey: 'development',
@@ -76,6 +66,7 @@ export default defineConfig(() => {
           'img-src': "'self' data:",
           'font-src': "'self' data:",
           'connect-src': "'self' http://localhost/ https://app.ummi.now",
+          'report-uri': '/csp-report',
         },
         // Optional: Use 'report' for report-only mode, 'strict' for enforcement (default)
         reportType: 'report',
@@ -86,7 +77,14 @@ export default defineConfig(() => {
         analyzerMode: 'static',
         open: false,
       }),
-
+      Sitemap({
+        outDir: 'dist',
+        hostname: 'https://app.ummi.now',
+        dynamicRoutes: getDynamicRoutes(),
+        changefreq: 'weekly',
+        priority: 0.8,
+        robots: [], //isDev ? [{ userAgent: '*', allow: '/' }] : false,
+      }),
       VitePWA({
         strategies: 'injectManifest', // Required for custom push logic
         srcDir: 'src',
@@ -135,8 +133,8 @@ export default defineConfig(() => {
           ],
           shortcuts: getShortcuts(),
           handle_links: ['preferred', 'auto'],
-          background_color: '#1b1b1b',
-          theme_color: '#1b1b1b',
+          background_color: '#151515',
+          theme_color: '#151515',
           orientation: 'portrait',
           lang: 'en',
           dir: 'ltr',
@@ -300,25 +298,24 @@ export default defineConfig(() => {
           ],
         },
       }),
-      cloudflare({ viteEnvironment: { name: 'worker' } }),
     ],
 
     resolve: {
       alias: {
-        '@': path.resolve('./src'),
-        '@icons': path.resolve('./src/components/icons'),
-        '@buttons': path.resolve('./src/components/ui/buttons'),
-        '@ui': path.resolve('./src/components/ui'),
-        '@components': path.resolve('./src/components'),
-        '@activity': path.resolve('./src/components/activity'),
-        '@public': path.resolve('./public'),
-        '@data': path.resolve('./src/data'),
-        '@scss': path.resolve('./src/scss'),
-        '@store': path.resolve('./src/store'),
-        '@js': path.resolve('./src/js'),
-        '@utils': path.resolve('./src/utils'),
-        '@assets': path.resolve('./src/assets'),
-        '@src': path.resolve('./src'),
+        '@': path.resolve('./src/'),
+        '@icons': path.resolve('./src/components/icons/'),
+        '@buttons': path.resolve('./src/components/ui/buttons/'),
+        '@ui': path.resolve('./src/components/ui/'),
+        '@components': path.resolve('./src/components/'),
+        '@activity': path.resolve('./src/components/activity/'),
+        '@public': path.resolve('./public/'),
+        '@data': path.resolve('./src/data/'),
+        '@scss': path.resolve('./src/scss/'),
+        '@store': path.resolve('./src/store/'),
+        '@js': path.resolve('./src/js/'),
+        '@utils': path.resolve('./src/utils/'),
+        '@assets': path.resolve('./src/assets/'),
+        '@src': path.resolve('./src/'),
         '@security': path.resolve('./src/components/security/'),
       },
     },
