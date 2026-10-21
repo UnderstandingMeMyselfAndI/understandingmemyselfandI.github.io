@@ -1,8 +1,8 @@
 // src/components/activity/smallWins/SmallWinsEditor.jsx
 
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { useSmallWinsStore } from '@store/smallWinsStore'
-import { LIMITS, STRINGS } from '@data/smallWinsData.js'
+import { useSmallWinsStore } from '@store/useSmallWinsStore'
+import { LIMITS, STRINGS } from '@data/dataSmallWins.js'
 import { isFutureIso, todayIso } from '@utils/formatSmallWinDate.js'
 import WhoWithTypeahead from './components/WhoWithTypeahead'
 import { useRegisterModal } from '@utils/modalDepth'

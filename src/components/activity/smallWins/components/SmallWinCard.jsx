@@ -1,6 +1,6 @@
 // src/components/activity/smallWins/components/SmallWinCard.jsx
 
-import { STRINGS } from '../../../../data/smallWinsData'
+import { STRINGS } from '@data/dataSmallWins.js'
 import { formatSmallWinDate } from '../../../../utils/formatSmallWinDate'
 import './smallWinCard.scss'
 

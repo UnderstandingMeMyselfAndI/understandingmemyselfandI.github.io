@@ -81,9 +81,11 @@ const Lingo = () => {
 
   const handleClick = (id) => {
     const search = getContent(id)
+    // console.log('search', search)
     if (search?.lingoFieldGroup?.description) {
       setContent(search)
       setPhrase(search.title)
+      setShowDialog(true)
     }
   }
 
@@ -114,11 +116,13 @@ const Lingo = () => {
 
   const listHeight = showAll ? elHeightExpanded : elHeight
 
+  console.log('showDialog', showDialog)
+
   return (
-    <section id='lingo' className={`activity activity-${name} show`} ref={inViewRef}>
-      <div className='search-lingo-wrap'>
+    <>
+      {showDialog && (
         <Dialog
-          show={showDialog}
+          // show={showDialog}
           title={content?.title}
           instruction={content?.lingoFieldGroup?.description}
           confirmLabel='Close'
@@ -126,19 +130,25 @@ const Lingo = () => {
           showCancel={false}
           classes={['lingo-dialog-fullscreen']}
         />
-        <h3>Lingo &amp; Phrases</h3>
-        <div
-          className={
-            'lingo-list-wrapper' + (showAll ? ' expand' : '  collapse') + (showAll ? ' elHeightExpanded' : ' elHeight')
-          }
-          style={{ height: listHeight + 'px' }}>
-          <SearchField handleClick={handleClick} ref={listRef} />
+      )}
+      <section id='lingo' className={`activity activity-${name} show`} ref={inViewRef}>
+        <div className='search-lingo-wrap'>
+          <h3>Lingo &amp; Phrases</h3>
+          <div
+            className={
+              'lingo-list-wrapper' +
+              (showAll ? ' expand' : '  collapse') +
+              (showAll ? ' elHeightExpanded' : ' elHeight')
+            }
+            style={{ height: listHeight + 'px' }}>
+            <SearchField handleClick={handleClick} ref={listRef} />
+          </div>
+          <div className={'lingo-list-btn' + (showAll ? ' expand' : ' collapse')} onClick={handleExpandClick}>
+            {showAll ? 'HIDE LINGO' : 'SHOW ALL LINGO'}
+          </div>
         </div>
-        <div className={'lingo-list-btn' + (showAll ? ' expand' : ' collapse')} onClick={handleExpandClick}>
-          {showAll ? 'HIDE LINGO' : 'SHOW ALL LINGO'}
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }
 

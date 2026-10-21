@@ -5,14 +5,15 @@
   scroll-margin-top: 25vh;
   margin: 0 auto;
   margin-top: 6rem;
+  position: relative;
 }
 
 #lingo.show {
-  z-index: 7500;
+  // z-index: 7500;
 }
 
 div.lingo-list-wrapper {
-  transition: height 1.05s cubic-bezier(0.75, 0, 0.5, 1);
+  transition: height 1.05s var(--transition-ease);
   overflow: hidden;
   width: 100%;
 
@@ -56,10 +57,14 @@ div.search-lingo-wrap {
     background: none;
     border: none;
     border-radius: var(--border-radius);
-    border: 1px solid var(--greyLight);
+    border: 1px solid var(--blue-light-trans-30);
     outline: none;
-
+    cursor: pointer;
     padding: 0.25rem 0.5rem;
+
+    &.viewed {
+      border: 1px solid var(--grey-trans-50);
+    }
 
     &::after {
       display: none;
@@ -69,7 +74,7 @@ div.search-lingo-wrap {
   div.lingo-list-wrapper.expanded {
     mask-image: none;
     mask-mode: unset;
-    transition: height 1.35s cubic-bezier(0.75, 0, 0.5, 1);
+    transition: height 1.35s var(--transition-ease);
 
     div.lingo-list-btn {
       margin-top: -60px;
@@ -80,7 +85,7 @@ div.search-lingo-wrap {
     mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
     mask-mode: alpha;
     position: relative;
-    transition: height 1.05s cubic-bezier(0.75, 0, 0.5, 1);
+    transition: height 1.05s var(--transition-ease);
 
     div.lingo-list-btn {
       margin-top: -50px;
@@ -98,8 +103,7 @@ div.search-lingo-wrap {
     margin: 0 auto;
     background: var(--blue);
     padding: 1rem 1.25rem;
-    border-radius: 4px;
-    // box-shadow: var(--text-shadow-dark);
+    border-radius: var(--border-radius-sml);
   }
 }
 
@@ -113,27 +117,18 @@ div.search-lingo-wrap {
       height: 100dvh;
       min-height: 100dvh;
       max-width: 100dvh;
-      // margin: 1.5rem 0;
-      // padding: 1.5rem 0;
       z-index: 86000;
 
       .dialog-inner {
-        // width: 100%;
         padding: 1.5rem 0;
         max-height: 200px;
         height: 100%;
         min-height: 100%;
-        // max-width: 100dvh;
 
         .dialog-instruction {
           width: 90%;
-          // max-height: 40vh;
         }
       }
     }
   }
 }
-
-// svg.lingo-list-icon {
-//     transform: scale(4);
-// }

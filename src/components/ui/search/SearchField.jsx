@@ -47,7 +47,6 @@ const SearchField = forwardRef(({ classes, handleClick }, ref) => {
   )
   const handleChange = (e) => {
     setSearchTerm(e.target.value)
-    console.log('handleChange', e.target.value)
 
     if (e.target.value !== '') {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' })

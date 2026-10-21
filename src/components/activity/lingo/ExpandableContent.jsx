@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { activities } from '@data/config'
-const activitiesById = activities.reduce((acc, activity) => {
-  acc[activity.id] = activity
-  return acc
-}, {})
+// import { activities } from '@data/config'
+// const activitiesById = activities.reduce((acc, activity) => {
+//   acc[activity.id] = activity
+//   return acc
+// }, {})
 import './ExpandableContent.css'
 
 const ExpandableContent = ({

@@ -5,7 +5,7 @@ import { decryptJson, encryptJson } from './crypto'
 import { ensureKey, isDryRun } from './securityGate'
 import { updateStorageUsage } from './storageQuota'
 import { todayIso } from './formatSmallWinDate'
-import { LIMITS } from '@data/smallWinsData.js'
+import { LIMITS } from '@data/dataSmallWins.js'
 export const ENTRIES_STORE = 'smallWinsEntries'
 export const PEOPLE_STORE = 'smallWinsPeople'
 

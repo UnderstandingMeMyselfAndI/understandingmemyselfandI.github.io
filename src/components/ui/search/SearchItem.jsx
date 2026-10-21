@@ -7,7 +7,7 @@ import { id } from 'zod/v4/locales'
 const SearchItem = ({ label, id, handleClick }) => {
   const [clicked, setClicked] = useState(false)
 
-  const spv = useAppStore((state) => state.spv)
+  const spv = true //useAppStore((state) => state.spv)
   // const gae = useAppStore((s) => s.gae) // Google analytics enabled
 
   const clickHandler = () => {

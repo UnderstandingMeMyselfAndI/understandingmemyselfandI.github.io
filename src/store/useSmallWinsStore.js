@@ -1,12 +1,11 @@
-// src/stores/smallWinsStore.js
 // Zustand slice: view mode, entries, people, draft and auto-save status.
 
 import { create } from 'zustand'
-import * as storage from '../utils/smallWinsStorage'
-import { debounce } from '../utils/debounce'
-import { AUTOSAVE_DEBOUNCE_MS, AUTO_PRUNE_EMPTY_DRAFT, LIMITS } from '../data/smallWinsData'
-import { todayIso } from '../utils/formatSmallWinDate'
-import { schedulePasscodeReminder, cancelPasscodeReminder } from '../utils/passcodeReminder'
+import * as storage from '@utils/smallWinsStorage'
+import { debounce } from '@utils/debounce'
+import { AUTOSAVE_DEBOUNCE_MS, AUTO_PRUNE_EMPTY_DRAFT, LIMITS } from '@data/dataSmallWins.js'
+import { todayIso } from '@utils/formatSmallWinDate'
+import { schedulePasscodeReminder, cancelPasscodeReminder } from '@utils/passcodeReminder'
 function mergeEntry(list, entry) {
   const idx = list.findIndex((e) => e.id === entry.id)
   if (idx === -1) return [entry, ...list]

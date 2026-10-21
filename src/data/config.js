@@ -700,6 +700,21 @@ const strings = {
           used: '',
         },
       },
+      delete: {
+        title: 'Confirm Clear Data',
+        msg: 'Are you sure you want to clear all data?<br /><br />This will reset some settings to their default values and cannot be undone.',
+        buttons: {
+          confirm: 'Yes',
+          cancel: 'Cancel',
+        },
+        confirm: {
+          title: 'Data Cleared',
+          msg: 'All data has been permanently cleared.',
+          buttons: {
+            confirm: 'Close',
+          },
+        },
+      },
     },
     {
       name: 'recovery-timeline',

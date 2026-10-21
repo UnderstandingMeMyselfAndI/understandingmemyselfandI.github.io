@@ -1,16 +1,13 @@
 import { useState } from 'react'
 import useAppStore from '@store/useAppStore'
-// import { activities } from '@data/config'
+import { strings } from '@data/config.js'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
 import CloseBtn from '@components/ui/buttons/close/CloseBtn'
 import Dialog from '@components/ui/dialog/Dialog'
 import settingsData from './settingsData.js'
 import './settings.scss'
-// const activitiesById = activities.reduce((acc, activity) => {
-//   acc[activity.id] = activity
-//   return acc
-// }, {})
+
 const Setting = (name, getStateSelector, setStateAction, instruction, help = '', classNames) => {
   const settingName = name
   const appState = useAppStore(getStateSelector)
@@ -53,19 +50,14 @@ const Setting = (name, getStateSelector, setStateAction, instruction, help = '',
 
 const Settings = () => {
   const name = 'settings'
-  // const id = 12
-  // const [open, setOpen] = useState(false)
-  // const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const strings_component = strings.activity.find((activity) => activity.url === name)
+  console.log('strings_component', strings_component)
   const [showDeleteIDBDialog, setShowDeleteIDBDialog] = useState(false)
   const [showConfirmDeleteDialog, setShowConfirmDeleteDialog] = useState(false)
   const setActivity = useAppStore((s) => s.setActivity)
-  // const showToolsOnly = useAppStore((s) => s.showToolsOnly)
   const setShowToolsOnly = useAppStore((s) => s.setShowToolsOnly)
-  // const activity = useAppStore((s) => s.activity)
   const clearIDB = useAppStore((s) => s.clearIDB)
-  // const isModal = useAppStore((s) => s.isModal)
-  // const activityID = activities.find((activity) => (activity.url === name ? activity.id : null))
-  // const setIsModal = useAppStore((s) => s.setIsModal)
+
   const settingsDataWithStateObjects = settingsData.map((group) => {
     return {
       ...group,
@@ -84,15 +76,6 @@ const Settings = () => {
       }),
     }
   })
-
-  // useEffect(() => {
-  //   open && setIsModal(activitiesById[id]?.modal)
-  // }, [open, setIsModal, id])
-
-  // useEffect(() => {
-  //   setOpen(id === activity)
-  // }, [activity, id])
-
   //--------------------------------------------------------------------------
   // Settings
   //--------------------------------------------------------------------------
@@ -132,26 +115,30 @@ const Settings = () => {
 
   return (
     <div id='settings' className={`activity activity-${name} fixed show`}>
-      <Dialog
-        show={showDeleteIDBDialog}
-        title='Confirm Clear Data'
-        instruction='Are you sure you want to clear all data?<br /><br />This will reset some settings to their default values and cannot be undone.'
-        confirmLabel='Yes'
-        cancelLabel='Cancel'
-        classes={['delete-dialog']}
-        onCancel={handleCloseDeleteIDB}
-        onConfirm={handleConfirmDeleteIDB}
-      />
-      <Dialog
-        show={showConfirmDeleteDialog}
-        title='@data Cleared'
-        instruction='All data has been permanently cleared.'
-        confirmLabel='Close'
-        cancelLabel=''
-        classes={['delete-dialog']}
-        showCancel={false}
-        onConfirm={handleCloseConfirmDeleteDialog}
-      />
+      {showDeleteIDBDialog && (
+        <Dialog
+          show={showDeleteIDBDialog}
+          title='Confirm Clear Data'
+          instruction='Are you sure you want to clear all data?<br /><br />This will reset some settings to their default values and cannot be undone.'
+          confirmLabel='Yes'
+          cancelLabel='Cancel'
+          classes={['delete-dialog']}
+          onCancel={handleCloseDeleteIDB}
+          onConfirm={handleConfirmDeleteIDB}
+        />
+      )}
+      {showConfirmDeleteDialog && (
+        <Dialog
+          show={showConfirmDeleteDialog}
+          title='Data Cleared'
+          instruction='All data has been permanently cleared.'
+          confirmLabel='Close'
+          cancelLabel=''
+          classes={['delete-dialog']}
+          showCancel={false}
+          onConfirm={handleCloseConfirmDeleteDialog}
+        />
+      )}
       <section className={name}>
         <h3>Settings</h3>
         <div className='head'>

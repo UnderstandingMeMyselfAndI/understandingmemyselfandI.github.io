@@ -13,7 +13,7 @@
 //   await window.clearAllSmallWins()
 
 import * as storage from './smallWinsStorage'
-import { useSmallWinsStore } from '@store/smallWinsStore'
+import { useSmallWinsStore } from '@store/useSmallWinsStore'
 import { toIsoDate } from './formatSmallWinDate'
 
 const TITLES = [
@@ -367,7 +367,7 @@ export function attachToWindow() {
   if (typeof window === 'undefined') return
   window.seedSmallWins = seedSmallWins
   window.clearAllSmallWins = clearAllSmallWins
-   
+
   console.log(
     '%c[Small Wins Seeder]%c ready — window.seedSmallWins({ count, days }) / window.clearAllSmallWins()',
     'color:#2f5fd0;font-weight:bold',
