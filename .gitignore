@@ -15,8 +15,8 @@ plans/*
 .wrangler
 .dev.vars*
 
-data
-data/*
+project-data
+project-data/*
 
 # CMS
 cms/*

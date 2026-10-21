@@ -2,34 +2,34 @@ import { useEffect, useState, useRef } from 'react'
 import Draggable from 'react-draggable'
 import useAppStore from '@store/useAppStore'
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined'
-import QuickExitOnboarding from '../../exit/QuickExitOnboarding'
+// import QuickExitOnboarding from '../../exit/QuickExitOnboarding'
 import PropTypes from 'prop-types'
-import './styles.scss'
+import './exitButton.scss'
+
+const maxX = 80 // value as pixel offsets from edge
+const minX = 10 // value as pixel offsets from edge
+const maxY = 130 // value as pixel offsets from edge
+const minY = 15 // value as pixel offsets from edge
+const menuBoundsX = 120 // value as pixel offsets from edge
+const menuBoundsY = 60 // value as pixel offsets from edge
+
+// Threshold to distinguish between a tap and a drag
+const DRAG_THRESHOLD = 5
+
+const restrictPos = (data) => {
+  if (data.x < minX) data.x = minX
+  if (data.x > window.innerWidth - maxX) data.x = window.innerWidth - maxX
+  if (data.y < minY) data.y = minY
+  if (data.y > window.innerHeight - maxY) data.y = window.innerHeight - maxY
+
+  if (data.y < menuBoundsY && data.x > window.innerWidth - menuBoundsX) {
+    data.x = window.innerWidth - menuBoundsX
+    data.y = menuBoundsY
+  }
+  return data
+}
 
 const ExitButton = ({ handleClick }) => {
-  const maxX = 80 // value as pixel offsets from edge
-  const minX = 10 // value as pixel offsets from edge
-  const maxY = 130 // value as pixel offsets from edge
-  const minY = 15 // value as pixel offsets from edge
-  const menuBoundsX = 120 // value as pixel offsets from edge
-  const menuBoundsY = 60 // value as pixel offsets from edge
-
-  // Threshold to distinguish between a tap and a drag
-  const DRAG_THRESHOLD = 5
-
-  const restrictPos = (data) => {
-    if (data.x < minX) data.x = minX
-    if (data.x > window.innerWidth - maxX) data.x = window.innerWidth - maxX
-    if (data.y < minY) data.y = minY
-    if (data.y > window.innerHeight - maxY) data.y = window.innerHeight - maxY
-
-    if (data.y < menuBoundsY && data.x > window.innerWidth - menuBoundsX) {
-      data.x = window.innerWidth - menuBoundsX
-      data.y = menuBoundsY
-    }
-    return data
-  }
-
   const nodeRef = useRef(null)
   // Store start position to calculate drag distance
   const dragStartPos = useRef({ x: 0, y: 0 })
@@ -38,8 +38,8 @@ const ExitButton = ({ handleClick }) => {
 
   const exitButtonPosition = useAppStore((s) => s.exitButtonPosition)
   const setExitButtonPosition = useAppStore((s) => s.setExitButtonPosition)
-  const showQuickExitOnboarding = useAppStore((state) => state.showQuickExitOnboarding)
-  const setShowQuickExitOnboarding = useAppStore((state) => state.setShowQuickExitOnboarding)
+  // const showQuickExitOnboarding = useAppStore((state) => state.showQuickExitOnboarding)
+  // const setShowQuickExitOnboarding = useAppStore((state) => state.setShowQuickExitOnboarding)
 
   useEffect(() => {
     setButtonPosition(restrictPos(exitButtonPosition))
@@ -48,10 +48,12 @@ const ExitButton = ({ handleClick }) => {
   const handleDragStart = (e, data) => {
     // if (showQuickExitOnboarding) setShowQuickExitOnboarding(false)
     dragStartPos.current = { x: data.x, y: data.y }
+    setExitButtonPosition({ x: data.x, y: data.y })
   }
 
   const handleDragStop = (e, data) => {
     const restrictedData = restrictPos({ x: data.x, y: data.y })
+
     setExitButtonPosition({ x: restrictedData.x, y: restrictedData.y })
 
     // Calculate distance moved
@@ -75,14 +77,14 @@ const ExitButton = ({ handleClick }) => {
       handle='.exit-wrap'
       nodeRef={nodeRef}>
       <div ref={nodeRef}>
-        <QuickExitOnboarding showOnboarding={true}>
-          <div className='exit-wrap label'>
-            <div className={'exit-btn'}>
-              <ExitToAppOutlinedIcon className='icon' />
-            </div>
-            <div className='label'>{label}</div>
+        {/* <QuickExitOnboarding showOnboarding={true}> */}
+        <div className='exit-wrap label'>
+          <div className={'exit-btn'}>
+            <ExitToAppOutlinedIcon className='icon' />
           </div>
-        </QuickExitOnboarding>
+          <div className='label'>{label}</div>
+        </div>
+        {/* </QuickExitOnboarding> */}
       </div>
     </Draggable>
   )

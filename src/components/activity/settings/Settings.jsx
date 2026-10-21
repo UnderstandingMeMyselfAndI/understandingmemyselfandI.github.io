@@ -3,9 +3,9 @@ import useAppStore from '@store/useAppStore'
 import { strings } from '@data/config.js'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
-import CloseBtn from '@components/ui/buttons/close/CloseBtn'
-import Dialog from '@components/ui/dialog/Dialog'
-import settingsData from './settingsData.js'
+import CloseBtn from '@buttons/close/CloseBtn'
+import Dialog from '@ui/dialog/Dialog'
+import settingsData from '@data/dataSettings.js'
 import './settings.scss'
 
 const Setting = (name, getStateSelector, setStateAction, instruction, help = '', classNames) => {
@@ -51,7 +51,6 @@ const Setting = (name, getStateSelector, setStateAction, instruction, help = '',
 const Settings = () => {
   const name = 'settings'
   const strings_component = strings.activity.find((activity) => activity.url === name)
-  console.log('strings_component', strings_component)
   const [showDeleteIDBDialog, setShowDeleteIDBDialog] = useState(false)
   const [showConfirmDeleteDialog, setShowConfirmDeleteDialog] = useState(false)
   const setActivity = useAppStore((s) => s.setActivity)
@@ -118,10 +117,10 @@ const Settings = () => {
       {showDeleteIDBDialog && (
         <Dialog
           show={showDeleteIDBDialog}
-          title='Confirm Clear Data'
-          instruction='Are you sure you want to clear all data?<br /><br />This will reset some settings to their default values and cannot be undone.'
-          confirmLabel='Yes'
-          cancelLabel='Cancel'
+          title={strings_component.actions.data.delete.title}
+          instruction={strings_component.actions.data.delete.msg}
+          confirmLabel={strings_component.actions.data.delete.buttons.confirm}
+          cancelLabel={strings_component.actions.data.delete.buttons.cancel}
           classes={['delete-dialog']}
           onCancel={handleCloseDeleteIDB}
           onConfirm={handleConfirmDeleteIDB}
@@ -130,44 +129,36 @@ const Settings = () => {
       {showConfirmDeleteDialog && (
         <Dialog
           show={showConfirmDeleteDialog}
-          title='Data Cleared'
-          instruction='All data has been permanently cleared.'
-          confirmLabel='Close'
-          cancelLabel=''
+          title={strings_component.actions.data.delete.confirm.title}
+          instruction={strings_component.actions.data.delete.confirm.msg}
+          confirmLabel={strings_component.actions.data.delete.confirm.buttons.confirm}
+          cancelLabel={strings_component.actions.data.delete.confirm.buttons.cancel}
           classes={['delete-dialog']}
           showCancel={false}
           onConfirm={handleCloseConfirmDeleteDialog}
         />
       )}
-      <section className={name}>
-        <h3>Settings</h3>
-        <div className='head'>
-          <div className='section-title'>
-            <u>Your privacy is very important to us.</u>
-          </div>
-          <p>For complete privacy you can disable and hide all customizable features listed below.</p>
-          <p>Check the tickboxe next to each feature to display them.</p>
-          <p>Un-check the tickbox to hide the feature. </p>
-          <p>Your data is not affected by displaying or hiding features.</p>
-          <p>
-            To remove data, use the <b>"Clear your data"</b> button at the bottom of this screen.
-          </p>
+      <section className='settings'>
+        <h3>{parse(strings_component.title)}</h3>
+        <div className='settings__head'>
+          <div className='settings__section-title'>{parse(strings_component.content.section.title)}</div>
+          <div className='settings__section-content'>{parse(strings_component.content.section.content)}</div>
         </div>
         <CloseBtn onClick={handleClose} />
 
         {settingsDataWithStateObjects.map((group, key) => (
-          <div className='section' key={key}>
-            <div className='title'>{group.groupTitle}</div>
+          <div className='settings__group' key={key}>
+            <div className='settings__group-title'>{group.groupTitle}</div>
             <div>
               {group.settings.map((setting, index) => (
                 <div
                   className={
-                    'row ' +
+                    'settings__group-row ' +
                     setting.stateObject.classes +
                     (setting.stateObject.state ? ' feature-active' : ' feature-inactive')
                   }
                   key={index}>
-                  <div className={'check-box-row'}>
+                  <div className={'settings__group-check-box-row'}>
                     <label htmlFor={setting.stateObject.name} className={setting.stateObject.state ? 'checked' : ''}>
                       {parse(DOMPurify.sanitize(setting.stateObject.instruction))}
                     </label>
@@ -180,7 +171,7 @@ const Settings = () => {
                     />
                   </div>
                   {setting.stateObject.help && (
-                    <div className='info'>{parse(DOMPurify.sanitize(setting.stateObject.help))}</div>
+                    <div className='settings_group-info'>{parse(DOMPurify.sanitize(setting.stateObject.help))}</div>
                   )}
                 </div>
               ))}
@@ -188,21 +179,20 @@ const Settings = () => {
           </div>
         ))}
 
-        <div className='section'>
-          <div className='row'>
-            <div className='setting-title'></div>
-            <div className='check-box-row btns-bottom'>
-              <button className='btn btn-delete' onClick={handleClearIDB}>
-                Clear Your Data
+        <div className='settings__group'>
+          <div className='settings__group-row'>
+            <div className='settings__group-check-box-row settings__group-btns'>
+              <button className='settings__group-btn btn btn-delete' onClick={handleClearIDB}>
+                {parse(strings_component.actions.buttons.deleteData)}
               </button>
 
-              <button className='btn' onClick={() => handleClose()}>
-                Close
+              <button className='settings__group-btn btn' onClick={() => handleClose()}>
+                {parse(strings_component.actions.buttons.closeActivity)}
               </button>
             </div>
 
-            <div className='check-box-row'>
-              <div className='help'>The app will reload shortly after data is cleared.</div>
+            <div className='settings__group-check-box-row'>
+              <div className='settings__group-help'> {parse(strings_component.actions.buttons.footer)}</div>
             </div>
           </div>
         </div>

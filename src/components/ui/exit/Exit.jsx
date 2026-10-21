@@ -5,8 +5,8 @@ import Dialog from '@components/ui/dialog/Dialog'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
 
-import PropTypes from 'prop-types'
-import './styles.scss'
+// import PropTypes from 'prop-types'
+import './quickExit.scss'
 
 const Exit = () => {
   const quickExitMessageEnabled = useAppStore((state) => state.quickExitMessageEnabled)

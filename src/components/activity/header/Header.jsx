@@ -45,7 +45,6 @@ const Header = () => {
 
   useGSAP(
     () => {
-      console.log('logoTimeline')
       const config = {
         repeat: -1,
         repeatDelay: 2,
@@ -79,7 +78,6 @@ const Header = () => {
   useGSAP(
     () => {
       // if (!open) return
-      console.log('isLeaving', isLeaving)
       if (!isLeaving && leaveTimeline.current) {
         leaveTimeline.current.kill()
       }
@@ -182,9 +180,6 @@ const Header = () => {
           y: (i) => leaveAnimations[i].y,
         })
       } else {
-        // console.log('start aniLeaveRefs ', aniLeaveRefs)
-        // console.log('start aniLeaveRefs.current ', aniLeaveRefs.current)
-        // console.log('start loopTimelines.current.length ', timelines.current.length)
         // --- RETURN ANIMATION ---
         gsap.killTweensOf(aniLeaveRefs.current)
         gsap.to(aniLeaveRefs.current, {

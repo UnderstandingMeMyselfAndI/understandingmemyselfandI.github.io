@@ -81,7 +81,6 @@ const Lingo = () => {
 
   const handleClick = (id) => {
     const search = getContent(id)
-    // console.log('search', search)
     if (search?.lingoFieldGroup?.description) {
       setContent(search)
       setPhrase(search.title)
@@ -115,8 +114,6 @@ const Lingo = () => {
   )
 
   const listHeight = showAll ? elHeightExpanded : elHeight
-
-  console.log('showDialog', showDialog)
 
   return (
     <>

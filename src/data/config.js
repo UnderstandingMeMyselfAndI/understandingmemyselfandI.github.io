@@ -690,7 +690,7 @@ const strings = {
       slug: 'settings',
       url: 'settings',
       id: 14,
-      content: [],
+
       btnLabel: 'Settings',
       cta: {
         title: '',
@@ -700,19 +700,43 @@ const strings = {
           used: '',
         },
       },
-      delete: {
-        title: 'Confirm Clear Data',
-        msg: 'Are you sure you want to clear all data?<br /><br />This will reset some settings to their default values and cannot be undone.',
-        buttons: {
-          confirm: 'Yes',
-          cancel: 'Cancel',
+      content: {
+        section: {
+          title: '<u>Your privacy is very important to us.</u>',
+          content:
+            ' <p>For complete privacy you can disable and hide all customizable features listed below.</p>\
+          <p>Check the tickboxe next to each feature to display them.</p>\
+          <p>Un-check the tickbox to hide the feature. </p>\
+          <p>Your data is not affected by displaying or hiding features.</p>\
+          <p>\
+            To remove data, use the <b>"Clear your data"</b> button at the bottom of this screen.\
+          </p>',
         },
-        confirm: {
-          title: 'Data Cleared',
-          msg: 'All data has been permanently cleared.',
-          buttons: {
-            confirm: 'Close',
+      },
+
+      actions: {
+        data: {
+          delete: {
+            title: 'Confirm Clear Data',
+            msg: 'Are you sure you want to clear all data?<br /><br />This will reset some settings to their default values and cannot be undone.',
+            buttons: {
+              confirm: 'Yes',
+              cancel: 'Cancel',
+            },
+            confirm: {
+              title: 'Data Cleared',
+              msg: 'All data has been permanently cleared.',
+              buttons: {
+                confirm: 'Close',
+                cancel: '',
+              },
+            },
           },
+        },
+        buttons: {
+          closeActivity: 'Close',
+          deleteData: 'Clear Your Data',
+          footer: 'The app will reload shortly after data is cleared.',
         },
       },
     },
