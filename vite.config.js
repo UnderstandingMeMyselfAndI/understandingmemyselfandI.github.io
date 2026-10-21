@@ -31,7 +31,8 @@ const metadata = JSON.parse(fs.readFileSync('./src/metadata.json', 'utf-8'))
 const buildVersion = `${metadata.buildMajor}.${metadata.buildMinor}.${metadata.buildRevision}${metadata.buildTag ? '-' + metadata.buildTag : ''}`
 // const isDev = process.env.NODE_ENV === 'development'
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(() => {
+  // { mode }
   // const isProduction = mode === 'production'
   return {
     root: './',
