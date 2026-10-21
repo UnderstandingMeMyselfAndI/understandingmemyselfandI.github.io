@@ -36,7 +36,7 @@ const styles_bar = {
 function ActivityFallback() {
   return (
     <div className='activity-loading' role='status' aria-live='polite' style={styles}>
-      <div>LOADING TOOL</div>
+      <div>FETCHING</div>
       <div style={styles_bar_container}>
         <div style={styles_bar}>
           <svg width='100%' height='4' xmlns='http://www.w3.org/2000/svg'>

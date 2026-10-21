@@ -702,14 +702,13 @@ const strings = {
       },
       content: {
         section: {
-          title: '<u>Your privacy is very important to us.</u>',
+          title: 'Your privacy is very important to us.',
           content:
-            ' <p>For complete privacy you can disable and hide all customizable features listed below.</p>\
-          <p>Check the tickboxe next to each feature to display them.</p>\
-          <p>Un-check the tickbox to hide the feature. </p>\
-          <p>Your data is not affected by displaying or hiding features.</p>\
+            ' <p>For your complete privacy you can show and hide all features listed below.</p>\
+          <p>Use the checkboxes to show and hide features. </p>\
+          <p>Your data is not affected by showing or hiding features.</p>\
           <p>\
-            To remove data, use the <b>"Clear your data"</b> button at the bottom of this screen.\
+            To clear your data, use the <b>"Clear your data"</b> button at the bottom of this screen.\
           </p>',
         },
       },
