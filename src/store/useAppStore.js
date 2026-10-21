@@ -1,504 +1,221 @@
-import { create } from 'zustand'
-import { persist, createJSONStorage } from 'zustand/middleware'
-import { del, get, set, clear } from 'idb-keyval'
-//TODO #39 Integrate persistent storage - https://whatpwacando.today/storage
+// Plaintext app-wide state. Non-sensitive fields only.
+// Persisted to ummi-db/settings/config (plaintext, JSON).
+// Sensitive fields live in usePrivateStore (encrypted).
 
-const indexedDBStorage = {
-  getItem: async (name) => {
-    return (await get(name)) || null
-  },
-  setItem: async (name, value) => {
-    await set(name, value)
-  },
-  removeItem: async (name) => {
-    await del(name)
-  },
+import { create } from 'zustand'
+import { loadConfig, saveConfig } from '@utils/settingsStorage'
+
+const DEFAULTS = {
+  // Theme & accessibility
+  theme: 'system',
+  textScale: 100,
+
+  // Feature flags
+  daysCounterEnabled: true,
+  wheelOfLifeEnabled: true,
+  quizEnabled: true,
+  unitsCalculatorEnabled: true,
+  toolsEnabled: true,
+  smoothScrollEnabled: true,
+  toolboxFilterEnabled: true,
+  yourToolsEnabled: true,
+  PINLockEnabled: true,
+  quickExitEnabled: true,
+  quickExitMessageEnabled: true,
+  allowCookies: true,
+  allowThirdPartyCookies: true,
+  showQuickExitOnboarding: true,
+
+  // Appearance
+  showBurgerStack: true,
+
+  // Version / newsletter
+  version: '',
+  lastVersionCheck: '',
+  nss: false,
+
+  // Install
+  isInstallable: true,
+  isInstalled: false,
+
+  // Visit tracking
+  vc: 0,
+  lvd: 0,
+  fvd: 0,
+
+  // Misc
+  spv: false,
+  gae: true,
+  currency: 'USD',
+
+  // Quick exit
+  quickExitURL: 'https://google.com',
+  exitButtonPosition: null,
+
+  // Age gate
+  ageVerified: false,
 }
 
-const useAppStore = create(
-  persist(
-    (set, get) => ({
-      // --- WHEEL OF LIFE HISTORY ---
-      wheelHistory: [],
-      rememberWheels: false,
+const PERSISTED_FIELDS = Object.keys(DEFAULTS)
 
-      setRememberWheels: (v) => set(() => ({ rememberWheels: v })),
+const EPHEMERAL = {
+  _hasHydrated: false,
+  isModal: false,
+  message: '',
+  messageId: 0,
+  snackbarAction: null,
+  showSnackbar: false,
+  passcodeDialogRequest: 0,
+  activity: -1,
+  childRoute: [],
+  accData: [],
+  showToolsOnly: false,
+  acronymID: -1,
+  scrollStage: 0,
+  showAccCard: false,
+  toolsInView: false,
+  isMobile: false,
+  p: [],
+  phrase: '',
+  needUpdate: false,
+  nu: false,
+  vsts: 0,
+}
 
-      saveWheelEntry: (entry) =>
-        set((state) => ({
-          wheelHistory: [...state.wheelHistory, { ...entry, date: new Date().toISOString() }],
-        })),
+function pickPersisted(state) {
+  const out = {}
+  for (const k of PERSISTED_FIELDS) out[k] = state[k]
+  return out
+}
 
-      removeWheelEntry: (index) =>
-        set((state) => ({
-          wheelHistory: state.wheelHistory.filter((_, i) => i !== index),
-        })),
+export const useAppStore = create((set, get) => {
+  const persist = async () => {
+    try {
+      await saveConfig(pickPersisted(get()))
+    } catch (err) {
+      console.error('[useAppStore] persist failed:', err)
+    }
+  }
 
-      clearWheelHistory: () => set(() => ({ wheelHistory: [] })),
-      // -----------------------------
-      currency: 'USD',
-      setCurrency: (v) => set({ currency: v }),
-      // ----------------------------------------
-      // Last Version Check
-      lvc: '',
-      /**
-       * Sets the last version check date to the given value.
-       * @param {string} v The date to set as the last version check date.
-       */
-      setLVC: (v) => {
-        set(() => ({ lvc: v }))
-      },
-      lastVersionCheck: '',
-      setLastVersionCheck: (v) => {
-        set(() => ({ lastVersionCheck: v }))
-        set(() => ({ lvc: v }))
-      },
-      // ----------------------------------------
-      // Version
-      isModal: false,
-      setIsModal: (v) => set(() => ({ isModal: v })),
-      // ----------------------------------------
-      // Version
-      version: '',
-      setVersion: (v) => set(() => ({ version: v })),
+  const update = (patch) => {
+    set(patch)
+    persist()
+  }
 
-      // ----------------------------------------
-      // Subscribed to Newsletter
-      nss: false, // subscribed to newsletter
-      setNSS: (v) => set(() => ({ nss: v })),
-      // ----------------------------------------
-      // Is Installable
-      ins: true,
-      setIns: (v) => set(() => ({ ins: v })),
+  return {
+    ...DEFAULTS,
+    ...EPHEMERAL,
 
-      isInstallable: true,
-      setIsInstallable: (v) => {
-        set(() => ({ isInstallable: v }))
-        set(() => ({ ins: v }))
-      },
-      // ----------------------------------------
-      // Is Installed
-      isisn: false,
-      setIsISN: (v) => set(() => ({ isisn: v })),
-      isInstalled: false,
-      setIsInstalled: (v) => {
-        set(() => ({ isInstalled: v }))
-        set(() => ({ isisn: v }))
-      },
-      // ----------------------------------------
-      //show burger stack
-      showBurgerStack: true,
-      setShowBurgerStack: (v) => set(() => ({ showBurgerStack: v })),
-      // ----------------------------------------
-      // Need Update
-      nu: false,
-      setNU: (v) => set(() => ({ nu: v })),
-      needUpdate: false,
-      setNeedUpdate: (v) => {
-        set({ needUpdate: v })
-        set({ nu: v })
-      },
-      // ----------------------------------------
-      // Show Phrase Views
-      spv: false,
-      setSpv: (v) => set({ spv: v }), //showPhraseViews
-      // ----------------------------------------
-      // Visit Count
-      vc: 0,
-      setVC: (v) => {
-        set(() => ({ vc: v }))
-      },
+    // --- hydration --------------------------------------------------------
 
-      incVC: () => {
-        set((state) => ({ vc: state.vc + 1 }))
-      },
-      // ----------------------------------------
-      // Last Visit Date
-      lvd: 0,
-      setLVD: (v) => {
-        set(() => ({ lvd: v }))
-      },
-      // ----------------------------------------
-      // First Visit Date
-      fvd: 0,
-      setFVD: (v) => {
-        set((state) => ({ fvd: state.vc === 1 ? v : state.fvd }))
-      },
-      // ----------------------------------------
-      // Increment Visit
-      vsts: 0,
-      incVSTS: () => {
-        set((state) => ({ vsts: state.vsts + 1 }))
-      },
-      // ----------------------------------------
-      // Phrases
-      p: [],
-      setP: (v) => {
-        set(() => ({ p: v }))
-      },
-
-      phrase: '',
-      setPhrase: (v) => {
-        set(() => ({ phrase: v }))
-        set(() => ({ p: v }))
-      },
-      // ----------------------------------------
-      // Days Counter
-      dc: true,
-      setDc: (v) => {
-        set(() => ({ dc: v }))
-      },
-      daysCounterEnabled: true,
-      enableDaysCounter: (v) => {
-        set(() => ({ daysCounterEnabled: v }))
-        set(() => ({ dc: v }))
-      },
-      // ----------------------------------------
-      // Wheel Of Life
-      wol: true,
-      wheelOfLifeEnabled: true,
-      enableWheelOfLife: (v) => {
-        set(() => ({ wheelOfLifeEnabled: v }))
-        set(() => ({ wol: v }))
-      },
-      // ----------------------------------------
-      // Quiz
-      quiz: true,
-      setQuiz: (v) => {
-        set(() => ({ quiz: v }))
-      },
-      quizEnabled: true,
-      enableQuiz: (v) => {
-        set(() => ({ quizEnabled: v }))
-        set(() => ({ quiz: v }))
-      },
-      // ----------------------------------------
-      // Units Calculator
-      uc: true,
-      setUc: (v) => {
-        set(() => ({ uc: v }))
-      },
-      unitsCalculatorEnabled: true,
-      enableUnitsCalculator: (v) => {
-        set(() => ({ unitsCalculatorEnabled: v }))
-        set(() => ({ uc: v }))
-      },
-      // ----------------------------------------
-      // Enbale Disable Smooth Scroll
-      Ss: true,
-      setSs: (v) => {
-        set(() => ({ Ss: v }))
-      },
-      smoothScrollEnabled: true,
-      enableSmoothScroll: (v) => {
-        set(() => ({ smoothScrollEnabled: v }))
-        set(() => ({ tf: v }))
-      },
-      // ----------------------------------------
-      // Tools
-      tls: true,
-      setTls: (v) => {
-        set(() => ({ tls: v }))
-      },
-      toolsEnabled: true,
-      enableTools: (v) => {
-        set(() => ({ toolsEnabled: v }))
-        set(() => ({ tls: v }))
-      },
-      // ----------------------------------------
-      // Toolbox Filter - Toggle to filter tools. Controlled by yourToolsEnabled
-      tf: true,
-      setTf: (v) => {
-        set(() => ({ tf: v }))
-      },
-      toolboxFilterEnabled: true,
-      enableToolboxFilter: (v) => {
-        set(() => ({ toolboxFilterEnabled: v }))
-        set(() => ({ tf: v }))
-      },
-      // ----------------------------------------
-      // Your Tools
-      yt: true,
-      setYt: (v) => {
-        set(() => ({ yt: v }))
-      },
-      yourToolsEnabled: true,
-      enableYourTools: (v) => {
-        set(() => ({ yourToolsEnabled: v }))
-        set(() => ({ yt: v }))
-      },
-      // ----------------------------------------
-      // PIN Lock
-      pl: true,
-      setPl: (v) => {
-        set(() => ({ pl: v }))
-      },
-      PINLockEnabled: true,
-      enablePINLock: (v) => {
-        set(() => ({ PINLockEnabled: v }))
-        set(() => ({ pl: v }))
-      },
-      // ----------------------------------------
-      // Quick Exit
-      qe: true,
-      setQe: (v) => {
-        set(() => ({ qe: v }))
-      },
-      quickExitEnabled: true,
-      enableQuickExit: (v) => {
-        set(() => ({ quickExitEnabled: v }))
-        set(() => ({ qe: v }))
-      },
-      // ----------------------------------------
-      // Quick Exit Message
-      qem: true,
-      setQem: (v) => {
-        set(() => ({ qem: v }))
-      },
-      quickExitMessageEnabled: true,
-      enableQuickExitMessage: (v) => {
-        set(() => ({ quickExitMessageEnabled: v }))
-        set(() => ({ qem: v }))
-      },
-      // ----------------------------------------
-      // Quick Exit URL
-      qeu: '',
-      setQeu: (v) => {
-        set(() => ({ qeu: v }))
-      },
-      quickExitURL: 'https://google.com',
-      setQuickExitURL: (v) => {
-        set(() => ({ quickExitURL: v }))
-        set(() => ({ qeu: v }))
-      },
-      // ----------------------------------------
-      // Allow Cookies
-      c: true,
-      setC: (v) => {
-        set(() => ({ c: v }))
-      },
-      allowCookies: true,
-      setAllowCookies: (v) => {
-        set(() => ({ allowCookies: v }))
-        set(() => ({ c: v }))
-      },
-      // ----------------------------------------
-      // Allow Third Party Cookies
-      tpc: true,
-      setTPC: (v) => {
-        set(() => ({ tpc: v }))
-      },
-      allowThirdPartyCookies: true,
-      setAllowThirdPartyCookies: (v) => {
-        set(() => ({ allowThirdPartyCookies: v }))
-        set(() => ({ tpc: v }))
-      },
-      // ----------------------------------------
-      // User Tool IDs
-      userToolIDs: [],
-      setToolIDs: (v) => set(() => ({ userToolIDs: v })),
-      // ----------------------------------------
-      // Adds an ID only if it doesn't already exist (prevents duplicates)
-      addTool: (v) =>
-        set((state) => ({
-          userToolIDs: state.userToolIDs.includes(v) ? state.userToolIDs : [...state.userToolIDs, v],
-        })),
-
-      // Removes a specific ID from the array
-      removeTool: (v) =>
-        set((state) => ({
-          userToolIDs: state.userToolIDs.filter((toolId) => toolId !== v),
-        })),
-      // ----------------------------------------
-      // Returns an array of active tool IDs
-      getActiveToolIDs: () => {
-        return get().userToolIDs
-      },
-      // ----------------------------------------
-      // Tools in views
-      toolsInView: false,
-      setToolsInView: (v) => set(() => ({ toolsInView: v })),
-      // ----------------------------------------
-      // Is mobile
-      isMobile: false,
-      setIsMobile: (v) => set(() => ({ isMobile: v })),
-      // ----------------------------------------
-      // Message
-      message: '',
-      messageId: 0,
-      setMessage: (v) => set((s) => ({ message: v, messageId: s.messageId + 1 })),
-      clearSnackbar: () => set({ message: '', snackbarAction: null }),
-      // ----------------------------------------
-      // Snackbar
-      showSnackbar: false,
-      setShowSnackbar: (v) => set(() => ({ showSnackbar: v })),
-      // Snackbar action button (optional)
-      snackbarAction: null,
-      setSnackbarAction: (v) => set({ snackbarAction: v }),
-
-      // Global passcode-dialog request. Bumping this opens the dialog mounted
-      // by <PasscodeDialogController> anywhere in the app.
-      passcodeDialogRequest: 0,
-      requestPasscodeDialog: () => set((s) => ({ passcodeDialogRequest: s.passcodeDialogRequest + 1 })),
-      // ----------------------------------------
-      // Activity ID
-      activity: -1,
-      setActivity: (v) => {
-        // console.trace(`setActivity called with value: ${v}`)
-        set(() => ({ activity: v }))
-      },
-      // ----------------------------------------
-      // Activity Data
-      childRoute: [],
-      setChildRoute: (v) => set(() => ({ childRoute: v })),
-      // ----------------------------------------
-      // Activity Data
-      accData: [],
-      setAccData: (v) => set(() => ({ accData: v })),
-      // ----------------------------------------
-      // Activity Data
-      showToolsOnly: false,
-      setShowToolsOnly: (v) => set(() => ({ showToolsOnly: v })),
-      // ----------------------------------------
-      // Toggles showToolsOnly
-      toggleShowToolsOnly: () => set((state) => ({ showToolsOnly: !state.showToolsOnly })),
-
-      // ----------------------------------------
-      // Acronym ID
-      acronymID: -1,
-      setAcronymID: (v) => set(() => ({ acronymID: v })),
-      // ----------------------------------------
-      // Scroll Stage
-      scrollStage: 0,
-      setScrollStage: (v) => set(() => ({ scrollStage: v })),
-      // ----------------------------------------
-      // Show Acronym Card
-      showAccCard: false,
-      setShowAccCard: (v) => {
-        // console.trace(`setShowAccCard called with value: ${show}`);
-        set(() => ({ showAccCard: v }))
-      },
-      // ----------------------------------------
-      // Show Acronym Card
-      sqeo: true,
-      setSqeo: (v) => {
-        set(() => ({ showQuickExitOnboarding: v }))
-        set(() => ({ sqeo: v }))
-      },
-      showQuickExitOnboarding: true,
-      setShowQuickExitOnboarding: (v) => {
-        // console.trace(`setShowAccCard called with value: ${show}`);
-        set(() => ({ showQuickExitOnboarding: v }))
-        set(() => ({ sqeo: v }))
-      },
-      // ----------------------------------------
-      // analytics enabled
-      gae: true,
-      setGAE: (v) => set(() => ({ gae: v })),
-      // ----------------------------------------
-      // Clear IDB
-      clearIDB: async () => {
-        await clear()
-        // console.log('IndexedDB cleared');
-        window.location.reload()
-      },
-      // ----------------------------------------
-      // Exit Button Position
-      exitButtonPosition: { x: 60, y: window.innerHeight - 60 },
-      setExitButtonPosition: (v) => set(() => ({ exitButtonPosition: v })),
-      // ----------------------------------------
-      // ----------------------------------------
-      // Age Verified
-      ageVerified: false,
-      setAgeVerified: (v) => set(() => ({ ageVerified: v })),
-      // ----------------------------------------
-      // ----------------------------------------
-      // Hydration Status (Internal)
-      _hasHydrated: false,
-      setHasHydrated: (v) => set(() => ({ _hasHydrated: v })),
-      // ----------------------------------------
-      // ----------------------------------------
-      theme: 'system', // 'light', 'dark', 'system', 'high-contrast'
-      textScale: 100, // Percentage (e.g., 100 = 16px, 125 = 20px)
-
-      setTheme: (theme) => set({ theme }),
-      setTextScale: (scale) => set({ textScale: scale }),
-      // ----------------------------------------
-      // ----------------------------------------
-    }),
-    {
-      name: 'ummi',
-      storage: createJSONStorage(() => indexedDBStorage),
-      // Keys to persist in localStorage
-      partialize: (state) => ({
-        theme: state.theme,
-        textScale: state.textScale,
-        ageVerified: state.ageVerified,
-        wol: state.wol,
-        wheelOfLifeEnabled: state.wheelOfLifeEnabled,
-        quiz: state.quiz,
-        quizEnabled: state.quizEnabled,
-        dc: state.dc,
-        daysCounterEnabled: state.daysCounterEnabled,
-        uc: state.uc,
-        unitsCalculatorEnabled: state.unitsCalculatorEnabled,
-        tls: state.tls,
-        toolsEnabled: state.toolsEnabled,
-        tf: state.tf,
-        toolboxFilterEnabled: state.toolboxFilterEnabled,
-        yt: state.yt,
-        yourToolsEnabled: state.yourToolsEnabled,
-        pl: state.pl,
-        PINLockEnabled: state.PINLockEnabled,
-        qe: state.qe,
-        quickExitEnabled: state.quickExitEnabled,
-        qem: state.qem,
-        quickExitMessageEnabled: state.quickExitMessageEnabled,
-        c: state.c,
-        allowCookies: state.allowCookies,
-        tpc: state.tpc,
-        sqeo: state.sqeo,
-        showQuickExitOnboarding: state.showQuickExitOnboarding,
-        qeu: state.qeu,
-        quickExitURL: state.quickExitURL,
-        allowThirdPartyCookies: state.allowThirdPartyCookies,
-        exitButtonPosition: state.exitButtonPosition,
-
-        // usePINLock: state.usePINLock,
-        isins: state.isins,
-        isInstallable: state.isInstallable,
-        ins: state.ins,
-        isInstalled: state.isInstalled,
-        tls: state.tls,
-        vc: state.vc,
-        lvd: state.lvd,
-        fvd: state.fvd,
-        nss: state.nss,
-        version: state.version,
-        lvc: state.lvc,
-        lastVersionCheck: state.lastVersionCheck,
-        spv: state.spv,
-        gae: state.gae,
-        currency: state.currency,
-        wheelHistory: state.wheelHistory,
-        rememberWheels: state.rememberWheels,
-        showQExitOnboarding: state.showQExitOnboarding,
-      }),
-      onRehydrateStorage: () => (state) => {
-        if (state) {
-          state.setHasHydrated(true)
-
-          // Apply the saved theme and scale immediately
-          const root = document.documentElement
-          const theme = state.theme || 'system'
-          const scale = state.textScale || 100
-
-          root.classList.add(theme)
-          root.style.fontSize = `${(scale / 100) * 16}px`
-        }
-      },
+    hydrate: async () => {
+      try {
+        const config = await loadConfig()
+        if (config) set((s) => ({ ...s, ...config, _hasHydrated: true }))
+        else set({ _hasHydrated: true })
+      } catch (err) {
+        console.error('[useAppStore] hydrate failed:', err)
+        set({ _hasHydrated: true })
+      }
     },
-  ),
-)
+
+    setHasHydrated: (v) => set({ _hasHydrated: v }),
+
+    // --- persisted mutators ----------------------------------------------
+
+    setTheme: (v) => update({ theme: v }),
+    setTextScale: (v) => update({ textScale: v }),
+
+    enableDaysCounter: (v) => update({ daysCounterEnabled: v }),
+    enableWheelOfLife: (v) => update({ wheelOfLifeEnabled: v }),
+    enableQuiz: (v) => update({ quizEnabled: v }),
+    enableUnitsCalculator: (v) => update({ unitsCalculatorEnabled: v }),
+    enableTools: (v) => update({ toolsEnabled: v }),
+    enableSmoothScroll: (v) => update({ smoothScrollEnabled: v }),
+    enableToolboxFilter: (v) => update({ toolboxFilterEnabled: v }),
+    enableYourTools: (v) => update({ yourToolsEnabled: v }),
+    enablePINLock: (v) => update({ PINLockEnabled: v }),
+    enableQuickExit: (v) => update({ quickExitEnabled: v }),
+    enableQuickExitMessage: (v) => update({ quickExitMessageEnabled: v }),
+    setAllowCookies: (v) => update({ allowCookies: v }),
+    setAllowThirdPartyCookies: (v) => update({ allowThirdPartyCookies: v }),
+    setShowQuickExitOnboarding: (v) => update({ showQuickExitOnboarding: v }),
+
+    setShowBurgerStack: (v) => update({ showBurgerStack: v }),
+
+    setVersion: (v) => update({ version: v }),
+    setLastVersionCheck: (v) => update({ lastVersionCheck: v }),
+    setNSS: (v) => update({ nss: v }),
+
+    setIsInstallable: (v) => update({ isInstallable: v }),
+    setIsInstalled: (v) => update({ isInstalled: v }),
+
+    setVC: (v) => update({ vc: v }),
+    incVC: () => update({ vc: get().vc + 1 }),
+    setLVD: (v) => update({ lvd: v }),
+    setFVD: (v) => {
+      if (get().vc === 1) update({ fvd: v })
+    },
+
+    setSpv: (v) => update({ spv: v }),
+    setGAE: (v) => update({ gae: v }),
+    setCurrency: (v) => update({ currency: v }),
+
+    setQuickExitURL: (v) => update({ quickExitURL: v }),
+    setExitButtonPosition: (v) => update({ exitButtonPosition: v }),
+
+    setAgeVerified: (v) => update({ ageVerified: v }),
+
+    // --- shorthand aliases (backwards compatibility) ---------------------
+    // Kept so callers using the old names keep working. State fields with
+    // those names are gone — read the canonical name instead.
+
+    setSqeo: (v) => get().setShowQuickExitOnboarding(v),
+    setQeu: (v) => get().setQuickExitURL(v),
+    setQe: (v) => get().enableQuickExit(v),
+    setQem: (v) => get().enableQuickExitMessage(v),
+    setC: (v) => get().setAllowCookies(v),
+    setTPC: (v) => get().setAllowThirdPartyCookies(v),
+    setDc: (v) => get().enableDaysCounter(v),
+    setPl: (v) => get().enablePINLock(v),
+    setSs: (v) => get().enableSmoothScroll(v),
+    setTls: (v) => get().enableTools(v),
+    setTf: (v) => get().enableToolboxFilter(v),
+    setYt: (v) => get().enableYourTools(v),
+    setIns: (v) => get().setIsInstallable(v),
+    setIsISN: (v) => get().setIsInstalled(v),
+    setLVC: (v) => get().setLastVersionCheck(v),
+
+    // --- ephemeral mutators (no persist) ---------------------------------
+
+    setIsModal: (v) => set({ isModal: v }),
+    setMessage: (v) => set((s) => ({ message: v, messageId: s.messageId + 1 })),
+    clearSnackbar: () => set({ message: '', snackbarAction: null }),
+    setShowSnackbar: (v) => set({ showSnackbar: v }),
+    setSnackbarAction: (v) => set({ snackbarAction: v }),
+    requestPasscodeDialog: () => set((s) => ({ passcodeDialogRequest: s.passcodeDialogRequest + 1 })),
+    setActivity: (v) => set({ activity: v }),
+    setChildRoute: (v) => set({ childRoute: v }),
+    setAccData: (v) => set({ accData: v }),
+    setShowToolsOnly: (v) => set({ showToolsOnly: v }),
+    toggleShowToolsOnly: () => set((s) => ({ showToolsOnly: !s.showToolsOnly })),
+    setAcronymID: (v) => set({ acronymID: v }),
+    setScrollStage: (v) => set({ scrollStage: v }),
+    setShowAccCard: (v) => set({ showAccCard: v }),
+    setToolsInView: (v) => set({ toolsInView: v }),
+    setIsMobile: (v) => set({ isMobile: v }),
+    setP: (v) => set({ p: v }),
+    setPhrase: (v) => set({ phrase: v, p: v }),
+    setNeedUpdate: (v) => set({ needUpdate: v }),
+    setNU: (v) => set({ nu: v }),
+    incVSTS: () => set((s) => ({ vsts: s.vsts + 1 })),
+
+    clearIDB: async () => {
+      const { clear } = await import('idb-keyval')
+      await clear()
+      console.log('IndexedDB cleared')
+    },
+  }
+})
 
 export default useAppStore

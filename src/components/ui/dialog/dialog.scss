@@ -56,9 +56,9 @@
     max-height: 100vh;
     display: flex;
     flex-flow: column nowrap;
-    justify-content: space-between;
-    row-gap: 1rem;
-    padding: 2rem 1.5rem;
+    justify-content: center;
+    row-gap: 2rem;
+    padding: 0rem 0.5rem;
     // background-color: var(--background-main);
 
     &::after {
@@ -101,17 +101,18 @@
     width: 100%;
     display: flex;
     column-gap: 1.5rem;
+
+    button {
+      width: fit-content;
+      min-width: 120px;
+      background: transparent;
+      padding: 1rem 1.25rem;
+    }
   }
 
   button.btn.confirm {
-    background: transparent;
     outline: 1px solid var(--grey-light-trans-40);
-    width: 50%;
-    text-align: center;
-    justify-content: center;
     background-color: var(--blue);
-    box-shadow: none;
-    padding: 1rem 1.25rem;
 
     /* iOS specific */
     @supports (-webkit-touch-callout: none) {
@@ -122,11 +123,7 @@
 
   button.btn.cancel {
     color: var(--grey-light);
-    width: 50%;
-    background: transparent;
-    justify-content: center;
     outline: 1px solid var(--grey-light-trans-30);
-    padding: 1rem 1.25rem;
 
     /* iOS specific */
     @supports (-webkit-touch-callout: none) {

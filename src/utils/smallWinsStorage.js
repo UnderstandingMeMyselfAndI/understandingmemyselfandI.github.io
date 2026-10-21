@@ -1,109 +1,18 @@
 // src/utils/smallWinsStorage.js
 // IndexedDB CRUD + encryption for the two Small Wins stores.
+// Plumbing (openDb, withStore, schema) lives in ./db.js.
 
 import { decryptJson, encryptJson } from './crypto'
 import { ensureKey, isDryRun } from './securityGate'
 import { updateStorageUsage } from './storageQuota'
 import { todayIso } from './formatSmallWinDate'
 import { LIMITS } from '@data/dataSmallWins.js'
-export const ENTRIES_STORE = 'smallWinsEntries'
-export const PEOPLE_STORE = 'smallWinsPeople'
+import { ENTRIES_STORE, PEOPLE_STORE, openDb, resetDbConnection, promisify, withStore } from './db'
+
+// Re-export so callers that historically imported these from here keep working.
+export { ENTRIES_STORE, PEOPLE_STORE, openDb, resetDbConnection }
 
 const SCHEMA_VERSION = 1
-const BASE_DB_NAME = 'ummi-db'
-
-function dbName() {
-  return isDryRun() ? `${BASE_DB_NAME}-dryrun` : BASE_DB_NAME
-}
-
-let dbPromise = null
-
-function createMissingStores(db) {
-  if (!db.objectStoreNames.contains(ENTRIES_STORE)) {
-    const store = db.createObjectStore(ENTRIES_STORE, { keyPath: 'id' })
-    store.createIndex('by-date', 'date', { unique: false })
-    store.createIndex('by-created', 'createdAt', { unique: false })
-    store.createIndex('by-modified', 'modifiedAt', { unique: false })
-  }
-  if (!db.objectStoreNames.contains(PEOPLE_STORE)) {
-    db.createObjectStore(PEOPLE_STORE, { keyPath: 'id' })
-  }
-}
-
-export function openDb() {
-  if (dbPromise) return dbPromise
-
-  dbPromise = new Promise((resolve, reject) => {
-    if (typeof indexedDB === 'undefined') {
-      reject(new Error('IndexedDB is not available in this browser.'))
-      return
-    }
-
-    const first = indexedDB.open(dbName())
-    first.onupgradeneeded = () => createMissingStores(first.result)
-    first.onerror = () => reject(first.error)
-    first.onsuccess = () => {
-      const db = first.result
-      const complete = db.objectStoreNames.contains(ENTRIES_STORE) && db.objectStoreNames.contains(PEOPLE_STORE)
-      if (complete) {
-        resolve(db)
-        return
-      }
-
-      const nextVersion = db.version + 1
-      db.close()
-
-      const second = indexedDB.open(dbName(), nextVersion)
-      second.onupgradeneeded = () => createMissingStores(second.result)
-      second.onerror = () => reject(second.error)
-      second.onsuccess = () => resolve(second.result)
-    }
-  }).catch((err) => {
-    dbPromise = null
-    throw err
-  })
-
-  return dbPromise
-}
-
-export function resetDbConnection() {
-  dbPromise = null
-}
-
-function promisify(request) {
-  return new Promise((resolve, reject) => {
-    request.onsuccess = () => resolve(request.result)
-    request.onerror = () => reject(request.error)
-  })
-}
-
-function withStore(storeName, mode, fn) {
-  return openDb().then(
-    (db) =>
-      new Promise((resolve, reject) => {
-        let tx
-        try {
-          tx = db.transaction(storeName, mode)
-        } catch (err) {
-          reject(err)
-          return
-        }
-
-        const store = tx.objectStore(storeName)
-        let result
-
-        tx.oncomplete = () => resolve(result)
-        tx.onerror = () => reject(tx.error)
-        tx.onabort = () => reject(tx.error || new Error('Transaction aborted'))
-
-        try {
-          result = fn(store)
-        } catch (err) {
-          reject(err)
-        }
-      }),
-  )
-}
 
 export function makeId() {
   if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
@@ -165,6 +74,8 @@ function byDateDesc(a, b) {
   return (b.modifiedAt || 0) - (a.modifiedAt || 0)
 }
 
+// --- entries --------------------------------------------------------------
+
 export async function createEntry({ date } = {}) {
   const key = await ensureKey()
   const now = Date.now()
@@ -181,7 +92,9 @@ export async function createEntry({ date } = {}) {
   }
 
   const record = await sealEntry(entry, key)
-  await withStore(ENTRIES_STORE, 'readwrite', (store) => promisify(store.put(record)))
+  await withStore(ENTRIES_STORE, 'readwrite', (store) => promisify(store.put(record)), {
+    dryRun: isDryRun(),
+  })
   await updateStorageUsage()
   return entry
 }
@@ -190,14 +103,16 @@ export async function saveEntry(entry) {
   const key = await ensureKey()
   const updated = { ...entry, modifiedAt: Date.now(), version: SCHEMA_VERSION }
   const record = await sealEntry(updated, key)
-  await withStore(ENTRIES_STORE, 'readwrite', (store) => promisify(store.put(record)))
+  await withStore(ENTRIES_STORE, 'readwrite', (store) => promisify(store.put(record)), {
+    dryRun: isDryRun(),
+  })
   await updateStorageUsage()
   return updated
 }
 
 export async function getEntry(id) {
   const key = await ensureKey()
-  const record = await withStore(ENTRIES_STORE, 'readonly', (store) => promisify(store.get(id)))
+  const record = await withStore(ENTRIES_STORE, 'readonly', (store) => promisify(store.get(id)), { dryRun: isDryRun() })
   if (!record) return null
   try {
     return await openEntry(record, key)
@@ -208,7 +123,9 @@ export async function getEntry(id) {
 
 export async function listEntries() {
   const key = await ensureKey()
-  const records = await withStore(ENTRIES_STORE, 'readonly', (store) => promisify(store.getAll()))
+  const records = await withStore(ENTRIES_STORE, 'readonly', (store) => promisify(store.getAll()), {
+    dryRun: isDryRun(),
+  })
   const entries = []
   for (const record of records) {
     try {
@@ -222,14 +139,18 @@ export async function listEntries() {
 }
 
 export async function deleteEntry(id) {
-  await withStore(ENTRIES_STORE, 'readwrite', (store) => promisify(store.delete(id)))
+  await withStore(ENTRIES_STORE, 'readwrite', (store) => promisify(store.delete(id)), {
+    dryRun: isDryRun(),
+  })
   await updateStorageUsage()
   return true
 }
 
 export async function countEntries() {
-  return withStore(ENTRIES_STORE, 'readonly', (store) => promisify(store.count()))
+  return withStore(ENTRIES_STORE, 'readonly', (store) => promisify(store.count()), { dryRun: isDryRun() })
 }
+
+// --- people ---------------------------------------------------------------
 
 function personPayload(person) {
   return {
@@ -242,19 +163,23 @@ function personPayload(person) {
 
 async function putPerson(person, key) {
   const record = { id: person.id, payload: await encryptJson(key, personPayload(person)) }
-  await withStore(PEOPLE_STORE, 'readwrite', (store) => promisify(store.put(record)))
+  await withStore(PEOPLE_STORE, 'readwrite', (store) => promisify(store.put(record)), {
+    dryRun: isDryRun(),
+  })
   return person
 }
 
 export async function listPeople() {
   const key = await ensureKey()
-  const records = await withStore(PEOPLE_STORE, 'readonly', (store) => promisify(store.getAll()))
+  const records = await withStore(PEOPLE_STORE, 'readonly', (store) => promisify(store.getAll()), {
+    dryRun: isDryRun(),
+  })
   const people = []
   for (const record of records) {
     try {
       people.push(await decryptJson(key, record.payload))
     } catch {
-      /* skip */
+      /* skip undecryptable rows */
     }
   }
   people.sort((a, b) => (b.lastUsedAt || 0) - (a.lastUsedAt || 0) || a.name.localeCompare(b.name))
@@ -267,7 +192,9 @@ export async function upsertPerson(rawName) {
 
   const key = await ensureKey()
   const target = nameKey(display)
-  const records = await withStore(PEOPLE_STORE, 'readonly', (store) => promisify(store.getAll()))
+  const records = await withStore(PEOPLE_STORE, 'readonly', (store) => promisify(store.getAll()), {
+    dryRun: isDryRun(),
+  })
 
   for (const record of records) {
     try {
@@ -280,9 +207,6 @@ export async function upsertPerson(rawName) {
     }
   }
 
-  // Store is at capacity: existing people can still be reused (handled
-  // above), but we won't create any new ones. The caller may still attach
-  // this name to a win entry; it just won't become a suggestion going forward.
   if (records.length >= LIMITS.peopleMax) return null
 
   const now = Date.now()
@@ -290,7 +214,9 @@ export async function upsertPerson(rawName) {
 }
 
 export async function deletePerson(id) {
-  await withStore(PEOPLE_STORE, 'readwrite', (store) => promisify(store.delete(id)))
+  await withStore(PEOPLE_STORE, 'readwrite', (store) => promisify(store.delete(id)), {
+    dryRun: isDryRun(),
+  })
   await updateStorageUsage()
   return true
 }
@@ -311,9 +237,15 @@ export async function pruneUnusedPeople(entries) {
   return removed
 }
 
+// --- maintenance ----------------------------------------------------------
+
 export async function reencryptAll(oldKey, newKey) {
-  const entryRecords = await withStore(ENTRIES_STORE, 'readonly', (store) => promisify(store.getAll()))
-  const peopleRecords = await withStore(PEOPLE_STORE, 'readonly', (store) => promisify(store.getAll()))
+  const entryRecords = await withStore(ENTRIES_STORE, 'readonly', (store) => promisify(store.getAll()), {
+    dryRun: isDryRun(),
+  })
+  const peopleRecords = await withStore(PEOPLE_STORE, 'readonly', (store) => promisify(store.getAll()), {
+    dryRun: isDryRun(),
+  })
 
   const nextEntries = []
   for (const record of entryRecords) {
@@ -326,14 +258,24 @@ export async function reencryptAll(oldKey, newKey) {
     nextPeople.push({ ...record, payload: await encryptJson(newKey, payload) })
   }
 
-  await withStore(ENTRIES_STORE, 'readwrite', (store) => {
-    nextEntries.forEach((r) => store.put(r))
-    return null
-  })
-  await withStore(PEOPLE_STORE, 'readwrite', (store) => {
-    nextPeople.forEach((r) => store.put(r))
-    return null
-  })
+  await withStore(
+    ENTRIES_STORE,
+    'readwrite',
+    (store) => {
+      nextEntries.forEach((r) => store.put(r))
+      return null
+    },
+    { dryRun: isDryRun() },
+  )
+  await withStore(
+    PEOPLE_STORE,
+    'readwrite',
+    (store) => {
+      nextPeople.forEach((r) => store.put(r))
+      return null
+    },
+    { dryRun: isDryRun() },
+  )
 }
 
 export async function exportAll() {
@@ -342,7 +284,11 @@ export async function exportAll() {
 }
 
 export async function deleteAllData() {
-  await withStore(ENTRIES_STORE, 'readwrite', (store) => promisify(store.clear()))
-  await withStore(PEOPLE_STORE, 'readwrite', (store) => promisify(store.clear()))
+  await withStore(ENTRIES_STORE, 'readwrite', (store) => promisify(store.clear()), {
+    dryRun: isDryRun(),
+  })
+  await withStore(PEOPLE_STORE, 'readwrite', (store) => promisify(store.clear()), {
+    dryRun: isDryRun(),
+  })
   await updateStorageUsage()
 }
