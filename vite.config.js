@@ -7,7 +7,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 import { cspProxyPlugin } from 'vite-plugin-content-security-policy'
 import { getDynamicRoutes, getShortcuts } from './getDynamicRoutes.js'
 import { cloudflare } from '@cloudflare/vite-plugin'
-import { robots } from 'vite-plugin-robots'
+// import { robots } from 'vite-plugin-robots'
 
 import Sitemap from 'vite-plugin-sitemap'
 
@@ -32,7 +32,7 @@ const buildVersion = `${metadata.buildMajor}.${metadata.buildMinor}.${metadata.b
 // const isDev = process.env.NODE_ENV === 'development'
 
 export default defineConfig(({ mode }) => {
-  const isProduction = mode === 'production'
+  // const isProduction = mode === 'production'
   return {
     root: './',
     publicDir: 'public',
@@ -54,7 +54,7 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       react(),
-      robots(),
+
       cloudflare({ viteEnvironment: { name: 'worker' } }),
       cspProxyPlugin({
         // Optional: tell which configuration to apply when running vite serve (default is used if undefined)
