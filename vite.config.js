@@ -83,7 +83,7 @@ export default defineConfig(({ mode }) => {
         dynamicRoutes: getDynamicRoutes(),
         changefreq: 'weekly',
         priority: 0.8,
-        robots: [], //isDev ? [{ userAgent: '*', allow: '/' }] : false,
+        // robots: true,
       }),
       VitePWA({
         strategies: 'injectManifest', // Required for custom push logic
