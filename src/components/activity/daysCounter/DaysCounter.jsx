@@ -72,11 +72,9 @@ const DaysCounter = () => {
 
   const handlers = useSwipeable({
     onSwipedLeft: () => {
-      console.log('onSwipedLeft')
       goToNext()
     },
     onSwipedRight: () => {
-      console.log('onSwipedLeft')
       goToPrev()
     },
     swipeDuration: 500,
@@ -92,7 +90,6 @@ const DaysCounter = () => {
   }
 
   const goToIndex = (index) => {
-    console.log('goToIndex ', index, dates.length)
     setCurrentIndex(index)
   }
 
@@ -117,8 +114,8 @@ const DaysCounter = () => {
   useEffect(() => {
     try {
       localStorage.setItem('daysCounterDates', JSON.stringify(dates))
-    } catch (e) {
-      console.error('Failed to save to localStorage', e)
+    } catch {
+      // console.error('Failed to save to localStorage', e)
     }
   }, [dates])
 
@@ -213,7 +210,7 @@ const DaysCounter = () => {
   // }
 
   return (
-    <section className={`activity activity-${name} fixed`}>
+    <section className={`activity activity-${name} `}>
       <div className={`days-counter`}>
         <div className='days-counter__wrap'>
           <div className='days-counter__inner'>

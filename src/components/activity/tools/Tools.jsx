@@ -1,5 +1,6 @@
 import { useMemo, useEffect } from 'react'
 import useAppStore from '@store/useAppStore'
+import usePrivateStore from '@store/usePrivateStore'
 import MenuCarousel from '@activity/tools/menuCarousel/MenuCarousel'
 import BadgeToolbox from '@ui/badges/BadgeToolbox'
 import parse from 'html-react-parser'
@@ -16,11 +17,12 @@ const COMPONENT_ID = 17
 const Tools = () => {
   const data = toolsData.tools.nodes
 
-  const showToolsOnly = useAppStore((s) => s.showToolsOnly)
-  const yourToolsEnabled = useAppStore((s) => s.yourToolsEnabled)
-  const getActiveToolIDs = useAppStore((s) => s.getActiveToolIDs)
+  const yourToolsEnabled = usePrivateStore((s) => s.yourToolsEnabled)
+  const filterTools = usePrivateStore((s) => s.filterTools)
+  const getActiveToolIDs = usePrivateStore((s) => s.getActiveToolIDs)
   const setActivity = useAppStore((s) => s.setActivity)
   const setAcronymID = useAppStore((s) => s.setAcronymID)
+  const setMenuCarouselPosition = useAppStore((s) => s.setMenuCarouselPosition)
 
   const content = strings.activity.find((a) => a.name === COMPONENT_NAME) || null
 
@@ -39,8 +41,8 @@ const Tools = () => {
 
   const carouselData = useMemo(() => {
     const filteredData = data.filter((obj) => activeIDs.includes(obj.id))
-    return showToolsOnly ? filteredData : data
-  }, [showToolsOnly, activeIDs, data])
+    return filterTools ? filteredData : data
+  }, [filterTools, activeIDs, data])
 
   const handleClick = (id) => () => {
     setActivity(COMPONENT_ID)
@@ -48,6 +50,7 @@ const Tools = () => {
   }
 
   const handleClose = () => {
+    setMenuCarouselPosition(null)
     setActivity(-1)
   }
 
@@ -76,6 +79,7 @@ const Tools = () => {
               filterIDs={positiveIDsSet}
               showFavourites={yourToolsEnabled}
               description={descriptionContent}
+              filterTools={filterTools}
             />
           </div>
         </div>

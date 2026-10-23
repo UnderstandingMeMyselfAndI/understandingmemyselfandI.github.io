@@ -47,7 +47,7 @@ const data = [
       {
         title: 'Job Interview Rejection',
         content:
-          "<p>You didn't get a job you really wanted.</p><p>Instead of thinking 'I'm not good enough' <b>(old belief)</b>, you recognize that one rejection doesn't define your worth and there could be many factors involved <b>(new belief)</b>.</p>",
+          "<p>You didn't get a job you really wanted.</p><p>Instead of thinking &quote;I'm not good enough' <b>(old belief)</b>, you recognize that one rejection doesn't define your worth and there could be many factors involved <b>(new belief)</b>.</p>",
         btnLabel: 'Reframe Rejection',
       },
       {
@@ -80,15 +80,13 @@ const data = [
         {
           letter: 'C',
           meaning: 'Choose',
-          definition:
-            '<p>Choose what matters most to you—your values, your recovery, your future self.</p>',
+          definition: '<p>Choose what matters most to you—your values, your recovery, your future self.</p>',
           scenario: '',
         },
         {
           letter: 'T',
           meaning: 'Take action',
-          definition:
-            '<p>Do one small thing that lines up with that choice, even if you don’t feel like it.</p>',
+          definition: '<p>Do one small thing that lines up with that choice, even if you don’t feel like it.</p>',
           scenario: '',
         },
       ],
@@ -120,29 +118,25 @@ const data = [
         {
           letter: 'B',
           meaning: 'Bored',
-          definition:
-            '<p>Feeling restless, unstimulated, or “at a loose end.”</p>',
+          definition: '<p>Feeling restless, unstimulated, or “at a loose end.”</p>',
           scenario: '',
         },
         {
           letter: 'A',
           meaning: 'Anxious',
-          definition:
-            '<p>Experiencing worry, nervousness, or fear about the future or current situations.</p>',
+          definition: '<p>Experiencing worry, nervousness, or fear about the future or current situations.</p>',
           scenario: '',
         },
         {
           letter: 'D',
           meaning: 'Depressed',
-          definition:
-            '<p>Feeling low, hopeless, unmotivated, or emotionally drained.</p>',
+          definition: '<p>Feeling low, hopeless, unmotivated, or emotionally drained.</p>',
           scenario: '',
         },
         {
           letter: 'S',
           meaning: 'Stressed',
-          definition:
-            '<p>Feeling overwhelmed by demands, responsibilities, or external pressures.</p>',
+          definition: '<p>Feeling overwhelmed by demands, responsibilities, or external pressures.</p>',
           scenario: '',
         },
       ],
@@ -188,13 +182,11 @@ const data = [
         {
           letter: 'A',
           meaning: 'Analysis',
-          definition:
-            '<p>Put it all on the table and see which side weighs more - is it worth it?</p>',
+          definition: '<p>Put it all on the table and see which side weighs more - is it worth it?</p>',
           scenario: '',
         },
       ],
-      explanation:
-        '<p>Your no-BS pro/con list that cuts straight through the excuses.</p>',
+      explanation: '<p>Your no-BS pro/con list that cuts straight through the excuses.</p>',
     },
     scenarios: [
       {
@@ -231,7 +223,7 @@ const data = [
           letter: 'D',
           meaning: 'Deny or Delay',
           definition:
-            '<p>Just say <u>"not right now"</u> - you don\'t have to give in immediately.<br />Urges have expiration dates</p>',
+            "<p>Just say <u>&quote;not right now&quote;</u> - you don't have to give in immediately.<br />Urges have expiration dates</p>",
           scenario: '',
         },
         {
@@ -292,6 +284,8 @@ const data = [
     id: 6,
     title: 'D.I.S.A.R.M.',
     content: {
+      explanation:
+        "<p>D.I.S.A.R.M. is like your own personal secuity team. Like the ones in the movies, and that ex World leaders have. It's your mental bodyguard system - protecting you from the gremlins creating thoughts and images that try to sabotage your progress. Use the D.I.S.A.R.M. team as they've got your back.</p>",
       acronyms: [
         {
           letter: 'D',
@@ -325,19 +319,16 @@ const data = [
           letter: 'R',
           meaning: 'Refusal',
           definition:
-            '<p>Tell those toxic thoughts who\'s in control. It\'s going to be a "thanks but no thanks" to them and your not going to engage.</p>',
+            "<p>Tell those toxic thoughts who's in control. It's going to be a &quote;thanks but no thanks&quote; to them and your not going to engage.</p>",
           scenario: '',
         },
         {
           letter: 'M',
           meaning: 'Method',
-          definition:
-            '<p>Have a game plan ready to replace the junk thoughts with something better</p>',
+          definition: '<p>Have a game plan ready to replace the junk thoughts with something better</p>',
           scenario: '',
         },
       ],
-      explanation:
-        "<p>D.I.S.A.R.M. is like your own personal secuity team. Like the ones in the movies, and that ex World leaders have. It's your mental bodyguard system - protecting you from the gremlins creating thoughts and images that try to sabotage your progress. Use the D.I.S.A.R.M. team as they've got your back.</p>",
     },
     scenarios: [
       {
@@ -404,7 +395,7 @@ const data = [
           letter: 'H',
           meaning: 'Hungry',
           definition:
-            '<p>When did you last eat? Your brain needs fuel, and "hangry" is a real thing that affects decisions. Grab something to eat. </p>',
+            '<p>When did you last eat? Your brain needs fuel, and &quote;hangry&quote; is a real thing that affects decisions. Grab something to eat. </p>',
           scenario: '',
         },
         {
@@ -471,15 +462,13 @@ const data = [
         {
           letter: 'P',
           meaning: 'Purpose',
-          definition:
-            '<p>Find your "why" - what makes you want to get up in the morning?</p>',
+          definition: '<p>Find your &quote;why&quote; - what makes you want to get up in the morning?</p>',
           scenario: '',
         },
         {
           letter: 'E',
           meaning: 'Esteem',
-          definition:
-            '<p>Do things that make you <b>proud of yourself - small wins count too</b></p>',
+          definition: '<p>Do things that make you <b>proud of yourself - small wins count too</b></p>',
           scenario: '',
         },
       ],
@@ -563,22 +552,19 @@ const data = [
         {
           letter: 'I',
           meaning: 'Identify',
-          definition:
-            '<p>Spot the problem patterns - what thoughts, feelings, or situations keep tripping you up?</p>',
+          definition: '<p>Spot the problem patterns - what thoughts, feelings, or situations keep tripping you up?</p>',
           scenario: '',
         },
         {
           letter: 'C',
           meaning: 'Challenge',
-          definition:
-            '<p>Question everything - is this thought true? Is this behavior helping or hurting?</p>',
+          definition: '<p>Question everything - is this thought true? Is this behavior helping or hurting?</p>',
           scenario: '',
         },
         {
           letter: 'E',
           meaning: 'Eliminate',
-          definition:
-            '<p>Replace the junk with something better - out with the old, in with the helpful</p>',
+          definition: '<p>Replace the junk with something better - out with the old, in with the helpful</p>',
           scenario: '',
         },
       ],
@@ -589,7 +575,7 @@ const data = [
       {
         title: 'People-Pleasing Pattern',
         content:
-          "<p><b>Identify:</b><br />You always say yes even when overwhelmed.</p><p><b>Challenge:</b><br />Is saying yes really helping anyone if you're burnt out and resentful?</p><p><b>Eliminate:</b><br />Replace automatic 'yes' with 'Let me check my schedule and get back to you.'</p>",
+          "<p><b>Identify:</b><br />You always say yes even when overwhelmed.</p><p><b>Challenge:</b><br />Is saying yes really helping anyone if you're burnt out and resentful?</p><p><b>Eliminate:</b><br />Replace automatic &quote;yes&quote; with &quote;Let me check my schedule and get back to you.&quote;</p>",
         btnLabel: 'Break the Pattern',
       },
       {
@@ -618,7 +604,7 @@ const data = [
           letter: 'M',
           meaning: 'Meaning',
           definition:
-            "<p>Flip the script on the bad stuff. Ask yourself, \"What\'s the silver lining here? What can I learn or how can this make me tougher?\" It\'s about finding that hidden gem in the mess so it doesn\'t feel pointless.</p>",
+            "<p>Flip the script on the bad stuff. Ask yourself, &quote;What's the silver lining here? What can I learn or how can this make me tougher?&quote; It's about finding that hidden gem in the mess so it doesn't feel pointless.</p>",
           scenario: '',
         },
         {
@@ -653,7 +639,7 @@ const data = [
           letter: 'E',
           meaning: 'Encouragment',
           definition:
-            '<p>Talk to yourself like your own hype man. Drop some positive self-talk on yourself: "You got this," or "This crap won\'t last forever — I\'m tougher than it." Build yourself up with real talk that gets you back up, no cap.</p>',
+            "<p>Talk to yourself like your own hype man. Drop some positive self-talk on yourself: &quote;You got this,&quote; or &quote;This crap won't last forever — I'm tougher than it.&quote; Build yourself up with real talk that gets you back up, no cap.</p>",
           scenario: '',
         },
       ],
@@ -727,8 +713,7 @@ const data = [
         {
           letter: 'I',
           meaning: 'Insight',
-          definition:
-            '<p>Those "aha!" moments when you finally get why you do what you do</p>',
+          definition: '<p>Those &quote;aha!&quote; moments when you finally get why you do what you do</p>',
           scenario: '',
         },
         {
@@ -739,8 +724,7 @@ const data = [
           scenario: '',
         },
       ],
-      explanation:
-        '<p>Your personal growth tracker - because recovery is about so much more than just not using.</p>',
+      explanation: '<p>Your personal growth tracker - because recovery is about so much more than just not using.</p>',
     },
     scenarios: [
       {
@@ -843,29 +827,25 @@ const data = [
         {
           letter: 'R',
           meaning: 'Recognize',
-          definition:
-            '<p>Name what’s happening: “This is anxiety,” “This is shame,” “This is a craving.”</p>',
+          definition: '<p>Name what’s happening: “This is anxiety,” “This is shame,” “This is a craving.”</p>',
           scenario: '',
         },
         {
           letter: 'A',
           meaning: 'Allow',
-          definition:
-            '<p>Let it be there without fighting or feeding it. It’s already here.</p>',
+          definition: '<p>Let it be there without fighting or feeding it. It’s already here.</p>',
           scenario: '',
         },
         {
           letter: 'I',
           meaning: 'Investigate',
-          definition:
-            '<p>Get curious—where do you feel it in your body? What does it need right now?</p>',
+          definition: '<p>Get curious—where do you feel it in your body? What does it need right now?</p>',
           scenario: '',
         },
         {
           letter: 'N',
           meaning: 'Nurture',
-          definition:
-            '<p>Offer yourself kindness—like you would a good friend or a scared kid</p>',
+          definition: '<p>Offer yourself kindness—like you would a good friend or a scared kid</p>',
           scenario: '',
         },
       ],
@@ -909,8 +889,7 @@ const data = [
         url: 'https://www.youtube.com/watch?v=kC7dJQt5BBw',
       },
       {
-        title:
-          'Guided Meditation: Dissolving the Trance of Unworthiness with RAIN with Tara Brach',
+        title: 'Guided Meditation: Dissolving the Trance of Unworthiness with RAIN with Tara Brach',
         url: 'https://www.youtube.com/watch?v=Ytr1V1R1rOw',
       },
     ],
@@ -923,29 +902,25 @@ const data = [
         {
           letter: 'R',
           meaning: 'Recovery',
-          definition:
-            '<p>Remember this is an ongoing journey, not a destination you arrive at and forget about</p>',
+          definition: '<p>Remember this is an ongoing journey, not a destination you arrive at and forget about</p>',
           scenario: '',
         },
         {
           letter: 'A',
           meaning: 'Awareness',
-          definition:
-            "<p>Stay tuned in to your thoughts, feelings, and triggers - don't go on autopilot</p>",
+          definition: "<p>Stay tuned in to your thoughts, feelings, and triggers - don't go on autopilot</p>",
           scenario: '',
         },
         {
           letter: 'V',
           meaning: 'Vigilance',
-          definition:
-            '<p>Keep your eyes open for warning signs without becoming paranoid about them</p>',
+          definition: '<p>Keep your eyes open for warning signs without becoming paranoid about them</p>',
           scenario: '',
         },
         {
           letter: 'E',
           meaning: 'Empowerment',
-          definition:
-            "<p>Trust yourself to handle whatever comes up - you've got the tools and the strength</p>",
+          definition: "<p>Trust yourself to handle whatever comes up - you've got the tools and the strength</p>",
           scenario: '',
         },
       ],
@@ -977,8 +952,7 @@ const data = [
         {
           letter: 'R',
           meaning: 'Rational',
-          definition:
-            '<p>Think it through logically - what does the evidence actually say about this situation?</p>',
+          definition: '<p>Think it through logically - what does the evidence actually say about this situation?</p>',
           scenario: '',
         },
         {
@@ -991,8 +965,7 @@ const data = [
         {
           letter: 'I',
           meaning: 'Imagery',
-          definition:
-            '<p>Use your imagination for good - picture yourself handling things well and feeling proud</p>',
+          definition: '<p>Use your imagination for good - picture yourself handling things well and feeling proud</p>',
           scenario: '',
         },
       ],
@@ -1025,21 +998,19 @@ const data = [
           letter: 'S',
           meaning: 'Specific',
           definition:
-            '<p>Get crystal clear about what you want - "get better" is vague, "exercise 3x a week" is specific</p>',
+            '<p>Get crystal clear about what you want - &quote;get better&quote; is vague, &quote;exercise 3x a week&quote; is specific</p>',
           scenario: '',
         },
         {
           letter: 'M',
           meaning: 'Measurable',
-          definition:
-            "<p>How will you know you're making progress? You need a way to track and celebrate wins</p>",
+          definition: "<p>How will you know you're making progress? You need a way to track and celebrate wins</p>",
           scenario: '',
         },
         {
           letter: 'A',
           meaning: 'Achievable',
-          definition:
-            '<p>Set yourself up to succeed, not fail - ambitious is good, impossible is discouraging</p>',
+          definition: '<p>Set yourself up to succeed, not fail - ambitious is good, impossible is discouraging</p>',
           scenario: '',
         },
         {
@@ -1053,12 +1024,11 @@ const data = [
           letter: 'T',
           meaning: 'Time-bound',
           definition:
-            '<p>Give yourself a deadline - without one, "someday" becomes "never"</p>',
+            '<p>Give yourself a deadline - without one, &quote;someday&quote; becomes &quote;never&quote;</p>',
           scenario: '',
         },
       ],
-      explanation:
-        "<p>The gold standard for setting goals that you'll actually achieve instead of just hope for.</p>",
+      explanation: "<p>The gold standard for setting goals that you'll actually achieve instead of just hope for.</p>",
     },
     scenarios: [
       {
@@ -1110,8 +1080,7 @@ const data = [
         {
           letter: 'O',
           meaning: 'Observe',
-          definition:
-            '<p>What’s happening in your body? Thoughts? Surroundings?</p>',
+          definition: '<p>What’s happening in your body? Thoughts? Surroundings?</p>',
           scenario: '',
         },
         {
@@ -1161,22 +1130,19 @@ const data = [
         {
           letter: 'A',
           meaning: 'Assumptions',
-          definition:
-            '<p>What are you taking for granted that might not actually be true? Question your defaults</p>',
+          definition: '<p>What are you taking for granted that might not actually be true? Question your defaults</p>',
           scenario: '',
         },
         {
           letter: 'P',
           meaning: 'Predictions',
-          definition:
-            '<p>What do you think will happen? Your crystal ball might be foggier than you think</p>',
+          definition: '<p>What do you think will happen? Your crystal ball might be foggier than you think</p>',
           scenario: '',
         },
         {
           letter: 'E',
           meaning: 'Evaluations',
-          definition:
-            '<p>How are you judging yourself and others? Are you being fair, or being a harsh critic?</p>',
+          definition: '<p>How are you judging yourself and others? Are you being fair, or being a harsh critic?</p>',
           scenario: '',
         },
       ],
@@ -1224,20 +1190,17 @@ const data = [
         {
           letter: 'I',
           meaning: 'Intense exercise',
-          definition:
-            '<p>30–60 seconds all-out (burpees, sprinting) to burn off stress hormones</p>',
+          definition: '<p>30–60 seconds all-out (burpees, sprinting) to burn off stress hormones</p>',
           scenario: '',
         },
         {
           letter: 'P',
           meaning: 'Paced breathing',
-          definition:
-            '<p>Slow your breathing way down—4 sec in, 6 sec out (or box breathing)</p>',
+          definition: '<p>Slow your breathing way down—4 sec in, 6 sec out (or box breathing)</p>',
           scenario: '',
         },
       ],
-      explanation:
-        '<p>DBT’s fastest skills to flip your nervous system from freak-out to chill in under a minute.</p>',
+      explanation: '<p>DBT’s fastest skills to flip your nervous system from freak-out to chill in under a minute.</p>',
     },
     scenarios: [
       {
@@ -1348,22 +1311,19 @@ const data = [
         {
           letter: 'R',
           meaning: 'Reduce',
-          definition:
-            "<p>Find ways to turn down the volume on these urges - they don't have to be so loud</p>",
+          definition: "<p>Find ways to turn down the volume on these urges - they don't have to be so loud</p>",
           scenario: '',
         },
         {
           letter: 'G',
           meaning: 'Gradually',
-          definition:
-            '<p>This process takes time - be patient with yourself as the urges slowly lose their power</p>',
+          definition: '<p>This process takes time - be patient with yourself as the urges slowly lose their power</p>',
           scenario: '',
         },
         {
           letter: 'E',
           meaning: 'Eliminate',
-          definition:
-            '<p>The ultimate goal - getting to a place where these urges rarely show up at all</p>',
+          definition: '<p>The ultimate goal - getting to a place where these urges rarely show up at all</p>',
           scenario: '',
         },
       ],
@@ -1400,15 +1360,13 @@ const data = [
         {
           letter: 'U',
           meaning: 'Unconditional',
-          definition:
-            "<p>You're worthy of love and respect just because you exist - no performance required</p>",
+          definition: "<p>You're worthy of love and respect just because you exist - no performance required</p>",
           scenario: '',
         },
         {
           letter: 'S',
           meaning: 'Self',
-          definition:
-            '<p>This is about you as a whole person, not just your mistakes or achievements</p>',
+          definition: '<p>This is about you as a whole person, not just your mistakes or achievements</p>',
           scenario: '',
         },
         {
@@ -1426,7 +1384,7 @@ const data = [
       {
         title: 'After a Relapse',
         content:
-          "<p><b>Unconditional:</b><br />Your worth doesn't decrease because you used again.</p><p><b>Self:</b><br />You're a complex person dealing with a difficult challenge, not just 'an addict.'</p><p><b>Acceptance:</b><br />Accept that you slipped while still believing <u>you can get back on track.</u></p>",
+          "<p><b>Unconditional:</b><br />Your worth doesn't decrease because you used again.</p><p><b>Self:</b><br />You're a complex person dealing with a difficult challenge, not just &quote;an addict.&quote;</p><p><b>Acceptance:</b><br />Accept that you slipped while still believing <u>you can get back on track.</u></p>",
         btnLabel: 'Unconditional Self Acceptance',
       },
       {
@@ -1459,7 +1417,7 @@ const data = [
   // 		{
   // 			title: "After a Relapse",
   // 			content:
-  // 				"<p><b>Unconditional:</b><br />Your worth doesn't decrease because you used again.</p><p><b>Self:</b><br />You're a complex person dealing with a difficult challenge, not just 'an addict.'</p><p><b>Acceptance:</b><br />Accept that you slipped while still believing <u>you can get back on track.</u></p>",
+  // 				"<p><b>Unconditional:</b><br />Your worth doesn't decrease because you used again.</p><p><b>Self:</b><br />You're a complex person dealing with a difficult challenge, not just "an addict.'</p><p><b>Acceptance:</b><br />Accept that you slipped while still believing <u>you can get back on track.</u></p>",
   // 			btnLabel: "Unconditional Self Acceptance",
   // 		},
   // 		{
@@ -1487,7 +1445,7 @@ const data = [
   // 		{
   // 			title: "After a Relapse",
   // 			content:
-  // 				"<p><b>Unconditional:</b><br />Your worth doesn't decrease because you used again.</p><p><b>Self:</b><br />You're a complex person dealing with a difficult challenge, not just 'an addict.'</p><p><b>Acceptance:</b><br />Accept that you slipped while still believing <u>you can get back on track.</u></p>",
+  // 				"<p><b>Unconditional:</b><br />Your worth doesn't decrease because you used again.</p><p><b>Self:</b><br />You're a complex person dealing with a difficult challenge, not just "an addict.'</p><p><b>Acceptance:</b><br />Accept that you slipped while still believing <u>you can get back on track.</u></p>",
   // 			btnLabel: "Unconditional Self Acceptance",
   // 		},
   // 		{
@@ -1508,8 +1466,7 @@ const data = [
         {
           letter: 'W',
           meaning: 'Wait',
-          definition:
-            "<p>Hit the pause button - you don't have to react immediately to every feeling or situation</p>",
+          definition: "<p>Hit the pause button - you don't have to react immediately to every feeling or situation</p>",
           scenario: '',
         },
         {
@@ -1522,15 +1479,13 @@ const data = [
         {
           letter: 'I',
           meaning: 'Identify',
-          definition:
-            "<p>Name what you're dealing with - triggers, emotions, options - get clear on the situation</p>",
+          definition: "<p>Name what you're dealing with - triggers, emotions, options - get clear on the situation</p>",
           scenario: '',
         },
         {
           letter: 'T',
           meaning: 'Take',
-          definition:
-            '<p>Now make your move - but make it consciously, not impulsively</p>',
+          definition: '<p>Now make your move - but make it consciously, not impulsively</p>',
           scenario: '',
         },
       ],

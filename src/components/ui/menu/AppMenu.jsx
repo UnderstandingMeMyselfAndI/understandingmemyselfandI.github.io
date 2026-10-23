@@ -1,20 +1,23 @@
 import { useState } from 'react'
 import useAppStore from '@store/useAppStore'
-import { activities } from '@data/config.js'
-import { prefetchActivity } from '@activity/activityLoaders'
+import { usePrivateStore } from '@store/usePrivateStore'
+import { activities } from '@data/config'
+import { prefetchActivity } from '@components/activity/activityLoaders'
 import './appMenu.scss'
 
 export default function AppMenu() {
   const [open, setOpen] = useState(false)
 
   const showBurgerStack = useAppStore((s) => s.showBurgerStack)
-  const daysCounterEnabled = useAppStore((s) => s.daysCounterEnabled)
-  const unitsCalculatorEnabled = useAppStore((s) => s.unitsCalculatorEnabled)
-  const wheelOfLifeEnabled = useAppStore((s) => s.wheelOfLifeEnabled)
-  const quizEnabled = useAppStore((s) => s.quizEnabled)
-  const toolsEnabled = useAppStore((s) => s.toolsEnabled)
-  const smoothScrollEnabled = useAppStore((s) => s.smoothScrollEnabled)
 
+  // Feature flags — encrypted store
+  const daysCounterEnabled = usePrivateStore((s) => s.daysCounterEnabled)
+  const unitsCalculatorEnabled = usePrivateStore((s) => s.unitsCalculatorEnabled)
+  const wheelOfLifeEnabled = usePrivateStore((s) => s.wheelOfLifeEnabled)
+  const quizEnabled = usePrivateStore((s) => s.quizEnabled)
+  const toolsEnabled = usePrivateStore((s) => s.toolsEnabled)
+
+  // App-level fields — plaintext store
   const setActivity = useAppStore((s) => s.setActivity)
   const activity = useAppStore((s) => s.activity)
   const setIsModal = useAppStore((s) => s.setIsModal)
@@ -23,10 +26,7 @@ export default function AppMenu() {
   const gae = useAppStore((s) => s.gae)
   const nss = useAppStore((s) => s.nss)
 
-  // Derived from `activity` — no state, no effect.
-  // If activity is -1 (home), or its config isn't a modal, show the menu bar.
-  // If activity points to a non-modal activity, show the menu bar too.
-  // If activity points to a modal activity, hide the menu bar.
+  // Derived, not stored.
   const activeConfig = activity === -1 ? null : (activities.find((a) => a.id === activity) ?? null)
   const showMenu = activity === -1 || !activeConfig?.modal
   const openMenu = activeConfig?.menu ?? false
@@ -35,9 +35,6 @@ export default function AppMenu() {
     const next = !open
     setOpen(next)
 
-    // Menu is opening — user intent to interact. Warm the chunks for every
-    // visible menu item now, so any subsequent tap is instant. This is the
-    // best prefetch moment on mobile: scan time is the lead time.
     if (next) {
       activities.forEach((a) => {
         if (a.menu) prefetchActivity(a.url)
@@ -47,14 +44,12 @@ export default function AppMenu() {
 
   const handleClose = () => setOpen(false)
 
-  // Trivial computation — no manual memo, so React Compiler can optimise.
   const stateMap = {
     daysCounterEnabled,
     unitsCalculatorEnabled,
     wheelOfLifeEnabled,
     quizEnabled,
     toolsEnabled,
-    smoothScrollEnabled,
     isInstalled,
     isInstallable,
     gae,
@@ -67,7 +62,13 @@ export default function AppMenu() {
       return a.conditions.every((condition) => stateMap[condition.state] === condition.value)
     })
     .sort((a, b) => (a.menuPosition ?? Infinity) - (b.menuPosition ?? Infinity))
-
+  console.log('[AppMenu render]', {
+    activity,
+    showMenu,
+    openMenu,
+    showBurgerStack,
+    activeConfigUrl: activeConfig?.url ?? null,
+  })
   return showMenu ? (
     <div className={'app-menu' + (openMenu ? ' ' : ' hide')}>
       {showBurgerStack && (

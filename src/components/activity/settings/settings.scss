@@ -1,7 +1,7 @@
 @use '@scss/variables';
 @import '@scss/globals.css';
 
-body div#settings.activity-settings {
+body section#settings.activity-settings {
   position: fixed;
   top: 0;
   left: 0;
@@ -10,24 +10,24 @@ body div#settings.activity-settings {
   text-align: right;
   overflow-x: clip;
   padding-bottom: 2rem;
-  position: relative;
+  position: absolute;
 
   h3 {
     text-align: left;
     // margin-top: 2rem;
   }
 
-  &::after {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    content: '';
-    background: var(--background-main);
-    z-index: -1;
-    opacity: 0.35;
-  }
+  // &::after {
+  //   position: absolute;
+  //   width: 100%;
+  //   height: 100%;
+  //   top: 0;
+  //   left: 0;
+  //   content: '';
+  //   background: var(--background-main);
+  //   z-index: -1;
+  //   opacity: 0.35;
+  // }
 
   .settings {
     margin: 0 auto;

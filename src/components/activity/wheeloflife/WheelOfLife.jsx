@@ -1,10 +1,9 @@
 import React, { useState, useRef, useCallback, useMemo, useEffect } from 'react'
 import useAppStore from '@store/useAppStore'
+import usePrivateStore from '@store/usePrivateStore'
 import { activities } from '@data/config'
 import CloseBtn from '@components/ui/buttons/close/CloseBtn'
 import { strings } from '@data/config'
-import parse from 'html-react-parser'
-import DOMPurify from 'dompurify'
 import Confirm from '@ui/confirm/Confirm'
 const activitiesById = activities.reduce((acc, activity) => {
   acc[activity.id] = activity
@@ -174,15 +173,15 @@ const WheelOfLife = () => {
   const [isCompareMode, setIsCompareMode] = useState(false)
 
   // Store Hooks
-  const rememberWheels = useAppStore((state) => state.rememberWheels)
-  const setRememberWheels = useAppStore((state) => state.setRememberWheels)
-  const saveWheelEntry = useAppStore((state) => state.saveWheelEntry)
-  const wheelHistory = useAppStore((state) => state.wheelHistory)
-  const clearWheelHistory = useAppStore((state) => state.clearWheelHistory)
+  const rememberWheels = usePrivateStore((state) => state.rememberWheels)
+  const setRememberWheels = usePrivateStore((state) => state.setRememberWheels)
+  const saveWheelEntry = usePrivateStore((state) => state.saveWheelEntry)
+  const wheelHistory = usePrivateStore((state) => state.wheelHistory)
+  const clearWheelHistory = usePrivateStore((state) => state.clearWheelHistory)
 
   useEffect(() => {
     show && setIsModal(activitiesById[id]?.modal)
-  }, [show, activitiesById, id, setIsModal])
+  }, [show, id, setIsModal])
 
   useEffect(() => {
     setShow(id === activity)

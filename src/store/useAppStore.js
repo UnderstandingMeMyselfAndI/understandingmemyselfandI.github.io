@@ -10,18 +10,11 @@ const DEFAULTS = {
   theme: 'system',
   textScale: 100,
 
-  // Feature flags
-  daysCounterEnabled: true,
-  wheelOfLifeEnabled: true,
-  quizEnabled: true,
-  unitsCalculatorEnabled: true,
-  toolsEnabled: true,
-  smoothScrollEnabled: true,
-  toolboxFilterEnabled: true,
-  yourToolsEnabled: true,
-  PINLockEnabled: true,
+  // Safety-critical flags — must be readable before unlock.
   quickExitEnabled: true,
   quickExitMessageEnabled: true,
+
+  // Consent / onboarding
   allowCookies: true,
   allowThirdPartyCookies: true,
   showQuickExitOnboarding: true,
@@ -60,6 +53,7 @@ const PERSISTED_FIELDS = Object.keys(DEFAULTS)
 
 const EPHEMERAL = {
   _hasHydrated: false,
+  menuCarouselPosition: null,
   isModal: false,
   message: '',
   messageId: 0,
@@ -106,8 +100,6 @@ export const useAppStore = create((set, get) => {
     ...DEFAULTS,
     ...EPHEMERAL,
 
-    // --- hydration --------------------------------------------------------
-
     hydrate: async () => {
       try {
         const config = await loadConfig()
@@ -126,17 +118,9 @@ export const useAppStore = create((set, get) => {
     setTheme: (v) => update({ theme: v }),
     setTextScale: (v) => update({ textScale: v }),
 
-    enableDaysCounter: (v) => update({ daysCounterEnabled: v }),
-    enableWheelOfLife: (v) => update({ wheelOfLifeEnabled: v }),
-    enableQuiz: (v) => update({ quizEnabled: v }),
-    enableUnitsCalculator: (v) => update({ unitsCalculatorEnabled: v }),
-    enableTools: (v) => update({ toolsEnabled: v }),
-    enableSmoothScroll: (v) => update({ smoothScrollEnabled: v }),
-    enableToolboxFilter: (v) => update({ toolboxFilterEnabled: v }),
-    enableYourTools: (v) => update({ yourToolsEnabled: v }),
-    enablePINLock: (v) => update({ PINLockEnabled: v }),
     enableQuickExit: (v) => update({ quickExitEnabled: v }),
     enableQuickExitMessage: (v) => update({ quickExitMessageEnabled: v }),
+
     setAllowCookies: (v) => update({ allowCookies: v }),
     setAllowThirdPartyCookies: (v) => update({ allowThirdPartyCookies: v }),
     setShowQuickExitOnboarding: (v) => update({ showQuickExitOnboarding: v }),
@@ -167,8 +151,6 @@ export const useAppStore = create((set, get) => {
     setAgeVerified: (v) => update({ ageVerified: v }),
 
     // --- shorthand aliases (backwards compatibility) ---------------------
-    // Kept so callers using the old names keep working. State fields with
-    // those names are gone — read the canonical name instead.
 
     setSqeo: (v) => get().setShowQuickExitOnboarding(v),
     setQeu: (v) => get().setQuickExitURL(v),
@@ -176,18 +158,14 @@ export const useAppStore = create((set, get) => {
     setQem: (v) => get().enableQuickExitMessage(v),
     setC: (v) => get().setAllowCookies(v),
     setTPC: (v) => get().setAllowThirdPartyCookies(v),
-    setDc: (v) => get().enableDaysCounter(v),
-    setPl: (v) => get().enablePINLock(v),
-    setSs: (v) => get().enableSmoothScroll(v),
-    setTls: (v) => get().enableTools(v),
-    setTf: (v) => get().enableToolboxFilter(v),
-    setYt: (v) => get().enableYourTools(v),
     setIns: (v) => get().setIsInstallable(v),
     setIsISN: (v) => get().setIsInstalled(v),
     setLVC: (v) => get().setLastVersionCheck(v),
+    // Removed: setDc, setSs, setTls, setTf, setYt (moved to usePrivateStore)
+    // Removed: setPl (PINLockEnabled deleted)
 
     // --- ephemeral mutators (no persist) ---------------------------------
-
+    setMenuCarouselPosition: (v) => set({ menuCarouselPosition: v }),
     setIsModal: (v) => set({ isModal: v }),
     setMessage: (v) => set((s) => ({ message: v, messageId: s.messageId + 1 })),
     clearSnackbar: () => set({ message: '', snackbarAction: null }),

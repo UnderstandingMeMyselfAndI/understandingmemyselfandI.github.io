@@ -1,6 +1,10 @@
 @use '@scss/variables';
 @import '@scss/globals.css';
 
+.MuiSnackbar-root {
+  box-shadow: var(--box-shadow-wide) var(--box-shadow-dark);
+}
+
 .MuiSnackbar-root,
 .MuiSnackbar-anchorOriginTopCenter,
 .MuiSnackbar-anchorOriginTopLeft {
@@ -11,12 +15,10 @@
 .MuiSnackbar-anchorOriginTopCenter,
 .MuiSnackbar-anchorOriginBottomLeft {
   >div {
-    background: var(--background-main) !important;
+    background: var(--background-linear-gradient) !important;
 
     .MuiSnackbarContent-message {
       color: var(--primary);
-      // font-weight: variables.$default_weight;
-      // font-variation-settings: 'wght' variables.$default_weight;
       font-size: variables.$default_size;
       padding: 0.74rem 1rem;
     }
@@ -26,6 +28,9 @@
 .snackBar.alert,
 .snackbars {
   z-index: 15500;
+  box-shadow: var(--box-shadow-wide), var(--box-shadow-dark);
+
+  .snackbar {}
 
   button {
     box-shadow: none;
@@ -34,12 +39,12 @@
   .snackbar__icon-complete {
     width: 14px;
     height: 14px;
-    outline: 1px solid yellow;
+    // outline: 1px solid yellow;
 
     svg {
       width: 14px;
       height: 14px;
-      fill: #000;
+      fill: var(--grey-dark);
     }
   }
 }

@@ -4,6 +4,8 @@
 //   return true
 // }
 
+import { filledInputClasses } from '@mui/material/FilledInput'
+
 const cnf = {
   appName: 'Ummi',
   appLogName: 'Understanding Me, Myself, and I',
@@ -222,7 +224,7 @@ const activities = [
     url: 'share',
     title: 'Share',
     menuPosition: 7,
-    menu: true,
+    menu: filledInputClasses,
     shortcuts: false,
     modal: false,
     classes: '',
@@ -493,9 +495,9 @@ const strings = {
       introduction: 'Tap on a tool to learn more about it <br />and add them to your toolbox',
       description: [
         'These tools <u class="yellow-ul"><b>might not </b></u>work for<u><b class="yellow"> everbody.</b></u>',
-        'They <u>could work</u> for <b><u class="yellow">one person</u></b> and <u class="yellow-ul">not the next</u>.',
+        // 'They <u>could work</u> for <b><u class="yellow">one person</u></b> and <u class="yellow-ul">not the next</u>.',
         'But they <u><b>have worked</b></u> for <b><u class="yellow-ul">somebody</u></b>.',
-        // "<u>Everbody's<br /> journey <br /></u><u><b class='yellow'>is different.</b></u>",
+        "<u>Everbody's<br /> journey <br /></u><u><b class='yellow'>is different.</b></u>",
       ],
       content: [],
       cta: {
@@ -704,9 +706,9 @@ const strings = {
         section: {
           title: 'Your privacy is very important to us.',
           content:
-            ' <p>For your complete privacy you can show and hide all features listed below.</p>\
-          <p>Use the checkboxes to show and hide features. </p>\
-          <p>Your data is not affected by showing or hiding features.</p>\
+            ' <p>For complete privacy you can show and hide all features listed below.</p>\
+          <p>Uncheck the box next to a feature to hide it everywhere in the app.</p>\
+          <p>Your data is not affected.</p>\
           <p>\
             To clear your data, use the <b>"Clear your data"</b> button at the bottom of this screen.\
           </p>',

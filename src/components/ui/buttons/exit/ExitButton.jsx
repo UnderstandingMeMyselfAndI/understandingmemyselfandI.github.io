@@ -17,6 +17,10 @@ const menuBoundsY = 60 // value as pixel offsets from edge
 const DRAG_THRESHOLD = 5
 
 const restrictPos = (data) => {
+  if (!data) {
+    console.warn('Data is null ExitBtn')
+    return
+  }
   if (data.x < minX) data.x = minX
   if (data.x > window.innerWidth - maxX) data.x = window.innerWidth - maxX
   if (data.y < minY) data.y = minY

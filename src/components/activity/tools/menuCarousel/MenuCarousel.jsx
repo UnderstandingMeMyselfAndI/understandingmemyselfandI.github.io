@@ -2,9 +2,10 @@ import { useRef, useEffect, useLayoutEffect, useCallback, useMemo } from 'react'
 import Skeleton from '@mui/material/Skeleton'
 import HandymanIcon from '@mui/icons-material/Handyman'
 import PropTypes from 'prop-types'
-import './MenuCarousel.scss'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
+import useAppStore from '@store/useAppStore'
+import './MenuCarousel.scss'
 
 // Default configuration
 const DEFAULT_CONFIG = {
@@ -20,8 +21,7 @@ const useScrollEffects = (config = DEFAULT_CONFIG, scrollContainer = null) => {
   const itemsRef = useRef([])
   const rafId = useRef(null)
   const isActive = useRef(false)
-  // Ref indirection: the RAF loop and `start` always call the latest
-  // version of the effect calculator, without needing to memoize it.
+
   const calculateEffectsRef = useRef(null)
 
   const calculateEffects = () => {
@@ -76,8 +76,6 @@ const useScrollEffects = (config = DEFAULT_CONFIG, scrollContainer = null) => {
     rafId.current = requestAnimationFrame(() => calculateEffectsRef.current?.())
   }
 
-  // Keep the ref pointing at the latest calculator. Runs before the mount
-  // effect below (declaration order), so `start()` never sees a null ref.
   useEffect(() => {
     calculateEffectsRef.current = calculateEffects
   })
@@ -186,9 +184,26 @@ const CUSTOM_CONFIG = {
 }
 
 // Main carousel component
-const MenuCarousel = ({ data, filterIDs, showFavourites, handleClick, description }) => {
+const MenuCarousel = ({ data, filterIDs, showFavourites, handleClick, description, filterTools }) => {
   const scrollContainerRef = useRef(null)
   const initialScrollDoneRef = useRef(false)
+  const prevFilterToolsRef = useRef(filterTools)
+  const filterToolsRef = useRef(filterTools)
+  const hasScrolledUnfilteredRef = useRef(false)
+  const unfilteredPosRef = useRef(null)
+  const isProgrammaticScrollRef = useRef(false)
+
+  const menuCarouselPosition = useAppStore((s) => s.menuCarouselPosition)
+  const setMenuCarouselPosition = useAppStore((s) => s.setMenuCarouselPosition)
+
+  const setMenuCarouselPositionRef = useRef(setMenuCarouselPosition)
+  useEffect(() => {
+    setMenuCarouselPositionRef.current = setMenuCarouselPosition
+  }, [setMenuCarouselPosition])
+
+  useEffect(() => {
+    filterToolsRef.current = filterTools
+  }, [filterTools])
 
   const { start, stop, registerItem, unregisterItem } = useScrollEffects(CUSTOM_CONFIG, scrollContainerRef)
 
@@ -198,49 +213,122 @@ const MenuCarousel = ({ data, filterIDs, showFavourites, handleClick, descriptio
     return () => stop()
   }, [start, stop])
 
-  // Position the carousel on load:
-  //  - If an item is already selected, center that item.
-  //  - Otherwise, center the midpoint of the carousel as a whole.
-  // useLayoutEffect so the scroll happens before first paint (no visible jump).
-  // We measure item offsets directly from the DOM via querySelectorAll, which
-  // avoids needing mutable ref containers shared across components.
-  useLayoutEffect(() => {
-    if (initialScrollDoneRef.current) return
-    if (!data || data.length === 0) return
-
+  // Track and persist scroll position to store
+  useEffect(() => {
     const container = scrollContainerRef.current
     if (!container) return
 
-    const containerHeight = container.clientHeight
-    if (containerHeight === 0) return
+    const handleScroll = () => {
+      if (isProgrammaticScrollRef.current) {
+        isProgrammaticScrollRef.current = false
+        return
+      }
+
+      const top = container.scrollTop
+
+      if (!filterToolsRef.current) {
+        hasScrolledUnfilteredRef.current = true
+        unfilteredPosRef.current = top
+      }
+
+      if (initialScrollDoneRef.current) {
+        setMenuCarouselPositionRef.current(top)
+      }
+    }
+
+    const onUserInteraction = () => {
+      if (!filterToolsRef.current) {
+        hasScrolledUnfilteredRef.current = true
+      }
+    }
+
+    container.addEventListener('scroll', handleScroll, { passive: true })
+    container.addEventListener('wheel', onUserInteraction, { passive: true })
+    container.addEventListener('touchmove', onUserInteraction, { passive: true })
+
+    return () => {
+      container.removeEventListener('scroll', handleScroll)
+      container.removeEventListener('wheel', onUserInteraction)
+      container.removeEventListener('touchmove', onUserInteraction)
+    }
+  }, [])
+
+  // Position the carousel:
+  //  1. BadgeToolbox toggled so filterTools transitions to true -> center carousel midpoint.
+  //  2. BadgeToolbox toggled so filterTools transitions to false -> center if user hasn't scrolled, else restore unfiltered position.
+  //  3. Re-render while mounted -> retain scroll position.
+  //  4. Fresh mount with a saved position (returning from AcronymExplained) -> restore.
+  //  5. Fresh mount without a saved position (first visit) -> vertically center carousel midpoint.
+  useLayoutEffect(() => {
+    if (!data || data.length === 0) return
+
+    const container = scrollContainerRef.current
+    if (!container || container.clientHeight === 0) return
 
     const wrappers = container.querySelectorAll('.carousel-item-wrapper')
     if (wrappers.length === 0) return
 
-    // Find the selected item, if any.
-    let targetEl = null
-    if (filterIDs && filterIDs.size > 0) {
-      const selectedIndex = data.findIndex((item) => item && filterIDs.has(item.id))
-      if (selectedIndex >= 0) {
-        targetEl = Array.from(wrappers).find((el) => Number(el.getAttribute('data-index')) === selectedIndex) || null
-      }
-    }
+    const filterToolsChanged = prevFilterToolsRef.current !== filterTools
+    const filterToolsBecameTrue = !prevFilterToolsRef.current && filterTools
+    const filterToolsBecameFalse = prevFilterToolsRef.current && !filterTools
+    prevFilterToolsRef.current = filterTools
 
-    if (targetEl) {
-      const targetTop = targetEl.offsetTop
-      const targetHeight = targetEl.offsetHeight
-      container.scrollTop = targetTop - (containerHeight - targetHeight) / 2
-    } else {
+    const centerCarousel = () => {
       const firstEl = wrappers[0]
       const lastEl = wrappers[wrappers.length - 1]
       const carouselTop = firstEl.offsetTop
       const carouselBottom = lastEl.offsetTop + lastEl.offsetHeight
       const carouselCenter = (carouselTop + carouselBottom) / 2
-      container.scrollTop = carouselCenter - containerHeight / 2
+      const targetScroll = carouselCenter - container.clientHeight / 2
+
+      isProgrammaticScrollRef.current = true
+      container.scrollTop = targetScroll
+      setMenuCarouselPositionRef.current(targetScroll)
+      if (!filterTools) {
+        unfilteredPosRef.current = targetScroll
+      }
     }
 
+    // 1. BadgeToolbox toggled while mounted:
+    if (initialScrollDoneRef.current && filterToolsChanged) {
+      if (filterToolsBecameTrue) {
+        centerCarousel()
+        return
+      }
+      if (filterToolsBecameFalse) {
+        if (!hasScrolledUnfilteredRef.current) {
+          centerCarousel()
+        } else if (unfilteredPosRef.current !== null) {
+          container.scrollTop = unfilteredPosRef.current
+          setMenuCarouselPositionRef.current(unfilteredPosRef.current)
+        }
+        return
+      }
+    }
+
+    // 2. Re-rendering while mounted without filterTools change: retain position
+    if (initialScrollDoneRef.current) {
+      if (menuCarouselPosition !== null) {
+        container.scrollTop = menuCarouselPosition
+      }
+      return
+    }
+
+    // 3. Fresh mount after AcronymExplained -> restore previous scroll position
+    if (menuCarouselPosition !== null) {
+      container.scrollTop = menuCarouselPosition
+      if (!filterTools) {
+        unfilteredPosRef.current = menuCarouselPosition
+        hasScrolledUnfilteredRef.current = true
+      }
+      initialScrollDoneRef.current = true
+      return
+    }
+
+    // 4. Initial mount (fresh visit): center the carousel midpoint
+    centerCarousel()
     initialScrollDoneRef.current = true
-  }, [data, filterIDs])
+  }, [data, menuCarouselPosition, filterTools])
 
   const carouselItems = useMemo(() => {
     return data.map((item, index) => {
@@ -290,7 +378,6 @@ const MenuCarousel = ({ data, filterIDs, showFavourites, handleClick, descriptio
         position: 'relative',
         WebkitOverflowScrolling: 'touch',
       }}>
-      {/* Top padding: 50vh so any single item (including the first) can be centered */}
       <div style={{ paddingTop: '50vh' }} />
 
       <div className='accronym-menu'>{carouselItems}</div>
@@ -301,7 +388,6 @@ const MenuCarousel = ({ data, filterIDs, showFavourites, handleClick, descriptio
         </DescriptionItem>
       )}
 
-      {/* Bottom padding: 50vh so any single item (including the last) can be centered */}
       <div style={{ paddingBottom: '50vh' }} />
     </div>
   )
@@ -313,6 +399,7 @@ MenuCarousel.propTypes = {
   showFavourites: PropTypes.bool,
   handleClick: PropTypes.func,
   description: PropTypes.node,
+  filterTools: PropTypes.bool,
 }
 
 export default MenuCarousel

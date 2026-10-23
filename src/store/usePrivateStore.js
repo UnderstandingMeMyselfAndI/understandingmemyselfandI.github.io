@@ -5,9 +5,22 @@ import { create } from 'zustand'
 import { loadApp, saveApp } from '@utils/settingsStorage'
 
 const DEFAULTS = {
+  // Tools
   userToolIDs: [],
+  yourToolsEnabled: true,
+  toolboxFilterEnabled: true,
+  filterTools: false,
+  toolsEnabled: true,
+
+  // Wheel of Life
   wheelHistory: [],
   rememberWheels: false,
+  wheelOfLifeEnabled: true,
+
+  // Feature flags (personal choices about which features to use)
+  daysCounterEnabled: true,
+  quizEnabled: true,
+  unitsCalculatorEnabled: true,
 }
 
 const INITIAL = {
@@ -17,14 +30,26 @@ const INITIAL = {
   ...DEFAULTS,
 }
 
+const PERSISTED_FIELDS = Object.keys(DEFAULTS)
+
+function pickPersisted(state) {
+  const out = {}
+  for (const k of PERSISTED_FIELDS) out[k] = state[k]
+  return out
+}
+
 export const usePrivateStore = create((set, get) => {
   const persist = async () => {
-    const { userToolIDs, wheelHistory, rememberWheels } = get()
     try {
-      await saveApp({ userToolIDs, wheelHistory, rememberWheels })
+      await saveApp(pickPersisted(get()))
     } catch (err) {
       console.error('[usePrivateStore] persist failed:', err)
     }
+  }
+
+  const update = (patch) => {
+    set(patch)
+    persist()
   }
 
   return {
@@ -35,13 +60,13 @@ export const usePrivateStore = create((set, get) => {
       set({ status: 'loading', error: null })
       try {
         const app = (await loadApp()) ?? DEFAULTS
-        set({
+        set((s) => ({
+          ...s,
+          ...DEFAULTS,
+          ...app,
           status: 'ready',
           hydrated: true,
-          userToolIDs: app.userToolIDs ?? DEFAULTS.userToolIDs,
-          wheelHistory: app.wheelHistory ?? DEFAULTS.wheelHistory,
-          rememberWheels: app.rememberWheels ?? DEFAULTS.rememberWheels,
-        })
+        }))
       } catch (err) {
         set({ status: 'error', error: String(err?.message || err) })
       }
@@ -49,41 +74,41 @@ export const usePrivateStore = create((set, get) => {
 
     reset: () => set({ ...INITIAL }),
 
-    // --- userToolIDs ---
-    setToolIDs: async (ids) => {
-      set({ userToolIDs: ids })
-      await persist()
-    },
-    addTool: async (id) => {
+    // --- Tools -----------------------------------------------------------
+    setFilterTools: (v) => update({ filterTools: v }),
+    setToolIDs: (ids) => update({ userToolIDs: ids }),
+    setShowToolsOnly: (v) => update({ userToolIDs: ids }),
+    addTool: (id) => {
       if (get().userToolIDs.includes(id)) return
-      set({ userToolIDs: [...get().userToolIDs, id] })
-      await persist()
+      update({ userToolIDs: [...get().userToolIDs, id] })
     },
-    removeTool: async (id) => {
-      set({ userToolIDs: get().userToolIDs.filter((t) => t !== id) })
-      await persist()
+    removeTool: (id) => {
+      update({ userToolIDs: get().userToolIDs.filter((t) => t !== id) })
     },
     getActiveToolIDs: () => get().userToolIDs,
+    enableYourTools: (v) => update({ yourToolsEnabled: v }),
+    enableToolboxFilter: (v) => update({ toolboxFilterEnabled: v }),
+    enableTools: (v) => update({ toolsEnabled: v }),
 
-    // --- wheelHistory ---
-    setRememberWheels: async (v) => {
-      set({ rememberWheels: v })
-      await persist()
+    // --- Wheel of Life ---------------------------------------------------
+
+    setRememberWheels: (v) => update({ rememberWheels: v }),
+    enableWheelOfLife: (v) => update({ wheelOfLifeEnabled: v }),
+    saveWheelEntry: (entry) => {
+      update({
+        wheelHistory: [...get().wheelHistory, { ...entry, date: new Date().toISOString() }],
+      })
     },
-    saveWheelEntry: async (entry) => {
-      set((s) => ({
-        wheelHistory: [...s.wheelHistory, { ...entry, date: new Date().toISOString() }],
-      }))
-      await persist()
+    removeWheelEntry: (index) => {
+      update({ wheelHistory: get().wheelHistory.filter((_, i) => i !== index) })
     },
-    removeWheelEntry: async (index) => {
-      set((s) => ({ wheelHistory: s.wheelHistory.filter((_, i) => i !== index) }))
-      await persist()
-    },
-    clearWheelHistory: async () => {
-      set({ wheelHistory: [] })
-      await persist()
-    },
+    clearWheelHistory: () => update({ wheelHistory: [] }),
+
+    // --- Feature flags ---------------------------------------------------
+
+    enableDaysCounter: (v) => update({ daysCounterEnabled: v }),
+    enableQuiz: (v) => update({ quizEnabled: v }),
+    enableUnitsCalculator: (v) => update({ unitsCalculatorEnabled: v }),
   }
 })
 

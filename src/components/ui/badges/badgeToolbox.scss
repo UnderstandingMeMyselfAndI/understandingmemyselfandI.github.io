@@ -64,7 +64,6 @@ span.tooltip {
 
 .badge-toolbox {
   user-select: none;
-  // visibility: hidden;
   display: flex;
   flex-flow: column wrap;
 
@@ -78,7 +77,6 @@ span.tooltip {
   text-shadow: var(--text-shadow-dark);
   opacity: 0.5;
   transition: all var(--transition-2);
-  // animation: bounce-out 0.25s ease-in-out;
   position: relative;
   z-index: 6001;
   display: flex;
@@ -88,7 +86,7 @@ span.tooltip {
   align-content: er;
 
   .MuiBadge-badge {
-    background: var(--blue-light);
+    background: var(--blue-dark);
     color: var(--primary);
     font-weight: 800;
     font-variation-settings: 'wght' 800;
@@ -121,6 +119,10 @@ span.tooltip {
     transition: all var(--transition-2);
     opacity: 1;
     animation: bounce-in 0.25s ease-in-out;
+
+    .MuiBadge-badge {
+      background: var(--blue-light);
+    }
 
     svg {
       fill: var(--blue-light);

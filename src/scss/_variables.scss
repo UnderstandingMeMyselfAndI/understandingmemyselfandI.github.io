@@ -145,8 +145,8 @@ $acc_title_color: var(--text_primary);
 $acc_title_weight: 800;
 $acc_title_line_height: 1.1;
 
-$acc_title_size_sml_min: 38px;
-$acc_title_size_sml_max: 60px;
+$acc_title_size_sml_min: 35px;
+$acc_title_size_sml_max: 48px;
 $acc_title_size_sml: responsiveFontSize($acc_title_size_sml_min,
     $acc_title_size_sml_max,
     $minDeviceWidth,
@@ -167,12 +167,20 @@ $letter_line_height: 1;
 // Ancronym word font size
 // ------------------------------------------
 
-$acc_wrd_size_min: 34px;
-$acc_wrd_size_max: 40px;
+$acc_wrd_size_min: 42px;
+$acc_wrd_size_max: 48px;
 $acc_wrd_size: responsiveFontSize($acc_wrd_size_min, $acc_wrd_size_max, $minDeviceWidth, $maxDeviceWidth);
 $acc_wrd_color: var(--text_primary);
 $acc_wrd_weight: 800;
-$acc_wrd_line_height: 1;
+$acc_wrd_line_height: 1.3;
+
+// ------------------------------------------
+// Ancronym letter font size
+// ------------------------------------------
+
+$acc_letter_size_min: 58px;
+$acc_letter_size_max: 58px;
+$acc_letter_size: responsiveFontSize($acc_letter_size_min, $acc_letter_size_max, $minDeviceWidth, $maxDeviceWidth);
 
 // ------------------------------------------
 // Section title font size

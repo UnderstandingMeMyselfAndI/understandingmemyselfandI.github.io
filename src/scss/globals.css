@@ -48,8 +48,11 @@
   --background-gray-trans-95: rgba(10, 10, 10, 0.95);
 
   --background-activity: rgba(57, 51, 104, 0.5);
-  --background-main: linear-gradient(-120deg, rgb(48, 42, 102) 10%, rgb(202, 0, 142) 80%);
-
+  --background-linear-gradient: linear-gradient(-120deg, rgb(48, 42, 102) 10%, rgb(202, 0, 142) 80%);
+  --background-main:
+    radial-gradient(ellipse at 90% 40%, rgba(240, 117, 138, 0.6) 0%, rgba(38, 1, 65, 0.6) 75%),
+    radial-gradient(ellipse at 20% 85%, rgba(233, 109, 7, 0.85) 5%, rgba(34, 7, 53, 0.95) 60%),
+    radial-gradient(ellipse at 60% 67.5%, rgba(247, 7, 7, 0.84) 20%, rgba(29, 6, 44, 0.95) 60%);
   --background: rgb(49, 38, 88);
   --foreground: oklch(0.985 0 0);
 

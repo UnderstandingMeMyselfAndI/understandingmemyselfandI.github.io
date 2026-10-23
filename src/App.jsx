@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import Routing from '@components/routing/Routing'
 import { useThemeStore } from '@store/useThemeStore'
 import useAppStore from '@store/useAppStore'
+import { usePrivateStore } from '@store/usePrivateStore'
 import applyTheme from '@components/theme/applyTheme'
 import Header from '@activity/header/Header.jsx'
 import Footer from '@activity/footer/Footer'
@@ -17,10 +18,11 @@ import PasscodeDialogController from './components/security/PasscodeDialogContro
 import InstallCTA from '@activity/install/InstallCTA'
 import DaysCounterCTA from '@activity/daysCounter/DaysCounterCTA'
 import AppMenu from '@ui/menu/AppMenu'
+import Home from '@activity/home/Home'
 import CookieConsent from '@activity/cookieConsent/CookieConsent'
 import UmmiAgeGate from '@components/ageGate/UmmiAgeGate'
 import AppLoading from '@ui/loading/AppLoading'
-import { smoothScroll } from '@js/utils.js'
+// import { smoothScroll } from '@js/utils.js'
 import NewsletterSignUp from '@activity/newsletterSignup/NewsletterSignUp'
 import Exit from '@ui/exit/Exit'
 import Vcn from '@components/visits/Vcn.jsx'
@@ -29,36 +31,35 @@ import UnitsCalculatorCTA from '@activity/unitsCalculator/UnitsCalculatorCTA'
 import WheelOfLifeCTA from '@activity/wheeloflife/WheelOfLifeCTA'
 import TimelineCTA from '@activity/timeline/TimelineCTA'
 import QuizCTA from '@activity/quiz/QuizCTA'
-import ActivityHost from '@activity/ActivityHost'
-import Home from '@activity/home/Home'
-import { prefetchAllActivities } from '@activity/activityLoaders'
+import ActivityHost from './components/activity/ActivityHost'
+import { prefetchAllActivities } from './components/activity/activityLoaders'
 import './App.scss'
 import './scss/_fonts.scss'
 
 window.__APP_LOADED = true
 
 function App() {
-  // Feature flags
-  const daysCounterEnabled = useAppStore((s) => s.daysCounterEnabled)
+  // Feature flags — from the encrypted store. Default to `true` while the
+  // vault is locked, so nothing is hidden from an unverified user until
+  // they unlock and their real choices load.
+  const toolsEnabled = usePrivateStore((s) => s.toolsEnabled)
+  const daysCounterEnabled = usePrivateStore((s) => s.daysCounterEnabled)
+  const unitsCalculatorEnabled = usePrivateStore((s) => s.unitsCalculatorEnabled)
+  const wheelOfLifeEnabled = usePrivateStore((s) => s.wheelOfLifeEnabled)
+  const quizEnabled = usePrivateStore((s) => s.quizEnabled)
+
+  // Safety-critical flag — plaintext, so the Exit button is available even
+  // when the vault is locked.
   const quickExitEnabled = useAppStore((s) => s.quickExitEnabled)
-  const unitsCalculatorEnabled = useAppStore((s) => s.unitsCalculatorEnabled)
-  const wheelOfLifeEnabled = useAppStore((s) => s.wheelOfLifeEnabled)
-  const quizEnabled = useAppStore((s) => s.quizEnabled)
-  const toolsEnabled = useAppStore((s) => s.toolsEnabled)
-  const smoothScrollEnabled = useAppStore((s) => s.smoothScrollEnabled)
 
   // Verification
   const ageVerified = useAppStore((s) => s.ageVerified)
-  const savedConsent = localStorage.getItem('cookieConsent') ? localStorage.getItem('cookieConsent') : false
+  const savedConsent = localStorage.getItem('cookieConsent')
 
   // Hydration
   const hasHydrated = useAppStore((s) => s._hasHydrated)
 
-  // All hooks must run before any early return. Side effects live in effects.
-  useEffect(() => {
-    if (!smoothScrollEnabled) return undefined
-    smoothScroll()
-  }, [smoothScrollEnabled])
+  // All hooks must run before any early return.
 
   useEffect(() => {
     const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme)
@@ -70,8 +71,6 @@ function App() {
   useEffect(() => {
     if (!hasHydrated) return undefined
 
-    // Respect the user's data-saver preference. If set, prefetching still
-    // happens, but only on user intent (menu open, tap) — see AppMenu.
     if (navigator.connection?.saveData === true) return undefined
 
     const effectiveType = navigator.connection?.effectiveType
@@ -86,7 +85,6 @@ function App() {
     return () => cancel(handle)
   }, [hasHydrated])
 
-  // Early returns must come after all hooks.
   if (!hasHydrated) return <AppLoading />
   if (!ageVerified) return <UmmiAgeGate />
 
@@ -95,12 +93,11 @@ function App() {
       <div className='main'>
         <AppMenu />
         {quickExitEnabled && <Exit />}
-
-        {/* All modal activities mount through here, one at a time. */}
         <ActivityHost />
         <Home>
           <Header />
           <Introduction />
+
           {toolsEnabled && <ToolsCTA />}
           {daysCounterEnabled && <DaysCounterCTA />}
           {unitsCalculatorEnabled && <UnitsCalculatorCTA />}

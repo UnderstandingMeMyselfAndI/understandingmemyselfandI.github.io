@@ -4,10 +4,10 @@ import Alert from '@mui/material/Alert'
 import Button from '@mui/material/Button'
 import Slide from '@mui/material/Slide'
 import useAppStore from '@store/useAppStore'
-import IconTaskComplete from '@icons/IconTaskComplete'
+// import IconTaskComplete from '@icons/IconTaskComplete'
 import HandymanOutlinedIcon from '@mui/icons-material/HandymanOutlined'
 import { cnf } from '@data/config.js'
-import './styles.scss'
+import './snackBars.scss'
 
 const SnackBars = () => {
   const [open, setOpen] = useState(false)

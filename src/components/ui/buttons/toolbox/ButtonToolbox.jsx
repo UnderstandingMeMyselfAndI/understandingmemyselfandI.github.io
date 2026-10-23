@@ -1,17 +1,18 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 import useAppStore from '@store/useAppStore'
+import usePrivateStore from '@store/usePrivateStore'
 import HandymanIcon from '@mui/icons-material/Handyman'
 import HandymanOutlinedIcon from '@mui/icons-material/HandymanOutlined'
 import { strings } from '@data/config.js'
 import './buttonToolbox.scss'
 
 const ButtonToolbox = ({ id }) => {
-  const isEnabled = useAppStore((state) => state.userToolIDs.includes(id))
-  const yourToolsEnabled = useAppStore((state) => state.yourToolsEnabled)
+  const isEnabled = usePrivateStore((state) => state.userToolIDs.includes(id))
+  const yourToolsEnabled = usePrivateStore((state) => state.yourToolsEnabled)
   const setMessage = useAppStore((s) => s.setMessage)
-  const removeTool = useAppStore((s) => s.removeTool)
-  const addTool = useAppStore((s) => s.addTool)
+  const removeTool = usePrivateStore((s) => s.removeTool)
+  const addTool = usePrivateStore((s) => s.addTool)
   const [inToolbox, setInToolbox] = useState(isEnabled)
 
   const handleClick = () => {

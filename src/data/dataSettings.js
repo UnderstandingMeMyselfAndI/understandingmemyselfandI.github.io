@@ -1,11 +1,10 @@
-// import useAppStore from '@store/useAppStore'
-// import state from '@store/useAppStore'
 const settingsData = [
   {
     groupTitle: 'Tools Enabled',
     settings: [
       {
         name: 'Tools',
+        store: 'private',
         stateSelector: (state) => state.toolsEnabled,
         setStateAction: (state) => state.enableTools,
         label: 'Enable Tools',
@@ -13,10 +12,20 @@ const settingsData = [
         classnames: [''],
       },
       {
+        name: 'YourToolsEnabled',
+        store: 'private',
+        stateSelector: (state) => state.yourToolsEnabled,
+        setStateAction: (state) => state.enableYourTools,
+        label: 'Enable Your Tools',
+        information: 'Show a favourite / toolbox indicator so you can see which tools you have added at a glance.',
+        classnames: [''],
+      },
+      {
         name: 'YourToolbox',
+        store: 'private',
         stateSelector: (state) => state.toolboxFilterEnabled,
         setStateAction: (state) => state.enableToolboxFilter,
-        label: 'Enable Your Toolbox',
+        label: 'Enable Your Toolbox filter',
         information: 'Displays a button that shows only the tools added to Your Toolbox or all tools.',
         classnames: [],
       },
@@ -27,6 +36,7 @@ const settingsData = [
     settings: [
       {
         name: 'DaysCounter',
+        store: 'private',
         stateSelector: (state) => state.daysCounterEnabled,
         setStateAction: (state) => state.enableDaysCounter,
         label: 'Enable Days Counter',
@@ -40,6 +50,7 @@ const settingsData = [
     settings: [
       {
         name: 'UnitsCalculator',
+        store: 'private',
         stateSelector: (state) => state.unitsCalculatorEnabled,
         setStateAction: (state) => state.enableUnitsCalculator,
         label: 'Enable Units Calculator',
@@ -53,6 +64,7 @@ const settingsData = [
     settings: [
       {
         name: 'Quiz',
+        store: 'private',
         stateSelector: (state) => state.quizEnabled,
         setStateAction: (state) => state.enableQuiz,
         label: 'Enable Quiz',
@@ -66,24 +78,25 @@ const settingsData = [
     settings: [
       {
         name: 'WheelOfLife',
+        store: 'private',
         stateSelector: (state) => state.wheelOfLifeEnabled,
         setStateAction: (state) => state.enableWheelOfLife,
         label: 'Enable Wheel of Life',
         information:
-          'Assess your life balance and find areas that could need work. Save wheels over time and see how your hard work is paying off. ',
+          'Assess your life balance and find areas that could need work. Save wheels over time and see how your hard work is paying off.',
         classnames: [''],
       },
     ],
   },
   {
-    groupTitle: 'Quick Exit',
+    groupTitle: 'Quick Exit Button',
     settings: [
       {
         name: 'QuickExit',
         stateSelector: (state) => state.quickExitEnabled,
         setStateAction: (state) => state.enableQuickExit,
-        label: 'Enable  Quick Exit',
-        information: 'Lets you leave the app immediately and open a website whenever you need to.',
+        label: 'Enable Quick Exit Button',
+        information: 'Lets you leave the app immediately and open google.com whenever you need to.',
         classnames: [''],
       },
       {
@@ -104,10 +117,11 @@ const settingsData = [
         stateSelector: (state) => state.allowCookies,
         setStateAction: (state) => state.setAllowCookies,
         label: 'Allow cookies (non-advertising)',
-        information: 'Accepts the use of anayltics cookies to improve your experience.',
+        information: 'Accepts the use of analytics cookies to improve your experience.',
         classnames: [''],
       },
     ],
   },
 ]
+
 export default settingsData

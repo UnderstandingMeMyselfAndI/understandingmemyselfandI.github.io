@@ -1,33 +1,35 @@
 // One-shot migration from legacy keyval-store/keyval to ummi-db/settings.
-// The legacy data was a Zustand persist blob under the key 'ummi'.
-// Preserved as 'ummi-migrated' so it can be inspected or restored during testing.
+// v1: baseline migration.
+// v2: move yourToolsEnabled from plaintext config to encrypted app.
+// v3: move feature flags into encrypted app.
+// v4: remove PINLockEnabled (dead field).
+// v5: remove smoothScrollEnabled (dead field).
 
 import { get, set, del } from 'idb-keyval'
 import { hasPasscode, isUnlocked, subscribeLockState } from './securityGate'
-import { loadApp, loadConfig, loadMeta, saveApp, saveConfig, saveMeta } from './settingsStorage'
-import { clearAllSettings } from './settingsStorage'
+import { loadApp, loadConfig, loadMeta, saveApp, saveConfig, saveMeta, clearAllSettings } from './settingsStorage'
 
 const LEGACY_KEY = 'ummi'
 const LEGACY_RENAMED_KEY = 'ummi-migrated'
-const MIGRATION_VERSION = 1
+const MIGRATION_VERSION = 5
 
-// Sensitive fields → ummi-db/settings/app (encrypted).
-const ENCRYPTED_KEYS = ['userToolIDs', 'wheelHistory', 'rememberWheels']
+const ENCRYPTED_KEYS = [
+  'userToolIDs',
+  'yourToolsEnabled',
+  'toolboxFilterEnabled',
+  'toolsEnabled',
+  'wheelHistory',
+  'rememberWheels',
+  'wheelOfLifeEnabled',
+  'daysCounterEnabled',
+  'quizEnabled',
+  'unitsCalculatorEnabled',
+  // smoothScrollEnabled removed — field deleted
+]
 
-// Plaintext fields → ummi-db/settings/config.
-// Includes only the canonical name where the old schema had a duplicate.
 const PLAINTEXT_KEYS = [
   'theme',
   'textScale',
-  'daysCounterEnabled',
-  'wheelOfLifeEnabled',
-  'quizEnabled',
-  'unitsCalculatorEnabled',
-  'toolsEnabled',
-  'smoothScrollEnabled',
-  'toolboxFilterEnabled',
-  'yourToolsEnabled',
-  'PINLockEnabled',
   'quickExitEnabled',
   'quickExitMessageEnabled',
   'allowCookies',
@@ -50,8 +52,6 @@ const PLAINTEXT_KEYS = [
   'ageVerified',
 ]
 
-// Legacy shorthand → canonical name. Used to read from old blobs that still
-// carry the shorthand keys.
 const LEGACY_MAP = {
   ins: 'isInstallable',
   isisn: 'isInstalled',
@@ -59,11 +59,10 @@ const LEGACY_MAP = {
   wol: 'wheelOfLifeEnabled',
   quiz: 'quizEnabled',
   uc: 'unitsCalculatorEnabled',
-  Ss: 'smoothScrollEnabled',
+  // Ss removed — smoothScrollEnabled deleted
   tls: 'toolsEnabled',
   tf: 'toolboxFilterEnabled',
   yt: 'yourToolsEnabled',
-  pl: 'PINLockEnabled',
   qe: 'quickExitEnabled',
   qem: 'quickExitMessageEnabled',
   c: 'allowCookies',
@@ -72,6 +71,8 @@ const LEGACY_MAP = {
   qeu: 'quickExitURL',
   lvc: 'lastVersionCheck',
 }
+
+const DEPRECATED_FIELDS = ['PINLockEnabled', 'smoothScrollEnabled']
 
 function pick(state, keys) {
   const out = {}
@@ -101,14 +102,63 @@ async function renameLegacy() {
   await del(LEGACY_KEY)
 }
 
-/**
- * Run migration if needed. Safe to call repeatedly.
- * @returns {Promise<{status: 'skipped'|'no-legacy'|'config-only'|'complete'}>}
- */
+async function moveEncryptedFieldsFromConfig() {
+  const config = await loadConfig()
+  if (!config) return false
+
+  const stillInConfig = ENCRYPTED_KEYS.filter((k) => k in config)
+  if (stillInConfig.length === 0) return false
+
+  if (hasPasscode() && !isUnlocked()) {
+    throw new Error('DEFERRED:locked')
+  }
+
+  const app = (await loadApp()) ?? {}
+  const migrated = {}
+  for (const k of stillInConfig) migrated[k] = config[k]
+
+  await saveApp({ ...app, ...migrated })
+
+  const cleanConfig = { ...config }
+  for (const k of stillInConfig) delete cleanConfig[k]
+  await saveConfig(cleanConfig)
+
+  return true
+}
+
+async function cleanupDeprecatedFields() {
+  const config = await loadConfig()
+  if (!config) return false
+
+  const present = DEPRECATED_FIELDS.filter((k) => k in config)
+  if (present.length === 0) return false
+
+  const cleanConfig = { ...config }
+  for (const k of present) delete cleanConfig[k]
+  await saveConfig(cleanConfig)
+  return true
+}
+
 export async function migrateIfNeeded() {
   const meta = await loadMeta()
-  if ((meta?.migrationVersion ?? 0) >= MIGRATION_VERSION) {
+  const currentVersion = meta?.migrationVersion ?? 0
+
+  if (currentVersion >= MIGRATION_VERSION) {
     return { status: 'skipped' }
+  }
+
+  if (currentVersion >= 1) {
+    try {
+      await moveEncryptedFieldsFromConfig()
+      await cleanupDeprecatedFields()
+      await saveMeta({ ...meta, migrationVersion: MIGRATION_VERSION })
+      return { status: 'complete' }
+    } catch (err) {
+      if (String(err?.message) === 'DEFERRED:locked') {
+        return { status: 'config-only' }
+      }
+      throw err
+    }
   }
 
   const legacyState = await readLegacy()
@@ -138,10 +188,6 @@ export async function migrateIfNeeded() {
   return { status: 'complete' }
 }
 
-/**
- * Subscribe to unlock and retry migration. Call once at boot.
- * No-op after migration completes.
- */
 let unsubscribe = null
 export function watchForUnlockAndMigrate() {
   if (unsubscribe) return unsubscribe
@@ -154,10 +200,6 @@ export function watchForUnlockAndMigrate() {
   return unsubscribe
 }
 
-/**
- * DEV ONLY — restore the legacy blob and clear the new settings store so
- * migration can be re-run from scratch. Attached to window in dev.
- */
 export async function resetMigrationForTesting() {
   const migrated = await get(LEGACY_RENAMED_KEY)
   if (migrated) {
