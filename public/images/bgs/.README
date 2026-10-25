@@ -1,0 +1,4 @@
+Pre-cache will cache all avifs in public/images/bgs and public/images/bgs/mobile for use with the Backdrop.js component
+reduce the number of images in these direcrtories to a 20 as the rest are unused
+
+A "Library" of background images exist in project-data

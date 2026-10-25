@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef } from 'react'
-import ImageData from '@data/bgImgs.js'
-import './backdrop.scss'
-import PropTypes from 'prop-types'
+import { useState, useEffect, useRef } from "react"
+import ImageData from "@data/bgImgs.js" // currently limits to 18 possible images.
+
+import "./backdrop.scss"
+import PropTypes from "prop-types"
 
 const allImages = ImageData
 const DEFAULT_INTERVAL = 10000
@@ -74,7 +75,7 @@ export default function Backdrop({ initialImageId = 0, initialDelay = 0, interva
         img = null
       }
       return () => {
-        if (img) img.src = ''
+        if (img) img.src = ""
         img = null
       }
     }
@@ -88,15 +89,15 @@ export default function Backdrop({ initialImageId = 0, initialDelay = 0, interva
           <img
             key={currentImage.id}
             src={currentImage.url}
-            alt={currentImage.alt || 'Backdrop'}
-            className={`backdrop-image current ${nextImage ? 'fade-out' : ''} ${isInitializing ? 'no-fade' : ''}`}
+            alt={currentImage.alt || "Backdrop"}
+            className={`backdrop-image current ${nextImage ? "fade-out" : ""} ${isInitializing ? "no-fade" : ""}`}
           />
         )}
         {nextImage && (
           <img
             key={nextImage.id}
             src={nextImage.url}
-            alt={nextImage.alt || 'Next backdrop'}
+            alt={nextImage.alt || "Next backdrop"}
             className='backdrop-image next fade-in'
           />
         )}

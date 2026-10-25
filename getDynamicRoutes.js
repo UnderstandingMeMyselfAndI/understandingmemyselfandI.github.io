@@ -1,5 +1,5 @@
-import data from './src/data/tools.js'
-import { activities } from './src/data/activities.js'
+import data from "./src/data/tools.js"
+import { activities } from "./src/data/activities.js"
 // import { sanitizeStringForUrl } from '@js/utils.js'
 export function getDynamicRoutes() {
   const routes = []
@@ -16,7 +16,7 @@ export function getDynamicRoutes() {
     }
   })
   activities.forEach((activity) => {
-    activity.menu && routes.push('/' + activity.url)
+    activity.menu && routes.push("/" + activity.url)
     // activity.menu && console.log('Adding route: ' + '/' + activity.url)
     //TODO #50 #49 These routes can also have an icon associated with them that gets used ny the OS. Needs a little research on what iOS needs and how to set this up
   })
@@ -29,7 +29,7 @@ export function getShortcuts() {
     activity.shortcuts &&
       shortcuts.push({
         name: activity.title,
-        url: '/' + activity.url,
+        url: "/" + activity.url,
       })
     // activity.shortcuts && console.log('Adding shortcut: ' + activity.title + '  url: ' + '/' + activity.url)
   })

@@ -1,5 +1,5 @@
-@use '@scss/variables';
-@import '@scss/globals.css';
+@use "@scss/variables";
+@import "@scss/globals.css";
 
 .activity-days-counter {
   top: 0;
@@ -19,7 +19,7 @@
   position: fixed;
 
   &::after {
-    content: '';
+    content: "";
     position: fixed;
     top: 0;
     left: 0;
@@ -64,7 +64,7 @@
     width: calc(100% - 70px);
     line-height: 1;
     font-weight: 800;
-    font-variation-settings: 'wght' 800;
+    font-variation-settings: "wght" 800;
     text-align: left;
     // flex: 1;
   }
@@ -223,14 +223,14 @@
   &__title {
     font-size: variables.$h3_size;
     font-weight: 800;
-    font-variation-settings: 'wght' 800;
+    font-variation-settings: "wght" 800;
     color: var(--primary);
     margin-bottom: 0.5rem;
     text-shadow: var(--text-shadow-dark);
 
     input {
       font-weight: 800;
-      font-variation-settings: 'wght' 800;
+      font-variation-settings: "wght" 800;
     }
   }
 
@@ -305,7 +305,7 @@
     display: flex;
     font-size: 1.25rem;
     font-weight: 400;
-    font-variation-settings: 'wght' 400;
+    font-variation-settings: "wght" 400;
     color: var(--primary);
     flex-flow: row wrap;
     justify-content: center;
@@ -348,24 +348,26 @@
   }
 
   /* Inputs */
+  input.days-counter__title-input,
   &__title-input {
     border: none;
     background: transparent;
     font-size: variables.$lrg_title_size;
     font-weight: 600;
-    font-variation-settings: 'wght' 600;
+    font-variation-settings: "wght" 600;
     color: var(--blue-light);
     width: 100%;
     text-align: center;
     margin: 0;
     scroll-margin: 0;
+    border-bottom: 1px solid transparent;
 
     &::placeholder {
       color: var(--grey);
       opacity: 0.75;
 
       font-weight: 600;
-      font-variation-settings: 'wght' 600;
+      font-variation-settings: "wght" 600;
       font-size: 1.75rem;
     }
   }
@@ -517,7 +519,7 @@
       padding: 0;
       margin: 0;
       font-weight: 800;
-      font-variation-settings: 'wght' 800;
+      font-variation-settings: "wght" 800;
       line-height: 1;
       letter-spacing: -0.5px;
       position: relative;
@@ -527,7 +529,7 @@
       letter-spacing: -0.25px;
       z-index: 1;
       font-weight: 800;
-      font-variation-settings: 'wght' 800;
+      font-variation-settings: "wght" 800;
     }
   }
 
@@ -553,7 +555,7 @@
     .value {
       font-size: variables.$dc_days_size;
       font-weight: 800;
-      font-variation-settings: 'wght' 800;
+      font-variation-settings: "wght" 800;
       color: var(--orange);
     }
   }
@@ -570,7 +572,7 @@
     .value {
       height: 100%;
       font-weight: 400;
-      font-variation-settings: 'wght' 400;
+      font-variation-settings: "wght" 400;
       font-size: variables.$sml_size;
       color: var(--secondary);
       font-weight: 600;
@@ -599,7 +601,7 @@
     .value {
       height: 100%;
       font-weight: 600;
-      font-variation-settings: 'wght' 600;
+      font-variation-settings: "wght" 600;
     }
   }
 
@@ -741,7 +743,7 @@
     gap: 0.75rem;
     font-size: variables.$med_size;
     font-weight: 600;
-    font-variation-settings: 'wght' 600;
+    font-variation-settings: "wght" 600;
     cursor: pointer;
   }
 
@@ -891,13 +893,13 @@
     >span:first-child {
       text-align: left;
       font-weight: 500;
-      font-variation-settings: 'wght' 500;
+      font-variation-settings: "wght" 500;
     }
 
     >span:nth-child(2) {
       text-align: right;
       font-weight: 700;
-      font-variation-settings: 'wght' 700;
+      font-variation-settings: "wght" 700;
       justify-self: flex-end;
     }
   }
@@ -916,7 +918,7 @@
     font-size: variables.$micro_size;
     text-transform: uppercase;
     font-weight: 600;
-    font-variation-settings: 'wght' 600;
+    font-variation-settings: "wght" 600;
     transform: rotate(90deg) translate(0, 200%);
     color: var(--secondary);
     display: inline-block;
@@ -925,7 +927,7 @@
   &__total-value {
     font-size: variables.$dc_val_size;
     font-weight: 800;
-    font-variation-settings: 'wght' 800;
+    font-variation-settings: "wght" 800;
     color: var(--orange);
     text-align: center;
     margin: 0 auto;
@@ -959,7 +961,7 @@
   &__savings-rate-rate-value {
     font-size: variables.$sml_size;
     font-weight: 700;
-    font-variation-settings: 'wght' 700;
+    font-variation-settings: "wght" 700;
     color: var(--accent);
   }
 }
