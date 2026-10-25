@@ -20,6 +20,8 @@
     .MuiSnackbarContent-message {
       color: var(--primary);
       font-size: variables.$default_size;
+      font-weight: 700;
+      font-variation-settings: 'wght' 700;
       padding: 0.74rem 1rem;
     }
   }
@@ -29,8 +31,13 @@
 .snackbars {
   z-index: 15500;
   box-shadow: var(--box-shadow-wide), var(--box-shadow-dark);
+  font-weight: 700;
+  font-variation-settings: 'wght' 700;
 
-  .snackbar {}
+  .snackbar {
+    font-weight: 700;
+    font-variation-settings: 'wght' 700;
+  }
 
   button {
     box-shadow: none;

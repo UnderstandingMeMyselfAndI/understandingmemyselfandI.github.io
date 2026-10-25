@@ -14,20 +14,7 @@ body section#settings.activity-settings {
 
   h3 {
     text-align: left;
-    // margin-top: 2rem;
   }
-
-  // &::after {
-  //   position: absolute;
-  //   width: 100%;
-  //   height: 100%;
-  //   top: 0;
-  //   left: 0;
-  //   content: '';
-  //   background: var(--background-main);
-  //   z-index: -1;
-  //   opacity: 0.35;
-  // }
 
   .settings {
     margin: 0 auto;
@@ -55,8 +42,6 @@ body section#settings.activity-settings {
       font-weight: 600;
       font-variation-settings: 'wght' 600;
     }
-
-    // &__section-content {}
 
     &__group {
       display: flex;
@@ -86,7 +71,7 @@ body section#settings.activity-settings {
       font-size: variables.$med_size;
       margin: 0;
       padding: 0 0.5rem;
-      color: var(--grey-med);
+      color: var(--grey);
       transition: color var(--transition);
       width: fit-content;
       align-self: flex-end;
@@ -100,7 +85,7 @@ body section#settings.activity-settings {
       gap: 0.75rem;
       margin: 0;
       padding: 0 0 1rem 0;
-      color: var(--grey-med);
+      color: var(--grey);
 
       &.feature-active {
         color: var(--primary);
@@ -111,10 +96,8 @@ body section#settings.activity-settings {
         }
 
         label,
-        .settings__group-row,
         .settings__group-info {
           color: var(--primary);
-          transition: color var(--transition);
         }
 
         label {
@@ -130,13 +113,11 @@ body section#settings.activity-settings {
 
       label {
         font-size: variables.$default_size;
-        color: var(--grey-med);
-        transition: all var(--transition);
+        color: var(--grey);
       }
 
       label.checked {
         color: var(--primary);
-        transition: all var(--transition);
       }
     }
 
@@ -151,7 +132,7 @@ body section#settings.activity-settings {
       margin: 0;
       border: none;
       outline: none;
-      padding: 0.75rem 1rem;
+      padding: 1.25rem 1.5rem;
     }
 
     &__group-help,

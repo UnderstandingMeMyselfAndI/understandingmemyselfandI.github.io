@@ -10,7 +10,7 @@
 .tools-inner {
   position: relative;
   margin: 0 auto;
-  padding: 1.5rem 0.5rem 0 0.5rem;
+  padding: 1rem 0.5rem 0 0.5rem;
   width: 100%;
 }
 
@@ -68,9 +68,9 @@ body section#the-tools.tools {
     width: 100%;
     max-width: var(--max-width);
     display: flex;
-    flex-direction: column;
+    flex-flow: column wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 0;
     row-gap: 0.5rem;
     text-align: left;
@@ -83,7 +83,13 @@ body section#the-tools.tools {
       text-align: left;
       width: 100%;
       font-size: variables.$h1_size;
-      color: var(--orange);
+      color: var(--primary);
+      transition: color 0.2s var(--transition-ease);
+
+      &.your-tools {
+        color: var(--orange);
+        transition: color 0.2s var(--transition-ease);
+      }
 
       @media screen and (width>=768px) {
         text-align: center;
@@ -97,7 +103,7 @@ body section#the-tools.tools {
       font-size: variables.$sml_size;
 
       @media screen and (width>=768px) {
-        text-align: center;
+        // text-align: center;
       }
     }
   }

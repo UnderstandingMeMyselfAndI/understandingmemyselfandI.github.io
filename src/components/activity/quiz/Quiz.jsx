@@ -1,16 +1,16 @@
 // Quiz.jsx (updated with stats)
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react"
 // import { useShallow } from 'zustand/react/shallow'
 // import QuizProgress from './quizProgress/QuizProgress'
-import QuizQuestion from './quizQuestion/QuizQuestion'
-import QuizStart from './quizStart/QuizStart'
-import QuizStats from './quizStats/QuizStats'
-import questions from '@data/quiz.js'
-import CloseBtn from '@components/ui/buttons/close/CloseBtn'
-import useQuizStore from './useQuizStore'
-import { strings } from '@data/config'
-import useAppStore from '@store/useAppStore'
-import { trackEvent } from '@js/analytics/analytics'
+import QuizQuestion from "./quizQuestion/QuizQuestion"
+import QuizStart from "./quizStart/QuizStart"
+import QuizStats from "./quizStats/QuizStats"
+import questions from "@data/quiz.js"
+import CloseBtn from "@components/ui/buttons/close/CloseBtn"
+import useQuizStore from "./useQuizStore"
+// import { strings } from '@data/config'
+import useAppStore from "@store/useAppStore"
+import { trackEvent } from "@js/analytics/analytics"
 // import { activities } from '@data/config'
 
 // const activitiesById = activities.reduce((acc, activity) => {
@@ -22,13 +22,13 @@ import { trackEvent } from '@js/analytics/analytics'
 //   return acc
 // }, {})
 
-import './quiz.scss'
+import "./quiz.scss"
 
 const Quiz = () => {
-  const name = 'quiz'
+  const name = "quiz"
   // const id = 23
   const [started, setStarted] = useState(false)
-  const [view, setView] = useState('start') // 'start', 'question', 'stats'
+  const [view, setView] = useState("start") // 'start', 'question', 'stats'
   const [currentLevel, setCurrentLevel] = useState(null)
   const { incrementPlayCount, getPlayCount, saveScore, addToHistory, optIn } = useQuizStore()
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -59,20 +59,20 @@ const Quiz = () => {
   // }, [activity, isModal, id, setOpen])
 
   const handleStart = (level, analyticsOptIn) => {
-    if (level === 'stats') {
-      setView('stats')
+    if (level === "stats") {
+      setView("stats")
       return
     }
     const subset = getRandomSubset(questions.levels[level], 15)
     setActiveQuestions(subset)
     setCurrentLevel(level)
     setStarted(true)
-    setView('question')
+    setView("question")
     setCurrentIndex(0)
     setScore(0)
     setTotalAnswered(0)
 
-    trackEvent('quiz_start', { level, question_count: subset.length }, optIn)
+    trackEvent("quiz_start", { level, question_count: subset.length }, optIn)
   }
 
   const handleNext = (wasCorrect) => {
@@ -84,7 +84,6 @@ const Quiz = () => {
   }
 
   const resetQuiz = () => {
-    console.log('resetQuiz')
     setStarted(false)
     setCurrentLevel(null)
     setCurrentIndex(0)
@@ -92,14 +91,14 @@ const Quiz = () => {
     setTotalAnswered(0)
     setTotalAnswered(0)
     setActiveQuestions([])
-    setView('start')
+    setView("start")
   }
 
   const handleRestart = () => {
     // Increment play count (both in store and analytics)
     incrementPlayCount()
 
-    trackEvent('quiz_restart', { level: currentLevel }, optIn)
+    trackEvent("quiz_restart", { level: currentLevel }, optIn)
 
     // Reset quiz
     resetQuiz()
@@ -121,7 +120,7 @@ const Quiz = () => {
     if (isComplete && currentLevel) {
       // Record completion event
       trackEvent(
-        'quiz_complete',
+        "quiz_complete",
         {
           level: currentLevel,
           score,
@@ -154,16 +153,16 @@ const Quiz = () => {
   return (
     <section id={name} className={`activity activity-${name} fixed show`}>
       <div className='inner'>
-        <CloseBtn className='close-btn' onClick={view === 'stats' ? () => setView('start') : handleClose} />
+        <CloseBtn className='close-btn' onClick={view === "stats" ? () => setView("start") : handleClose} />
         {started && (
           <button className='cancel-btn' onClick={resetQuiz}>
-            Quit
+            Exit
           </button>
         )}
-        {view === 'start' ? (
+        {view === "start" ? (
           <QuizStart onStart={handleStart} levels={questions.levels} />
-        ) : view === 'stats' ? (
-          <QuizStats onBack={() => setView('start')} />
+        ) : view === "stats" ? (
+          <QuizStats onBack={() => setView("start")} />
         ) : isComplete ? (
           <div className='quiz-complete'>
             {status && (

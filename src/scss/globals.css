@@ -50,9 +50,9 @@
   --background-activity: rgba(57, 51, 104, 0.5);
   --background-linear-gradient: linear-gradient(-120deg, rgb(48, 42, 102) 10%, rgb(202, 0, 142) 80%);
   --background-main:
-    radial-gradient(ellipse at 90% 40%, rgba(240, 117, 138, 0.6) 0%, rgba(38, 1, 65, 0.6) 75%),
-    radial-gradient(ellipse at 20% 85%, rgba(233, 109, 7, 0.85) 5%, rgba(34, 7, 53, 0.95) 60%),
-    radial-gradient(ellipse at 60% 67.5%, rgba(247, 7, 7, 0.84) 20%, rgba(29, 6, 44, 0.95) 60%);
+    radial-gradient(ellipse at 90% 40%, rgba(240, 117, 138, 0.76) 0%, rgba(65, 6, 86, 0.6) 75%),
+    radial-gradient(ellipse at 20% 85%, rgba(233, 109, 7, 0.85) 15%, rgba(34, 7, 86, 0.95) 60%),
+    radial-gradient(ellipse at 60% 67.5%, rgba(247, 7, 7, 0.84) 20%, rgba(65, 6, 86, 0.95) 60%);
   --background: rgb(49, 38, 88);
   --foreground: oklch(0.985 0 0);
 
@@ -162,7 +162,10 @@
   --red: #e83737;
   --green: #257e94;
 
-  --grey-dark: #0a0a0a;
+  --grey-light-2: #535353;
+  --grey-mid: #535353;
+  --grey-med: #535353;
+  --grey-dark: #151515;
   --grey-dark-trans-90: rgba(10, 10, 10, 0.9);
   --grey-dark-trans-80: rgba(10, 10, 10, 0.8);
   --grey-dark-trans-70: rgba(10, 10, 10, 0.7);
@@ -172,10 +175,6 @@
   --grey-dark-trans-30: rgba(10, 10, 10, 0.3);
   --grey-dark-trans-20: rgba(10, 10, 10, 0.2);
   --grey-dark-trans-10: rgba(10, 10, 10, 0.1);
-
-  --grey-light-2: #535353;
-  --grey-mid: #535353;
-  --grey-med: #535353;
 
   --grey: rgb(153, 153, 153);
   --pink: rgb(255, 192, 203);
@@ -267,6 +266,29 @@
   --box-shadow-light: 0px 0px 6px rgba(200, 200, 200, 0.5);
   --box-shadow-blue: 0px 0px 6px rgba(10, 10, 200, 0.5);
   --box-shadow-orange: 0px 0px 6px rgba(255, 187, 0, 0.781);
+
+  /* 
+  --  Wheel of Life ---------------
+  1. Outer Diameter (The circle at score 10) */
+  --wheel-outer-border-color: var(--blue-light-trans-50);
+  --wheel-outer-border-width: 12px;
+
+  /*  2. Segment Divider Lines (The spokes) */
+  --wheel-divider-color: var(--wheel-outer-border-color);
+  --wheel-divider-width: 1px;
+
+  /*  3. Sub-section Lines (The inner circles 1-9) */
+  --wheel-subsection-color: var(--blue-light-trans-60);
+  --wheel-subsection-width: 1px;
+
+  /* 4. Outer Numbers (The "10"s) */
+  --wheel-number-color: var(--orange-trans-70);
+  --wheel-number-size: 1.5rem;
+  --wheel-number-weight: 800;
+
+  /* 5. Labels (The category names) */
+  --wheel-label-color: var(--primary);
+  --wheel-label-size: 1.6rem;
 }
 
 .light {

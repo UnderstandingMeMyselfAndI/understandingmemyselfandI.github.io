@@ -1,5 +1,5 @@
-@use '@scss/variables';
-@import '@scss/globals.css';
+@use "@scss/variables";
+@import "@scss/globals.css";
 
 body .activity.cta {
   margin: 0 auto;
@@ -23,15 +23,15 @@ body div.main section.activity div.cta {
 
     h3.title {
       font-weight: 800;
-      font-variation-settings: 'wght' 800;
-      font-variation-settings: 'wght' 800;
+      font-variation-settings: "wght" 800;
+      font-variation-settings: "wght" 800;
     }
 
     .cta-content {
       text-shadow: var(--text-shadow-dark-strong);
       font-weight: 400;
-      font-variation-settings: 'wght' 400;
-      font-variation-settings: 'wght' 400;
+      font-variation-settings: "wght" 400;
+      font-variation-settings: "wght" 400;
 
       p {
         font-size: 1.25rem;
@@ -69,7 +69,7 @@ body div.main section.activity div.cta {
     }
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
@@ -119,8 +119,8 @@ body div.main section.activity div.cta {
     h3.title {
       font-size: variables.$h3_size;
       font-weight: 800;
-      font-variation-settings: 'wght' 800;
-      font-variation-settings: 'wght' 700;
+      font-variation-settings: "wght" 800;
+      font-variation-settings: "wght" 700;
       text-transform: uppercase;
       // text-decoration: none;
       color: var(--orange);
@@ -154,6 +154,7 @@ body div.main section.activity div.cta {
         justify-content: center;
         box-shadow: var(--box-shadow-dark);
         background-color: var(--blue-trans-80);
+        gap: 0.5rem;
         // width: 100%;
         text-transform: uppercase;
 
@@ -166,7 +167,7 @@ body div.main section.activity div.cta {
   }
 
   &::after {
-    content: '\2959'; // \21E9 \21E3 \21E3 \21D3 \290B \2925 \2926 \2938 \2965 \2952 \2953
+    content: "\2959"; // \21E9 \21E3 \21E3 \21D3 \290B \2925 \2926 \2938 \2965 \2952 \2953
     position: absolute;
     left: 50%;
     bottom: -100px;
@@ -180,7 +181,7 @@ body div.main section.activity div.cta {
 
   &:nth-child(odd) {
     &::after {
-      content: '\2955';
+      content: "\2955";
     }
   }
 }

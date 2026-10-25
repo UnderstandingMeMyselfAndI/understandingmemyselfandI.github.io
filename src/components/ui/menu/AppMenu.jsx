@@ -62,13 +62,7 @@ export default function AppMenu() {
       return a.conditions.every((condition) => stateMap[condition.state] === condition.value)
     })
     .sort((a, b) => (a.menuPosition ?? Infinity) - (b.menuPosition ?? Infinity))
-  console.log('[AppMenu render]', {
-    activity,
-    showMenu,
-    openMenu,
-    showBurgerStack,
-    activeConfigUrl: activeConfig?.url ?? null,
-  })
+
   return showMenu ? (
     <div className={'app-menu' + (openMenu ? ' ' : ' hide')}>
       {showBurgerStack && (

@@ -93,8 +93,7 @@ export default defineConfig(() => {
         injectRegister: 'script',
         filename: 'sw.js',
         devOptions: {
-          enabled: true,
-          type: 'module',
+          enabled: false,
         },
         includeAssets: [
           'error.html',

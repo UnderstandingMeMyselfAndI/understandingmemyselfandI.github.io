@@ -1,19 +1,19 @@
-@use '@scss/variables';
-@import '@scss/globals.css';
-@import '@scss/Animation.css';
+@use "@scss/variables";
+@import "@scss/globals.css";
+@import "@scss/Animation.css";
 
 span.MuiBadge-badge.MuiBadge-standard {
   color: #fff;
   color: var(--blue);
 }
 
-$width: 40px;
-$icon_width: 20px;
+$width: 44px;
+$icon_width: 22px;
 
 .badge-cont {
   position: fixed;
-  top: 6.5rem;
-  right: 1.5rem;
+  top: 4.5rem;
+  right: 4.5rem;
   opacity: 1;
   transition: all 0.25s cubic-bezier(0.3, 0, 0.74, 1);
   z-index: 6010;
@@ -31,29 +31,77 @@ $icon_width: 20px;
 
   .badge__label {
     color: var(--grey-trans-80);
-
+    color: var(--primary);
+    // outline: 1px solid grey;
     position: absolute;
-    bottom: 0px;
-    left: 0;
-    height: 20px;
-    width: 100%;
+    top: 50%;
+    left: 50;
+    height: fit-content;
+    width: fit-content;
     font-weight: 800;
-    font-variation-settings: 'wght' 800;
+    font-variation-settings: "wght" 800;
     z-index: 10;
-    font-size: variables.$sml_size;
+    font-size: variables.$micro_size;
     text-shadow: none;
     line-height: 0.8;
-  }
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-content: center;
+    transform: translate(0, -50%);
+    // outline: 1px solid grey;
+    transition: all var(--transition-2);
 
-  // .badge-toolbox {
-  //   // .icon {
-  //   //   font-size: 0.7rem; // was inheriting 1.5rem
-  //   // }
-  // }
+    border-radius: 2px;
+    z-index: 4010;
+    transform: translate(0px, 20%);
+    padding: 0.2rem;
+
+    >div {
+      // background: var(--blue-light);
+
+      // outline: 1px solid white;
+      height: fit-content;
+      transition: all var(--transition-2);
+
+      &:first-child {
+        // transform: translate(4px, 0px);
+        // text-indent: 0.1rem;
+      }
+
+      &:last-child {
+        // transform: translate(-2px, 0px);
+        // margin-right: -20px;
+      }
+    }
+  }
 
   &:has(.active) {
     .badge__label {
       color: var(--blue-light);
+      transition: all var(--transition-2);
+
+      >div {
+        // background: var(--blue-light);
+        // background: var(--orange);
+        transition: all var(--transition-2);
+
+        &:first-child {
+          transform: translate(0px, 0px);
+          background: var(--orange-trans-70);
+          padding-top: 0.2rem;
+          transition: all var(--transition-2);
+        }
+
+        &:last-child {
+          transform: translate(0px, 0px);
+          background: var(--orange-trans-90);
+          border-radius: 4px;
+          padding: 0.2rem;
+          transition: all var(--transition-2);
+          // margin-right: -20px;
+        }
+      }
     }
   }
 }
@@ -83,29 +131,33 @@ span.tooltip {
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  align-content: er;
+  align-content: center;
 
   .MuiBadge-badge {
     background: var(--blue-dark);
     color: var(--primary);
     font-weight: 800;
-    font-variation-settings: 'wght' 800;
+    font-variation-settings: "wght" 800;
   }
 
   svg {
     width: $width;
     height: $width;
-    margin: 0.5rem;
+    margin: 0rem;
     fill: var(--grey-trans-80);
+    transform: scale(1.1);
+    transition: all var(--transition-2);
   }
 
   .icon {
     position: relative;
     z-index: 4001;
+    transform: translate(0, 0px);
+    transition: all var(--transition-2);
   }
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: -12.5%;
     left: -12.5%;

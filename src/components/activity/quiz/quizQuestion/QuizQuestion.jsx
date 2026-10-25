@@ -1,9 +1,9 @@
 // QuizQuestion.jsx
-import React, { useState, useEffect, useMemo, memo } from 'react'
+import React, { useState, useEffect, useMemo, memo } from "react"
 
-import QuizProgress from '../quizProgress/QuizProgress'
-import PropTypes from 'prop-types'
-import './styles.scss'
+import QuizProgress from "../quizProgress/QuizProgress"
+import PropTypes from "prop-types"
+import "./quizQuestion.scss"
 
 const answerShape = PropTypes.shape({
   text: PropTypes.string.isRequired,
@@ -63,9 +63,7 @@ const QuizQuestion = memo(({ data, onNext, currentIndex, totalQuestions, score, 
   }
 
   const renderTextWithSpans = (text) => {
-    return text.split(' ').map((word, index) => (
-      <span key={index}>{word} </span>
-    ))
+    return text.split(" ").map((word, index) => <span key={index}>{word} </span>)
   }
 
   const handleNext = () => {
@@ -78,10 +76,12 @@ const QuizQuestion = memo(({ data, onNext, currentIndex, totalQuestions, score, 
 
   return (
     <div className='quiz-container'>
-      <div className={'question-container'}>
-        {!submitted && <div className={'question' + (isNew ? ' in' : ' ')}>{isNew && question}</div>}
-        <div className={'feedback-message' + (submitted ? ' show' : '')}>
-          {submitted && <p>{isCorrect ? renderTextWithSpans(correctMessage) : renderTextWithSpans(incorrectMessage)}</p>}
+      <div className={"question-container"}>
+        {!submitted && <div className={"question" + (isNew ? " in" : " ")}>{isNew && question}</div>}
+        <div className={"feedback-message" + (submitted ? " show" : "")}>
+          {submitted && (
+            <p>{isCorrect ? renderTextWithSpans(correctMessage) : renderTextWithSpans(incorrectMessage)}</p>
+          )}
         </div>
       </div>
       <QuizProgress current={currentIndex + 1} total={totalQuestions} score={score} totalAnswered={totalAnswered} />
@@ -90,14 +90,14 @@ const QuizQuestion = memo(({ data, onNext, currentIndex, totalQuestions, score, 
           const isSelected = selected === index
           const isThisCorrect = answer.isCorrect
 
-          let optionClass = 'option'
+          let optionClass = "option"
           if (submitted) {
-            if (isThisCorrect) optionClass += ' correct-answer'
+            if (isThisCorrect) optionClass += " correct-answer"
             if (isSelected) {
-              optionClass += isCorrect ? ' selected-correct' : ' selected-incorrect'
+              optionClass += isCorrect ? " selected-correct" : " selected-incorrect"
             }
           } else if (isSelected) {
-            optionClass += ' selected-pending'
+            optionClass += " selected-pending"
           }
 
           return (
@@ -127,7 +127,7 @@ const QuizQuestion = memo(({ data, onNext, currentIndex, totalQuestions, score, 
   )
 })
 
-QuizQuestion.displayName = 'QuizQuestion'
+QuizQuestion.displayName = "QuizQuestion"
 
 QuizQuestion.propTypes = {
   data: questionShape.isRequired,

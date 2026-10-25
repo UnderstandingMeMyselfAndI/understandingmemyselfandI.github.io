@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
-import ButtonSimple from '../buttons/ButtonSimple'
-import parse from 'html-react-parser'
-import DOMPurify from 'dompurify'
-import './styles.scss'
+import { useState } from "react"
+import PropTypes from "prop-types"
+import ButtonSimple from "../buttons/ButtonSimple"
+import parse from "html-react-parser"
+import DOMPurify from "dompurify"
+import "./confirm.scss"
 
 const Confirm = ({
-  title = '',
-  instruction = '',
-  message = '',
-  confirmLabel = 'Okay',
+  title = "",
+  instruction = "",
+  message = "",
+  confirmLabel = "Okay",
   onConfirm,
-  cancelLabel = 'Cancel',
+  cancelLabel = "Cancel",
   onCancel,
   showCancel = true,
   classes = [],
@@ -32,40 +32,25 @@ const Confirm = ({
   return (
     <div
       className={
-        'confirm-pop-up show' +
-        (fitContent ? ' fit-content' : '') +
-        classes.map((c) => ' ' + c) +
-        ' ' +
-        (isfullscreen ? ' fullscreen' : '')
-      }
-    >
+        "ummi__confirm, confirm-pop-up show" +
+        (fitContent ? " fit-content" : "") +
+        classes.map((c) => " " + c) +
+        " " +
+        (isfullscreen ? " fullscreen" : "")
+      }>
       <div className='confirm-pop-up-inner'>
-        <div className='confirm-pop-up-title'>
-          {parse(DOMPurify.sanitize(title))}
-        </div>
-        {message && (
-          <div className='confirm-pop-up-instruction'>
-            {parse(DOMPurify.sanitize(message))}
-          </div>
-        )}
-        {instruction && (
-          <div className='confirm-pop-up-instruction'>
-            {parse(DOMPurify.sanitize(instruction))}
-          </div>
-        )}
+        <div className='confirm-pop-up-title'>{parse(DOMPurify.sanitize(title))}</div>
+        {message && <div className='confirm-pop-up-instruction'>{parse(DOMPurify.sanitize(message))}</div>}
+        {instruction && <div className='confirm-pop-up-instruction'>{parse(DOMPurify.sanitize(instruction))}</div>}
         <div className='confirm-pop-up-buttons'>
           {showCancel && (
             <ButtonSimple
-              classes={['cancel']}
-              label={cancelLabel ? cancelLabel : 'Cancel'}
+              classes={["cancel"]}
+              label={cancelLabel ? cancelLabel : "Cancel"}
               handleClick={handleCancel}
             />
-          )}{' '}
-          <ButtonSimple
-            classes={['confirm']}
-            label={confirmLabel ? confirmLabel : 'Ok'}
-            handleClick={handleConfirm}
-          />
+          )}{" "}
+          <ButtonSimple classes={["confirm"]} label={confirmLabel ? confirmLabel : "Ok"} handleClick={handleConfirm} />
         </div>
       </div>
     </div>
@@ -85,5 +70,5 @@ Confirm.propTypes = {
   isfullscreen: PropTypes.bool,
   fitContent: PropTypes.bool,
 }
-Confirm.displayName = 'Confirm'
+Confirm.displayName = "Confirm"
 export default Confirm

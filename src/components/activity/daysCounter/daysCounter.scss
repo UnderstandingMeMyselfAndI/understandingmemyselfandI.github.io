@@ -60,10 +60,13 @@
 
   h3 {
     padding: 0;
-    margin: 0 auto;
+    margin: 0;
+    width: calc(100% - 70px);
     line-height: 1;
     font-weight: 800;
     font-variation-settings: 'wght' 800;
+    text-align: left;
+    // flex: 1;
   }
 
   // }
@@ -231,18 +234,30 @@
     }
   }
 
-  // &__subtitle {
-  //   font-size: variables.$med_size;
-  //   color: var(--grey-light-trans-90);
-  // }
-
-  &__empty-state,
   &__add-first {
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
     row-gap: 2.5rem;
+  }
+
+  &__empty-state {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    row-gap: 2.5rem;
+    height: 100%;
+  }
+
+  &__empty-wrap {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    gap: 1rem;
   }
 
   &__empty-title {

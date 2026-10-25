@@ -69,7 +69,7 @@ const Tools = () => {
         <div className='tools-inner'>
           <CloseBtn onClick={handleClose} />
           <header>
-            <h2>{parse(DOMPurify.sanitize(content?.title))}</h2>
+            <h2 className={filterTools ? 'your-tools' : ''}>{filterTools ? 'Your ' : 'The '} Tools</h2>
             <div className='intro'>{parse(DOMPurify.sanitize(content?.introduction))}</div>
           </header>
           <div className='tools-wrapper'>

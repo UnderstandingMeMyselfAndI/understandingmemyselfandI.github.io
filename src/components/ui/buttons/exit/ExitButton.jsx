@@ -18,7 +18,6 @@ const DRAG_THRESHOLD = 5
 
 const restrictPos = (data) => {
   if (!data) {
-    console.warn('Data is null ExitBtn')
     return
   }
   if (data.x < minX) data.x = minX

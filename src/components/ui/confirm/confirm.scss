@@ -1,5 +1,5 @@
-@use '@scss/variables';
-@import '@scss/globals.css';
+@use "@scss/variables";
+@import "@scss/globals.css";
 
 .confirm-pop-up {
   position: fixed;
@@ -45,7 +45,7 @@
       position: relative;
 
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
@@ -73,8 +73,8 @@
   .confirm-pop-up-title {
     font-size: variables.$h3_size;
     font-weight: 800;
-    font-variation-settings: 'wght' 800;
-    font-variation-settings: 'wght' 800;
+    font-variation-settings: "wght" 800;
+    font-variation-settings: "wght" 800;
     color: var(--primary);
     width: 100%;
     max-width: 400px;
@@ -99,8 +99,8 @@
 
     b {
       font-weight: 600;
-      font-variation-settings: 'wght' 600;
-      font-variation-settings: 'wght' 600;
+      font-variation-settings: "wght" 600;
+      font-variation-settings: "wght" 600;
     }
 
     u.yellow-ul {
@@ -124,7 +124,7 @@
       justify-content: center;
       padding: 1rem 0.5rem;
       font-weight: 400;
-      font-variation-settings: 'wght' 400;
+      font-variation-settings: "wght" 400;
     }
 
     button.confirm {
@@ -137,7 +137,7 @@
       position: relative;
 
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
@@ -150,3 +150,5 @@
     }
   }
 }
+
+.ummi__confirm {}

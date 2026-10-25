@@ -1,43 +1,43 @@
-@use '_variables';
-@use 'sass:math';
+@use "_variables";
+@use "sass:math";
 
 @font-face {
-  font-family: 'Plus Jakarta Sans';
+  font-family: "Plus Jakarta Sans";
   font-weight: 200 800; // necessary for iOS
   font-style: normal;
   font-display: swap;
   src:
-    url('/fonts/PlusJakartaSans-VariableFont_wght.woff2') format('woff2'),
-    url('/fonts/PlusJakartaSans-VariableFont_wght.woff') format('woff');
+    url("/fonts/PlusJakartaSans-VariableFont_wght.woff2") format("woff2"),
+    url("/fonts/PlusJakartaSans-VariableFont_wght.woff") format("woff");
 }
 
 @font-face {
   font-display: swap;
-  font-family: 'Plus Jakarta Sans Italic';
+  font-family: "Plus Jakarta Sans Italic";
   font-style: italic;
-  src: url('/fonts/PlusJakartaSans-Italic-VariableFont_wght.woff') format('woff2');
+  src: url("/fonts/PlusJakartaSans-Italic-VariableFont_wght.woff") format("woff2");
   /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 @font-face {
-  font-family: 'Cabin Bold';
+  font-family: "Cabin Bold";
   font-weight: 200 800;
   font-style: normal;
   font-display: swap;
   src:
-    url('/fonts/CabinSketch-Bold.woff2') format('woff2'),
-    url('/fonts/CabinSketch-Bold.woff') format('woff');
+    url("/fonts/CabinSketch-Bold.woff2") format("woff2"),
+    url("/fonts/CabinSketch-Bold.woff") format("woff");
 }
 
 body {
   font-family:
-    'Plus Jakarta Sans',
+    "Plus Jakarta Sans",
     system-ui,
     -apple-system,
     BlinkMacSystemFont,
     sans-serif;
   font-weight: 400;
-  font-variation-settings: 'wght' 400;
+  font-variation-settings: "wght" 400;
 
   font-style: normal;
   line-height: variables.$default_line_height;
@@ -52,7 +52,7 @@ body {
   select,
   textarea {
     font-family:
-      'Plus Jakarta Sans',
+      "Plus Jakarta Sans",
       system-ui,
       -apple-system,
       BlinkMacSystemFont,
@@ -75,14 +75,14 @@ body {
   h5,
   h6 {
     font-family:
-      'Plus Jakarta Sans',
+      "Plus Jakarta Sans",
       Georgia,
       system-ui,
       -apple-system,
       BlinkMacSystemFont,
       sans-serif;
 
-    font-variation-settings: 'wght' 800;
+    font-variation-settings: "wght" 800;
     font-weight: 800;
     font-style: normal;
     line-height: variables.$default_line_height;
@@ -126,16 +126,7 @@ body {
     line-height: 1.4;
   }
 
-  strong {
-    font-weight: 800;
-    font-variation-settings: 'wght' 800;
-    transform: scale(1.075);
-    transform-origin: 0% 50%;
-    display: block;
-    margin-right: 4.5%;
-  }
-
   * {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
   }
 }

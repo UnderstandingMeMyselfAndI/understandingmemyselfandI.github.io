@@ -1,6 +1,6 @@
-@use '@scss/_variables';
-@use './scss/_fonts';
-@import '@scss/globals.css';
+@use "@scss/_variables";
+@use "./scss/_fonts";
+@import "@scss/globals.css";
 
 html {
   width: 100%;
@@ -70,7 +70,7 @@ body {
     margin: 0;
     font-size: variables.$btn_size;
     font-weight: 600;
-    font-variation-settings: 'wght' 600;
+    font-variation-settings: "wght" 600;
     width: fit-content;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
@@ -78,7 +78,7 @@ body {
     border: none;
     color: var(--primary);
     outline: 1px solid var(--blue);
-    padding: 0.5rem 0.75rem;
+    padding: 1.25rem 1.5rem;
     border-radius: var(--border-radius-sml);
 
     &:focus,
@@ -116,7 +116,6 @@ body {
 
   .main {
     scrollbar-width: 0;
-
     width: 100vw;
     height: 100%;
     margin: 0 auto;
@@ -137,8 +136,6 @@ body {
     section.activity,
     div.activity {
       position: relative;
-      // visibility: hidden;
-      // pointer-events: none;
 
       z-index: 1000;
       top: 0;
@@ -160,32 +157,12 @@ body {
           height: 100%;
           top: 0;
           left: 0;
-          content: '';
+          content: "";
           background: var(--background-main);
           z-index: -1;
           opacity: 0.35;
         }
       }
-
-      // &.hide,
-      // &.close {
-      //   // visibility: hidden;
-      //   // z-index: -10;
-      //   pointer-events: none;
-      // }
-
-      // &.fixed {
-      //   position: fixed;
-      // }
-
-      // &.open,
-      // &.show {
-      //   visibility: visible;
-      //   pointer-events: auto;
-      //   z-index: 6000;
-      //   display: flex;
-      //   align-content: center;
-      // }
 
       header {
         padding-top: calc(env(safe-area-inset-top));
@@ -285,13 +262,13 @@ body {
   }
 
   *.MuiTypography-root {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
     color: var(--primary);
   }
 
   div.MuiModal-root {
     max-width: 100%;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
 
     div.MuiBox-root {
       max-width: 90dvw;
@@ -314,13 +291,13 @@ body {
 
     b {
       font-weight: 600;
-      font-variation-settings: 'wght' 600;
+      font-variation-settings: "wght" 600;
     }
 
     .title {
       font-size: variables.$h3_size;
       font-weight: 800;
-      font-variation-settings: 'wght' 800;
+      font-variation-settings: "wght" 800;
     }
   }
 
@@ -353,7 +330,17 @@ body {
   b,
   p b {
     font-weight: 800;
-    font-variation-settings: 'wght' 800;
+    font-variation-settings: "wght" 800;
+  }
+
+  strong {
+    font-weight: 700;
+    font-variation-settings: "wght" 700;
+    transform: scale(1.095);
+    transform-origin: 0% 50%;
+    display: inline;
+
+    margin-right: 0.5%;
   }
 }
 
@@ -369,7 +356,7 @@ section {
 
 div#centers {
   position: fixed;
-  // user-select: 0;
+  user-select: 0;
   pointer-events: none;
 
   top: 0;
@@ -401,65 +388,3 @@ div#centers {
     transform: translate(-50%, 0);
   }
 }
-
-// .bgImgs {
-//   position: absolute;
-
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-//   user-select: none;
-//   z-index: -1;
-
-//   /* overflow: hidden; */
-//   .icon {
-//     position: absolute;
-//     z-index: -1;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-
-//     svg {
-//       max-width: 425px;
-//       width: 100%;
-//       opacity: 0.07;
-
-//       path {
-//         fill: #181136;
-//         stroke: #181136;
-//       }
-//     }
-//   }
-
-//   .icon.thumbsup {
-//     left: auto;
-//     right: 0%;
-//     top: 0%;
-//     transform: rotate(-15deg) scale(0.8) translate(30%, -0%) scaleX(-1);
-
-//     svg {
-//       opacity: 0.07;
-//     }
-//   }
-
-//   .icon.vwhand {
-//     top: 15%;
-//     left: 0;
-//     transform: rotateZ(45deg) scale(0.7) translate(-40%, 0);
-//   }
-
-//   .icon.peacehand {
-//     top: 26%;
-//     left: auto;
-//     margin-right: -10%;
-//     transform: rotate(45deg) scale(0.53) translate(-40%, 0%);
-
-//     svg {
-//       path {
-//         fill: #181136;
-//         stroke: #181136;
-//       }
-//     }
-//   }
-// }

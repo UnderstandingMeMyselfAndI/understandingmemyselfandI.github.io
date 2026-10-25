@@ -1,5 +1,5 @@
-@use '@scss/variables';
-@import '@scss/globals.css';
+@use "@scss/variables";
+@import "@scss/globals.css";
 
 .quiz-container {
   display: flex;
@@ -34,8 +34,8 @@
       line-height: 1.23;
       font-size: 1.25rem;
       font-weight: 600;
-      font-variation-settings: 'wght' 600;
-      font-variation-settings: 'wght' 600;
+      font-variation-settings: "wght" 600;
+      font-variation-settings: "wght" 600;
       text-align: center;
       color: var(--primary);
       opacity: 0;
@@ -79,7 +79,7 @@
     gap: 12px;
     font-size: 1.2rem;
     font-weight: 400;
-    font-variation-settings: 'wght' 400;
+    font-variation-settings: "wght" 400;
     cursor: pointer;
     padding: 16px 20px;
     border-radius: 6px;
@@ -89,7 +89,7 @@
     position: relative;
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
@@ -104,7 +104,7 @@
     }
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
@@ -119,7 +119,7 @@
     }
   }
 
-  .option input[type='radio'] {
+  .option input[type="radio"] {
     margin-right: 12px;
     width: 24px;
     height: 24px;
@@ -131,7 +131,7 @@
 
     &::after {
       position: absolute;
-      content: ' ';
+      content: " ";
       display: block;
       width: 100%;
       height: 100%;
@@ -143,7 +143,7 @@
     }
 
     &::before {
-      content: ' ';
+      content: " ";
       position: absolute;
       width: 0%;
       height: 0%;
@@ -178,10 +178,10 @@
 
     .radio-text {
       font-weight: 400;
-      font-variation-settings: 'wght' 400;
+      font-variation-settings: "wght" 400;
     }
 
-    input[type='radio'] {
+    input[type="radio"] {
       &::after {
         width: 100%;
         height: 100%;
@@ -191,7 +191,7 @@
       }
 
       &::before {
-        content: ' ';
+        content: " ";
         position: absolute;
         width: 40%;
         height: 40%;
@@ -215,11 +215,12 @@
       opacity: 0.6;
       border: 1px solid var(--grey-dark);
       transition: all 0.3s ease-in-out;
+      background: var(--orange-dark);
     }
 
     .answer-text {
       font-weight: 400;
-      font-variation-settings: 'wght' 400;
+      font-variation-settings: "wght" 400;
       color: var(--grey);
     }
   }
@@ -230,15 +231,15 @@
 
     .answer-text {
       font-weight: 800;
-      font-variation-settings: 'wght' 800;
-      font-variation-settings: 'wght' 700;
+      font-variation-settings: "wght" 800;
       color: var(--primary);
     }
 
     &::after {
       border: 1px solid var(--grey-dark-trans-50);
       box-shadow: var(--box-shadow-dark);
-      background: var(--grey-dark-trans-50);
+
+      background: var(--orange-dark);
       opacity: 1;
       transition: all 0.3s ease-in-out;
     }
@@ -251,7 +252,7 @@
       transition: all 0.3s ease-in-out;
     }
 
-    input[type='radio'] {
+    input[type="radio"] {
       &::after {
         width: 100%;
         height: 100%;
@@ -261,7 +262,7 @@
       }
 
       &::before {
-        content: ' ';
+        content: " ";
         position: absolute;
         left: 50%;
         top: 50%;
@@ -278,23 +279,23 @@
 
   .option.selected-pending .answer-text {
     font-weight: 600;
-    font-variation-settings: 'wght' 600;
+    font-variation-settings: "wght" 600;
     color: var(--primary);
   }
 
   /* Correct answer after submit */
   .option.correct-answer {
-    background-color: var(--background-main);
+    background-color: var(--orange-dark);
     border-color: var(--primary);
 
     &::after {
-      background: var(--background-main);
+      background: var(--orange-trans-20);
       outline-color: var(--orange);
       box-shadow: var(--box-shadow-light);
-      opacity: 1;
+      opacity: 0.2;
     }
 
-    input[type='radio'] {
+    input[type="radio"] {
       appearance: none;
 
       &::after {
@@ -305,14 +306,14 @@
         width: 50%;
         height: 50%;
         opacity: 1;
-        background-color: var(--orange);
+        background-color: var(--primary);
       }
     }
   }
 
   .option.correct-answer .answer-text {
     font-weight: 600;
-    font-variation-settings: 'wght' 600;
+    font-variation-settings: "wght" 600;
     color: var(--primary);
   }
 
@@ -321,6 +322,8 @@
     border-color: var(--primary);
     color: var(--primary);
     box-shadow: var(--box-shadow-dark);
+    font-weight: 800;
+    font-variation-settings: "wght" 800;
 
     &::after {
       background-color: var(--orange);
@@ -329,10 +332,10 @@
 
     &::before {
       background-color: var(--background-main);
-      opacity: 1;
+      opacity: 0.6;
     }
 
-    input[type='radio'] {
+    input[type="radio"] {
       &::after {
         outline: 4px solid var(--primary);
       }
@@ -376,15 +379,15 @@
     line-height: 1.2;
     font-size: 1.25rem;
     font-weight: 600;
-    font-variation-settings: 'wght' 600;
-    font-variation-settings: 'wght' 600;
+    font-variation-settings: "wght" 600;
+    font-variation-settings: "wght" 600;
 
     >span {
       position: relative;
 
       &::after {
         position: absolute;
-        content: '';
+        content: "";
         width: 110%;
         height: 100%;
         left: -5%;
@@ -423,7 +426,7 @@
     text-shadow: var(--text-shadow);
     font-size: 1.5rem;
     font-weight: 600;
-    font-variation-settings: 'wght' 600;
+    font-variation-settings: "wght" 600;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -432,7 +435,7 @@
     position: relative;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
@@ -447,7 +450,7 @@
     }
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       width: 110%;
       height: 120%;

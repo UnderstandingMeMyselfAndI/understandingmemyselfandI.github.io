@@ -236,10 +236,12 @@ const DaysCounter = () => {
               {dates.length === 0 ? (
                 <div className='days-counter__empty-state'>
                   <h3>{component_strings.title}</h3>
-                  <div className='days-counter__empty-title'>{component_strings.counter.add}</div>
-                  <button onClick={addCounter} className='days-counter__add-another-btn'>
-                    ({dates.length}/{maxNumDates})
-                  </button>
+                  <div className='days-counter__empty-wrap'>
+                    <div className='days-counter__empty-title'>{component_strings.counter.add}</div>
+                    <button onClick={addCounter} className='days-counter__add-another-btn'>
+                      ({dates.length}/{maxNumDates})
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <>

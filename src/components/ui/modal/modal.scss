@@ -1,32 +1,98 @@
-@use '@scss/variables';
-@import '@scss/globals.css';
+@use "sass:color";
+@use "@scss/variables";
+@import "@scss/globals.css";
 
-.modal {
-    // display: none;
+body #root .modal {
+    position: absolute;
+    top: 50%;
+    left: 0;
 
     display: flex;
-    position: fixed;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
     z-index: 15601;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--grey-bg);
+    padding: 0;
+    border-radius: var(--border-radius-lrg);
+    box-shadow: var(--box-shadow-dark);
+    max-width: var(--max-width);
+    width: 90%;
+    margin: 0 auto;
+    height: fit-content;
+    // -----------------
+    transform: translate(0, -50%);
+    padding: 1.25rem 0.5rem;
 
-    /* iOS Safari specific fixes */
-    @supports (-webkit-touch-callout: none) {
-        height: 100vh;
-        position: fixed;
+    h4 {
+        margin: 0;
+        padding: 0;
+        // outline: 1px solid grey;vvvvvvvvvvvv
+        text-align: center;
+        text-wrap-style: balance;
+    }
+
+    &.fullscreen {
+        width: 100%;
+        height: 100%;
         top: 0;
+        transform: translate(0, 0%);
+
+        padding: 0;
+
+        h4 {
+            margin: 0.75rem 0;
+        }
+
+        &::before,
+        &::after {
+            border-radius: none;
+        }
+    }
+
+    &::before {
+        position: absolute;
+        content: "";
         left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--background-main);
+        border-radius: var(--border-radius);
+        opacity: 0.45;
+        z-index: 0;
+    }
+
+    &::after {
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--blue-dark-trans-90);
+        border-radius: var(--border-radius);
+        z-index: -1;
+    }
+
+    &__inner {
+        padding: 0;
+        position: relative;
+        width: 100%;
+        margin: 0 auto;
+        height: 100%;
+        max-height: 100%;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+        row-gap: 1rem;
+        padding: calc(var(--gutters) / 2);
+        // background-color: var(--background-main);
     }
 
     &__wrap {
         text-align: center;
         display: flex;
         flex-flow: column nowrap;
-        // position: absolute;
-
         top: 0;
         left: 0;
         width: 100%;
@@ -48,52 +114,116 @@
         }
     }
 
-    &__inner {
-        position: relative;
-        width: 100%;
-        margin: 0 auto;
-        height: 100vh;
-        max-height: 100vh;
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: space-between;
-        row-gap: 1rem;
-        padding: 2rem 1.5rem;
-        // background-color: var(--background-main);
-
-        &::after {
-            content: '';
-            position: absolute;
-            z-index: -1;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.5;
-            background: var(--background-main);
-        }
-    }
-
-    &__instruction {
-        width: 100%;
-        display: flex;
-        flex-flow: column nowrap;
-        line-height: 1.3;
-        font-size: variables.$default_size;
-        color: var(--primary);
-        overflow-y: auto;
-        margin: 0 auto;
-        align-content: center;
-        align-items: center;
-        text-wrap-style: balance;
-    }
-
     &__title {
         font-size: variables.$h3_size;
         font-weight: 600;
-        font-variation-settings: 'wght' 600;
+        font-variation-settings: "wght" 600;
         color: var(--primary);
+        text-align: left;
         width: 100%;
+    }
+
+    &__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        // width: 100dvw;
+        display: flex;
+        flex-flow: column wrap;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        background: var(--blue);
+
+        &::after {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            content: "";
+            background: var(--background-main);
+            z-index: -1;
+            opacity: 0.35;
+        }
+    }
+
+    h3 {
+        // flex: 1;
+        width: 100%;
+        height: fit-content;
+    }
+
+    &__header {
+        // flex: 1;
+        width: 100%;
+    }
+
+    /* iOS Safari specific fixes */
+    @supports (-webkit-touch-callout: none) {
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+
+    &__content {
+        flex: 1;
+        display: flex;
+        flex-flow: column nowrap;
+        row-gap: 1rem;
+        width: 100%;
+        // align-content: center;
+        align-items: center;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        border-top: 2px solid var(--blue-dark-trans-20);
+        border-bottom: 2px solid var(--blue-light-trans-20);
+        background: var(--grey-trans-10);
+        // outline: 6px solid yellow;
+        padding: calc(var(--gutters) / 2);
+        text-align: left;
+        text-wrap-style: balance;
+        line-height: 1.3;
+
+        p {
+            margin: 0;
+        }
+
+        ul {
+            list-style: none;
+            font-size: variables.$default_size;
+            // padding-right: 1rem;
+
+            li {
+                // margin-bottom: 0.75rem;
+            }
+        }
+
+        button {
+            padding: 1rem 2rem;
+            font-size: variables.$btn_size;
+            border-radius: 4px;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin: 0 auto;
+
+            &:hover {
+                // background: color.adjust($color-primary, $lightness: -5%);
+            }
+
+            &.btn-secondary {
+                background: #6c757d;
+
+                &:hover {
+                    background: color.adjust(#6c757d, $lightness: -5%);
+                }
+            }
+        }
     }
 
     &__actions {
@@ -105,13 +235,13 @@
 
     button.btn.confirm {
         background: transparent;
-        outline: 1px solid var(--grey-light-trans-40);
-        width: 50%;
+        outline: 1px solid var(--grey-med-trans-40);
+        width: fit-content;
         text-align: center;
         justify-content: center;
         background-color: var(--blue);
-        box-shadow: none;
-        padding: 1rem 1.25rem;
+        box-shadow: var(--box-shadow);
+        padding: 1rem 1.5rem;
 
         /* iOS specific */
         @supports (-webkit-touch-callout: none) {

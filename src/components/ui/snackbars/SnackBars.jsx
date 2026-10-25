@@ -58,12 +58,13 @@ const SnackBars = () => {
         }
         onClose={handleClose}
         slots={{ transition: Slide }}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}>
         <Alert
           onClose={handleClose}
           severity={severity}
           variant='filled'
           sx={{ width: '100%' }}
+          className={'snackbar-alert'}
           action={
             hasAction ? (
               <Button

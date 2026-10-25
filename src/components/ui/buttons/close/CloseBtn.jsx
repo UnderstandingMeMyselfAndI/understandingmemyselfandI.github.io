@@ -1,13 +1,12 @@
-import PropTypes from 'prop-types'
-import './closeBtn.scss'
+import PropTypes from "prop-types"
+import "./closeBtn.scss"
 
-const CloseBtn = ({ onClick, classes = '' }) => {
+const CloseBtn = ({ onClick, classes = "" }) => {
   const handleTouch = () => {
-    console.log('handleTouch')
     onClick()
   }
   return (
-    <button className={'close-btn' + (classes ? ' ' + classes : '')} onClick={handleTouch}>
+    <button className={"close-btn" + (classes ? " " + classes : "")} onClick={handleTouch}>
       <div className='close-btn-wrap'>
         <div className='close-btn-inner'>
           <div className='line'></div>
