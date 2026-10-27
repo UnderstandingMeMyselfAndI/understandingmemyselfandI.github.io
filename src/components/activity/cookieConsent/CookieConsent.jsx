@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import './CookieConsent.scss'
 import useAppStore from '@store/useAppStore'
 
@@ -12,19 +12,6 @@ const CookieConsent = () => {
     marketing: false,
     preferences: false,
   })
-
-  useEffect(() => {
-    const savedConsent = localStorage.getItem('cookieConsent')
-    if (savedConsent) {
-      const parsed = JSON.parse(savedConsent)
-      setConsent(parsed)
-      setGae(parsed.analytics) // Sync gae with saved analytics consent
-      loadScripts(parsed)
-    } else {
-      setShow(true)
-    }
-  }, [])
-
   const loadScripts = (consentData) => {
     const id = 'G-KN451R818V'
 
@@ -58,6 +45,32 @@ const CookieConsent = () => {
     //   console.log('Preference cookies enabled');
     // }
   }
+  useEffect(() => {
+    const saveConsentData = () => {
+      try {
+        const savedConsent = localStorage.getItem('cookieConsent')
+        if (savedConsent) {
+          // Safe parsing with error handling
+          const parsed = JSON.parse(savedConsent)
+          // Validate parsed data is an object with expected properties
+          if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+            setConsent(parsed)
+            setGae(parsed.analytics)
+            loadScripts(parsed)
+            // Clear stale consent on successful read
+            localStorage.removeItem('cookieConsent')
+          }
+        } else {
+          setShow(true)
+        }
+      } catch {
+        // Silently ignore corrupted localStorage data
+        setShow(true)
+      }
+    }
+
+    saveConsentData()
+  }, [setGae])
 
   const saveConsent = (consentData) => {
     localStorage.setItem('cookieConsent', JSON.stringify(consentData))
