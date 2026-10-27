@@ -3,10 +3,10 @@
 // is encrypted and stored exactly like real user data.
 //
 // Usage from the browser console (Vite dev server):
-//   const { seedSmallWins } = await import('/src/utils/seedSmallWins.js');
-//   await seedSmallWins();                      // 100 wins over 40 days
-//   await seedSmallWins({ count: 300, days: 90 });
-//   await seedSmallWins({ clear: true });       // wipe first, then seed
+  // const { seedSmallWins } = await import('/src/utils/seedSmallWins.js');
+  // await seedSmallWins();                      // 100 wins over 40 days
+  // await seedSmallWins({ count: 300, days: 90 });
+  // await seedSmallWins({ clear: true });       // wipe first, then seed
 //
 // Or, if you call attachToWindow() once (see below):
 //   await window.seedSmallWins()

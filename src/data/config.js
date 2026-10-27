@@ -1,9 +1,3 @@
-// import HandymanIcon from '@mui/icons-material/Handyman'
-// import { isTouchDevice } from '../js/utils.js'
-// export const isTouchDevice = () => {
-//   return true
-// }
-
 import DoneIcon from "@mui/icons-material/Done"
 import RestoreOutlinedIcon from "@mui/icons-material/RestoreOutlined"
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
@@ -165,7 +159,16 @@ const strings = {
       url: "recovery-tools",
       title: "The Tools",
       // introduction: (isTouchDevice() ? 'Tap' : 'Click') + ' on a tool to learn more about it',
-      introduction: "Tap on a tool to read about it <br />and add them to your toolbox",
+      introduction: (
+        <div>
+          <p>Tap on a tool for more info. </p>
+          {/* <p>
+            Favourite tools with <IconHandyman />
+            <br />
+            add them to your toolbox
+          </p> */}
+        </div>
+      ),
       description: [
         'These tools <u class="yellow-ul"><b>might not </b></u>work for<u><b class="yellow"> everbody.</b></u>',
         // 'They <u>could work</u> for <b><u class="yellow">one person</u></b> and <u class="yellow-ul">not the next</u>.',

@@ -2,12 +2,12 @@
 // Persisted to ummi-db/settings/config (plaintext, JSON).
 // Sensitive fields live in usePrivateStore (encrypted).
 
-import { create } from 'zustand'
-import { loadConfig, saveConfig } from '@utils/settingsStorage'
+import { create } from "zustand"
+import { loadConfig, saveConfig } from "@utils/settingsStorage"
 
 const DEFAULTS = {
   // Theme & accessibility
-  theme: 'system',
+  theme: "system",
   textScale: 100,
 
   // Safety-critical flags — must be readable before unlock.
@@ -23,8 +23,8 @@ const DEFAULTS = {
   showBurgerStack: true,
 
   // Version / newsletter
-  version: '',
-  lastVersionCheck: '',
+  version: "",
+  lastVersionCheck: "",
   nss: false,
 
   // Install
@@ -39,10 +39,10 @@ const DEFAULTS = {
   // Misc
   spv: false,
   gae: true,
-  currency: 'USD',
+  currency: "USD",
 
   // Quick exit
-  quickExitURL: 'https://google.com',
+  quickExitURL: "https://google.com",
   exitButtonPosition: null,
 
   // Age gate
@@ -55,7 +55,7 @@ const EPHEMERAL = {
   _hasHydrated: false,
   menuCarouselPosition: null,
   isModal: false,
-  message: '',
+  message: "",
   messageId: 0,
   snackbarAction: null,
   showSnackbar: false,
@@ -70,7 +70,7 @@ const EPHEMERAL = {
   toolsInView: false,
   isMobile: false,
   p: [],
-  phrase: '',
+  phrase: "",
   needUpdate: false,
   nu: false,
   vsts: 0,
@@ -87,7 +87,7 @@ export const useAppStore = create((set, get) => {
     try {
       await saveConfig(pickPersisted(get()))
     } catch (err) {
-      console.error('[useAppStore] persist failed:', err)
+      console.error("[useAppStore] persist failed:", err)
     }
   }
 
@@ -106,7 +106,7 @@ export const useAppStore = create((set, get) => {
         if (config) set((s) => ({ ...s, ...config, _hasHydrated: true }))
         else set({ _hasHydrated: true })
       } catch (err) {
-        console.error('[useAppStore] hydrate failed:', err)
+        console.error("[useAppStore] hydrate failed:", err)
         set({ _hasHydrated: true })
       }
     },
@@ -168,7 +168,7 @@ export const useAppStore = create((set, get) => {
     setMenuCarouselPosition: (v) => set({ menuCarouselPosition: v }),
     setIsModal: (v) => set({ isModal: v }),
     setMessage: (v) => set((s) => ({ message: v, messageId: s.messageId + 1 })),
-    clearSnackbar: () => set({ message: '', snackbarAction: null }),
+    clearSnackbar: () => set({ message: "", snackbarAction: null }),
     setShowSnackbar: (v) => set({ showSnackbar: v }),
     setSnackbarAction: (v) => set({ snackbarAction: v }),
     requestPasscodeDialog: () => set((s) => ({ passcodeDialogRequest: s.passcodeDialogRequest + 1 })),
@@ -189,9 +189,27 @@ export const useAppStore = create((set, get) => {
     incVSTS: () => set((s) => ({ vsts: s.vsts + 1 })),
 
     clearIDB: async () => {
-      const { clear } = await import('idb-keyval')
-      await clear()
-      console.log('IndexedDB cleared')
+      // 1. Legacy keyval store
+      const { clear: clearKeyval } = await import("idb-keyval")
+      await clearKeyval()
+
+      // 2. ummi-db — Small Wins entries, people, and settings
+      const { deleteAllData } = await import("@utils/smallWinsStorage")
+      const { clearAllSettings } = await import("@utils/settingsStorage")
+      const { resetDbConnection } = await import("@utils/db")
+
+      await deleteAllData()
+      await clearAllSettings()
+      resetDbConnection()
+
+      // 3. Wipe in-memory stores so the UI immediately reflects "empty"
+      const { useSmallWinsStore } = await import("@store/useSmallWinsStore")
+      const { usePrivateStore } = await import("@store/usePrivateStore")
+      useSmallWinsStore.getState().reset()
+      usePrivateStore.getState().reset()
+
+      // 4. Force a full reload so hydration re-runs from the now-empty state
+      window.location.reload()
     },
   }
 })

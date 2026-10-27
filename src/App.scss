@@ -141,7 +141,7 @@ body {
       top: 0;
       left: 0;
 
-      max-width: var(--max-width);
+      // max-width: var(--max-width);
       padding: 0 var(--gutters);
       width: 100dvw;
 
@@ -176,11 +176,7 @@ body {
           text-align: center;
         }
 
-        .intro {
-          padding: 0;
-          margin: 0;
-          font-size: variables.$med_size;
-        }
+        
       }
     }
 

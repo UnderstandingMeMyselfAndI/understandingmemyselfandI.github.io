@@ -1,11 +1,12 @@
-import { useRef, useEffect, useLayoutEffect, useCallback, useMemo } from 'react'
-import Skeleton from '@mui/material/Skeleton'
-import HandymanIcon from '@mui/icons-material/Handyman'
-import PropTypes from 'prop-types'
-import parse from 'html-react-parser'
-import DOMPurify from 'dompurify'
-import useAppStore from '@store/useAppStore'
-import './MenuCarousel.scss'
+import { useRef, useEffect, useLayoutEffect, useCallback, useMemo } from "react"
+import Skeleton from "@mui/material/Skeleton"
+// import HandymanIcon from "@mui/icons-material/Handyman"
+import IconHandyman from "@icons/IconHandyman"
+import PropTypes from "prop-types"
+import parse from "html-react-parser"
+import DOMPurify from "dompurify"
+import useAppStore from "@store/useAppStore"
+import "./MenuCarousel.scss"
 
 // Default configuration
 const DEFAULT_CONFIG = {
@@ -13,7 +14,7 @@ const DEFAULT_CONFIG = {
   minScale: 0.5,
   fadeBoundary: 0.2,
   centerZoneHeight: 0.4,
-  transitionSpeed: '0.2s',
+  transitionSpeed: "0.2s",
 }
 
 // Custom hook for scroll effects
@@ -130,11 +131,11 @@ const CarouselListItem = ({ children, index, registerItem, unregisterItem, style
     <div
       ref={elementRef}
       data-index={index}
-      className={'list-item carousel-item-wrapper'}
+      className={"list-item carousel-item-wrapper"}
       style={{
-        width: '100%',
-        transition: 'opacity 0.2s, transform 0.2s',
-        transformOrigin: 'center center',
+        width: "100%",
+        transition: "opacity 0.2s, transform 0.2s",
+        transformOrigin: "center center",
         ...style,
       }}>
       {children}
@@ -176,11 +177,11 @@ DescriptionItem.propTypes = {
 }
 
 const CUSTOM_CONFIG = {
-  minOpacity: 0.35,
-  minScale: 0.35,
+  minOpacity: 0.15,
+  minScale: 0.3,
   fadeBoundary: 0.35,
-  centerZoneHeight: 0.025,
-  transitionSpeed: '0.25s',
+  centerZoneHeight: 0.015,
+  transitionSpeed: "0.3s",
 }
 
 // Main carousel component
@@ -242,14 +243,14 @@ const MenuCarousel = ({ data, filterIDs, showFavourites, handleClick, descriptio
       }
     }
 
-    container.addEventListener('scroll', handleScroll, { passive: true })
-    container.addEventListener('wheel', onUserInteraction, { passive: true })
-    container.addEventListener('touchmove', onUserInteraction, { passive: true })
+    container.addEventListener("scroll", handleScroll, { passive: true })
+    container.addEventListener("wheel", onUserInteraction, { passive: true })
+    container.addEventListener("touchmove", onUserInteraction, { passive: true })
 
     return () => {
-      container.removeEventListener('scroll', handleScroll)
-      container.removeEventListener('wheel', onUserInteraction)
-      container.removeEventListener('touchmove', onUserInteraction)
+      container.removeEventListener("scroll", handleScroll)
+      container.removeEventListener("wheel", onUserInteraction)
+      container.removeEventListener("touchmove", onUserInteraction)
     }
   }, [])
 
@@ -265,7 +266,7 @@ const MenuCarousel = ({ data, filterIDs, showFavourites, handleClick, descriptio
     const container = scrollContainerRef.current
     if (!container || container.clientHeight === 0) return
 
-    const wrappers = container.querySelectorAll('.carousel-item-wrapper')
+    const wrappers = container.querySelectorAll(".carousel-item-wrapper")
     if (wrappers.length === 0) return
 
     const filterToolsChanged = prevFilterToolsRef.current !== filterTools
@@ -344,14 +345,14 @@ const MenuCarousel = ({ data, filterIDs, showFavourites, handleClick, descriptio
           index={index}
           registerItem={registerItem}
           unregisterItem={unregisterItem}
-          style={{ marginBottom: '4px' }}>
-          <div className={'carousel-item' + (isSelected ? ' selected' : '')} onClick={handleClick(item.id)}>
-            <div className='AccordionItem inner item' style={{ cursor: 'pointer' }}>
+          style={{ marginBottom: "4px" }}>
+          <div className={"carousel-item" + (isSelected ? " selected" : "")} onClick={handleClick(item.id)}>
+            <div className='AccordionItem inner item' style={{ cursor: "pointer" }}>
               <div className='title' aria-controls={`Accronym-${index}-content`} id={`panel${item?.id}-header`}>
-                {showFavourites && <HandymanIcon className={'icon' + (isSelected ? ' active' : '')} />}
+                {showFavourites && <IconHandyman className={"icon" + (isSelected ? " active" : "")} />}
 
-                <div className={'letters-cont' + (item.title.length > 12 ? ' long' : '')}>
-                  {item.title.split('.').map(
+                <div className={"letters-cont" + (item.title.length > 12 ? " long" : "")}>
+                  {item.title.split(".").map(
                     (subItem, i) =>
                       subItem && (
                         <div key={i} className='letter' data-content={subItem}>
@@ -373,12 +374,12 @@ const MenuCarousel = ({ data, filterIDs, showFavourites, handleClick, descriptio
       className='AccordionRoot'
       ref={scrollContainerRef}
       style={{
-        height: '100%',
-        overflowY: 'auto',
-        position: 'relative',
-        WebkitOverflowScrolling: 'touch',
+        height: "100%",
+        overflowY: "auto",
+        position: "relative",
+        WebkitOverflowScrolling: "touch",
       }}>
-      <div style={{ paddingTop: '50vh' }} />
+      <div style={{ paddingTop: "50vh" }} />
 
       <div className='accronym-menu'>{carouselItems}</div>
 
@@ -388,7 +389,7 @@ const MenuCarousel = ({ data, filterIDs, showFavourites, handleClick, descriptio
         </DescriptionItem>
       )}
 
-      <div style={{ paddingBottom: '50vh' }} />
+      <div style={{ paddingBottom: "50vh" }} />
     </div>
   )
 }

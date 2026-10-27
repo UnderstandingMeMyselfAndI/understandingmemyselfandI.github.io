@@ -10,7 +10,7 @@
   width: 100dvw;
   overflow-y: hidden;
   overflow-x: hidden;
-  max-width: 100%;
+  // max-width: 100%;
   margin: 0 auto;
   padding: 0;
   background: transparent;
@@ -42,7 +42,7 @@
   align-items: stretch;
   justify-content: space-evenly;
   padding: 0;
-  max-width: var(--max-width);
+
 
   &__close-btn {
     display: block;
@@ -52,6 +52,10 @@
   header {
     color: var(--primary);
     text-align: left;
+    position: absolute;
+    left: auto;
+
+    top: var(--gutters);
 
     @media screen and (width>=768px) {
       text-align: center;
@@ -66,7 +70,6 @@
     font-weight: 800;
     font-variation-settings: "wght" 800;
     text-align: left;
-    // flex: 1;
   }
 
   // }
@@ -96,6 +99,8 @@
     position: relative;
     width: 100%;
     height: 100%;
+    margin: 0 auto;
+    max-width: var(--max-inner-width);
   }
 
   /* Carousel container */
@@ -104,7 +109,8 @@
     flex: 1;
     height: 100%;
     align-self: stretch;
-    max-width: var(--max-width);
+    max-width: var(--max-inner-slim-width);
+    margin: 0 auto;
     overflow: hidden;
     touch-action: pan-y pinch-zoom;
     display: flex;
@@ -114,7 +120,7 @@
 
   &__carousel-track {
     display: flex;
-    transition: transform 0.3s ease-in-out;
+    transition: transform var(--transition);
     will-change: transform;
     flex: 1;
   }
@@ -150,7 +156,7 @@
     cursor: pointer;
     z-index: 200;
     opacity: 1;
-    transition: opacity 0.2s;
+    transition: opacity var(--transition);
 
     &:disabled {
       opacity: 0.2;
@@ -199,7 +205,7 @@
     background: transparent;
     padding: 0;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background-color var(--transition);
 
     &.active {
       background: var(--primary);
@@ -211,7 +217,7 @@
     }
   }
 
-  &__button-container {
+  &__actions {
     width: 100%;
   }
 
@@ -231,6 +237,7 @@
     input {
       font-weight: 800;
       font-variation-settings: "wght" 800;
+
     }
   }
 
@@ -297,23 +304,24 @@
   }
 
   &__add-first-btn {
-    margin: 1.5rem auto;
-    background: var(--blue-trans-50);
-    border: none;
-    padding: 0.75rem 2rem;
-    box-shadow: var(--box-shadow-dark);
+
     display: flex;
-    font-size: 1.25rem;
-    font-weight: 400;
-    font-variation-settings: "wght" 400;
-    color: var(--primary);
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    border-radius: 5px;
+    font-size: variables.$btn_size;
+    font-weight: 400;
+    font-variation-settings: "wght" 400;
+    color: var(--primary);
+    margin: 1.5rem auto;
+    padding: 0.75rem 2rem;
+    border: none;
+    box-shadow: var(--box-shadow-dark);
+    border-radius: var(--border-radius-sml);
+    background: var(--blue-trans-50);
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
+    transition: all var(--transition);
   }
 
   &__add-first-btn:hover {
@@ -327,8 +335,7 @@
   }
 
   &__card {
-    padding: 0.25rem;
-    transition: all 0.3s;
+    transition: all var(--transition);
     position: relative;
     width: 100%;
     overflow: hidden;
@@ -360,6 +367,7 @@
     text-align: center;
     margin: 0;
     scroll-margin: 0;
+    padding: 0.05rem 0 0.45rem 0;
     border-bottom: 1px solid transparent;
 
     &::placeholder {
@@ -368,25 +376,19 @@
 
       font-weight: 600;
       font-variation-settings: "wght" 600;
-      font-size: 1.75rem;
+      font-size: variables.$lrg_title_size;
+    }
+
+    &:focus {
+      border: none;
+      outline: none;
+      background: var(--grey-dark-trans-10);
+      border-bottom: 1px solid var(--blue-trans-30);
+      border-radius: var(--border-radius);
+      transition: border-color var(--transition);
     }
   }
 
-  &__title-input:focus {
-    border: none;
-    outline: none;
-    background: var(--grey-dark-trans-10);
-    border-bottom: 1px solid var(--blue-trans-30);
-    border-radius: var(--border-radius);
-
-    &::placeholder {
-      color: transparent;
-    }
-
-    // Prevent browser from auto-scrolling the viewport when focused
-    // by forcing it to scroll relative to the carousel track instead
-    position: relative;
-  }
 
   &__card-info {
     flex: 1;
@@ -395,25 +397,7 @@
     max-width: 100%;
   }
 
-  // &__label-input {
-  //   width: 100%;
-  //   font-size: variables.$med_size;
-  //   font-weight: 800;
-  //   font-variation-settings: 'wght' 800;
-  //   color: var(--blue-light);
-  //   border-bottom-width: 2px;
-  //   border-bottom-color: transparent;
-  //   outline: none;
-  //   padding-bottom: 0.25rem;
-  //   margin-bottom: 0.75rem;
-  //   border: none;
-  //   background: transparent;
-  // }
 
-  // &__label-input::placeholder {
-  //   color: var(--grey-light-trans-90);
-  //   font-size: 1rem;
-  // }
 
   &__date-controls {
     display: flex;
@@ -543,7 +527,7 @@
 
     .label {
       left: auto;
-      right: 0%;
+      right: -2%;
       top: 50%;
       position: absolute;
       transform: translate(75%, -30%) rotate(90deg);
@@ -675,14 +659,29 @@
 
 /* Buttons */
 .days-counter {
-  &__card-actions {
+  &__actions {
     position: relative;
     width: 100%;
     max-width: 100%;
+    display: flex;
+    align-items: center;
+
+    // >* {
+    //   outline: 1px solid grey;
+    // }
+  }
+
+  &__btn-wrap {
+    flex: 1 1 0;
+    height: 100%;
+
+    align-items: center;
+    align-content: center;
   }
 
   &__reset-btn,
   &__delete-btn {
+    margin: 0 auto;
     padding: 0.5rem;
     border: none;
     outline: none;
@@ -693,17 +692,28 @@
     background: transparent;
   }
 
+  &__btn-settings {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
   &__reset-btn {
     color: var(--grey-dark);
   }
 
+  &__settings-btn {
+    margin: 0 auto;
+  }
+
   &__delete-btn {
+    margin: 0 auto;
     color: var(--delete);
     width: 55px;
     height: 55px;
-    position: absolute;
-    left: -1rem;
-    top: 6rem;
+    border-radius: 9999px;
+    outline: 2px solid var(--grey-trans-80);
     box-shadow: none;
 
     svg {
@@ -727,6 +737,7 @@
   }
 
   &__add-another-btn {
+    flex: 1 1 0;
     margin: 0 auto;
     width: 90px;
     height: 90px;
@@ -736,7 +747,7 @@
     background-color: var(--blue);
     color: var(--primary);
     border-radius: 50%;
-    transition: all 0.3s;
+    transition: all var(--transition);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -774,7 +785,7 @@
     }
   }
 
-  &__savings-container {
+  & &__savings-container {
     display: flex;
     flex-flow: column wrap;
     gap: 0.75rem;
@@ -800,7 +811,7 @@
     width: fit-content;
     gap: 0.5rem;
     text-align: right;
-    padding: 0rem 0.75rem;
+    padding: 0rem 0 0 0.75rem;
     border-radius: var(--border-radius);
 
     label {
@@ -813,13 +824,28 @@
       justify-content: space-between;
     }
 
-    input {
-      width: 100px;
-      height: 100%;
-      padding: 0.75rem 0.25rem 0.75rem 0.75rem;
-      background: transparent;
-      border: none;
-      border-left: 1px solid var(--blue-light-trans-30);
+
+  }
+
+
+
+  &__cost-input {
+    border: 1px solid transparent; //none;
+    border-radius: var(--border-radius-sml);
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    width: 70px;
+    height: 100%;
+    padding: 0.75rem 0rem 0.75rem 0.75rem;
+    background: transparent;
+    border: none;
+    border-left: 1px solid var(--blue-light-trans-30);
+
+    &:focus {
+      outline: 1px solid var(--orange-trans-60);
+      transform: outline var(--transition);
+      background: var(--grey-dark-trans-20);
+
     }
   }
 
@@ -840,13 +866,16 @@
     border-color: var(--orange);
   }
 
+
   &__currency-selector {
-    background: var(--input-bg);
+    background: transparent; //var(--input-bg);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius-sml);
-    padding: 4px 8px;
+    padding: 12px 18px;
+
     color: var(--text-primary);
     margin-left: 12px;
+    height: 100%;
     cursor: pointer;
   }
 
@@ -908,7 +937,7 @@
     width: 100%;
     display: flex;
     gap: 0;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     align-content: center;
     flex-wrap: wrap;
@@ -919,7 +948,7 @@
     text-transform: uppercase;
     font-weight: 600;
     font-variation-settings: "wght" 600;
-    transform: rotate(90deg) translate(0, 200%);
+    transform: rotate(90deg) translate(0, 50%);
     color: var(--secondary);
     display: inline-block;
   }
@@ -930,7 +959,7 @@
     font-variation-settings: "wght" 800;
     color: var(--orange);
     text-align: center;
-    margin: 0 auto;
+    // margin: 0 auto;
     overflow: hidden;
     display: inline-block;
   }
@@ -963,5 +992,98 @@
     font-weight: 700;
     font-variation-settings: "wght" 700;
     color: var(--accent);
+  }
+
+  //---Settings --------------------------
+  &__dc-settings-modal {}
+
+  &__dc-settings {
+    width: 100%;
+    // outline: 1px solid grey;
+  }
+
+  &__dc-settings-inner {
+    width: 100%;
+    // outline: 1px solid grey;
+    display: flex;
+    flex-flow: column wrap;
+    gap: 1.25rem;
+  }
+
+  &__dc-settings-title {
+    font-size: variables.$med_size;
+  }
+
+  &__dc-settings-subtitle {
+    font-size: variables.$default_size;
+    font-weight: 600;
+    font-variation-settings: 'wght' 600;
+  }
+
+  &__dc-settings-cont {
+    width: 100%;
+    // outline: 1px solid grey;
+    display: flex;
+    flex-flow: column wrap;
+    gap: 1.25rem;
+  }
+
+  &__dc-parent-setting {
+    display: flex;
+    gap: 0.25rem;
+    font-size: variables.$default_size;
+    font-weight: 600;
+    font-variation-settings: 'wght' 600;
+  }
+
+  &__dc-settings-group {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 1.25rem;
+    padding: 0 0.75rem;
+  }
+
+  &__dc-setting-group {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    gap: 1.25rem;
+
+    >* {
+      // outline: 1px solid grey;
+    }
+  }
+
+  &__dc-settings-periods {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 0.5rem;
+    flex: 1 1 0;
+    // width: 50%;
+  }
+
+  &__dc-settings-currency {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    >* {
+      // outline: 1px solid grey;
+    }
+  }
+
+  &__dc-setting {
+    margin: 0 0 0 0.5rem;
+  }
+
+  &__dc-savings-periods {}
+}
+
+@media (width >=768px) {
+  .days-counter {
+    &__container {
+      max-height: var(--max-inner-height)
+    }
   }
 }

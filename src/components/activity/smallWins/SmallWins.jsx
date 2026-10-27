@@ -63,14 +63,7 @@ export default function SmallWins() {
   const closeSession = useSmallWinsStore((s) => s.closeSession)
   const reset = useSmallWinsStore((s) => s.reset)
 
-  // Derived, not stored. No setState-in-effect.
-  // const open = activity === SMALL_WINS_ID
 
-  // Sync the external (store) flag with the derived open state. This is a
-  // legitimate "update external system" effect, not component state.
-  // useEffect(() => {
-  //   setIsModal(open ? isActivityModal : false)
-  // }, [open, setIsModal])
 
   // Defensive: only for unexpected unmounts. The normal close path is
   // handleClose → closeSession, which already resets + locks.

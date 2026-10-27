@@ -1,5 +1,5 @@
-@use '@scss/variables';
-@import '@scss/globals.css';
+@use "@scss/variables";
+@import "@scss/globals.css";
 
 .small-wins-editor {
     display: flex;
@@ -15,7 +15,7 @@
         margin-bottom: 1.75rem;
         font-size: variables.$h3_size;
         font-weight: 700;
-        font-variation-settings: 'wght' 700;
+        font-variation-settings: "wght" 700;
         // height: 120px;
         // margin-top: 3rem;
     }
@@ -35,11 +35,13 @@
     }
 
     &__back {
-        padding: 0.5rem 0.75rem;
+        padding: 0.75rem 1rem;
         font-size: variables.$sml_size;
         font-weight: 600;
-        font-variation-settings: 'wght' 600;
-        // background-color: var(--blue-light);
+        font-variation-settings: "wght" 600;
+        background-color: var(--btn-bg);
+        border-color: var(--blue-dark-trans-80);
+        outline: none;
         cursor: pointer;
     }
 
@@ -54,14 +56,14 @@
     }
 
     &__delete {
-        padding: 0.5rem 0.75rem;
+        padding: 0.75rem 1rem;
         border: none;
         outline: none;
         background: none;
         // font: inherit;
         font-size: variables.$default_size;
         font-weight: 600;
-        font-variation-settings: 'wght' 600;
+        font-variation-settings: "wght" 600;
         background-color: var(--delete);
         cursor: pointer;
     }
@@ -185,7 +187,7 @@
         border: none;
         color: var(--secondary);
         font-weight: 700;
-        font-variation-settings: 'wght' 700;
+        font-variation-settings: "wght" 700;
         font-size: variables.$default_size;
 
         &.is-destructive {

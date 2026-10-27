@@ -1,6 +1,6 @@
 #!/usr/init/env python3
 #!/usr/bin/env python3
-r"""Replace inner double-quotation marks inside JavaScript string literals with &quote;.
+r"""Replace inner double-quotation marks inside JavaScript string literals with &quot;.
 
 Supports:
 - Single-quoted strings ('...')
@@ -12,7 +12,7 @@ Supports:
 
 import sys
 
-def replace_inner_double_quotes(code, replacement="&quote;"):
+def replace_inner_double_quotes(code, replacement="&quot;"):
     """
     Replaces inner double-quotation marks inside JavaScript string literals with `replacement`.
     """
@@ -63,7 +63,7 @@ def replace_inner_double_quotes(code, replacement="&quote;"):
             
     return ''.join(result)
 
-def process_file(filename, replacement="&quote;"):
+def process_file(filename, replacement="&quot;"):
     try:
         with open(filename, 'r', encoding='utf-8') as f:
             content = f.read()
@@ -83,7 +83,7 @@ def process_file(filename, replacement="&quote;"):
 if __name__ == '__main__':
     if len(sys.argv) > 1:
         filename = sys.argv[1]
-        replacement = sys.argv[2] if len(sys.argv) > 2 else "&quote;"
+        replacement = sys.argv[2] if len(sys.argv) > 2 else "&quot;"
         process_file(filename, replacement)
     else:
         # Test examples
@@ -98,6 +98,6 @@ if __name__ == '__main__':
         print("ORIGINAL:")
         print(test_code)
         print("-" * 40)
-        modified = replace_inner_double_quotes(test_code, "&quote;")
+        modified = replace_inner_double_quotes(test_code, "&quot;")
         print("MODIFIED:")
         print(modified)

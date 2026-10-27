@@ -1,5 +1,5 @@
-@use '@scss/variables';
-@import '@scss/globals.css';
+@use "@scss/variables";
+@import "@scss/globals.css";
 // Styles for <PasscodeButton>, its dialog, and the shared <PasscodeField>.
 
 .pc-button {
@@ -51,6 +51,7 @@ section.passcode-activity {}
 
 .pc-dialog {
     position: fixed;
+    left: 0;
     inset: 0;
     z-index: 8500;
     display: flex;
@@ -58,42 +59,70 @@ section.passcode-activity {}
     justify-content: center;
     width: 100%;
     height: 100%;
-    max-width: var(--max-width);
+    // height: 100%;
+    // max-width: var(--max-width);
+    background: var(--grey-dark-trans-40);
 
     &__backdrop {
-        position: absolute;
+        position: relative;
+        left: 0%;
+        width: 100%;
+        height: 100%;
         inset: 0;
-        background: var(--background);
 
         &::after {
             position: absolute;
-            content: '';
+            content: "";
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            // background: var(--background-activity);
+        }
+    }
+
+    &__panel {
+        position: absolute;
+        width: 100%;
+        height: fit-content;
+        overflow-y: auto;
+        padding: 1.5rem;
+        gap: 0.75rem;
+        border-radius: var(--border-radius-sml);
+        background: var(--background-activity);
+        box-shadow: var(--box-shadow);
+        max-width: var(--max-width);
+        display: flex;
+        flex-flow: column wrap;
+        gap: 1rem;
+        align-content: stretch;
+        justify-content: flex-start;
+        text-wrap-style: balance;
+        font-size: variables.$med_size;
+
+        &::after {
+            position: absolute;
+            content: "";
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: var(--blue-dark);
+        }
+
+        &::before {
+            position: absolute;
+            content: "";
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: var(--grey-background);
+            opacity: 0.7;
+            background: var(--background-main);
         }
-    }
-
-    &__panel {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        overflow-y: auto;
-        padding: 1rem;
-        gap: 1.25%;
-        border-radius: var(--border-radius);
-        background: var(--background-activity);
-        box-shadow: var(--box-shadow);
-
-        display: flex;
-        flex-flow: column wrap;
-        align-content: stretch;
-        justify-content: flex-start;
-        text-wrap-style: balance;
-        font-size: variables.$med_size;
     }
 
     &__head {
@@ -106,44 +135,50 @@ section.passcode-activity {}
 
     &__title {
         margin: 0;
-        font-size: variables.$lrg_size;
+        font-size: variables.$med_size;
         text-align: left;
         width: 100%;
-        margin-bottom: 2rem;
+        font-weight: 300;
+        font-variation-settings: "wght" 300;
+        margin: 0;
+        text-transform: uppercase;
     }
 
     &__body {
         min-width: 0;
         width: 100%;
         flex: 1;
+        display: flex;
+        flex-flow: column wrap;
+        gap: 1rem;
     }
 
     form {
         display: flex;
         flex-flow: column nowrap;
         justify-content: space-evenly;
-        gap: 2.25%;
+        gap: 1rem;
         width: 100%;
         height: 100%;
         font-weight: 500;
-        font-variation-settings: 'wght' 500;
-
-        >* {
-            // outline: 1px solid grey;
-        }
+        font-variation-settings: "wght" 500;
     }
 
     &__subtitle {
         font-size: variables.$med_size;
         color: var(--orange);
-        margin-bottom: 3%;
+        // margin-bottom: 3%;
     }
 
     &__lede {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 0.5rem;
         margin: 0;
         font-size: variables.$default_size;
         color: var(--primary);
-        line-height: 1.5;
+        line-height: 1.3;
+        text-align: left;
     }
 
     &__warning {
@@ -168,13 +203,13 @@ section.passcode-activity {}
     }
 
     &__error {
-        margin: 0.75rem auto;
+        margin: 0 auto;
         color: var(--primary);
-        width: fit-content;
-        border-radius: 9999px;
-        padding: 0.5rem 0.75rem;
+        width: 260px;
+        border-radius: var(--border-radius-sml);
+        padding: 0.25rem 0.5rem;
         background-color: var(--error);
-        font-size: variables.$default_size;
+        font-size: variables.$sml_size;
     }
 
     &__fields {
@@ -186,24 +221,50 @@ section.passcode-activity {}
 
     &__menu {
         list-style: none;
-        margin: 0 0 0.5rem;
+        margin: 0;
         padding: 0;
         display: flex;
-        flex-direction: column;
+        flex-flow: row wrap;
         gap: 0.5rem;
     }
 
+    &__menu-row {
+        display: flex;
+        flex-flow: row wrap;
+        // justify-content: space-evenly;
+        gap: 0.5rem;
+        align-content: stretch;
+        // justify-content: flex-start;
+    }
+
     &__menu-item {
+        flex: 1;
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
-        width: 100%;
+        // width: 100%;
         padding: 0.75rem 0.75rem;
         text-align: left;
         border-radius: var(--border-radius);
         border: 1px solid var(--border);
         background: var(--background-grey);
+        outline: none;
         cursor: pointer;
+
+        >div:first-child {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+
+            >* {
+                // outline: 1px solid grey;
+            }
+        }
+
+        .icon {
+            width: 30px;
+            height: 30px;
+        }
 
         &:hover {
             border-color: var(--blue-light);
@@ -219,29 +280,40 @@ section.passcode-activity {}
     }
 
     &__menu-title {
-        font-size: variables.$sml_size;
-        font-weight: 600;
+        font-size: variables.$dialog_size;
+        font-weight: 700;
+        font-variation-settings: "wght" 700;
     }
 
     &__menu-sub {
-        font-size: variables.$sml_size;
-        color: var(--muted);
+        font-size: variables.$default_size;
+        color: var(--grey-light-trans-60);
         line-height: 1.4;
+        font-weight: 400;
+        font-variation-settings: "wght" 400;
     }
 
     &__actions {
         display: flex;
         gap: 0.7rem;
-        margin-bottom: 5%;
+        justify-content: space-between;
+        width: 260px;
+        margin: 0 auto;
     }
 
     &__btn {
-        flex: 1;
-        padding: 0.75rem 0.75rem;
+        // flex: 1;
+        // justify-self: center;
+        // align-self: center;
+        // margin: 0 0 0 auto;
+        padding: 0.75rem 1rem;
         border-radius: var(--border-radius);
         font-size: variables.$sml_size;
         font-weight: 600;
+        font-variation-settings: "wght" 600;
+        outline: none;
         cursor: pointer;
+        width: fit-content;
 
         &:disabled {
             opacity: 0.6;
@@ -258,12 +330,15 @@ section.passcode-activity {}
             border: 1px solid var(--border);
             background: transparent;
             color: inherit;
+            width: fit-content;
+            background: var(--blue);
         }
 
         &--danger {
             border: none;
+            border: 2px solid var(--error);
+            color: var(--grey-dark);
             background: var(--warning);
-            color: var(--primary);
         }
     }
 }
@@ -273,20 +348,22 @@ section.passcode-activity {}
 .pc-field {
     &__label {
         display: block;
-        margin: 0.75rem 0 0.5rem 0;
-        font-size: variables.$subtitle_size;
+        // margin: 0.75rem 0 0.5rem 0;
+        font-size: variables.$sml_size;
         font-weight: 500;
-        font-variation-settings: 'wght' 500;
+        font-variation-settings: "wght" 500;
         text-align: left;
-        padding-left: 1rem;
+        color: var(--grey-light-trans-80);
+        // padding-left: 1rem;
+        // outline: 1px solid yellow;
     }
 
     &__row {
         display: flex;
         flex-flow: column nowrap;
-        gap: 3px;
+        gap: 0.5rem;
         width: 100%;
-        margin: 0 0 0.75rem 0;
+        margin: 0;
         // outline: 1px solid grey;
     }
 
@@ -296,10 +373,17 @@ section.passcode-activity {}
         justify-content: space-between;
         align-content: flex-end;
         flex-wrap: wrap;
+        width: 260px;
+        margin: 0 auto;
+        align-items: center;
+
+        >* {
+            outline: 1px solidd grey;
+        }
     }
 
     &__input {
-        flex: 1;
+        // flex: 1;
         min-width: 0;
         padding: 0.5rem 0.75rem;
         border: 1px solid var(--border);
@@ -307,10 +391,14 @@ section.passcode-activity {}
         font-size: variables.$med_size;
         letter-spacing: 0.18em;
         font-variant-numeric: tabular-nums;
+        background: var(--grey-dark-trans-10);
         text-align: center;
+        width: 260px;
+        margin: 0 auto;
 
         &:focus-visible {
-            outline: 2px solid var(--orange-trans-60);
+            outline: 1px solid var(--orange-trans-50);
+            background: var(--grey-dark-trans-30);
             outline-offset: 1px;
         }
     }

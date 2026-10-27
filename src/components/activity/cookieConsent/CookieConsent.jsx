@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import './CookieConsent.scss'
 import useAppStore from '@store/useAppStore'
 
-const GA_ID = 'G-YWBEQ7E972'
+const GA_ID = 'G-KN451R818V'
 
 const DEFAULT_CONSENT = {
   necessary: true,

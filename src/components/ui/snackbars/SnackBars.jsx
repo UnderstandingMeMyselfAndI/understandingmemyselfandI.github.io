@@ -1,18 +1,19 @@
-import { useEffect, useState } from 'react'
-import Snackbar from '@mui/material/Snackbar'
-import Alert from '@mui/material/Alert'
-import Button from '@mui/material/Button'
-import Slide from '@mui/material/Slide'
-import useAppStore from '@store/useAppStore'
+import { useEffect, useState } from "react"
+import Snackbar from "@mui/material/Snackbar"
+import Alert from "@mui/material/Alert"
+import Button from "@mui/material/Button"
+import Slide from "@mui/material/Slide"
+import useAppStore from "@store/useAppStore"
 // import IconTaskComplete from '@icons/IconTaskComplete'
-import HandymanOutlinedIcon from '@mui/icons-material/HandymanOutlined'
-import { cnf } from '@data/config.js'
-import './snackBars.scss'
+import HandymanOutlinedIcon from "@mui/icons-material/HandymanOutlined"
+import IconHandyman from "@icons/IconHandyman"
+import { cnf } from "@data/config.js"
+import "./snackBars.scss"
 
 const SnackBars = () => {
   const [open, setOpen] = useState(false)
-  const [message2, setMessage2] = useState('')
-  const [severity, setSeverity] = useState('success')
+  const [message2, setMessage2] = useState("")
+  const [severity, setSeverity] = useState("success")
 
   const message = useAppStore((s) => s.message)
   const messageId = useAppStore((s) => s.messageId)
@@ -28,12 +29,12 @@ const SnackBars = () => {
       return
     }
     setMessage2(message)
-    setSeverity('success')
+    setSeverity("success")
     setOpen(true)
   }, [message, messageId, canShow])
 
   const handleClose = (_e, reason) => {
-    if (reason === 'clickaway') return
+    if (reason === "clickaway") return
     setOpen(false)
     // Clear so the same string can fire again on a future day.
     clearSnackbar()
@@ -42,7 +43,7 @@ const SnackBars = () => {
   const handleAction = () => {
     const cb = action?.onAction
     setOpen(false)
-    if (typeof cb === 'function') cb()
+    if (typeof cb === "function") cb()
     clearSnackbar()
   }
 
@@ -51,33 +52,33 @@ const SnackBars = () => {
   return (
     <div className='snackbars'>
       <Snackbar
-        className={'snackBar alert'}
+        className={"snackBar alert"}
         open={open}
         autoHideDuration={
-          hasAction ? cnf?.duration?.hide?.snackbarWithAction || 8000 : cnf?.duration?.hide?.snackbar || 2000
+          hasAction ? cnf?.duration?.hide?.snackbarWithAction || 80000 : cnf?.duration?.hide?.snackbar || 20000
         }
         onClose={handleClose}
         slots={{ transition: Slide }}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}>
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}>
         <Alert
           onClose={handleClose}
           severity={severity}
           variant='filled'
-          sx={{ width: '100%' }}
-          className={'snackbar-alert'}
+          sx={{ width: "100%" }}
+          className={"snackbar-alert"}
           action={
             hasAction ? (
               <Button
                 color='inherit'
                 size='small'
                 onClick={handleAction}
-                sx={{ textTransform: 'none', fontWeight: 600, color: 'inherit' }}>
+                sx={{ textTransform: "none", fontWeight: 600, color: "inherit" }}>
                 {action.label}
               </Button>
             ) : null
           }
           iconMapping={{
-            success: <HandymanOutlinedIcon fontSize='inherit' />,
+            success: <IconHandyman className='snackbar-icon' />,
           }}>
           {message2}
         </Alert>

@@ -1,5 +1,5 @@
-@use '@scss/variables';
-@import '@scss/globals.css';
+@use "@scss/variables";
+@import "@scss/globals.css";
 
 #the-tools {
   scroll-margin-top: 20vh;
@@ -7,31 +7,24 @@
   max-width: none;
 }
 
-.tools-inner {
-  position: relative;
-  margin: 0 auto;
-  padding: 1rem 0.5rem 0 0.5rem;
-  width: 100%;
-}
-
 body .activity-recovery-tools-cta {
   margin: 0 auto;
 }
 
-.acronym-tools {
-  background: var(--blue-trans-20);
-}
+// .acronym-tools {
+//   background: var(--blue-trans-20);
+// }
 
-body #the-tools .tools-description {
-  padding: 0;
+// body #the-tools .tools-description {
+//   padding: 0;
 
-  * {
-    font-size: 2rem;
-    line-height: 1.2;
-  }
-}
+//   * {
+//     font-size: 2rem;
+//     line-height: 1.2;
+//   }
+// }
 
-body section#the-tools.tools {
+body section#the-tools {
   position: fixed;
   top: 0;
   left: 0;
@@ -42,68 +35,89 @@ body section#the-tools.tools {
   line-height: 1;
 
   .tools-wrapper {
+    // contains the tools
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
     display: flex;
     flex-direction: column;
     height: 100vh;
     overflow: hidden;
+    max-width: var(--max-width);
+    margin: 0 auto;
 
     // This ensures MenuCarousel takes available space
     .AccordionRoot {
       flex: 1;
       min-height: 0; // Important for flex children to scroll
     }
-
-    &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
   }
 
-  header {
+  .tools {
+    position: relative;
+    padding: var(--gutters);
     width: 100%;
-    max-width: var(--max-width);
-    display: flex;
-    flex-flow: column wrap;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 0;
-    row-gap: 0.5rem;
-    text-align: left;
-    margin: 0 auto;
-    line-height: 1.3;
 
-    h2 {
-      margin: 0;
-      width: auto;
-      text-align: left;
+    header {
       width: 100%;
-      font-size: variables.$h1_size;
-      color: var(--primary);
-      transition: color 0.2s var(--transition-ease);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 0;
+      gap: max(1.75rem, 2.5%);
+      text-align: left;
+      line-height: 1.3;
+    }
 
-      &.your-tools {
-        color: var(--orange);
+    &_title {
+      display: flex;
+      flex-flow: column wrap;
+      gap: 0.5rem;
+
+      h2 {
+        margin: 0;
+        text-align: left;
+        width: 100%;
+        font-size: variables.$h1_size;
+        color: var(--primary);
         transition: color 0.2s var(--transition-ease);
-      }
 
-      @media screen and (width>=768px) {
-        text-align: center;
+        &.your-tools {
+          color: var(--orange);
+          transition: color 0.2s var(--transition-ease);
+        }
       }
     }
 
-    div.intro {
-      margin: 0;
-      text-align: left;
+    &__intro {
       width: 100%;
-      font-size: variables.$sml_size;
+      text-align: left;
 
-      @media screen and (width>=768px) {
-        // text-align: center;
+      p {
+        margin: 0;
+        padding: 0;
+        line-height: 1.3;
+      }
+
+      .icon {
+        // outline: 1px solid grey;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+
+        transform: translate(0, 6px);
+
+        >div {
+          width: 100%;
+          height: 100%;
+        }
+
+        svg {
+          width: 100%;
+          height: 100%;
+        }
       }
     }
   }

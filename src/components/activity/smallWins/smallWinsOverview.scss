@@ -1,5 +1,5 @@
-@use '@scss/variables';
-@import '@scss/globals.css';
+@use "@scss/variables";
+@import "@scss/globals.css";
 
 .small-wins-overview {
     padding: 1rem 1rem 2rem;
@@ -11,9 +11,9 @@
     &__header {
         display: flex;
         align-items: baseline;
-        justify-content: space-between;
+        justify-content: flex-start;
         gap: 0.75rem;
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.5rem;
     }
 
     &__title {
@@ -21,6 +21,7 @@
         font-size: variables.$lrg_size;
         line-height: 1.25;
         color: var(--primary);
+        width: fit-content;
     }
 
     &__count {
@@ -29,7 +30,8 @@
         white-space: nowrap;
         align-self: flex-end;
         font-weight: 600;
-        font-variation-settings: 'wght' 600;
+        font-variation-settings: "wght" 600;
+        padding-bottom: 0.25rem;
     }
 
     &__tabs {
@@ -51,20 +53,20 @@
         cursor: pointer;
         border-bottom: 2px solid transparent;
         margin-bottom: -1px;
-        transition: border-bottom-color 0.3s ease;
+        transition: border-bottom-color var(--transition);
         font-weight: 600;
-        font-variation-settings: 'wght' 600;
+        font-variation-settings: "wght" 600;
 
         &.is-active {
             color: var(--secondary);
             border-bottom-color: var(--orange);
-            transition: border-bottom-color 0.3s ease;
+            transition: border-bottom-color var(--transition);
         }
 
         &:hover {
             color: var(--secondary);
             border-bottom-color: var(--orange-trans-70);
-            transition: border-bottom-color 0.3s ease;
+            transition: border-bottom-color var(--transition);
         }
     }
 
@@ -115,6 +117,7 @@
         // flex: 1;
         min-width: 0;
         width: 100%;
+
         padding: 0.5rem 0.75rem;
         border: 1px solid transparent;
         border-radius: var(--border-radius-sml);
@@ -148,7 +151,7 @@
         flex-shrink: 0;
         font-size: variables.$sml_size;
         font-weight: 500;
-        font-variation-settings: 'wght' 500;
+        font-variation-settings: "wght" 500;
     }
 
     &__current-date-label {
@@ -202,21 +205,21 @@
         padding: 0.75rem 0.25rem 0.5rem;
         font-size: variables.$sml_size;
         font-weight: 500;
-        font-variation-settings: 'wght' 500;
+        font-variation-settings: "wght" 500;
         letter-spacing: 0.04em;
         text-transform: uppercase;
         color: var(--secondary);
         opacity: 0.75;
 
         &::after {
-            content: '';
+            content: "";
             flex: 1;
             height: 1px;
             background: var(--border);
         }
 
         &::before {
-            content: '';
+            content: "";
             flex: 1;
             height: 1px;
             background: var(--border);
@@ -257,7 +260,6 @@
         list-style: none;
         margin: 0;
         padding: 0;
-        // width: 100%;
     }
 
     &__page,
@@ -269,27 +271,26 @@
         border-radius: var(--border-radius);
         background: var(--input);
         color: var(--primary);
-        font: inherit;
         font-size: variables.$sml_size;
         cursor: pointer;
         transition:
-            border-color 0.3s 0.05s ease-in-out,
-            color 0.3s 0.05s ease-in-out;
+            border-color var(--transition),
+            color var(--transition);
 
         &:hover:not(:disabled) {
             border-color: var(--orange);
             color: var(--orange);
             transition:
-                border-color 0.3s 0.2s ease-in-out,
-                color 0.3s 0.2s ease-in-out;
+                border-color var(--transition),
+                color var(--transition);
         }
 
         &:focus-visible {
             outline: 2px solid var(--orange-trans-60);
             outline-offset: 1px;
             transition:
-                border-color 0.3s 0.2s ease-in-out,
-                color 0.3s 0.2s ease-in-out;
+                border-color var(--transition),
+                color var(--transition);
         }
 
         &:disabled {
@@ -301,9 +302,9 @@
     &__page.is-active {
         // background: var(--orange);
         border-color: var(--orange-dark);
-        color: #fff;
+        color: var(--primary);
         font-weight: 800;
-        font-variation-settings: 'wght' 800;
+        font-variation-settings: "wght" 800;
     }
 
     &__page-info {
@@ -326,13 +327,16 @@
         bottom: 1rem;
         display: block;
         width: 100%;
+        max-width: 180px;
+        margin: 0 auto;
         margin-top: 0.5rem;
         padding: 0.75rem 1rem;
         border: none;
         border-radius: var(--border-radius);
-        color: #fff;
+        color: var(--primary);
         font-size: variables.$default_size;
         font-weight: 600;
+        font-variation-settings: "wght" 600;
         cursor: pointer;
         box-shadow: var(--box-shadow);
 
@@ -370,7 +374,7 @@
         margin: 0 0 0.5rem;
         font-size: variables.$med_size;
         font-weight: 600;
-        font-variation-settings: 'wght' 600;
+        font-variation-settings: "wght" 600;
         color: var(--primary);
     }
 
@@ -391,7 +395,7 @@
         background: var(--chip-bg);
         font-size: variables.$default_size;
         font-weight: 700;
-        font-variation-settings: 'wght' 700;
+        font-variation-settings: "wght" 700;
         text-shadow: var(--text-shadow-light);
         color: var(--chip);
     }
@@ -410,7 +414,7 @@
 
     &__title {
         font-weight: 700;
-        font-variation-settings: 'wght' 700;
+        font-variation-settings: "wght" 700;
         font-size: variables.$med_size;
         color: var(--primary);
     }
@@ -442,7 +446,7 @@
     &__heading {
         font-size: variables.$subtitle_size;
         font-weight: 600;
-        font-variation-settings: 'wght' 600;
+        font-variation-settings: "wght" 600;
         color: var(--orange-dark);
         border-bottom: 1px solid var(--border);
         text-decoration: none;

@@ -1,15 +1,15 @@
 // src/components/activity/smallWins/SmallWinsEditor.jsx
 
-import { useEffect, useMemo, useRef, useState } from 'react'
-import { useSmallWinsStore } from '@store/useSmallWinsStore'
-import { LIMITS, STRINGS } from '@data/dataSmallWins.js'
-import { isFutureIso, todayIso } from '@utils/formatSmallWinDate.js'
-import WhoWithTypeahead from './components/WhoWithTypeahead'
-import { useRegisterModal } from '@utils/modalDepth'
-import './smallWinsEditor.scss'
+import { useEffect, useMemo, useRef, useState } from "react"
+import { useSmallWinsStore } from "@store/useSmallWinsStore"
+import { LIMITS, STRINGS } from "@data/dataSmallWins.js"
+import { isFutureIso, todayIso } from "@utils/formatSmallWinDate.js"
+import WhoWithTypeahead from "./components/WhoWithTypeahead"
+import { useRegisterModal } from "@utils/modalDepth"
+import "./smallWinsEditor.scss"
 
 function countWords(text) {
-  const trimmed = String(text || '').trim()
+  const trimmed = String(text || "").trim()
   if (!trimmed) return 0
   return trimmed.split(/\s+/).length
 }
@@ -28,7 +28,7 @@ function ConfirmDialog({ title, body, confirmLabel, cancelLabel, onConfirm, onCa
           </button>
           <button
             type='button'
-            className={`small-wins-confirm__confirm${destructive ? ' is-destructive' : ''}`}
+            className={`small-wins-confirm__confirm${destructive ? " is-destructive" : ""}`}
             onClick={onConfirm}>
             {confirmLabel}
           </button>
@@ -62,8 +62,8 @@ export default function SmallWinsEditor() {
   }, [])
 
   useEffect(() => {
-    if (saveStatus !== 'saved') return undefined
-    const timer = window.setTimeout(() => setSaveStatus('idle'), 1600)
+    if (saveStatus !== "saved") return undefined
+    const timer = window.setTimeout(() => setSaveStatus("idle"), 1600)
     return () => window.clearTimeout(timer)
   }, [saveStatus, setSaveStatus])
 
@@ -89,21 +89,21 @@ export default function SmallWinsEditor() {
   return (
     <div className='small-wins-editor'>
       <header className='small-wins-editor__header'>
-        {' '}
-        {editorMode === 'create' ? STRINGS.editorCreateTitle : STRINGS.editorEditTitle}
+        {" "}
+        {editorMode === "create" ? STRINGS.editorCreateTitle : STRINGS.editorEditTitle}
       </header>
       <div className='small-wins-editor__bar'>
         <button type='button' className='small-wins-editor__back' onClick={handleBack}>
-          ← {STRINGS.done}
+          {STRINGS.done}
         </button>
 
         <span
           className={`small-wins-editor__status small-wins-editor__status--${saveStatus}`}
           role='status'
           aria-live='polite'>
-          {saveStatus === 'saving' && STRINGS.saving}
-          {saveStatus === 'saved' && STRINGS.saved}
-          {saveStatus === 'error' && STRINGS.saveError}
+          {saveStatus === "saving" && STRINGS.saving}
+          {saveStatus === "saved" && STRINGS.saved}
+          {saveStatus === "error" && STRINGS.saveError}
         </span>
 
         <button type='button' className='small-wins-editor__delete' onClick={() => setConfirmDelete(true)}>
@@ -126,7 +126,7 @@ export default function SmallWinsEditor() {
             value={draft.title}
             onChange={(event) => updateDraft({ title: event.target.value })}
           />
-          <span className={`small-wins-editor__counter${titleLength > LIMITS.titleMax * 0.9 ? ' is-near-limit' : ''}`}>
+          <span className={`small-wins-editor__counter${titleLength > LIMITS.titleMax * 0.9 ? " is-near-limit" : ""}`}>
             {titleLength} / {LIMITS.titleMax}
           </span>
         </div>
@@ -145,7 +145,7 @@ export default function SmallWinsEditor() {
           />
           <span
             className={`small-wins-editor__counter${
-              descriptionWords > LIMITS.descriptionMaxWords * 0.9 ? ' is-near-limit' : ''
+              descriptionWords > LIMITS.descriptionMaxWords * 0.9 ? " is-near-limit" : ""
             }`}>
             {descriptionWords} / {LIMITS.descriptionMaxWords} words
           </span>

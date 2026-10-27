@@ -1,5 +1,5 @@
-@use '@scss/variables';
-@import '@scss/globals.css';
+@use "@scss/variables";
+@import "@scss/globals.css";
 
 .security-gate {
     $root: &;
@@ -15,12 +15,15 @@
 
     &__card {
         width: 100%;
-        max-width: var(--max-width);
-        // background: var(--surface, #fff);
-        border: 1px solid var(--border, #e3e6ea);
-        border-radius: var(--border-radius-lrg);
-        padding: 0.75rem 1rem;
+        max-width: var(--max-inner-width-modal);
+        background: var(--background-activity);
+        border: 1px solid var(--border);
+        border-radius: var(--border-radius);
+        padding: 1.75rem 1rem;
         box-shadow: var(--box-shadow);
+        display: flex;
+        flex-flow: column wrap;
+        gap: 1.5rem;
 
         &--inline {
             margin: 0.75rem 1rem 0;
@@ -30,54 +33,56 @@
     }
 
     &__title {
-        margin: 0 0 6px;
+        margin: 0 0 0.5rem;
         font-size: variables.$h3_size;
         line-height: 1.25;
         color: var(--primary);
+        text-align: center;
     }
 
     &__lede {
-        margin: 0 0 14px;
+        margin: 0 0 1rem;
         font-size: variables.$default_size;
-        color: var(--primary, #5b6472);
+        color: var(--primary);
     }
 
     &__warning {
         margin: 0 0 1rem;
-        padding: 10px 12px;
-        border-radius: 10px;
+        padding: 0.75rem 1rem;
+        border-radius: var(--border-radius);
         // background: #fff5e5;
         border: 1px solid var(--blue-trans-50);
         color: var(--warning);
         font-size: variables.$default_size;
-        font-variation-settings: 'wght' 700;
+        font-variation-settings: "wght" 700;
         line-height: 1.45;
     }
 
     &__reminder {
-        margin: 0 0 14px;
-        font-size: 12.5px;
-        color: var(--text-muted, #5b6472);
+        margin: 0 0 0.75rem;
+        font-size: variables.$sml_size;
+        color: var(--muted);
     }
 
     &__label {
         display: block;
-        margin: 12px 0 6px;
-        font-size: 13px;
+        margin: 0.75rem 0 0.25rem;
+        font-size: variables.$sml_size;
         font-weight: 600;
+        font-variation-settings: "wght" 600;
     }
 
     &__biometric {
         width: 100%;
-        padding: 11px 16px;
-        margin-bottom: 12px;
+        padding: 0.75rem 1rem;
+        margin-bottom: 0.75rem;
         border: none;
-        border-radius: 10px;
-        background: #2f5fd0;
-        color: #fff;
-        font: inherit;
-        font-size: 14px;
+        border-radius: var(--border-radius);
+        background: var(--blue);
+        color: var(--primary);
+        font-size: variables.$default_size;
         font-weight: 600;
+        font-variation-settings: "wght" 600;
         cursor: pointer;
 
         &:disabled {
@@ -87,9 +92,9 @@
     }
 
     &__divider {
-        margin: 14px 0 10px;
+        margin: 1rem 0 0.75rem;
         text-align: center;
-        font-size: 12px;
+        font-size: variables.$sml_size;
         color: var(--muted);
     }
 
@@ -97,22 +102,20 @@
     &__password {
         display: flex;
         align-items: stretch;
-        gap: 8px;
+        gap: 0.5rem;
     }
 
     &__input {
         width: 100%;
         box-sizing: border-box;
-        padding: 10px 12px;
-        border: 1px solid var(--border, #cfd5dd);
-        border-radius: 10px;
-        font: inherit;
-        font-size: 15px;
-        background: var(--field, #fff);
-        color: inherit;
+        padding: 0.75rem;
+        border: 1px solid var(--border);
+        border-radius: var(--border-radius);
+        font-size: variables.$default_size;
+        background: var(--input);
 
         &:focus-visible {
-            outline: 2px solid #2f5fd0;
+            outline: 2px solid var(--blue);
             outline-offset: 1px;
         }
 
@@ -132,42 +135,44 @@
         flex: 0 0 auto;
         width: 42px;
         padding: 0;
-        border: 1px solid var(--border, #cfd5dd);
-        border-radius: 10px;
-        background: var(--field, #fff);
-        color: var(--text-muted, #5b6472);
+        border: 1px solid var(--border);
+        border-radius: var(--border-radius);
+        background: var(--blue-dark-trans-60);
+        color: var(--muted);
         cursor: pointer;
         -webkit-tap-highlight-color: transparent;
 
         &:hover {
-            color: #2f5fd0;
-            border-color: #2f5fd0;
-            background: rgba(47, 95, 208, 0.06);
+            color: var(--blue);
+            border-color: var(--blue);
+            background: var(--dark-grey-trans-10);
         }
 
         &:focus-visible {
-            outline: 2px solid #2f5fd0;
+            outline: 2px solid var(--blue);
             outline-offset: 1px;
         }
     }
 
     &__hint {
-        margin: 6px 0 0;
-        font-size: 12px;
-        color: var(--text-muted, #5b6472);
+        margin: 0.25rem 0 0;
+        font-size: variables.$sml_size;
+        color: var(--muted);
     }
 
     &__submit {
         width: 100%;
-        margin-top: 18px;
-        padding: 11px 16px;
+        max-width: 140px;
+        margin: 0 auto;
+        margin-top: 1rem;
+        padding: 0.75rem 1rem;
         border: none;
-        border-radius: 10px;
-        background: #2f5fd0;
-        color: #fff;
-        font: inherit;
-        font-size: 15px;
+        border-radius: var(--border-radius);
+        background: var(--blue);
+        color: var(--primary);
+        font-size: variables.$default_size;
         font-weight: 600;
+        font-variation-settings: "wght" 600;
         cursor: pointer;
 
         &:disabled {
@@ -177,19 +182,17 @@
     }
 
     &__cancel {
-        margin-top: 18px;
-        padding: 11px 16px;
-        border: 1px solid var(--border, #cfd5dd);
-        border-radius: 10px;
+        margin-top: 1rem;
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--border);
+        border-radius: var(--border-radius);
         background: transparent;
-        color: inherit;
-        font: inherit;
         cursor: pointer;
     }
 
     &__actions {
         display: flex;
-        gap: 10px;
+        gap: 0.75rem;
 
         #{$root}__submit,
         #{$root}__cancel {
@@ -198,48 +201,48 @@
     }
 
     &__error {
-        margin: 12px 0 0;
-        color: #b3261e;
-        font-size: 13px;
+        margin: 0.75rem 0 0;
+        color: var(--error);
+        font-size: variables.$sml_size;
     }
 
     &__dryrun {
-        margin: 14px 0 0;
-        font-size: 12px;
-        color: #7a5310;
+        margin: 1rem 0 0;
+        font-size: variables.$sml_size;
+        color: var(--error);
     }
 
     &__bar {
         display: flex;
         align-items: center;
-        gap: 10px;
-        padding: 8px 16px;
-        border-bottom: 1px solid var(--border, #e3e6ea);
-        font-size: 12.5px;
+        gap: 0.75rem;
+        padding: 0.5rem 1rem;
+        border-bottom: 1px solid var(--border);
+        font-size: variables.$sml_size;
     }
 
     &__lock {
-        font-size: 13px;
+        font-size: variables.$sml_size;
     }
 
     &__badge {
-        padding: 2px 8px;
+        padding: 0.2rem 0.5rem;
         border-radius: 999px;
-        background: #fff5e5;
-        color: #7a5310;
-        border: 1px solid #f2d7a8;
-        font-size: 11px;
+        background: var(--primary);
+        color: var(--warning);
+        border: 1px solid var(--border);
+        font-size: variables.$sml_size;
         font-weight: 600;
+        font-variation-settings: "wght" 600;
     }
 
     &__link {
         margin-left: auto;
-        padding: 4px 8px;
+        padding: 0.25rem 0.5rem;
         border: none;
         background: none;
-        color: #2f5fd0;
-        font: inherit;
-        font-size: 12.5px;
+        color: var(--blue-light);
+        font-size: variables.$sml_size;
         cursor: pointer;
 
         &+#{$root}__link {
@@ -253,26 +256,25 @@
     }
 
     &__lede {
-        margin: 0 0 14px;
-        font-size: 13.5px;
-        color: var(--text-muted, #5b6472);
+        margin: 0 0 1rem;
+        font-size: variables.$sml_size;
+        color: var(--muted);
     }
 
     &__warning--strong {
-        background: #fdeceb;
-        border-color: #f2c3bf;
-        color: #8f221b;
+        background: var(--warning);
+        border-color: var(--border);
+        color: var(--primary);
     }
 
     &__link {
         display: block;
-        margin: 14px auto 0;
-        padding: 4px 8px;
+        margin: 1rem auto 0;
+        padding: 0.25rem 0.5rem;
         border: none;
         background: none;
-        color: #2f5fd0;
-        font: inherit;
-        font-size: 12.5px;
+        color: var(--blue);
+        font-size: variables.$sml_size;
         cursor: pointer;
 
         &:hover {
@@ -287,30 +289,30 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 20px;
-        background: rgba(16, 20, 28, 0.45);
+        padding: 1.5rem;
+        background: var(--background-activity);
     }
 
     &__modal-panel {
         position: relative;
         width: 100%;
-        max-width: 360px;
-        padding: 20px;
-        border-radius: 16px;
-        background: var(--surface, #fff);
-        box-shadow: 0 16px 40px rgba(16, 20, 28, 0.24);
+        max-width: var(--max-inner-width-modal);
+        padding: 1.5rem;
+        border-radius: var(--border-radius);
+        background: var(--background-activity);
+        box-shadow: var(--drop-shadow);
     }
 
     &__danger {
         flex: 1;
-        padding: 11px 14px;
-        border-radius: 10px;
+        padding: 0.75rem 1rem;
+        border-radius: var(--border-radius);
         border: none;
-        background: #b3261e;
-        color: #fff;
-        font: inherit;
-        font-size: 14px;
+        background: var(--danger);
+        color: var(--primary);
+        font-size: variables.$default_size;
         font-weight: 600;
+        font-variation-settings: "wght" 600;
         cursor: pointer;
 
         &:disabled {

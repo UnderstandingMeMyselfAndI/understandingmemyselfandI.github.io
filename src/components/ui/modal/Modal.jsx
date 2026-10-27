@@ -1,8 +1,6 @@
 import PropTypes from "prop-types"
 import ButtonSimple from "@buttons/ButtonSimple"
-import parse from "html-react-parser"
-import { isArrayOfStrings } from "@js/utils"
-import DOMPurify from "dompurify"
+
 import "./modal.scss"
 
 const Modal = ({
@@ -14,7 +12,6 @@ const Modal = ({
   onConfirm,
   cancelLabel = "Cancel",
   onCancel,
-  fullscreen = true,
   classes,
   showCancel = false,
 }) => {
@@ -36,10 +33,7 @@ const Modal = ({
   }
 
   return (
-    <div
-      className={
-        "modal " + (classes && classes.length > 0 ? " " + classes.join(" ") : "") + (fullscreen ? " fullscreen" : "")
-      }>
+    <div className={"modal" + (classes && classes.length > 0 ? " " + classes.join(" ") : "")}>
       <div className='modal__inner'>
         <div className='modal__title'>
           <h4>{title}</h4>

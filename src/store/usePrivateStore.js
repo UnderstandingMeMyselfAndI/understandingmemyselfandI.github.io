@@ -11,6 +11,7 @@ const DEFAULTS = {
   toolboxFilterEnabled: true,
   filterTools: false,
   toolsEnabled: true,
+  
 
   // Wheel of Life
   wheelHistory: [],

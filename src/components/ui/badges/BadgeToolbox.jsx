@@ -1,8 +1,5 @@
-import Badge from "@mui/material/Badge"
-import parse from "html-react-parser"
 import useAppStore from "@store/useAppStore"
 import usePrivateStore from "@store/usePrivateStore"
-// import HandymanIcon from "@mui/icons-material/Handyman"
 import IconHandyman from "@icons/IconHandyman"
 import { strings } from "@data/config.js"
 
@@ -30,23 +27,12 @@ export default function BadgeToolbox({ showBadge = true }) {
   }
 
   return (
-    <div className={"badge-toolbox"}>
-      <div className={"badge-cont " + (showBadge ? "" : " hide")}>
-        <Badge
-          className={"badge toolbox" + (filterTools ? " active" : " ")}
-          badgeContent={activeIDs.length}
-          aria-label='Your toolbox button'
-          onClick={handleChange}
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}>
-          <IconHandyman className='icon' />
-          <div className='badge__label'>
-            <div>{!filterTools ? parse("All") : parse("Your")}</div>
-            <div>Tools</div>
-          </div>
-        </Badge>
+    <div
+      className={"badge toolbox" + (filterTools ? " active" : "") + (showBadge ? "" : " hide")}
+      onClick={handleChange}>
+      <div className={"badge-toolbox"}>
+        <div className='badge-toolbox__count'>{activeIDs.length}</div>
+        <IconHandyman className='badge-toolbox__icon' />
       </div>
     </div>
   )

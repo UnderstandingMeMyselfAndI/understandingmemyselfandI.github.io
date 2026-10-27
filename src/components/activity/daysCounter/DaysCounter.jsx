@@ -5,14 +5,19 @@ import CloseBtn from '@ui/buttons/close/CloseBtn'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import IconArrowChevronLeft from '@icons/IconArrowChevronLeft'
 import IconArrowChevronRight from '@icons/IconArrowChevronRight'
+import IconSettings from '@icons/IconSettings'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
 import useAppStore from '@store/useAppStore'
+import Modal from '@ui/modal/Modal'
 import Dialog from '@ui/dialog/Dialog'
+import { prefetchActivity } from "@activity/activityLoaders"
 import { strings } from '@data/config.js'
 import { weekPercentageProgress, monthPercentageProgress, yearPercentageProgress } from '@js/utils.js'
 import './daysCounter.scss'
+
 const MAXIMUM_COUNTERS = 10
+const MAX_TITLE_LENGTH = 16
 
 // Common currency list for the dropdown
 const COMMON_CURRENCIES = [
@@ -66,9 +71,27 @@ const DaysCounter = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const maxNumDates = MAXIMUM_COUNTERS
 
+  const [showSettings, setShowSettings] = useState(false)
+  const [enableSavings, setEnableSavings] = useState(true)
+  const [savingsPeriods, setSavingsPeriods] = useState({week:true,month:true,year:true})
+  const [showDates, setShowDates] = useState({date:true,hours:true,mins:true})
   const [dates, setDates] = useState(getInitialDates())
 
+    useEffect(() => {
+    // Prefetch it so the tap is instant.
+    prefetchActivity("Modal")
+  }, [])
+
   // Touch handling for swipe (unchanged)
+
+  const handleShowSettings = () =>{
+    setShowSettings(true)
+    console.log("handleShowSettings")
+  }
+const handleCloseSettings = () =>{
+    setShowSettings(false)
+    console.log("handleShowSettings")
+  }
 
   const handlers = useSwipeable({
     onSwipedLeft: () => {
@@ -204,13 +227,114 @@ const DaysCounter = () => {
   const handleCurrencyChange = (e) => {
     setCurrency(e.target.value)
   }
+  const handleEnableSavings = () =>{
+    setEnableSavings(prev => !prev)
+    
+  }
+  const handleChangeSavingsPeriods = (e) =>{
 
+    switch(e.target.id) {
+      case "savings-per-week": setSavingsPeriods(prev => ({...prev, week: !prev.week})); break
+      case "savings-per-month": setSavingsPeriods(prev => ({...prev, month: !prev.month})); break
+      case "savings-per-year": setSavingsPeriods(prev => ({...prev, year: !prev.year})); break
+    }
+    
+  }
+  const handleChangeShowDates = (e)=>{
+    
+    switch(e.target.id) {
+      case "show-start-date": setShowDates(prev => ({...prev, date: !prev.date})); break
+      case "show-hours": setShowDates(prev => ({...prev, hours: !prev.hours})); break
+      case "show-mins": setShowDates(prev => ({...prev, mins: !prev.mins})); break
+    }
+  }
   // const getCurrencySymbol = (code) => {
   //   return COMMON_CURRENCIES.find((curr) => curr.code === code)?.symbol ?? ''
   // }
 
   return (
     <section className={`activity activity-${name} `}>
+      
+      {showSettings && 
+      <Modal className={`${name}__dc-settings-modal `} onConfirm={handleCloseSettings} confirmLabel={"Close"} >
+        <div className={`${name}__dc-settings`} >
+          <div className={`${name}__dc-settings-inner`} >
+            <div className={`${name}__dc-settings-title`}>Settings</div>
+
+           
+            <div className={`${name}__dc-settings-cont`}>
+               <div className={`${name}__dc-parent-setting`} >              
+                <input type="checkbox" id="enable-savings" name="enable-savings" checked={enableSavings} onChange={handleEnableSavings}/>
+                <label htmlFor="">Enable Savings</label>
+              </div>
+              {enableSavings && (
+              <>
+              <div className={`${name}__dc-settings-group savings`}>
+                <div className={`${name}__dc-setting-group`}>
+                  <div className={`${name}__dc-settings-currency`} >
+                    <label htmlFor={`daily-cost-${1}`}>
+                      <div>Currency:</div>
+                    </label>
+                    <select
+                      className='days-counter__currency-selector'
+                      value={currency}
+                      onChange={handleCurrencyChange}
+                      aria-label='Select currency'>
+                      {COMMON_CURRENCIES.map((curr) => (
+                        <option key={curr.code} value={curr.code}>
+                          {parse(curr.label)}
+                        </option>
+                      ))}
+                    </select>                  
+                  </div>
+                </div>               
+                <div  className={`${name}__dc-setting-group`}>  
+                  <div className={`${name}__dc-settings-periods`} >    
+                    <div className={`${name}__dc-settings-subtitle`}>Show Savings:</div>   
+                   
+                    <div className={`${name}__dc-setting`} >     
+                      <label htmlFor="savings-per-week">
+                        <input type="checkbox" id="savings-per-week" name="savings-per-week" checked={savingsPeriods.week} onChange={handleChangeSavingsPeriods} />
+                        Per Week</label>
+                    </div> 
+                    <div className={`${name}__dc-setting`} >     
+                      <label htmlFor="savings-per-month">
+                        <input type="checkbox" id="savings-per-month" name="savings-per-month" checked={savingsPeriods.month} onChange={handleChangeSavingsPeriods}   />
+                        Per Month</label>
+                    </div> 
+                    <div className={`${name}__dc-setting`} >     
+                      <label htmlFor="savings-per-year">
+                        <input type="checkbox" id="savings-per-year" name="savings-per-year" checked={savingsPeriods.year}  onChange={handleChangeSavingsPeriods}  />
+                      Per Year</label>
+                    </div> 
+                  </div>
+                  <div className={`${name}__dc-settings-periods`} > 
+                    <div className={`${name}__dc-settings-subtitle`}>Show Dates &amp; Time:</div>  
+                 
+                    <div className={`${name}__dc-setting`} >              
+                      <label htmlFor="show-start-date">
+                        <input type="checkbox" id="show-start-date" name="show-start-date" checked={showDates.date} value={true} onChange={handleChangeShowDates} />
+                      Start date</label>
+                    </div>
+                    <div className={`${name}__dc-setting`} >              
+                      <label htmlFor="show-hours">
+                        <input type="checkbox" id="show-hours" name="show-hours" checked={showDates.hours} onChange={handleChangeShowDates} />
+                      Hours</label>
+                    </div>
+                    <div className={`${name}__dc-setting`} >              
+                       <label htmlFor="show-mins">
+                        <input type="checkbox" id="show-mins" name="show-mins" checked={showDates.mins} onChange={handleChangeShowDates} />
+                     Minutes</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </>)}
+            </div>
+          </div>
+        </div>
+      </Modal>
+        }
       <div className={`days-counter`}>
         <div className='days-counter__wrap'>
           <div className='days-counter__inner'>
@@ -253,16 +377,7 @@ const DaysCounter = () => {
                       {dates.map((date, index) => (
                         <div key={date.id} className='days-counter__carousel-slide'>
                           <div className='days-counter__card'>
-                            <button
-                              onClick={() => {
-                                setDialogIndex(index)
-                                setShowDialog(true)
-                              }}
-                              className='days-counter__delete-btn'
-                              title='Delete'>
-                              <DeleteForeverIcon />
-                            </button>
-
+                            
                             {/* {date.selectedDate ? ( */}
                             <div className='days-counter__values'>
                               <div className='days-counter__stat days-counter__stat-days'>
@@ -291,7 +406,7 @@ const DaysCounter = () => {
                                   placeholder={component_strings.counter.placeholders.name}
                                   value={date.label}
 
-                                  maxLength='10'
+                                  maxLength={MAX_TITLE_LENGTH}
                                   onChange={(e) => updateDate(index, date.selectedDate, e.target.value, false)}
                                   className='days-counter__title-input'
                                 />
@@ -319,9 +434,9 @@ const DaysCounter = () => {
                                 )}
                               </div>
                             </div>
-                            {/* Financial Savings */}
-                            {/* <div className='days-counter__savings-container'> */}
-                            <div className='days-counter__cost-container'>
+                           {/*   Financial Savings */}
+                           {/* <div className='days-counter__savings-container'>  */}
+                             <div className='days-counter__cost-container'>
                               <div className='days-counter__cost'>
                                 <label htmlFor={`daily-cost-${index}`}>
                                   <div>{component_strings.counter.labels.daily_amount}</div>
@@ -339,6 +454,7 @@ const DaysCounter = () => {
                                 </select>
                                 <input
                                   id={`daily-cost-${index}`}
+                                  className='days-counter__cost-input'
                                   type='text'
                                   inputMode='numeric'
                                   min='0'
@@ -443,12 +559,32 @@ const DaysCounter = () => {
                     ))}
                   </div>
 
-                  {/* Add another button */}
+                  {/* Add Datae button */}
                   {dates.length < maxNumDates && (
-                    <div className='days-counter__button-container'>
-                      <button onClick={addCounter} className='days-counter__add-another-btn'>
+                    <div className={`${name}__actions`}>
+
+                      <div className={`${name}__btn-wrap`}>
+                        <button
+                          onClick={() => {
+                            setDialogIndex(10)
+                            setShowDialog(true)
+                          }}
+                          className='days-counter__delete-btn'
+                          title='Delete'>
+                          <DeleteForeverIcon /> 
+                        </button>
+                      </div>
+
+                      <div className={`${name}__btn-wrap`}>
+                        <button onClick={addCounter} className={`${name}__add-another-btn`}>
                         ({dates.length}/{maxNumDates})
-                      </button>
+                        </button>
+                      </div>
+                      <div className={`${name}__btn-wrap`}></div>
+                      <div className={`${name}__btn-wrap ${name}__btn-settings`} onClick={handleShowSettings}>
+                        <IconSettings />
+                      </div>
+
                     </div>
                   )}
                 </>

@@ -1,11 +1,21 @@
 :root {
-  --breakpoint-desktop: 1200px;
-  --breakpoint-tablet: 900px;
-  --breakpoint-mobile: 600px;
-  --max-width: 430px;
-  --max-width-lrg-screen: 600px;
+  --breakpoint-desktop: 1300px;
+  --breakpoint-tablet: 1024px;
+  --breakpoint-mobile: 768px;
+  --breakpoint-sml: 420px;
   --gutters: 1.25rem;
-  --app-max-width: 430px;
+
+  --max-width: 600px;
+  --max-inner-width: 600px;
+  --max-inner-height: 800px;
+  --max-inner-width-modal: 500px;
+  --max-inner-height-modal: 400px;
+  --inner-width-modal: 400px;
+  /* --inner-height-modal: 600px; */
+
+  --max-inner-slim-width: 400px;
+
+  --app-max-width: 900px;
   --max-width: var(--app-max-width);
 
   --border-radius: 6px;
@@ -85,7 +95,7 @@
   --yellow-trans-90: rgba(255, 255, 0, 0.9);
   --yellow-trans-80: rgba(255, 255, 0, 0.8);
   --yellow-trans-70: rgba(255, 255, 0, 0.7);
-  --yellow-trans-60: rgba(255, 255, 123, 0.6);
+  --yellow-trans-60: rgba(255, 255, 0, 0.6);
   --yellow-trans-50: rgba(255, 255, 0, 0.5);
   --yellow-trans-40: rgba(255, 255, 0, 0.4);
   --yellow-trans-30: rgba(255, 255, 0, 0.3);
@@ -233,14 +243,14 @@
 
   --tool-title: var(--secondary);
 
-  --border: oklch(1 0 0 / 10%);
+  --border: oklch(60.662% 0.00007 271.152 / 0.1);
   --input: oklch(23.909% 0.06675 283.913 / 0.521);
   --input-bg: var(--input);
   --ring: oklch(0.556 0 0);
   --delete: rgba(179, 38, 30, 0.7);
   --error: rgba(179, 38, 30, 0.7);
-  --warning: rgb(156, 103, 33);
-
+  --warning: rgb(130, 85, 27);
+  --danger: #b3261e;
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -504,7 +514,7 @@
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
   --delete: rgba(179, 38, 30, 0.7);
-  --warning: rgb(156, 103, 33);
+  --warning: rgb(86, 59, 24);
 
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);

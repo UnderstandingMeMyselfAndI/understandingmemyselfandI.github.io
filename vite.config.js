@@ -2,6 +2,8 @@ import path from "path"
 import fs from "fs"
 import { defineConfig, transformWithOxc } from "vite"
 import react from "@vitejs/plugin-react"
+import vitePluginBundleObfuscator from "vite-plugin-bundle-obfuscator"
+import { minimizeObfuscatorConfig } from "./vite.obfuscator.plugin.config.js"
 import { analyzer } from "vite-bundle-analyzer"
 import { VitePWA } from "vite-plugin-pwa"
 import { cspProxyPlugin } from "vite-plugin-content-security-policy"
@@ -56,6 +58,7 @@ export default defineConfig(() => {
     plugins: [
       react(),
       robots(),
+      transformJsxInJs(),
       cloudflare({ viteEnvironment: { name: "worker" } }),
       cspProxyPlugin({
         // Optional: tell which configuration to apply when running vite serve (default is used if undefined)
@@ -72,7 +75,6 @@ export default defineConfig(() => {
         // Optional: Use 'report' for report-only mode, 'strict' for enforcement (default)
         reportType: "report",
       }),
-      transformJsxInJs(),
       // nodePolyfills(),
       analyzer({
         analyzerMode: "static",
@@ -97,6 +99,7 @@ export default defineConfig(() => {
         },
         includeAssets: [
           "error.html",
+          "llms,txt",
           "favicon.ico",
           "apple-touch-icon.png",
           "masked-icon.svg",
@@ -109,7 +112,7 @@ export default defineConfig(() => {
 
         injectManifest: {
           //  offline support and background images
-          globPatterns: ["index.html", "**/*.{js,css,woff,woff2,avif,svg}", "images/bgs/**/*.avif"],
+          globPatterns: ["index.html", "**/*.{js,css,woff,woff2,avif,svg,png}", "images/bgs/**/*.avif"],
           globIgnores: ["**/dev/**"],
           //maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // 5 MB
         },

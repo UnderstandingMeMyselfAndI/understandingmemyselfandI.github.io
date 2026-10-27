@@ -1,6 +1,6 @@
 // src/components/security/SecurityGate.jsx
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from "react"
 import {
   hasPasscode,
   isBiometricEnabled,
@@ -8,23 +8,23 @@ import {
   resetPasscode,
   unlock,
   unlockWithBiometric,
-} from '../../utils/securityGate'
-import { cryptoAvailable } from '../../utils/crypto'
-import { useRegisterModal } from '../../utils/modalDepth'
-import PasscodeField from './PasscodeField'
-import './securityGate.scss'
+} from "../../utils/securityGate"
+import { cryptoAvailable } from "../../utils/crypto"
+import { useRegisterModal } from "../../utils/modalDepth"
+import PasscodeField from "./PasscodeField"
+import "./securityGate.scss"
 
 function initialMode() {
-  if (!cryptoAvailable()) return 'unsupported'
-  if (!hasPasscode()) return 'open'
-  if (isUnlocked()) return 'open'
-  return 'locked'
+  if (!cryptoAvailable()) return "unsupported"
+  if (!hasPasscode()) return "open"
+  if (isUnlocked()) return "open"
+  return "locked"
 }
 
-export default function SecurityGate({ children, activityName = 'this activity', onLocked }) {
+export default function SecurityGate({ children, activityName = "this activity", onLocked }) {
   const [mode, setMode] = useState(initialMode)
-  const [passcode, setPasscode] = useState('')
-  const [error, setError] = useState('')
+  const [passcode, setPasscode] = useState("")
+  const [error, setError] = useState("")
   const [busy, setBusy] = useState(false)
   const [resetting, setResetting] = useState(false)
   const [resetConfirm, setResetConfirm] = useState(false)
@@ -36,7 +36,7 @@ export default function SecurityGate({ children, activityName = 'this activity',
 
   // Auto-attempt biometric on first mount if it is enabled.
   useEffect(() => {
-    if (mode !== 'locked' || !biometricEnabled || biometricAttempted.current) return
+    if (mode !== "locked" || !biometricEnabled || biometricAttempted.current) return
     biometricAttempted.current = true
 
     let cancelled = false
@@ -44,7 +44,7 @@ export default function SecurityGate({ children, activityName = 'this activity',
       setBiometricBusy(true)
       try {
         const ok = await unlockWithBiometric()
-        if (!cancelled && ok) setMode('open')
+        if (!cancelled && ok) setMode("open")
       } catch {
         // Silent — user can fall back to the passcode.
       } finally {
@@ -59,17 +59,17 @@ export default function SecurityGate({ children, activityName = 'this activity',
 
   const handleUnlock = async (event) => {
     event.preventDefault()
-    setError('')
+    setError("")
     setBusy(true)
     try {
       const ok = await unlock(passcode)
       if (!ok) {
-        setError('That passcode is not correct.')
-        setPasscode('')
+        setError("That passcode is not correct.")
+        setPasscode("")
         return
       }
-      setPasscode('')
-      setMode('open')
+      setPasscode("")
+      setMode("open")
     } catch (err) {
       setError(String(err?.message || err))
     } finally {
@@ -78,12 +78,12 @@ export default function SecurityGate({ children, activityName = 'this activity',
   }
 
   const handleBiometricUnlock = async () => {
-    setError('')
+    setError("")
     setBiometricBusy(true)
     try {
       const ok = await unlockWithBiometric()
-      if (!ok) setError('Biometric unlock was cancelled.')
-      else setMode('open')
+      if (!ok) setError("Biometric unlock was cancelled.")
+      else setMode("open")
     } catch (err) {
       setError(String(err?.message || err))
     } finally {
@@ -93,13 +93,13 @@ export default function SecurityGate({ children, activityName = 'this activity',
 
   const handleReset = async () => {
     setBusy(true)
-    setError('')
+    setError("")
     try {
       await resetPasscode()
       if (onLocked) onLocked()
       setResetting(false)
       setResetConfirm(false)
-      setMode('open')
+      setMode("open")
     } catch (err) {
       setError(String(err?.message || err))
     } finally {
@@ -107,24 +107,24 @@ export default function SecurityGate({ children, activityName = 'this activity',
     }
   }
 
-  if (mode === 'unsupported') {
+  if (mode === "unsupported") {
     return (
       <div className='security-gate security-gate--centered' role='alert'>
         <h2>Browser not supported</h2>
-        <p>{activityName} needs Web Crypto to encrypt your data. Please update your browser.</p>
+        <p>Ummi needs Web Crypto enabled to encrypt your data. Please update your browser.</p>
       </div>
     )
   }
 
-  if (mode === 'locked') {
+  if (mode === "locked") {
     return (
       <div className='security-gate security-gate--centered'>
         <form className='security-gate__card' onSubmit={handleUnlock}>
-          <h2 className='security-gate__title'>Unlock {activityName}</h2>
+          <h2 className='security-gate__title'>Unlock Content</h2>
 
-          <div className='security-gate__warning' role='note'>
+          {/* <div className='security-gate__warning' role='note'>
             Forgotten passcodes cannot be recovered. Your data would be permanently lost.
-          </div>
+          </div> */}
 
           {biometricEnabled && (
             <button
@@ -132,11 +132,11 @@ export default function SecurityGate({ children, activityName = 'this activity',
               className='security-gate__biometric'
               onClick={handleBiometricUnlock}
               disabled={biometricBusy}>
-              {biometricBusy ? 'Waiting for biometrics…' : 'Unlock with biometrics'}
+              {biometricBusy ? "Waiting for biometrics…" : "Unlock with biometrics"}
             </button>
           )}
 
-          <div className='security-gate__divider'>or enter passcode</div>
+          {/* <div className='security-gate__divider'>Enter Passcode</div> */}
 
           <PasscodeField
             id='sg-unlock-pass'
@@ -153,7 +153,7 @@ export default function SecurityGate({ children, activityName = 'this activity',
           )}
 
           <button className='security-gate__submit' type='submit' disabled={busy}>
-            {busy ? 'Unlocking…' : 'Unlock'}
+            {busy ? "Unlocking…" : "Unlock"}
           </button>
 
           <button type='button' className='security-gate__link' onClick={() => setResetting(true)}>
@@ -198,7 +198,7 @@ export default function SecurityGate({ children, activityName = 'this activity',
                       Back
                     </button>
                     <button type='button' className='security-gate__danger' onClick={handleReset} disabled={busy}>
-                      {busy ? 'Resetting…' : 'Delete everything'}
+                      {busy ? "Resetting…" : "Delete everything"}
                     </button>
                   </div>
                 </>
