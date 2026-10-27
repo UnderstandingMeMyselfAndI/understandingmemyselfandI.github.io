@@ -26,7 +26,7 @@ const CookieConsent = () => {
   }, [])
 
   const loadScripts = (consentData) => {
-    const id = 'G-YWBEQ7E972'
+    const id = 'G-KN451R818V'
 
     if (consentData.analytics && !window.GA_INITIALIZED) {
       var head = document.getElementsByTagName('head')[0]
