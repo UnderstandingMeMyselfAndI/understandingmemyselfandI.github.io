@@ -2,10 +2,11 @@
 import { useState, useEffect } from 'react'
 import { useSwipeable } from 'react-swipeable'
 import CloseBtn from '@ui/buttons/close/CloseBtn'
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+// import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+import IconCloseSmallBold from '@icons/IconCloseSmallBold'
 import IconArrowChevronLeft from '@icons/IconArrowChevronLeft'
 import IconArrowChevronRight from '@icons/IconArrowChevronRight'
-import IconSettings from '@icons/IconSettings'
+// import IconSettings from '@icons/IconSettings'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
 import useAppStore from '@store/useAppStore'
@@ -84,13 +85,11 @@ const DaysCounter = () => {
 
   // Touch handling for swipe (unchanged)
 
-  const handleShowSettings = () =>{
-    setShowSettings(true)
-    console.log("handleShowSettings")
-  }
-const handleCloseSettings = () =>{
+  // const handleShowSettings = () =>{
+  //   setShowSettings(true)
+  // }
+  const handleCloseSettings = () =>{
     setShowSettings(false)
-    console.log("handleShowSettings")
   }
 
   const handlers = useSwipeable({
@@ -411,6 +410,18 @@ const handleCloseSettings = () =>{
                                   className='days-counter__title-input'
                                 />
                               </div>
+                              <div className='days-counter__card-row'>
+                            
+                              <button
+                                onClick={() => {
+                                  setDialogIndex(index)
+                                  setShowDialog(true)
+                                }}
+                                className='days-counter__delete-btn'
+                                title='Delete'>
+                                <IconCloseSmallBold /> 
+                              </button>
+                            
                               <div className='days-counter__selected-date'>
                                 {date.selectedDate && editingDateIndex !== index ? (
                                   <span
@@ -432,11 +443,19 @@ const handleCloseSettings = () =>{
                                     autoFocus={editingDateIndex === index}
                                   />
                                 )}
+                                </div>
                               </div>
                             </div>
                            {/*   Financial Savings */}
                            {/* <div className='days-counter__savings-container'>  */}
                              <div className='days-counter__cost-container'>
+                               <button
+                                  className='days-counter__carousel-arrow left'
+                                  onClick={goToPrev}
+                                  disabled={currentIndex === 0}
+                                  aria-label='Previous date'>
+                                <IconArrowChevronLeft />
+                              </button>
                               <div className='days-counter__cost'>
                                 <label htmlFor={`daily-cost-${index}`}>
                                   <div>{component_strings.counter.labels.daily_amount}</div>
@@ -471,6 +490,13 @@ const handleCloseSettings = () =>{
                                   }
                                 />
                               </div>
+                              <button
+                                className='days-counter__carousel-arrow right'
+                                onClick={goToNext}
+                                disabled={currentIndex === dates.length - 1}
+                                aria-label='Next date'>
+                                <IconArrowChevronRight />
+                            </button>
                             </div>
                             <div className='days-counter__savings-rates all'>
                               <div className='days-counter__savings-rate-all-time'>
@@ -531,7 +557,7 @@ const handleCloseSettings = () =>{
                     </div>
 
                     {/* Navigation Arrows */}
-                    <button
+                    {/* <button
                       className='days-counter__carousel-arrow left'
                       onClick={goToPrev}
                       disabled={currentIndex === 0}
@@ -544,7 +570,7 @@ const handleCloseSettings = () =>{
                       disabled={currentIndex === dates.length - 1}
                       aria-label='Next date'>
                       <IconArrowChevronRight />
-                    </button>
+                    </button> */}
                   </div>
 
                   {/* Indicator Circle */}
@@ -559,31 +585,21 @@ const handleCloseSettings = () =>{
                     ))}
                   </div>
 
-                  {/* Add Datae button */}
+                 
                   {dates.length < maxNumDates && (
                     <div className={`${name}__actions`}>
 
-                      <div className={`${name}__btn-wrap`}>
-                        <button
-                          onClick={() => {
-                            setDialogIndex(10)
-                            setShowDialog(true)
-                          }}
-                          className='days-counter__delete-btn'
-                          title='Delete'>
-                          <DeleteForeverIcon /> 
-                        </button>
-                      </div>
-
+                      
+                      {/* Add Date button */}
                       <div className={`${name}__btn-wrap`}>
                         <button onClick={addCounter} className={`${name}__add-another-btn`}>
                         ({dates.length}/{maxNumDates})
                         </button>
                       </div>
-                      <div className={`${name}__btn-wrap`}></div>
-                      <div className={`${name}__btn-wrap ${name}__btn-settings`} onClick={handleShowSettings}>
+                      {/* <div className={`${name}__btn-wrap`}></div> */}
+                      {/* <div className={`${name}__btn-wrap ${name}__btn-settings`} onClick={handleShowSettings}>
                         <IconSettings />
-                      </div>
+                      </div> */}
 
                     </div>
                   )}

@@ -2,11 +2,12 @@
 @import "@scss/globals.css";
 
 .small-wins-overview {
-    padding: 1rem 1rem 2rem;
-    height: 100vh;
+    padding: var(--gutters);
+    height: 100%;
     max-width: var(--max-width);
     display: flex;
     flex-flow: column wrap;
+    margin: 0 auto;
 
     &__header {
         display: flex;
@@ -248,22 +249,26 @@
         align-items: stretch;
         justify-content: space-between;
         flex-wrap: wrap;
-        gap: 0.5rem;
+        gap: 0.25rem;
         padding: 0.5rem 0;
         flex-shrink: 0;
+        width: 100%;
     }
 
     &__pages {
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 0.5rem;
         list-style: none;
         margin: 0;
         padding: 0;
+        flex: 1 1 0;
     }
 
     &__page,
     &__page-btn {
+        flex: 1 1 1;
         min-width: 2.25rem;
         height: 2.25rem;
         padding: 0 0.625rem;
@@ -324,19 +329,11 @@
 
     &__fab {
         position: sticky;
-        bottom: 1rem;
-        display: block;
         width: 100%;
         max-width: 180px;
         margin: 0 auto;
         margin-top: 0.5rem;
-        padding: 0.75rem 1rem;
-        border: none;
-        border-radius: var(--border-radius);
-        color: var(--primary);
-        font-size: variables.$default_size;
-        font-weight: 600;
-        font-variation-settings: "wght" 600;
+
         cursor: pointer;
         box-shadow: var(--box-shadow);
 

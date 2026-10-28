@@ -51,7 +51,7 @@ function WhyMatters() {
   )
 }
 
-function PageNumbers({ page, totalPages, onChange, size = 5 }) {
+function PageNumbers({ page, totalPages, onChange, size = 4 }) {
   const pages = useMemo(() => {
     if (totalPages <= size) {
       return Array.from({ length: totalPages }, (_, i) => i + 1)

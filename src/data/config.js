@@ -205,7 +205,7 @@ const strings = {
       content: {},
       counter: {
         placeholders: {
-          name: "Enter Counter Name",
+          name: "Counter Name",
         },
         labels: {
           daily_amount: "Daily Cost",

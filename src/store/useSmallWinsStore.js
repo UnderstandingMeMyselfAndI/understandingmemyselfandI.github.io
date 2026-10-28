@@ -109,6 +109,7 @@ export const useSmallWinsStore = create((set, get) => {
     ...INITIAL,
 
     init: async () => {
+      if (get().status === 'ready') return  
       if (get().status === 'loading') return
       set({ status: 'loading', error: null })
       try {
@@ -247,9 +248,8 @@ export const useSmallWinsStore = create((set, get) => {
         // The user can retry close, or we can prompt.
         throw new Error('Could not save before closing.')
       }
-      get().reset()
-      const { lock, hasPasscode } = await import('../utils/securityGate')
-      if (hasPasscode()) lock()
+      
+
     },
     saveAndClose: async () => {
       scheduleSave.cancel()

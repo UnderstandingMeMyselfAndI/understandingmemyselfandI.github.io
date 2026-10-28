@@ -227,20 +227,41 @@ export async function createPasscode(passcode) {
   }
 
   const ks = getKeystore()
-  const wasUnprotected = !ks.isSetUp()
-  const oldKey = wasUnprotected ? await getOrCreateDeviceKey() : null
+
+  // Guard: a passcode already exists. Overwriting it would generate a new
+  // secret, leaving all existing data encrypted under a key the keystore no
+  // longer knows — unrecoverable. Use changePasscode instead (which re-wraps
+  // the same secret under a new PIN, so data remains decryptable).
+  if (ks.isSetUp()) {
+    throw new Error('A passcode is already set. Use changePasscode instead.')
+  }
+
+  // In the unprotected state, data is encrypted with the device key.
+  // We'll move it to the new PIN-derived key.
+  const oldKey = await getOrCreateDeviceKey()
 
   const secret = ks.generateSecret()
   const newKey = await importSecretAsKey(secret)
 
-  if (oldKey) {
-    const { reencryptAll } = await import('./smallWinsStorage')
-    await reencryptAll(oldKey, newKey)
-  }
-
+  // Setup the PIN before reencrypting. If we crash mid-reencryption, the PIN
+  // remains valid — the user can still unlock and see whatever data made it
+  // across. Reverse order would orphan data behind a keystore that has no
+  // matching secret, which is total loss on the next unlock.
   await ks.setupPIN(passcode, secret)
   activeKey = newKey
-  notify()
+
+  try {
+    const { reencryptAll } = await import('./smallWinsStorage')
+    const { reencryptApp } = await import('./settingsStorage')
+    await reencryptAll(oldKey, newKey)
+    await reencryptApp(oldKey, newKey)
+  } finally {
+    // Subscribers must learn about the unlock even if reencryption failed.
+    // That way the session state (isUnlocked, hasPasscode) is coherent and
+    // the UI can render the correct gate/lock state.
+    notify()
+  }
+
   return true
 }
 
@@ -283,7 +304,9 @@ export async function disablePasscode(currentPasscode) {
   const deviceKey = await getOrCreateDeviceKey()
 
   const { reencryptAll } = await import('./smallWinsStorage')
+  const { reencryptApp } = await import('./settingsStorage')
   await reencryptAll(oldKey, deviceKey)
+  await reencryptApp(oldKey, deviceKey)
 
   await ks.burn()
   clearBiometricFlag()
@@ -294,17 +317,19 @@ export async function disablePasscode(currentPasscode) {
 }
 
 export async function resetPasscode() {
-  const ks = getKeystore()
-  const { deleteAllData, resetDbConnection } = await import('./smallWinsStorage')
+  const ks = getKeystore();
+  const { deleteAllData, resetDbConnection } = await import('./smallWinsStorage');
+  const { clearAllSettings } = await import('./settingsStorage');
+  await clearAllSettings();
+  await deleteAllData();
 
-  await deleteAllData()
-  resetDbConnection()
-  await ks.burn()
-  clearBiometricFlag()
+  resetDbConnection();
+  await ks.burn();
+  clearBiometricFlag();
 
-  activeKey = null
-  notify()
-  return true
+  activeKey = null;
+  notify();
+  return true;
 }
 
 // --- biometric -----------------------------------------------------------

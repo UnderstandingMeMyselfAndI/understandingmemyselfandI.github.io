@@ -9,7 +9,9 @@
   --max-inner-width: 600px;
   --max-inner-height: 800px;
   --max-inner-width-modal: 500px;
+  --min-inner-width-modal: 400px;
   --max-inner-height-modal: 400px;
+  --min-inner-height-modal: 280px;
   --inner-width-modal: 400px;
   /* --inner-height-modal: 600px; */
 

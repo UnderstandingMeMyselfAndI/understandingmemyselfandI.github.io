@@ -78,7 +78,6 @@ export const usePrivateStore = create((set, get) => {
     // --- Tools -----------------------------------------------------------
     setFilterTools: (v) => update({ filterTools: v }),
     setToolIDs: (ids) => update({ userToolIDs: ids }),
-    setShowToolsOnly: (v) => update({ userToolIDs: ids }),
     addTool: (id) => {
       if (get().userToolIDs.includes(id)) return
       update({ userToolIDs: [...get().userToolIDs, id] })

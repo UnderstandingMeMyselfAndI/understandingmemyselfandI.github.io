@@ -33,7 +33,7 @@ export const STRINGS = {
   back: 'Back',
   deleteWin: 'Delete',
   deleteConfirmTitle: 'Delete this win?',
-  deleteConfirmBody: "Once it's gone, it's gone.",
+  deleteConfirmBody: "Once it's gone, it's gone for good.",
   discardTitle: 'Bin your changes?',
   discardBody: 'Anything you changed since the last save will be lost.',
   discardConfirm: 'Bin it',

@@ -78,3 +78,18 @@ export async function clearAllSettings() {
   await deleteRecord(META_KEY)
   await updateStorageUsage()
 }
+export async function reencryptApp(oldKey, newKey) {
+  const record = await readRecord(APP_KEY)
+  if (!record) return false
+  try {
+    const plaintext = await decryptJson(oldKey, record.payload)
+    const newPayload = await encryptJson(newKey, plaintext)
+    await putRecord({ key: APP_KEY, payload: newPayload })
+    return true
+  } catch {
+    // Blob was encrypted with a different key (e.g. stale after reset).
+    // Delete rather than corrupt; hydrate will use defaults.
+    await deleteRecord(APP_KEY)
+    return false
+  }
+}

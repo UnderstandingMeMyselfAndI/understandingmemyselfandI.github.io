@@ -1,0 +1,11 @@
+import './icon.scss'
+const IconCloseSmallExtraBold = ({ className = '' }) => {
+  return (
+    <div className={'icon icon-close-small-extra-bold' + className}>
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#fff"><path d="m321-255-66-66 158-159-158-158 66-66 159 158 158-158 66 66-158 158 158 159-66 66-158-158-159 158Z"/></svg>
+      </div>
+    </div>
+  )
+}
+export default IconCloseSmallExtraBold

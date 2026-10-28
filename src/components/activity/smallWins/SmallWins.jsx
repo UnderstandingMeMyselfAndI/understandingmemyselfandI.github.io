@@ -3,9 +3,10 @@ import { useEffect } from 'react'
 // import { useShallow } from 'zustand/react/shallow'
 import useAppStore from '@store/useAppStore'
 // import { activities } from '@data/config'
-import CloseBtn from '@components/ui/buttons/close/CloseBtn'
+import CloseBtn from '@buttons/close/CloseBtn'
 import { hasPasscode, lock } from '@utils/securityGate'
 import SecurityGate from '@security/SecurityGate'
+import { onBeforeLock } from '@utils/sessionLock'
 import { useSmallWinsStore } from '@store/useSmallWinsStore'
 import { STRINGS } from '@data/dataSmallWins.js'
 import SmallWinsOverview from './SmallWinsOverview'
@@ -16,12 +17,10 @@ import '@activity/smallWins/smallWins.scss'
 // const SMALL_WINS_ID = 25
 const SMALL_WINS_NAME = 'book-of-small-wins'
 
-// const activitiesById = activities.reduce((acc, activity) => {
-//   acc[activity.id] = activity
-//   return acc
-// }, {})
-
-// const isActivityModal = activitiesById[SMALL_WINS_ID]?.modal ?? false
+onBeforeLock(async () => {
+  const s = useSmallWinsStore.getState()
+  if (s.draft) await s.saveAndClose()
+})
 
 function SmallWinsBody() {
   const init = useSmallWinsStore((s) => s.init)
@@ -58,22 +57,9 @@ function SmallWinsBody() {
 
 export default function SmallWins() {
   const setActivity = useAppStore((state) => state.setActivity)
-  // const { activity } = useAppStore(useShallow((state) => ({ activity: state.activity })))
-  // const setIsModal = useAppStore((s) => s.setIsModal)
   const closeSession = useSmallWinsStore((s) => s.closeSession)
   const reset = useSmallWinsStore((s) => s.reset)
 
-
-
-  // Defensive: only for unexpected unmounts. The normal close path is
-  // handleClose → closeSession, which already resets + locks.
-  useEffect(() => {
-    // if (!open) return undefined
-    return () => {
-      useSmallWinsStore.getState().reset()
-      if (hasPasscode()) lock()
-    }
-  }, [])
 
   const handleClose = async () => {
     try {
@@ -84,8 +70,6 @@ export default function SmallWins() {
     }
     setActivity(-1)
   }
-
-  // if (!open) return null
 
   return (
     <section

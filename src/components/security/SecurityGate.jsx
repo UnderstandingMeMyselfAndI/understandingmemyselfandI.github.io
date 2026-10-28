@@ -8,6 +8,7 @@ import {
   resetPasscode,
   unlock,
   unlockWithBiometric,
+  subscribeLockState,
 } from "../../utils/securityGate"
 import { cryptoAvailable } from "../../utils/crypto"
 import { useRegisterModal } from "../../utils/modalDepth"
@@ -28,13 +29,36 @@ export default function SecurityGate({ children, activityName = "this activity",
   const [busy, setBusy] = useState(false)
   const [resetting, setResetting] = useState(false)
   const [resetConfirm, setResetConfirm] = useState(false)
-  const [biometricEnabled] = useState(isBiometricEnabled)
+  const [biometricEnabled, setBiometricEnabled] = useState(isBiometricEnabled)
   const [biometricBusy, setBiometricBusy] = useState(false)
   const biometricAttempted = useRef(false)
 
   useRegisterModal(resetting)
 
-  // Auto-attempt biometric on first mount if it is enabled.
+  // React to session-wide lock events. When `lock()` is called from anywhere
+  // (manual lock in PasscodeDialog, sessionLock timeout, reset), the gate
+  // flips back to locked and notifies the parent to drop decrypted data.
+  useEffect(() => {
+    return subscribeLockState(({ unlocked }) => {
+      if (!unlocked && hasPasscode()) {
+        setMode("locked")
+        setPasscode("")
+        setError("")
+        // Refresh biometric state — the user may have enabled or disabled it
+        // while unlocked, so the mount-time value is stale.
+        setBiometricEnabled(isBiometricEnabled())
+        // Allow biometric to auto-attempt again on this fresh lock cycle.
+        // Without this, `biometricAttempted` would stay true after the first
+        // attempt and the user would never get an auto-prompt after a timeout.
+        biometricAttempted.current = false
+        if (onLocked) onLocked()
+      } else if (unlocked) {
+        setMode("open")
+      }
+    })
+  }, [onLocked])
+
+  // Auto-attempt biometric on entering locked state if it is enabled.
   useEffect(() => {
     if (mode !== "locked" || !biometricEnabled || biometricAttempted.current) return
     biometricAttempted.current = true
@@ -99,6 +123,10 @@ export default function SecurityGate({ children, activityName = "this activity",
       if (onLocked) onLocked()
       setResetting(false)
       setResetConfirm(false)
+      // Reset leaves the app in an unprotected state — no passcode remains,
+      // so show children immediately. Also refresh biometric availability
+      // (it may have been burned by the reset).
+      setBiometricEnabled(isBiometricEnabled())
       setMode("open")
     } catch (err) {
       setError(String(err?.message || err))
@@ -120,11 +148,7 @@ export default function SecurityGate({ children, activityName = "this activity",
     return (
       <div className='security-gate security-gate--centered'>
         <form className='security-gate__card' onSubmit={handleUnlock}>
-          <h2 className='security-gate__title'>Unlock Content</h2>
-
-          {/* <div className='security-gate__warning' role='note'>
-            Forgotten passcodes cannot be recovered. Your data would be permanently lost.
-          </div> */}
+          <h2 className='security-gate__title'>Locked Content</h2>
 
           {biometricEnabled && (
             <button
@@ -136,29 +160,33 @@ export default function SecurityGate({ children, activityName = "this activity",
             </button>
           )}
 
-          {/* <div className='security-gate__divider'>Enter Passcode</div> */}
+          <div className='security-gate__row-wrap inputs' role='note'>
+            <PasscodeField
+              id='sg-unlock-pass'
+              label='Passcode'
+              value={passcode}
+              onChange={setPasscode}
+              autoFocus={!biometricEnabled}
+            />
 
-          <PasscodeField
-            id='sg-unlock-pass'
-            label='Passcode'
-            value={passcode}
-            onChange={setPasscode}
-            autoFocus={!biometricEnabled}
-          />
+            {error && (
+              <p className='security-gate__error' role='alert'>
+                {error}
+              </p>
+            )}
 
-          {error && (
-            <p className='security-gate__error' role='alert'>
-              {error}
-            </p>
-          )}
-
-          <button className='security-gate__submit' type='submit' disabled={busy}>
-            {busy ? "Unlocking…" : "Unlock"}
-          </button>
-
-          <button type='button' className='security-gate__link' onClick={() => setResetting(true)}>
-            Forgot passcode?
-          </button>
+            <button
+              className={`security-gate__submit${busy ? ' wide' : ''}`}
+              type='submit'
+              disabled={busy}>
+              {busy ? 'Unlocking…' : 'Unlock'}
+            </button>
+          </div>
+          <div className='security-gate__row' role='note'>
+            <button type='button' className='security-gate__link' onClick={() => setResetting(true)}>
+              Forgot passcode?
+            </button>
+          </div>
         </form>
 
         {resetting && (

@@ -129,6 +129,8 @@
     flex: 0 0 100%;
     width: 100%;
     box-sizing: border-box;
+    padding-top: 3.5%;
+
   }
 
   &__card {
@@ -139,10 +141,16 @@
     justify-content: space-evenly;
   }
 
+  &__card-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
   /* Navigation arrows - hidden on mobile, shown on desktop */
   &__carousel-arrow {
-    position: absolute;
-    top: 30%;
+    // position: absolute;
+    // top: 43%;
     background: transparent;
     box-shadow: none;
     border: none;
@@ -165,13 +173,13 @@
 
     &.left {
       left: 0px;
-      transform: translatex(-40%);
+      transform: translatex(-10%);
     }
 
     &.right {
       right: 0px;
       left: auto;
-      transform: translatex(40%);
+      transform: translatex(10%);
     }
 
     @media (min-width: 768px) {
@@ -221,25 +229,30 @@
     width: 100%;
   }
 
-  &__card-title::placeholder {
-    font-size: variables.$default_size;
-    color: #666;
-  }
+  // &__card-title::placeholder {
+  //   font-size: variables.$default_size;
+  //   color: #666;
+  // }
 
-  &__title {
-    font-size: variables.$h3_size;
-    font-weight: 800;
-    font-variation-settings: "wght" 800;
-    color: var(--primary);
-    margin-bottom: 0.5rem;
-    text-shadow: var(--text-shadow-dark);
+  // &__title {
+  //   font-size: variables.$h3_size;
+  //   font-weight: 800;
+  //   font-variation-settings: "wght" 800;
+  //   color: var(--primary);
+  //   margin-bottom: 0.5rem;
+  //   text-shadow: var(--text-shadow-dark);
 
-    input {
-      font-weight: 800;
-      font-variation-settings: "wght" 800;
+  //   input {
+  //     font-weight: 800;
+  //     font-variation-settings: "wght" 800;
 
-    }
-  }
+  //     &::placeholder {
+  //       font-weight: 600;
+  //       font-variation-settings: "wght" 600;
+  //     }
+
+  //   }
+  // }
 
   &__add-first {
     display: flex;
@@ -371,12 +384,12 @@
     border-bottom: 1px solid transparent;
 
     &::placeholder {
-      color: var(--grey);
+      color: var(--grey-light-trans-40);
       opacity: 0.75;
 
       font-weight: 600;
       font-variation-settings: "wght" 600;
-      font-size: variables.$lrg_title_size;
+      font-size: variables.$lrg_size;
     }
 
     &:focus {
@@ -424,7 +437,7 @@
     justify-content: center;
     align-items: center;
     row-gap: 0.5rem;
-    max-width: 85%;
+    max-width: 100%;
     text-shadow: var(--text-shadow-dark);
   }
 
@@ -665,10 +678,6 @@
     max-width: 100%;
     display: flex;
     align-items: center;
-
-    // >* {
-    //   outline: 1px solid grey;
-    // }
   }
 
   &__btn-wrap {
@@ -677,6 +686,11 @@
 
     align-items: center;
     align-content: center;
+  }
+
+  &__btn-delete {
+    height: auto;
+
   }
 
   &__reset-btn,
@@ -710,15 +724,19 @@
   &__delete-btn {
     margin: 0 auto;
     color: var(--delete);
-    width: 55px;
-    height: 55px;
+    width: 35px;
+    height: 35px;
     border-radius: 9999px;
     outline: 2px solid var(--grey-trans-80);
     box-shadow: none;
+    margin-left: -27px;
+    // transform: translate(-50%, 0);
 
     svg {
+      fill: var(--delete);
       width: 100%;
       height: 100%;
+      transform: scale(1.5);
     }
   }
 
@@ -739,22 +757,22 @@
   &__add-another-btn {
     flex: 1 1 0;
     margin: 0 auto;
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
     padding: 0;
-    aspect-ratio: 1;
-    text-align: center;
-    background-color: var(--blue);
-    color: var(--primary);
-    border-radius: 50%;
-    transition: all var(--transition);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
     font-size: variables.$med_size;
     font-weight: 600;
     font-variation-settings: "wght" 600;
+    color: var(--primary);
+    border-radius: 50%;
+    transition: background-color var(--transition), color var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--blue);
+    gap: 0.75rem;
+
     cursor: pointer;
   }
 
@@ -871,10 +889,10 @@
     background: transparent; //var(--input-bg);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius-sml);
-    padding: 12px 18px;
+    padding: 6px 10px;
 
     color: var(--text-primary);
-    margin-left: 12px;
+    margin-left: 3px;
     height: 100%;
     cursor: pointer;
   }

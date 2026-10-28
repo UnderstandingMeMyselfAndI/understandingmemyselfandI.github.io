@@ -5,7 +5,7 @@
 import { useEffect, useRef, useState } from 'react'
 import useAppStore from '@store/useAppStore'
 import PasscodeDialog from './PasscodeDialog'
-import { hasPasscode, markPasscodeReminderShown } from '../../utils/securityGate'
+import { hasPasscode, markPasscodeReminderShown } from '@utils/securityGate'
 
 export default function PasscodeDialogController() {
   const [open, setOpen] = useState(false)

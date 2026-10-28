@@ -8,7 +8,7 @@
 import { useEffect, useState } from 'react'
 import useAppStore from '@store/useAppStore'
 import { hasPasscode, isUnlocked, subscribeLockState } from '../../utils/securityGate'
-import './passcodeControls.scss'
+import './passcodeDialog.scss'
 
 export default function PasscodeButton({
   className = '',

@@ -1,6 +1,6 @@
 @use "@scss/variables";
 @import "@scss/globals.css";
-// Styles for <PasscodeButton>, its dialog, and the shared <PasscodeField>.
+
 
 .pc-button {
     position: relative;
@@ -57,18 +57,35 @@ section.passcode-activity {}
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 100vw;
     height: 100%;
     // height: 100%;
     // max-width: var(--max-width);
-    background: var(--grey-dark-trans-40);
+    padding: var(--gutters);
+    background: var(--blue-dark-trans-70);
+
+    &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 1;
+        z-index: -3;
+        opacity: 0.9;
+        background: var(--grey-bg);
+        width: 100%;
+        height: 100%;
+        content: "";
+    }
 
     &__backdrop {
-        position: relative;
+        position: absolute;
         left: 0%;
         width: 100%;
         height: 100%;
         inset: 0;
+        // background: var(--blue-dark-trans-70);
+        z-index: 0;
+        display: none;
 
         &::after {
             position: absolute;
@@ -77,51 +94,58 @@ section.passcode-activity {}
             top: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
-            // background: var(--background-activity);
+            opacity: 0.9;
+            z-index: -1;
+            background: var(--grey-bg);
         }
     }
 
     &__panel {
-        position: absolute;
+        position: relative;
         width: 100%;
         height: fit-content;
+        // max-height: var(--max-inner-height-modal);
+        // height: var(--inner-height-modal);
+        width: var(--inner-width-modal);
+        max-width: var(--max-inner-width-modal);
         overflow-y: auto;
+        overflow-x: hidden;
         padding: 1.5rem;
-        gap: 0.75rem;
-        border-radius: var(--border-radius-sml);
-        background: var(--background-activity);
+
+        border-radius: var(--border-radius);
+        // background: var(--background-activity);
         box-shadow: var(--box-shadow);
-        max-width: var(--max-width);
+
         display: flex;
         flex-flow: column wrap;
-        gap: 1rem;
+        gap: 2.5rem;
         align-content: stretch;
-        justify-content: flex-start;
+        justify-content: center;
         text-wrap-style: balance;
         font-size: variables.$med_size;
 
-        &::after {
-            position: absolute;
-            content: "";
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            background: var(--blue-dark);
-        }
-
         &::before {
             position: absolute;
-            content: "";
-            left: 0;
             top: 0;
+            left: 0;
+            opacity: 0.65;
+            z-index: -1;
+            background: var(--blue-dark-trans-90);
             width: 100%;
             height: 100%;
-            z-index: -1;
-            opacity: 0.7;
+            content: "";
+        }
+
+        &::after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 1;
+            z-index: -2;
             background: var(--background-main);
+            width: 100%;
+            height: 100%;
+            content: "";
         }
     }
 
@@ -129,7 +153,7 @@ section.passcode-activity {}
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 0.75rem;
+        // margin-bottom: 0.75rem;
         width: 100%;
     }
 
@@ -150,14 +174,14 @@ section.passcode-activity {}
         flex: 1;
         display: flex;
         flex-flow: column wrap;
-        gap: 1rem;
+        gap: 2.5rem;
     }
 
     form {
         display: flex;
         flex-flow: column nowrap;
         justify-content: space-evenly;
-        gap: 1rem;
+        gap: 1.5rem;
         width: 100%;
         height: 100%;
         font-weight: 500;
@@ -166,8 +190,8 @@ section.passcode-activity {}
 
     &__subtitle {
         font-size: variables.$med_size;
-        color: var(--orange);
-        // margin-bottom: 3%;
+        color: var(--orange-dark);
+        text-align: left;
     }
 
     &__lede {
@@ -177,27 +201,21 @@ section.passcode-activity {}
         margin: 0;
         font-size: variables.$default_size;
         color: var(--primary);
-        line-height: 1.3;
+        line-height: 1.5;
         text-align: left;
+        width: 100%;
     }
 
     &__warning {
-        display: flex;
-        align-items: center;
-        margin: 0;
-        padding: 1rem 0.75rem;
-        border-radius: var(--border-radius);
-        border-left: 4px solid var(--warning);
-        border-right: 4px solid var(--warning);
-        color: var(--primary);
-        outline: 1px solid var(--orange-trans-10);
-        background: var(--background-gray-trans-10);
-        outline-offset: 3px;
-        font-size: variables.$dialog_size;
-        line-height: 1.45;
+
+        text-align: left;
+
+        font-size: variables.$default_size;
+        line-height: 1.5;
+        text-wrap-style: balance;
 
         &--strong {
-            border-color: var(--border);
+
             color: var(--warning);
         }
     }
@@ -205,8 +223,9 @@ section.passcode-activity {}
     &__error {
         margin: 0 auto;
         color: var(--primary);
-        width: 260px;
-        border-radius: var(--border-radius-sml);
+        width: 98%;
+        border-bottom-right-radius: var(--border-radius-sml);
+        border-bottom-left-radius: var(--border-radius-sml);
         padding: 0.25rem 0.5rem;
         background-color: var(--error);
         font-size: variables.$sml_size;
@@ -295,25 +314,25 @@ section.passcode-activity {}
 
     &__actions {
         display: flex;
+        flex-wrap: wrap;
         gap: 0.7rem;
         justify-content: space-between;
-        width: 260px;
+        width: 100%;
         margin: 0 auto;
+
+        &:has(.done) {
+            justify-content: center;
+        }
     }
 
     &__btn {
-        // flex: 1;
-        // justify-self: center;
-        // align-self: center;
-        // margin: 0 0 0 auto;
-        padding: 0.75rem 1rem;
+        flex: 1;
         border-radius: var(--border-radius);
         font-size: variables.$sml_size;
         font-weight: 600;
         font-variation-settings: "wght" 600;
         outline: none;
         cursor: pointer;
-        width: fit-content;
 
         &:disabled {
             opacity: 0.6;
@@ -340,6 +359,14 @@ section.passcode-activity {}
             color: var(--grey-dark);
             background: var(--warning);
         }
+
+        &.done {
+            // opacity: 0.5;
+            align-self: flex-end;
+
+            // justify-self: flex-start;
+            display: inline-flex;
+        }
     }
 }
 
@@ -348,23 +375,19 @@ section.passcode-activity {}
 .pc-field {
     &__label {
         display: block;
-        // margin: 0.75rem 0 0.5rem 0;
         font-size: variables.$sml_size;
         font-weight: 500;
         font-variation-settings: "wght" 500;
         text-align: left;
-        color: var(--grey-light-trans-80);
-        // padding-left: 1rem;
-        // outline: 1px solid yellow;
+        color: var(--grey-light);
+
     }
 
     &__row {
         display: flex;
         flex-flow: column nowrap;
         gap: 0.5rem;
-        width: 100%;
         margin: 0;
-        // outline: 1px solid grey;
     }
 
     &__field-title {
@@ -373,7 +396,7 @@ section.passcode-activity {}
         justify-content: space-between;
         align-content: flex-end;
         flex-wrap: wrap;
-        width: 260px;
+        width: 100%;
         margin: 0 auto;
         align-items: center;
 
@@ -387,13 +410,13 @@ section.passcode-activity {}
         min-width: 0;
         padding: 0.5rem 0.75rem;
         border: 1px solid var(--border);
-        border-radius: var(--border-radius);
+        border-radius: var(--border-radius-sml);
         font-size: variables.$med_size;
         letter-spacing: 0.18em;
         font-variant-numeric: tabular-nums;
         background: var(--grey-dark-trans-10);
         text-align: center;
-        width: 260px;
+        width: 100%;
         margin: 0 auto;
 
         &:focus-visible {
@@ -442,6 +465,6 @@ section.passcode-activity {}
     &__hint {
         margin: 6px 0 0 0.5rem;
         font-size: variables.$default_size;
-        color: var(--text-muted);
+        // color: var(--muted);
     }
 }

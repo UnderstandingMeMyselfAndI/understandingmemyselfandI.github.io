@@ -41,6 +41,7 @@ div#recovery-timeline {
   /* Fallback for old browsers */
   height: 100dvh;
   /* Modern mobile fix */
+  text-wrap-style: balance;
 }
 
 $dot-color: rgba(255, 255, 255, 0.86); // Adjust opacity as needed

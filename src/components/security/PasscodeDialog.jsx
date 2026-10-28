@@ -13,14 +13,14 @@ import {
   resetPasscode,
   MIN_PASSCODE_LENGTH,
 } from "../../utils/securityGate"
-import IconChangeCircle from "../icons/IconChangeCircle"
-import IconLock from "../icons/IconLock"
-import IconLockOpenRight from "../icons/IconLockOpenRight"
-import IconFingerprint from "../icons/IconFingerprint"
+import IconChangeCircle from "@icons/IconChangeCircle"
+import IconLock from "@icons/IconLock"
+import IconLockOpenRight from "@icons/IconLockOpenRight"
+import IconFingerprint from "@icons/IconFingerprint"
 import { useRegisterModal } from "@utils/modalDepth"
 import PasscodeField, { MAX_LENGTH } from "./PasscodeField"
-import CloseBtn from "@ui/buttons/close/CloseBtn"
-import "./passcodeControls.scss"
+import CloseBtn from "@buttons/close/CloseBtn"
+import "./passcodeDialog.scss"
 
 function DialogShell({ title, onClose, children }) {
   return (
@@ -67,18 +67,18 @@ function CreateView({ onDone, onCancel }) {
 
   return (
     <form onSubmit={submit}>
-      <div className='pc-dialog__header'>
-        <div className='pc-dialog__subtitle'>Further secure your data.</div>
-        <p className='pc-dialog__lede'>
+      {/* <div className='pc-dialog__header'>
+        <div className='pc-dialog__subtitle'>Secure your data.</div>
+       
+      </div> */}
+       <p className='pc-dialog__lede'>
           Using a passcode means you will need to enter it before you can read your data.
         </p>
-      </div>
-      <div className='pc-dialog__warning'>
-        Only you know your passcode. <br /> <br />
-        If you forget it, it cannot be recovered or reset.
+      <div className='pc-dialog__warning'>       
+        If you forget it, it cannot be recovered or reset. <br />If you lose your passcode you will have to reset the app and lose your data.
       </div>
       <div className='pc-dialog__fields'>
-        <div>
+        
           <PasscodeField
             id='pc-create'
             label='Passcode'
@@ -87,10 +87,12 @@ function CreateView({ onDone, onCancel }) {
             hint={`${MIN_PASSCODE_LENGTH}–${MAX_LENGTH} digits`}
             autoFocus
           />
-        </div>
-        <div>
-          <PasscodeField id='pc-create-confirm' label='Confirm passcode' value={confirm} onChange={setConfirm} />
-        </div>
+       
+      </div>
+      <div className='pc-dialog_</div>_fields'>
+       
+          <PasscodeField id='pc-create-confirm' label='Confirm' value={confirm} onChange={setConfirm} />
+        
         {error && (
           <p className='pc-dialog__error' role='alert'>
             {error}
@@ -102,7 +104,7 @@ function CreateView({ onDone, onCancel }) {
           Cancel
         </button>
         <button type='submit' className='pc-dialog__btn pc-dialog__btn--primary' disabled={busy}>
-          {busy ? "Creating…" : "Create a passcode"}
+          {busy ? "Creating…" : "Create Passcode"}
         </button>
       </div>
     </form>
@@ -408,8 +410,8 @@ function DoneView({ message, onClose }) {
     <>
       <p className='pc-dialog__lede'>{message}</p>
       <div className='pc-dialog__actions'>
-        <button type='button' className='pc-dialog__btn pc-dialog__btn--primary' onClick={onClose}>
-          Done
+        <button type='button' className='pc-dialog__btn done pc-dialog__btn--primary' onClick={onClose}>
+          Close
         </button>
       </div>
     </>
@@ -442,7 +444,7 @@ export default function PasscodeDialog({ startView = "settings", onClose }) {
     reset: "Reset Passcode",
     "enable-biometric": "Enable Biometric Unlock",
     "disable-biometric": "Disable Biometric Unlock",
-    done: "Done",
+    done: "Passcode ",
   }
 
   const goBack = () => setView(hasPasscode() ? "settings" : "done")
@@ -458,7 +460,7 @@ export default function PasscodeDialog({ startView = "settings", onClose }) {
 
   return (
     <DialogShell title={titles[view]} onClose={onClose}>
-      {view === "create" && <CreateView onDone={() => finish("Passcode is set.")} onCancel={onClose} />}
+      {view === "create" && <CreateView onDone={() => finish("Passcode is now set.")} onCancel={onClose} />}
 
       {view === "settings" && (
         <SettingsView
