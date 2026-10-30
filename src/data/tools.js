@@ -188,7 +188,7 @@ export const data = {
             {
               title: "",
               description:
-                "<ul><li><p>When you've done something and you're not sure why</p></li><li><p>When the urge hits and won't let go</p></li><li><p>When you're stuck in a feeling that's too big</p></li><li><p>When you keep having the same fight with the same person</p></li><li><p>When you catch yourself using &quote;must,&quote; &quote;should,&quote; &quote;can't,&quote; or &quote;awful&quote;</p></li><li><p>When you need to understand the pattern so you can actually shift it</p></li></ul>",
+                "<ul><li><p>When you've done something and you're not sure why</p></li><li><p>When the urge hits and won't let go</p></li><li><p>When you're stuck in a feeling that's too big</p></li><li><p>When you keep having the same fight with the same person</p></li><li><p>When you catch yourself using &quot;must,&quot; &quot;should,&quot; &quot;can't,&quot; or &quot;awful&quot;</p></li><li><p>When you need to understand the pattern so you can actually shift it</p></li></ul>",
             },
             {
               title: "The street-level truth",
@@ -221,7 +221,7 @@ export const data = {
         },
         toolFieldGroup: {
           description:
-            "<div>A bad-ass tool for catching those sneaky negative thoughts and turning them around using proven therapy techniques.</div><div></div><div><strong>ABCDE</strong> is the master key to understanding why you do what you do. It's the tool that explains the whole chain—from what happens, to what you tell yourself about it, to what you feel, to what you do next.</div><div><p>From <strong>SMART</strong> Recovery. Based on <strong>Rational Emotive Behaviour Therapy</strong>. Fancy name. Simple idea: it's not the thing that happens that messes with you. It's what you tell yourself about the thing.</p><p>The gremlin wants you to believe your feelings come out of nowhere. That the situation made you do it. That you had no choice. <strong>ABCDE</strong> says: nah. Let's look at the whole film. Frame by frame.</p></div><p><strong>Why this one's a keeper</strong></p><p>Because most of your life runs on autopilot. Something happens, you think a thing you've always thought, you feel a thing you've always felt, you do a thing you've always done. Loop. Repeat. Stuck.</p><p><strong>ABCDE</strong> breaks the loop. It shows you the bit you can actually change. Not the world. Not other people. Not the past. Just A<strong>B</strong>CDE. Your beliefs. Your spin. Your story.</p><p>Change B and C changes on its own .</p><p><strong>When to pull it out:</strong></p><ul><li><p>When you've done something and you're not sure why</p></li><li><p>When the urge hits and won't let go</p></li><li><p>When you're stuck in a feeling that's too big</p></li><li><p>When you keep having the same fight with the same person</p></li><li><p>When you catch yourself using &quote;must,&quote; &quote;should,&quote; &quote;can't,&quote; or &quote;awful&quote;</p></li><li><p>When you need to understand the pattern so you can actually shift it</p></li></ul><p><strong>The street-level truth</strong></p><p>It takes practice. Your brain's been running the same scripts for years. They feel like truth. They feel like you.</p><p>But they're just thoughts. And thoughts can be questioned. Disputed. Replaced.</p><p>Not overnight. Not perfectly. Just&#8230; a bit at a time. One <strong>ABCDE</strong> at a time. One belief at a time.</p><p>The gremlin hates this tool. Because the gremlin runs on irrational beliefs. Take those away and it's just&#8230; noise. Background. A voice you don't have to listen to anymore.</p><div><p><strong>Here's how it breaks down:</strong></p></div>",
+            "<div>A bad-ass tool for catching those sneaky negative thoughts and turning them around using proven therapy techniques.</div><div></div><div><strong>ABCDE</strong> is the master key to understanding why you do what you do. It's the tool that explains the whole chain—from what happens, to what you tell yourself about it, to what you feel, to what you do next.</div><div><p>From <strong>SMART</strong> Recovery. Based on <strong>Rational Emotive Behaviour Therapy</strong>. Fancy name. Simple idea: it's not the thing that happens that messes with you. It's what you tell yourself about the thing.</p><p>The gremlin wants you to believe your feelings come out of nowhere. That the situation made you do it. That you had no choice. <strong>ABCDE</strong> says: nah. Let's look at the whole film. Frame by frame.</p></div><p><strong>Why this one's a keeper</strong></p><p>Because most of your life runs on autopilot. Something happens, you think a thing you've always thought, you feel a thing you've always felt, you do a thing you've always done. Loop. Repeat. Stuck.</p><p><strong>ABCDE</strong> breaks the loop. It shows you the bit you can actually change. Not the world. Not other people. Not the past. Just A<strong>B</strong>CDE. Your beliefs. Your spin. Your story.</p><p>Change B and C changes on its own .</p><p><strong>When to pull it out:</strong></p><ul><li><p>When you've done something and you're not sure why</p></li><li><p>When the urge hits and won't let go</p></li><li><p>When you're stuck in a feeling that's too big</p></li><li><p>When you keep having the same fight with the same person</p></li><li><p>When you catch yourself using &quot;must,&quot; &quot;should,&quot; &quot;can't,&quot; or &quot;awful&quot;</p></li><li><p>When you need to understand the pattern so you can actually shift it</p></li></ul><p><strong>The street-level truth</strong></p><p>It takes practice. Your brain's been running the same scripts for years. They feel like truth. They feel like you.</p><p>But they're just thoughts. And thoughts can be questioned. Disputed. Replaced.</p><p>Not overnight. Not perfectly. Just&#8230; a bit at a time. One <strong>ABCDE</strong> at a time. One belief at a time.</p><p>The gremlin hates this tool. Because the gremlin runs on irrational beliefs. Take those away and it's just&#8230; noise. Background. A voice you don't have to listen to anymore.</p><div><p><strong>Here's how it breaks down:</strong></p></div>",
           isAcronym: true,
           letters: [
             {
@@ -234,7 +234,7 @@ export const data = {
               letter: "B",
               meaning: "Belief",
               definition:
-                "<div>What story are you telling yourself about what happened?</div><div></div><div>This is where the magic happens. What did you tell yourself about A?</div><div><p>The gremlin's favourite bit. The story you added. The spin.</p><p>&quote;He thinks I'm useless.&quote;<br />&quote;She's ignoring me on purpose.&quote;<br />&quote;I can't cope with this feeling.&quote;<br />&quote;I deserve a break.&quote;<br />&quote;One won't hurt.&quote;<br />&quote;This is too much.&quote;</p><p>Beliefs can be rational—flexible, helpful, based on reality. Or they can be irrational—rigid, demanding, full of &quote;musts&quote; and &quote;shoulds&quote; and &quote;can'ts&quote; and &quote;awfuls&quote; .</p><p>The gremlin deals in irrational beliefs. They're its native language.</p></div>",
+                "<div>What story are you telling yourself about what happened?</div><div></div><div>This is where the magic happens. What did you tell yourself about A?</div><div><p>The gremlin's favourite bit. The story you added. The spin.</p><p>&quot;He thinks I'm useless.&quot;<br />&quot;She's ignoring me on purpose.&quot;<br />&quot;I can't cope with this feeling.&quot;<br />&quot;I deserve a break.&quot;<br />&quot;One won't hurt.&quot;<br />&quot;This is too much.&quot;</p><p>Beliefs can be rational—flexible, helpful, based on reality. Or they can be irrational—rigid, demanding, full of &quot;musts&quot; and &quot;shoulds&quot; and &quot;can'ts&quot; and &quot;awfuls&quot; .</p><p>The gremlin deals in irrational beliefs. They're its native language.</p></div>",
             },
             {
               letter: "C",
@@ -246,13 +246,13 @@ export const data = {
               letter: "D",
               meaning: "Dispute",
               definition:
-                "<div>It's time to get full-on detective with your own thoughts &#8211; are they really true and helpful or pulling a swerve and working against you?</div><div></div><div>Now we get to work. Question the belief. Shine a light on it. See if it holds up</div><div></div><div>Not by fighting. By asking:</div><div><p>&quote;Is this thought actually true?&quote;<br />&quote;Where's the evidence?&quote;<br />&quote;Is this belief helpful? Does it get me where I want to go?&quote;<br />&quote;What would I tell a mate who thought this?&quote;<br />&quote;What's the worst that could actually happen? And could I cope with that?&quote;<br />&quote;Am I demanding that things be different than they are right now?&quote;</p><p>The gremlin's beliefs crumble when you look at them straight. They're not solid. They're just&#8230; habits. Old tapes. And tapes can be changed.</p></div><div>Take your thoughts to court and give them a grilling.</div>",
+                "<div>It's time to get full-on detective with your own thoughts &#8211; are they really true and helpful or pulling a swerve and working against you?</div><div></div><div>Now we get to work. Question the belief. Shine a light on it. See if it holds up</div><div></div><div>Not by fighting. By asking:</div><div><p>&quot;Is this thought actually true?&quot;<br />&quot;Where's the evidence?&quot;<br />&quot;Is this belief helpful? Does it get me where I want to go?&quot;<br />&quot;What would I tell a mate who thought this?&quot;<br />&quot;What's the worst that could actually happen? And could I cope with that?&quot;<br />&quot;Am I demanding that things be different than they are right now?&quot;</p><p>The gremlin's beliefs crumble when you look at them straight. They're not solid. They're just&#8230; habits. Old tapes. And tapes can be changed.</p></div><div>Take your thoughts to court and give them a grilling.</div>",
             },
             {
               letter: "E",
               meaning: "Effective new belief",
               definition:
-                "<p>Build something better. A new thought. A new script. Something that actually helps .</p><p>Not toxic positivity. Not lying to yourself. Just&#8230; more accurate. More flexible. More useful.</p><p>Instead of &quote;I can't stand this urge,&quote; try &quote;It's uncomfortable but I can handle it. I have before.&quote;<br />Instead of &quote;I deserve a drink,&quote; try &quote;I deserve a life that isn't a mess. This urge isn't giving me that.&quote;<br />Instead of &quote;It's not fair,&quote; try &quote;Fair doesn't come into it. This is what's here. Now what am I going to do?&quote;</p><p>New belief. New feeling. New action. That's the chain</p>",
+                "<p>Build something better. A new thought. A new script. Something that actually helps .</p><p>Not toxic positivity. Not lying to yourself. Just&#8230; more accurate. More flexible. More useful.</p><p>Instead of &quot;I can't stand this urge,&quot; try &quot;It's uncomfortable but I can handle it. I have before.&quot;<br />Instead of &quot;I deserve a drink,&quot; try &quot;I deserve a life that isn't a mess. This urge isn't giving me that.&quot;<br />Instead of &quot;It's not fair,&quot; try &quot;Fair doesn't come into it. This is what's here. Now what am I going to do?&quot;</p><p>New belief. New feeling. New action. That's the chain</p>",
             },
           ],
           scenariosField: null,
@@ -352,19 +352,19 @@ export const data = {
               letter: "A",
               meaning: "Anxious",
               definition:
-                "<p>The spin. The worry. The what-ifs. The tight chest and the busy mind that won't shut up.</p><p>The gremlin loves anxious too. It says &quote;this will calm you down&quote; and &quote;you need a break from all this&quote; and &quote;just for a bit, then you can cope better.&quote;</p><p>But anxious doesn't need numbing. It needs settling. Grounding. Grounding is a boss move using tools like box breathing, the 54321 tool, or the Shapes tool to get in &quote;<strong>the here and now</strong>&quote; &#8211; it buys some space to think rather than letting the mind be consumed. Something that brings you back into your body and out of the spin.</p><p>In the here and now, thinking becomes clearer, the good and bad thoughts identified and separated and it's less likely wonky decisions are made which cause future drama.</p>",
+                "<p>The spin. The worry. The what-ifs. The tight chest and the busy mind that won't shut up.</p><p>The gremlin loves anxious too. It says &quot;this will calm you down&quot; and &quot;you need a break from all this&quot; and &quot;just for a bit, then you can cope better.&quot;</p><p>But anxious doesn't need numbing. It needs settling. Grounding. Grounding is a boss move using tools like box breathing, the 54321 tool, or the Shapes tool to get in &quot;<strong>the here and now</strong>&quot; &#8211; it buys some space to think rather than letting the mind be consumed. Something that brings you back into your body and out of the spin.</p><p>In the here and now, thinking becomes clearer, the good and bad thoughts identified and separated and it's less likely wonky decisions are made which cause future drama.</p>",
             },
             {
               letter: "D",
               meaning: "Depressed",
               definition:
-                "<p>Flat. Heavy. Nothing feels worth it. Can't be bothered. What's the point anyway.</p><p>The gremlin loves depressed most of all. It matches the energy. It says &quote;why not&quote; and &quote;doesn't matter&quote; and &quote;nothing helps anyway so might as well.&quote;</p><p>Depressed lies. It tells you nothing will help so don't bother trying. But small things can shift it, even when it says they won't. Movement. Sunlight. Connection. One small task completed. Not to fix it—just to shift it a little.</p><p>If the dark thoughts persist hit up a professional to level up.</p>",
+                "<p>Flat. Heavy. Nothing feels worth it. Can't be bothered. What's the point anyway.</p><p>The gremlin loves depressed most of all. It matches the energy. It says &quot;why not&quot; and &quot;doesn't matter&quot; and &quot;nothing helps anyway so might as well.&quot;</p><p>Depressed lies. It tells you nothing will help so don't bother trying. But small things can shift it, even when it says they won't. Movement. Sunlight. Connection. One small task completed. Not to fix it—just to shift it a little.</p><p>If the dark thoughts persist hit up a professional to level up.</p>",
             },
             {
               letter: "S",
               meaning: "Stressed",
               definition:
-                "<p>Too much. Overwhelmed. Pressure from all sides. Deadlines. People. Demands. Life doing too much at once.</p><p>When people are stressed their mind can step into the gremlins neighbourhood as it's overwhelmed by the things making them stressed.</p><p>The gremlins love stressed. It says &quote;you deserve a break&quote; and &quote;just take the edge off&quote; and &quote;you can't keep going like this without something.&quote;</p><p>Stressed needs relief, but not the kind the gremlin's selling. It needs rest. Boundaries. One thing taken off the list. Help asked for. A pause. Something that actually reduces the load instead of adding to it tomorrow.</p><p>These help to regain control and put the thoughts the stressed mind is spinning, into perspective and apply a bit of chill to the situation.</p><p>&nbsp;</p>",
+                "<p>Too much. Overwhelmed. Pressure from all sides. Deadlines. People. Demands. Life doing too much at once.</p><p>When people are stressed their mind can step into the gremlins neighbourhood as it's overwhelmed by the things making them stressed.</p><p>The gremlins love stressed. It says &quot;you deserve a break&quot; and &quot;just take the edge off&quot; and &quot;you can't keep going like this without something.&quot;</p><p>Stressed needs relief, but not the kind the gremlin's selling. It needs rest. Boundaries. One thing taken off the list. Help asked for. A pause. Something that actually reduces the load instead of adding to it tomorrow.</p><p>These help to regain control and put the thoughts the stressed mind is spinning, into perspective and apply a bit of chill to the situation.</p><p>&nbsp;</p>",
             },
           ],
           scenariosField: null,
@@ -515,7 +515,7 @@ export const data = {
             {
               title: "",
               description:
-                "<p>It's your no-BS pro/con list that cuts straight through the excuses. When you're in the heat of a craving, your brain lies to you—it tells you that getting on it is the only thing that matters. <span>The CBA is the tool you use to pull the receipts and see if that &quote;deal&quote; is actually worth it.</span></p>",
+                "<p>It's your no-BS pro/con list that cuts straight through the excuses. When you're in the heat of a craving, your brain lies to you—it tells you that getting on it is the only thing that matters. <span>The CBA is the tool you use to pull the receipts and see if that &quot;deal&quot; is actually worth it.</span></p>",
             },
             {
               title: "",
@@ -534,26 +534,26 @@ export const data = {
         },
         toolFieldGroup: {
           description:
-            "<p><b>C.B.A.</b> is one of the most powerful tools you can have in your toolkit and it comes from the guys at <a href=\"https://smartrecovery.org.uk/\" target=\"_blank\" rel=\"noopener\">SMART recovery</a> &#8211; so check them out.</p><p>It's your no-BS pro/con list that cuts straight through the excuses. When you're in the heat of a craving, your brain lies to you—it tells you that getting on it is the only thing that matters. <span>The CBA is the tool you use to pull the receipts and see if that &quote;deal&quote; is actually worth it.</span></p><p>The CBA is a four-way grid. You don't just look at why drugs/alcohol are bad; you look at why you were/are using them in the first place and what you’re actually trading away.</p><p>Make a version of each list for you. Don't cut anything and be real with yourself.</p><p>If you're kidding anyone it's only yourself.</p>",
+            "<p><b>C.B.A.</b> is one of the most powerful tools you can have in your toolkit and it comes from the guys at <a href=\"https://smartrecovery.org.uk/\" target=\"_blank\" rel=\"noopener\">SMART recovery</a> &#8211; so check them out.</p><p>It's your no-BS pro/con list that cuts straight through the excuses. When you're in the heat of a craving, your brain lies to you—it tells you that getting on it is the only thing that matters. <span>The CBA is the tool you use to pull the receipts and see if that &quot;deal&quot; is actually worth it.</span></p><p>The CBA is a four-way grid. You don't just look at why drugs/alcohol are bad; you look at why you were/are using them in the first place and what you’re actually trading away.</p><p>Make a version of each list for you. Don't cut anything and be real with yourself.</p><p>If you're kidding anyone it's only yourself.</p>",
           isAcronym: true,
           letters: [
             {
               letter: "C",
               meaning: "Cost",
               definition:
-                "<p><span><strong>List the costs of using:</strong></span></p><p>This is the &quote;downside&quote;, the stuff that keeps you up at night. What's this behavior really costing you? Think along the lines of:</p><ul><li><p>The money drained from your pockets.</p></li><li><p>The bridges burned with family and friends.</p></li><li><p>The health issues, the legal drama, and that soul-crushing &quote;hangxiety&quote; the next morning.</p></li></ul><p><strong>The Costs of Abstaining (Staying Clean)</strong></p><p>This is the &quote;growing pains&quote; section. Quitting isn't all sunshine and rainbows at first.</p><ul><li><p>Dealing with raw emotions without a filter.</p></li><li><p>Boredom (this is a big one).</p></li><li><p>Losing &quote;friends&quote; who only want to hang out when you’re using.</p></li></ul><p>&nbsp;</p>",
+                "<p><span><strong>List the costs of using:</strong></span></p><p>This is the &quot;downside&quot;, the stuff that keeps you up at night. What's this behavior really costing you? Think along the lines of:</p><ul><li><p>The money drained from your pockets.</p></li><li><p>The bridges burned with family and friends.</p></li><li><p>The health issues, the legal drama, and that soul-crushing &quot;hangxiety&quot; the next morning.</p></li></ul><p><strong>The Costs of Abstaining (Staying Clean)</strong></p><p>This is the &quot;growing pains&quot; section. Quitting isn't all sunshine and rainbows at first.</p><ul><li><p>Dealing with raw emotions without a filter.</p></li><li><p>Boredom (this is a big one).</p></li><li><p>Losing &quot;friends&quot; who only want to hang out when you’re using.</p></li></ul><p>&nbsp;</p>",
             },
             {
               letter: "B",
               meaning: "Benefits",
               definition:
-                "<p>&nbsp;</p><p><span><strong>List the benefits of using:</strong></span></p><p>To beat the beast, you have to be honest about why you like it. Get real with yourself. If it didn't do something for you, you wouldn't do it.</p><ul><li><p>Does it kill the stress?</p></li><li><p>Does it make you feel &quote;normal&quote; or confident?</p></li><li><p>Does it help you forget the past for an hour?</p></li><li><p><b>The Hook:</b> Acknowledge these benefits, but realize they are always temporary.</p></li></ul><p>&nbsp;</p><p><strong>The Benefits of Abstaining (Staying Clean)</strong></p><p>This is the &quote;payoff&quote;—the life you’re actually trying to build.</p><ul><li><p>Waking up without a cloud over your head.</p></li><li><p>Having cash in your wallet that stays there.</p></li><li><p>Gaining back your self-respect and being someone people can actually count on.</p></li></ul>",
+                "<p>&nbsp;</p><p><span><strong>List the benefits of using:</strong></span></p><p>To beat the beast, you have to be honest about why you like it. Get real with yourself. If it didn't do something for you, you wouldn't do it.</p><ul><li><p>Does it kill the stress?</p></li><li><p>Does it make you feel &quot;normal&quot; or confident?</p></li><li><p>Does it help you forget the past for an hour?</p></li><li><p><b>The Hook:</b> Acknowledge these benefits, but realize they are always temporary.</p></li></ul><p>&nbsp;</p><p><strong>The Benefits of Abstaining (Staying Clean)</strong></p><p>This is the &quot;payoff&quot;—the life you’re actually trying to build.</p><ul><li><p>Waking up without a cloud over your head.</p></li><li><p>Having cash in your wallet that stays there.</p></li><li><p>Gaining back your self-respect and being someone people can actually count on.</p></li></ul>",
             },
             {
               letter: "A",
               meaning: "Analysis",
               definition:
-                "<p>The magic of the CBA isn't just making a list; it’s a comparison of <b>the Short-Term vs. the Long-Term.</b></p><p>When thoughts and cravings rock up, your brain gets real sneaky and the &quote;Benefits of Using&quote; seem good &#8211; they are <b>immediate and quick</b>, while the &quote;Costs&quote; take their time and don't show up until later when they really start <strong>messing with your life</strong>.</p><p>The CBA tool is like the future you, with all the knowledge and experience of staying clean, splashing your face with icy cold water (see the TIPP tool), sitting you down and making you look at the big picture without the BS.</p><p>When you see it in black and white, laid out on paper, you see the <span>&quote;Benefits of Staying Clean&quote;</span> are <strong>massive and permanent,</strong> while the <span>&quote;Benefits of Using&quote;</span> are <strong>tiny, and over in a flash </strong>while the &quote;C<span>osts of using&quote;</span> hang around <strong>like a bad smell</strong> .</p><p>Ask yourself &quote;Why are you working so hard on the new you&quote; and pull the H.O.V tool out of your box.</p><p>It’s about taking the power back from the impulse, acknowledging your the one at the wheel and telling your brain to cut the BS &#8211; it's not going to help.</p><p><b>Bottom Line:</b> The CBA proves that shaking hands with your brain on a deal to go down the old route is seriously bad business. You’re trading your entire future for a quick win that's sending you in a direction you don't want to go. You're no fool and so give the deal a swerve.</p>",
+                "<p>The magic of the CBA isn't just making a list; it’s a comparison of <b>the Short-Term vs. the Long-Term.</b></p><p>When thoughts and cravings rock up, your brain gets real sneaky and the &quot;Benefits of Using&quot; seem good &#8211; they are <b>immediate and quick</b>, while the &quot;Costs&quot; take their time and don't show up until later when they really start <strong>messing with your life</strong>.</p><p>The CBA tool is like the future you, with all the knowledge and experience of staying clean, splashing your face with icy cold water (see the TIPP tool), sitting you down and making you look at the big picture without the BS.</p><p>When you see it in black and white, laid out on paper, you see the <span>&quot;Benefits of Staying Clean&quot;</span> are <strong>massive and permanent,</strong> while the <span>&quot;Benefits of Using&quot;</span> are <strong>tiny, and over in a flash </strong>while the &quot;C<span>osts of using&quot;</span> hang around <strong>like a bad smell</strong> .</p><p>Ask yourself &quot;Why are you working so hard on the new you&quot; and pull the H.O.V tool out of your box.</p><p>It’s about taking the power back from the impulse, acknowledging your the one at the wheel and telling your brain to cut the BS &#8211; it's not going to help.</p><p><b>Bottom Line:</b> The CBA proves that shaking hands with your brain on a deal to go down the old route is seriously bad business. You’re trading your entire future for a quick win that's sending you in a direction you don't want to go. You're no fool and so give the deal a swerve.</p>",
             },
           ],
           scenariosField: {
@@ -611,7 +611,7 @@ export const data = {
               letter: "D",
               meaning: "Deny or Delay",
               definition:
-                "<p>Hit the brakes and create a road block. Urges ain't forever—they peak and fade if you don't feed them attention. Tell yourself, &quote;Chill for 10-15 minutes,&quote; and watch them weaken. The more you deny them, the less they bug you over time. It's like starving out a pest; eventually, they bounce.</p>",
+                "<p>Hit the brakes and create a road block. Urges ain't forever—they peak and fade if you don't feed them attention. Tell yourself, &quot;Chill for 10-15 minutes,&quot; and watch them weaken. The more you deny them, the less they bug you over time. It's like starving out a pest; eventually, they bounce.</p>",
             },
             {
               letter: "E",
@@ -623,13 +623,13 @@ export const data = {
               letter: "A",
               meaning: "Avoid / Accept / Attack",
               definition:
-                "<p>Own it without fighting it.</p><p>Yeah, it's annoying and pretty crap right now, but it's normal and it won't wreck you. Remind yourself, &quote;This discomfort is temporary—I've got this.&quote; Accepting it puts it in perspective, turns it into a win, and helps it pass quicker without the drama.</p>",
+                "<p>Own it without fighting it.</p><p>Yeah, it's annoying and pretty crap right now, but it's normal and it won't wreck you. Remind yourself, &quot;This discomfort is temporary—I've got this.&quot; Accepting it puts it in perspective, turns it into a win, and helps it pass quicker without the drama.</p>",
             },
             {
               letter: "D",
               meaning: "Dispute / Distract",
               definition:
-                "<p>Who's Boss here? You are. S0 put your brain in it's place for all this BS it's pushing your way.  Use logic to roast those irrational thoughts, like &quote;Nope, that &#8216;one won't hurt' it's a lie—it's always led to places you don't want to go back to.&quote;</p><p>Pull a combo with tools like ABCDEs or DISARM to build counter-punches that shut down the craving before it builds steam.</p>",
+                "<p>Who's Boss here? You are. S0 put your brain in it's place for all this BS it's pushing your way.  Use logic to roast those irrational thoughts, like &quot;Nope, that &#8216;one won't hurt' it's a lie—it's always led to places you don't want to go back to.&quot;</p><p>Pull a combo with tools like ABCDEs or DISARM to build counter-punches that shut down the craving before it builds steam.</p>",
             },
             {
               letter: "S",
@@ -665,7 +665,7 @@ export const data = {
             {
               title: "DEAR MAN",
               description:
-                "<p>is what you use when you need to ask for something, set a boundary, or tell someone &quote;no&quote; — and your gremlin's already lining up excuses to cave.</p>",
+                "<p>is what you use when you need to ask for something, set a boundary, or tell someone &quot;no&quot; — and your gremlin's already lining up excuses to cave.</p>",
             },
             {
               title: "It's a DBT tool.",
@@ -717,50 +717,50 @@ export const data = {
         },
         toolFieldGroup: {
           description:
-            "<p><strong>DEAR MAN</strong> is what you use when you need to ask for something, set a boundary, or tell someone &quote;no&quote; — and your gremlin's already lining up excuses to cave.</p><p>It's a DBT tool. Dialectical Behaviour Therapy. Fancy name. But underneath? It's just a script for keeping your spine straight when the pressure's on.</p><p>Because here's the thing: when you're in recovery, or just trying to hold your life together, you need to be able to ask for what you need and shut down what you don't. But your gremlin? It wants you to stay small. Apologise. Say yes when you mean no. Fold.</p><p><strong>DEAR MAN</strong> gives you the lines. You just deliver them.</p><p><strong>Why this one's a keeper</strong></p><p>Because when you're in the middle of it — when someone's pushing, when you're about to say yes to something you'll regret, when you need to ask for help but your throat closes up — you forget. You forget you're allowed to ask. You forget you're allowed to say no.</p><p><strong>DEAR MAN</strong> is a prompt. A reminder. A structure you can lean on when your own backbone's feeling wobbly.</p><p><strong>The street-level truth</strong></p><p>It feels weird at first. Scripting conversations. Practising like you're in a play.</p><p>Then you use it once. Twice. And you realise: this actually works. People don't walk over you as much. You get more of what you need. You say no and the world doesn't end.</p><p>And that feeling — of holding your ground, clean and calm, without the fallout — that's gold.</p>",
+            "<p><strong>DEAR MAN</strong> is what you use when you need to ask for something, set a boundary, or tell someone &quot;no&quot; — and your gremlin's already lining up excuses to cave.</p><p>It's a DBT tool. Dialectical Behaviour Therapy. Fancy name. But underneath? It's just a script for keeping your spine straight when the pressure's on.</p><p>Because here's the thing: when you're in recovery, or just trying to hold your life together, you need to be able to ask for what you need and shut down what you don't. But your gremlin? It wants you to stay small. Apologise. Say yes when you mean no. Fold.</p><p><strong>DEAR MAN</strong> gives you the lines. You just deliver them.</p><p><strong>Why this one's a keeper</strong></p><p>Because when you're in the middle of it — when someone's pushing, when you're about to say yes to something you'll regret, when you need to ask for help but your throat closes up — you forget. You forget you're allowed to ask. You forget you're allowed to say no.</p><p><strong>DEAR MAN</strong> is a prompt. A reminder. A structure you can lean on when your own backbone's feeling wobbly.</p><p><strong>The street-level truth</strong></p><p>It feels weird at first. Scripting conversations. Practising like you're in a play.</p><p>Then you use it once. Twice. And you realise: this actually works. People don't walk over you as much. You get more of what you need. You say no and the world doesn't end.</p><p>And that feeling — of holding your ground, clean and calm, without the fallout — that's gold.</p>",
           isAcronym: true,
           letters: [
             {
               letter: "D",
               meaning: "Describe",
               definition:
-                "<p>Stick to the facts. No drama. No judgement. Just what's happening.</p><p>&quote;The rent's due tomorrow and it's short.&quote;<br />&quote;You said you'd be back by ten.&quote;<br />&quote;I've got forty quid in my account.&quote;</p><p>Just the picture. Clean. No extra colour.</p>",
+                "<p>Stick to the facts. No drama. No judgement. Just what's happening.</p><p>&quot;The rent's due tomorrow and it's short.&quot;<br />&quot;You said you'd be back by ten.&quot;<br />&quot;I've got forty quid in my account.&quot;</p><p>Just the picture. Clean. No extra colour.</p>",
             },
             {
               letter: "E",
               meaning: "Express",
               definition:
-                "<p>Say how you feel about it. Not accusing. Just owning it.</p><p>&quote;I'm stressed about the money.&quote;<br />&quote;I get worried when you're late.&quote;<br />&quote;This isn't working for me.&quote;</p><p>Feelings aren't arguments. They're just information. Put them on the table.</p>",
+                "<p>Say how you feel about it. Not accusing. Just owning it.</p><p>&quot;I'm stressed about the money.&quot;<br />&quot;I get worried when you're late.&quot;<br />&quot;This isn't working for me.&quot;</p><p>Feelings aren't arguments. They're just information. Put them on the table.</p>",
             },
             {
               letter: "A",
               meaning: "Assert",
               definition:
-                "<p>Say what you actually want. Direct. No hinting. No hoping they'll guess.</p><p>&quote;I need you to pay your half.&quote;<br />&quote;Please text me if you're gonna be late.&quote;<br />&quote;I'm not lending anything else out.&quote;</p><p>This bit's where most people choke. Don't. Say it.</p>",
+                "<p>Say what you actually want. Direct. No hinting. No hoping they'll guess.</p><p>&quot;I need you to pay your half.&quot;<br />&quot;Please text me if you're gonna be late.&quot;<br />&quot;I'm not lending anything else out.&quot;</p><p>This bit's where most people choke. Don't. Say it.</p>",
             },
             {
               letter: "R",
               meaning: "Reinforce",
               definition:
-                "<p>Tell them what's in it for them if they play ball. Sweeten it.</p><p>&quote;Then we're sorted for the month and we can relax.&quote;<br />&quote;Then I won't be on your case.&quote;<br />&quote;Then we're clear and there's no awkwardness.&quote;</p><p>People like knowing what they get. Give them something.</p>",
+                "<p>Tell them what's in it for them if they play ball. Sweeten it.</p><p>&quot;Then we're sorted for the month and we can relax.&quot;<br />&quot;Then I won't be on your case.&quot;<br />&quot;Then we're clear and there's no awkwardness.&quot;</p><p>People like knowing what they get. Give them something.</p>",
             },
             {
               letter: "M",
               meaning: "Mindful",
               definition:
-                "<p><strong>Here's the MAN bit — how you deliver it.</strong></p><p>Stick to your script. If they try to derail you, distract you, make it about something else — you just keep coming back.</p><p>&quote;I hear you. But we're talking about the rent right now.&quote;<br />&quote;I get that. Still, I need you to text me.&quote;</p><p>Broken record. Calm. Boring. Effective.</p>",
+                "<p><strong>Here's the MAN bit — how you deliver it.</strong></p><p>Stick to your script. If they try to derail you, distract you, make it about something else — you just keep coming back.</p><p>&quot;I hear you. But we're talking about the rent right now.&quot;<br />&quot;I get that. Still, I need you to text me.&quot;</p><p>Broken record. Calm. Boring. Effective.</p>",
             },
             {
               letter: "A",
               meaning: "Appear Confident",
               definition:
-                "<p>Fake it &quote;til you make it.</p><p>Even if you're shaking. Even if your voice wants to go. Stand up straight. Look at them. Speak like you mean it.</p><p>Not aggressive. Just&#8230; solid. Like you've got a right to be here. Because you have.</p>",
+                "<p>Fake it &quot;til you make it.</p><p>Even if you're shaking. Even if your voice wants to go. Stand up straight. Look at them. Speak like you mean it.</p><p>Not aggressive. Just&#8230; solid. Like you've got a right to be here. Because you have.</p>",
             },
             {
               letter: "N",
               meaning: "Negotiate",
               definition:
-                "<p>This is the bit people forget. DEAR MAN isn't about bulldozing. It's about getting what you need — which might mean meeting halfway.</p><p>&quote;I can't do all of it, but I can do half.&quote;<br />&quote;If you can't text, can you call when you're on your way?&quote;<br />&quote;Not that, but I could do this instead.&quote;</p><p>You're not folding. You're finding a way that works for both of you. That's not weakness. That's smart.</p>",
+                "<p>This is the bit people forget. DEAR MAN isn't about bulldozing. It's about getting what you need — which might mean meeting halfway.</p><p>&quot;I can't do all of it, but I can do half.&quot;<br />&quot;If you can't text, can you call when you're on your way?&quot;<br />&quot;Not that, but I could do this instead.&quot;</p><p>You're not folding. You're finding a way that works for both of you. That's not weakness. That's smart.</p>",
             },
           ],
           scenariosField: null,
@@ -792,7 +792,7 @@ export const data = {
             {
               title: "D.I.S.A.R.M.",
               description:
-                "<p>gives you a way to step back, watch it do its thing, and go &quote;nah. Not today.&quote;</p>",
+                "<p>gives you a way to step back, watch it do its thing, and go &quot;nah. Not today.&quot;</p>",
             },
             {
               title: "D.I.S.A.R.M.",
@@ -863,26 +863,26 @@ export const data = {
         },
         toolFieldGroup: {
           description:
-            "<div><p><strong>D.I.S.A.R.M. </strong>is what you use when the gremlin's in your ear, running its mouth, and you need to shut it down without getting into a fight.</p><p>From SMART Recovery. It's about spotting the lies, calling them out, and choosing not to act on them. Not by wrestling. Not by white-knuckling. Just by&#8230; seeing the game for what it is.</p><p>The gremlin's a smooth talker. Sounds like you. Knows your weak spots. Knows which memories to play, which buttons to push. It's been practicing this script your whole life.</p><p><strong>D.I.S.A.R.M. </strong>gives you a way to step back, watch it do its thing, and go &quote;nah. Not today.&quote;</p><div><p><strong>D.I.S.A.R.M.</strong> is like your own personal security team. Like the ones in the movies, that famous people and world leaders have.</p></div><div>It's your mental bodyguard system &#8211; protecting you from the gremlins creating thoughts and images that try to sabotage your progress.</div></div><div><p><strong>Why this one's a keeper</strong></p><p>Because you can't stop the gremlin from talking. It'll always have something to say. Always find an angle. Always try to sell you the same old film.</p><p>But you can stop treating its voice like the truth. You can spot it. Name it. Watch it. Refuse it.</p><p><strong>D.I.S.A.R.M. </strong>doesn't make the voice go away. It makes the voice irrelevant. Just noise. Just the same old script. And you? You're busy writing a new one.</p><p><strong>When to pull it out:</strong></p><ul><li><p>When the urge hits and the arguments start</p></li><li><p>When you catch yourself romanticising the old days</p></li><li><p>When the voice gets loud and persuasive</p></li><li><p>When you're justifying something you know isn't right</p></li><li><p>When you need to remember that voice isn't you</p></li></ul><p><strong>The street-level truth</strong></p><p>The gremlin's been in your ear a long time. It knows what works. It'll try every angle. Every time.</p><p>But here's the thing: it's just a voice. It can't make you do anything. It can suggest, persuade, beg, plead—but it can't move your body. Only you can do that.</p><p><strong>D.I.S.A.R.M. </strong>is you remembering that. Spotting the con. Calling it out. And choosing something else.</p><p>Not because the voice stops. Because you start.</p></div><div><p><strong>Here's how it breaks down:</strong></p></div><div></div>",
+            "<div><p><strong>D.I.S.A.R.M. </strong>is what you use when the gremlin's in your ear, running its mouth, and you need to shut it down without getting into a fight.</p><p>From SMART Recovery. It's about spotting the lies, calling them out, and choosing not to act on them. Not by wrestling. Not by white-knuckling. Just by&#8230; seeing the game for what it is.</p><p>The gremlin's a smooth talker. Sounds like you. Knows your weak spots. Knows which memories to play, which buttons to push. It's been practicing this script your whole life.</p><p><strong>D.I.S.A.R.M. </strong>gives you a way to step back, watch it do its thing, and go &quot;nah. Not today.&quot;</p><div><p><strong>D.I.S.A.R.M.</strong> is like your own personal security team. Like the ones in the movies, that famous people and world leaders have.</p></div><div>It's your mental bodyguard system &#8211; protecting you from the gremlins creating thoughts and images that try to sabotage your progress.</div></div><div><p><strong>Why this one's a keeper</strong></p><p>Because you can't stop the gremlin from talking. It'll always have something to say. Always find an angle. Always try to sell you the same old film.</p><p>But you can stop treating its voice like the truth. You can spot it. Name it. Watch it. Refuse it.</p><p><strong>D.I.S.A.R.M. </strong>doesn't make the voice go away. It makes the voice irrelevant. Just noise. Just the same old script. And you? You're busy writing a new one.</p><p><strong>When to pull it out:</strong></p><ul><li><p>When the urge hits and the arguments start</p></li><li><p>When you catch yourself romanticising the old days</p></li><li><p>When the voice gets loud and persuasive</p></li><li><p>When you're justifying something you know isn't right</p></li><li><p>When you need to remember that voice isn't you</p></li></ul><p><strong>The street-level truth</strong></p><p>The gremlin's been in your ear a long time. It knows what works. It'll try every angle. Every time.</p><p>But here's the thing: it's just a voice. It can't make you do anything. It can suggest, persuade, beg, plead—but it can't move your body. Only you can do that.</p><p><strong>D.I.S.A.R.M. </strong>is you remembering that. Spotting the con. Calling it out. And choosing something else.</p><p>Not because the voice stops. Because you start.</p></div><div><p><strong>Here's how it breaks down:</strong></p></div><div></div>",
           isAcronym: true,
           letters: [
             {
               letter: "D",
               meaning: "Destructive",
               definition:
-                "<div><div>Notice when your brain is playing up and feeding you garbage thoughts and mental images. It can be a snake at times.</div><div><p>Notice the pictures your mind's showing you. The highlight reel. The good old days. The &quote;one won't hurt&quote; fantasy.</p><p>Your brain's playing a film. But it's a film with all the bad bits cut out. The relief, the buzz, the escape—that's what it's showing you. Not the fallout. Not the morning after. Not the mess.</p><p>Just notice. That's not a memory. That's a sales pitch.</p></div></div>",
+                "<div><div>Notice when your brain is playing up and feeding you garbage thoughts and mental images. It can be a snake at times.</div><div><p>Notice the pictures your mind's showing you. The highlight reel. The good old days. The &quot;one won't hurt&quot; fantasy.</p><p>Your brain's playing a film. But it's a film with all the bad bits cut out. The relief, the buzz, the escape—that's what it's showing you. Not the fallout. Not the morning after. Not the mess.</p><p>Just notice. That's not a memory. That's a sales pitch.</p></div></div>",
             },
             {
               letter: "I",
               meaning: "Imagery",
               definition:
-                "<div><div>Catch those vivid mental movies that make you want to use &#8211; they're not real predictions. It's euphoric recall.</div><div></div><div>Your brain trying to trick you with the choice good times but forgetting all the crappy bits when it goes horribly wrong.</div></div><div><p>Call it what it is. Out loud if you can. In your head if you can't.</p><p>&quote;That's the gremlin.&quote;<br />&quote;That's the old tape.&quote;<br />&quote;That's the addiction talking.&quote;<br />&quote;That's the lie I used to believe.&quote;</p><p>Name it. Separate it from you. It's not your voice. It's the voice. The one that's been feeding you the same script for years. The one that never mentions the aftermath.</p></div>",
+                "<div><div>Catch those vivid mental movies that make you want to use &#8211; they're not real predictions. It's euphoric recall.</div><div></div><div>Your brain trying to trick you with the choice good times but forgetting all the crappy bits when it goes horribly wrong.</div></div><div><p>Call it what it is. Out loud if you can. In your head if you can't.</p><p>&quot;That's the gremlin.&quot;<br />&quot;That's the old tape.&quot;<br />&quot;That's the addiction talking.&quot;<br />&quot;That's the lie I used to believe.&quot;</p><p>Name it. Separate it from you. It's not your voice. It's the voice. The one that's been feeding you the same script for years. The one that never mentions the aftermath.</p></div>",
             },
             {
               letter: "S",
               meaning: "Self-talk",
               definition:
-                "<div><div>What's that inner voice telling you?</div></div><div><p>Listen to what you're telling yourself. The stories. The justifications. The reasons why this time's different.</p><p>&quote;I deserve it.&quote;<br />&quote;I can handle it now.&quote;<br />&quote;No one will know.&quote;<br />&quote;It's the only way to cope.&quote;</p><p>This is the self-talk that's kept you stuck. The gremlin's greatest hits. But now you're not just hearing it—you're watching it. Spotting the pattern.</p></div><p>&nbsp;</p>",
+                "<div><div>What's that inner voice telling you?</div></div><div><p>Listen to what you're telling yourself. The stories. The justifications. The reasons why this time's different.</p><p>&quot;I deserve it.&quot;<br />&quot;I can handle it now.&quot;<br />&quot;No one will know.&quot;<br />&quot;It's the only way to cope.&quot;</p><p>This is the self-talk that's kept you stuck. The gremlin's greatest hits. But now you're not just hearing it—you're watching it. Spotting the pattern.</p></div><p>&nbsp;</p>",
             },
             {
               letter: "A",
@@ -942,7 +942,7 @@ export const data = {
             {
               title: "",
               description:
-                "<p>Because so much of the pain we carry isn't the situation itself. It's the fighting. It's the &quote;this shouldn't be happening.&quote; It's the arguing with reality while reality just sits there, not changing.</p>",
+                "<p>Because so much of the pain we carry isn't the situation itself. It's the fighting. It's the &quot;this shouldn't be happening.&quot; It's the arguing with reality while reality just sits there, not changing.</p>",
             },
             {
               title: "",
@@ -960,7 +960,7 @@ export const data = {
             {
               title: "",
               description:
-                "<ul><li><p>When you're stuck on something you can't change</p></li><li><p>When you're fighting a feeling instead of feeling it</p></li><li><p>When you're tangled up in &quote;shoulds&quote; and &quote;shouldn'ts&quote;</p></li><li><p>When acceptance feels like giving up but fighting feels like drowning</p></li><li><p>When you need to move forward but can't while you're still swinging</p></li></ul>",
+                "<ul><li><p>When you're stuck on something you can't change</p></li><li><p>When you're fighting a feeling instead of feeling it</p></li><li><p>When you're tangled up in &quot;shoulds&quot; and &quot;shouldn'ts&quot;</p></li><li><p>When acceptance feels like giving up but fighting feels like drowning</p></li><li><p>When you need to move forward but can't while you're still swinging</p></li></ul>",
             },
             {
               title: "The street-level truth",
@@ -992,20 +992,20 @@ export const data = {
         },
         toolFieldGroup: {
           description:
-            "<p><strong>FACE</strong> is what you use when you're stuck in fighting mode—battling reality, arguing with what's already happened, wrestling with feelings that won't budge.</p><p>Sometimes the situation is what it is. You can't rewind it. Can't bargain with it. Can't wish it away. But you're still swinging. Still tensed up. Still telling the universe it's got it wrong.</p><p>This tool helps you stop fighting the mirror and start dealing with what's looking back at you.</p><p><strong>Why this one's a keeper</strong></p><p>Because so much of the pain we carry isn't the situation itself. It's the fighting. It's the &quote;this shouldn't be happening.&quote; It's the arguing with reality while reality just sits there, not changing.</p><p>FACE cuts through that. It says: okay. This is what's here. Now what?</p><p>The urge wants you stuck in the fight. Exhausted. Spinning. FACE says: drop the fight and you'll have energy for what actually helps.</p><p><strong>When to pull it out:</strong></p><ul><li><p>When you're stuck on something you can't change</p></li><li><p>When you're fighting a feeling instead of feeling it</p></li><li><p>When you're tangled up in &quote;shoulds&quote; and &quote;shouldn'ts&quote;</p></li><li><p>When acceptance feels like giving up but fighting feels like drowning</p></li><li><p>When you need to move forward but can't while you're still swinging</p></li></ul><p><strong>The street-level truth</strong></p><p>FACE isn't about being okay with the hard stuff. It's about not making the hard stuff worse by fighting it.</p><p>You can't change what you won't face. You can't move past what you won't accept. You can't choose well when you're still swinging blind.</p><p>Face it. Accept it. Choose. Engage.</p><p>It's not a fix. It's a way through. And sometimes, that's all there is.</p><p><strong>Here's how it breaks down:</strong></p>",
+            "<p><strong>FACE</strong> is what you use when you're stuck in fighting mode—battling reality, arguing with what's already happened, wrestling with feelings that won't budge.</p><p>Sometimes the situation is what it is. You can't rewind it. Can't bargain with it. Can't wish it away. But you're still swinging. Still tensed up. Still telling the universe it's got it wrong.</p><p>This tool helps you stop fighting the mirror and start dealing with what's looking back at you.</p><p><strong>Why this one's a keeper</strong></p><p>Because so much of the pain we carry isn't the situation itself. It's the fighting. It's the &quot;this shouldn't be happening.&quot; It's the arguing with reality while reality just sits there, not changing.</p><p>FACE cuts through that. It says: okay. This is what's here. Now what?</p><p>The urge wants you stuck in the fight. Exhausted. Spinning. FACE says: drop the fight and you'll have energy for what actually helps.</p><p><strong>When to pull it out:</strong></p><ul><li><p>When you're stuck on something you can't change</p></li><li><p>When you're fighting a feeling instead of feeling it</p></li><li><p>When you're tangled up in &quot;shoulds&quot; and &quot;shouldn'ts&quot;</p></li><li><p>When acceptance feels like giving up but fighting feels like drowning</p></li><li><p>When you need to move forward but can't while you're still swinging</p></li></ul><p><strong>The street-level truth</strong></p><p>FACE isn't about being okay with the hard stuff. It's about not making the hard stuff worse by fighting it.</p><p>You can't change what you won't face. You can't move past what you won't accept. You can't choose well when you're still swinging blind.</p><p>Face it. Accept it. Choose. Engage.</p><p>It's not a fix. It's a way through. And sometimes, that's all there is.</p><p><strong>Here's how it breaks down:</strong></p>",
           isAcronym: true,
           letters: [
             {
               letter: "F",
               meaning: " Feelings & Feel Them",
               definition:
-                "<p>Acknowledge and accept your feelings. Stop running.</p><p>Let yourself actually <em>feel</em> the funky stuff—the anxiety in your chest, the sadness, the anger—without trying to fight it, fix it, or numb it out.</p><p>It's about making space for the feeling to just be there.</p><p>It's like: Your mind is screaming, &quote;This anxiety is terrible, make it stop!&quote; Instead of panicking or reaching for a distraction, you'd say to yourself: <em>&quote;Alright, I'm feeling that tightness. Hello, anxiety. You can sit here, but you don't get to drive the car.&quote;</em></p><p>&nbsp;</p>",
+                "<p>Acknowledge and accept your feelings. Stop running.</p><p>Let yourself actually <em>feel</em> the funky stuff—the anxiety in your chest, the sadness, the anger—without trying to fight it, fix it, or numb it out.</p><p>It's about making space for the feeling to just be there.</p><p>It's like: Your mind is screaming, &quot;This anxiety is terrible, make it stop!&quot; Instead of panicking or reaching for a distraction, you'd say to yourself: <em>&quot;Alright, I'm feeling that tightness. Hello, anxiety. You can sit here, but you don't get to drive the car.&quot;</em></p><p>&nbsp;</p>",
             },
             {
               letter: "A",
               meaning: "Allow & Accept ",
               definition:
-                "<p>This is the tough one. Not agreeing. Not approving. Just&#8230;Drop the Struggle. This is the active choice to stop wrestling.</p><p>This is how it is right now. This is what's here. This is what you're working with.</p><p>Acceptance isn't &quote;this is fine.&quote; It's &quote;this is what's real, so fighting it is just burning energy I need for something else.&quote;</p><p>It's saying &quote;yes&quote; to the presence of the feeling, even though it's making you feel sh*tty. You're not saying you <em>like</em> it; you're just agreeing that it's here, and struggling against it is exhausting you.</p><p>Drop the rope. Just for now. Just for this moment. Stop pulling against what's already here.</p><p>&nbsp;</p>",
+                "<p>This is the tough one. Not agreeing. Not approving. Just&#8230;Drop the Struggle. This is the active choice to stop wrestling.</p><p>This is how it is right now. This is what's here. This is what you're working with.</p><p>Acceptance isn't &quot;this is fine.&quot; It's &quot;this is what's real, so fighting it is just burning energy I need for something else.&quot;</p><p>It's saying &quot;yes&quot; to the presence of the feeling, even though it's making you feel sh*tty. You're not saying you <em>like</em> it; you're just agreeing that it's here, and struggling against it is exhausting you.</p><p>Drop the rope. Just for now. Just for this moment. Stop pulling against what's already here.</p><p>&nbsp;</p>",
             },
             {
               letter: "C",
@@ -1017,7 +1017,7 @@ export const data = {
               letter: "E",
               meaning: "Engage ",
               definition:
-                "<p>Engage &amp; Energize (Do What Matters). Now, with the feeling allowed and your feet back on the ground, you ask: <em>&quote;What's the next right move that lines up with who I want to be?&quote;</em> You direct your energy <strong>toward</strong> <strong>your values</strong>, <strong>not away from your discomfort</strong>.</p><p>Do the thing. Take the step. Make the move.</p><p>Not perfectly. Not with all the answers. Just&#8230; engage with life on life's terms. With what's actually in front of you.</p><p>Get back in the game. Even if it's small. Action cuts through spin.</p>",
+                "<p>Engage &amp; Energize (Do What Matters). Now, with the feeling allowed and your feet back on the ground, you ask: <em>&quot;What's the next right move that lines up with who I want to be?&quot;</em> You direct your energy <strong>toward</strong> <strong>your values</strong>, <strong>not away from your discomfort</strong>.</p><p>Do the thing. Take the step. Make the move.</p><p>Not perfectly. Not with all the answers. Just&#8230; engage with life on life's terms. With what's actually in front of you.</p><p>Get back in the game. Even if it's small. Action cuts through spin.</p>",
             },
           ],
           scenariosField: null,
@@ -1062,7 +1062,7 @@ export const data = {
             {
               title: "",
               description:
-                "<p>Naming it creates space. A tiny gap where you can go: &quote;Oh. That's FEAR. That's the pattern. That's the trap.&quote;</p>",
+                "<p>Naming it creates space. A tiny gap where you can go: &quot;Oh. That's FEAR. That's the pattern. That's the trap.&quot;</p>",
             },
             {
               title: "",
@@ -1131,14 +1131,14 @@ export const data = {
         },
         toolFieldGroup: {
           description:
-            "<p><strong>FEAR</strong> is what you need to name when you're stuck and can't move—when something's got you pinned and you don't even know what it is.</p><p>From Acceptance and Commitment Therapy. ACT. It's about stopping the struggle and starting to live. But first you gotta spot what's actually going on under the hood.</p><p>Because half the time you think you're dealing with the situation. But you're really dealing with the fear <em>about</em> the situation. And that fear? It's got a structure. A pattern. A way it traps you.</p><p>This tool helps you see the trap so you can stop walking into it.</p><p><strong>Why naming this matters</strong></p><p>Because when you're in it—when you're fused, evaluating, avoiding, reason-giving—it just feels like <em>reality</em>. Like this is how things are. Like there's no other way.</p><p>Naming it creates space. A tiny gap where you can go: &quote;Oh. That's FEAR. That's the pattern. That's the trap.&quote;</p><p>And in that gap? You've got options.</p><p><strong>What to do with it</strong></p><p>Not fight it. Not fix it. Just&#8230; see it.</p><p>Notice when you're fused with a thought. When you're evaluating instead of observing. When you're avoiding. When you're spinning reasons.</p><p>Just notice. That's the win.</p><p>Then ask: what would it look like to unhook? Just for a moment. Just enough to move.</p><p><strong>The counter-move: DARE</strong></p><p>Some folks flip it. When FEAR shows up, they DARE:</p><p><strong>D</strong>iffuse—unhook from the thought. Watch it like a cloud instead of living inside it.</p><p><strong>A</strong>ccept—let the discomfort be there without running from it.</p><p><strong>R</strong>espond—choose an action based on what matters, not what feels safe.</p><p><strong>E</strong>ngage—get back in the game. Life's happening now.</p><p><strong>The street-level truth</strong></p><p>FEAR isn't going anywhere. It'll always find reasons to show up. New situations. Old triggers. The gremlin's favourite hits.</p><p>&nbsp;</p><p><strong>Here's how it breaks down:</strong></p>",
+            "<p><strong>FEAR</strong> is what you need to name when you're stuck and can't move—when something's got you pinned and you don't even know what it is.</p><p>From Acceptance and Commitment Therapy. ACT. It's about stopping the struggle and starting to live. But first you gotta spot what's actually going on under the hood.</p><p>Because half the time you think you're dealing with the situation. But you're really dealing with the fear <em>about</em> the situation. And that fear? It's got a structure. A pattern. A way it traps you.</p><p>This tool helps you see the trap so you can stop walking into it.</p><p><strong>Why naming this matters</strong></p><p>Because when you're in it—when you're fused, evaluating, avoiding, reason-giving—it just feels like <em>reality</em>. Like this is how things are. Like there's no other way.</p><p>Naming it creates space. A tiny gap where you can go: &quot;Oh. That's FEAR. That's the pattern. That's the trap.&quot;</p><p>And in that gap? You've got options.</p><p><strong>What to do with it</strong></p><p>Not fight it. Not fix it. Just&#8230; see it.</p><p>Notice when you're fused with a thought. When you're evaluating instead of observing. When you're avoiding. When you're spinning reasons.</p><p>Just notice. That's the win.</p><p>Then ask: what would it look like to unhook? Just for a moment. Just enough to move.</p><p><strong>The counter-move: DARE</strong></p><p>Some folks flip it. When FEAR shows up, they DARE:</p><p><strong>D</strong>iffuse—unhook from the thought. Watch it like a cloud instead of living inside it.</p><p><strong>A</strong>ccept—let the discomfort be there without running from it.</p><p><strong>R</strong>espond—choose an action based on what matters, not what feels safe.</p><p><strong>E</strong>ngage—get back in the game. Life's happening now.</p><p><strong>The street-level truth</strong></p><p>FEAR isn't going anywhere. It'll always find reasons to show up. New situations. Old triggers. The gremlin's favourite hits.</p><p>&nbsp;</p><p><strong>Here's how it breaks down:</strong></p>",
           isAcronym: true,
           letters: [
             {
               letter: "F",
               meaning: "Fuse with thoughts",
               definition:
-                "<p>This is when you get tangled up with what your head's telling you. Not just hearing it—<em>believing</em> it like it's fact. Like the thought <em>is</em> the truth, not just a thought.</p><p>&quote;I can't do this.&quote;<br />&quote;I'm going to fail.&quote;<br />&quote;Everyone's judging me.&quote;<br />&quote;One won't hurt.&quote;</p><p>You're not looking at the thought. You're looking <em>from</em> it. Like glasses you forgot you were wearing. The thought runs the show because you're fused with it. Stuck together. No space between you and it.</p>",
+                "<p>This is when you get tangled up with what your head's telling you. Not just hearing it—<em>believing</em> it like it's fact. Like the thought <em>is</em> the truth, not just a thought.</p><p>&quot;I can't do this.&quot;<br />&quot;I'm going to fail.&quot;<br />&quot;Everyone's judging me.&quot;<br />&quot;One won't hurt.&quot;</p><p>You're not looking at the thought. You're looking <em>from</em> it. Like glasses you forgot you were wearing. The thought runs the show because you're fused with it. Stuck together. No space between you and it.</p>",
             },
             {
               letter: "E",
@@ -1156,7 +1156,7 @@ export const data = {
               letter: "R",
               meaning: "Reason-giving",
               definition:
-                "<p>This is your brain making up stories to justify the avoidance.</p><p>&quote;I deserve a break.&quote;</p><p>&quote;I can't do that because&#8230; [insert story here].&quote;</p><p>&quote;It's not that bad.&quote;</p><p>&quote;I'll deal with it tomorrow.&quote;</p><p>&quote;They started it.&quote;</p><p>&quote;This is just who I am.&quote;</p><p>Reasons feel like truth. They're just&#8230; reasons. Stories your head spins to explain why you're stuck, why you're not moving, why it's different this time.</p>",
+                "<p>This is your brain making up stories to justify the avoidance.</p><p>&quot;I deserve a break.&quot;</p><p>&quot;I can't do that because&#8230; [insert story here].&quot;</p><p>&quot;It's not that bad.&quot;</p><p>&quot;I'll deal with it tomorrow.&quot;</p><p>&quot;They started it.&quot;</p><p>&quot;This is just who I am.&quot;</p><p>Reasons feel like truth. They're just&#8230; reasons. Stories your head spins to explain why you're stuck, why you're not moving, why it's different this time.</p>",
             },
           ],
           scenariosField: null,
@@ -1192,7 +1192,7 @@ export const data = {
             {
               title: "",
               description:
-                "<p>Because it's so simple you'll want to skip it. &quote;That's too basic. My situation is more complicated than that.&quote;</p>",
+                "<p>Because it's so simple you'll want to skip it. &quot;That's too basic. My situation is more complicated than that.&quot;</p>",
             },
             {
               title: "",
@@ -1246,32 +1246,32 @@ export const data = {
         },
         toolFieldGroup: {
           description:
-            "<div><div>H.A.L.T is a must have self-check tool. When these four basic needs are out of whack, your judgment isn't on-point, and you're an easy target for old habits. 90% of daft decisions start with one of these four gremlins.</div><div></div><div>Run a self-check with them and fix the basic stuff first — then see if the craving is still there. 9 times out of 10 it will have done one. If not you can often find H.A.L.T. hanging with the jerks of B.A.D.S so check that tool too.</div><div></div></div><div>From SMART Recovery. It's not a fancy technique. It's not a long exercise. It's just four questions you ask yourself when you feel off, when the urge is stirring, when you're about to do something you'll regret.</div><div></div><div><p><strong>Why this one's a keeper</strong></p><p>Because it's so simple you'll want to skip it. &quote;That's too basic. My situation is more complicated than that.&quote;</p><p>But it's not. Not at the root. The complicated stuff is real, but you can't touch it when you're hungry, angry, lonely, or tired. You're trying to solve complex problems with an empty tank and a flat battery.</p><p>Sort the basics. Then see what's left. Usually, it's less than you thought.</p><p><strong>When to pull it out:</strong></p><ul><li><p>When the urge comes out of nowhere</p></li><li><p>When you're irritable and don't know why</p></li><li><p>When everything feels too much</p></li><li><p>When you're about to make a decision you might regret</p></li><li><p>When you just feel&#8230; off</p></li></ul><p><strong>The street-level truth</strong></p><p>HALT isn't therapy. It's not going to fix your childhood or sort your relationships. It's a ten-second check-in that stops you making things worse.</p><p>Am I hungry? Angry? Lonely? Tired?</p><p>If yes, deal with that first. Eat. Vent. Connect. Rest. Then see where you're at.</p><p>Half the battles you won't have to fight. The gremlin moves on. Finds someone who hasn't eaten today.</p><p>Don't let it be you.</p></div><p><strong>Here's how it breaks down:</strong></p>",
+            "<div><div>H.A.L.T is a must have self-check tool. When these four basic needs are out of whack, your judgment isn't on-point, and you're an easy target for old habits. 90% of daft decisions start with one of these four gremlins.</div><div></div><div>Run a self-check with them and fix the basic stuff first — then see if the craving is still there. 9 times out of 10 it will have done one. If not you can often find H.A.L.T. hanging with the jerks of B.A.D.S so check that tool too.</div><div></div></div><div>From SMART Recovery. It's not a fancy technique. It's not a long exercise. It's just four questions you ask yourself when you feel off, when the urge is stirring, when you're about to do something you'll regret.</div><div></div><div><p><strong>Why this one's a keeper</strong></p><p>Because it's so simple you'll want to skip it. &quot;That's too basic. My situation is more complicated than that.&quot;</p><p>But it's not. Not at the root. The complicated stuff is real, but you can't touch it when you're hungry, angry, lonely, or tired. You're trying to solve complex problems with an empty tank and a flat battery.</p><p>Sort the basics. Then see what's left. Usually, it's less than you thought.</p><p><strong>When to pull it out:</strong></p><ul><li><p>When the urge comes out of nowhere</p></li><li><p>When you're irritable and don't know why</p></li><li><p>When everything feels too much</p></li><li><p>When you're about to make a decision you might regret</p></li><li><p>When you just feel&#8230; off</p></li></ul><p><strong>The street-level truth</strong></p><p>HALT isn't therapy. It's not going to fix your childhood or sort your relationships. It's a ten-second check-in that stops you making things worse.</p><p>Am I hungry? Angry? Lonely? Tired?</p><p>If yes, deal with that first. Eat. Vent. Connect. Rest. Then see where you're at.</p><p>Half the battles you won't have to fight. The gremlin moves on. Finds someone who hasn't eaten today.</p><p>Don't let it be you.</p></div><p><strong>Here's how it breaks down:</strong></p>",
           isAcronym: true,
           letters: [
             {
               letter: "H",
               meaning: "Hungry",
               definition:
-                "<p>When did you last eat? Proper food. Not just coffee. Not just picking at something.</p><p>Low blood sugar feels a lot like anxiety. Like irritability. Like &quote;I can't cope with this.&quote; Your brain runs on fuel. If the tank's empty, everything feels harder.</p><p>Have something. Doesn't have to be a meal. A sandwich. Fruit. Toast. Just&#8230; food. Real food. Wait ten minutes. See if the world still feels like it's ending.</p>",
+                "<p>When did you last eat? Proper food. Not just coffee. Not just picking at something.</p><p>Low blood sugar feels a lot like anxiety. Like irritability. Like &quot;I can't cope with this.&quot; Your brain runs on fuel. If the tank's empty, everything feels harder.</p><p>Have something. Doesn't have to be a meal. A sandwich. Fruit. Toast. Just&#8230; food. Real food. Wait ten minutes. See if the world still feels like it's ending.</p>",
             },
             {
               letter: "A",
               meaning: "Angry",
               definition:
-                "<div>Are you pissed off about something?</div><div></div><div>Anger can be a real idiot and hijack your judgment if you don't deal with it.</div><div>What's winding you up? What's sitting there, unspoken, unresolved?</div><div><p>Not just rage. The small irritations. The resentment you're carrying. The thing someone said yesterday. The situation you can't change. The unfairness of it all.</p><p>Angry doesn't have to mean shouting. It can be a low hum in the background that colours everything. Check for it. Name it. &quote;I'm angry about that thing.&quote; Just saying it takes some of the weight off.</p></div>",
+                "<div>Are you pissed off about something?</div><div></div><div>Anger can be a real idiot and hijack your judgment if you don't deal with it.</div><div>What's winding you up? What's sitting there, unspoken, unresolved?</div><div><p>Not just rage. The small irritations. The resentment you're carrying. The thing someone said yesterday. The situation you can't change. The unfairness of it all.</p><p>Angry doesn't have to mean shouting. It can be a low hum in the background that colours everything. Check for it. Name it. &quot;I'm angry about that thing.&quot; Just saying it takes some of the weight off.</p></div>",
             },
             {
               letter: "L",
               meaning: "Lonely",
               definition:
-                "<div><p>When did you last really talk to someone? Not text. Not scroll. Actually connect.</p><p>Lonely doesn't mean alone. You can be surrounded and still lonely. It's the feeling that no one gets it. That you're on your own with this. That no one would understand.</p><p>Isolation makes everything harder and the cravings monster loves it. It whispers &quote;you're the only one&quote; and &quote;no one cares&quote; and &quote;might as well not try.&quote; Reach out. Even small. Even just &quote;hey, thinking of you.&quote; Connection cuts through lonely.</p></div><div>Kick him to the side and call a buddy. It's not optional. They're probably wondering why you haven't been in touch lately.</div>",
+                "<div><p>When did you last really talk to someone? Not text. Not scroll. Actually connect.</p><p>Lonely doesn't mean alone. You can be surrounded and still lonely. It's the feeling that no one gets it. That you're on your own with this. That no one would understand.</p><p>Isolation makes everything harder and the cravings monster loves it. It whispers &quot;you're the only one&quot; and &quot;no one cares&quot; and &quot;might as well not try.&quot; Reach out. Even small. Even just &quot;hey, thinking of you.&quot; Connection cuts through lonely.</p></div><div>Kick him to the side and call a buddy. It's not optional. They're probably wondering why you haven't been in touch lately.</div>",
             },
             {
               letter: "T",
               meaning: "Tired",
               definition:
-                "<div><p>When did you last properly rest? Not just stop moving. Actually rest.</p><p>Sleep. A break. Five minutes with your eyes closed. Time when you weren't trying to do, fix, solve, cope.</p><p>Tired looks like everything being too much. Like tears over nothing. Like snapping at people. Like &quote;I can't do this anymore.&quote; But sometimes it's just&#8230; tired. And tired can be fixed. Nap. Early night. Ten minutes sitting in silence. It helps.</p></div><div>Swerve the unnecessary and get yourself some kip.</div>",
+                "<div><p>When did you last properly rest? Not just stop moving. Actually rest.</p><p>Sleep. A break. Five minutes with your eyes closed. Time when you weren't trying to do, fix, solve, cope.</p><p>Tired looks like everything being too much. Like tears over nothing. Like snapping at people. Like &quot;I can't do this anymore.&quot; But sometimes it's just&#8230; tired. And tired can be fixed. Nap. Early night. Ten minutes sitting in silence. It helps.</p></div><div>Swerve the unnecessary and get yourself some kip.</div>",
             },
           ],
           scenariosField: null,
@@ -1332,13 +1332,13 @@ export const data = {
               letter: "P",
               meaning: "Purpose",
               definition:
-                "<div><div>Find your &quote;why&quote; &#8211; what makes you want to get up in the morning?</div><div><p>What matters enough to keep going?</p><p>Not some big life mission. Just&#8230; something. Anything.</p><p>Your kid's face in the morning. The walk you take. The group you sit with. The thing you're good at. The person who'd notice if you weren't around. The goal you're working towards, even if it's small.</p><p>Purpose isn't found. It's built. Small choices. Showing up. Doing the next right thing even when you don't feel like it. Purpose grows where you water it.</p></div></div>",
+                "<div><div>Find your &quot;why&quot; &#8211; what makes you want to get up in the morning?</div><div><p>What matters enough to keep going?</p><p>Not some big life mission. Just&#8230; something. Anything.</p><p>Your kid's face in the morning. The walk you take. The group you sit with. The thing you're good at. The person who'd notice if you weren't around. The goal you're working towards, even if it's small.</p><p>Purpose isn't found. It's built. Small choices. Showing up. Doing the next right thing even when you don't feel like it. Purpose grows where you water it.</p></div></div>",
             },
             {
               letter: "E",
               meaning: "Esteem",
               definition:
-                "<div>Not ego. Not &quote;I'm better than.&quote; Esteem. Self-respect. The quiet knowing that you're doing the work.</div><div><p>Esteem comes from actions worthy of respect. From keeping promises to yourself. From doing the thing you said you'd do. From looking in the mirror and knowing you didn't fold today.</p><p>You don't feel your way into better actions. You act your way into better feelings. Esteem is earned. Small win by small win. Kept promise by kept promise. Day by day.</p></div>",
+                "<div>Not ego. Not &quot;I'm better than.&quot; Esteem. Self-respect. The quiet knowing that you're doing the work.</div><div><p>Esteem comes from actions worthy of respect. From keeping promises to yourself. From doing the thing you said you'd do. From looking in the mirror and knowing you didn't fold today.</p><p>You don't feel your way into better actions. You act your way into better feelings. Esteem is earned. Small win by small win. Kept promise by kept promise. Day by day.</p></div>",
             },
           ],
           scenariosField: null,
@@ -1488,7 +1488,7 @@ export const data = {
               letter: "E",
               meaning: "Encouragement",
               definition:
-                "<p>Talk to yourself like your own hype man.</p><p>Talk to yourself like you'd talk to a mate. Not the gremlin voice. Not the critic. Just&#8230; someone who wants you to get through this.</p><p>Drop some positive self-talk on yourself:</p><p>&quote;You've got this. You've been through worse.&quote;</p><p>&quote;This feeling will pass. It always does.&quote;</p><p>&quote;You're doing the hard work. Keep going.&quote;</p><p>&quote;This crap won't last forever — I'm tougher than it.&quote;</p><p>Say it out loud if you can. In your head if you can't. But say it. You need to hear it. Build yourself up with real talk that gives you back up, no cap.</p>",
+                "<p>Talk to yourself like your own hype man.</p><p>Talk to yourself like you'd talk to a mate. Not the gremlin voice. Not the critic. Just&#8230; someone who wants you to get through this.</p><p>Drop some positive self-talk on yourself:</p><p>&quot;You've got this. You've been through worse.&quot;</p><p>&quot;This feeling will pass. It always does.&quot;</p><p>&quot;You're doing the hard work. Keep going.&quot;</p><p>&quot;This crap won't last forever — I'm tougher than it.&quot;</p><p>Say it out loud if you can. In your head if you can't. But say it. You need to hear it. Build yourself up with real talk that gives you back up, no cap.</p>",
             },
           ],
           scenariosField: null,
@@ -1572,7 +1572,7 @@ export const data = {
               letter: "I",
               meaning: "Insight",
               definition:
-                "<div><div>Those &quote;aha!&quote; moments when you finally get why you do what you do.</div></div>",
+                "<div><div>Those &quot;aha!&quot; moments when you finally get why you do what you do.</div></div>",
             },
             {
               letter: "E",
@@ -1648,12 +1648,12 @@ export const data = {
           descriptions: [
             {
               title: "Play the tape forward",
-              description: "<p>is like &quote;Rewind the Tape&quote; but from a different angle.</p>",
+              description: "<p>is like &quot;Rewind the Tape&quot; but from a different angle.</p>",
             },
             {
               title: "",
               description:
-                "<p>It's a mental trick for when your brain starts feeding you lies: &quote;Just one won't hurt.&quote; It shows you a highlights reel—the buzz, the relief—while editing out the grime.</p>",
+                "<p>It's a mental trick for when your brain starts feeding you lies: &quot;Just one won't hurt.&quot; It shows you a highlights reel—the buzz, the relief—while editing out the grime.</p>",
             },
             {
               title: "",
@@ -1665,11 +1665,11 @@ export const data = {
             },
             {
               title: "",
-              description: "<p>Urges zoom in on: &quote;This will calm me down&quote; &quote;I deserve this&quote;</p>",
+              description: "<p>Urges zoom in on: &quot;This will calm me down&quot; &quot;I deserve this&quot;</p>",
             },
             {
               title: "",
-              description: "<p>Playing the tape forward is you saying: &quote;Okay… and then what?&quote;</p>",
+              description: "<p>Playing the tape forward is you saying: &quot;Okay… and then what?&quot;</p>",
             },
             {
               title: "",
@@ -1713,7 +1713,7 @@ export const data = {
             {
               title: "",
               description:
-                "<p>It turns &quote;I need this&quote; into &quote;I know how this ends… and I'm not into that ending.&quote;</p>",
+                "<p>It turns &quot;I need this&quot; into &quot;I know how this ends… and I'm not into that ending.&quot;</p>",
             },
             {
               title: "The street-level truth",
@@ -1727,7 +1727,7 @@ export const data = {
         },
         toolFieldGroup: {
           description:
-            "<p><strong>Play the tape forward</strong> is like &quote;Rewind the Tape&quote; but from a different angle.</p><p>It's a mental trick for when your brain starts feeding you lies: &quote;Just one won't hurt.&quote; It shows you a highlights reel—the buzz, the relief—while editing out the grime.</p><p>Playing the tape forward means you keep the movie rolling past the good bits.</p><p><strong>How it works</strong></p><p>Urges zoom in on: &quote;This will calm me down&quote; &quote;I deserve this&quote;</p><p>Playing the tape forward is you saying: &quote;Okay… and then what?&quote;</p><p>You mentally fast-forward:</p><ul><li><p>an hour later</p></li><li><p>tomorrow morning</p></li><li><p>next week if this keeps going</p></li></ul><p>You've watched this film before. You know the ending.</p><p><strong>Ask yourself:</strong></p><ul><li><p>Do I really stop at one?</p></li><li><p>Am I lying, hiding, cancelling plans?</p></li><li><p>How do I wake up tomorrow?</p></li><li><p>Where does this actually lead?</p></li></ul><p>No drama. Just facts.</p><p><strong>Why it's got your back</strong></p><p>The urge only sells the opening scene. Playing the tape forward:</p><ul><li><p>breaks the spell</p></li><li><p>slows the moment down</p></li><li><p>reminds you why you wanted change</p></li></ul><p>It turns &quote;I need this&quote; into &quote;I know how this ends… and I'm not into that ending.&quote;</p><p><strong>The street-level truth</strong></p><p>It doesn't make urges disappear. It helps you outsmart them.</p>",
+            "<p><strong>Play the tape forward</strong> is like &quot;Rewind the Tape&quot; but from a different angle.</p><p>It's a mental trick for when your brain starts feeding you lies: &quot;Just one won't hurt.&quot; It shows you a highlights reel—the buzz, the relief—while editing out the grime.</p><p>Playing the tape forward means you keep the movie rolling past the good bits.</p><p><strong>How it works</strong></p><p>Urges zoom in on: &quot;This will calm me down&quot; &quot;I deserve this&quot;</p><p>Playing the tape forward is you saying: &quot;Okay… and then what?&quot;</p><p>You mentally fast-forward:</p><ul><li><p>an hour later</p></li><li><p>tomorrow morning</p></li><li><p>next week if this keeps going</p></li></ul><p>You've watched this film before. You know the ending.</p><p><strong>Ask yourself:</strong></p><ul><li><p>Do I really stop at one?</p></li><li><p>Am I lying, hiding, cancelling plans?</p></li><li><p>How do I wake up tomorrow?</p></li><li><p>Where does this actually lead?</p></li></ul><p>No drama. Just facts.</p><p><strong>Why it's got your back</strong></p><p>The urge only sells the opening scene. Playing the tape forward:</p><ul><li><p>breaks the spell</p></li><li><p>slows the moment down</p></li><li><p>reminds you why you wanted change</p></li></ul><p>It turns &quot;I need this&quot; into &quot;I know how this ends… and I'm not into that ending.&quot;</p><p><strong>The street-level truth</strong></p><p>It doesn't make urges disappear. It helps you outsmart them.</p>",
           isAcronym: false,
           letters: null,
           scenariosField: null,
@@ -1749,7 +1749,7 @@ export const data = {
             {
               title: "",
               description:
-                "<p>It's like a mental reset button, drawn from mindfulness and created by Tara Brach. It turns &quote;I can’t handle this feeling&quote; into &quote;I can be with this feeling until it passes.. &quote;</p>",
+                "<p>It's like a mental reset button, drawn from mindfulness and created by Tara Brach. It turns &quot;I can’t handle this feeling&quot; into &quot;I can be with this feeling until it passes.. &quot;</p>",
             },
             {
               title: "",
@@ -1760,32 +1760,32 @@ export const data = {
         },
         toolFieldGroup: {
           description:
-            "<div>The R.A.I.N. mindfulness tool is a chilled superpower, a no-frills way to handle tough emotions, urges, or stress bombs without letting them take over—especially in recovery when cravings or old patterns try to creep back in.</div><div><p>It's like a mental reset button, drawn from mindfulness and created by Tara Brach. It turns &quote;I can’t handle this feeling&quote; into &quote;I can be with this feeling until it passes.. &quote;</p><p>Use it to pause, process, and move through the mess so you don't react on autopilot or slip up. Think of it as your inner coach helping you ride the wave instead of getting drowned by it.</p></div>",
+            "<div>The R.A.I.N. mindfulness tool is a chilled superpower, a no-frills way to handle tough emotions, urges, or stress bombs without letting them take over—especially in recovery when cravings or old patterns try to creep back in.</div><div><p>It's like a mental reset button, drawn from mindfulness and created by Tara Brach. It turns &quot;I can’t handle this feeling&quot; into &quot;I can be with this feeling until it passes.. &quot;</p><p>Use it to pause, process, and move through the mess so you don't react on autopilot or slip up. Think of it as your inner coach helping you ride the wave instead of getting drowned by it.</p></div>",
           isAcronym: true,
           letters: [
             {
               letter: "R",
               meaning: "Recognize",
               definition:
-                "<div>Spot what's up right now. Name what’s happening without any BS: Like &quote;This is anxiety,&quote; &quote;This is shame&quote;, &quote;This is a craving.&quote;, &quote;I'm feeling pissed off&quote; or &quote;This craving's hitting me hard.&quote;</div><div><p>Just acknowledge it, don't judge, just notice so it doesn't blindside you.</p></div><p>The point? R.A.I.N. helps you surf through heavy feels or triggers in recovery without crashing—turns reactivity into smart responses, reducing relapse risks and building resilience.</p><p>Practice it daily on small stuff so it's ready when big waves hit. Pair it with tools like TIPP for the body or DEADS for urges. If it's overwhelming, link up with a therapist or group for extra backup.</p><p>Keep breathing easy, &#8211; you're built tough.</p>",
+                "<div>Spot what's up right now. Name what’s happening without any BS: Like &quot;This is anxiety,&quot; &quot;This is shame&quot;, &quot;This is a craving.&quot;, &quot;I'm feeling pissed off&quot; or &quot;This craving's hitting me hard.&quot;</div><div><p>Just acknowledge it, don't judge, just notice so it doesn't blindside you.</p></div><p>The point? R.A.I.N. helps you surf through heavy feels or triggers in recovery without crashing—turns reactivity into smart responses, reducing relapse risks and building resilience.</p><p>Practice it daily on small stuff so it's ready when big waves hit. Pair it with tools like TIPP for the body or DEADS for urges. If it's overwhelming, link up with a therapist or group for extra backup.</p><p>Keep breathing easy, &#8211; you're built tough.</p>",
             },
             {
               letter: "A",
               meaning: "Allow",
               definition:
-                "<div>Let it be there without fighting or feeding it. It’s already here.</div><div></div><div>Tell yourself, &quote;This isn't great, but it's cool—it's just a thing passing through.&quote;</div><div></div><div>Don't try to shove it down or fix it quick; giving it space stops it from building up like pressure in a bottle.</div>",
+                "<div>Let it be there without fighting or feeding it. It’s already here.</div><div></div><div>Tell yourself, &quot;This isn't great, but it's cool—it's just a thing passing through.&quot;</div><div></div><div>Don't try to shove it down or fix it quick; giving it space stops it from building up like pressure in a bottle.</div>",
             },
             {
               letter: "I",
               meaning: "Investigate",
               definition:
-                "<p>Dig a little, and get curious.</p><p>Ask yourself, &quote;Where's this coming from? What's it doing to my body—tight chest, racing thoughts?&quote;</p><p>Or, &quote;What's the story my brain's spinning?&quote;</p><p>Keep it light, like scanning the car park to see where you parked without getting stuck in the loop.</p>",
+                "<p>Dig a little, and get curious.</p><p>Ask yourself, &quot;Where's this coming from? What's it doing to my body—tight chest, racing thoughts?&quot;</p><p>Or, &quot;What's the story my brain's spinning?&quot;</p><p>Keep it light, like scanning the car park to see where you parked without getting stuck in the loop.</p>",
             },
             {
               letter: "N",
               meaning: "Nurture",
               definition:
-                "<div></div><div>Show yourself some real kindness —like you would a good friend or a scared kid.</div><div></div><div>Talk to yourself like you'd would your best friend when they need it: &quote;You got this, it's rough but you're handling it.&quote; Or do a quick self-care move—deep breath, stretch, and remind yourself of your wins.</div><div></div><div>It's about building that inner strength so the emotion don't own you.</div>",
+                "<div></div><div>Show yourself some real kindness —like you would a good friend or a scared kid.</div><div></div><div>Talk to yourself like you'd would your best friend when they need it: &quot;You got this, it's rough but you're handling it.&quot; Or do a quick self-care move—deep breath, stretch, and remind yourself of your wins.</div><div></div><div>It's about building that inner strength so the emotion don't own you.</div>",
             },
           ],
           scenariosField: {
@@ -1882,22 +1882,22 @@ export const data = {
           descriptions: [
             {
               title: "Rewind the Tape",
-              description: "<p>is about remembering the mess that made you say &quote;I'm done with this&quote;</p>",
+              description: "<p>is about remembering the mess that made you say &quot;I'm done with this&quot;</p>",
             },
             {
               title: "",
               description:
-                "<p>When urges hit, your brain lies: &quote;It wasn't that bad&quote; &quote;I could control it now&quote;</p>",
+                "<p>When urges hit, your brain lies: &quot;It wasn't that bad&quot; &quot;I could control it now&quot;</p>",
             },
             {
               title: "",
               description:
-                "<p>Rewinding the tape is grabbing back the control and saying &quote;Let's watch the full version—the bits you're skipping.&quote;</p>",
+                "<p>Rewinding the tape is grabbing back the control and saying &quot;Let's watch the full version—the bits you're skipping.&quot;</p>",
             },
             {
               title: "It's not the good nights.",
               description:
-                "<p>It's the chaos, the shame, the empty accounts, the &quote;how the f**k did I end up here?&quote; moments. That's the master tape. Don't buy the dodgy edit your gremlins are selling.</p>",
+                "<p>It's the chaos, the shame, the empty accounts, the &quot;how the f**k did I end up here?&quot; moments. That's the master tape. Don't buy the dodgy edit your gremlins are selling.</p>",
             },
             {
               title: "Why it works",
@@ -1910,7 +1910,7 @@ export const data = {
             {
               title: "",
               description:
-                "<ul><li><p>the fallout</p></li><li><p>the guilt-ridden mornings</p></li><li><p>the &quote;I can't do this anymore&quote; thoughts</p></li></ul>",
+                "<ul><li><p>the fallout</p></li><li><p>the guilt-ridden mornings</p></li><li><p>the &quot;I can't do this anymore&quot; thoughts</p></li></ul>",
             },
             {
               title: "",
@@ -1930,7 +1930,7 @@ export const data = {
             },
             {
               title: "3. Remember the broken promises.",
-              description: "<p>The &quote;last times&quote; that weren't. Your mind doesn't play fair.</p>",
+              description: "<p>The &quot;last times&quot; that weren't. Your mind doesn't play fair.</p>",
             },
             {
               title: "4. Scan your life now.",
@@ -1950,12 +1950,12 @@ export const data = {
             },
             {
               title: "",
-              description: "<p>When your brain says &quote;one won't hurt,&quote; tell it:</p>",
+              description: "<p>When your brain says &quot;one won't hurt,&quot; tell it:</p>",
             },
             {
               title: "",
               description:
-                "<p><em>&quote;Nah. I've seen the full version of this one. I know where &#8216;one' always ends.</em></p>",
+                "<p><em>&quot;Nah. I've seen the full version of this one. I know where &#8216;one' always ends.</em></p>",
             },
             {
               title: "",
@@ -1963,13 +1963,13 @@ export const data = {
             },
             {
               title: "",
-              description: "<p><em>I'm busy rewriting the ending.&quote;</em></p>",
+              description: "<p><em>I'm busy rewriting the ending.&quot;</em></p>",
             },
           ],
         },
         toolFieldGroup: {
           description:
-            "<p><strong>Rewind the Tape</strong> is about remembering the mess that made you say &quote;I'm done with this&quote;</p><p>When urges hit, your brain lies: &quote;It wasn't that bad&quote; &quote;I could control it now&quote;</p><p>Rewinding the tape is grabbing back the control and saying &quote;Let's watch the full version—the bits you're skipping.&quote;</p><p><strong>It's not the good nights.</strong> It's the chaos, the shame, the empty accounts, the &quote;how the f**k did I end up here?&quote; moments. That's the master tape. Don't buy the dodgy edit your gremlins are selling.</p><p><strong>Why it works</strong></p><p>Urges are smooth liars. They sell you the buzz but forget to mention:</p><ul><li><p>the fallout</p></li><li><p>the guilt-ridden mornings</p></li><li><p>the &quote;I can't do this anymore&quote; thoughts</p></li></ul><p>Rewind the Tape drags that truth back into the room.</p><p><strong>How to do it</strong></p><p><strong>1. Go back to your breaking point</strong>—the day you scared yourself, the moment you knew you were losing control.</p><p><strong>2. Remember the grind.</strong> No sugar-coating. How wrecked were you? Who'd you piss off? Where was it leading?</p><p><strong>3. Remember the broken promises.</strong> The &quote;last times&quote; that weren't. Your mind doesn't play fair.</p><p><strong>4. Scan your life now.</strong> Less drama? More trust? Progress? That's what you're protecting.</p><p><strong>What it's NOT</strong><br />Not self-hate. Not punishment. Not living in the past.</p><p>It's keeping it real so you don't walk back into the grime.</p><p><strong>Short version for when urges hit:</strong></p><p>When your brain says &quote;one won't hurt,&quote; tell it:</p><p><em>&quote;Nah. I've seen the full version of this one. I know where &#8216;one' always ends.</em></p><p><em>I'll swerve it.</em></p><p><em>I'm busy rewriting the ending.&quote;</em></p>",
+            "<p><strong>Rewind the Tape</strong> is about remembering the mess that made you say &quot;I'm done with this&quot;</p><p>When urges hit, your brain lies: &quot;It wasn't that bad&quot; &quot;I could control it now&quot;</p><p>Rewinding the tape is grabbing back the control and saying &quot;Let's watch the full version—the bits you're skipping.&quot;</p><p><strong>It's not the good nights.</strong> It's the chaos, the shame, the empty accounts, the &quot;how the f**k did I end up here?&quot; moments. That's the master tape. Don't buy the dodgy edit your gremlins are selling.</p><p><strong>Why it works</strong></p><p>Urges are smooth liars. They sell you the buzz but forget to mention:</p><ul><li><p>the fallout</p></li><li><p>the guilt-ridden mornings</p></li><li><p>the &quot;I can't do this anymore&quot; thoughts</p></li></ul><p>Rewind the Tape drags that truth back into the room.</p><p><strong>How to do it</strong></p><p><strong>1. Go back to your breaking point</strong>—the day you scared yourself, the moment you knew you were losing control.</p><p><strong>2. Remember the grind.</strong> No sugar-coating. How wrecked were you? Who'd you piss off? Where was it leading?</p><p><strong>3. Remember the broken promises.</strong> The &quot;last times&quot; that weren't. Your mind doesn't play fair.</p><p><strong>4. Scan your life now.</strong> Less drama? More trust? Progress? That's what you're protecting.</p><p><strong>What it's NOT</strong><br />Not self-hate. Not punishment. Not living in the past.</p><p>It's keeping it real so you don't walk back into the grime.</p><p><strong>Short version for when urges hit:</strong></p><p>When your brain says &quot;one won't hurt,&quot; tell it:</p><p><em>&quot;Nah. I've seen the full version of this one. I know where &#8216;one' always ends.</em></p><p><em>I'll swerve it.</em></p><p><em>I'm busy rewriting the ending.&quot;</em></p>",
           isAcronym: false,
           letters: null,
           scenariosField: null,
@@ -1986,7 +1986,7 @@ export const data = {
             {
               title: "",
               description:
-                "<p>The SMART tool in recovery is the gold standard for setting goals that you'll actually achieve —none of that vague &quote;I'll do better&quote; BS. It's a no-nonsense way to map out your wins, whether you're kicking addictions, refocusing your relationships with substances, or just getting through daily life in sobriety.</p>",
+                "<p>The SMART tool in recovery is the gold standard for setting goals that you'll actually achieve —none of that vague &quot;I'll do better&quot; BS. It's a no-nonsense way to map out your wins, whether you're kicking addictions, refocusing your relationships with substances, or just getting through daily life in sobriety.</p>",
             },
             {
               title: "",
@@ -2007,38 +2007,38 @@ export const data = {
         },
         toolFieldGroup: {
           description:
-            "<div>The SMART tool in recovery is the gold standard for setting goals that you'll actually achieve —none of that vague &quote;I'll do better&quote; BS. It's a no-nonsense way to map out your wins, whether you're kicking addictions, refocusing your relationships with substances, or just getting through daily life in sobriety.</div><div><p>Pulled from SMART Recovery, it's science-backed to keep you focused and motivated. Think of it as your GPS for progress: Specific, Measurable, Achievable, Relevant, Time-bound.</p></div><p>SMART turns wishy-washy ideas into actionable plans that boost your confidence and keeps relapse at bay. Write them down, review weekly, and tweak as needed—pair it with tools like DEADS for urges or H.O.V. for motivation. Break down the fluff so you can track real moves and celebrate them.</p><p>If goals feel overwhelming, chat with a therapist or hit a SMART meeting for extra edge. Stay at it; small steps stack up big.</p>",
+            "<div>The SMART tool in recovery is the gold standard for setting goals that you'll actually achieve —none of that vague &quot;I'll do better&quot; BS. It's a no-nonsense way to map out your wins, whether you're kicking addictions, refocusing your relationships with substances, or just getting through daily life in sobriety.</div><div><p>Pulled from SMART Recovery, it's science-backed to keep you focused and motivated. Think of it as your GPS for progress: Specific, Measurable, Achievable, Relevant, Time-bound.</p></div><p>SMART turns wishy-washy ideas into actionable plans that boost your confidence and keeps relapse at bay. Write them down, review weekly, and tweak as needed—pair it with tools like DEADS for urges or H.O.V. for motivation. Break down the fluff so you can track real moves and celebrate them.</p><p>If goals feel overwhelming, chat with a therapist or hit a SMART meeting for extra edge. Stay at it; small steps stack up big.</p>",
           isAcronym: true,
           letters: [
             {
               letter: "S",
               meaning: "Specific",
               definition:
-                "<div>Get crystal clear about what you want.</div><div></div><div>Don't say &quote;I want to be healthier&quote;—nail it down like a boss: &quote;I'm hitting the gym three times a week for weights and cardio.&quote;</div><div></div><div>The clearer the target, the less room for excuses or getting lost in the sauce.</div>",
+                "<div>Get crystal clear about what you want.</div><div></div><div>Don't say &quot;I want to be healthier&quot;—nail it down like a boss: &quot;I'm hitting the gym three times a week for weights and cardio.&quot;</div><div></div><div>The clearer the target, the less room for excuses or getting lost in the sauce.</div>",
             },
             {
               letter: "M",
               meaning: "Measurable",
               definition:
-                "<p>Make it countable so you know when you're crushing it.</p><p>Track the numbers: &quote;I'll log 10,000 steps a day&quote; or &quote;No drinks for 30 days straight.&quote; It's like keeping score in a game —  lets you see the progress and adjust if you're off.</p>",
+                "<p>Make it countable so you know when you're crushing it.</p><p>Track the numbers: &quot;I'll log 10,000 steps a day&quot; or &quot;No drinks for 30 days straight.&quot; It's like keeping score in a game —  lets you see the progress and adjust if you're off.</p>",
             },
             {
               letter: "A",
               meaning: "Achievable",
               definition:
-                "<div></div><div>Keep it real, not some pipe dream. Set yourself up to succeed, not fail &#8211; ambitious is good, impossible is a right let down.</div><div><p>Ask yourself, &quote;Can I actually pull this off with what I've got?&quote;, &quote;What else do I need to smash this and is that easy to get&quote;. Give the big barriers a swerve and keep it simple.</p><p>Start small if you're fresh in recovery, like &quote;Call my sponsor twice a week&quote; instead of overhauling your whole life overnight.</p><p>Builds wins, big and small, without setting you up to flop.</p></div>",
+                "<div></div><div>Keep it real, not some pipe dream. Set yourself up to succeed, not fail &#8211; ambitious is good, impossible is a right let down.</div><div><p>Ask yourself, &quot;Can I actually pull this off with what I've got?&quot;, &quot;What else do I need to smash this and is that easy to get&quot;. Give the big barriers a swerve and keep it simple.</p><p>Start small if you're fresh in recovery, like &quot;Call my sponsor twice a week&quot; instead of overhauling your whole life overnight.</p><p>Builds wins, big and small, without setting you up to flop.</p></div>",
             },
             {
               letter: "R",
               meaning: "Relevant",
               definition:
-                "<div></div><div><p>Tie it to your big picture. Does this goal fit with your values and recovery? If health is top on your H.O.V., then eating clean fits; if it's about family, maybe &quote;Spend quality time with the kids as much as you can.&quote;</p><p>Make sure this goal actually matters to your life and recovery &#8211; not just what sounds impressive.</p><p>Keep yourself locked on what matters, no side quests.</p></div>",
+                "<div></div><div><p>Tie it to your big picture. Does this goal fit with your values and recovery? If health is top on your H.O.V., then eating clean fits; if it's about family, maybe &quot;Spend quality time with the kids as much as you can.&quot;</p><p>Make sure this goal actually matters to your life and recovery &#8211; not just what sounds impressive.</p><p>Keep yourself locked on what matters, no side quests.</p></div>",
             },
             {
               letter: "T",
               meaning: "Time-bound",
               definition:
-                "<p>Set a deadline to light a fire under it.</p><p>&quote;By the end of the month, I'll have my resume updated and three job applications sent.&quote; Gives you a finish line so it don't drag on forever and lose steam.</p><p>Without a realistic deadline it could become like walking through treacle.</p>",
+                "<p>Set a deadline to light a fire under it.</p><p>&quot;By the end of the month, I'll have my resume updated and three job applications sent.&quot; Gives you a finish line so it don't drag on forever and lose steam.</p><p>Without a realistic deadline it could become like walking through treacle.</p>",
             },
           ],
           scenariosField: {
@@ -2100,7 +2100,7 @@ export const data = {
               letter: "S",
               meaning: "Stop",
               definition:
-                "<p>Freeze right there. Whatever you're doing or thinking, hit the pause button, hard. Don't move, don't speak, just halt the action before you spiral or give in to that urge. It's like yelling &quote;Whoa&quote; to yourself to break the momentum.</p>",
+                "<p>Freeze right there. Whatever you're doing or thinking, hit the pause button, hard. Don't move, don't speak, just halt the action before you spiral or give in to that urge. It's like yelling &quot;Whoa&quot; to yourself to break the momentum.</p>",
             },
             {
               letter: "T",
@@ -2112,7 +2112,7 @@ export const data = {
               letter: "O",
               meaning: "Observe",
               definition:
-                "<p>Scope the scene like a detective. What's going on in your body—heart racing, fists clenched? What's in your head—thoughts like &quote;Screw it, I need this&quote;? And around you—who's there, what's triggering this? No judging, just straight facts to get the full picture, swerve the BS &#8211; that just distracting not helping.</p>",
+                "<p>Scope the scene like a detective. What's going on in your body—heart racing, fists clenched? What's in your head—thoughts like &quot;Screw it, I need this&quot;? And around you—who's there, what's triggering this? No judging, just straight facts to get the full picture, swerve the BS &#8211; that just distracting not helping.</p>",
             },
             {
               letter: "P",
@@ -2124,7 +2124,7 @@ export const data = {
               letter: "P",
               meaning: "Proceed",
               definition:
-                "<div><div>Now choose your next move mindfully.</div><div><p>Move forward smart. Ask yourself, &quote;What's the path that lines up with my goals?&quote; Choose the next step that won't screw up your recovery or life—maybe call a buddy, use another tool like DEADS, or just take some time for yourself. It's about acting with intention, not letting the moment own you. Own it because you've got this.</p></div></div>",
+                "<div><div>Now choose your next move mindfully.</div><div><p>Move forward smart. Ask yourself, &quot;What's the path that lines up with my goals?&quot; Choose the next step that won't screw up your recovery or life—maybe call a buddy, use another tool like DEADS, or just take some time for yourself. It's about acting with intention, not letting the moment own you. Own it because you've got this.</p></div></div>",
             },
           ],
           scenariosField: {
@@ -2371,7 +2371,7 @@ export const data = {
               letter: "P",
               meaning: "Proper",
               definition:
-                "<div><div>Doing things the right way, not cutting corners. It’s about being honest with yourself and making sure what you're doing is sensible and realistic. Don't overstretch yourself &#8211; the SMART tool can help you with that so check it.</p><p>In recovery, that could be getting honest with yourself about your triggers, weaknesses, and strengths. Set clear, realistic goals like &quote;I'm hitting meetings three times a week&quote; instead of vague BS.</p><p>Proper sets the tone so your whole plan don't crumble.</p></div></div>",
+                "<div><div>Doing things the right way, not cutting corners. It’s about being honest with yourself and making sure what you're doing is sensible and realistic. Don't overstretch yourself &#8211; the SMART tool can help you with that so check it.</p><p>In recovery, that could be getting honest with yourself about your triggers, weaknesses, and strengths. Set clear, realistic goals like &quot;I'm hitting meetings three times a week&quot; instead of vague BS.</p><p>Proper sets the tone so your whole plan don't crumble.</p></div></div>",
             },
             {
               letter: "P",
@@ -2401,7 +2401,7 @@ export const data = {
               letter: "P",
               meaning: "Performance",
               definition:
-                "<p>Level up your game. When you do, your &quote;performance&quote; in life shines: better relationships, getting sh*t done, feeling strong and in control. Plus you start to feel amazing.</p><p>Recovery isn't just surviving—it's thriving, and solid P's get you there without the drama.</p>",
+                "<p>Level up your game. When you do, your &quot;performance&quot; in life shines: better relationships, getting sh*t done, feeling strong and in control. Plus you start to feel amazing.</p><p>Recovery isn't just surviving—it's thriving, and solid P's get you there without the drama.</p>",
             },
           ],
           scenariosField: {

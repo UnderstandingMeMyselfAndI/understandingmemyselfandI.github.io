@@ -223,7 +223,7 @@ const example_data = [
           letter: 'D',
           meaning: 'Deny or Delay',
           definition:
-            '<p>Just say <u>&quote;not right now&quote;</u> - you don\'t have to give in immediately.<br />Urges have expiration dates</p>',
+            '<p>Just say <u>&quot;not right now&quot;</u> - you don\'t have to give in immediately.<br />Urges have expiration dates</p>',
           scenario: '',
         },
         {
@@ -317,7 +317,7 @@ const example_data = [
           letter: 'R',
           meaning: 'Refusal',
           definition:
-            '<p>Tell those toxic thoughts who\'s in control. It\'s going to be a &quote;thanks but no thanks&quote; to them and your not going to engage.</p>',
+            '<p>Tell those toxic thoughts who\'s in control. It\'s going to be a &quot;thanks but no thanks&quot; to them and your not going to engage.</p>',
           scenario: '',
         },
         {
@@ -328,19 +328,19 @@ const example_data = [
         },
       ],
       explanation:
-        '<p>D.I.S.A.R.M. is like your own personal secuity team. Like the ones in the movies, and that ex World leaders have. It is your mental &quote;bodyguard system&quote; - protecting you from the gremlins creating thoughts and images that try to sabotage your progress. Use the D.I.S.A.R.M. team as they have got your back.</p>',
+        '<p>D.I.S.A.R.M. is like your own personal secuity team. Like the ones in the movies, and that ex World leaders have. It is your mental &quot;bodyguard system&quot; - protecting you from the gremlins creating thoughts and images that try to sabotage your progress. Use the D.I.S.A.R.M. team as they have got your back.</p>',
     },
     scenarios: [
       {
         title: 'Gambling Urge Imagery',
         content:
-          '<p><b>You start &quote;visualizing&quote; winning big at the casino.</b></p><p><b>Recognize this as destructive imagery</b>,<br /><u>become aware of the pattern</u>,<br /><b>refuse to engage with the fantasy</b>,<br />and <u>replace it with images of financial stability and peace of mind.</u></p>',
+          '<p><b>You start &quot;visualizing&quot; winning big at the casino.</b></p><p><b>Recognize this as destructive imagery</b>,<br /><u>become aware of the pattern</u>,<br /><b>refuse to engage with the fantasy</b>,<br />and <u>replace it with images of financial stability and peace of mind.</u></p>',
         btnLabel: 'Block the Fantasy',
       },
       {
         title: 'Negative Self-Talk Spiral',
         content:
-          '<p>Inner voice says <u>&quote;You will never change&quote;, why even try?</u></p><p>Catch this destructive self-talk, recognize the familiar pattern, refuse to argue with it, and replace it with <u>&quote;I amm learning and growing every day.&quote;</u></p>',
+          '<p>Inner voice says <u>&quot;You will never change&quot;, why even try?</u></p><p>Catch this destructive self-talk, recognize the familiar pattern, refuse to argue with it, and replace it with <u>&quot;I amm learning and growing every day.&quot;</u></p>',
         btnLabel: 'Silence the Critic',
       },
     ],
