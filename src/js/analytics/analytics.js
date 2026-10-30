@@ -1,4 +1,4 @@
-export const trackEvent = (eventName, params = {}, shouldTrack) => {
+export const trackEvent = (eventName, params = {}, shouldTrack = true) => {
   // Debug: log tracking attempts in development
   // if (process.env.NODE_ENV === 'development') {
   //   console.log('[Analytics]', eventName, {
@@ -25,7 +25,7 @@ export const trackEvent = (eventName, params = {}, shouldTrack) => {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', eventName, params)
     if (process.env.NODE_ENV === 'development') {
-      // console.log('[Analytics] Event sent:', eventName, params)
+      console.log('AES:', eventName, params)
     }
   } else {
     console.warn('[Analytics] gtag not available – event not sent:', eventName)
@@ -33,3 +33,4 @@ export const trackEvent = (eventName, params = {}, shouldTrack) => {
 
   console.groupEnd()
 }
+export default { trackEvent }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import './CookieConsent.scss'
+// import { trackEvent } from '@src/js/analytics/analytics.js'
 import useAppStore from '@store/useAppStore'
-
+import './CookieConsent.scss'
 const CookieConsent = () => {
   const setGae = useAppStore((state) => state.setGAE)
   const [show, setShow] = useState(false)
@@ -93,6 +93,7 @@ const CookieConsent = () => {
   }
 
   const handleRejectAll = () => {
+    window.gtag('event', 'tracking_consent_denied', {})
     const minimalConsent = {
       necessary: true,
       analytics: false,
