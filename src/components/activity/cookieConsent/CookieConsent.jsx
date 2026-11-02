@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-// import { trackEvent } from '@src/js/analytics/analytics.js'
+import { trackEvent } from '@src/js/analytics/analytics.js'
 import useAppStore from '@store/useAppStore'
 import './CookieConsent.scss'
 const CookieConsent = () => {
@@ -82,6 +82,7 @@ const CookieConsent = () => {
   }
 
   const handleAcceptAll = () => {
+    trackEvent('event', 'tracking_consent_allowed', {})
     const allConsent = {
       necessary: true,
       analytics: true,
@@ -93,7 +94,7 @@ const CookieConsent = () => {
   }
 
   const handleRejectAll = () => {
-    window.gtag('event', 'tracking_consent_denied', {})
+    trackEvent('event', 'tracking_consent_denied', {})
     const minimalConsent = {
       necessary: true,
       analytics: false,

@@ -62,11 +62,12 @@ export default defineConfig(() => {
         developmentKey: 'development',
         rules: {
           'default-src': "'self'",
-          'script-src': "'self' 'unsafe-inline'",
+          'script-src': "'self'  https://www.googletagmanager.com 'unsafe-inline'",
           'style-src': "'self' 'unsafe-inline'",
           'img-src': "'self' data:",
           'font-src': "'self' data:",
-          'connect-src': "'self' http://localhost/ https://app.ummi.now",
+          'connect-src':
+            "'self' http://localhost/ https://app.ummi.now https://*.google-analytics.com https://www.googletagmanager.com https://*.googleapis.com https://*.gstatic.com https://*.umami.is https://*.umami.cloudflarestream.com",
           'report-uri': '/csp-report',
         },
         // Optional: Use 'report' for report-only mode, 'strict' for enforcement (default)
