@@ -74,14 +74,11 @@ body {
     width: fit-content;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    background: var(--btn-bg);
     border: none;
     color: var(--primary);
-    outline: 1px solid var(--blue);
-    // padding: 1.25rem 1.5rem;
     padding: 1rem 1.75rem;
     border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
+    box-shadow: var(--box-shadow), var(--box-shadow-wide);
 
     &:focus,
     &:focus-within,
@@ -130,10 +127,6 @@ body {
     position: absolute;
     z-index: 100;
 
-    // .activities {
-    //   position: absolute;
-    //   z-index: 6000;
-    // }
 
     section.activity,
     div.activity {
@@ -143,7 +136,6 @@ body {
       top: 0;
       left: 0;
 
-      // max-width: var(--max-width);
       padding: 0 var(--gutters);
       width: 100dvw;
 

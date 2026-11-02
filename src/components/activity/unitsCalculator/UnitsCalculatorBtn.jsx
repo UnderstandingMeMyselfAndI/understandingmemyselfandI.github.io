@@ -1,4 +1,5 @@
 import AddchartOutlinedIcon from '@mui/icons-material/AddchartOutlined'
+import IconLiquor from '@icons/IconLiquor'
 import useAppStore from '@store/useAppStore'
 import PropTypes from 'prop-types'
 
@@ -10,7 +11,7 @@ const UnitsCalculatorBtn = ({ label = 'Units Calculator' }) => {
   }
   return (
     <button onClick={() => handleClick()} className='units-calculator btn' aria-label='Units Calculator'>
-      <AddchartOutlinedIcon className='icon' />
+      <IconLiquor />
       <div>{label}</div>
     </button>
   )

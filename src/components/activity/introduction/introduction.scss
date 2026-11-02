@@ -34,10 +34,12 @@ body section.activity-introduction {
     row-gap: 6rem;
     width: 100%;
     position: relative;
+    max-width: var(--max-width);
+    margin: 0 auto;
   }
 
   .notinstalled {
-    // max-width: 100%;
+
     margin: 0 auto;
     display: flex;
     flex-flow: column nowrap;

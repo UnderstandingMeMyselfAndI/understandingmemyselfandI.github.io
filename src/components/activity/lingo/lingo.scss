@@ -4,13 +4,10 @@
 #lingo {
   scroll-margin-top: 25vh;
   margin: 0 auto;
-  margin-top: 6rem;
+  margin: 3rem auto;
   position: relative;
 }
 
-#lingo.show {
-  // z-index: 7500;
-}
 
 div.lingo-list-wrapper {
   transition: height 1.05s var(--transition-ease);
@@ -36,6 +33,7 @@ body .search-list>div:not(.no-results) {
 
 div.search-lingo-wrap {
   max-width: var(--max-width);
+  margin: 0 auto;
 
   div.search-field {
     min-width: fit-contnet;

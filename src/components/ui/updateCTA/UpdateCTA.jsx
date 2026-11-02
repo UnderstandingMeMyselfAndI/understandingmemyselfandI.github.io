@@ -1,24 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import ButtonUpdate from '@buttons/update/ButtonUpdate'
-
 import useAppStore from '@store/useAppStore'
-import './styles.scss'
-import PropTypes from 'prop-types'
-function getDateToday() {
-  const today = new Date()
-  const year = today.getFullYear()
-  const month = String(today.getMonth() + 1).padStart(2, '0')
-  const day = String(today.getDate()).padStart(2, '0')
-  const formattedDate = `${year}-${month}-${day}`
-  return formattedDate
-}
+import './updateCTA.scss'
+// import PropTypes from 'prop-types'
+// function getDateToday() {
+//   const today = new Date()
+//   const year = today.getFullYear()
+//   const month = String(today.getMonth() + 1).padStart(2, '0')
+//   const day = String(today.getDate()).padStart(2, '0')
+//   const formattedDate = `${year}-${month}-${day}`
+//   return formattedDate
+// }
 const UpdateCTA = () => {
-  const activity = useAppStore((state) => state.activity)
-  const [open, setOpen] = useState(true)
-
-  useEffect(() => {
-    setOpen(activity === -1)
-  }, [activity])
 
   const maxMinsVersionInterval = 10
   const version = useAppStore((state) => state.version)
@@ -110,7 +103,7 @@ const UpdateCTA = () => {
     }
   }
   return (
-    <div className={'update-cta' + (open ? ' open' : '')}>
+    <div className={'update-cta' }>
       <div>{updateMessage}</div>
       <div className={updating ? ' updating' : upToDate ? ' disabled' : ''}>
         <ButtonUpdate handleUpdate={handleUpdate} updating={updating} label={btnLabel} />

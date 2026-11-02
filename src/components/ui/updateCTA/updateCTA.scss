@@ -9,14 +9,8 @@
   align-items: center;
   font-size: 0.75rem;
   color: var(--primary);
+  user-select: auto;
 
-  user-select: none;
-  visibility: hidden;
-
-  &.open {
-    visibility: visible;
-    user-select: auto;
-  }
 
   p {
     font-size: variables.$h4_size;

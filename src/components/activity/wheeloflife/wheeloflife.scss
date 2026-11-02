@@ -138,8 +138,8 @@ body #root .wol {
       right: 0;
       top: 0;
       background: transparent;
-      border: 2px solid $color-primary;
-      color: $color-primary;
+      border: 2px solid var(--primary);
+      color: var(--primary);
       width: 30px;
       height: 30px;
       border-radius: 50%;
@@ -151,7 +151,7 @@ body #root .wol {
       transition: all 0.2s;
 
       &:hover {
-        background: $color-primary;
+        background: var(--primary);
         color: var(--primary);
       }
     }
@@ -569,7 +569,6 @@ body #root .wol {
     text-align: center;
     margin: 0 0.2rem 0 0.3rem;
     line-height: 0.9rem;
-    /* Centers the ? vertically */
     font-weight: bold;
     font-family: sans-serif;
     font-size: 1rem;
@@ -600,12 +599,11 @@ body #root .wol {
       width: 100%;
 
       h1 {
-        transition: color 0.3s var(--transition);
+        transition: color var(--transition);
         margin: 0;
         color: var(--primary);
         text-align: left;
         width: 100%;
-        // outline: 1px solid yellow;
       }
 
       .btn-icon {
@@ -613,8 +611,8 @@ body #root .wol {
         right: 0;
         top: 0;
         background: transparent;
-        border: 2px solid $color-primary;
-        color: $color-primary;
+        border: 2px solid var(--primary);
+        color: var(--primary);
         width: 30px;
         height: 30px;
         border-radius: 50%;
@@ -623,10 +621,10 @@ body #root .wol {
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: all 0.2s;
+        transition: all var(--transition);
 
         &:hover {
-          background: $color-primary;
+          background: var(--primary);
           color: var(--primary);
         }
       }
@@ -641,423 +639,6 @@ body #root .wol {
     }
   }
 
-  // &.mode-compare {
-  //   .wheel-header {
-
-  //     h1,
-  //     p,
-  //     .checkbox-label {
-  //       color: $color-text-dark-mode;
-  //     }
-
-  //     .btn-icon {
-  //       border-color: var(--primary);
-  //       color: var(--primary);
-
-  //       &:hover {
-  //         background: var(--primary);
-  //         color: var(--grey-dark);
-  //       }
-  //     }
-
-  //     .wheel-notes {
-  //       background: var(--grey-dark-trans-30);
-  //       color: var(--primary);
-  //       border-color: var(--grey);
-  //     }
-  //   }
-  // }
-
-  .wheel-preferences {
-    // display: flex;
-    // justify-content: center;
-    // width: 100%;
-    // column-gap: 2rem;
-    // position: relative;
-
-    // .checkbox-label {
-    //   font-size: 14px;
-    //   display: flex;
-    //   align-items: center;
-    //   gap: 8px;
-    //   cursor: pointer;
-    //   user-select: none;
-    // }
-
-    // .btn-icon {
-    //   position: absolute;
-    //   right: 0;
-    //   top: 0;
-
-    //   cursor: pointer;
-    //   display: flex;
-    //   align-items: center;
-    //   justify-content: center;
-    //   transition: all 0.2s;
-    //   z-index: 10;
-    //   padding: 20px;
-
-    //   svg {
-    //     width: 42px;
-    //     height: 42px;
-    //     fill: var(--orange);
-    //   }
-    // }
-
-    // .wheel-count {
-    //   position: absolute;
-    //   left: 0;
-    //   top: 0;
-
-    //   cursor: pointer;
-    //   display: flex;
-    //   align-items: center;
-    //   justify-content: center;
-    //   transition: all 0.2s;
-    //   z-index: 10;
-    //   column-gap: 0.5rem;
-
-    //   div:first-child {
-    //     font-size: 2rem;
-    //     font-weight: 800;
-    //     font-variation-settings: "wght" 700;
-    //     text-align: right;
-    //     color: var(--orange);
-    //   }
-
-    //   div:last-child {
-    //     max-width: 50px;
-    //     font-size: variables.$sml_size;
-    //     text-align: left;
-    //     color: var(--primary);
-    //     font-weight: 700;
-    //     font-variation-settings: "wght" 700;
-    //   }
-    // }
-  }
-
-  // --- Viewport ---
-  // .wheel-viewport {
-  //   // flex: 1;
-  //   // display: flex;
-  //   // flex-flow: row wrap;
-  //   // justify-content: center;
-  //   // // align-items: center;
-  //   // align-content: flex-start;
-  //   // position: relative;
-  //   // padding: 0;
-  //   // // min-height: 0;
-  //   // flex: 1.5;
-
-  //   .wheel-svg {
-  //     // width: 90%;
-  //     // // height: 100%;
-  //     // display: block;
-  //     // user-select: none;
-  //     // overflow: visible;
-
-  //     // .svg-bg {
-  //     //   fill: transparent;
-  //     //   transition: fill var(--transition);
-  //     // }
-
-  //     // &.neon-mode {
-  //     //   --wheel-outer-border-color: var(--blue-light-trans-30);
-  //     //   --wheel-outer-border-width: 12px;
-
-  //     //   // 2. Segment Divider Lines (The spokes)
-  //     //   --wheel-divider-color: var(--blue-light-trans-20);
-  //     //   --wheel-divider-width: 8px;
-
-  //     //   // 3. Sub-section Lines (The inner circles 1-9)
-  //     //   --wheel-subsection-color: var(--grey-light-trans-10);
-  //     //   --wheel-subsection-width: 1px;
-
-  //     //   // 4. Outer Numbers (The "10"s)
-  //     //   --wheel-number-color: var(--orange-trans-60);
-  //     //   --wheel-number-size: 2.5rem;
-  //     //   --wheel-number-weight: 600;
-
-  //     //   // 5. Labels (The category names)
-  //     //   --wheel-label-color: var(--primary);
-  //     //   --wheel-label-size: 1.5rem;
-  //     // }
-
-  //     // .wheel-segment {
-  //     //   fill: transparent;
-  //     //   cursor: pointer;
-  //     //   transition: fill var(--transition);
-
-  //     //   &.active {
-  //     //     fill: var(--blue-light-trans-30);
-  //     //   }
-
-  //     //   /* Removes the blue focus outline on desktop */
-  //     //   outline: none;
-
-  //     //   /* Removes the blue flash/overlay on tap (mobile/touch devices) */
-  //     //   -webkit-tap-highlight-color: transparent;
-
-  //     //   &:focus {
-  //     //     outline: none;
-  //     //   }
-  //     // }
-
-  //     // --- GRID LINES ---
-
-  //     // 1. Sub-section circles (Inner rings)
-  //     // .grid-circle {
-  //     //   fill: none;
-  //     //   stroke: var(--wheel-subsection-color);
-  //     //   stroke-width: var(--wheel-subsection-width);
-  //     //   pointer-events: none;
-  //     //   transition: stroke var(--transition);
-  //     // }
-
-  //     // 2. Outer Diameter (The very last circle)
-  //     // .grid-circle:last-of-type {
-  //     //   stroke: var(--wheel-outer-border-color);
-  //     //   stroke-width: var(--wheel-outer-border-width);
-  //     // }
-
-  //     // 3. Divider Lines (Spokes)
-  //     // .grid-line {
-  //     //   fill: none;
-  //     //   stroke: var(--wheel-divider-color);
-  //     //   stroke-width: 2px;
-  //     //   pointer-events: none;
-  //     //   transition: stroke var(--transition);
-  //     // }
-
-  //     // --- LABELS & NUMBERS ---
-
-  //     // .category-label {
-  //     //   font-size: variables.$med_size;
-  //     //   font-weight: 700;
-  //     //   font-variation-settings: "wght" 700;
-  //     //   fill: var(--grey-light);
-  //     //   pointer-events: none;
-  //     //   transition: fill var(--transition);
-  //     // }
-
-  //     // .score-number-outer {
-  //     //   font-size: variables.$lrg_size; //2.5rem; //var(--wheel-number-size);
-  //     //   font-weight: 800;
-  //     //   font-variation-settings: "wght" 800;
-  //     //   fill: var(--orange);
-  //     //   transition: fill var(--transition);
-  //     //   padding: 1rem;
-  //     //   display: flex;
-  //     //   justify-content: center;
-  //     //   align-items: center;
-  //     //   flex-flow: column nowrap;
-
-  //     //   .max-score-group,
-  //     //   .score-separator,
-  //     //   .max-score {
-  //     //     font-size: variables.$med_size;
-  //     //     font-weight: 400;
-  //     //     font-variation-settings: "wght" 400;
-  //     //     color: var(--orange);
-  //     //   }
-  //     // }
-
-  //     // .score-number-center {
-  //     //   font-size: 4rem;
-  //     //   line-height: 1;
-  //     //   font-weight: 600;
-  //     //   font-variation-settings: "wght" 600;
-  //     //   fill: var(--orange);
-  //     //   opacity: 0.5;
-  //     //   transition: fill var(--transition);
-  //     // }
-
-  //     // .score-dot-animated {
-  //     //   fill: var(--blue);
-  //     //   stroke: var(--primary);
-  //     //   stroke-width: 4px;
-  //     //   transform-origin: center;
-  //     //   transform-box: fill-box;
-  //     //   animation: popFromCenter 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-  //     // }
-
-  //     // .score-line-animated {
-  //     //   animation: fadeInStroke 1s ease forwards;
-  //     // }
-  //   }
-  // }
-
-  // --- Controls ---
-  // .wheel-controls {
-  //   padding: 0;
-  //   display: flex;
-  //   justify-content: center;
-  //   gap: 2rem;
-  //   margin-bottom: 1rem;
-  //   flex: 0;
-  //   // outline: 1px solid grey;
-
-  //   .control-row {
-  //     display: flex;
-  //     justify-content: space-between;
-  //     align-items: center;
-  //     gap: 0.5rem;
-  //     width: 100%;
-  //     max-width: var(--max-width);
-
-  //     // .btn {
-  //     //   outline: 1px solid var(--grey-light-trans-20);
-  //     //   padding: 1rem 0.75rem;
-  //     //   border-radius: var(--border-radius-sml);
-  //     //   background: var(--btn-bg);
-
-  //     //   &.active {
-  //     //     background: var(--btn-bg);
-
-  //     //     svg {
-  //     //       fill: var(--secondary);
-  //     //       stroke: var(--secondary);
-
-  //     //       path {
-  //     //         fill: var(--secondary);
-  //     //         stroke: var(--secondary);
-  //     //       }
-  //     //     }
-  //     //   }
-
-  //     //   &.inactive {
-  //     //     background: var(--grey-trans-40);
-
-  //     //     svg {
-  //     //       fill: var(--grey-trans-30);
-  //     //       stroke: var(--grey-trans-30);
-
-  //     //       path {
-  //     //         fill: var(--grey-trans-50);
-  //     //         stroke: var(--grey-trans-50);
-  //     //       }
-  //     //     }
-  //     //   }
-  //     // }
-
-  //     svg {
-  //       width: 34px;
-  //       height: 34px;
-  //     }
-
-  //     // .inactive {
-  //     //   svg {
-  //     //     // fill: var(--grey-light);
-  //     //     // stroke: var(--grey-light);
-
-  //     //     path {
-  //     //       fill: var(--grey-light-trans-30);
-  //     //       stroke: var(--grey-light-trans-30);
-  //     //     }
-  //     //   }
-  //     // }
-  //   }
-
-  //   .history-controls {
-  //     padding-top: 10px;
-  //     display: flex;
-  //     justify-content: flex-end;
-  //     align-items: flex-start;
-  //     gap: 6px;
-
-  //     .history-main-actions {
-  //       display: flex;
-  //       justify-content: flex-end;
-  //       flex-flow: column nowrap;
-  //       gap: 0.5rem;
-  //     }
-
-  //     // .history-management {
-  //     //   display: flex;
-  //     //   flex-flow: column wrap;
-  //     //   justify-content: flex-end;
-  //     //   align-items: center;
-  //     //   gap: 0.5rem;
-  //     //   padding: 0px;
-  //     //   border-radius: var(--border-radius);
-
-  //     //   .history-select {
-  //     //     padding: 6px;
-  //     //     border-radius: var(--border-radius-sml);
-  //     //     max-width: 250px;
-  //     //     font-size: variables.$sml_size;
-  //     //   }
-
-  //     //   .history-item-actions {
-  //     //     display: flex;
-  //     //     gap: 5px;
-  //     //   }
-  //     // }
-  //   }
-
-  //   button {
-  //     padding: 0.5rem 1rem;
-
-  //     border-radius: var(--border-radius-sml);
-  //     cursor: pointer;
-  //     font-weight: 600;
-  //     font-variation-settings: "wght" 600;
-  //     transition: all var(--transition);
-
-  //     &.small {
-  //       padding: 0.5rem 1rem;
-  //       font-size: variables.$default_size;
-  //     }
-
-  //     &.btn-secondary {
-  //       background: $color-btn-bg;
-  //       border: 1px solid $color-btn-border;
-  //       color: $color-text-primary;
-  //       border-radius: var(--border-radius);
-
-  //       &:hover {
-  //         background: color.adjust($color-btn-bg, $lightness: -5%);
-  //       }
-  //     }
-
-  //     &.btn-primary {
-  //       border: 1px solid color.adjust($color-primary, $lightness: -5%);
-
-  //       color: var(--primary);
-
-  //       &:hover {
-  //         background: color.adjust($color-primary, $lightness: -5%);
-  //       }
-  //     }
-
-  //     &.btn-outline {
-  //       border: 1px solid var(--blue-light);
-  //       color: var(--blue-light);
-
-  //       &:hover {
-  //         background: var(--blue-light-trans-10);
-  //       }
-  //     }
-
-  //     &.btn-toggle {
-  //       border: 1px solid var(--secondary);
-
-  //       &.active {
-  //         background: var(--blue-light);
-  //         border-color: var(--blue-light);
-  //       }
-  //     }
-
-  //     &.btn-danger {
-  //       background: var(--secondary);
-  //       color: var(--danger);
-
-  //       &:hover {
-  //         background: var(--secondary);
-  //       }
-  //     }
-  //   }
-  // }
 }
 
 @keyframes fadeInStroke {

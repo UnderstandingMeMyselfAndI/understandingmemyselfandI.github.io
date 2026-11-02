@@ -13,6 +13,7 @@
   --max-inner-height-modal: 400px;
   --min-inner-height-modal: 280px;
   --inner-width-modal: 400px;
+  --max-inner-width-cta: 440px;
   /* --inner-height-modal: 600px; */
 
   --max-inner-slim-width: 400px;
@@ -74,7 +75,7 @@
 
   --bg: rgb(62, 52, 151);
 
-  --btn-bg: radial-gradient(ellipse at 10% 10%, rgba(73, 65, 143, 0.5) 20%, rgba(74, 65, 153, 0.5) 100%);
+  --btn-bg: radial-gradient(ellipse at 10% 10%, rgba(66, 58, 126, 0.85) 20%, rgba(46, 40, 102, 0.95) 100%);
   /* #332891;*/
   --btn-dull-bg: radial-gradient(ellipse at 10% 10%, rgba(83, 77, 133, 0.25) 20%, rgba(53, 47, 107, 0.25) 100%);
   /* #332891;*/

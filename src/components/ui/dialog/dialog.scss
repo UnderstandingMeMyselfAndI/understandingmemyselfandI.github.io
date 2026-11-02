@@ -39,18 +39,16 @@
     text-align: center;
     display: flex;
     flex-flow: column nowrap;
-    // position: absolute;
-
-    // top: 0;
-    // left: 0;
-    width: 100%;
-    max-width: var(--max-inner-width-modal);
-    max-height: var(--max-inner-height-modal);
-    padding: 0;
-    margin: 0;
-    min-height: 260px;
     justify-content: space-between;
     row-gap: 1.5rem;
+
+    width: 100%;
+    max-width: var(--max-inner-width-modal);
+    min-height: var(--min-inner-height-modal);
+    padding: 0;
+    margin: 0;
+
+
 
     /* iOS Safari specific positioning */
     @supports (-webkit-touch-callout: none) {
@@ -67,14 +65,12 @@
     position: relative;
     width: 100%;
     margin: 0 auto;
-    height: 100vh;
     max-height: 100vh;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     row-gap: 2rem;
-    padding: 0rem 0.5rem;
-    // background-color: var(--background-main);
+    padding: 2.5rem 1.5rem;
 
     &::after {
       content: '';
@@ -121,10 +117,10 @@
     column-gap: 1.5rem;
 
     button {
-      width: fit-content;
+      // width: fit-content;
       min-width: 120px;
       background: transparent;
-      padding: 1rem 1.25rem;
+      // padding: 1rem 1.75rem;
     }
   }
 

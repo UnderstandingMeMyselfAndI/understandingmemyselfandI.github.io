@@ -1,12 +1,9 @@
-// DaysCounter.jsx (updated version)
 import { useState, useEffect } from 'react'
 import { useSwipeable } from 'react-swipeable'
 import CloseBtn from '@ui/buttons/close/CloseBtn'
-// import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import IconCloseSmallBold from '@icons/IconCloseSmallBold'
 import IconArrowChevronLeft from '@icons/IconArrowChevronLeft'
 import IconArrowChevronRight from '@icons/IconArrowChevronRight'
-// import IconSettings from '@icons/IconSettings'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
 import useAppStore from '@store/useAppStore'
@@ -59,7 +56,8 @@ const getInitialDates = () => {
 }
 const DaysCounter = () => {
   const name = 'days-counter'
-  const component_strings = strings.activity.find((string) => string.slug == name)
+  const url = 'days-counter'
+  const component_strings = strings.activity.find((string) => string.url == url)
   const setActivity = useAppStore((state) => state.setActivity)
 
   // Currency from store

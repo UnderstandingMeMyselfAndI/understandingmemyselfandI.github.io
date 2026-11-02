@@ -1,43 +1,35 @@
-import { useState, useEffect } from 'react'
 import ToolsBtn from './ToolsBtn'
 import { strings } from '@data/config'
 import useAppStore from '@store/useAppStore'
 
-import CTA from '@components/ui/cta/CTA'
-import './stylesCTA.scss'
+import CTA from '@ui/cta/CTA'
+import './toolsCTA.scss'
 
 const ToolsCTA = () => {
   const name = 'Tools CTA'
-  const activityUrl = 'recovery-tools'
-  const activityID = -1
-  const id = -1
+  const url = 'recovery-tools'
   const targetID = 1
-  const [open, setOpen] = useState(false)
   const setActivity = useAppStore((state) => state.setActivity)
-  const activity = useAppStore((state) => state.activity)
-  const isModal = useAppStore((state) => state.isModal)
 
   const bgImg = {
     src: '/ui/bg-tools.avif',
     alt: 'Picture of tools',
   }
 
-  useEffect(() => {
-    setOpen(activity === id || !isModal)
-  }, [activity, isModal, id, setOpen])
+ 
 
-  const content = strings.activity.find((activity) => activity.url === activityUrl) || null
+  const content = strings.activity.find((activity) => activity.url === url) || null
   if (content === null) {
     console.warn('No content found for activity "' + name + '"')
   }
 
   const handleClick = () => {
-    console.log('handleClick activityUrl ', activityUrl)
+    console.log('handleClick activityUrl ', url)
     setActivity(targetID)
   }
 
   return (
-    <section className={`activity activity-${activityUrl}-cta` + (open ? ' show' : '')}>
+    <section className={`activity activity-${url}-cta`}>
       <CTA name={name} open={open} title={content?.cta?.title} content={content?.cta?.content}>
         <ToolsBtn label={content?.cta.btn?.label.unused} clickHandler={handleClick} />
         <div className='bg-img'>

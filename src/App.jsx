@@ -81,13 +81,15 @@ function App() {
       <div className='main'>
        
         <SecurityGate>
-          {/* Security gated  content*/}
+          {/* Security gated content*/}
           <AppMenu />
           {quickExitEnabled && <Exit />}
-          <Header />
-          <Introduction />
+          
           <ActivityHost />
           <Home>
+            
+            <Header />
+            <Introduction />
             {toolsEnabled && <ToolsCTA />}
             {daysCounterEnabled && <DaysCounterCTA />}
             {unitsCalculatorEnabled && <UnitsCalculatorCTA />}
@@ -100,7 +102,7 @@ function App() {
             <NewsletterSignUp />
             <InstallCTA />
             <Footer />
-             {/* End Security gated  content*/}
+           
           </Home>
 
           {quickExitEnabled && <Exit />}

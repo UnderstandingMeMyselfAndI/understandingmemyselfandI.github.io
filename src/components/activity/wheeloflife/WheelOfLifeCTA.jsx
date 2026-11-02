@@ -4,8 +4,9 @@ import { strings } from '@data/config'
 import useAppStore from '@store/useAppStore'
 import FilterTiltShiftOutlinedIcon from '@mui/icons-material/FilterTiltShiftOutlined'
 import HistoryToggleOffOutlinedIcon from '@mui/icons-material/HistoryToggleOffOutlined'
+import IconWheel from '@icons/IconWheel'
 import CTA from '@components/ui/cta/CTA'
-import './stylesCTA.scss'
+import './wheelOfLifeCTA.scss'
 
 const WheelOfLifeCTA = () => {
   const name = 'wheel-of-life'
@@ -43,7 +44,7 @@ const WheelOfLifeCTA = () => {
           classes={['wheel-of-life-cta-btn']}
           label={content?.cta.btn?.label.unused}
           handleClick={handleClick}>
-          <FilterTiltShiftOutlinedIcon />
+          <IconWheel />
         </ButtonSimple>
         <div className='bg-img'>
           <img className='bg' src={bgImg.src} alt={bgImg.alt} />

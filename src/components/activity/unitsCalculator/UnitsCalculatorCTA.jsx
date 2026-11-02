@@ -1,43 +1,25 @@
-import { useState, useEffect } from 'react'
 import UnitsCalculatorBtn from './UnitsCalculatorBtn'
 import { strings } from '@data/config'
-import useAppStore from '@store/useAppStore'
 import CTA from '@components/ui/cta/CTA'
-import { activities } from '@data/config'
-const activitiesById = activities.reduce((acc, activity) => {
-  acc[activity.id] = activity
-  return acc
-}, {})
-import './stylesCTA.scss'
+
+import './unitsCalculatorCTA.scss'
 
 const UnitsCalculatorCTA = () => {
-  const activityName = 'UnitsCalculator'
-  const activityUrl = 'units-calculator'
-  const activityID = -1
-  const id = -1
-
-  const activity = useAppStore((state) => state.activity)
-  const isModal = useAppStore((state) => state.isModal)
-  const [open, setOpen] = useState(false)
-  const setIsModal = useAppStore((s) => s.setIsModal)
-
+  const name = 'UnitsCalculator'
+  const url = 'units-calculator'
   const bgImg = {
     src: '/ui/bg-units-calculator.avif',
     alt: 'Picture of numbers',
   }
 
-  useEffect(() => {
-    setOpen(activity === id || !isModal)
-  }, [activity, isModal, id, setIsModal])
-
-  const content = strings.activity.find((activity) => activity.url === activityUrl) || null
+  const content = strings.activity.find((activity) => activity.url === url) || null
   if (content === null) {
-    console.warn('No content found for activity "' + activityName + '"')
+    console.warn('No content found for activity "' + name + '"')
   }
 
   return (
-    <section className={`activity activity-${activityUrl}-cta` + (open ? ' show' : '')}>
-      <CTA name={activityName} title={content.title} open={open} content={content.cta.content}>
+    <section className={`activity activity-${url}-cta`}>
+      <CTA name={name} title={content.title} content={content.cta.content}>
         <UnitsCalculatorBtn label={content?.cta.btn?.label.unused} />
         <div className='bg-img'>
           <img className='bg' src={bgImg.src} alt={bgImg.alt} />

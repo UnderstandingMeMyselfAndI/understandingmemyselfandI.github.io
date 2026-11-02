@@ -1,58 +1,30 @@
-import React, { useRef, useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 import { TIMELINE_DATA } from '@data/timelineData'
 import useAppStore from '@store/useAppStore'
-import { activities } from '@data/config'
 import CloseBtn from '@components/ui/buttons/close/CloseBtn'
 import { strings } from '@data/config'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
 import Confirm from '@ui/confirm/Confirm'
-const activitiesById = activities.reduce((acc, activity) => {
-  acc[activity.id] = activity
-  return acc
-}, {})
-const activityStringsByName = strings.activity.reduce((acc, activity) => {
-  acc[activity.name] = activity
-  return acc
-}, {})
-
 import './styles.scss'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
-const VerticalTimeline = () => {
+const RecoveryTimeline = () => {
   const name = 'recovery-timeline'
-  const id = 21
-  const [show, setShow] = useState(false)
-  const activity = useAppStore((s) => s.activity)
+  const url = 'recovery-timeline'
   const setActivity = useAppStore((s) => s.setActivity)
-  // const isModal = useAppStore((s) => s.isModal)
-  // const activityID = activities.find((activity) =>
-  //   activity.url === name ? activity.id : null,
-  // )
-  const strings = activityStringsByName[name]
-  const setIsModal = useAppStore((s) => s.setIsModal)
-
+  const content = strings.activity.find((activity) => activity.url === url) || null
   const containerRef = useRef(null)
   const minimapRef = useRef(null)
   const markerRef = useRef(null)
 
   const [showConfirm, setShowConfirm] = useState(true)
 
-  useEffect(() => {
-    show && setIsModal(activitiesById[id]?.modal)
-  }, [show, activitiesById, id, setIsModal])
-
-  useEffect(() => {
-    setShow(id === activity)
-    setShowConfirm(id === activity)
-  }, [activity])
-
   const handleClose = () => {
-    setShow(false)
     setActivity(-1)
   }
 
@@ -67,7 +39,6 @@ const VerticalTimeline = () => {
 
   useGSAP(
     () => {
-      if (!show) return
       const scrollContainer = containerRef.current
 
       // 1. MINIMAP TRACKER
@@ -100,7 +71,7 @@ const VerticalTimeline = () => {
         })
       })
     },
-    { dependencies: [showConfirm, show], scope: containerRef },
+    { dependencies: [showConfirm], scope: containerRef },
   )
 
   // 3. MINIMAP CLICK
@@ -125,17 +96,17 @@ const VerticalTimeline = () => {
   // Generate small background ticks
   const minimapTicks = Array.from({ length: 100 }).map((_, i) => i)
 
-  return show ? (
-    <div id={name} className={'activity activity-' + name + (show ? ' show' : ' hide') + ' fixed'}>
+  return (
+    <div id={name} className={`activity activity-${name}`}>
       {showConfirm ? (
         <Confirm
-          title={strings.confirm.title}
-          instruction={strings.confirm.instruction}
-          confirmLabel={strings.confirm.confirmBtnLabel}
+          title={content.confirm.title}
+          instruction={content.confirm.instruction}
+          confirmLabel={content.confirm.confirmBtnLabel}
           onConfirm={handleConfirm}
           onCancel={handleConfirmCancel}
           showCancel={true}
-          cancelLabel={strings.confirm.cancelBtnLabel}
+          cancelLabel={content.confirm.cancelBtnLabel}
         />
       ) : (
         <>
@@ -175,8 +146,8 @@ const VerticalTimeline = () => {
               {/* --- NEW: INTRO SECTION --- */}
               <div className='intro-section'>
                 <div className='intro-content'>
-                  <h1>{parse(DOMPurify.sanitize(strings.title))}</h1>
-                  {strings.content.map((content, i) => (
+                  <h1>{parse(DOMPurify.sanitize(content.title))}</h1>
+                  {content.content.map((content, i) => (
                     <p key={i}>{parse(DOMPurify.sanitize(content))}</p>
                   ))}
 
@@ -215,7 +186,7 @@ const VerticalTimeline = () => {
         </>
       )}
     </div>
-  ) : null
+  ) 
 }
 
-export default VerticalTimeline
+export default RecoveryTimeline
