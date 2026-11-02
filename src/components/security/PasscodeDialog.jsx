@@ -10,7 +10,6 @@ import {
   isBiometricAvailable,
   isBiometricEnabled,
   lock,
-  resetPasscode,
   MIN_PASSCODE_LENGTH,
 } from "../../utils/securityGate"
 import IconChangeCircle from "@icons/IconChangeCircle"
@@ -19,21 +18,16 @@ import IconLockOpenRight from "@icons/IconLockOpenRight"
 import IconFingerprint from "@icons/IconFingerprint"
 import { useRegisterModal } from "@utils/modalDepth"
 import PasscodeField, { MAX_LENGTH } from "./PasscodeField"
-import CloseBtn from "@buttons/close/CloseBtn"
+import Modal from "@ui/modal/Modal"
+// import CloseBtn from "@buttons/close/CloseBtn"
 import "./passcodeDialog.scss"
 
 function DialogShell({ title, onClose, children }) {
   return (
-    <section className='pc-dialog' role='dialog' aria-modal='true' aria-label={title}>
-      <div className='pc-dialog__backdrop' onClick={onClose} />
-      <div className='pc-dialog__panel'>
-        <header className='pc-dialog__head'>
-          <div className='pc-dialog__title'>{title}</div>
-          <CloseBtn onClick={onClose} aria-label='Close' />
-        </header>
-        <div className='pc-dialog__body'>{children}</div>
-      </div>
-    </section>
+      <Modal title={title} onCancel={onClose} showConfirm={false} showCancel={false}>
+      {children}
+      </Modal>
+    
   )
 }
 
@@ -66,17 +60,16 @@ function CreateView({ onDone, onCancel }) {
   }
 
   return (
-    <form onSubmit={submit}>
-      {/* <div className='pc-dialog__header'>
-        <div className='pc-dialog__subtitle'>Secure your data.</div>
-       
-      </div> */}
+    <form onSubmit={submit} className="pc-form">
        <p className='pc-dialog__lede'>
-          Using a passcode means you will need to enter it before you can read your data.
+          Secure your data with a passcode. Passcode enabled features require it to be entered correctly before accessing features.
         </p>
-      <div className='pc-dialog__warning'>       
-        If you forget it, it cannot be recovered or reset. <br />If you lose your passcode you will have to reset the app and lose your data.
+      <div className='pc-dialog__warning pc-dialog__lede warning'> 
+        <strong>WARNING:</strong>      
+        If you forget your passcode, it cannot be reset or recovered. Save a copy of your passcode in a safe place.
+       
       </div>
+
       <div className='pc-dialog__fields'>
         
           <PasscodeField
@@ -89,9 +82,9 @@ function CreateView({ onDone, onCancel }) {
           />
        
       </div>
-      <div className='pc-dialog_</div>_fields'>
+      <div className='pc-dialog__fields'>
        
-          <PasscodeField id='pc-create-confirm' label='Confirm' value={confirm} onChange={setConfirm} />
+          <PasscodeField id='pc-create-confirm' label='Confirm Passcode' value={confirm} onChange={setConfirm} />
         
         {error && (
           <p className='pc-dialog__error' role='alert'>
@@ -104,7 +97,7 @@ function CreateView({ onDone, onCancel }) {
           Cancel
         </button>
         <button type='submit' className='pc-dialog__btn pc-dialog__btn--primary' disabled={busy}>
-          {busy ? "Creating…" : "Create Passcode"}
+          {busy ? "Creating…" : "Secure"}
         </button>
       </div>
     </form>
@@ -129,20 +122,22 @@ function SettingsView({ onNavigate, onClose, biometricAvailable, biometricEnable
           </div>
           <span className='pc-dialog__menu-sub'>Use passcode to open features.</span>
         </button>
-        <button
-          type='button'
-          className='pc-dialog__menu-item'
-          onClick={() => onNavigate(biometricEnabled ? "disable-biometric" : "enable-biometric")}>
-          <div>
-            <IconFingerprint />
-            <span className='pc-dialog__menu-title'>{biometricEnabled ? "Disable biometrics" : "Biometrics"}</span>
-          </div>
-          <span className='pc-dialog__menu-sub'>
-            {biometricEnabled
-              ? "Stop using your device biometrics to unlock."
-              : "Unlock with fingerprint, face, or device unlock."}
-          </span>
-        </button>
+          <button
+            type='button'
+            className='pc-dialog__menu-item'
+            onClick={() => onNavigate(biometricEnabled ? "disable-biometric" : "enable-biometric")}>
+            <div>
+              <IconFingerprint />
+              <span className='pc-dialog__menu-title'>{biometricEnabled ? "Disable biometrics" : "Biometrics"}</span>
+            </div>
+            <span className='pc-dialog__menu-sub'>
+              {!biometricAvailable
+                ? 'Not supported on this device.'
+                : biometricEnabled
+                  ? 'Stop using your device biometrics to unlock.'
+                  : 'Unlock with fingerprint, face, or device unlock.'}
+            </span>
+          </button>
         <button type='button' className='pc-dialog__menu-item' onClick={() => onNavigate("change")}>
           <div>
             <IconChangeCircle />
@@ -157,13 +152,7 @@ function SettingsView({ onNavigate, onClose, biometricAvailable, biometricEnable
           </div>
           <span className='pc-dialog__menu-sub'>Keep your data, remove the passcode lock.</span>
         </button>
-        {/* <button
-            type='button'
-            className='pc-dialog__menu-item pc-dialog__menu-item--danger'
-            onClick={() => onNavigate("reset")}>
-            <span className='pc-dialog__menu-title'>Reset</span>
-            <span className='pc-dialog__menu-sub'>Reset and disable passcode.</span>
-          </button> */}
+       
       </div>
       <div className='pc-dialog__actions'>
         <button type='button' className='pc-dialog__btn pc-dialog__btn--ghost' onClick={onClose}>
@@ -206,7 +195,7 @@ function BiometricView({ mode, onDone, onBack }) {
   }
 
   return (
-    <form onSubmit={submit}>
+    <form onSubmit={submit} className="pc-form">
       <p className='pc-dialog__lede'>
         {mode === "enable"
           ? "Enter your current passcode to enable biometric unlock."
@@ -232,7 +221,7 @@ function BiometricView({ mode, onDone, onBack }) {
           Back
         </button>
         <button type='submit' className='pc-dialog__btn pc-dialog__btn--primary' disabled={busy}>
-          {busy ? "Working…" : mode === "enable" ? "Enable biometric" : "Disable biometric"}
+          {busy ? "Working…" : mode === "enable" ? "Enable" : "Disable"}
         </button>
       </div>
     </form>
@@ -269,7 +258,7 @@ function ChangeView({ onDone, onBack }) {
   }
 
   return (
-    <form onSubmit={submit}>
+    <form onSubmit={submit} className="pc-form">
       <PasscodeField id='pc-change-current' label='Current passcode' value={current} onChange={setCurrent} autoFocus />
       <PasscodeField
         id='pc-change-new'
@@ -291,7 +280,7 @@ function ChangeView({ onDone, onBack }) {
           Back
         </button>
         <button type='submit' className='pc-dialog__btn pc-dialog__btn--primary' disabled={busy}>
-          {busy ? "Updating…" : "Change passcode"}
+          {busy ? "Updating…" : "Change"}
         </button>
       </div>
     </form>
@@ -318,9 +307,9 @@ function DisableView({ onDone, onBack }) {
   }
 
   return (
-    <form onSubmit={submit}>
-      <p className='pc-dialog__lede'>
-        WARNING: Your data will stay on this device, but <strong>it will no longer be protected by a passcode.</strong>
+    <form onSubmit={submit} className="pc-form">
+      <p className='pc-dialog__lede warning'>
+        <strong className="warning">WARNING</strong> Unless you use other login methods, disabling your passcode removes protection of your data.  Your data will remain on this device but could be accessed by other users of this device.
       </p>
       <PasscodeField id='pc-disable-current' label='Current passcode' value={current} onChange={setCurrent} autoFocus />
 
@@ -342,68 +331,6 @@ function DisableView({ onDone, onBack }) {
   )
 }
 
-function ResetView({ onDone, onBack }) {
-  const [confirming, setConfirming] = useState(false)
-  const [busy, setBusy] = useState(false)
-  const [error, setError] = useState("")
-
-  const doReset = async () => {
-    setBusy(true)
-    setError("")
-    try {
-      await resetPasscode()
-      onDone()
-    } catch (err) {
-      setError(String(err?.message || err))
-      setBusy(false)
-    }
-  }
-
-  if (!confirming) {
-    return (
-      <>
-        <div className='pc-dialog__warning pc-dialog__warning--strong'>
-          Resetting will permanently delete all data on this device. This cannot be undone.
-        </div>
-        <div className='pc-dialog__actions'>
-          <button type='button' className='pc-dialog__btn pc-dialog__btn--ghost' onClick={onBack}>
-            Back
-          </button>
-          <button type='button' className='pc-dialog__btn pc-dialog__btn--danger' onClick={() => setConfirming(true)}>
-            I understand, continue
-          </button>
-        </div>
-      </>
-    )
-  }
-
-  return (
-    <>
-      <div className='pc-dialog__warning pc-dialog__warning--strong'>
-        Last chance. All data will be deleted immediately.
-      </div>
-
-      {error && (
-        <p className='pc-dialog__error' role='alert'>
-          {error}
-        </p>
-      )}
-
-      <div className='pc-dialog__actions'>
-        <button
-          type='button'
-          className='pc-dialog__btn pc-dialog__btn--ghost'
-          onClick={() => setConfirming(false)}
-          disabled={busy}>
-          Cancel
-        </button>
-        <button type='button' className='pc-dialog__btn pc-dialog__btn--danger' onClick={doReset} disabled={busy}>
-          {busy ? "Resetting…" : "Delete everything and reset"}
-        </button>
-      </div>
-    </>
-  )
-}
 
 function DoneView({ message, onClose }) {
   return (
@@ -441,10 +368,9 @@ export default function PasscodeDialog({ startView = "settings", onClose }) {
     settings: "Passcode Settings",
     change: "Change Passcode",
     disable: "Disable Passcode",
-    reset: "Reset Passcode",
     "enable-biometric": "Enable Biometric Unlock",
     "disable-biometric": "Disable Biometric Unlock",
-    done: "Passcode ",
+    done: "Passcode",
   }
 
   const goBack = () => setView(hasPasscode() ? "settings" : "done")
@@ -474,8 +400,6 @@ export default function PasscodeDialog({ startView = "settings", onClose }) {
       {view === "change" && <ChangeView onDone={() => finish("Passcode changed.")} onBack={goBack} />}
 
       {view === "disable" && <DisableView onDone={() => finish("Passcode disabled.")} onBack={goBack} />}
-
-      {view === "reset" && <ResetView onDone={() => finish("Everything has been reset.")} onBack={goBack} />}
 
       {view === "enable-biometric" && (
         <BiometricView

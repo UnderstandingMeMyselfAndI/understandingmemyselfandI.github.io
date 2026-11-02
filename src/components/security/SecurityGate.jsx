@@ -1,6 +1,8 @@
 // src/components/security/SecurityGate.jsx
 
 import { useEffect, useRef, useState } from "react"
+import PropTypes from "prop-types"
+
 import {
   hasPasscode,
   isBiometricEnabled,
@@ -12,8 +14,12 @@ import {
 } from "../../utils/securityGate"
 import { cryptoAvailable } from "../../utils/crypto"
 import { useRegisterModal } from "../../utils/modalDepth"
+import Modal from "@ui/modal/Modal"
 import PasscodeField from "./PasscodeField"
 import "./securityGate.scss"
+
+const CONFIRM_PHRASE = 'DELETE MY DATA'
+const COOLDOWN_SECONDS = 30
 
 function initialMode() {
   if (!cryptoAvailable()) return "unsupported"
@@ -22,34 +28,30 @@ function initialMode() {
   return "locked"
 }
 
-export default function SecurityGate({ children, activityName = "this activity", onLocked }) {
+export default function SecurityGate({ children, onLocked, onClose }) {
   const [mode, setMode] = useState(initialMode)
   const [passcode, setPasscode] = useState("")
   const [error, setError] = useState("")
   const [busy, setBusy] = useState(false)
-  const [resetting, setResetting] = useState(false)
-  const [resetConfirm, setResetConfirm] = useState(false)
   const [biometricEnabled, setBiometricEnabled] = useState(isBiometricEnabled)
   const [biometricBusy, setBiometricBusy] = useState(false)
   const biometricAttempted = useRef(false)
 
+  // Reset flow
+  const [resetting, setResetting] = useState(false)
+  const [resetStep, setResetStep] = useState(0) // 0=warn, 1=type, 2=cooldown
+  const [typedConfirm, setTypedConfirm] = useState("")
+  const [cooldown, setCooldown] = useState(COOLDOWN_SECONDS)
+
   useRegisterModal(resetting)
 
-  // React to session-wide lock events. When `lock()` is called from anywhere
-  // (manual lock in PasscodeDialog, sessionLock timeout, reset), the gate
-  // flips back to locked and notifies the parent to drop decrypted data.
   useEffect(() => {
     return subscribeLockState(({ unlocked }) => {
       if (!unlocked && hasPasscode()) {
         setMode("locked")
         setPasscode("")
         setError("")
-        // Refresh biometric state — the user may have enabled or disabled it
-        // while unlocked, so the mount-time value is stale.
         setBiometricEnabled(isBiometricEnabled())
-        // Allow biometric to auto-attempt again on this fresh lock cycle.
-        // Without this, `biometricAttempted` would stay true after the first
-        // attempt and the user would never get an auto-prompt after a timeout.
         biometricAttempted.current = false
         if (onLocked) onLocked()
       } else if (unlocked) {
@@ -58,28 +60,37 @@ export default function SecurityGate({ children, activityName = "this activity",
     })
   }, [onLocked])
 
-  // Auto-attempt biometric on entering locked state if it is enabled.
   useEffect(() => {
     if (mode !== "locked" || !biometricEnabled || biometricAttempted.current) return
     biometricAttempted.current = true
-
     let cancelled = false
     ;(async () => {
       setBiometricBusy(true)
       try {
         const ok = await unlockWithBiometric()
         if (!cancelled && ok) setMode("open")
-      } catch {
-        // Silent — user can fall back to the passcode.
-      } finally {
-        if (!cancelled) setBiometricBusy(false)
-      }
+      } catch { /* silent */ }
+      finally { if (!cancelled) setBiometricBusy(false) }
     })()
-
-    return () => {
-      cancelled = true
-    }
+    return () => { cancelled = true }
   }, [mode, biometricEnabled])
+
+  // Cooldown timer
+  useEffect(() => {
+    if (resetStep !== 2) return undefined
+    setCooldown(COOLDOWN_SECONDS)
+    const interval = setInterval(() => {
+      setCooldown((c) => (c <= 1 ? (clearInterval(interval), 0) : c - 1))
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [resetStep])
+
+  const closeResetFlow = () => {
+    setResetting(false)
+    setResetStep(0)
+    setTypedConfirm("")
+    setCooldown(COOLDOWN_SECONDS)
+  }
 
   const handleUnlock = async (event) => {
     event.preventDefault()
@@ -121,11 +132,7 @@ export default function SecurityGate({ children, activityName = "this activity",
     try {
       await resetPasscode()
       if (onLocked) onLocked()
-      setResetting(false)
-      setResetConfirm(false)
-      // Reset leaves the app in an unprotected state — no passcode remains,
-      // so show children immediately. Also refresh biometric availability
-      // (it may have been burned by the reset).
+      closeResetFlow()
       setBiometricEnabled(isBiometricEnabled())
       setMode("open")
     } catch (err) {
@@ -133,6 +140,29 @@ export default function SecurityGate({ children, activityName = "this activity",
     } finally {
       setBusy(false)
     }
+  }
+
+  const confirmLabel = () => {
+    if (resetStep === 0 || resetStep === 1) return 'Continue'
+    return cooldown > 0 ? `Wait ${cooldown}s` : 'Delete everything'
+  }
+
+  const confirmDisabled = () => {
+    if (busy) return true
+    if (resetStep === 1) return typedConfirm !== CONFIRM_PHRASE
+    if (resetStep === 2) return cooldown > 0
+    return false
+  }
+
+  const handleResetConfirm = () => {
+    if (resetStep === 0) setResetStep(1)
+    else if (resetStep === 1 && typedConfirm === CONFIRM_PHRASE) setResetStep(2)
+    else if (resetStep === 2 && cooldown === 0) handleReset()
+  }
+
+  const handleResetCancel = () => {
+    if (resetStep === 0) closeResetFlow()
+    else setResetStep(resetStep - 1)
   }
 
   if (mode === "unsupported") {
@@ -146,95 +176,100 @@ export default function SecurityGate({ children, activityName = "this activity",
 
   if (mode === "locked") {
     return (
-      <div className='security-gate security-gate--centered'>
-        <form className='security-gate__card' onSubmit={handleUnlock}>
-          <h2 className='security-gate__title'>Locked Content</h2>
-
-          {biometricEnabled && (
-            <button
-              type='button'
-              className='security-gate__biometric'
-              onClick={handleBiometricUnlock}
-              disabled={biometricBusy}>
-              {biometricBusy ? "Waiting for biometrics…" : "Unlock with biometrics"}
-            </button>
-          )}
-
-          <div className='security-gate__row-wrap inputs' role='note'>
-            <PasscodeField
-              id='sg-unlock-pass'
-              label='Passcode'
-              value={passcode}
-              onChange={setPasscode}
-              autoFocus={!biometricEnabled}
-            />
-
-            {error && (
-              <p className='security-gate__error' role='alert'>
-                {error}
-              </p>
-            )}
-
-            <button
-              className={`security-gate__submit${busy ? ' wide' : ''}`}
-              type='submit'
-              disabled={busy}>
-              {busy ? 'Unlocking…' : 'Unlock'}
-            </button>
+      <>
+        <Modal
+          title='Locked Content'
+          showCancel={!!onClose}
+          onCancel={onClose ?? (() => {})}
+          cancelLabel='Close'>
+          <div className='security-gate security-gate--centered'>
+            <form className='security-gate__card' onSubmit={handleUnlock}>
+              {biometricEnabled && (
+                <button
+                  type='button'
+                  className='security-gate__biometric'
+                  onClick={handleBiometricUnlock}
+                  disabled={biometricBusy}>
+                  {biometricBusy ? "Waiting for biometrics…" : "Unlock with biometrics"}
+                </button>
+              )}
+              <div className='security-gate__row-wrap inputs' role='note'>
+                <PasscodeField
+                  id='sg-unlock-pass'
+                  label='Passcode'
+                  value={passcode}
+                  onChange={setPasscode}
+                  autoFocus={!biometricEnabled}
+                />
+                {error && <p className='security-gate__error' role='alert'>{error}</p>}
+                <button
+                  className={`security-gate__submit${busy ? ' wide' : ''}`}
+                  type='submit'
+                  disabled={busy}>
+                  {busy ? 'Unlocking…' : 'Unlock'}
+                </button>
+              </div>
+              <div className='security-gate__row' role='note'>
+                <button
+                  type='button'
+                  className='security-gate__link'
+                  onClick={() => setResetting(true)}>
+                  Forgot passcode?
+                </button>
+              </div>
+            </form>
           </div>
-          <div className='security-gate__row' role='note'>
-            <button type='button' className='security-gate__link' onClick={() => setResetting(true)}>
-              Forgot passcode?
-            </button>
-          </div>
-        </form>
+        </Modal>
 
         {resetting && (
-          <div className='security-gate__modal' role='dialog' aria-modal='true'>
-            <div className='security-gate__modal-panel'>
-              <h3 className='security-gate__title'>Reset passcode</h3>
-              {!resetConfirm ? (
-                <>
-                  <p className='security-gate__lede'>
-                    Resetting will permanently delete every win on this device. There is no other way to regain access.
-                  </p>
-                  <div className='security-gate__actions'>
-                    <button type='button' className='security-gate__cancel' onClick={() => setResetting(false)}>
-                      Cancel
-                    </button>
-                    <button type='button' className='security-gate__danger' onClick={() => setResetConfirm(true)}>
-                      Continue
-                    </button>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className='security-gate__warning security-gate__warning--strong'>
-                    Last chance. All wins will be deleted immediately.
-                  </div>
-                  {error && (
-                    <p className='security-gate__error' role='alert'>
-                      {error}
-                    </p>
-                  )}
-                  <div className='security-gate__actions'>
-                    <button
-                      type='button'
-                      className='security-gate__cancel'
-                      onClick={() => setResetConfirm(false)}
-                      disabled={busy}>
-                      Back
-                    </button>
-                    <button type='button' className='security-gate__danger' onClick={handleReset} disabled={busy}>
-                      {busy ? "Resetting…" : "Delete everything"}
-                    </button>
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
+          <Modal
+            title='Reset passcode'
+            showConfirm
+            showCancel
+            confirmLabel={confirmLabel()}
+            confirmDisabled={confirmDisabled()}
+            cancelLabel={resetStep === 0 ? 'Cancel' : 'Back'}
+            onConfirm={handleResetConfirm}
+            onCancel={handleResetCancel}>
+            {resetStep === 0 && (
+              <div className='security-gate__reset-body'>
+                <p className='pc-dialog__lede'>
+                  If you have forgotten your passcode, the only way to use this app again is to reset it. Resetting will <strong>permanently delete every win and all settings</strong> on this device. This cannot be undone.
+                </p>
+                <p className='pc-dialog__lede'>
+                  If you remember your passcode, cancel and try again.
+                </p>
+              </div>
+            )}
+
+            {resetStep === 1 && (
+              <div className='security-gate__reset-body'>
+                <p className='pc-dialog__lede'>
+                  To confirm you want to delete everything, type <strong>{CONFIRM_PHRASE}</strong> below:
+                </p>
+                <input
+                  type='text'
+                  className='security-gate__input'
+                  value={typedConfirm}
+                  onChange={(e) => setTypedConfirm(e.target.value)}
+                  autoComplete='off'
+                  spellCheck={false}
+                  autoFocus
+                />
+              </div>
+            )}
+
+            {resetStep === 2 && (
+              <div className='security-gate__reset-body'>
+                <div className='security-gate__warning security-gate__warning--strong'>
+                  Last chance. All data will be deleted in {cooldown}s.
+                </div>
+                {error && <p className='security-gate__error' role='alert'>{error}</p>}
+              </div>
+            )}
+          </Modal>
         )}
-      </div>
+      </>
     )
   }
 
@@ -243,4 +278,10 @@ export default function SecurityGate({ children, activityName = "this activity",
       <div className='security-gate__content'>{children}</div>
     </div>
   )
+}
+
+SecurityGate.propTypes = {
+  children: PropTypes.node,
+  onLocked: PropTypes.func,
+  onClose: PropTypes.func,
 }

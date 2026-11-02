@@ -66,11 +66,18 @@
     radial-gradient(ellipse at 20% 85%, rgba(233, 109, 7, 0.85) 15%, rgba(34, 7, 86, 0.95) 60%),
     radial-gradient(ellipse at 60% 67.5%, rgba(247, 7, 7, 0.84) 20%, rgba(65, 6, 86, 0.95) 60%);
   --background: rgb(49, 38, 88);
+  --background-grey: rgb(48, 40, 71);
+  --background-grey: radial-gradient(ellipse at 10% 10%, rgba(74, 65, 153, 0.5) 20%, rgb(36, 30, 56) 100%);
   --foreground: oklch(0.985 0 0);
 
   --placeholder: rgba(130, 115, 167, 0.95);
 
-  --btn-bg: #3d3585;
+  --bg: rgb(62, 52, 151);
+
+  --btn-bg: radial-gradient(ellipse at 10% 10%, rgba(73, 65, 143, 0.5) 20%, rgba(74, 65, 153, 0.5) 100%);
+  /* #332891;*/
+  --btn-dull-bg: radial-gradient(ellipse at 10% 10%, rgba(83, 77, 133, 0.25) 20%, rgba(53, 47, 107, 0.25) 100%);
+  /* #332891;*/
   --btn-bg-hover: #4b4396;
   --grey-bg: #151515;
 
@@ -273,11 +280,11 @@
   --text-shadow-dark-strong: 0px 0px 4px rgba(10, 10, 10, 1);
   --text-shadow-light: 0px 0px 6px rgba(60, 60, 60, 0.5);
   --box-shadow: 0px 0px 12px rgba(10, 10, 10, 0.2);
-  --box-shadow-dark: 0px 0px 6px rgba(10, 10, 10, 0.5);
-  --box-shadow-wide: 0px 0px 16px rgba(10, 10, 10, 0.75);
+  --box-shadow-dark: 0px 0px 6px rgba(10, 10, 10, 0.2);
+  --box-shadow-wide: 0px 0px 16px rgba(10, 10, 10, 0.2);
   --box-shadow-light: 0px 0px 6px rgba(200, 200, 200, 0.5);
   --box-shadow-blue: 0px 0px 6px rgba(10, 10, 200, 0.5);
-  --box-shadow-orange: 0px 0px 6px rgba(255, 187, 0, 0.781);
+  --box-shadow-orange: 0px 0px 6px rgba(255, 187, 0, 0.681);
 
   /* 
   --  Wheel of Life ---------------

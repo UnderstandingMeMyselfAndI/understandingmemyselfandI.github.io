@@ -22,7 +22,6 @@ import Home from '@activity/home/Home'
 import CookieConsent from '@activity/cookieConsent/CookieConsent'
 import UmmiAgeGate from '@components/ageGate/UmmiAgeGate'
 import AppLoading from '@ui/loading/AppLoading'
-// import { smoothScroll } from '@js/utils.js'
 import NewsletterSignUp from '@activity/newsletterSignup/NewsletterSignUp'
 import Exit from '@ui/exit/Exit'
 import Vcn from '@components/visits/Vcn.jsx'
@@ -33,33 +32,23 @@ import TimelineCTA from '@activity/timeline/TimelineCTA'
 import QuizCTA from '@activity/quiz/QuizCTA'
 import ActivityHost from './components/activity/ActivityHost'
 import { prefetchAllActivities } from './components/activity/activityLoaders'
+import SecurityGate from '@security/SecurityGate'
 import './App.scss'
 import './scss/_fonts.scss'
 
 window.__APP_LOADED = true
 
 function App() {
-  // Feature flags — from the encrypted store. Default to `true` while the
-  // vault is locked, so nothing is hidden from an unverified user until
-  // they unlock and their real choices load.
   const toolsEnabled = usePrivateStore((s) => s.toolsEnabled)
   const daysCounterEnabled = usePrivateStore((s) => s.daysCounterEnabled)
   const unitsCalculatorEnabled = usePrivateStore((s) => s.unitsCalculatorEnabled)
   const wheelOfLifeEnabled = usePrivateStore((s) => s.wheelOfLifeEnabled)
   const quizEnabled = usePrivateStore((s) => s.quizEnabled)
 
-  // Safety-critical flag — plaintext, so the Exit button is available even
-  // when the vault is locked.
   const quickExitEnabled = useAppStore((s) => s.quickExitEnabled)
-
-  // Verification
   const ageVerified = useAppStore((s) => s.ageVerified)
   const savedConsent = localStorage.getItem('cookieConsent')
-
-  // Hydration
   const hasHydrated = useAppStore((s) => s._hasHydrated)
-
-  // All hooks must run before any early return.
 
   useEffect(() => {
     const theme = localStorage.getItem(useThemeStore.getState().storageKeyTheme)
@@ -70,7 +59,6 @@ function App() {
 
   useEffect(() => {
     if (!hasHydrated) return undefined
-
     if (navigator.connection?.saveData === true) return undefined
 
     const effectiveType = navigator.connection?.effectiveType
@@ -91,30 +79,35 @@ function App() {
   return (
     <div>
       <div className='main'>
-        <AppMenu />
-        {quickExitEnabled && <Exit />}
-        <ActivityHost />
-        <Home>
+       
+        <SecurityGate>
+          {/* Security gated  content*/}
+          <AppMenu />
+          {quickExitEnabled && <Exit />}
           <Header />
           <Introduction />
+          <ActivityHost />
+          <Home>
+            {toolsEnabled && <ToolsCTA />}
+            {daysCounterEnabled && <DaysCounterCTA />}
+            {unitsCalculatorEnabled && <UnitsCalculatorCTA />}
+            <TimelineCTA />
+            {wheelOfLifeEnabled && <WheelOfLifeCTA />}
+            <Lingo />
+            {quizEnabled && <QuizCTA />}
+            <WallpapersCTA />
+            <YourPrivacyCTA />
+            <NewsletterSignUp />
+            <InstallCTA />
+            <Footer />
+             {/* End Security gated  content*/}
+          </Home>
 
-          {toolsEnabled && <ToolsCTA />}
-          {daysCounterEnabled && <DaysCounterCTA />}
-          {unitsCalculatorEnabled && <UnitsCalculatorCTA />}
-          <TimelineCTA />
-          {wheelOfLifeEnabled && <WheelOfLifeCTA />}
-          <Lingo />
-          {quizEnabled && <QuizCTA />}
-          <WallpapersCTA />
-          <YourPrivacyCTA />
-          <NewsletterSignUp />
-          <InstallCTA />
-          <Footer />
-        </Home>
-        {quickExitEnabled && <Exit />}
+          {quickExitEnabled && <Exit />}
 
-        <SnackBars />
-        <PasscodeDialogController />
+          <SnackBars />
+          <PasscodeDialogController />
+        </SecurityGate>
       </div>
 
       <Backdrop initialImageId={2} initialDelay={3000} interval={6000} parallaxStrength={0} className='backdrop' />

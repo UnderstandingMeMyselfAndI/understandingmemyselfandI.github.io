@@ -162,11 +162,6 @@ const strings = {
       introduction: (
         <div>
           <p>Tap on a tool for more info. </p>
-          {/* <p>
-            Favourite tools with <IconHandyman />
-            <br />
-            add them to your toolbox
-          </p> */}
         </div>
       ),
       description: [
@@ -282,8 +277,8 @@ const strings = {
       name: "install",
       title: "Install",
       slug: "install",
-      url: "#install",
-      anchorID: "#install",
+      url: "install",
+      anchorID: "install",
       htmlContent: [],
 
       cta: {

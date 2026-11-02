@@ -12,14 +12,15 @@ import { useOnInView } from 'react-intersection-observer'
 // import { PWAInstallElement } from '@khmyznikov/pwa-install'
 // import UmmiIcon from '@components/icons/UmmiIcon2.svg'
 
-import './styles.scss'
+import './installCTA.scss'
 
 const InstallCTA = () => {
   const name = 'installCTA'
+  const url = 'install'
   // const id = 16
 
   //TODO: #16 Check this is working - don't show if already installed
-  const content = strings.activity.find((activity) => activity.name === name) || null
+  const content = strings.activity.find((activity) => activity.url === url) || null
   if (content === null) {
     console.warn('No content found for activity "Install"')
   }
@@ -43,8 +44,6 @@ const InstallCTA = () => {
 
   const setIsInstalled = useAppStore((state) => state.setIsInstalled)
   const setIsInstallable = useAppStore((state) => state.setIsInstallable)
-  // const isInstalled = useAppStore((state) => state.isInstalled)
-  // const isInstallable = useAppStore((state) => state.isInstallable)
   const [deferredPrompt, setDeferredPrompt] = useState(null)
   const [showInstallBtn, setShowInstallBtn] = useState(true)
   const [showInstallCTA, setShowInstalCTA] = useState(false)

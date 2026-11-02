@@ -1,34 +1,27 @@
 import PropTypes from "prop-types"
 import ButtonSimple from "@buttons/ButtonSimple"
-
 import "./modal.scss"
 
 const Modal = ({
   children,
-  // show,
   title = "",
   instruction = "",
   confirmLabel = "Okay",
+  confirmDisabled = false,
   onConfirm,
   cancelLabel = "Cancel",
   onCancel,
   classes,
   showCancel = false,
+  showConfirm = false,
 }) => {
   const handleCancel = () => {
-    if (!onCancel) {
-      console.warn("No cancel handler passed to modal")
-      return
-    }
-
+    if (!onCancel) { console.warn("No cancel handler passed to modal"); return }
     onCancel()
   }
 
   const handleConfirm = () => {
-    if (!onConfirm) {
-      console.warn("No confirm handler passed to modal")
-      return
-    }
+    if (!onConfirm) { console.warn("No confirm handler passed to modal"); return }
     onConfirm()
   }
 
@@ -41,24 +34,34 @@ const Modal = ({
         {instruction && <div className='modal__instruction'>{instruction}</div>}
         {children && <div className='modal__content'>{children}</div>}
         <div className='modal__actions'>
-          <ButtonSimple label={confirmLabel} handleClick={handleConfirm} classes={["confirm"]} />
+          {showConfirm && (
+            <ButtonSimple
+              label={confirmLabel}
+              handleClick={handleConfirm}
+              classes={["confirm"]}
+              disabled={confirmDisabled}
+            />
+          )}
           {showCancel && <ButtonSimple label={cancelLabel} handleClick={handleCancel} classes={["cancel"]} />}
         </div>
       </div>
     </div>
   )
 }
+
 Modal.propTypes = {
   children: PropTypes.node,
-  title: PropTypes.string.isRequired,
-  instruction: PropTypes.string || PropTypes.arrayOf(PropTypes.string),
+  title: PropTypes.string,
+  instruction: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
   cancelLabel: PropTypes.string,
   confirmLabel: PropTypes.string,
-  onConfirm: PropTypes.func.isRequired,
+  confirmDisabled: PropTypes.bool,
+  onConfirm: PropTypes.func,
   onCancel: PropTypes.func.isRequired,
   classes: PropTypes.array,
-  show: PropTypes.bool.isRequired,
   showCancel: PropTypes.bool,
+  showConfirm: PropTypes.bool,
 }
+
 Modal.displayName = "Modal"
 export default Modal

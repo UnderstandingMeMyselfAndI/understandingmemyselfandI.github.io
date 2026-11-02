@@ -419,7 +419,7 @@ $input_size: responsiveFontSize($input_size_min, $input_size_max, $minDeviceWidt
 // Button font size
 // ------------------------------------------
 
-$btn_size_min: 12px;
+$btn_size_min: 16px;
 $btn_size_max: 16px;
 $btn_size: responsiveFontSize($btn_size_min, $btn_size_max, $minDeviceWidth, $maxDeviceWidth);
 

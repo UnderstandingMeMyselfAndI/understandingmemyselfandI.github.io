@@ -68,7 +68,7 @@ export default defineConfig(() => {
           "style-src": "'self' 'unsafe-inline'",
           "img-src": "'self' data:",
           "font-src": "'self' data:",
-          "connect-src": "'self' http://localhost/ https://app.ummi.now",
+          "connect-src": "'self' http://localhost/ https://app.ummi.now https://*.google-analytics.com",
           "report-uri": "/csp-report",
         },
         // Optional: Use 'report' for report-only mode, 'strict' for enforcement (default)

@@ -1,11 +1,7 @@
 // src/components/activity/smallWins/SmallWins.jsx
 import { useEffect } from 'react'
-// import { useShallow } from 'zustand/react/shallow'
 import useAppStore from '@store/useAppStore'
-// import { activities } from '@data/config'
 import CloseBtn from '@buttons/close/CloseBtn'
-import { hasPasscode, lock } from '@utils/securityGate'
-import SecurityGate from '@security/SecurityGate'
 import { onBeforeLock } from '@utils/sessionLock'
 import { useSmallWinsStore } from '@store/useSmallWinsStore'
 import { STRINGS } from '@data/dataSmallWins.js'
@@ -14,7 +10,6 @@ import SmallWinsEditor from './SmallWinsEditor'
 
 import '@activity/smallWins/smallWins.scss'
 
-// const SMALL_WINS_ID = 25
 const SMALL_WINS_NAME = 'book-of-small-wins'
 
 onBeforeLock(async () => {
@@ -58,8 +53,6 @@ function SmallWinsBody() {
 export default function SmallWins() {
   const setActivity = useAppStore((state) => state.setActivity)
   const closeSession = useSmallWinsStore((s) => s.closeSession)
-  const reset = useSmallWinsStore((s) => s.reset)
-
 
   const handleClose = async () => {
     try {
@@ -78,9 +71,7 @@ export default function SmallWins() {
       aria-labelledby='small-wins-heading'>
       <CloseBtn onClick={handleClose} />
       <div className='inner'>
-        <SecurityGate activityName={STRINGS.overviewTitle} onLocked={reset}>
-          <SmallWinsBody />
-        </SecurityGate>
+        <SmallWinsBody />
       </div>
     </section>
   )

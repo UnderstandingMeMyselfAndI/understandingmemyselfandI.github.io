@@ -188,27 +188,31 @@ export const useAppStore = create((set, get) => {
     setNU: (v) => set({ nu: v }),
     incVSTS: () => set((s) => ({ vsts: s.vsts + 1 })),
 
-    clearIDB: async () => {
-      // 1. Legacy keyval store
-      const { clear: clearKeyval } = await import("idb-keyval")
+    clearIDB: async ({ alsoClearPasscode = false } = {}) => {
+      // Legacy keyval store
+      const { clear: clearKeyval } = await import('idb-keyval')
       await clearKeyval()
 
-      // 2. ummi-db — Small Wins entries, people, and settings
-      const { deleteAllData } = await import("@utils/smallWinsStorage")
-      const { clearAllSettings } = await import("@utils/settingsStorage")
-      const { resetDbConnection } = await import("@utils/db")
+      if (alsoClearPasscode) {
+        // resetPasscode wipes ummi-db AND burns the keystore
+        const { resetPasscode } = await import('@utils/securityGate')
+        await resetPasscode()
+      } else {
+        // Clear data but keep passcode
+        const { deleteAllData } = await import('@utils/smallWinsStorage')
+        const { clearAllSettings } = await import('@utils/settingsStorage')
+        const { resetDbConnection } = await import('@utils/db')
 
-      await deleteAllData()
-      await clearAllSettings()
-      resetDbConnection()
+        await clearAllSettings()
+        await deleteAllData()
+        resetDbConnection()
 
-      // 3. Wipe in-memory stores so the UI immediately reflects "empty"
-      const { useSmallWinsStore } = await import("@store/useSmallWinsStore")
-      const { usePrivateStore } = await import("@store/usePrivateStore")
-      useSmallWinsStore.getState().reset()
-      usePrivateStore.getState().reset()
+        const { useSmallWinsStore } = await import('@store/useSmallWinsStore')
+        const { usePrivateStore } = await import('@store/usePrivateStore')
+        useSmallWinsStore.getState().reset()
+        usePrivateStore.getState().reset()
+      }
 
-      // 4. Force a full reload so hydration re-runs from the now-empty state
       window.location.reload()
     },
   }

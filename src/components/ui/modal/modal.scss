@@ -14,12 +14,7 @@ body #root .modal {
     justify-content: center;
     align-items: center;
     z-index: 15601;
-    // border-radius: var(--border-radius-lrg);
-    // box-shadow: var(--box-shadow-dark);
-    // -----------------
-    // transform: translate(0, -50%);
     padding: var(--gutters);
-    background: var(--blue-dark-trans-70);
 
 
     h4 {
@@ -36,8 +31,8 @@ body #root .modal {
         left: 0;
         opacity: 1;
         z-index: -3;
-        opacity: 0.9;
-        background: var(--grey-bg);
+        opacity: 0.85;
+        background: var(--background-grey);
         width: 100%;
         height: 100%;
         content: "";
@@ -49,8 +44,6 @@ body #root .modal {
         width: 100%;
         margin: 0 auto;
         height: fit-content;
-        max-height: var(--max-inner-height-modal);
-        // height: var(--inner-height-modal);
         width: var(--inner-width-modal);
         max-width: var(--max-inner-width-modal);
         display: flex;
@@ -59,70 +52,70 @@ body #root .modal {
         align-items: center;
         text-align: center;
         row-gap: 1rem;
-        padding: calc(var(--gutters) / 2);
+        padding: var(--gutters);
         // outline: 1px solid var(--grey-trans-60);
 
-        // &::before {
-        //     position: absolute;
-        //     top: 0;
-        //     left: 0;
-        //     opacity: 0.65;
-        //     z-index: -1;
-        //     background: var(--blue-dark-trans-90);
-        //     width: 100%;
-        //     height: 100%;
-        //     content: "";
-        // }
-
-        // &::after {
-        //     position: absolute;
-        //     top: 0;
-        //     left: 0;
-        //     opacity: 1;
-        //     z-index: -2;
-        //     background: var(--background-main);
-        //     width: 100%;
-        //     height: 100%;
-        //     content: "";
-        // }
-
-        &::after {
-            content: '';
+        &::before {
             position: absolute;
-            z-index: -1;
             top: 0;
             left: 0;
+            opacity: 0.25;
+            z-index: -1;
+            background: var(--background-main);
             width: 100%;
             height: 100%;
-            opacity: 0.5;
-            background: var(--background-main);
-        }
-    }
-
-    &__wrap {
-        text-align: center;
-        display: flex;
-        flex-flow: column nowrap;
-        top: 0;
-        left: 0;
-        width: 100%;
-        max-width: var(--max-width);
-        padding: 0;
-        margin: 0;
-        min-height: 260px;
-        justify-content: space-between;
-        row-gap: 1.5rem;
-
-        /* iOS Safari specific positioning */
-        @supports (-webkit-touch-callout: none) {
-            position: fixed;
+            content: "";
         }
 
-        .backdrop {
-            z-index: -1;
+        &::after {
             position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -2;
+
+            background: var(--background);
+            width: 100%;
+            height: 100%;
+            content: "";
         }
+
+        // &::after {
+        //     content: '';
+        //     position: absolute;
+        //     z-index: -1;
+        //     top: 0;
+        //     left: 0;
+        //     width: 100%;
+        //     height: 100%;
+        //     opacity: 0.5;
+        //     background: var(--background-main);
+        // }
     }
+
+    // &__wrap {
+    //     text-align: center;
+    //     display: flex;
+    //     flex-flow: column nowrap;
+    //     top: 0;
+    //     left: 0;
+    //     width: 100%;
+    //     max-width: var(--max-width);
+    //     padding: 0;
+    //     margin: 0;
+    //     min-height: 260px;
+    //     justify-content: space-between;
+    //     row-gap: 1.5rem;
+
+    //     /* iOS Safari specific positioning */
+    //     @supports (-webkit-touch-callout: none) {
+    //         position: fixed;
+    //     }
+
+    //     .backdrop {
+    //         z-index: -1;
+    //         position: absolute;
+    //     }
+    // }
 
     &__title {
         font-size: variables.$h3_size;
@@ -131,6 +124,10 @@ body #root .modal {
         color: var(--primary);
         text-align: left;
         width: 100%;
+        min-height: 60px;
+        align-items: center;
+        justify-content: flex-start;
+        display: flex;
     }
 
     &__overlay {
@@ -155,6 +152,7 @@ body #root .modal {
             top: 0;
             left: 0;
             content: "";
+
             background: var(--background-main);
             z-index: -1;
             opacity: 0.35;
@@ -186,15 +184,12 @@ body #root .modal {
         flex-flow: column nowrap;
         row-gap: 1rem;
         width: 100%;
-        // align-content: center;
+
         align-items: center;
         overflow-y: scroll;
         overflow-x: hidden;
-        // border-top: 2px solid var(--blue-dark-trans-20);
-        // border-bottom: 2px solid var(--blue-light-trans-20);
         background: var(--grey-trans-10);
-        // outline: 6px solid yellow;
-        padding: calc(var(--gutters) / 2);
+
         text-align: left;
         text-wrap-style: balance;
         line-height: 1.3;
@@ -206,25 +201,27 @@ body #root .modal {
         ul {
             list-style: none;
             font-size: variables.$default_size;
-            // padding-right: 1rem;
 
-            li {
-                // margin-bottom: 1rem;
-            }
         }
+
+
+    }
+
+    &__actions {
+        justify-content: center;
+        width: 100%;
+        display: flex;
+        column-gap: 1.5rem;
 
         button {
             padding: 1rem 2rem;
             font-size: variables.$btn_size;
             border-radius: 4px;
-            color: white;
+            color: var(--primary);
             border: none;
             cursor: pointer;
             margin: 0 auto;
 
-            &:hover {
-                // background: color.adjust($color-primary, $lightness: -5%);
-            }
 
             &.btn-secondary {
                 background: #6c757d;
@@ -234,46 +231,41 @@ body #root .modal {
                 }
             }
         }
-    }
 
-    &__actions {
-        justify-content: center;
-        width: 100%;
-        display: flex;
-        column-gap: 1.5rem;
-    }
+        button.btn.confirm {
+            background: transparent;
+            outline: 1px solid var(--grey-med-trans-40);
+            width: fit-content;
+            text-align: center;
+            justify-content: center;
+            background-color: var(--blue);
+            box-shadow: var(--box-shadow);
+            padding: 1rem 1.5rem;
 
-    button.btn.confirm {
-        background: transparent;
-        outline: 1px solid var(--grey-med-trans-40);
-        width: fit-content;
-        text-align: center;
-        justify-content: center;
-        background-color: var(--blue);
-        box-shadow: var(--box-shadow);
-        padding: 1rem 1.5rem;
+            /* iOS specific */
+            @supports (-webkit-touch-callout: none) {
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
+            }
+        }
 
-        /* iOS specific */
-        @supports (-webkit-touch-callout: none) {
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
+        button.btn.cancel {
+            color: var(--grey-light);
+            width: 50%;
+            background: transparent;
+            justify-content: center;
+            outline: 1px solid var(--grey-light-trans-30);
+            padding: 1rem 1.25rem;
+
+            /* iOS specific */
+            @supports (-webkit-touch-callout: none) {
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
+            }
         }
     }
 
-    button.btn.cancel {
-        color: var(--grey-light);
-        width: 50%;
-        background: transparent;
-        justify-content: center;
-        outline: 1px solid var(--grey-light-trans-30);
-        padding: 1rem 1.25rem;
 
-        /* iOS specific */
-        @supports (-webkit-touch-callout: none) {
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
-        }
-    }
 }
 
 @media (width >=768px) {
@@ -283,8 +275,6 @@ body #root .modal {
             max-height: var(--max-inner-height);
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow-wide), var(--box-shadow);
-
-            &::before {}
 
             &::after {
                 border-radius: var(--border-radius);

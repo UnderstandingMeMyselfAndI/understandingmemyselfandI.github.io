@@ -80,22 +80,22 @@ export const EXAMPLE_WINS = [
 export const WHY_SMALL_WINS = [
   {
     heading: 'Expert level self-critics',
-    body: "<p>If there were qualifications in self-criticism we would be Professors.</p><p>In addiction people can become some of the best self critics in the world, and accepting praise can be really uncomfortable.</p> <p>The Book of Little Wins shows us that we're not as bad as we think we are, and that we can be proud of ourselves for the small things we do.</p>",
+    body: "<p>If there were qualifications in self-criticism, many people in addiction would be professors.</p><p>However, accepting praise can be really uncomfortable.</p> <p>The Book of Small Wins shows is a place to show that things are not as bad as they may seem, and that it is possible, and important,  to be proud of doing small things that really are wins.</p>",
   },
   {
     heading: 'Small wins are still wins',
-    body: "Change doesn't usually show up in one big moment. <br /><br />It's built from small moves you keep making, and they prove to you that change is possible.",
+    body: "Change doesn't usually show up in one big moment. <br /><br />It's built from small moves that keep happening, and they prove that change is possible.",
   },
   {
     heading: "They're proof",
-    body: "Every entry is proof against that voice saying nothing's changing. <br /><br />On the rough days, this book does the talking back for you.",
+    body: "Every entry is proof against that voice saying nothing's changing. <br /><br />On the rough days, this book denies that voice and does the talking back.",
   },
   {
     heading: "They're allowed to be tiny",
-    body: 'Making your bed counts.<br /> Drinking water counts. <br />Getting through ten minutes counts. <br /><br />Nothing in here is too small to record.',
+    body: 'Making the bed counts.<br /> Drinking water counts. <br />Getting through ten minutes counts. <br /><br />Nothing in here is too small to record.',
   },
   {
-    heading: "It's yours and only yours",
-    body: 'Your book is locked with your passcode and lives only on this device. <br /><br />Nothing leaves your device and you can delete your data at any time.',
+    heading: "It's ours and only ours",
+    body: 'The Book of Small Wins is protected with a passcode/biometrics and the data lives only on the device where they were recorded. <br /><br />Nothing leaves that device and it can be deleted at any time by visiting settings.',
   },
 ]
