@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import useAppStore from '@store/useAppStore'
-import CloseBtn from '../../ui/buttons/close/CloseBtn'
+import CloseBtn from '@ui/buttons/close/CloseBtn'
 import parse from 'html-react-parser'
 import DOMPurify from 'dompurify'
 import { activities } from '@data/config'
@@ -45,8 +45,8 @@ const DRINK_PRESETS = [
     drinks: [
       { label: 'Single', volume: 25, unit: 'ml', abv: 40 },
       { label: 'Double', volume: 50, unit: 'ml', abv: 40 },
-      { label: 'Bottle', volume: 70, unit: 'cl', abv: 40 },
-      { label: 'Half Bottle', volume: 35, unit: 'cl', abv: 40 },
+      { label: 'Bottle', volume: 700, unit: 'ml', abv: 40 },
+      { label: 'Half Bottle', volume: 350, unit: 'ml', abv: 40 },
     ],
   },
   {
@@ -60,10 +60,10 @@ const noDrinksMessage =
   ' <h5 class="yellow"><b>No measures selected. </b> </h5><br /><br /> Add a <br /><b>Measure</b> <br /> or <br /><b>Custom Drink</b>.'
 
 const UnitsCalculator = () => {
-  const name = 'unitsCalculator'
+  // const name = 'unitsCalculator'
   const id = 5
   const setActivity = useAppStore((s) => s.setActivity)
-  const isModal = useAppStore((s) => s.isModal)
+  // const isModal = useAppStore((s) => s.isModal)
   const [type, setType] = useState('custom')
   const [isMeasuresVisible, setIsMeasuresVisible] = useState(false)
   const [multiplier, setMultiplier] = useState(1)
@@ -89,7 +89,6 @@ const UnitsCalculator = () => {
   }, [activity, id])
 
   const handleClose = () => {
-
     if (isMeasuresVisible) {
       setIsMeasuresVisible(false)
     } else {
